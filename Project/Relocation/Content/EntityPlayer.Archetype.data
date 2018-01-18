@@ -53,4 +53,7 @@ Cog =
 		float Speed = 100,
 		float RunSpeed = 150,
 	},
+	Hierarchy = 
+	{
+	},
 },
