@@ -1,0 +1,38 @@
+class CameraMovement : ZilchComponent
+{
+    var Speed : Real = 0.2;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.Speed = this.Owner.Camera.Size / 100 / 4 * 3;
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var position = this.Space.FindObjectByName("Player").Transform.Translation;
+        position.Z = this.Owner.Transform.Translation.Z;
+        this.Owner.Transform.Translation = position;
+        
+        /*if (Zero.Keyboard.KeyIsDown(Keys.A))
+        {
+            this.Owner.Transform.Translation += Real3(-this.Speed, 0.0, 0.0);
+        }
+        
+        if (Zero.Keyboard.KeyIsDown(Keys.D))
+        {
+            this.Owner.Transform.Translation += Real3(this.Speed, 0.0, 0.0);
+        }
+        
+        if (Zero.Keyboard.KeyIsDown(Keys.W))
+        {
+            this.Owner.Transform.Translation += Real3(0.0, this.Speed, 0.0);
+        }
+        
+        if (Zero.Keyboard.KeyIsDown(Keys.S))
+        {
+            this.Owner.Transform.Translation += Real3(0.0, -this.Speed, 0.0);
+        }*/
+    }
+}

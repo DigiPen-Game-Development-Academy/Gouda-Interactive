@@ -1,0 +1,38 @@
+class PlayerMovement : ZilchComponent
+{
+    [Property]
+    var Speed : Real = 0.2;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (Zero.Keyboard.KeyIsDown(Keys.A))
+        this.Owner.Transform.Translation += Real3(-this.Speed, 0.0, 0.0);
+        
+        if (Zero.Keyboard.KeyIsDown(Keys.D))
+        this.Owner.Transform.Translation += Real3(this.Speed, 0.0, 0.0);
+        
+        if (Zero.Keyboard.KeyIsDown(Keys.W))
+        this.Owner.Transform.Translation += Real3(0.0, this.Speed, 0.0);
+        
+        if (Zero.Keyboard.KeyIsDown(Keys.S))
+        this.Owner.Transform.Translation += Real3(0.0, -this.Speed, 0.0);
+        
+        if (Zero.Keyboard.KeyIsDown(Keys.Shift))
+        this.Speed = 0.4;
+        else
+        this.Speed = 0.2;
+        
+        if (Zero.Keyboard.KeyIsPressed(Keys.Space))
+        {
+            if (this.Space.FindObjectByName("Camera").Camera.Size == 20)
+            this.Space.FindObjectByName("Camera").Camera.Size = 200;
+            else
+            this.Space.FindObjectByName("Camera").Camera.Size = 20;
+        }
+    }
+}

@@ -1,0 +1,8 @@
+Randomly generates a cave using pre-made tilemaps.
+Also has some rare dungeons that do nothing and are just there.
+
+A,S,W,D - Move
+Shift - Sprint/Run
+Space - Zoom out camera
+
+	- Gouda Interactive

@@ -1,0 +1,52 @@
+class TerrainGen : ZilchComponent
+{
+    [Property]
+    var RadiusFromMiddile : Real = 200.0;
+    
+    var TileSpawnLocation : Real3;
+    
+    var TileToSpawn : Archetype;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.TileSpawnLocation = Real3(-this.RadiusFromMiddile, this.RadiusFromMiddile, 0.0);
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (this.TileSpawnLocation.Y < -this.RadiusFromMiddile)
+        return;
+        
+        Console.WriteLine("`this.TileSpawnLocation`");
+        
+        var tileToSpawnGen = new Random();
+        var tileToSpawn = tileToSpawnGen.DieRoll(9);
+        
+        if (tileToSpawn == 9)
+        {
+            if ((this.TileSpawnLocation.X < this.RadiusFromMiddile / 1.33333 && this.TileSpawnLocation.X > -this.RadiusFromMiddile / 1.33333) ||
+            (this.TileSpawnLocation.Y < this.RadiusFromMiddile / 1.33333 && this.TileSpawnLocation.Y > -this.RadiusFromMiddile / 1.33333) ||
+            (this.TileSpawnLocation.X == this.RadiusFromMiddile || this.TileSpawnLocation.X == -this.RadiusFromMiddile) ||
+            (this.TileSpawnLocation.Y == this.RadiusFromMiddile || this.TileSpawnLocation.Y == -this.RadiusFromMiddile))
+            {
+                return;
+            }
+        }
+        
+        Console.WriteLine("`tileToSpawn`");
+        
+        if (this.TileSpawnLocation == Real3(0.0, 0.0, 0.0))
+        this.TileToSpawn = Archetype.Start;
+        else
+        this.TileToSpawn = Archetype.Find(this.Space.FindObjectByName("Tile`tileToSpawn`").ArchetypeName);
+        
+        this.Space.CreateAtPosition(this.TileToSpawn, this.TileSpawnLocation);
+        
+        this.TileSpawnLocation += Real3(16.0, 0.0, 0.0);
+        
+        if (this.TileSpawnLocation.X > this.RadiusFromMiddile)
+            this.TileSpawnLocation = Real3(-this.RadiusFromMiddile, this.TileSpawnLocation.Y - 16, 0.0);
+    }
+}

@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "Random Terrain Generator Example",
+	uint64 LibraryId = 5a3124bd207bf981,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

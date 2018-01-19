@@ -1,0 +1,39 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "Tile5",
+	},
+	Archetyped = 
+	{
+		string Name = "5a3138ae5400048f:Tile5",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [10, 980, 0],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	MultiSprite = 
+	{
+		bool Visible = true,
+		bool VisibilityCulling = true,
+		bool VisibilityEvents = true,
+		bool CastShadows = false,
+		Vec4 Color = [1, 1, 1, 1],
+		BlendMode BlendMode = Alpha,
+		SpriteGeometryMode GeometryMode = ZPlane,
+		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+	},
+	TileMap = 
+	{
+		string SourceName = "5a31012c12e3e140:Level_TileMap36",
+		string PaletteName = "5a312416ce0cf08e:BlackWhite",
+		float UnitsPerTile = 1,
+		float MeshThickness = 1.20000005,
+	},
+},
