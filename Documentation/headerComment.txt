@@ -1,12 +1,2 @@
-/* ----------------------------------------------------------------------------
-** Gouda Interactive
-** (c) 2018 DigiPen Institute of Technology, All Rights Reserved.
-**
-** <FILE NAME>
-**
-** Author:
-** - <Name>
-**
-** Contributors:
-** - <list in same format as author if applicable>
-** --------------------------------------------------------------------------*/
+// AUTHOR NAME
+// CONTRIBUTERS
