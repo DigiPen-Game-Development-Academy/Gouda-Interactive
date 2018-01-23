@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
 ** Gouda Interactive
-** © 2018 DigiPen Institute of Technology, All Rights Reserved.
+** (c) 2018 DigiPen Institute of Technology, All Rights Reserved.
 **
 ** <FILE NAME>
 **
