@@ -108,7 +108,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 24.6597252,
+			float Size = 20.1896782,
 		},
 		EditorCameraController = 
 		{
@@ -214,6 +214,10 @@ Level =
 		{
 			float Speed = 100,
 			float RunSpeed = 150,
+		},
+		WeaponManager = 
+		{
+			string WeaponDefault = "WeaponPistol",
 		},
 		Hierarchy = 
 		{

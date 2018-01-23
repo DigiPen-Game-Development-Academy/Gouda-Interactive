@@ -1,0 +1,80 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTERS: N/A
+
+class Weapon {
+    
+    var ItemName : String = "null";
+    var ItemID : Integer = 0;
+    var ItemTier : Integer = 0;
+    
+    var IsRanged : Boolean = false;
+    var IsUnlocked : Boolean = false;
+    
+    var Cooldown : Real = 0.0;
+    var CurrCooldown : Real = 0.0;
+    var BatteryLife : Real = 0.0;
+    
+    constructor(itemName : String, itemID : Integer, isRanged : Boolean) {
+        this.ItemName = itemName;
+        this.ItemID = itemID;
+        this.IsRanged = isRanged;
+        Console.WriteLine("Weapon with name \"`this.ItemName`\" has been created.");
+    }
+    
+    constructor(itemName : String, itemID : Integer, isRanged : Boolean, cooldown : Real, batteryLife : Real) {
+        this.ItemName = itemName;
+        this.ItemID = itemID;
+        this.IsRanged = isRanged;
+        this.Cooldown = cooldown;
+        this.BatteryLife = batteryLife;
+        Console.WriteLine("Weapon with name \"`this.ItemName`\" has been created.");
+    }
+    
+    function SetTier(tier : Integer) {
+        this.ItemTier = tier;
+    }
+    
+    function UseWeapon(currCooldown : Real) {
+        
+        if(this.IsRanged) {
+            Console.WriteLine("ranged shoot");
+        } else {
+            
+        }
+        
+    }
+    
+    function UpdateWeapon(dt : Real) {
+        
+        if(this.CurrCooldown <= 0.0) {
+            if(Zero.Keyboard.KeyIsDown(Keys.Space)) {
+                this.CurrCooldown = this.Cooldown;
+                this.UseWeapon(this.Cooldown);
+            }
+        } else {
+            this.CurrCooldown -= dt;
+        }
+    }
+    
+}
+
+class WeaponManager : ZilchComponent {
+    
+    var ActiveWeapon : Weapon = null;
+    
+    var WeaponPistol : Weapon;
+    
+    function Initialize(init : CogInitializer) {
+        
+        this.WeaponPistol = new Weapon("WeaponPistol", 0, true, 1.0, 0.0);
+        this.ActiveWeapon = this.WeaponPistol;
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+
+    function OnLogicUpdate(event : UpdateEvent) {
+        this.ActiveWeapon.UpdateWeapon(event.Dt);
+    }
+    
+}

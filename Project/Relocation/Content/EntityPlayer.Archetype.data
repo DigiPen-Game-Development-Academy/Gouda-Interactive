@@ -53,6 +53,10 @@ Cog =
 		float Speed = 100,
 		float RunSpeed = 150,
 	},
+	WeaponManager = 
+	{
+		string WeaponDefault = "WeaponPistol",
+	},
 	Hierarchy = 
 	{
 	},
