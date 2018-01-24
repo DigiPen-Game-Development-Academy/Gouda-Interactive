@@ -3,6 +3,8 @@
 
 class Weapon {
     
+    var Space : Space;
+    
     var ItemName : String = "null";
     var ItemID : Integer = 0;
     var ItemTier : Integer = 0;
@@ -37,7 +39,11 @@ class Weapon {
     function UseWeapon(currCooldown : Real) {
         
         if(this.IsRanged) {
+            
             Console.WriteLine("ranged shoot");
+            
+            //this.Space.CreateAtPosition(Archetype.EntityBullet, Real3(0.0, 0.0, 0.0));
+            
         } else {
             
         }
@@ -60,19 +66,25 @@ class Weapon {
 
 class WeaponManager : ZilchComponent {
     
+    // ACTIVE WEAPON
     var ActiveWeapon : Weapon = null;
     
+    // WEAPONS
     var WeaponPistol : Weapon;
+    var WeaponShotgun : Weapon;
     
     function Initialize(init : CogInitializer) {
         
+        // CREATE WEAPON
         this.WeaponPistol = new Weapon("WeaponPistol", 0, true, 1.0, 0.0);
+        
+        // SET ACTIVE WEAPON
         this.ActiveWeapon = this.WeaponPistol;
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
     }
-
+    
     function OnLogicUpdate(event : UpdateEvent) {
         this.ActiveWeapon.UpdateWeapon(event.Dt);
     }

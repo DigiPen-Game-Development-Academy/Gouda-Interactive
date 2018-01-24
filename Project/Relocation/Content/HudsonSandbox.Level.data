@@ -108,7 +108,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 20.1896782,
+			float Size = 44.9329224,
 		},
 		EditorCameraController = 
 		{
@@ -217,10 +217,27 @@ Level =
 		},
 		WeaponManager = 
 		{
-			string WeaponDefault = "WeaponPistol",
 		},
 		Hierarchy = 
 		{
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a2aaeb9ccb96785:EntityBullet",
+		LinkId = 
+		{
+			uint Id = 5,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [13.0851841, 0.121440805, 0],
+			Vec3 Scale = [0.25, 0.25, 0.25],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "EntityBullet",
 		},
 	},
 },
