@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "Gouda Interactive Sprite Test",
+	uint64 LibraryId = 5a34d78f6fcf9e5a,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},
