@@ -1,3 +1,6 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
 class WorldGeneration : ZilchComponent
 {
     [Property]
