@@ -19,6 +19,8 @@ class Weapon {
     var BulletSpeed : Real = 5.0;
     var Accuracy : Real = 0.0;
     
+    var BulletSpawnLocation : Real3 = Real3(0.2, 0.0, 0.0);
+    
     constructor(space : Space, itemName : String, itemID : Integer, isRanged : Boolean) {
         this.Space = space;
         this.ItemName = itemName;
@@ -56,7 +58,7 @@ class Weapon {
             var rand = Random();
             var accuracy = rand.Range(-this.Accuracy, this.Accuracy);
             
-            var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation);
+            var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation + this.BulletSpawnLocation);
             
             var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
             var playerPos = this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation;
@@ -105,16 +107,16 @@ class WeaponManager : ZilchComponent {
     function Initialize(init : CogInitializer) {
         
         // RANGED WEAPONS
-        this.WeaponPistol = new Weapon(this.Space, "Pistol", 0, true, 0.75, 0.0);
-        this.WeaponRevolver = new Weapon(this.Space, "Revolver", 1, true, 1.25, 0.0);
-        this.WeaponRock = new Weapon(this.Space, "Rock", 2, true, 0.5, 0.0);
+        this.WeaponPistol = new Weapon(this.Space, "WeaponPistol", 0, true, 0.75, 0.0);
+        this.WeaponRevolver = new Weapon(this.Space, "WeaponRevolver", 1, true, 1.25, 0.0);
+        this.WeaponRock = new Weapon(this.Space, "WeaponRock", 2, true, 0.5, 0.0);
         
-        this.WeaponShotgun = new Weapon(this.Space, "Shotgun", 3, true, 1.5, 0.0);
-        this.WeaponBoulder = new Weapon(this.Space, "Boulder", 4, true, 1.0, 0.0);
+        this.WeaponShotgun = new Weapon(this.Space, "WeaponShotgun", 3, true, 1.5, 0.0);
+        this.WeaponBoulder = new Weapon(this.Space, "WeaponBoulder", 4, true, 1.0, 0.0);
         
-        this.WeaponMinigun = new Weapon(this.Space, "Minigun", 5, true, 0.1, 0.0);
-        this.WeaponSniper = new Weapon(this.Space, "Sniper Rifle", 6, true, 1.75, 0.0);
-        this.WeaponGouda = new Weapon(this.Space, "Gouda Cheese", 7, true, 1.25, 0.0);
+        this.WeaponMinigun = new Weapon(this.Space, "WeaponMinigun", 5, true, 0.1, 0.0);
+        this.WeaponSniper = new Weapon(this.Space, "WeaponSniper", 6, true, 1.75, 0.0);
+        this.WeaponGouda = new Weapon(this.Space, "WeaponGouda", 7, true, 1.25, 0.0);
         
         // SET WEAPON TIER
         this.WeaponShotgun.SetTier(2);
@@ -166,6 +168,7 @@ class WeaponManager : ZilchComponent {
         
         // UPDATE ACTIVE WEAPON
         this.ActiveWeapon.UpdateWeapon(event.Dt);
+        this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(this.ActiveWeapon.ItemName);
         
     }
     

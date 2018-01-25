@@ -25,6 +25,9 @@ class Movement : ZilchComponent {
             r3Speed = Real3(this.Speed * event.Dt, this.Speed * event.Dt, this.Speed * event.Dt);
         }
         
+        // WEAPON SPRITE
+        var weapon = this.Owner.FindChildByName("EntityGun");
+        
         // MOVEMENT
         if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.S)) {
             
@@ -32,6 +35,10 @@ class Movement : ZilchComponent {
             
             this.StartFrame = 6;
             this.EndFrame = 11;
+            
+            weapon.Transform.Translation = Real3(-0.35, -0.1, 1);
+            weapon.Sprite.StartFrame = 1;
+            weapon.Sprite.FlipX = true;
             
             this.Owner.Sprite.AnimationActive = true;
             
@@ -41,6 +48,10 @@ class Movement : ZilchComponent {
             
             this.StartFrame = 6;
             this.EndFrame = 11;
+            
+            weapon.Transform.Translation = Real3(-0.1, -0.15, 1);
+            weapon.Sprite.StartFrame = 1;
+            weapon.Sprite.FlipX = false;
             
             this.Owner.Sprite.AnimationActive = true;
             
@@ -78,6 +89,10 @@ class Movement : ZilchComponent {
             this.StartFrame = 0;
             this.EndFrame = 5;
             
+            weapon.Transform.Translation = Real3(-0.3, -0.15, 1);
+            weapon.Sprite.StartFrame = 2;
+            weapon.Sprite.FlipX = false;
+            
             this.Owner.Sprite.AnimationActive = true;
             
         } else if(Zero.Keyboard.KeyIsDown(Keys.A)) {
@@ -87,6 +102,10 @@ class Movement : ZilchComponent {
             this.StartFrame = 12;
             this.EndFrame = 17;
             
+            weapon.Transform.Translation = Real3(-0.3, -0.15, -1);
+            weapon.Sprite.StartFrame = 0;
+            weapon.Sprite.FlipX = true;
+            
             this.Owner.Sprite.AnimationActive = true;
             
         } else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
@@ -95,6 +114,10 @@ class Movement : ZilchComponent {
             
             this.StartFrame = 12;
             this.EndFrame = 17;
+            
+            weapon.Transform.Translation = Real3(0.2, -0.15, 1);
+            weapon.Sprite.StartFrame = 0;
+            weapon.Sprite.FlipX = false;
             
             this.Owner.Sprite.AnimationActive = true;
             
