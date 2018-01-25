@@ -1,0 +1,25 @@
+//  AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
+class Health : ZilchComponent
+{
+    [Property] var MaxHealth : Real = 10.0;
+    
+    var CurrentHealth : Real;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.CurrentHealth = this.MaxHealth;
+        
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+    
+    function DecreaseHealth(amount : Real)
+    {
+        this.CurrentHealth -= amount;
+    }
+}
