@@ -51,6 +51,10 @@ class Weapon {
         this.BulletSpeed = speed;
     }
     
+    function SetBulletSpawnPosition(pos : Real2) {
+        this.BulletSpawnLocation = Real3(pos.X, pos.Y, 0.0);
+    }
+    
     function UseWeapon(currCooldown : Real) {
         
         if(this.IsRanged) {
@@ -58,7 +62,8 @@ class Weapon {
             var rand = Random();
             var accuracy = rand.Range(-this.Accuracy, this.Accuracy);
             
-            var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation + this.BulletSpawnLocation);
+            var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, this.Space.FindObjectByName("EntityGun").Transform.WorldTranslation + this.BulletSpawnLocation);
+            bullet.Transform.WorldTranslation -= Real3(0.0, 0.0, 1.0);
             
             var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
             var playerPos = this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation;
@@ -137,6 +142,18 @@ class WeaponManager : ZilchComponent {
         this.WeaponMinigun.SetAccuracy(0.6);
         this.WeaponSniper.SetAccuracy(0.05);
         this.WeaponGouda.SetAccuracy(0.25);
+        
+        // SET BULLET SPAWN LOCATION
+        //this.WeaponPistol.SetBulletSpawnPosition(0.45);
+        //this.WeaponRevolver.SetBulletSpawnPosition(0.25);
+        //this.WeaponRock.SetBulletSpawnPosition(0.75);
+        
+        //this.WeaponShotgun.SetBulletSpawnPosition(0.6);
+        //this.WeaponBoulder.SetBulletSpawnPosition(0.75);
+        
+        this.WeaponMinigun.SetBulletSpawnPosition(Real2(0.0, -0.1));
+        //this.WeaponSniper.SetBulletSpawnPosition(0.05);
+        //this.WeaponGouda.SetBulletSpawnPosition(0.25);
         
         // SET ACTIVE WEAPON
         this.ActiveWeapon = this.WeaponPistol;

@@ -2,15 +2,15 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "PlayerWalk",
-		uint64 ResourceId = 5a11b269927247ca,
+		string Name = "Player_Walk",
+		uint64 ResourceId = 5a11ca1bb8d849f7,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 0,
 		uint FrameSizeY = 0,
 		uint FrameCount = 1,
 		float FrameDelay = 0.0833333358,
-		float OriginX = 80,
-		float OriginY = 80,
+		float OriginX = 112,
+		float OriginY = 112,
 		float PixelsPerUnit = 64,
 		bool Smoothing = true,
 		bool Looping = true,

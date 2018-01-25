@@ -3,11 +3,11 @@ ImageContent =
 	SpriteSourceBuilder = 
 	{
 		string Name = "EntityPlayer",
-		uint64 ResourceId = 5a11b218ae61094b,
+		uint64 ResourceId = 5a11c5d0b56f342e,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 32,
 		uint FrameSizeY = 32,
-		uint FrameCount = 24,
+		uint FrameCount = 48,
 		float FrameDelay = 0.0833333358,
 		float OriginX = 16,
 		float OriginY = 16,
