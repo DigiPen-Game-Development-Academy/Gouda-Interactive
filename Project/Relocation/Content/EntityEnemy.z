@@ -1,0 +1,63 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
+class EntityEnemy : ZilchComponent
+{
+    [Property] var AttackCooldown : Real = 1.0;
+    [Property] var AttackForward : Boolean = true;
+    [Property] var AttackRadius : Real = 4.0;
+    [Property] var CanMove : Boolean = true;
+    var AttackTimer : Real = 0.0;
+    var Player : Cog = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.Player = this.Space.FindObjectByName("EntityPlayer");
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.Owner.Area.Size = Real2(1.0, 1.0);
+        
+        this.Owner.BoxCollider.Offset = Real3(0.0, 0.5, 0.0);
+        
+        this.AttackTimer -= event.Dt;
+        
+        if (this.CanMove == false)
+            this.LookAtPlayer();
+        
+        if (this.AttackForward == true && this.AttackTimer <= 0.0)
+            this.AttackBasedOnDirection();
+        else if (this.AttackTimer <= 0.0)
+            this.AttackBasedOnRadius();
+    }
+    
+    function AttackBasedOnRadius()
+    {
+        if (this.Player.Transform.Translation.X <= this.Owner.Transform.Translation.X + this.AttackRadius &&
+            this.Player.Transform.Translation.X >= this.Owner.Transform.Translation.X - this.AttackRadius &&
+            this.Player.Transform.Translation.Y <= this.Owner.Transform.Translation.Y + this.AttackRadius &&
+            this.Player.Transform.Translation.Y >= this.Owner.Transform.Translation.Y - this.AttackRadius)
+        {
+            Console.WriteLine("RadiusAttack");
+            
+            this.AttackTimer = this.AttackCooldown;
+            
+            this.Owner.Area.Size = Real2(1.0, 3.0);
+            
+            this.Owner.BoxCollider.Offset = Real3(0.0, 3.5, 0.0);
+        }
+    }
+    
+    function AttackBasedOnDirection()
+    {
+        
+    }
+    
+    function LookAtPlayer()
+    {
+        this.Owner.Orientation.LookAtPoint(this.Player.Transform.Translation);
+    }
+}
