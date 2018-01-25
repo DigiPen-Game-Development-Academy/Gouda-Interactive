@@ -100,7 +100,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [17.9045868, 956.529053, 50],
+			Vec3 Translation = [0.0507798046, -0.196608052, 49.9990005],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -112,7 +112,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 100,
+			float Size = 16.529911,
 		},
 		EditorCameraController = 
 		{
@@ -120,7 +120,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [17.9045868, 956.529053, 7.82634231e-07],
+			Vec3 LookTarget = [0.0507798046, -0.196608052, -0.000999997836],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -184,48 +184,14 @@ Level =
 		},
 		Movement = 
 		{
-			float Speed = 500,
-			float RunSpeed = 10000,
+			float Speed = 100,
+			float RunSpeed = 150,
+		},
+		WeaponManager = 
+		{
 		},
 		Hierarchy = 
 		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 2,
-				},
-				Named = 
-				{
-					string Name = "Camera",
-				},
-				EditorFlags = 
-				{
-					bool Locked = true,
-					bool Hidden = false,
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, 40],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Camera = 
-				{
-					ProjectionMode ProjectionMode = Orthographic,
-					Facing Facing = NegativeZ,
-					CameraTransparentSort TransparentSort = InheritFromSpace,
-					float FieldOfView = 45,
-					float NearPlane = 0.5,
-					float FarPlane = 200,
-					float Size = 20,
-				},
-				SoundListener = 
-				{
-					bool Active = true,
-					float Volume = 1,
-				},
-			},
 		},
 	},
 	ArchetypeInstance = 
@@ -406,6 +372,24 @@ Level =
 		Named = 
 		{
 			string Name = "Start",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a39429e57fbb0f5:DefaultCamera",
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 40],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Camera",
 		},
 	},
 },
