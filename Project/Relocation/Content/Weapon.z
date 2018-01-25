@@ -15,15 +15,18 @@ class Weapon {
     var Cooldown : Real = 0.0;
     var CurrCooldown : Real = 0.0;
     var BatteryLife : Real = 0.0;
+    var BulletSpeed : Real = 5.0;
     
-    constructor(itemName : String, itemID : Integer, isRanged : Boolean) {
+    constructor(space : Space, itemName : String, itemID : Integer, isRanged : Boolean) {
+        this.Space = space;
         this.ItemName = itemName;
         this.ItemID = itemID;
         this.IsRanged = isRanged;
         Console.WriteLine("Weapon with name \"`this.ItemName`\" has been created.");
     }
     
-    constructor(itemName : String, itemID : Integer, isRanged : Boolean, cooldown : Real, batteryLife : Real) {
+    constructor(space : Space, itemName : String, itemID : Integer, isRanged : Boolean, cooldown : Real, batteryLife : Real) {
+        this.Space = space;
         this.ItemName = itemName;
         this.ItemID = itemID;
         this.IsRanged = isRanged;
@@ -42,7 +45,18 @@ class Weapon {
             
             Console.WriteLine("ranged shoot");
             
-            //this.Space.CreateAtPosition(Archetype.EntityBullet, Real3(0.0, 0.0, 0.0));
+            var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation);
+            
+            var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+            var playerPos = this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation;
+            
+            var dif = Real2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
+            
+            var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
+            
+            var velocity = Real3(dif.X / magnitude * this.BulletSpeed, dif.Y / magnitude * this.BulletSpeed, 0.0);
+            
+            bullet.RigidBody.Velocity = velocity;
             
         } else {
             
@@ -53,7 +67,7 @@ class Weapon {
     function UpdateWeapon(dt : Real) {
         
         if(this.CurrCooldown <= 0.0) {
-            if(Zero.Keyboard.KeyIsDown(Keys.Space)) {
+            if(Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
                 this.CurrCooldown = this.Cooldown;
                 this.UseWeapon(this.Cooldown);
             }
@@ -76,7 +90,7 @@ class WeaponManager : ZilchComponent {
     function Initialize(init : CogInitializer) {
         
         // CREATE WEAPON
-        this.WeaponPistol = new Weapon("WeaponPistol", 0, true, 1.0, 0.0);
+        this.WeaponPistol = new Weapon(this.Space, "WeaponPistol", 0, true, 1.0, 0.0);
         
         // SET ACTIVE WEAPON
         this.ActiveWeapon = this.WeaponPistol;
