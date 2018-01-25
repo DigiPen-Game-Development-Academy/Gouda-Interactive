@@ -83,10 +83,6 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
-		WorldGeneration = 
-		{
-			float RadiusFromMiddile = 240,
-		},
 	},
 	Cog = 
 	{
@@ -379,7 +375,7 @@ Level =
 		string Name = "5a39429e57fbb0f5:DefaultCamera",
 		LinkId = 
 		{
-			uint Id = 15,
+			uint Id = 2,
 		},
 		Transform = 
 		{
