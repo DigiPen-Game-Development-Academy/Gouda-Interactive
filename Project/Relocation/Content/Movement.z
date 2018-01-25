@@ -108,6 +108,7 @@ class Movement : ZilchComponent {
             
         }
         
+        // FLIP SPRITE IF FACING OTHER DIRECTION
         if(Zero.Keyboard.KeyIsDown(Keys.A)) {
             this.Owner.Sprite.FlipX = true;
         } else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
@@ -126,6 +127,21 @@ class Movement : ZilchComponent {
         
         if(this.Owner.Sprite.CurrentFrame >= this.EndFrame) {
             this.Owner.Sprite.CurrentFrame = this.StartFrame;
+        }
+        
+        // CAMERA MOVEMENT
+        
+        var cam = this.Space.FindObjectByName("Camera");
+        
+        if(cam != null) {
+            
+            var playerPos = this.Owner.Transform.WorldTranslation;
+            var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+            
+            var dif = Real2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
+            
+            cam.Transform.Translation = Real3(dif.X / 20, dif.Y / 20, 40);
+            
         }
         
     }
