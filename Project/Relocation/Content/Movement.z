@@ -6,6 +6,9 @@ class Movement : ZilchComponent {
     [Property] var Speed : Real = 100.0;
     [Property] var RunSpeed : Real = 150.0;
     
+    var StartFrame : Integer = 0;
+    var EndFrame : Real = 5;
+    
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
@@ -24,23 +27,121 @@ class Movement : ZilchComponent {
         
         // MOVEMENT
         if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.S)) {
+            
             this.Owner.RigidBody.Velocity = Real3(-0.8,-0.8,0) * r3Speed;
+            
+            this.StartFrame = 6;
+            this.EndFrame = 11;
+            
+            this.Owner.Sprite.AnimationActive = true;
+            
         } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.S)) {
+            
             this.Owner.RigidBody.Velocity = Real3(0.8,-0.8,0) * r3Speed;
+            
+            this.StartFrame = 6;
+            this.EndFrame = 11;
+            
+            this.Owner.Sprite.AnimationActive = true;
+            
         } else if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.W)) {
+            
             this.Owner.RigidBody.Velocity = Real3(-0.8,0.8,0) * r3Speed;
+            
+            this.StartFrame = 18;
+            this.EndFrame = 23;
+            
+            this.Owner.Sprite.AnimationActive = true;
+            
         } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.W)) {
+            
             this.Owner.RigidBody.Velocity = Real3(0.8,0.8,0) * r3Speed;
+            
+            this.StartFrame = 18;
+            this.EndFrame = 23;
+            
+            this.Owner.Sprite.AnimationActive = true;
+            
         } else if(Zero.Keyboard.KeyIsDown(Keys.W)) {
+            
             this.Owner.RigidBody.Velocity = Real3(0, 1, 0) * r3Speed;
+            
+            this.StartFrame = 18;
+            this.EndFrame = 23;
+            
+            this.Owner.Sprite.AnimationActive = true;
+            
         } else if(Zero.Keyboard.KeyIsDown(Keys.S)) {
+            
             this.Owner.RigidBody.Velocity = Real3(0, -1, 0) * r3Speed;
+            
+            this.StartFrame = 0;
+            this.EndFrame = 5;
+            
+            this.Owner.Sprite.AnimationActive = true;
+            
         } else if(Zero.Keyboard.KeyIsDown(Keys.A)) {
+            
             this.Owner.RigidBody.Velocity = Real3(-1, 0, 0) * r3Speed;
+            
+            this.StartFrame = 12;
+            this.EndFrame = 17;
+            
+            this.Owner.Sprite.AnimationActive = true;
+            
         } else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
+            
             this.Owner.RigidBody.Velocity = Real3(1, 0, 0) * r3Speed;
+            
+            this.StartFrame = 12;
+            this.EndFrame = 17;
+            
+            this.Owner.Sprite.AnimationActive = true;
+            
         } else {
+            
             this.Owner.RigidBody.Velocity = Real3(0);
+            
+            if(this.Owner.Sprite.CurrentFrame % 6 == 0) {
+                this.Owner.Sprite.AnimationActive = false;
+            }
+            
+        }
+        
+        // FLIP SPRITE IF FACING OTHER DIRECTION
+        if(Zero.Keyboard.KeyIsDown(Keys.A)) {
+            this.Owner.Sprite.FlipX = true;
+        } else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
+            this.Owner.Sprite.FlipX = false;
+        }
+        
+        this.Owner.Sprite.StartFrame = this.StartFrame;
+        
+        if(this.Owner.Sprite.CurrentFrame < this.StartFrame) {
+            this.Owner.Sprite.AnimationSpeed = 10;
+        } else if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            this.Owner.Sprite.AnimationSpeed = 1;
+        } else {
+            this.Owner.Sprite.AnimationSpeed = 0.7;
+        }
+        
+        if(this.Owner.Sprite.CurrentFrame >= this.EndFrame) {
+            this.Owner.Sprite.CurrentFrame = this.StartFrame;
+        }
+        
+        // CAMERA MOVEMENT
+        
+        var cam = this.Space.FindObjectByName("Camera");
+        
+        if(cam != null) {
+            
+            var playerPos = this.Owner.Transform.WorldTranslation;
+            var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+            
+            var dif = Real2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
+            
+            cam.Transform.Translation = Real3(dif.X / 20, dif.Y / 20, 40);
+            
         }
         
     }

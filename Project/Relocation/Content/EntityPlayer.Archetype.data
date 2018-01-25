@@ -24,15 +24,15 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.170000076, 0, 1, 1],
+		Vec4 Color = [1, 1, 1, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5275aa4d802dd6dc:Square",
+		string SpriteSource = "5a11b218ae61094b:EntityPlayer",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
-		bool AnimationActive = true,
+		bool AnimationActive = false,
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
@@ -58,5 +58,37 @@ Cog =
 	},
 	Hierarchy = 
 	{
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 2,
+			},
+			Named = 
+			{
+				string Name = "Camera",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 40],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Camera = 
+			{
+				ProjectionMode ProjectionMode = Orthographic,
+				Facing Facing = NegativeZ,
+				CameraTransparentSort TransparentSort = InheritFromSpace,
+				float FieldOfView = 45,
+				float NearPlane = 0.5,
+				float FarPlane = 200,
+				float Size = 10,
+			},
+			SoundListener = 
+			{
+				bool Active = true,
+				float Volume = 1,
+			},
+		},
 	},
 },
