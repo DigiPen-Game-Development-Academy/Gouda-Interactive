@@ -5,9 +5,9 @@ class Weapon {
     
     var Space : Space;
     
-    var ItemName : String = "null";
+    var ItemName : String = "WeaponUndefined";
     var ItemID : Integer = 0;
-    var ItemTier : Integer = 0;
+    var ItemTier : Integer = 1;
     
     var IsRanged : Boolean = false;
     var IsUnlocked : Boolean = false;
@@ -83,24 +83,69 @@ class WeaponManager : ZilchComponent {
     // ACTIVE WEAPON
     var ActiveWeapon : Weapon = null;
     
-    // WEAPONS
-    var WeaponPistol : Weapon;
-    var WeaponShotgun : Weapon;
+    // WEAPONS (RANGED)
+    var WeaponPistol    : Weapon;
+    var WeaponRevolver  : Weapon;
+    var WeaponRock      : Weapon;
+    var WeaponShotgun   : Weapon;
+    var WeaponBoulder   : Weapon;
+    var WeaponMinigun   : Weapon;
+    var WeaponSniper    : Weapon;
+    var WeaponGouda     : Weapon;
     
     function Initialize(init : CogInitializer) {
         
-        // CREATE WEAPON
-        this.WeaponPistol = new Weapon(this.Space, "WeaponPistol", 0, true, 1.0, 0.0);
+        // RANGED WEAPONS
+        this.WeaponPistol = new Weapon(this.Space, "WeaponPistol", 0, true, 0.75, 0.0);
+        this.WeaponRevolver = new Weapon(this.Space, "WeaponRevolver", 1, true, 1.25, 0.0);
+        this.WeaponRock = new Weapon(this.Space, "WeaponRock", 2, true, 0.5, 0.0);
+        
+        this.WeaponShotgun = new Weapon(this.Space, "WeaponShotgun", 3, true, 1.5, 0.0);
+        this.WeaponBoulder = new Weapon(this.Space, "WeaponBoulder", 4, true, 1.0, 0.0);
+        
+        this.WeaponMinigun = new Weapon(this.Space, "WeaponMinigun", 5, true, 0.1, 0.0);
+        this.WeaponSniper = new Weapon(this.Space, "WeaponSniper", 6, true, 1.75, 0.0);
+        this.WeaponGouda = new Weapon(this.Space, "WeaponGouda", 7, true, 1.25, 0.0);
+        
+        // SET WEAPON TIER
+        this.WeaponShotgun.SetTier(2);
+        this.WeaponBoulder.SetTier(2);
+        
+        this.WeaponMinigun.SetTier(3);
+        this.WeaponSniper.SetTier(3);
+        this.WeaponGouda.SetTier(3);
         
         // SET ACTIVE WEAPON
         this.ActiveWeapon = this.WeaponPistol;
         
+        // CONNECT LOGIC UPDATE
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.One)) {
+            this.ActiveWeapon = this.WeaponPistol;
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
+            this.ActiveWeapon = this.WeaponRevolver;
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.Three)) {
+            this.ActiveWeapon = this.WeaponRock;
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.Four)) {
+            this.ActiveWeapon = this.WeaponShotgun;
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.Five)) {
+            this.ActiveWeapon = this.WeaponBoulder;
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.Six)) {
+            this.ActiveWeapon = this.WeaponMinigun;
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.Seven)) {
+            this.ActiveWeapon = this.WeaponSniper;
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.Eight)) {
+            this.ActiveWeapon = this.WeaponGouda;
+        }
+        
+        // UPDATE ACTIVE WEAPON
         this.ActiveWeapon.UpdateWeapon(event.Dt);
+        
     }
     
 }
