@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "HitBoxVariables",
+		uint64 ResourceId = 5a38070d8ca64606,
+	},
+},

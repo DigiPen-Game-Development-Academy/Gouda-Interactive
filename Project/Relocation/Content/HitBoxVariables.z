@@ -1,0 +1,22 @@
+class HitBoxVariables : ZilchComponent
+{
+    var TimeTillDestroy : Real = 0.1;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.TimeTillDestroy -= event.Dt;
+        
+        if (this.TimeTillDestroy <= 0.0)
+            this.Owner.Destroy();
+        
+        this.Owner.BoxCollider.Offset = Real3(0.0, 0.5 * (this.Owner.BoxCollider.Size.Y - 1.0), 0.0);
+        
+        Console.WriteLine("Size: `this.Owner.BoxCollider.Size.Y`");
+        Console.WriteLine("Offset: `this.Owner.BoxCollider.Offset.Y`");
+    }
+}

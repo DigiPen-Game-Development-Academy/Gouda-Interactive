@@ -5,13 +5,24 @@ class EntityEnemy : ZilchComponent
 {
     [Property] var AttackCooldown : Real = 1.0;
     [Property] var AttackForward : Boolean = true;
-    [Property] var AttackRadius : Real = 4.0;
+    [Property] var AttackWithinRadius : Real = 4.0;
+    [Property] var AttackDistance : Real = 1.0;
     [Property] var CanMove : Boolean = true;
     var AttackTimer : Real = 0.0;
     var Player : Cog = null;
     
+    [Property] var LookUp : SpriteSource;
+    [Property] var LookUpRight : SpriteSource;
+    [Property] var LookRight : SpriteSource;
+    [Property] var LookDownRight : SpriteSource;
+    [Property] var LookDown : SpriteSource;
+    [Property] var LookDownLeft : SpriteSource;
+    [Property] var LookLeft : SpriteSource;
+    [Property] var LookUpLeft : SpriteSource;
+    
     function Initialize(init : CogInitializer)
     {
+        // Find player
         this.Player = this.Space.FindObjectByName("EntityPlayer");
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -19,15 +30,17 @@ class EntityEnemy : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.Owner.Area.Size = Real2(1.0, 1.0);
+        // Change "EnemySprite"
+        this.ChangeSprite();
         
-        this.Owner.BoxCollider.Offset = Real3(0.0, 0.5, 0.0);
-        
+        // Decrease "AttackTimer"
         this.AttackTimer -= event.Dt;
         
+        // If enemy can't move look at the player
         if (this.CanMove == false)
             this.LookAtPlayer();
         
+        // Attack
         if (this.AttackForward == true && this.AttackTimer <= 0.0)
             this.AttackBasedOnDirection();
         else if (this.AttackTimer <= 0.0)
@@ -36,18 +49,18 @@ class EntityEnemy : ZilchComponent
     
     function AttackBasedOnRadius()
     {
-        if (this.Player.Transform.Translation.X <= this.Owner.Transform.Translation.X + this.AttackRadius &&
-            this.Player.Transform.Translation.X >= this.Owner.Transform.Translation.X - this.AttackRadius &&
-            this.Player.Transform.Translation.Y <= this.Owner.Transform.Translation.Y + this.AttackRadius &&
-            this.Player.Transform.Translation.Y >= this.Owner.Transform.Translation.Y - this.AttackRadius)
+        debug return;
+        
+        // If the player is within the attack radius
+        if (this.Player.Transform.Translation.X <= this.Owner.Transform.Translation.X + this.AttackWithinRadius &&
+            this.Player.Transform.Translation.X >= this.Owner.Transform.Translation.X - this.AttackWithinRadius &&
+            this.Player.Transform.Translation.Y <= this.Owner.Transform.Translation.Y + this.AttackWithinRadius &&
+            this.Player.Transform.Translation.Y >= this.Owner.Transform.Translation.Y - this.AttackWithinRadius)
         {
             Console.WriteLine("RadiusAttack");
             
+            // Reset the attack timer
             this.AttackTimer = this.AttackCooldown;
-            
-            this.Owner.Area.Size = Real2(1.0, 3.0);
-            
-            this.Owner.BoxCollider.Offset = Real3(0.0, 3.5, 0.0);
         }
     }
     
@@ -58,6 +71,47 @@ class EntityEnemy : ZilchComponent
     
     function LookAtPlayer()
     {
+        // Look at player
         this.Owner.Orientation.LookAtPoint(this.Player.Transform.Translation);
+        
+        // Make enemy sprite face up
+        this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
+    }
+    
+    function ChangeSprite()
+    {
+        // Find the sprite child
+        var sprite = this.Owner.Children.Current;
+        
+        // Get the enemy's direction
+        var worldForward = this.Owner.Orientation.WorldForward;
+        // Convert enemy's direction to radians
+        var radians = Math.AngleBetween(worldForward, Real3.YAxis);
+        // Convert radians to degrees
+        var degrees = Math.ToDegrees(radians);
+        
+        // If enemy's direction is left, Invert degrees
+        if (worldForward.X < 0.0)
+            degrees *= -1;
+        
+        Console.WriteLine("`degrees`");
+        
+        // Change sprite (up, upright, right, downrirght, down, downleft, left, upleft)
+        if (degrees > -26.5651 && degrees < 26.5651)
+            sprite.Sprite.SpriteSource = this.LookUp;
+        else if (degrees > 26.5651 && degrees < 63.4349)
+            sprite.Sprite.SpriteSource = this.LookUpRight;
+        else if (degrees > 63.4349 && degrees < 116.565)
+            sprite.Sprite.SpriteSource = this.LookRight;
+        else if (degrees > 116.565 && degrees < 153.435)
+            sprite.Sprite.SpriteSource = this.LookDownRight;
+        else if (degrees > 153.435 || degrees < -153.435)
+            sprite.Sprite.SpriteSource = this.LookDown;
+        else if (degrees > -153.435 && degrees < -116.565)
+            sprite.Sprite.SpriteSource = this.LookDownLeft;
+        else if (degrees > -116.565 && degrees < -63.4349)
+            sprite.Sprite.SpriteSource = this.LookLeft;
+        else if (degrees > -63.4349 && degrees < -26.5651)
+            sprite.Sprite.SpriteSource = this.LookUpLeft;
     }
 }
