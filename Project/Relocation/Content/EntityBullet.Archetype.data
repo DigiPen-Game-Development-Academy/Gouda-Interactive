@@ -74,4 +74,7 @@ Cog =
 		bool Buoyancy = false,
 		bool Custom = false,
 	},
+	HitBoxVariables = 
+	{
+	},
 },

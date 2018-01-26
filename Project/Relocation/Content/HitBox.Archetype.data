@@ -20,7 +20,7 @@ Cog =
 	},
 	BoxCollider = 
 	{
-		bool Ghost = false,
+		bool Ghost = true,
 		bool SendsMessages = true,
 		bool Seamless = true,
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
@@ -30,5 +30,12 @@ Cog =
 	},
 	HitBoxVariables = 
 	{
+	},
+	Orientation = 
+	{
+		Vec3 GlobalUp = [0, 1, 0],
+		Vec3 UpVector = [0, 1, 0],
+		Vec3 ForwardVector = [0, 0, 1],
+		OrientationBases DefaultBases = ForwardZUpY,
 	},
 },

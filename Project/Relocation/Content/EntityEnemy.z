@@ -5,8 +5,10 @@ class EntityEnemy : ZilchComponent
 {
     [Property] var AttackCooldown : Real = 1.0;
     [Property] var AttackForward : Boolean = true;
-    [Property] var AttackWithinRadius : Real = 4.0;
-    [Property] var AttackDistance : Real = 1.0;
+    [Property] var AttackDamage : Real = 2.0;
+    [Property] var AttackWithinRadiusOf : Real = 4.0;
+    [Property] var HitboxSize : Real = 1.0;
+    [Property] var HitboxLifetime : Real = 3.0;
     [Property] var CanMove : Boolean = true;
     var AttackTimer : Real = 0.0;
     var Player : Cog = null;
@@ -30,6 +32,10 @@ class EntityEnemy : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        // Check for player
+        if (this.CheckForPlayer() == false)
+            return;
+        
         // Change "EnemySprite"
         this.ChangeSprite();
         
@@ -49,18 +55,26 @@ class EntityEnemy : ZilchComponent
     
     function AttackBasedOnRadius()
     {
-        debug return;
-        
         // If the player is within the attack radius
-        if (this.Player.Transform.Translation.X <= this.Owner.Transform.Translation.X + this.AttackWithinRadius &&
-            this.Player.Transform.Translation.X >= this.Owner.Transform.Translation.X - this.AttackWithinRadius &&
-            this.Player.Transform.Translation.Y <= this.Owner.Transform.Translation.Y + this.AttackWithinRadius &&
-            this.Player.Transform.Translation.Y >= this.Owner.Transform.Translation.Y - this.AttackWithinRadius)
+        if (this.Player.Transform.Translation.X <= this.Owner.Transform.Translation.X + this.AttackWithinRadiusOf &&
+            this.Player.Transform.Translation.X >= this.Owner.Transform.Translation.X - this.AttackWithinRadiusOf &&
+            this.Player.Transform.Translation.Y <= this.Owner.Transform.Translation.Y + this.AttackWithinRadiusOf &&
+            this.Player.Transform.Translation.Y >= this.Owner.Transform.Translation.Y - this.AttackWithinRadiusOf)
         {
-            Console.WriteLine("RadiusAttack");
-            
             // Reset the attack timer
             this.AttackTimer = this.AttackCooldown;
+            
+            // Create hitbox
+            var hitbox = this.Space.CreateAtPosition(Archetype.HitBox, this.Owner.Transform.Translation + this.Owner.Orientation.WorldForward);
+            hitbox.Orientation.LookAtDirection(this.Owner.Orientation.WorldForward);
+            hitbox.BoxCollider.Size = Real3(1.0, this.HitboxSize, 1.0);
+            
+            var randomGen = new Random();
+            var random = randomGen.Range(-this.AttackDamage / 5, this.AttackDamage / 5);
+            
+            hitbox.HitBoxVariables.Amount = this.AttackDamage + random;
+            hitbox.HitBoxVariables.AttackByPlayer = false;
+            hitbox.HitBoxVariables.TimeTillDestroy = this.HitboxLifetime;
         }
     }
     
@@ -94,8 +108,6 @@ class EntityEnemy : ZilchComponent
         if (worldForward.X < 0.0)
             degrees *= -1;
         
-        Console.WriteLine("`degrees`");
-        
         // Change sprite (up, upright, right, downrirght, down, downleft, left, upleft)
         if (degrees > -26.5651 && degrees < 26.5651)
             sprite.Sprite.SpriteSource = this.LookUp;
@@ -113,5 +125,14 @@ class EntityEnemy : ZilchComponent
             sprite.Sprite.SpriteSource = this.LookLeft;
         else if (degrees > -63.4349 && degrees < -26.5651)
             sprite.Sprite.SpriteSource = this.LookUpLeft;
+    }
+    
+    function CheckForPlayer() : Boolean
+    {
+        //Check for Player
+        if (this.Player == null)
+            return false;
+        else
+            return true;
     }
 }

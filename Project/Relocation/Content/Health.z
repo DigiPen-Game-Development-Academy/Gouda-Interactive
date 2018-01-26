@@ -11,11 +11,16 @@ class Health : ZilchComponent
     {
         this.CurrentHealth = this.MaxHealth;
         
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if (this.CurrentHealth <= 0.0)
+            this.Owner.Destroy();
+        
+        if (Zero.Keyboard.KeyIsPressed(Keys.Tilde))
+            Console.WriteLine("`this.Owner`: `this.CurrentHealth`");
     }
     
     function DecreaseHealth(amount : Real)

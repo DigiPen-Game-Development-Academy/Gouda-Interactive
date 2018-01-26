@@ -1,22 +1,43 @@
 class HitBoxVariables : ZilchComponent
 {
     var TimeTillDestroy : Real = 0.1;
+    var AttackByPlayer : Boolean = true;
+    var Amount : Real = 0.0;
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.Hit);
+    }
+    
+    function Hit(event : CollisionEvent)
+    {
+        if (event.OtherObject.Name == "EntityPlayer" && this.AttackByPlayer == false)
+        {
+            event.OtherObject.Health.DecreaseHealth(this.Amount);
+        }
+        else if (event.OtherObject.Name == "EntityEnemy" && this.AttackByPlayer == true)
+        {
+            event.OtherObject.Health.DecreaseHealth(this.Amount);
+        }
+        else if (event.OtherObject.Name == "EntityPlayer" && this.AttackByPlayer == true)
+        {
+            return;
+        }
+        
+        this.Owner.Destroy();
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        //Console.WriteLine("`this.Amount`");
+        
         this.TimeTillDestroy -= event.Dt;
         
         if (this.TimeTillDestroy <= 0.0)
             this.Owner.Destroy();
         
         this.Owner.BoxCollider.Offset = Real3(0.0, 0.5 * (this.Owner.BoxCollider.Size.Y - 1.0), 0.0);
-        
-        Console.WriteLine("Size: `this.Owner.BoxCollider.Size.Y`");
-        Console.WriteLine("Offset: `this.Owner.BoxCollider.Offset.Y`");
     }
 }
