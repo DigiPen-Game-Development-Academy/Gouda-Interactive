@@ -38,27 +38,39 @@ class Movement : ZilchComponent {
             
             mouseAngle = Math.ToDegrees(mouseAngle);
             
-            Console.WriteLine("mouseAngle = `mouseAngle`");
+            //Console.WriteLine("mouseAngle = `mouseAngle`");
             
+            // CALC MOUSE DIR
             if(mouseAngle < 22.5 && mouseAngle > -22.5) {
                 this.MouseDir = Real2(1.0, 0.0);
             } else if(mouseAngle < -45 + 22.5 && mouseAngle > -45 - 22.5) {
                 this.MouseDir = Real2(1.0, -1.0);
+            } else if(mouseAngle < -90 + 22.5 && mouseAngle > -90 - 22.5) {
+                this.MouseDir = Real2(0.0, -1.0);
+            } else if(mouseAngle < -135 + 22.5 && mouseAngle > -135 - 22.5) {
+                this.MouseDir = Real2(-1.0, -1.0);
+            } else if(mouseAngle < -180 + 22.5 || mouseAngle > 180 - 22.5) {
+                this.MouseDir = Real2(-1.0, 0.0);
+            } else if(mouseAngle < 135 + 22.5 && mouseAngle > 135 - 22.5) {
+                this.MouseDir = Real2(-1.0, 1.0);
+            } else if(mouseAngle < 90 + 22.5 && mouseAngle > 90 - 22.5) {
+                this.MouseDir = Real2(0.0, 1.0);
+            } else if(mouseAngle < 45 + 22.5 && mouseAngle > 45 - 22.5) {
+                this.MouseDir = Real2(1.0, 1.0);
             }
-            // TODO: CONTINUE SHOOTING DIR
             
+        } else {
+            this.MouseDir = Real2(0.0);
         }
         
         // WEAPON SPRITE
         var weapon = this.Owner.FindChildByName("EntityGun");
         
         // MOVEMENT
-        if((Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.S)) || this.MouseDir == Real2(-1, -1)) {
+        if((Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.S))) {
             
-            if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.S)) {
-                this.Owner.RigidBody.Velocity = Real3(-0.8,-0.8,0) * r3Speed;
-                this.Owner.Sprite.AnimationActive = true;
-            }
+            this.Owner.RigidBody.Velocity = Real3(-0.8,-0.8,0) * r3Speed;
+            this.Owner.Sprite.AnimationActive = true;
             
             this.StartFrame = 36;
             this.EndFrame = 41;
@@ -67,56 +79,46 @@ class Movement : ZilchComponent {
             weapon.Sprite.StartFrame = 1;
             weapon.Sprite.FlipX = true;
             
-        } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.S) || this.MouseDir == Real2(1, -1)) {
+        } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.S)) {
             
-            if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.S)) {
-                this.Owner.RigidBody.Velocity = Real3(0.8,-0.8,0) * r3Speed;
-                this.Owner.Sprite.AnimationActive = true;
-            }
+            this.Owner.RigidBody.Velocity = Real3(0.8,-0.8,0) * r3Speed;
+            this.Owner.Sprite.AnimationActive = true;
             
             this.StartFrame = 12;
             this.EndFrame = 17;
             
-            weapon.Transform.Translation = Real3(-0.1, -0.15, 1);
+            weapon.Transform.Translation = Real3(0.1, -0.15, 1);
             weapon.Sprite.StartFrame = 1;
             weapon.Sprite.FlipX = false;
             
-        } else if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.W) || this.MouseDir == Real2(-1, 1)) {
+        } else if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.W)) {
             
-            if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.W)) {
-                this.Owner.RigidBody.Velocity = Real3(-0.8,0.8,0) * r3Speed;
-                this.Owner.Sprite.AnimationActive = true;
-            }
+            this.Owner.RigidBody.Velocity = Real3(-0.8,0.8,0) * r3Speed;
+            this.Owner.Sprite.AnimationActive = true;
             
             this.StartFrame = 24;
             this.EndFrame = 29;
             
-        } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.W) || this.MouseDir == Real2(1, 1)) {
+        } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.W)) {
             
-            if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.W)) {
-                this.Owner.RigidBody.Velocity = Real3(0.8,0.8,0) * r3Speed;
-                this.Owner.Sprite.AnimationActive = true;
-            }
+            this.Owner.RigidBody.Velocity = Real3(0.8,0.8,0) * r3Speed;
+            this.Owner.Sprite.AnimationActive = true;
             
             this.StartFrame = 24;
             this.EndFrame = 29;
             
-        } else if(Zero.Keyboard.KeyIsDown(Keys.W) || this.MouseDir == Real2(0, 1)) {
+        } else if(Zero.Keyboard.KeyIsDown(Keys.W)) {
             
-            if(Zero.Keyboard.KeyIsDown(Keys.W)) {
-                this.Owner.RigidBody.Velocity = Real3(0, 1, 0) * r3Speed;
-                this.Owner.Sprite.AnimationActive = true;
-            }
+            this.Owner.RigidBody.Velocity = Real3(0, 1, 0) * r3Speed;
+            this.Owner.Sprite.AnimationActive = true;
             
             this.StartFrame = 24;
             this.EndFrame = 29;
             
-        } else if(Zero.Keyboard.KeyIsDown(Keys.S) || this.MouseDir == Real2(0, -1)) {
+        } else if(Zero.Keyboard.KeyIsDown(Keys.S)) {
             
-            if(Zero.Keyboard.KeyIsDown(Keys.S)) {
-                this.Owner.RigidBody.Velocity = Real3(0, -1, 0) * r3Speed;
-                this.Owner.Sprite.AnimationActive = true;
-            }
+            this.Owner.RigidBody.Velocity = Real3(0, -1, 0) * r3Speed;
+            this.Owner.Sprite.AnimationActive = true;
             
             this.StartFrame = 0;
             this.EndFrame = 5;
@@ -125,12 +127,10 @@ class Movement : ZilchComponent {
             weapon.Sprite.StartFrame = 2;
             weapon.Sprite.FlipX = false;
             
-        } else if(Zero.Keyboard.KeyIsDown(Keys.A) || this.MouseDir == Real2(-1, 0)) {
+        } else if(Zero.Keyboard.KeyIsDown(Keys.A)) {
             
-            if(Zero.Keyboard.KeyIsDown(Keys.A)) {
-                this.Owner.RigidBody.Velocity = Real3(-1, 0, 0) * r3Speed;
-                this.Owner.Sprite.AnimationActive = true;
-            }
+            this.Owner.RigidBody.Velocity = Real3(-1, 0, 0) * r3Speed;
+            this.Owner.Sprite.AnimationActive = true;
             
             this.StartFrame = 30;
             this.EndFrame = 35;
@@ -139,12 +139,10 @@ class Movement : ZilchComponent {
             weapon.Sprite.StartFrame = 0;
             weapon.Sprite.FlipX = true;
             
-        } else if(Zero.Keyboard.KeyIsDown(Keys.D) || this.MouseDir == Real2(1, 0)) {
+        } else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
             
-            if(Zero.Keyboard.KeyIsDown(Keys.D)) {
-                this.Owner.RigidBody.Velocity = Real3(1, 0, 0) * r3Speed;
-                this.Owner.Sprite.AnimationActive = true;
-            }
+            this.Owner.RigidBody.Velocity = Real3(1, 0, 0) * r3Speed;
+            this.Owner.Sprite.AnimationActive = true;
             
             this.StartFrame = 18;
             this.EndFrame = 23;
@@ -157,13 +155,79 @@ class Movement : ZilchComponent {
             
             this.Owner.RigidBody.Velocity = Real3(0);
             
-            if(this.Owner.Sprite.CurrentFrame % 6 == 0 && this.Owner.Sprite.CurrentFrame > this.Owner.Sprite.StartFrame) {
+            if(this.Owner.Sprite.CurrentFrame % 6 == 0 && this.Owner.Sprite.CurrentFrame >= this.Owner.Sprite.StartFrame) {
                 this.Owner.Sprite.AnimationActive = false;
             }
             
         }
         
-        this.Owner.Sprite.StartFrame = this.StartFrame;
+        // MAKE PLAYER FACE MOUSE WHEN SHOOTING
+        if(this.MouseDir == Real2(-1, -1)) {
+            
+            this.StartFrame = 36;
+            this.EndFrame = 41;
+            
+            weapon.Transform.Translation = Real3(-0.35, -0.1, 1);
+            weapon.Sprite.StartFrame = 1;
+            weapon.Sprite.FlipX = true;
+            
+        } else if(this.MouseDir == Real2(1, -1)) {
+            
+            this.StartFrame = 12;
+            this.EndFrame = 17;
+            
+            weapon.Transform.Translation = Real3(0.1, -0.15, 1);
+            weapon.Sprite.StartFrame = 1;
+            weapon.Sprite.FlipX = false;
+            
+        } else if(this.MouseDir == Real2(-1, 1)) {
+            
+            this.StartFrame = 24;
+            this.EndFrame = 29;
+            
+        } else if(this.MouseDir == Real2(1, 1)) {
+            
+            this.StartFrame = 24;
+            this.EndFrame = 29;
+            
+        } else if(this.MouseDir == Real2(0, 1)) {
+            
+            this.StartFrame = 24;
+            this.EndFrame = 29;
+            
+        } else if(this.MouseDir == Real2(0, -1)) {
+            
+            this.StartFrame = 0;
+            this.EndFrame = 5;
+            
+            weapon.Transform.Translation = Real3(-0.3, -0.15, 1);
+            weapon.Sprite.StartFrame = 2;
+            weapon.Sprite.FlipX = false;
+            
+        } else if(this.MouseDir == Real2(-1, 0)) {
+            
+            this.StartFrame = 30;
+            this.EndFrame = 35;
+            
+            weapon.Transform.Translation = Real3(-0.3, -0.15, -1);
+            weapon.Sprite.StartFrame = 0;
+            weapon.Sprite.FlipX = true;
+            
+        } else if(this.MouseDir == Real2(1, 0)) {
+            
+            this.StartFrame = 18;
+            this.EndFrame = 23;
+            
+            weapon.Transform.Translation = Real3(0.2, -0.15, 1);
+            weapon.Sprite.StartFrame = 0;
+            weapon.Sprite.FlipX = false;
+            
+        }
+        
+        // CHECK IF ANIMATION IS PAUSED WHILE FACING WRONG DIRECTION
+        if(this.Owner.Sprite.CurrentFrame < this.StartFrame || this.Owner.Sprite.CurrentFrame > this.EndFrame) {
+            this.Owner.Sprite.CurrentFrame = this.StartFrame;
+        }
         
         if(this.Owner.Sprite.CurrentFrame < this.StartFrame) {
             this.Owner.Sprite.AnimationSpeed = 10;
@@ -176,6 +240,8 @@ class Movement : ZilchComponent {
         if(this.Owner.Sprite.CurrentFrame >= this.EndFrame) {
             this.Owner.Sprite.CurrentFrame = this.StartFrame;
         }
+        
+        this.Owner.Sprite.StartFrame = this.StartFrame;
         
         // CAMERA MOVEMENT
         
