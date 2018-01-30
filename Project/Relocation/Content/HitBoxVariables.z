@@ -8,7 +8,7 @@ class HitBoxVariables : ZilchComponent
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
-        Zero.Connect(this.Owner, Events.CollisionStarted, this.Hit);
+        Zero.Connect(this.Owner, Events.CollisionPersisted, this.Hit);
     }
     
     function Hit(event : CollisionEvent)
