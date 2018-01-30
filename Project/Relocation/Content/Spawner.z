@@ -1,0 +1,20 @@
+class Spawner : ZilchComponent
+{
+    [Property]
+    var WhatToSpawn : Archetype;
+    
+    //[Property]
+    //var SpawnTime
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var spawnPosition = this.Owner.Transform.Translation;
+        
+        this.Space.CreateAtPosition(this.WhatToSpawn, spawnPosition);
+    }
+}
