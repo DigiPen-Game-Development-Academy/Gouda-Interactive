@@ -83,7 +83,6 @@ class EntityEnemy : ZilchComponent
             
             hitbox.HitBoxVariables.Amount = this.AttackDamage + random;
             hitbox.HitBoxVariables.AttackByPlayer = false;
-            hitbox.HitBoxVariables.TimeTillDestroy = this.HitboxLifetime;
         }
     }
     

@@ -77,4 +77,7 @@ Cog =
 	EntityBullet = 
 	{
 	},
+	HitBoxVariables = 
+	{
+	},
 },
