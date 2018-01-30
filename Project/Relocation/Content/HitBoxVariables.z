@@ -1,6 +1,5 @@
 class HitBoxVariables : ZilchComponent
 {
-    var TimeTillDestroy : Real = 0.1;
     var AttackByPlayer : Boolean = true;
     var Amount : Real = 0.0;
     
@@ -32,11 +31,6 @@ class HitBoxVariables : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         //Console.WriteLine("`this.Amount`");
-        
-        this.TimeTillDestroy -= event.Dt;
-        
-        if (this.TimeTillDestroy <= 0.0)
-            this.Owner.Destroy();
         
         this.Owner.BoxCollider.Offset = Real3(0.0, 0.5 * (this.Owner.BoxCollider.Size.Y - 1.0), 0.0);
     }
