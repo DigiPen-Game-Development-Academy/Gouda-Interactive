@@ -4,13 +4,14 @@
 class EntityEnemy : ZilchComponent
 {
     [Property] var AttackCooldown : Real = 1.0;
-    [Property] var AttackForward : Boolean = true;
+    [Property] var CanShoot : Boolean = true;
+    [Property] var CanAttackForward : Boolean = true;
     [Property] var AttackDamage : Real = 2.0;
     [Property] var AttackWithinRadiusOf : Real = 4.0;
     [Property] var HitboxSize : Real = 1.0;
     [Property] var HitboxLifetime : Real = 3.0;
     [Property] var CanMove : Boolean = true;
-    var AttackTimer : Real = 0.0;
+    var TimeTillAttack : Real = 0.0;
     var Player : Cog = null;
     
     [Property] var LookUp : SpriteSource;
@@ -39,18 +40,26 @@ class EntityEnemy : ZilchComponent
         // Change "EnemySprite"
         this.ChangeSprite();
         
-        // Decrease "AttackTimer"
-        this.AttackTimer -= event.Dt;
+        // Decrease "TimeTillAttack"
+        this.TimeTillAttack -= event.Dt;
         
-        // If enemy can't move look at the player
-        if (this.CanMove == false)
-            this.LookAtPlayer();
+        // Look at the player
+        this.LookAtPlayer();
         
         // Attack
-        if (this.AttackForward == true && this.AttackTimer <= 0.0)
-            this.AttackBasedOnDirection();
-        else if (this.AttackTimer <= 0.0)
+        if (this.CanAttackForward == true && this.CanShoot == true && this.TimeTillAttack <= 0.0)
+        {
+            var differance = this.Player.Transform.Translation - this.Owner.Transform.Translation;
+            
+            if (differance.X < -2.5 || differance.X > 2.5 || differance.Y < -2.5 || differance.Y > 2.5)
+                this.Shoot();
+            else
+                this.AttackBasedOnRadius();
+        }
+        else if (this.CanAttackForward == true && this.TimeTillAttack <= 0.0)
             this.AttackBasedOnRadius();
+        else if (this.CanShoot == true && this.TimeTillAttack <= 0.0)
+            this.Shoot();
     }
     
     function AttackBasedOnRadius()
@@ -62,7 +71,7 @@ class EntityEnemy : ZilchComponent
             this.Player.Transform.Translation.Y >= this.Owner.Transform.Translation.Y - this.AttackWithinRadiusOf)
         {
             // Reset the attack timer
-            this.AttackTimer = this.AttackCooldown;
+            this.TimeTillAttack = this.AttackCooldown;
             
             // Create hitbox
             var hitbox = this.Space.CreateAtPosition(Archetype.HitBox, this.Owner.Transform.Translation + this.Owner.Orientation.WorldForward);
@@ -78,14 +87,14 @@ class EntityEnemy : ZilchComponent
         }
     }
     
-    function AttackBasedOnDirection()
+    function Shoot()
     {
         
     }
     
     function LookAtPlayer()
     {
-        // Look at player
+        // Look at playerw
         this.Owner.Orientation.LookAtPoint(this.Player.Transform.Translation);
         
         // Make enemy sprite face up
@@ -99,7 +108,7 @@ class EntityEnemy : ZilchComponent
         
         // Get the enemy's direction
         var worldForward = this.Owner.Orientation.WorldForward;
-        // Convert enemy's direction to radians
+        // Calculate enemy's direction in radians
         var radians = Math.AngleBetween(worldForward, Real3.YAxis);
         // Convert radians to degrees
         var degrees = Math.ToDegrees(radians);
