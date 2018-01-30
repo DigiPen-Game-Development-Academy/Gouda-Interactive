@@ -87,7 +87,7 @@ class Movement : ZilchComponent {
             this.StartFrame = 12;
             this.EndFrame = 17;
             
-            weapon.Transform.Translation = Real3(-0.1, -0.15, 1);
+            weapon.Transform.Translation = Real3(0.1, -0.15, 1);
             weapon.Sprite.StartFrame = 1;
             weapon.Sprite.FlipX = false;
             
@@ -176,7 +176,7 @@ class Movement : ZilchComponent {
             this.StartFrame = 12;
             this.EndFrame = 17;
             
-            weapon.Transform.Translation = Real3(-0.1, -0.15, 1);
+            weapon.Transform.Translation = Real3(0.1, -0.15, 1);
             weapon.Sprite.StartFrame = 1;
             weapon.Sprite.FlipX = false;
             
@@ -226,7 +226,7 @@ class Movement : ZilchComponent {
         
         // CHECK IF ANIMATION IS PAUSED WHILE FACING WRONG DIRECTION
         if(this.Owner.Sprite.CurrentFrame < this.StartFrame || this.Owner.Sprite.CurrentFrame > this.EndFrame) {
-            this.Owner.Sprite.AnimationActive = true;
+            this.Owner.Sprite.CurrentFrame = this.StartFrame;
         }
         
         if(this.Owner.Sprite.CurrentFrame < this.StartFrame) {
