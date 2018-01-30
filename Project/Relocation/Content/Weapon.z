@@ -53,7 +53,7 @@ class Weapon {
     }
     
     function SetBulletSpawnPosition(pos : Real2) {
-        this.BulletSpawnLocation = Real3(pos.X, pos.Y, -1.0);
+        this.BulletSpawnLocation = Real3(pos.X, pos.Y, -0.05);
     }
     
     function UseWeapon() {
