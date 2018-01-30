@@ -1,0 +1,58 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
+class PathFinding : ZilchComponent
+{
+    var RayWidth: Real = 0.25;
+    
+    [Property] var Speed : Real = 75.0;
+    
+    [Property] var ChanceOfMoving : Integer = 25;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var ray = Ray();
+        var thisPosition = this.Owner.Transform.WorldTranslation;
+        var rayDirection = this.Owner.Orientation.WorldForward;
+        
+        ray.Start = thisPosition;
+        ray.Direction = rayDirection;
+        
+        var castResult = this.Space.PhysicsSpace.CastRayFirst(ray);
+        
+        if (castResult.ObjectHit == null)
+            return;
+        
+        //Console.WriteLine("`castResult.ObjectHit.Name`");
+        
+        if (castResult.ObjectHit.Name == "EntityPlayer")
+        {
+            Console.WriteLine("MOVE");
+            
+            this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * event.Dt;
+        }
+        else
+        {
+            var randomGen = new Random();
+            var random = randomGen.DieRoll(this.ChanceOfMoving);
+            
+            if (random == 1)
+            {
+                var randomDirectionGen = new Random();
+                var randomDirectionX = randomDirectionGen.Range(-1, 1);
+                randomDirectionGen = new Random();
+                var randomDirectionY = randomDirectionGen.Range(-1, 1);
+                var direction = Real3(randomDirectionX, randomDirectionY, 0.0);
+                
+                this.Owner.RigidBody.Velocity += direction / 5;
+                
+                Console.WriteLine("`direction`");
+            }
+        }
+    }
+}

@@ -39,7 +39,8 @@ Cog =
 	EntityEnemy = 
 	{
 		float AttackCooldown = 1,
-		bool AttackForward = false,
+		bool CanShoot = true,
+		bool CanAttackForward = true,
 		float AttackDamage = 2,
 		float AttackWithinRadiusOf = 3,
 		float HitboxSize = 1.75,
@@ -79,6 +80,23 @@ Cog =
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.5, 0.5, 0.5],
+	},
+	PathFinding = 
+	{
+		float Speed = 75,
+		int ChanceOfMoving = 25,
+	},
+	RigidBody = 
+	{
+		bool Static = false,
+		bool Asleep = false,
+		bool Kinematic = false,
+		bool RotationLocked = true,
+		bool Mode2D = true,
+		bool AllowSleep = true,
+		bool Inherit2DMode = true,
+		Vec3 Velocity = [0, 0, 0],
+		Vec3 AngularVelocity = [0, 0, 0],
 	},
 	Hierarchy = 
 	{
