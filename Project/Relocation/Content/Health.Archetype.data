@@ -1,0 +1,38 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "Health",
+	},
+	Archetyped = 
+	{
+		string Name = "5a0b6c4d60a49e16:Health",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [-19.5, 9.5, 0],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	SpriteText = 
+	{
+		bool Visible = true,
+		bool VisibilityCulling = true,
+		bool VisibilityEvents = true,
+		bool CastShadows = false,
+		Vec4 Color = [1, 1, 1, 1],
+		BlendMode BlendMode = Alpha,
+		SpriteGeometryMode GeometryMode = ZPlane,
+		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		string FontName = "4e7bac697bec55c5:Verdana",
+		uint FontSize = 30,
+		string Text = "Sprite Text...",
+		TextAlign Align = Left,
+		float PixelsPerUnit = 64,
+		bool Smoothing = false,
+	},
+},

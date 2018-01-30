@@ -1,0 +1,20 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTERS: MYLES
+
+class UICreator : ZilchComponent {
+    
+    [Property] var UILevel : Level;
+    [Property] var UIArchetype : Archetype;
+    [Property] var ReloadIfSameLevel : Boolean = true;
+    
+    var UISpace : Space = null;
+    
+    function Initialize(init : CogInitializer) {
+        
+        this.UISpace = this.GameSession.CreateNamedSpace("UISpace", this.UIArchetype);
+        
+        this.UISpace.LoadLevel(this.UILevel);
+    }
+
+    
+}

@@ -1,14 +1,19 @@
-//  AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: N/A
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: HUDSON GREEN
 
 class Health : ZilchComponent
 {
     [Property] var MaxHealth : Real = 10.0;
     
+    var UISpace : Space;
+    
     var CurrentHealth : Real;
     
     function Initialize(init : CogInitializer)
     {
+        
+        this.UISpace = this.LevelSettings.UICreator.UISpace;
+        
         this.CurrentHealth = this.MaxHealth;
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -21,6 +26,12 @@ class Health : ZilchComponent
         
         if (Zero.Keyboard.KeyIsPressed(Keys.Tilde))
             Console.WriteLine("`this.Owner`: `this.CurrentHealth`");
+        
+        if (this.Owner.Name == "EntityPlayer")
+        {
+            this.UISpace.FindObjectByName("Health").SpriteText.Text = "HP: `this.CurrentHealth`";
+        }
+        
     }
     
     function DecreaseHealth(amount : Real)
