@@ -96,7 +96,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.472924918, 2.33947968, 50],
+			Vec3 Translation = [-1, 3.5, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -108,7 +108,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 8.96338272,
+			float Size = 26.9274673,
 		},
 		EditorCameraController = 
 		{
@@ -116,7 +116,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.472924918, 2.33947968, 5.03863816e-07],
+			Vec3 LookTarget = [-1, 3.5, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -326,12 +326,19 @@ Level =
 			string Name = "Start",
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "5a380a0164d081c9:EntityEnemy",
 		LinkId = 
 		{
 			uint Id = 15,
+		},
+		Named = 
+		{
+			string Name = "EntityEnemy",
+		},
+		Archetyped = 
+		{
+			string Name = "5a380a0164d081c9:EntityEnemy",
 		},
 		Transform = 
 		{
@@ -339,14 +346,112 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		EntityEnemy = 
+		{
+			float AttackCooldown = 1,
+			bool AttackForward = false,
+			float AttackDamage = 2,
+			float AttackWithinRadiusOf = 3,
+			float HitboxSize = 1.75,
+			float HitboxLifetime = 0.100000001,
+			bool CanMove = false,
+			string LookUp = "5a38055fca8ef1dc:Up",
+			string LookUpRight = "5a38055fca8fb5d5:UpRight",
+			string LookRight = "5a38055fca805178:Right",
+			string LookDownRight = "5a38055fca80ebd1:DownRight",
+			string LookDown = "5a38055fca81939e:Down",
+			string LookDownLeft = "5a38055fca8ce913:DownLeft",
+			string LookLeft = "5a38055fca8daf58:Left",
+			string LookUpLeft = "5a38055fca8e5568:UpLeft",
+		},
+		Orientation = 
+		{
+			Vec3 GlobalUp = [0, 0, 1],
+			Vec3 UpVector = [0, 0, 1],
+			Vec3 ForwardVector = [0, 1, 0],
+			OrientationBases DefaultBases = ForwardYUpZ,
+		},
 		Area = 
 		{
 			Vec2 Size = [1, 1],
 			Location Origin = Center,
 		},
-		Named = 
+		Health = 
 		{
-			string Name = "EntityEnemy",
+			float MaxHealth = 10,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		Hierarchy = 
+		{
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 16,
+				},
+				Named = 
+				{
+					string Name = "EnemySprite",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, 0, 0],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Sprite = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string SpriteSource = "5275aa4d802dd6dc:Square",
+					bool RenderMask = false,
+					bool FlipX = false,
+					bool FlipY = false,
+					bool AnimationActive = true,
+					float AnimationSpeed = 1,
+					uint StartFrame = 0,
+				},
+				Orientation = 
+				{
+					Vec3 GlobalUp = [0, 0, 1],
+					Vec3 UpVector = [0, 0, 1],
+					Vec3 ForwardVector = [0, 1, 0],
+					OrientationBases DefaultBases = ForwardYUpZ,
+				},
+			},
 		},
 	},
 	ArchetypeInstance = 
@@ -354,7 +459,7 @@ Level =
 		string Name = "5a393d4c514ebbee:HitBox",
 		LinkId = 
 		{
-			uint Id = 16,
+			uint Id = 17,
 		},
 		Transform = 
 		{
