@@ -53,7 +53,7 @@ class Weapon {
     }
     
     function SetBulletSpawnPosition(pos : Real2) {
-        this.BulletSpawnLocation = Real3(pos.X, pos.Y, 0.0);
+        this.BulletSpawnLocation = Real3(pos.X, pos.Y, -1.0);
     }
     
     function UseWeapon() {
@@ -77,9 +77,9 @@ class Weapon {
                 var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
                 var gunPos = this.Space.FindObjectByName("EntityGun").Transform.WorldTranslation;
                 
-                var dif = Real2(mousePos.X - gunPos.X + accuracy, mousePos.Y - gunPos.Y + accuracy);
+                var dif = Real2(mousePos.X - gunPos.X, mousePos.Y - gunPos.Y);
                 var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
-                var velocity = Real3(dif.X / magnitude * this.BulletSpeed + accuracy / 3, dif.Y / magnitude * this.BulletSpeed + accuracy / 3, 0.0);
+                var velocity = Real3(dif.X / magnitude * this.BulletSpeed + accuracy, dif.Y / magnitude * this.BulletSpeed + accuracy, 0.0);
                 
                 bullet.RigidBody.Velocity = velocity;
                 
