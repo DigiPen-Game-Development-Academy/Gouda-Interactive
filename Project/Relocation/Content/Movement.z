@@ -206,7 +206,7 @@ class Movement : ZilchComponent {
             this.StartFrame = 24;
             this.EndFrame = 29;
             
-            weapon.Transform.Translation = Real3(0.15, -0.15, 1);
+            weapon.Transform.Translation = Real3(0.3, -0.15, 1);
             weapon.Sprite.StartFrame = 3;
             weapon.Sprite.FlipX = false;
             
