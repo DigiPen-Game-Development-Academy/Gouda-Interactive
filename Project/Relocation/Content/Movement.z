@@ -44,9 +44,22 @@ class Movement : ZilchComponent {
                 this.MouseDir = Real2(1.0, 0.0);
             } else if(mouseAngle < -45 + 22.5 && mouseAngle > -45 - 22.5) {
                 this.MouseDir = Real2(1.0, -1.0);
+            } else if(mouseAngle < -90 + 22.5 && mouseAngle > -90 - 22.5) {
+                this.MouseDir = Real2(0.0, -1.0);
+            } else if(mouseAngle < -135 + 22.5 && mouseAngle > -135 - 22.5) {
+                this.MouseDir = Real2(-1.0, -1.0);
+            } else if(mouseAngle < -180 + 22.5 || mouseAngle > 180 - 22.5) {
+                this.MouseDir = Real2(-1.0, 0.0);
+            } else if(mouseAngle < 135 + 22.5 && mouseAngle > 135 - 22.5) {
+                this.MouseDir = Real2(-1.0, 1.0);
+            } else if(mouseAngle < 90 + 22.5 && mouseAngle > 90 - 22.5) {
+                this.MouseDir = Real2(0.0, 1.0);
+            } else if(mouseAngle < 45 + 22.5 && mouseAngle > 45 - 22.5) {
+                this.MouseDir = Real2(1.0, 1.0);
             }
-            // TODO: CONTINUE SHOOTING DIR
             
+        } else {
+            this.MouseDir = Real2(0.0);
         }
         
         // WEAPON SPRITE
@@ -157,7 +170,7 @@ class Movement : ZilchComponent {
             
             this.Owner.RigidBody.Velocity = Real3(0);
             
-            if(this.Owner.Sprite.CurrentFrame % 6 == 0 && this.Owner.Sprite.CurrentFrame > this.Owner.Sprite.StartFrame) {
+            if(this.Owner.Sprite.CurrentFrame % 6 == 0 && this.Owner.Sprite.CurrentFrame >= this.Owner.Sprite.StartFrame) {
                 this.Owner.Sprite.AnimationActive = false;
             }
             
