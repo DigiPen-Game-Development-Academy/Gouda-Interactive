@@ -3,11 +3,11 @@ ImageContent =
 	SpriteSourceBuilder = 
 	{
 		string Name = "WeaponMinigun",
-		uint64 ResourceId = 5a11cd5393b66768,
+		uint64 ResourceId = 5a0b7fc3b9158d80,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 32,
 		uint FrameSizeY = 32,
-		uint FrameCount = 3,
+		uint FrameCount = 5,
 		float FrameDelay = 0.0833333358,
 		float OriginX = 12,
 		float OriginY = 12,
