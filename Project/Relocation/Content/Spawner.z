@@ -1,19 +1,40 @@
+//AUTHOR: Kevin P
+//CONTIBUTORS: Matthew Z 
 class Spawner : ZilchComponent
 {
     [Property]
     var WhatToSpawn : Archetype;
+    var Radius : Real = 10; 
+    var Player : Cog;
+    
     
     //[Property]
     //var SpawnTime
     
     function Initialize(init : CogInitializer)
     {
+        this.Player = this.Space.FindObjectByName("EntityPlayer");
+        
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        var spawnPosition = this.Owner.Transform.Translation;
+        if (this.Player == null)
+            return;
+        
+        var camera = this.Player.FindChildByName("Camera");
+        var randomGeneratorX = new Random();
+        var randomGeneratorY = new Random();
+    
+        var spawnPosition =  Real3(randomGeneratorX.Range(-this.Radius, this.Radius),
+            randomGeneratorY.Range(-this.Radius, this.Radius), 0);
+        
+        if ((this.Player.Transform.Translation.X >= spawnPosition.X - camera.Camera.Size && 
+            this.Player.Transform.Translation.X <= spawnPosition.X + camera.Camera.Size) &&
+            (this.Player.Transform.Translation.Y >= spawnPosition.Y - camera.Camera.Size && 
+            this.Player.Transform.Translation.Y <= spawnPosition.Y + camera.Camera.Size))
+            return;
         
         this.Space.CreateAtPosition(this.WhatToSpawn, spawnPosition);
     }
