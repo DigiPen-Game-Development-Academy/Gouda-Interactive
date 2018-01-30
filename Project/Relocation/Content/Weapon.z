@@ -1,9 +1,6 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTERS: N/A
 
-// Hudson I did change this script but all I did was make it so the lazers do damage 
-// to test the health script. - MYLES BUSIG (you can delete this)
-
 class Weapon {
     
     var Space : Space;
@@ -14,6 +11,7 @@ class Weapon {
     
     var IsRanged : Boolean = false;
     var IsUnlocked : Boolean = false;
+    var IsShotgun : Boolean = false;
     
     var Cooldown : Real = 0.0;
     var CurrCooldown : Real = 0.0;
@@ -58,30 +56,37 @@ class Weapon {
         this.BulletSpawnLocation = Real3(pos.X, pos.Y, 0.0);
     }
     
-    function UseWeapon(currCooldown : Real) {
+    function UseWeapon() {
         
         if(this.IsRanged) {
             
-            var rand = Random();
-            var accuracy = rand.Range(-this.Accuracy, this.Accuracy);
+            var spawnAmt = 1;
             
-            var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, this.Space.FindObjectByName("EntityGun").Transform.WorldTranslation + this.BulletSpawnLocation);
-            bullet.Transform.WorldTranslation -= Real3(0.0, 0.0, 1.0);
-            bullet.HitBoxVariables.AttackByPlayer = true;
-            bullet.HitBoxVariables.TimeTillDestroy = 3.0;
-            bullet.HitBoxVariables.Amount = 3.0;
+            if(this.IsShotgun) {
+                spawnAmt = 5;
+            }
             
-            var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-            var playerPos = this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation;
-            
-            var dif = Real2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
-            var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
-            var velocity = Real3(dif.X / magnitude * this.BulletSpeed + accuracy, dif.Y / magnitude * this.BulletSpeed + accuracy, 0.0);
-            
-            bullet.RigidBody.Velocity = velocity;
+            for(var i = 0; i < spawnAmt; ++i) {
+                
+                var rand = Random();
+                
+                var accuracy = rand.Range(-this.Accuracy / 2, this.Accuracy / 2);
+                
+                var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, this.Space.FindObjectByName("EntityGun").Transform.WorldTranslation + this.BulletSpawnLocation);
+                
+                var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+                var gunPos = this.Space.FindObjectByName("EntityGun").Transform.WorldTranslation;
+                
+                var dif = Real2(mousePos.X - gunPos.X + accuracy, mousePos.Y - gunPos.Y + accuracy);
+                var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
+                var velocity = Real3(dif.X / magnitude * this.BulletSpeed + accuracy / 3, dif.Y / magnitude * this.BulletSpeed + accuracy / 3, 0.0);
+                
+                bullet.RigidBody.Velocity = velocity;
+                
+            }
             
         } else {
-            
+            // MELEE
         }
         
     }
@@ -91,7 +96,7 @@ class Weapon {
         if(this.CurrCooldown <= 0.0) {
             if(Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
                 this.CurrCooldown = this.Cooldown;
-                this.UseWeapon(this.Cooldown);
+                this.UseWeapon();
             }
         } else {
             this.CurrCooldown -= dt;
@@ -125,7 +130,7 @@ class WeaponManager : ZilchComponent {
         this.WeaponShotgun = new Weapon(this.Space, "WeaponShotgun", 3, true, 1.5, 0.0);
         this.WeaponBoulder = new Weapon(this.Space, "WeaponBoulder", 4, true, 1.0, 0.0);
         
-        this.WeaponMinigun = new Weapon(this.Space, "WeaponMinigun", 5, true, 0.1, 0.0);
+        this.WeaponMinigun = new Weapon(this.Space, "WeaponMinigun", 5, true, 0.05, 0.0);
         this.WeaponSniper = new Weapon(this.Space, "WeaponSniper", 6, true, 1.75, 0.0);
         this.WeaponGouda = new Weapon(this.Space, "WeaponGouda", 7, true, 1.25, 0.0);
         
@@ -142,7 +147,7 @@ class WeaponManager : ZilchComponent {
         this.WeaponRevolver.SetAccuracy(0.25);
         this.WeaponRock.SetAccuracy(0.75);
         
-        this.WeaponShotgun.SetAccuracy(0.6);
+        this.WeaponShotgun.SetAccuracy(1.6);
         this.WeaponBoulder.SetAccuracy(0.75);
         
         this.WeaponMinigun.SetAccuracy(0.6);
@@ -157,9 +162,12 @@ class WeaponManager : ZilchComponent {
         //this.WeaponShotgun.SetBulletSpawnPosition(0.6);
         //this.WeaponBoulder.SetBulletSpawnPosition(0.75);
         
-        this.WeaponMinigun.SetBulletSpawnPosition(Real2(0.0, -0.1));
+        this.WeaponMinigun.SetBulletSpawnPosition(this.Owner.FindChildByName("EntityGun").Transform.Translation.XY + Real2(0.0, 0.1));
         //this.WeaponSniper.SetBulletSpawnPosition(0.05);
         //this.WeaponGouda.SetBulletSpawnPosition(0.25);
+        
+        // SET AS SHOTGUN
+        this.WeaponShotgun.IsShotgun = true;
         
         // SET ACTIVE WEAPON
         this.ActiveWeapon = this.WeaponPistol;
