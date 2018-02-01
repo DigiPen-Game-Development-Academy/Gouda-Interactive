@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [-5.63115501, 5.28121328, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -69,7 +69,6 @@ Cog =
 	Health = 
 	{
 		float MaxHealth = 10,
-		string UILevel = "5a0b73429c761ee6:UILevel",
 	},
 	Hierarchy = 
 	{
@@ -121,13 +120,6 @@ Cog =
 			{
 				bool Active = true,
 				float Volume = 1,
-			},
-			UICreator = 
-			{
-				string UILevel = "5a0b73429c761ee6:UILevel",
-				string UIArchtype = "554cea0f94af6dc4:Space",
-				bool ReloadIfSameLevel = true,
-				string Name = "UILevel",
 			},
 		},
 	},
