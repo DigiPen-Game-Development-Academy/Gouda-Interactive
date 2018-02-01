@@ -1,18 +1,152 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTERS: NONE
 
-class DebugCommands : ZilchComponent {
+class TextEntry : ZilchComponent {
+    
+    [Property] var IsCommandTextBox : Boolean = false;
+    [Property] var ConsoleTextboxName : String = "Console";
+    
+    var CaptureKeys : Boolean = false;
+    var DebugEnabled : Boolean = false;
+    
+    var CommandString : String = "";
+    var FinalCmd : String = "";
+    var ConsoleLog : String = "";
     
     function Initialize(init : CogInitializer) {
+        Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(Zero.Keyboard, Events.TextTyped, this.OnTextTyped);
+    }
+
+    function OnGameRequestQuit(event : GameEvent) {
+        event.Handled = true;
     }
 
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(Zero.Keyboard.KeyIsPressed(Keys.Slash)) {
-            // TODO: FINISH COMMANDS
+        if(this.CaptureKeys) {
+            
+            if(Zero.Keyboard.KeyIsPressed(Keys.Escape)) {
+                this.CommandString = "";
+                this.CaptureKeys = false;
+            }
+            
+            if(Zero.Keyboard.KeyIsPressed(Keys.Enter)) {
+                this.FinalCmd = this.CommandString;
+                this.CommandString = "";
+            }
+            
+            if(Zero.Keyboard.KeyIsPressed(Keys.Back) && this.CommandString.Count > 0) {
+                this.CommandString = this.CommandString.SubStringFromRuneIndices(0, this.CommandString.Count - 1);
+            }
+            
+            this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|");
+            
+        } else if(this.Owner.SpriteText.Text.Count > 0) {
+            this.Owner.SpriteText.Text = "";
         }
         
+        if(Zero.Keyboard.KeyIsPressed(Keys.Enter) && !this.CaptureKeys) {
+            this.CaptureKeys = true;
+        }
+        
+        // COMMANDS
+        if(this.FinalCmd.Count > 0 && this.IsCommandTextBox) {
+            
+            if(this.FinalCmd.StartsWith("debug")) {
+                
+                if(this.FinalCmd.EndsWith("true")) {
+                    this.DebugEnabled = true;
+                    this.PrintToUIConsole("Debug: `this.DebugEnabled`");
+                } else if(this.FinalCmd.EndsWith("false")) {
+                    this.DebugEnabled = false;
+                    this.PrintToUIConsole("Debug: `this.DebugEnabled`");
+                } else if(this.FinalCmd == "debug") {
+                    this.DebugEnabled = !this.DebugEnabled;
+                    this.PrintToUIConsole("Debug: `this.DebugEnabled`");
+                } else {
+                    this.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
+                }
+                
+            } else if(this.FinalCmd == "help" || this.FinalCmd == "?") {
+                this.PrintToUIConsole("---- Help ----");
+                this.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
+                this.PrintToUIConsole("debug [true/false] - Enables/Disables debug mode");
+                this.PrintToUIConsole("clear - (Alias: cls) - Clears the screen");
+            } else if(this.FinalCmd == "clear" || this.FinalCmd == "cls") {
+                this.ConsoleLog = "";
+                this.PrintToUIConsole("Console cleared.");
+            } else {
+                this.PrintToUIConsole("Error: The command \"`this.FinalCmd`\" does not exist. Type help for a list of commands.");
+            }
+            
+            this.FinalCmd = "";
+            
+        }
+        
+    }
+    
+    function OnTextTyped(event : KeyboardTextEvent) {
+        
+        if(this.CaptureKeys) {
+            
+            if(this.IsRenderable(event.Character)) {
+                var strBuilder = new StringBuilder();
+                strBuilder.Write(this.CommandString);
+                strBuilder.Write(String.FromChar(event.Character));
+                this.CommandString = strBuilder.ToString();
+            }
+            
+        }
+        
+    }
+    
+    function PrintToUIConsole(text : String) {
+        
+        var maxLength = 50;
+        
+        var tmpTxt = "";
+        
+        if(text.Count > maxLength) {
+            for(var i = (Math.Ceil(text.Count / 50) * 50) as Integer; i > 5; i -= 50) {
+                
+                var breakIndex = i;
+                
+                for(var j = i; j > i - maxLength / 4; --j) {
+                    
+                    if(String.FromChar(text.Get(j)) == " ") {
+                        breakIndex = j + 1;
+                        break;
+                    }
+                    
+                    if(j + 1 == i - maxLength / 4) {
+                        breakIndex = i - 8;
+                        break;
+                    }
+                    
+                }
+                
+                tmpTxt = text.SubStringFromRuneIndices(breakIndex, text.Count);
+                var tmpFrnt = text.SubStringFromRuneIndices(0, breakIndex);
+                tmpFrnt = String.Concatenate(tmpFrnt, "\n");
+                text = String.Concatenate(tmpFrnt, tmpTxt);
+                
+            }
+        }
+        
+        text = String.Concatenate("\n", text);
+        this.ConsoleLog = String.Concatenate(this.ConsoleLog, text);
+        
+        var console = this.Space.FindObjectByName(this.ConsoleTextboxName);
+        
+        console.SpriteText.Text = this.ConsoleLog;
+        console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y, 0);
+        
+    }
+    
+    function IsRenderable(code : Integer) : Boolean {
+        return code >= " "[0] && code <= "~"[0];
     }
     
 }
