@@ -35,4 +35,9 @@ Cog =
 		float PixelsPerUnit = 64,
 		bool Smoothing = false,
 	},
+	ScreenAlignment = 
+	{
+		string PositionX = "Left",
+		string PositionY = "Top",
+	},
 },
