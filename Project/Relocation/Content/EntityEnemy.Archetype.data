@@ -60,7 +60,7 @@ Cog =
 		Vec3 GlobalUp = [0, 0, 1],
 		Vec3 UpVector = [0, 0, 1],
 		Vec3 ForwardVector = [0, 1, 0],
-		OrientationBases DefaultBases = ForwardYUpZ,
+		OrientationBases DefaultBases = Custom,
 	},
 	Area = 
 	{
@@ -83,6 +83,7 @@ Cog =
 	},
 	PathFinding = 
 	{
+		float SightRadius = 8,
 		float Speed = 75,
 		int ChanceOfMoving = 25,
 	},
