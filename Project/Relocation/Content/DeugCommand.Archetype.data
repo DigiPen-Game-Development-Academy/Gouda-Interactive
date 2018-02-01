@@ -39,7 +39,7 @@ Cog =
 	{
 		string PositionX = "Left",
 		string PositionY = "Bottom",
-		Vec2 PositionOffset = [0, -18],
+		Vec2 PositionOffset = [5, -20],
 	},
 	Hierarchy = 
 	{
