@@ -37,14 +37,20 @@ class TextEntry : ZilchComponent {
                 this.CommandString = "";
             }
             
-            if(Zero.Keyboard.KeyIsPressed(Keys.Back) && this.CommandString.Count > 0) {
-                this.CommandString = this.CommandString.SubStringFromRuneIndices(0, this.CommandString.Count - 1);
+            if(this.CommandString.Count < 50) {
+                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|");
+            } else {
+                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|").SubStringFromRuneIndices(this.CommandString.Count - 49, this.CommandString.Count);
             }
-            
-            this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|");
             
         } else if(this.Owner.SpriteText.Text.Count > 0) {
             this.Owner.SpriteText.Text = "";
+        }
+        
+        if(this.CaptureKeys) {
+            this.Space.FindObjectByName("TextBoxBG").Sprite.Visible = true;
+        } else {
+            this.Space.FindObjectByName("TextBoxBG").Sprite.Visible = false;
         }
         
         if(Zero.Keyboard.KeyIsPressed(Keys.Enter) && !this.CaptureKeys) {
@@ -98,6 +104,11 @@ class TextEntry : ZilchComponent {
                 this.CommandString = strBuilder.ToString();
             }
             
+            // CHECK FOR BACKSPACE
+            if(event.Character == 8 && this.CommandString.Count > 0) {
+                this.CommandString = this.CommandString.SubStringFromRuneIndices(0, this.CommandString.Count - 1);
+            }
+            
         }
         
     }
@@ -141,7 +152,7 @@ class TextEntry : ZilchComponent {
         var console = this.Space.FindObjectByName(this.ConsoleTextboxName);
         
         console.SpriteText.Text = this.ConsoleLog;
-        console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y, 0);
+        console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y + 0.5, 0);
         
     }
     

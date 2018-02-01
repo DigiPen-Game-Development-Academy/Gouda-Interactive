@@ -39,7 +39,7 @@ Cog =
 	{
 		string PositionX = "Left",
 		string PositionY = "Bottom",
-		Vec2 PositionOffset = [0, -15],
+		Vec2 PositionOffset = [0, -18],
 	},
 	Hierarchy = 
 	{
@@ -82,6 +82,41 @@ Cog =
 			LinkId = 
 			{
 				uint Id = 3,
+			},
+			Named = 
+			{
+				string Name = "TextBoxBG",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [9.80000019, -0.300000012, 0],
+				Vec3 Scale = [20, 0.800000012, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Sprite = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [0, 0, 0, 0.5],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string SpriteSource = "5275aa4d802dd6dc:Square",
+				bool RenderMask = false,
+				bool FlipX = false,
+				bool FlipY = false,
+				bool AnimationActive = true,
+				float AnimationSpeed = 1,
+				uint StartFrame = 0,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 4,
 			},
 			Named = 
 			{
