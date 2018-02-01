@@ -44,7 +44,7 @@ class EntityEnemy : ZilchComponent
         this.TimeTillAttack -= event.Dt;
         
         // Look at the player
-        this.LookAtPlayer();
+        //this.LookAtPlayer();
         
         // Attack
         if (this.CanAttackForward == true && this.CanShoot == true && this.TimeTillAttack <= 0.0)

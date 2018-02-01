@@ -3,19 +3,47 @@
 
 class PathFinding : ZilchComponent
 {
-    var RayWidth: Real = 0.25;
+    var RayWidth : Real = 0.25;
+    
+    [Property] var SightRadius : Real = 8.0;
     
     [Property] var Speed : Real = 75.0;
     
     [Property] var ChanceOfMoving : Integer = 25;
     
+    var LastPlayerPosition : Real3;
+    
+    var Player : Cog;
+    
+    var CastResult : CastResult;
+    
+    var PlayerMemory1 : Real3;
+    var PlayerMemory2 : Real3;
+    var PlayerMemory3 : Real3;
+    var PlayerMemory4 : Real3;
+    var PlayerMemory5 : Real3;
+    var PlayerMemory6 : Real3;
+    var ClosestMemory : Real3;
+    
+    [Property] var UpdateMemoriesCooldown : Real = 0.5;
+    [Property] var TimeTillUpdateMemories : Real = 0.0;
+    
     function Initialize(init : CogInitializer)
     {
+        this.TimeTillUpdateMemories = this.UpdateMemoriesCooldown;
+        
+        this.Player = this.Space.FindObjectByName("EntityPlayer");
+        
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.TimeTillUpdateMemories -= event.Dt;
+        
+        if (this.Player == null)
+            return;
+        
         var ray = Ray();
         var thisPosition = this.Owner.Transform.WorldTranslation;
         var rayDirection = this.Owner.Orientation.WorldForward;
@@ -23,21 +51,54 @@ class PathFinding : ZilchComponent
         ray.Start = thisPosition;
         ray.Direction = rayDirection;
         
-        var castResult = this.Space.PhysicsSpace.CastRayFirst(ray);
+        this.CastResult = this.Space.PhysicsSpace.CastRayFirst(ray);
         
-        if (castResult.ObjectHit == null)
+        //this.MoveRandomly();
+        
+        if (this.CastResult.ObjectHit == null)
             return;
         
-        //Console.WriteLine("`castResult.ObjectHit.Name`");
+        this.MoveTowardsPlayer();
+    }
+    
+    function LookAtPoint(point : Real3)
+    {
+        // Look at player
+        this.Owner.Orientation.LookAtPoint(point);
         
-        if (castResult.ObjectHit.Name == "EntityPlayer")
-        {
-            Console.WriteLine("MOVE");
-            
-            this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * event.Dt;
-        }
+        // Make enemy sprite face up
+        this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
+    }
+    
+    function CheckIfOutOfSight(from : Real3) : Boolean
+    {
+        var translation = this.Owner.Transform.Translation;
+        
+        if ((from.X >= translation.X + this.SightRadius ||
+            from.X <= translation.X - this.SightRadius) ||
+            (from.Y >= translation.Y + this.SightRadius ||
+            from.Y <= translation.Y - this.SightRadius))
+            return true;
         else
+            return false;
+    }
+    
+    function MoveRandomly()
+    {
+        if (this.CastResult.ObjectHit != null)
+            if (this.CastResult.ObjectHit.Name == "EntityPlyaer")
+                return;
+        
+        if (Math.ApproximatelyEqual(this.Owner.Transform.Translation.X, this.Player.Transform.Translation.X, 1) &&
+            Math.ApproximatelyEqual(this.Owner.Transform.Translation.Y, this.Player.Transform.Translation.Y, 1))
         {
+            if (this.Owner.RigidBody.Velocity != Real3(0.0, 0.0, 0.0))
+            {
+                this.Owner.Orientation.LookAtDirection(this.Owner.RigidBody.Velocity);
+                
+                this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
+            }
+            
             var randomGen = new Random();
             var random = randomGen.DieRoll(this.ChanceOfMoving);
             
@@ -50,9 +111,78 @@ class PathFinding : ZilchComponent
                 var direction = Real3(randomDirectionX, randomDirectionY, 0.0);
                 
                 this.Owner.RigidBody.Velocity += direction / 5;
-                
-                Console.WriteLine("`direction`");
             }
         }
+        else
+        {
+            this.LookAtPoint(this.LastPlayerPosition);
+            
+            this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+        }
+    }
+    
+    function MoveTowardsPlayer()
+    {
+        if (this.CastResult.ObjectHit.Name == "EntityPlayer")
+        {
+            if (this.TimeTillUpdateMemories <= 0.0)
+            {
+                this.UpdateMemories();
+                this.TimeTillUpdateMemories = this.UpdateMemoriesCooldown;
+            }
+            
+            this.LastPlayerPosition = this.CastResult.ObjectHit.Transform.Translation;
+            
+            this.LookAtPoint(this.Player.Transform.Translation);
+            
+            this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+        }
+        else
+        {
+            this.LookAtPoint(this.PlayerMemory1);
+            
+            this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+        }
+    }
+    
+    function UpdateMemories()
+    {
+        this.PlayerMemory6 = this.PlayerMemory5;
+        this.PlayerMemory5 = this.PlayerMemory4;
+        this.PlayerMemory4 = this.PlayerMemory3;
+        this.PlayerMemory3 = this.PlayerMemory2;
+        this.PlayerMemory2 = this.PlayerMemory1;
+        this.PlayerMemory1 = this.Player.Transform.Translation;
+        
+        /*var closest = 0;
+        
+        var memory1 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory1).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory1).Y);
+        var memory2 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory2).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory2).Y);
+        var memory3 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory3).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory3).Y);
+        var memory4 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory4).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory4).Y);
+        var memory5 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory5).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory5).Y);
+        var memory6 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory6).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory6).Y);
+        
+        if (memory1 > closest) closest = 1;
+        if (memory2 > closest) closest = 2;
+        if (memory3 > closest) closest = 3;
+        if (memory4 > closest) closest = 4;
+        if (memory5 > closest) closest = 5;
+        if (memory6 > closest) closest = 6;
+        
+        if (closest == 1) this.ClosestMemory = this.PlayerMemory1;
+        if (closest == 2) this.ClosestMemory = this.PlayerMemory2;
+        if (closest == 3) this.ClosestMemory = this.PlayerMemory3;
+        if (closest == 4) this.ClosestMemory = this.PlayerMemory4;
+        if (closest == 5) this.ClosestMemory = this.PlayerMemory5;
+        if (closest == 6) this.ClosestMemory = this.PlayerMemory6;*/
+        
+        Console.WriteLine("`this.ClosestMemory`");
     }
 }
