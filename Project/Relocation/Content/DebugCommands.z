@@ -49,8 +49,10 @@ class TextEntry : ZilchComponent {
         
         if(this.CaptureKeys) {
             this.Space.FindObjectByName("TextBoxBG").Sprite.Visible = true;
+            this.Space.FindObjectByName("Console").SpriteText.Visible = true;
         } else {
             this.Space.FindObjectByName("TextBoxBG").Sprite.Visible = false;
+            this.Space.FindObjectByName("Console").SpriteText.Visible = false;
         }
         
         if(Zero.Keyboard.KeyIsPressed(Keys.Enter) && !this.CaptureKeys) {
