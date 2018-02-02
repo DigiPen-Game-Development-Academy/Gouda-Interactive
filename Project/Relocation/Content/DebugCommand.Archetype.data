@@ -10,7 +10,7 @@ Cog =
 	},
 	Archetyped = 
 	{
-		string Name = "5a0b6a5f45b7edc3:DeugCommand",
+		string Name = "5a3e9c27b1dd386f:DebugCommand",
 	},
 	Transform = 
 	{
@@ -39,7 +39,7 @@ Cog =
 	{
 		string PositionX = "Left",
 		string PositionY = "Bottom",
-		Vec2 PositionOffset = [5, -20],
+		Vec2 PositionOffset = [0, 0.75],
 	},
 	Hierarchy = 
 	{

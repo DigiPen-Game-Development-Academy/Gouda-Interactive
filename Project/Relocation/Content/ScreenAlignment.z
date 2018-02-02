@@ -28,7 +28,7 @@ class ScreenAlignment : ZilchComponent {
         }
         
         this.Pos = screen.CameraViewport.ViewportToScreen(this.Pos);
-        this.Owner.Transform.WorldTranslation = screen.CameraViewport.ScreenToWorldZPlane(this.Pos + this.PositionOffset, 0.0);
+        this.Owner.Transform.WorldTranslation = screen.CameraViewport.ScreenToWorldZPlane(this.Pos, 0.0) + Real3(this.PositionOffset, 0.0);
         
     }
     
