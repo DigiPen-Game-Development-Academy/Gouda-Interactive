@@ -4,6 +4,7 @@
 class Health : ZilchComponent
 {
     [Property] var MaxHealth : Real = 10.0;
+    [Property] var IsInvincible : Boolean = false;
     
     var UISpace : Space;
     
@@ -21,7 +22,7 @@ class Health : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if (this.CurrentHealth <= 0.0)
+        if (this.CurrentHealth <= 0.0 && !this.IsInvincible)
         {
             if (this.Owner.Name != "EntityPlayer")
             {
@@ -47,6 +48,7 @@ class Health : ZilchComponent
     
     function DecreaseHealth(amount : Real)
     {
-        this.CurrentHealth -= amount;
+        if(!this.IsInvincible)
+            this.CurrentHealth -= amount;
     }
 }

@@ -23,6 +23,8 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.CommandsAll.Push("debug");
         this.Owner.TextEntry.CommandsAll.Push("echo");
         this.Owner.TextEntry.Commands.Push("echo");
+        this.Owner.TextEntry.CommandsAll.Push("god");
+        this.Owner.TextEntry.Commands.Push("god");
         this.Owner.TextEntry.Commands.Push("help");
         this.Owner.TextEntry.CommandsAll.Push("help");
         this.Owner.TextEntry.CommandsAll.Push("playsound");
@@ -56,6 +58,30 @@ class Commands : ZilchComponent {
                 this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
             }
             
+        } else if(this.CheckForCommand("god", false, "", "") != -1) {
+            
+            if(this.DebugCmd.FinalCmd.EndsWith("true")) {
+                
+                this.DebugCmd.GodMode = true;
+                this.DebugCmd.PrintToUIConsole("God Mode: `this.DebugCmd.GodMode`");
+                
+            } else if(this.DebugCmd.FinalCmd.EndsWith("false")) {
+                
+                this.DebugCmd.GodMode = false;
+                this.DebugCmd.PrintToUIConsole("God Mode: `this.DebugCmd.GodMode`");
+                
+            } else if(this.DebugCmd.FinalCmd == "god" || this.DebugCmd.FinalCmd == "god ") {
+                
+                this.DebugCmd.GodMode = !this.DebugCmd.GodMode;
+                this.DebugCmd.PrintToUIConsole("God Mode: `this.DebugCmd.GodMode`");
+            } else {
+                this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: god [true/false]");
+            }
+            
+            if(this.MainSpace != null && this.MainSpace.FindObjectByName("EntityPlayer") != null) {
+                this.MainSpace.FindObjectByName("EntityPlayer").Health.IsInvincible = this.DebugCmd.GodMode;
+            }
+            
         } else if(this.CheckForCommand("help", false, "", "?") != -1) {
             
             this.DebugCmd.PrintToUIConsole("---- Help ----");
@@ -63,6 +89,7 @@ class Commands : ZilchComponent {
             this.DebugCmd.PrintToUIConsole("color <color> - Changes console color");
             this.DebugCmd.PrintToUIConsole("debug [true/false] - Enables/Disables debug mode");
             this.DebugCmd.PrintToUIConsole("echo <string> - Prints to console screen");
+            this.DebugCmd.PrintToUIConsole("god [true/false] - Makes player invincible");
             this.DebugCmd.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
             this.DebugCmd.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (Will crash if sound does not exist)");
             this.DebugCmd.PrintToUIConsole("spawn <entity> - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)");

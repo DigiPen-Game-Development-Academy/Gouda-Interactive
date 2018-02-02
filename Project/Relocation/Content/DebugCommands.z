@@ -6,8 +6,10 @@ class TextEntry : ZilchComponent {
     [Property] var IsCommandTextBox : Boolean = false;
     [Property] var ConsoleTextboxName : String = "Console";
     
-    var CaptureKeys : Boolean = false;
     var DebugEnabled : Boolean = false;
+    var GodMode : Boolean = false;
+    
+    var CaptureKeys : Boolean = false;
     var CycleThroughCommands : Boolean = false;
     var CycleThroughCmdsAll : Boolean = false;
     
