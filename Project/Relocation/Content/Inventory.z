@@ -21,7 +21,7 @@ class Inventory : ZilchComponent
     
     function OpenCloseInventory(event : KeyboardEvent)
     {
-        if (event.Key == Keys.E)
+        if (event.Key == Keys.E && !this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys)
         {
             this.ToggleInventory();
         }

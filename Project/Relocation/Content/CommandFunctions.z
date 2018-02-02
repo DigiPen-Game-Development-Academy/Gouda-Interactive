@@ -86,9 +86,9 @@ class Commands : ZilchComponent {
             }
             
         } else if(this.CheckForCommand("spawn", false, "", "") != -1) {
-            if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0) {
-                var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-                this.Space.CreateAtPosition(Archetype.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(6, this.DebugCmd.FinalCmd.Count)`"), mousePos);
+            if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0 && this.MainSpace != null) {
+                var mousePos = this.MainSpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+                this.MainSpace.CreateAtPosition(Archetype.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(6, this.DebugCmd.FinalCmd.Count)`"), mousePos);
             }
             
         } else {
