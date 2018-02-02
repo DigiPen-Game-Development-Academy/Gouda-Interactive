@@ -18,6 +18,7 @@ class TextEntry : ZilchComponent {
     
     var CommandHistory : Array[String];
     var Commands : Array[String];
+    var CommandsAll : Array[String];
     
     var CmdHistoryIndex : Integer = 0;
     var AutocompleteIndex : Integer = 0;
@@ -26,12 +27,20 @@ class TextEntry : ZilchComponent {
         
         this.CommandHistory = new Array[String]();
         this.Commands = new Array[String]();
+        this.CommandsAll = new Array[String]();
         
         this.Commands.Push("clear");
+        this.CommandsAll.Push("clear");
         this.Commands.Push("cls");
+        this.CommandsAll.Push("cls");
         this.Commands.Push("cl");
+        this.CommandsAll.Push("cl");
         this.Commands.Push("debug");
+        this.CommandsAll.Push("debug");
+        this.Commands.Push("de");
         this.Commands.Push("help");
+        this.CommandsAll.Push("help");
+        this.Commands.Push("he");
         
         Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -92,8 +101,15 @@ class TextEntry : ZilchComponent {
             } else if(Zero.Keyboard.KeyIsPressed(Keys.Tab)) {
                 
                 if(this.CommandString == "" || this.CycleThroughCmdsAll) {
+                    
                     this.CycleThroughCmdsAll = true;
-                    this.CommandString = this.Commands.Get(this.AutocompleteIndex);
+                    
+                    if(this.AutocompleteIndex > this.CommandsAll.Count - 1) {
+                        this.AutocompleteIndex = 0;
+                    }
+                    
+                    this.CommandString = this.CommandsAll.Get(this.AutocompleteIndex);
+                    
                 } else {
                     this.CommandString = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
                     this.CycleThroughCommands = true;
@@ -238,10 +254,17 @@ class TextEntry : ZilchComponent {
     function SearchArray(array : Array[String], str : String, curIndex : Integer) : Integer {
         
         var occurances = 0;
+        var startIndex = 0;
         
-        --curIndex;
+        if(curIndex != 0) {
+            --curIndex;
+        }
         
         for(var i = 0; i < array.Count - 1; ++i) {
+            
+            if(array.Get(i).StartsWith(str) && occurances == 0) {
+                startIndex = i;
+            }
             
             if(array.Get(i).StartsWith(str)) {
                 ++occurances;
@@ -262,10 +285,11 @@ class TextEntry : ZilchComponent {
         }
         
         if(tmpOccur >= occurances - 1 || tmpOccur == 0) {
-            this.AutocompleteIndex = 0;
+            this.AutocompleteIndex = startIndex;
+            return startIndex;
         }
         
-        return 0;
+        return -1;
         
     }
     
