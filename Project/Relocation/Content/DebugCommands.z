@@ -150,7 +150,6 @@ class TextEntry : ZilchComponent {
         if(this.FinalCmd.Count > 0 && this.IsCommandTextBox) {
             
             if(this.FinalCmd.StartsWith("debug")) {
-                
                 if(this.FinalCmd.EndsWith("true")) {
                     this.DebugEnabled = true;
                     this.PrintToUIConsole("Debug: `this.DebugEnabled`");
@@ -163,7 +162,6 @@ class TextEntry : ZilchComponent {
                 } else {
                     this.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
                 }
-                
             } else if(this.FinalCmd == "help" || this.FinalCmd == "?" || this.FinalCmd.StartsWith("help ") || this.FinalCmd.StartsWith("? ")) {
                 this.PrintToUIConsole("---- Help ----");
                 this.PrintToUIConsole("clear - (Alias: cls) - Clears the screen");
@@ -173,14 +171,13 @@ class TextEntry : ZilchComponent {
             } else if(this.FinalCmd =="clear" || this.FinalCmd == "cls" || this.FinalCmd.StartsWith("clear ") || this.FinalCmd.StartsWith("cls ")) {
                 this.ConsoleLog = "";
                 this.PrintToUIConsole("Console cleared.");
-            } else if(this.FinalCmd == "echo" || this.FinalCmd.StartsWith("echo ")) {
                 
+            } else if(this.FinalCmd == "echo" || this.FinalCmd.StartsWith("echo ")) {
                 if(this.FinalCmd.EndsWith("echo") || this.FinalCmd.EndsWith("echo ")) {
                     this.PrintToUIConsole("Error: Invalid arguments. Usage: echo <string>");
                 } else {
                     this.PrintToUIConsole("`this.FinalCmd.SubStringFromRuneIndices(5, this.FinalCmd.Count)`");
                 }
-                
             } else {
                 this.PrintToUIConsole("Error: The command \"`this.FinalCmd`\" does not exist. Type help for a list of commands.");
             }
@@ -195,6 +192,7 @@ class TextEntry : ZilchComponent {
         
         if(this.CaptureKeys) {
             
+            // CHECK IF TEXT IS RENDERABLE (IS A LETTER/NUMBER/SYMBOL)
             if(this.IsRenderable(event.Character)) {
                 this.CycleThroughCommands = false;
                 this.CycleThroughCmdsAll = false;
@@ -220,7 +218,6 @@ class TextEntry : ZilchComponent {
     function PrintToUIConsole(text : String) {
         
         var maxLength = 50;
-        
         var tmpTxt = "";
         
         if(text.Count > maxLength) {
