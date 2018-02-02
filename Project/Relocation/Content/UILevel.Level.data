@@ -91,6 +91,9 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		MainLevelReferances = 
+		{
+		},
 	},
 	Cog = 
 	{
