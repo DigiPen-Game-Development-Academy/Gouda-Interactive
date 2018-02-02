@@ -230,10 +230,6 @@ class TextEntry : ZilchComponent {
         var occurances = 0;
         var startIndex = 0;
         
-        /*if(curIndex != 0) {
-            //--curIndex;
-        }*/
-        
         for(var i = 0; i < array.Count - 1; ++i) {
             
             if(array.Get(i).StartsWith(str) && occurances == 0) {
@@ -270,7 +266,5 @@ class TextEntry : ZilchComponent {
     function IsRenderable(code : Integer) : Boolean {
         return code >= " "[0] && code <= "~"[0];
     }
-    
-    
     
 }

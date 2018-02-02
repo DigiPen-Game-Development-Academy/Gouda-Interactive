@@ -36,7 +36,7 @@ class Commands : ZilchComponent {
     
     function CommandFunctions() {
         
-        if(this.DebugCmd.FinalCmd.StartsWith("debug")) {
+        if(this.CheckForCommand("debug", false, "", "") != -1) {
             if(this.DebugCmd.FinalCmd.EndsWith("true")) {
                 this.DebugCmd.DebugEnabled = true;
                 this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
@@ -49,7 +49,7 @@ class Commands : ZilchComponent {
             } else {
                 this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
             }
-        } else if(this.CheckForCommand("help", false, "help", "?")) {
+        } else if(this.CheckForCommand("help", false, "", "?") != -1) {
             this.DebugCmd.PrintToUIConsole("---- Help ----");
             this.DebugCmd.PrintToUIConsole("clear - (Alias: cls) - Clears the screen");
             this.DebugCmd.PrintToUIConsole("color <color> - Changes console color");
@@ -58,26 +58,20 @@ class Commands : ZilchComponent {
             this.DebugCmd.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
             this.DebugCmd.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (Will crash if sound does not exist)");
             this.DebugCmd.PrintToUIConsole("spawn <entity> - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)");
-        } else if(this.DebugCmd.FinalCmd =="clear" || this.DebugCmd.FinalCmd == "cls" || this.DebugCmd.FinalCmd.StartsWith("clear ") || this.DebugCmd.FinalCmd.StartsWith("cls ")) {
+        } else if(this.CheckForCommand("clear", false, "", "cls") != -1) {
             this.DebugCmd.ConsoleLog = "";
             this.DebugCmd.PrintToUIConsole("Console cleared.");
-        } else if(this.DebugCmd.FinalCmd == "echo" || this.DebugCmd.FinalCmd.StartsWith("echo ")) {
-            if(this.DebugCmd.FinalCmd.EndsWith("echo") || this.DebugCmd.FinalCmd.EndsWith("echo ")) {
-                this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: echo <string>");
-            } else {
+        } else if(this.CheckForCommand("echo", false, "", "") != -1) {
+            if(this.CheckForCommand("echo", true, "echo <string>", "") != 0) {
                 this.DebugCmd.PrintToUIConsole("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)`");
             }
-        } else if(this.DebugCmd.FinalCmd == "playsound" || this.DebugCmd.FinalCmd.StartsWith("playsound ")) {
-            if(this.DebugCmd.FinalCmd.EndsWith("playsound") || this.DebugCmd.FinalCmd.EndsWith("playsound ")) {
-                this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: playsound <SoundCue>");
-            } else if(SoundCue.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(10, this.DebugCmd.FinalCmd.Count)`") != null) {
+        } else if(this.CheckForCommand("playsound", false, "", "") != -1) {
+            if(this.CheckForCommand("playsound", true, "playsound <SoundCue>", "") != 0) {
                 this.DebugCmd.PrintToUIConsole("Playing sound \"`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(10, this.DebugCmd.FinalCmd.Count)`\"");
                 this.DebugCmd.Space.SoundSpace.PlayCue(SoundCue.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(10, this.DebugCmd.FinalCmd.Count)`"));
             }
-        } else if(this.DebugCmd.FinalCmd == "spawn" || this.DebugCmd.FinalCmd.StartsWith("spawn ")) {
-            if(this.DebugCmd.FinalCmd.EndsWith("spawn") || this.DebugCmd.FinalCmd.EndsWith("spawn ")) {
-                this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: spawn <entity>");
-            } else {
+        } else if(this.CheckForCommand("spawn", false, "", "") != -1) {
+            if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0) {
                 this.Space.CreateAtPosition(Archetype.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(6, this.DebugCmd.FinalCmd.Count)`"), this.Owner.Transform.WorldTranslation);
             }
         } else {
@@ -88,21 +82,21 @@ class Commands : ZilchComponent {
         
     }
     
-    function CheckForCommand(cmd : String, args : Boolean, usage : String, cmdAlias : String) : Boolean {
+    function CheckForCommand(cmd : String, args : Boolean, usage : String, cmdAlias : String) : Integer {
         
         if(this.DebugCmd.FinalCmd == cmd || this.DebugCmd.FinalCmd.StartsWith(String.Concatenate(cmd, " ")) || (this.DebugCmd.FinalCmd == cmdAlias || this.DebugCmd.FinalCmd.StartsWith(String.Concatenate(cmdAlias, " ")) && cmdAlias != "")) {
             
             if(args && (this.DebugCmd.FinalCmd.EndsWith(cmd) || this.DebugCmd.FinalCmd.EndsWith(String.Concatenate(cmd, " ")))) {
                 this.DebugCmd.PrintToUIConsole(String.Concatenate("Error: Invalid arguments. Usage: ", usage));
-                return false;
+                return 0;
             } else {
-                return true;
+                return 1;
             }
             
         }
         
         //this.DebugCmd.PrintToUIConsole("Error: The command \"`this.DebugCmd.FinalCmd`\" does not exist. Type help for a list of commands.");
-        return false;
+        return -1;
         
     }
     
