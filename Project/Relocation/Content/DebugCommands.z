@@ -8,18 +8,30 @@ class TextEntry : ZilchComponent {
     
     var CaptureKeys : Boolean = false;
     var DebugEnabled : Boolean = false;
+    var CycleThroughCommands : Boolean = false;
+    var CycleThroughCmdsAll : Boolean = false;
     
     var CommandString : String = "";
     var FinalCmd : String = "";
     var ConsoleLog : String = "";
+    var TempCommandStr : String = "";
     
     var CommandHistory : Array[String];
+    var Commands : Array[String];
     
     var CmdHistoryIndex : Integer = 0;
+    var AutocompleteIndex : Integer = 0;
     
     function Initialize(init : CogInitializer) {
         
         this.CommandHistory = new Array[String]();
+        this.Commands = new Array[String]();
+        
+        this.Commands.Push("clear");
+        this.Commands.Push("cls");
+        this.Commands.Push("cl");
+        this.Commands.Push("debug");
+        this.Commands.Push("help");
         
         Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -37,19 +49,32 @@ class TextEntry : ZilchComponent {
             
             if(Zero.Keyboard.KeyIsPressed(Keys.Escape)) {
                 this.CommandString = "";
+                this.TempCommandStr = "";
                 this.CaptureKeys = false;
+                this.CycleThroughCommands = false;
+                this.CycleThroughCmdsAll = false;
+                this.CmdHistoryIndex = this.CommandHistory.Count;
+                this.AutocompleteIndex = 0;
             } else if(Zero.Keyboard.KeyIsPressed(Keys.Enter)) {
+                
                 this.FinalCmd = this.CommandString;
+                this.CycleThroughCommands = false;
+                this.CycleThroughCmdsAll = false;
+                
                 if(this.CommandString != "") {
                     this.CmdHistoryIndex = this.CommandHistory.Count + 1;
                     this.CommandHistory.Push(this.CommandString);
                 }
+                
                 this.CommandString = "";
+                this.TempCommandStr = "";
+                
             } else if(Zero.Keyboard.KeyIsPressed(Keys.Up)) {
                 
                 if(this.CommandHistory.Count > 0 && this.CmdHistoryIndex > 0) {
                     --this.CmdHistoryIndex;
                     this.CommandString = this.CommandHistory.Get(this.CmdHistoryIndex);
+                    this.TempCommandStr = this.CommandString;
                 }
                 
             } else if(Zero.Keyboard.KeyIsPressed(Keys.Down)) {
@@ -57,9 +82,28 @@ class TextEntry : ZilchComponent {
                 if(this.CommandHistory.Count > 0 && this.CmdHistoryIndex < this.CommandHistory.Count - 1) {
                     ++this.CmdHistoryIndex;
                     this.CommandString = this.CommandHistory.Get(this.CmdHistoryIndex);
+                    this.TempCommandStr = this.CommandString;
                 } else if(this.CmdHistoryIndex < this.CommandHistory.Count) {
                     ++this.CmdHistoryIndex;
                     this.CommandString = "";
+                    this.TempCommandStr = "";
+                }
+                
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Tab)) {
+                
+                if(this.CommandString == "" || this.CycleThroughCmdsAll) {
+                    this.CycleThroughCmdsAll = true;
+                    this.CommandString = this.Commands.Get(this.AutocompleteIndex);
+                } else {
+                    this.CommandString = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
+                    this.CycleThroughCommands = true;
+                    this.CycleThroughCmdsAll = false;
+                }
+                
+                if(this.AutocompleteIndex < this.Commands.Count - 1) {
+                    ++this.AutocompleteIndex;
+                } else {
+                    this.AutocompleteIndex = 0;
                 }
                 
             }
@@ -127,15 +171,21 @@ class TextEntry : ZilchComponent {
         if(this.CaptureKeys) {
             
             if(this.IsRenderable(event.Character)) {
+                this.CycleThroughCommands = false;
+                this.CycleThroughCmdsAll = false;
                 var strBuilder = new StringBuilder();
                 strBuilder.Write(this.CommandString);
                 strBuilder.Write(String.FromChar(event.Character));
                 this.CommandString = strBuilder.ToString();
+                this.TempCommandStr = this.CommandString;
             }
             
             // CHECK FOR BACKSPACE
             if(event.Character == 8 && this.CommandString.Count > 0) {
+                this.CycleThroughCommands = false;
+                this.CycleThroughCmdsAll = false;
                 this.CommandString = this.CommandString.SubStringFromRuneIndices(0, this.CommandString.Count - 1);
+                this.TempCommandStr = this.CommandString;
             }
             
         }
@@ -182,6 +232,40 @@ class TextEntry : ZilchComponent {
         
         console.SpriteText.Text = this.ConsoleLog;
         console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y + 0.5, 0);
+        
+    }
+    
+    function SearchArray(array : Array[String], str : String, curIndex : Integer) : Integer {
+        
+        var occurances = 0;
+        
+        --curIndex;
+        
+        for(var i = 0; i < array.Count - 1; ++i) {
+            
+            if(array.Get(i).StartsWith(str)) {
+                ++occurances;
+            }
+            
+        }
+        
+        var tmpOccur = 0;
+        
+        for(var i = 0; i < occurances; ++i) {
+            
+            if(array.Get(tmpOccur).Contains(str) && curIndex < tmpOccur && tmpOccur < occurances && tmpOccur < array.Count - 1) {
+                return tmpOccur;
+            } else {
+                ++tmpOccur;
+            }
+            
+        }
+        
+        if(tmpOccur >= occurances - 1 || tmpOccur == 0) {
+            this.AutocompleteIndex = 0;
+        }
+        
+        return 0;
         
     }
     
