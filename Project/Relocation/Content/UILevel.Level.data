@@ -119,7 +119,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 40.6569939,
+			float Size = 14.9568796,
 		},
 		EditorCameraController = 
 		{
@@ -189,19 +189,12 @@ Level =
 			string Name = "Health",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5a3e9c27b1dd386f:DebugCommand",
 		LinkId = 
 		{
 			uint Id = 5,
-		},
-		Named = 
-		{
-			string Name = "DebugCommand",
-		},
-		Archetyped = 
-		{
-			string Name = "5a3e9c27b1dd386f:DebugCommand",
 		},
 		Transform = 
 		{
@@ -209,149 +202,16 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		SpriteText = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "4e7bac697bec55c5:Verdana",
-			uint FontSize = 30,
-			string Text = ">",
-			TextAlign Align = Left,
-			float PixelsPerUnit = 64,
-			bool Smoothing = true,
-		},
-		ScreenAlignment = 
-		{
-			string PositionX = "Left",
-			string PositionY = "Bottom",
-			Vec2 PositionOffset = [0, 0.75],
-		},
-		Hierarchy = 
-		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 6,
-				},
-				Named = 
-				{
-					string Name = "Console",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 1, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				SpriteText = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "4e7bac697bec55c5:Verdana",
-					uint FontSize = 30,
-					string Text = "",
-					TextAlign Align = Left,
-					float PixelsPerUnit = 64,
-					bool Smoothing = true,
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 7,
-				},
-				Named = 
-				{
-					string Name = "TextBoxBG",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [9.80000019, -0.300000012, 0],
-					Vec3 Scale = [20, 0.800000012, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0, 0, 0, 0.5],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5275aa4d802dd6dc:Square",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 8,
-				},
-				Named = 
-				{
-					string Name = "TextEntry",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0.5, 0, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				SpriteText = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "4e7bac697bec55c5:Verdana",
-					uint FontSize = 30,
-					string Text = "",
-					TextAlign Align = Left,
-					float PixelsPerUnit = 64,
-					bool Smoothing = true,
-				},
-				TextEntry = 
-				{
-					bool IsCommandTextBox = true,
-					string ConsoleTextboxName = "Console",
-				},
-				Commands = 
-				{
-				},
-			},
+			string Name = "DebugCommand",
 		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 6,
 		},
 		Named = 
 		{
@@ -379,7 +239,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 10,
+					uint Id = 7,
 				},
 				Named = 
 				{
@@ -415,7 +275,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 11,
+							uint Id = 8,
 						},
 						Named = 
 						{
@@ -452,7 +312,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 12,
+					uint Id = 9,
 				},
 				Named = 
 				{
@@ -488,7 +348,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 13,
+							uint Id = 10,
 						},
 						Named = 
 						{

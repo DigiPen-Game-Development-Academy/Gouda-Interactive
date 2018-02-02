@@ -125,10 +125,10 @@ class TextEntry : ZilchComponent {
                 
             }
             
-            if(this.CommandString.Count < 50) {
+            if(this.CommandString.Count < 75) {
                 this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|");
             } else {
-                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|").SubStringFromRuneIndices(this.CommandString.Count - 49, this.CommandString.Count);
+                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|").SubStringFromRuneIndices(this.CommandString.Count - 74, this.CommandString.Count);
             }
             
         } else if(this.Owner.SpriteText.Text.Count > 0) {
@@ -185,11 +185,11 @@ class TextEntry : ZilchComponent {
     
     function PrintToUIConsole(text : String) {
         
-        var maxLength = 50;
+        var maxLength = 75;
         var tmpTxt = "";
         
         if(text.Count > maxLength) {
-            for(var i = (Math.Ceil(text.Count / 50) * 50) as Integer; i > 5; i -= 50) {
+            for(var i = (Math.Floor(text.Count / maxLength) * maxLength) as Integer; i > 5; i -= maxLength) {
                 
                 var breakIndex = i;
                 
