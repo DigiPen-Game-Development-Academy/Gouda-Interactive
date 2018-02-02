@@ -22,7 +22,18 @@ class Health : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         if (this.CurrentHealth <= 0.0)
-            this.Owner.Destroy();
+        {
+            if (this.Owner.Name != "EntityPlayer")
+            {
+                this.Owner.Destroy();
+            }
+            else
+            {
+                this.Owner.RemoveComponentByName("Movement");
+                this.Owner.RemoveComponentByName("WeaponManager");
+                this.Owner.Sprite.AnimationActive = false;
+            }
+        }
         
         if (Zero.Keyboard.KeyIsPressed(Keys.Tilde))
             Console.WriteLine("`this.Owner`: `this.CurrentHealth`");
