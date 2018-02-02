@@ -1,11 +1,47 @@
 class Inventory : ZilchComponent
 {
+    var UISpace : Space = null;
+    
+    var InventoryOpen : Boolean = false;
+    
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.UISpace = this.LevelSettings.UICreator.UISpace;
+        
+        this.UISpace.LevelSettings.MainLevelReferances.Player = this.Owner;
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+        Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OpenCloseInventory);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+    }
+    
+    function OpenCloseInventory(event : KeyboardEvent)
+    {
+        if (event.Key == Keys.E)
+        {
+            this.ToggleInventory();
+        }
+    }
+    
+    function ToggleInventory()
+    {
+        if (this.InventoryOpen == false)
+        {
+            this.Space.TimeSpace.Paused = true;
+            
+            this.InventoryOpen = true;
+        }
+        else
+        {
+            this.Space.TimeSpace.Paused = false;
+            
+            this.InventoryOpen = false;
+        }
+        
+        Console.WriteLine("Toggle");
     }
 }
