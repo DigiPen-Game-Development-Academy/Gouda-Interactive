@@ -13,10 +13,18 @@ class TextEntry : ZilchComponent {
     var FinalCmd : String = "";
     var ConsoleLog : String = "";
     
+    var CommandHistory : Array[String];
+    
+    var CmdHistoryIndex : Integer = 0;
+    
     function Initialize(init : CogInitializer) {
+        
+        this.CommandHistory = new Array[String]();
+        
         Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(Zero.Keyboard, Events.TextTyped, this.OnTextTyped);
+        
     }
 
     function OnGameRequestQuit(event : GameEvent) {
@@ -30,11 +38,30 @@ class TextEntry : ZilchComponent {
             if(Zero.Keyboard.KeyIsPressed(Keys.Escape)) {
                 this.CommandString = "";
                 this.CaptureKeys = false;
-            }
-            
-            if(Zero.Keyboard.KeyIsPressed(Keys.Enter)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Enter)) {
                 this.FinalCmd = this.CommandString;
+                if(this.CommandString != "") {
+                    this.CmdHistoryIndex = this.CommandHistory.Count + 1;
+                    this.CommandHistory.Push(this.CommandString);
+                }
                 this.CommandString = "";
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Up)) {
+                
+                if(this.CommandHistory.Count > 0 && this.CmdHistoryIndex > 0) {
+                    --this.CmdHistoryIndex;
+                    this.CommandString = this.CommandHistory.Get(this.CmdHistoryIndex);
+                }
+                
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Down)) {
+                
+                if(this.CommandHistory.Count > 0 && this.CmdHistoryIndex < this.CommandHistory.Count - 1) {
+                    ++this.CmdHistoryIndex;
+                    this.CommandString = this.CommandHistory.Get(this.CmdHistoryIndex);
+                } else if(this.CmdHistoryIndex < this.CommandHistory.Count) {
+                    ++this.CmdHistoryIndex;
+                    this.CommandString = "";
+                }
+                
             }
             
             if(this.CommandString.Count < 50) {
