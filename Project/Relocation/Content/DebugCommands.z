@@ -28,6 +28,8 @@ class TextEntry : ZilchComponent {
     var CmdHistoryIndex : Integer = 0;
     var AutocompleteIndex : Integer = 0;
     
+    var Occurances : Integer = 1;
+    
     function Initialize(init : CogInitializer) {
         
         this.CommandHistory = new Array[String]();
@@ -125,9 +127,18 @@ class TextEntry : ZilchComponent {
                     this.CommandString = this.CommandsAll.Get(this.AutocompleteIndex);
                     
                 } else {
-                    this.CommandString = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
+                    
+                    var cmdStr = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
+                    
+                    if(this.Occurances != 0) {
+                        this.CommandString = cmdStr;
+                    }
+                    
                     this.CycleThroughCommands = true;
                     this.CycleThroughCmdsAll = false;
+                    
+                    this.Occurances = 1;
+                    
                 }
                 
                 if(this.AutocompleteIndex < this.Commands.Count - 1) {
@@ -305,9 +316,11 @@ class TextEntry : ZilchComponent {
         
         if(tmpOccur >= occurances - 1 || tmpOccur == 0) {
             this.AutocompleteIndex = startIndex;
+            this.Occurances = occurances;
             return startIndex;
         }
         
+        this.Occurances = occurances;
         return -1;
         
     }
