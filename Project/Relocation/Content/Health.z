@@ -36,6 +36,11 @@ class Health : ZilchComponent
             }
         }
         
+        if(this.UISpace.FindObjectByName("TextEntry") != null && this.UISpace.FindObjectByName("TextEntry").TextEntry.DebugEnabled)
+        {
+            this.Owner.Collider.DebugDraw();
+        }
+        
         if (Zero.Keyboard.KeyIsPressed(Keys.Tilde))
             Console.WriteLine("`this.Owner`: `this.CurrentHealth`");
         

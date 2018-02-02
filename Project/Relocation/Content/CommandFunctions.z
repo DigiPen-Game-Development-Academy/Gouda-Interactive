@@ -53,7 +53,7 @@ class Commands : ZilchComponent {
                 
                 this.DebugCmd.DebugEnabled = !this.DebugCmd.DebugEnabled;
                 this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
-                //this.Owner.Collider.DebugDraw();
+                
             } else {
                 this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
             }
