@@ -95,7 +95,6 @@ class Commands : ZilchComponent {
             
         }
         
-        //this.DebugCmd.PrintToUIConsole("Error: The command \"`this.DebugCmd.FinalCmd`\" does not exist. Type help for a list of commands.");
         return -1;
         
     }
