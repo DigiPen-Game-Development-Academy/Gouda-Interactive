@@ -14,6 +14,11 @@ class UICreator : ZilchComponent {
         this.UISpace = this.GameSession.CreateNamedSpace("UISpace", this.UIArchetype);
         
         this.UISpace.LoadLevel(this.UILevel);
+        
+        if(this.UISpace.FindObjectByName("TextEntry") != null) {
+            this.UISpace.FindObjectByName("TextEntry").Commands.MainSpace = this.Space;
+        }
+        
     }
 
     

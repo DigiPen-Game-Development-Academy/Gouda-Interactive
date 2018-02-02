@@ -5,6 +5,8 @@ class Commands : ZilchComponent {
     
     [Dependency] var DebugCmd : TextEntry = null;
     
+    var MainSpace : Space = null;
+    
     function CreateCommands() {
         
         this.Owner.TextEntry.Commands = new Array[String]();
@@ -19,37 +21,43 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.CommandsAll.Push("color");
         this.Owner.TextEntry.Commands.Push("debug");
         this.Owner.TextEntry.CommandsAll.Push("debug");
-        //this.Owner.TextEntry.Commands.Push("de");
         this.Owner.TextEntry.CommandsAll.Push("echo");
         this.Owner.TextEntry.Commands.Push("echo");
         this.Owner.TextEntry.Commands.Push("help");
         this.Owner.TextEntry.CommandsAll.Push("help");
-        //this.Owner.TextEntry.Commands.Push("he");
         this.Owner.TextEntry.CommandsAll.Push("playsound");
         this.Owner.TextEntry.Commands.Push("playsound");
-        //this.Owner.TextEntry.Commands.Push("pl");
         this.Owner.TextEntry.CommandsAll.Push("spawn");
         this.Owner.TextEntry.Commands.Push("spawn");
-        this.Owner.TextEntry.Commands.Push("sp");
+        this.Owner.TextEntry.Commands.Push("");
         
     }
     
     function CommandFunctions() {
         
         if(this.CheckForCommand("debug", false, "", "") != -1) {
+            
             if(this.DebugCmd.FinalCmd.EndsWith("true")) {
+                
                 this.DebugCmd.DebugEnabled = true;
                 this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
+                
             } else if(this.DebugCmd.FinalCmd.EndsWith("false")) {
+                
                 this.DebugCmd.DebugEnabled = false;
                 this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
+                
             } else if(this.DebugCmd.FinalCmd == "debug" || this.DebugCmd.FinalCmd == "debug ") {
+                
                 this.DebugCmd.DebugEnabled = !this.DebugCmd.DebugEnabled;
                 this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
+                //this.Owner.Collider.DebugDraw();
             } else {
                 this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
             }
+            
         } else if(this.CheckForCommand("help", false, "", "?") != -1) {
+            
             this.DebugCmd.PrintToUIConsole("---- Help ----");
             this.DebugCmd.PrintToUIConsole("clear - (Alias: cls) - Clears the screen");
             this.DebugCmd.PrintToUIConsole("color <color> - Changes console color");
@@ -58,22 +66,31 @@ class Commands : ZilchComponent {
             this.DebugCmd.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
             this.DebugCmd.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (Will crash if sound does not exist)");
             this.DebugCmd.PrintToUIConsole("spawn <entity> - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)");
+            
         } else if(this.CheckForCommand("clear", false, "", "cls") != -1) {
+            
             this.DebugCmd.ConsoleLog = "";
             this.DebugCmd.PrintToUIConsole("Console cleared.");
+            
         } else if(this.CheckForCommand("echo", false, "", "") != -1) {
+            
             if(this.CheckForCommand("echo", true, "echo <string>", "") != 0) {
                 this.DebugCmd.PrintToUIConsole("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)`");
             }
+            
         } else if(this.CheckForCommand("playsound", false, "", "") != -1) {
+            
             if(this.CheckForCommand("playsound", true, "playsound <SoundCue>", "") != 0) {
                 this.DebugCmd.PrintToUIConsole("Playing sound \"`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(10, this.DebugCmd.FinalCmd.Count)`\"");
                 this.DebugCmd.Space.SoundSpace.PlayCue(SoundCue.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(10, this.DebugCmd.FinalCmd.Count)`"));
             }
+            
         } else if(this.CheckForCommand("spawn", false, "", "") != -1) {
             if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0) {
-                this.Space.CreateAtPosition(Archetype.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(6, this.DebugCmd.FinalCmd.Count)`"), this.Owner.Transform.WorldTranslation);
+                var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+                this.Space.CreateAtPosition(Archetype.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(6, this.DebugCmd.FinalCmd.Count)`"), mousePos);
             }
+            
         } else {
             this.DebugCmd.PrintToUIConsole("Error: The command \"`this.DebugCmd.FinalCmd`\" does not exist. Type help for a list of commands.");
         }

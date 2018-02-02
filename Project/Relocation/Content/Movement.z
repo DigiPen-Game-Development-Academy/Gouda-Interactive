@@ -1,5 +1,5 @@
 // AUTHOR: HUDSON GREEN
-// CONTRIBUTERS: N/A
+// CONTRIBUTORS: N/A
 
 class Movement : ZilchComponent {
     

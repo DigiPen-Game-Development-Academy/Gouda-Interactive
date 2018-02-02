@@ -11,8 +11,8 @@ class Health : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
-        
-        this.UISpace = this.LevelSettings.UICreator.UISpace;
+        if(this.LevelSettings.GetComponentByName("UICreator") != null)
+            this.UISpace = this.LevelSettings.UICreator.UISpace;
         
         this.CurrentHealth = this.MaxHealth;
         
