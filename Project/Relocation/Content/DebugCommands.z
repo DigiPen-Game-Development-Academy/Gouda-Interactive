@@ -112,41 +112,6 @@ class TextEntry : ZilchComponent {
                     
                 }
                 
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Tab)) {
-                
-                this.IsTextSelected = false;
-                
-                if(this.CommandString == "" || this.CycleThroughCmdsAll) {
-                    
-                    this.CycleThroughCmdsAll = true;
-                    
-                    if(this.AutocompleteIndex > this.CommandsAll.Count - 1) {
-                        this.AutocompleteIndex = 0;
-                    }
-                    
-                    this.CommandString = this.CommandsAll.Get(this.AutocompleteIndex);
-                    
-                } else {
-                    
-                    var cmdStr = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
-                    
-                    if(this.Occurances != 0) {
-                        this.CommandString = cmdStr;
-                    }
-                    
-                    this.CycleThroughCommands = true;
-                    this.CycleThroughCmdsAll = false;
-                    
-                    this.Occurances = 1;
-                    
-                }
-                
-                if(this.AutocompleteIndex < this.Commands.Count - 1) {
-                    ++this.AutocompleteIndex;
-                } else {
-                    this.AutocompleteIndex = 0;
-                }
-                
             } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.A)) {
                 
                 this.IsTextSelected = true;
@@ -237,6 +202,44 @@ class TextEntry : ZilchComponent {
                     this.CommandString = "";
                     this.TempCommandStr = "";
                 }
+            }
+            
+            // CHECK FOR TAB
+            if(event.Character == 9) {
+                
+                this.IsTextSelected = false;
+                
+                if(this.CommandString == "" || this.CycleThroughCmdsAll) {
+                    
+                    this.CycleThroughCmdsAll = true;
+                    
+                    if(this.AutocompleteIndex > this.CommandsAll.Count - 1) {
+                        this.AutocompleteIndex = 0;
+                    }
+                    
+                    this.CommandString = this.CommandsAll.Get(this.AutocompleteIndex);
+                    
+                } else {
+                    
+                    var cmdStr = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
+                    
+                    if(this.Occurances != 0) {
+                        this.CommandString = cmdStr;
+                    }
+                    
+                    this.CycleThroughCommands = true;
+                    this.CycleThroughCmdsAll = false;
+                    
+                    this.Occurances = 1;
+                    
+                }
+                
+                if(this.AutocompleteIndex < this.Commands.Count - 1) {
+                    ++this.AutocompleteIndex;
+                } else {
+                    this.AutocompleteIndex = 0;
+                }
+                
             }
             
         }
