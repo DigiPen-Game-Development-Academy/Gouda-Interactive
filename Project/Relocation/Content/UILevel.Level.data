@@ -374,19 +374,12 @@ Level =
 			},
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5a92397b65a441cd:UIInventory",
 		LinkId = 
 		{
 			uint Id = 10,
-		},
-		Named = 
-		{
-			string Name = "Inventory",
-		},
-		Archetyped = 
-		{
-			string Name = "5a92397b65a441cd:UIInventory",
 		},
 		Transform = 
 		{
@@ -394,160 +387,9 @@ Level =
 			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		ScreenAlignment = 
+		Named = 
 		{
-			string PositionX = "Right",
-			string PositionY = "Bottom",
-			Vec2 PositionOffset = [-2, 2],
-		},
-		Hierarchy = 
-		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 11,
-				},
-				Named = 
-				{
-					string Name = "MainHand",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0, 0, 0, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5275aa4d802dd6dc:Square",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 12,
-						},
-						Named = 
-						{
-							string Name = "MainHandIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 0.25],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "5274db4c2e7c11f9:Circle",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = true,
-							float AnimationSpeed = 1,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 13,
-				},
-				Named = 
-				{
-					string Name = "OffHand",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [-1.5, 0, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0, 0, 0, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5275aa4d802dd6dc:Square",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 14,
-						},
-						Named = 
-						{
-							string Name = "OffHandIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 0.25],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "5274db4c2e7c11f9:Circle",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = true,
-							float AnimationSpeed = 1,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
+			string Name = "Inventory",
 		},
 	},
 },

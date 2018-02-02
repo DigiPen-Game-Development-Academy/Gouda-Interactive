@@ -93,6 +93,10 @@ class Weapon {
     
     function UpdateWeapon(dt : Real) {
         
+        var uiSpace = this.Space.FindObjectByName("LevelSettings").UICreator.UISpace;
+        uiSpace.FindObjectByName("MainHandIcon").Sprite.SpriteSource = SpriteSource.Find(this.ItemName);
+        uiSpace.FindObjectByName("MainHandIcon").Sprite.StartFrame = 1;
+        
         if(this.CurrCooldown <= 0.0) {
             if(Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
                 this.CurrCooldown = this.Cooldown;
