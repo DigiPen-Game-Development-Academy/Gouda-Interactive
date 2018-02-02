@@ -49,14 +49,15 @@ class Commands : ZilchComponent {
             } else {
                 this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
             }
-        } else if(this.DebugCmd.FinalCmd == "help" || this.DebugCmd.FinalCmd == "?" || this.DebugCmd.FinalCmd.StartsWith("help ") || this.DebugCmd.FinalCmd.StartsWith("? ")) {
+        } else if(this.CheckForCommand("help", false, "help", "?")) {
             this.DebugCmd.PrintToUIConsole("---- Help ----");
             this.DebugCmd.PrintToUIConsole("clear - (Alias: cls) - Clears the screen");
+            this.DebugCmd.PrintToUIConsole("color <color> - Changes console color");
             this.DebugCmd.PrintToUIConsole("debug [true/false] - Enables/Disables debug mode");
             this.DebugCmd.PrintToUIConsole("echo <string> - Prints to console screen");
             this.DebugCmd.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
-            this.DebugCmd.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (will crash if sound does not exist)");
-            this.DebugCmd.PrintToUIConsole("spawn <entity> - Spawns entity (spawning certain entities may crash the game. will also crash if entity does not exist)");
+            this.DebugCmd.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (Will crash if sound does not exist)");
+            this.DebugCmd.PrintToUIConsole("spawn <entity> - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)");
         } else if(this.DebugCmd.FinalCmd =="clear" || this.DebugCmd.FinalCmd == "cls" || this.DebugCmd.FinalCmd.StartsWith("clear ") || this.DebugCmd.FinalCmd.StartsWith("cls ")) {
             this.DebugCmd.ConsoleLog = "";
             this.DebugCmd.PrintToUIConsole("Console cleared.");
@@ -84,6 +85,24 @@ class Commands : ZilchComponent {
         }
         
         this.DebugCmd.FinalCmd = "";
+        
+    }
+    
+    function CheckForCommand(cmd : String, args : Boolean, usage : String, cmdAlias : String) : Boolean {
+        
+        if(this.DebugCmd.FinalCmd == cmd || this.DebugCmd.FinalCmd.StartsWith(String.Concatenate(cmd, " ")) || (this.DebugCmd.FinalCmd == cmdAlias || this.DebugCmd.FinalCmd.StartsWith(String.Concatenate(cmdAlias, " ")) && cmdAlias != "")) {
+            
+            if(args && (this.DebugCmd.FinalCmd.EndsWith(cmd) || this.DebugCmd.FinalCmd.EndsWith(String.Concatenate(cmd, " ")))) {
+                this.DebugCmd.PrintToUIConsole(String.Concatenate("Error: Invalid arguments. Usage: ", usage));
+                return false;
+            } else {
+                return true;
+            }
+            
+        }
+        
+        //this.DebugCmd.PrintToUIConsole("Error: The command \"`this.DebugCmd.FinalCmd`\" does not exist. Type help for a list of commands.");
+        return false;
         
     }
     
