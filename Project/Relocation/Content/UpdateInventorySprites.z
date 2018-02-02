@@ -1,0 +1,15 @@
+class UpdateInventorySprites : ZilchComponent
+{
+    var Items : Array[Integer] = Array[Integer]();
+    
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+    
+    
+}

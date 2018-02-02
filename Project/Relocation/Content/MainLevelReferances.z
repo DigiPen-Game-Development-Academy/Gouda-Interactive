@@ -9,6 +9,9 @@ class MainLevelReferances : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if (this.Player == null)
+            return;
+        
         Console.WriteLine("`this.Player`");
         
         Console.WriteLine("`this.Player.Inventory.InventoryOpen`");

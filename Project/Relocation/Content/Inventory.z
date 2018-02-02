@@ -1,14 +1,26 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
 class Inventory : ZilchComponent
 {
     var UISpace : Space = null;
     
     var InventoryOpen : Boolean = false;
     
+    var Items : Array[Integer] = Array[Integer]();
+    var ItemCount : Array[Integer] = Array[Integer]();
+    
     function Initialize(init : CogInitializer)
     {
         this.UISpace = this.LevelSettings.UICreator.UISpace;
         
         this.UISpace.LevelSettings.MainLevelReferances.Player = this.Owner;
+        
+        for (var i = 0; i < 10; ++i)
+        {
+            this.Items.Add(0);
+            this.ItemCount.Add(0);
+        }
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -17,10 +29,17 @@ class Inventory : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.UpdateInventoryItemSprites();
     }
     
     function OpenCloseInventory(event : KeyboardEvent)
     {
+        if (event.Key == Keys.Equal)
+        {
+            ++this.Items[5];
+            ++this.ItemCount[3];
+        }
+        
         if (event.Key == Keys.E)
         {
             this.ToggleInventory();
@@ -31,17 +50,73 @@ class Inventory : ZilchComponent
     {
         if (this.InventoryOpen == false)
         {
-            this.Space.TimeSpace.Paused = true;
+            //this.Space.TimeSpace.Paused = true;
             
             this.InventoryOpen = true;
+            
+            for (var i = 3; i <= 10; ++i)
+            {
+                this.UISpace.FindObjectByName("INVIcon`i`").Sprite.Visible = true;
+                
+                this.UISpace.FindObjectByName("INVBackground`i`").Sprite.Visible = true;
+                
+                this.UISpace.FindObjectByName("INVCount`i`").SpriteText.Visible = true;
+                
+                this.UpdateInventoryItemSprites();
+            }
         }
         else
         {
-            this.Space.TimeSpace.Paused = false;
+            //this.Space.TimeSpace.Paused = false;
             
             this.InventoryOpen = false;
+            
+            for (var i = 3; i <= 10; ++i)
+            {
+                this.UISpace.FindObjectByName("INVIcon`i`").Sprite.Visible = false;
+                
+                this.UISpace.FindObjectByName("INVBackground`i`").Sprite.Visible = false;
+                
+                this.UISpace.FindObjectByName("INVCount`i`").SpriteText.Visible = false;
+            }
         }
         
         Console.WriteLine("Toggle");
+    }
+    
+    function UpdateInventoryItemSprites()
+    {
+        for (var i = 0; i < 10; ++i)
+        {
+            Console.WriteLine("`i + 1`");
+            
+            this.UISpace.FindObjectByName("INVIcon`i + 1`").Sprite.SpriteSource = this.UISpace.FindObjectByName("Item`this.Items[i]`Sprite").Sprite.SpriteSource;
+            
+            if (this.InventoryOpen == false && i + 1 >= 3)
+                this.UISpace.FindObjectByName("INVCount`i + 1`").SpriteText.Visible = false;
+            else if (this.InventoryOpen == true && i + 1 >= 3)
+            {
+                if (this.ItemCount[i] >= 2)
+                {
+                    this.UISpace.FindObjectByName("INVCount`i + 1`").SpriteText.Visible = true;
+                    this.UISpace.FindObjectByName("INVCount`i + 1`").SpriteText.Text = "`this.ItemCount[i]`";
+                }
+                else
+                    this.UISpace.FindObjectByName("INVCount`i + 1`").SpriteText.Visible = false;
+            }
+            
+            if (i + 1 <= 2)
+            {
+                if (this.ItemCount[i] >= 2 && i + 1 <= 2)
+                {
+                    this.UISpace.FindObjectByName("INVCount`i + 1`").SpriteText.Visible = true;
+                    this.UISpace.FindObjectByName("INVCount`i + 1`").SpriteText.Text = "`this.ItemCount[i]`";
+                }
+                else
+                    this.UISpace.FindObjectByName("INVCount`i + 1`").SpriteText.Visible = false;
+            }
+            
+            
+        }
     }
 }
