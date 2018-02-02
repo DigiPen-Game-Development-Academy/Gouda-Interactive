@@ -1,5 +1,5 @@
 // AUTHOR: HUDSON GREEN
-// CONTRIBUTERS: N/A
+// CONTRIBUTORS: N/A
 
 class Weapon {
     
@@ -107,6 +107,9 @@ class Weapon {
 
 class WeaponManager : ZilchComponent {
     
+    // UI SPACE
+    var UISpace : Space = null;
+    
     // ACTIVE WEAPON
     var ActiveWeapon : Weapon = null;
     
@@ -121,6 +124,9 @@ class WeaponManager : ZilchComponent {
     var WeaponGouda     : Weapon;
     
     function Initialize(init : CogInitializer) {
+        
+        // LINK UI SPACE
+        this.UISpace = this.LevelSettings.UICreator.UISpace;
         
         // RANGED WEAPONS
         this.WeaponPistol = new Weapon(this.Space, "WeaponPistol", 0, true, 0.75, 0.0);
@@ -179,27 +185,31 @@ class WeaponManager : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(Zero.Keyboard.KeyIsPressed(Keys.One)) {
-            this.ActiveWeapon = this.WeaponPistol;
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
-            this.ActiveWeapon = this.WeaponRevolver;
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.Three)) {
-            this.ActiveWeapon = this.WeaponRock;
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.Four)) {
-            this.ActiveWeapon = this.WeaponShotgun;
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.Five)) {
-            this.ActiveWeapon = this.WeaponBoulder;
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.Six)) {
-            this.ActiveWeapon = this.WeaponMinigun;
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.Seven)) {
-            this.ActiveWeapon = this.WeaponSniper;
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.Eight)) {
-            this.ActiveWeapon = this.WeaponGouda;
+        if(!this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys) {
+            
+            if(Zero.Keyboard.KeyIsPressed(Keys.One)) {
+                this.ActiveWeapon = this.WeaponPistol;
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
+                this.ActiveWeapon = this.WeaponRevolver;
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Three)) {
+                this.ActiveWeapon = this.WeaponRock;
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Four)) {
+                this.ActiveWeapon = this.WeaponShotgun;
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Five)) {
+                this.ActiveWeapon = this.WeaponBoulder;
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Six)) {
+                this.ActiveWeapon = this.WeaponMinigun;
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Seven)) {
+                this.ActiveWeapon = this.WeaponSniper;
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Eight)) {
+                this.ActiveWeapon = this.WeaponGouda;
+            }
+            
+            // UPDATE ACTIVE WEAPON
+            this.ActiveWeapon.UpdateWeapon(event.Dt);
+            this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(this.ActiveWeapon.ItemName);
+            
         }
-        
-        // UPDATE ACTIVE WEAPON
-        this.ActiveWeapon.UpdateWeapon(event.Dt);
-        this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(this.ActiveWeapon.ItemName);
         
     }
     

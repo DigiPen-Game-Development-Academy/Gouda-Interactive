@@ -1,9 +1,9 @@
 SoundCue = 
 {
 	SoundPlayMode PlayMode = Single,
-	float Volume = 0.119999997,
+	float Volume = 0.140000001,
 	float VolumeVariation = 0,
-	float VolumeDB = -18.4163742,
+	float VolumeDB = -17.0774384,
 	bool UseVolumeDB = false,
 	float VolumeDBVariation = 0,
 	float Pitch = 0,
@@ -19,7 +19,7 @@ SoundCue =
 	[
 		{
 			string SoundName = "5a0b46cd8bd3d72b:BulletSpawnDank",
-			string GeneratedSoundName = "",
+			string GeneratedSoundName = "55017c595ef88bf0:DefaultGeneratedSound",
 			WhichSoundType WhichToUse = FromFile,
 			float Weight = 1,
 			float LoopEndTime = 8,
@@ -34,5 +34,5 @@ SoundCue =
 	],
 	string RolloffCurveName = "",
 	int Version = 1,
-	RolloffCurveType RolloffCurveType = Error,
+	RolloffCurveType RolloffCurveType = Linear,
 },

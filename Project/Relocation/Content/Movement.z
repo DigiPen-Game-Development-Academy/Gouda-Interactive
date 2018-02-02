@@ -6,279 +6,289 @@ class Movement : ZilchComponent {
     [Property] var Speed : Real = 100.0;
     [Property] var RunSpeed : Real = 150.0;
     
+    var UISpace : Space = null;
+    
     var StartFrame : Integer = 0;
     var EndFrame : Real = 5;
     var MouseDir : Real2 = Real2(0.0, 0.0);
     
     function Initialize(init : CogInitializer) {
+        
+        this.UISpace = this.LevelSettings.UICreator.UISpace;
+        
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
     }
-
+    
     function OnLogicUpdate(event : UpdateEvent) {
         
         // VELOCITY
         var r3Speed = Real3(0.0, 0.0, 0.0);
         
-        // CHECK IF SPRINTING
-        if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-            r3Speed = Real3(this.RunSpeed * event.Dt, this.RunSpeed * event.Dt, this.RunSpeed * event.Dt);
-        } else {
-            r3Speed = Real3(this.Speed * event.Dt, this.Speed * event.Dt, this.Speed * event.Dt);
-        }
-        
-        // MOUSE SHOOTING DIRECTION
-        if(Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
+        if(!this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys) {
             
-            var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-            var playerPos = this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation;
-            
-            var vectorToMouse = mousePos - playerPos;
-            
-            var mouseAngle = Math.ATan2(vectorToMouse.Y, vectorToMouse.X);
-            
-            mouseAngle = Math.ToDegrees(mouseAngle);
-            
-            //Console.WriteLine("mouseAngle = `mouseAngle`");
-            
-            // CALC MOUSE DIR
-            if(mouseAngle < 22.5 && mouseAngle > -22.5) {
-                this.MouseDir = Real2(1.0, 0.0);
-            } else if(mouseAngle < -45 + 22.5 && mouseAngle > -45 - 22.5) {
-                this.MouseDir = Real2(1.0, -1.0);
-            } else if(mouseAngle < -90 + 22.5 && mouseAngle > -90 - 22.5) {
-                this.MouseDir = Real2(0.0, -1.0);
-            } else if(mouseAngle < -135 + 22.5 && mouseAngle > -135 - 22.5) {
-                this.MouseDir = Real2(-1.0, -1.0);
-            } else if(mouseAngle < -180 + 22.5 || mouseAngle > 180 - 22.5) {
-                this.MouseDir = Real2(-1.0, 0.0);
-            } else if(mouseAngle < 135 + 22.5 && mouseAngle > 135 - 22.5) {
-                this.MouseDir = Real2(-1.0, 1.0);
-            } else if(mouseAngle < 90 + 22.5 && mouseAngle > 90 - 22.5) {
-                this.MouseDir = Real2(0.0, 1.0);
-            } else if(mouseAngle < 45 + 22.5 && mouseAngle > 45 - 22.5) {
-                this.MouseDir = Real2(1.0, 1.0);
+            // CHECK IF SPRINTING
+            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                r3Speed = Real3(this.RunSpeed * event.Dt, this.RunSpeed * event.Dt, this.RunSpeed * event.Dt);
+            } else {
+                r3Speed = Real3(this.Speed * event.Dt, this.Speed * event.Dt, this.Speed * event.Dt);
             }
             
-        } else {
-            this.MouseDir = Real2(0.0);
-        }
-        
-        // WEAPON SPRITE
-        var weapon = this.Owner.FindChildByName("EntityGun");
-        
-        // MOVEMENT
-        if((Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.S))) {
-            
-            this.Owner.RigidBody.Velocity = Real3(-0.8, -0.8, 0) * r3Speed;
-            this.Owner.Sprite.AnimationActive = true;
-            
-            this.StartFrame = 36;
-            this.EndFrame = 41;
-            
-            weapon.Transform.Translation = Real3(-0.35, -0.1, 0.05);
-            weapon.Sprite.StartFrame = 1;
-            weapon.Sprite.FlipX = true;
-            
-        } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.S)) {
-            
-            this.Owner.RigidBody.Velocity = Real3(0.8, -0.8, 0) * r3Speed;
-            this.Owner.Sprite.AnimationActive = true;
-            
-            this.StartFrame = 12;
-            this.EndFrame = 17;
-            
-            weapon.Transform.Translation = Real3(0.1, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 1;
-            weapon.Sprite.FlipX = false;
-            
-        } else if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.W)) {
-            
-            this.Owner.RigidBody.Velocity = Real3(-0.8, 0.8, 0) * r3Speed;
-            this.Owner.Sprite.AnimationActive = true;
-            
-            this.StartFrame = 24;
-            this.EndFrame = 29;
-            
-            weapon.Transform.Translation = Real3(0.15, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 3;
-            weapon.Sprite.FlipX = true;
-            
-        } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.W)) {
-            
-            this.Owner.RigidBody.Velocity = Real3(0.8, 0.8, 0) * r3Speed;
-            this.Owner.Sprite.AnimationActive = true;
-            
-            this.StartFrame = 24;
-            this.EndFrame = 29;
-            
-            weapon.Transform.Translation = Real3(0.3, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 3;
-            weapon.Sprite.FlipX = false;
-            
-        } else if(Zero.Keyboard.KeyIsDown(Keys.W)) {
-            
-            this.Owner.RigidBody.Velocity = Real3(0, 1, 0) * r3Speed;
-            this.Owner.Sprite.AnimationActive = true;
-            
-            this.StartFrame = 24;
-            this.EndFrame = 29;
-            
-            weapon.Transform.Translation = Real3(0.25, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 4;
-            weapon.Sprite.FlipX = false;
-            
-        } else if(Zero.Keyboard.KeyIsDown(Keys.S)) {
-            
-            this.Owner.RigidBody.Velocity = Real3(0, -1, 0) * r3Speed;
-            this.Owner.Sprite.AnimationActive = true;
-            
-            this.StartFrame = 0;
-            this.EndFrame = 5;
-            
-            weapon.Transform.Translation = Real3(-0.3, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 2;
-            weapon.Sprite.FlipX = false;
-            
-        } else if(Zero.Keyboard.KeyIsDown(Keys.A)) {
-            
-            this.Owner.RigidBody.Velocity = Real3(-1, 0, 0) * r3Speed;
-            this.Owner.Sprite.AnimationActive = true;
-            
-            this.StartFrame = 30;
-            this.EndFrame = 35;
-            
-            weapon.Transform.Translation = Real3(-0.3, -0.15, -0.05);
-            weapon.Sprite.StartFrame = 0;
-            weapon.Sprite.FlipX = true;
-            
-        } else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
-            
-            this.Owner.RigidBody.Velocity = Real3(1, 0, 0) * r3Speed;
-            this.Owner.Sprite.AnimationActive = true;
-            
-            this.StartFrame = 18;
-            this.EndFrame = 23;
-            
-            weapon.Transform.Translation = Real3(0.2, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 0;
-            weapon.Sprite.FlipX = false;
-            
-        } else {
-            
-            this.Owner.RigidBody.Velocity = Real3(0);
-            
-            if(this.Owner.Sprite.CurrentFrame % 6 == 0 && this.Owner.Sprite.CurrentFrame >= this.Owner.Sprite.StartFrame) {
-                this.Owner.Sprite.AnimationActive = false;
+            // MOUSE SHOOTING DIRECTION
+            if(Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
+                
+                var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+                var playerPos = this.Space.FindObjectByName("EntityPlayer").Transform.WorldTranslation;
+                
+                var vectorToMouse = mousePos - playerPos;
+                
+                var mouseAngle = Math.ATan2(vectorToMouse.Y, vectorToMouse.X);
+                
+                mouseAngle = Math.ToDegrees(mouseAngle);
+                
+                //Console.WriteLine("mouseAngle = `mouseAngle`");
+                
+                // CALC MOUSE DIR
+                if(mouseAngle < 22.5 && mouseAngle > -22.5) {
+                    this.MouseDir = Real2(1.0, 0.0);
+                } else if(mouseAngle < -45 + 22.5 && mouseAngle > -45 - 22.5) {
+                    this.MouseDir = Real2(1.0, -1.0);
+                } else if(mouseAngle < -90 + 22.5 && mouseAngle > -90 - 22.5) {
+                    this.MouseDir = Real2(0.0, -1.0);
+                } else if(mouseAngle < -135 + 22.5 && mouseAngle > -135 - 22.5) {
+                    this.MouseDir = Real2(-1.0, -1.0);
+                } else if(mouseAngle < -180 + 22.5 || mouseAngle > 180 - 22.5) {
+                    this.MouseDir = Real2(-1.0, 0.0);
+                } else if(mouseAngle < 135 + 22.5 && mouseAngle > 135 - 22.5) {
+                    this.MouseDir = Real2(-1.0, 1.0);
+                } else if(mouseAngle < 90 + 22.5 && mouseAngle > 90 - 22.5) {
+                    this.MouseDir = Real2(0.0, 1.0);
+                } else if(mouseAngle < 45 + 22.5 && mouseAngle > 45 - 22.5) {
+                    this.MouseDir = Real2(1.0, 1.0);
+                }
+                
+            } else {
+                this.MouseDir = Real2(0.0);
             }
             
-        }
-        
-        // MAKE PLAYER FACE MOUSE WHEN SHOOTING
-        if(this.MouseDir == Real2(-1, -1)) {
+            // WEAPON SPRITE
+            var weapon = this.Owner.FindChildByName("EntityGun");
             
-            this.StartFrame = 36;
-            this.EndFrame = 41;
+            // MOVEMENT
+            if((Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.S))) {
+                
+                this.Owner.RigidBody.Velocity = Real3(-0.8, -0.8, 0) * r3Speed;
+                this.Owner.Sprite.AnimationActive = true;
+                
+                this.StartFrame = 36;
+                this.EndFrame = 41;
+                
+                weapon.Transform.Translation = Real3(-0.35, -0.1, 0.05);
+                weapon.Sprite.StartFrame = 1;
+                weapon.Sprite.FlipX = true;
+                
+            } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.S)) {
+                
+                this.Owner.RigidBody.Velocity = Real3(0.8, -0.8, 0) * r3Speed;
+                this.Owner.Sprite.AnimationActive = true;
+                
+                this.StartFrame = 12;
+                this.EndFrame = 17;
+                
+                weapon.Transform.Translation = Real3(0.1, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 1;
+                weapon.Sprite.FlipX = false;
+                
+            } else if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.W)) {
+                
+                this.Owner.RigidBody.Velocity = Real3(-0.8, 0.8, 0) * r3Speed;
+                this.Owner.Sprite.AnimationActive = true;
+                
+                this.StartFrame = 24;
+                this.EndFrame = 29;
+                
+                weapon.Transform.Translation = Real3(0.15, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 3;
+                weapon.Sprite.FlipX = true;
+                
+            } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.W)) {
+                
+                this.Owner.RigidBody.Velocity = Real3(0.8, 0.8, 0) * r3Speed;
+                this.Owner.Sprite.AnimationActive = true;
+                
+                this.StartFrame = 24;
+                this.EndFrame = 29;
+                
+                weapon.Transform.Translation = Real3(0.3, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 3;
+                weapon.Sprite.FlipX = false;
+                
+            } else if(Zero.Keyboard.KeyIsDown(Keys.W)) {
+                
+                this.Owner.RigidBody.Velocity = Real3(0, 1, 0) * r3Speed;
+                this.Owner.Sprite.AnimationActive = true;
+                
+                this.StartFrame = 24;
+                this.EndFrame = 29;
+                
+                weapon.Transform.Translation = Real3(0.25, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 4;
+                weapon.Sprite.FlipX = false;
+                
+            } else if(Zero.Keyboard.KeyIsDown(Keys.S)) {
+                
+                this.Owner.RigidBody.Velocity = Real3(0, -1, 0) * r3Speed;
+                this.Owner.Sprite.AnimationActive = true;
+                
+                this.StartFrame = 0;
+                this.EndFrame = 5;
+                
+                weapon.Transform.Translation = Real3(-0.3, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 2;
+                weapon.Sprite.FlipX = false;
+                
+            } else if(Zero.Keyboard.KeyIsDown(Keys.A)) {
+                
+                this.Owner.RigidBody.Velocity = Real3(-1, 0, 0) * r3Speed;
+                this.Owner.Sprite.AnimationActive = true;
+                
+                this.StartFrame = 30;
+                this.EndFrame = 35;
+                
+                weapon.Transform.Translation = Real3(-0.3, -0.15, -0.05);
+                weapon.Sprite.StartFrame = 0;
+                weapon.Sprite.FlipX = true;
+                
+            } else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
+                
+                this.Owner.RigidBody.Velocity = Real3(1, 0, 0) * r3Speed;
+                this.Owner.Sprite.AnimationActive = true;
+                
+                this.StartFrame = 18;
+                this.EndFrame = 23;
+                
+                weapon.Transform.Translation = Real3(0.2, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 0;
+                weapon.Sprite.FlipX = false;
+                
+            } else {
+                
+                this.Owner.RigidBody.Velocity = Real3(0);
+                
+                if(this.Owner.Sprite.CurrentFrame % 6 == 0 && this.Owner.Sprite.CurrentFrame >= this.Owner.Sprite.StartFrame) {
+                    this.Owner.Sprite.AnimationActive = false;
+                }
+                
+            }
             
-            weapon.Transform.Translation = Real3(-0.35, -0.1, 0.05);
-            weapon.Sprite.StartFrame = 1;
-            weapon.Sprite.FlipX = true;
+            // MAKE PLAYER FACE MOUSE WHEN SHOOTING
+            if(this.MouseDir == Real2(-1, -1)) {
+                
+                this.StartFrame = 36;
+                this.EndFrame = 41;
+                
+                weapon.Transform.Translation = Real3(-0.35, -0.1, 0.05);
+                weapon.Sprite.StartFrame = 1;
+                weapon.Sprite.FlipX = true;
+                
+            } else if(this.MouseDir == Real2(1, -1)) {
+                
+                this.StartFrame = 12;
+                this.EndFrame = 17;
+                
+                weapon.Transform.Translation = Real3(0.1, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 1;
+                weapon.Sprite.FlipX = false;
+                
+            } else if(this.MouseDir == Real2(-1, 1)) {
+                
+                this.StartFrame = 24;
+                this.EndFrame = 29;
+                
+                weapon.Transform.Translation = Real3(0.15, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 3;
+                weapon.Sprite.FlipX = true;
+                
+            } else if(this.MouseDir == Real2(1, 1)) {
+                
+                this.StartFrame = 24;
+                this.EndFrame = 29;
+                
+                weapon.Transform.Translation = Real3(0.3, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 3;
+                weapon.Sprite.FlipX = false;
+                
+            } else if(this.MouseDir == Real2(0, 1)) {
+                
+                this.StartFrame = 24;
+                this.EndFrame = 29;
+                
+                weapon.Transform.Translation = Real3(0.25, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 4;
+                weapon.Sprite.FlipX = false;
+                
+            } else if(this.MouseDir == Real2(0, -1)) {
+                
+                this.StartFrame = 0;
+                this.EndFrame = 5;
+                
+                weapon.Transform.Translation = Real3(-0.3, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 2;
+                weapon.Sprite.FlipX = false;
+                
+            } else if(this.MouseDir == Real2(-1, 0)) {
+                
+                this.StartFrame = 30;
+                this.EndFrame = 35;
+                
+                weapon.Transform.Translation = Real3(-0.3, -0.15, -0.05);
+                weapon.Sprite.StartFrame = 0;
+                weapon.Sprite.FlipX = true;
+                
+            } else if(this.MouseDir == Real2(1, 0)) {
+                
+                this.StartFrame = 18;
+                this.EndFrame = 23;
+                
+                weapon.Transform.Translation = Real3(0.2, -0.15, 0.05);
+                weapon.Sprite.StartFrame = 0;
+                weapon.Sprite.FlipX = false;
+                
+            }
             
-        } else if(this.MouseDir == Real2(1, -1)) {
+            // CHECK IF ANIMATION IS PAUSED WHILE FACING WRONG DIRECTION
+            if(this.Owner.Sprite.CurrentFrame < this.StartFrame || this.Owner.Sprite.CurrentFrame > this.EndFrame) {
+                this.Owner.Sprite.CurrentFrame = this.StartFrame;
+            }
             
-            this.StartFrame = 12;
-            this.EndFrame = 17;
+            if(this.Owner.Sprite.CurrentFrame < this.StartFrame) {
+                this.Owner.Sprite.AnimationSpeed = 10;
+            } else if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                this.Owner.Sprite.AnimationSpeed = 1;
+            } else {
+                this.Owner.Sprite.AnimationSpeed = 0.7;
+            }
             
-            weapon.Transform.Translation = Real3(0.1, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 1;
-            weapon.Sprite.FlipX = false;
+            if(this.Owner.Sprite.CurrentFrame >= this.EndFrame) {
+                this.Owner.Sprite.CurrentFrame = this.StartFrame;
+            }
             
-        } else if(this.MouseDir == Real2(-1, 1)) {
+            this.Owner.Sprite.StartFrame = this.StartFrame;
             
-            this.StartFrame = 24;
-            this.EndFrame = 29;
+            // CAMERA MOVEMENT
             
-            weapon.Transform.Translation = Real3(0.15, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 3;
-            weapon.Sprite.FlipX = true;
+            var cam = this.Space.FindObjectByName("Camera");
             
-        } else if(this.MouseDir == Real2(1, 1)) {
-            
-            this.StartFrame = 24;
-            this.EndFrame = 29;
-            
-            weapon.Transform.Translation = Real3(0.3, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 3;
-            weapon.Sprite.FlipX = false;
-            
-        } else if(this.MouseDir == Real2(0, 1)) {
-            
-            this.StartFrame = 24;
-            this.EndFrame = 29;
-            
-            weapon.Transform.Translation = Real3(0.25, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 4;
-            weapon.Sprite.FlipX = false;
-            
-        } else if(this.MouseDir == Real2(0, -1)) {
-            
-            this.StartFrame = 0;
-            this.EndFrame = 5;
-            
-            weapon.Transform.Translation = Real3(-0.3, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 2;
-            weapon.Sprite.FlipX = false;
-            
-        } else if(this.MouseDir == Real2(-1, 0)) {
-            
-            this.StartFrame = 30;
-            this.EndFrame = 35;
-            
-            weapon.Transform.Translation = Real3(-0.3, -0.15, -0.05);
-            weapon.Sprite.StartFrame = 0;
-            weapon.Sprite.FlipX = true;
-            
-        } else if(this.MouseDir == Real2(1, 0)) {
-            
-            this.StartFrame = 18;
-            this.EndFrame = 23;
-            
-            weapon.Transform.Translation = Real3(0.2, -0.15, 0.05);
-            weapon.Sprite.StartFrame = 0;
-            weapon.Sprite.FlipX = false;
-            
-        }
-        
-        // CHECK IF ANIMATION IS PAUSED WHILE FACING WRONG DIRECTION
-        if(this.Owner.Sprite.CurrentFrame < this.StartFrame || this.Owner.Sprite.CurrentFrame > this.EndFrame) {
-            this.Owner.Sprite.CurrentFrame = this.StartFrame;
-        }
-        
-        if(this.Owner.Sprite.CurrentFrame < this.StartFrame) {
-            this.Owner.Sprite.AnimationSpeed = 10;
-        } else if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-            this.Owner.Sprite.AnimationSpeed = 1;
-        } else {
-            this.Owner.Sprite.AnimationSpeed = 0.7;
-        }
-        
-        if(this.Owner.Sprite.CurrentFrame >= this.EndFrame) {
-            this.Owner.Sprite.CurrentFrame = this.StartFrame;
-        }
-        
-        this.Owner.Sprite.StartFrame = this.StartFrame;
-        
-        // CAMERA MOVEMENT
-        
-        var cam = this.Space.FindObjectByName("Camera");
-        
-        if(cam != null) {
-            
-            var playerPos = this.Owner.Transform.WorldTranslation;
-            var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-            
-            var dif = Real2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
-            
-            cam.Transform.Translation = Real3(dif.X / 20, dif.Y / 20, 40);
+            if(cam != null) {
+                
+                var playerPos = this.Owner.Transform.WorldTranslation;
+                var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+                
+                var dif = Real2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
+                
+                cam.Transform.Translation = Real3(dif.X / 20, dif.Y / 20, 40);
+                
+            }
             
         }
         
