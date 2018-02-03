@@ -150,15 +150,21 @@ class Inventory : ZilchComponent {
             
             this.RightButtonDown = true;
             
+            var itemInSlot = this.InventoryContents[this.SlotClicked - 1];
+            
             if(this.InventoryContents[20] == 0) {
                 
-                var item = this.InventoryContents[this.SlotClicked - 1];
                 var itemCt = this.InventoryContentsCount[this.SlotClicked - 1];
                 var itemCtFirstHalf = Math.Ceil(itemCt / 2.0) as Integer;
                 var itemCtSecondHalf = itemCt - itemCtFirstHalf + itemCt % 2;
                 
                 this.RemoveItemsInSlot(this.SlotClicked, false, itemCtFirstHalf);
-                this.GiveItemsInSlot(item, this.SLOT_MOUSE, itemCtSecondHalf, true);
+                this.GiveItemsInSlot(itemInSlot, this.SLOT_MOUSE, itemCtSecondHalf, true);
+                
+            } else if(this.InventoryContents[20] != 0 && (this.InventoryContents[this.SlotClicked - 1] == 0 || this.InventoryContents[this.SlotClicked - 1] == this.InventoryContents[20])) {
+                 
+                this.GiveItemInSlot(this.InventoryContents[20], this.SlotClicked);
+                this.RemoveItemInSlot(this.SLOT_MOUSE, false);
                 
             }
             
