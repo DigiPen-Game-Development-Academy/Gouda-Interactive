@@ -215,6 +215,8 @@ class WeaponManager : ZilchComponent {
                 this.ActiveWeapon = this.WeaponSniper;
             } else if(this.Owner.Inventory.CheckForItemMainHand(8)) {
                 this.ActiveWeapon = this.WeaponGouda;
+            } else {
+                this.ActiveWeapon = this.WeaponHand;
             }
             
             // UPDATE ACTIVE WEAPON
