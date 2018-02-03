@@ -146,9 +146,25 @@ class Inventory : ZilchComponent {
             
             this.SlotClicked = -1;
             
-        }
-        
-        if(this.InventoryContents[20] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !this.RightButtonDown) {
+        } else if(this.SlotClicked != -1 && this.SlotClicked != 21 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            
+            this.RightButtonDown = true;
+            
+            if(this.InventoryContents[20] == 0) {
+                
+                var item = this.InventoryContents[this.SlotClicked - 1];
+                var itemCt = this.InventoryContentsCount[this.SlotClicked - 1];
+                var itemCtFirstHalf = Math.Ceil(itemCt / 2.0) as Integer;
+                var itemCtSecondHalf = itemCt - itemCtFirstHalf + itemCt % 2;
+                
+                this.RemoveItemsInSlot(this.SlotClicked, false, itemCtFirstHalf);
+                this.GiveItemsInSlot(item, this.SLOT_MOUSE, itemCtSecondHalf, true);
+                
+            }
+            
+            this.SlotClicked = -1;
+            
+        } else if(this.InventoryContents[20] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !this.RightButtonDown) {
             this.RightButtonDown = true;
             this.RemoveItemInSlot(this.SLOT_MOUSE, true);
         } else if(this.InventoryContents[20] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
@@ -276,6 +292,45 @@ class Inventory : ZilchComponent {
         
     }
     
+    function GiveItemsInSlot(itemID : Integer, slot : Integer, amount : Integer, allowInMouseSlot : Boolean) {
+        
+        itemID = Math.Abs(itemID);
+        
+        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+            if(slot - 1 < this.MaxInventorySlots - 1) {
+                
+                if(this.InventoryContents[slot - 1] == 0) {
+                    this.InventoryContents[slot - 1] = itemID;
+                    this.InventoryContentsCount[slot - 1] = amount;
+                    this.RefreshInventoryIcons();
+                    return;
+                } else if(this.InventoryContents[slot - 1] == itemID) {
+                    this.InventoryContentsCount[slot - 1] += amount;
+                    this.RefreshInventoryIcons();
+                    return;
+                }
+                
+            } else if(slot == this.SLOT_MOUSE && allowInMouseSlot) {
+                
+                if(this.InventoryContents[slot - 1] == 0) {
+                    this.InventoryContents[slot - 1] = itemID;
+                    this.InventoryContentsCount[slot - 1] = amount;
+                    this.RefreshInventoryIcons();
+                    return;
+                } else if(this.InventoryContents[slot - 1] == itemID) {
+                    this.InventoryContentsCount[slot - 1] += amount;
+                    this.RefreshInventoryIcons();
+                    return;
+                }
+                
+            }
+        } else {
+            this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
+            return;
+        }
+        
+    }
+    
     function CheckForItem(itemID : Integer) : Boolean {
         
         itemID = Math.Abs(itemID);
@@ -369,6 +424,22 @@ class Inventory : ZilchComponent {
         if(this.InventoryContents[slot - 1] != 0 && this.InventoryContentsCount[slot - 1] > 0) {
             itemID = this.InventoryContents[slot - 1];
             --this.InventoryContentsCount[slot - 1];
+            this.RefreshInventoryIcons();
+        }
+        
+        if(drop && itemID != -1) {
+            Console.WriteLine("Implement drops. In the meantime, the item that was dropped will be deleted.");
+        }
+        
+    }
+    
+    function RemoveItemsInSlot(slot : Integer, drop : Boolean, amount : Integer) {
+        
+        var itemID = -1;
+        
+        if(this.InventoryContents[slot - 1] != 0 && this.InventoryContentsCount[slot - 1] > 0) {
+            itemID = this.InventoryContents[slot - 1];
+            this.InventoryContentsCount[slot - 1] -= amount;
             this.RefreshInventoryIcons();
         }
         
