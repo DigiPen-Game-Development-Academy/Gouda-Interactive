@@ -161,6 +161,8 @@ class Inventory : ZilchComponent {
         
         var cmd : TextEntry = null;
         
+        itemID = Math.Abs(itemID);
+        
         if(notifyUser) {
             cmd = this.UISpace.FindObjectByName("TextEntry").TextEntry;
         }
@@ -199,6 +201,8 @@ class Inventory : ZilchComponent {
     
     function GiveItemInSlot(itemID : Integer, slot : Integer) {
         
+        itemID = Math.Abs(itemID);
+        
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
             if(slot - 1 < this.MaxInventorySlots - 1) {
                 
@@ -223,6 +227,8 @@ class Inventory : ZilchComponent {
     
     function CheckForItem(itemID : Integer) : Boolean {
         
+        itemID = Math.Abs(itemID);
+        
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
             
             if(this.InventoryContents[i] == itemID) {
@@ -236,6 +242,8 @@ class Inventory : ZilchComponent {
     }
     
     function CheckForItemMainHand(itemID : Integer) : Boolean {
+        
+        itemID = Math.Abs(itemID);
             
         if(this.InventoryContents[18] == itemID) {
             return true;
@@ -283,6 +291,8 @@ class Inventory : ZilchComponent {
     }
     
     function RemoveItem(itemID : Integer) {
+        
+        itemID = Math.Abs(itemID);
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
             for(var i = 0; i < this.MaxInventorySlots - 1; ++i) {
