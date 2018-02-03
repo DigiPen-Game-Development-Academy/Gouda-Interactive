@@ -7,7 +7,27 @@ class InventorySlot : ZilchComponent {
     
     function Initialize(init : CogInitializer) {
         
+        Zero.Connect(this.Owner, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseEnter);
         Zero.Connect(this.Owner, Events.MouseDown, this.OnMouseDown);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        if(this.Owner.Name == "Slot21" && this.Owner.FindChildByName("ItemName").SpriteText.Text != "") {
+            this.Owner.FindChildByName("ItemName").Sprite.Visible = true;
+        } else {
+            this.Owner.FindChildByName("ItemName").Sprite.Visible = false;
+        }
+    }
+    
+    function OnMouseEnter(event : ViewportMouseEvent) {
+        
+        this.MainSpace = this.Space.FindObjectByName("TextEntry").Commands.MainSpace;
+        
+        if(this.MainSpace != null && this.MainSpace.FindObjectByName("EntityPlayer").Inventory.InventoryOpen) {
+            this.MainSpace.FindObjectByName("EntityPlayer").Inventory.SlotHover = Integer.Parse(this.Owner.Name.SubStringFromRuneIndices(4, this.Owner.Name.Count));
+        }
         
     }
     

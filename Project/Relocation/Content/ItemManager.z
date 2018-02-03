@@ -82,7 +82,7 @@ class ItemManager : ZilchComponent {
         this.Items[06].SetRecognizableName("Minigun");
         this.Items[07].SetRecognizableName("Sniper");
         this.Items[08].SetRecognizableName("Gouda Cheese");
-        this.Items[09].SetRecognizableName("Weapon\nAmmunition");
+        this.Items[09].SetRecognizableName("Weapon Ammunition");
         this.Items[10].SetRecognizableName("Health Pack");
         
         this.Items[00].SetItemType("Item");

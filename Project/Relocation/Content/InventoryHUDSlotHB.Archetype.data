@@ -6,16 +6,16 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Slot19",
+		string Name = "Slot20",
 	},
 	Archetyped = 
 	{
-		string Name = "5a384ca33d6b0b28:InventorySlotHBOH",
+		string Name = "5a3b64dbb09a9787:InventoryHUDSlotHB",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-2, -1.25, 0],
-		Vec3 Scale = [0.75, 0.75, 0.75],
+		Vec3 Translation = [1, 0, 0],
+		Vec3 Scale = [1.5, 1.5, 1.5],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 

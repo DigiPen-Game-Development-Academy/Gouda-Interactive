@@ -13,10 +13,12 @@ class Inventory : ZilchComponent {
     
     var MaxInventorySlots : Integer = 21;
     var SlotClicked : Integer = -1;
+    var SlotHover : Integer = -1;
     
     var SLOT_HAND : Integer = 19;
     var SLOT_OFFHAND : Integer = 20;
     var SLOT_MOUSE : Integer = 21;
+    var TooltipName : String = "";
     
     function Initialize(init : CogInitializer) {
         
@@ -106,7 +108,7 @@ class Inventory : ZilchComponent {
             slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = itemMgmt.Items[this.InventoryContents[i]].Sprite;
             slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
             slotObj.FindChildByName("ItemName").SpriteText.Text = itemMgmt.Items[this.InventoryContents[i]].ItemRecognizableName;
-            slotObj.FindChildByName("ItemName").SpriteText.Color = Real4(1.0, 1.0, 1.0, 1.0);
+            //slotObj.FindChildByName("ItemName").SpriteText.Color = Real4(1.0, 1.0, 1.0, 1.0);
             
             if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = false;
@@ -116,8 +118,24 @@ class Inventory : ZilchComponent {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = true;
                 slotObj.FindChildByName("ItemCount").SpriteText.Visible = true;
                 
-                if(itemMgmt.Items[this.InventoryContents[i]].ItemType == "Weapon") {
+                /*if(itemMgmt.Items[this.InventoryContents[i]].ItemType == "Weapon") {
                     slotObj.FindChildByName("ItemName").SpriteText.Color = Real4(0.0, 0.0, 1.0, 1.0);
+                }*/
+                
+            }
+            
+            if(i == 18 || i == 19) {
+                
+                slotObj = this.UISpace.FindObjectByName("Slot`i + 1`H");
+                slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = itemMgmt.Items[this.InventoryContents[i]].Sprite;
+                slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
+                
+                if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
+                    slotObj.FindChildByName("SlotIcon").Sprite.Visible = false;
+                    slotObj.FindChildByName("ItemCount").SpriteText.Visible = false;
+                } else {
+                    slotObj.FindChildByName("SlotIcon").Sprite.Visible = true;
+                    slotObj.FindChildByName("ItemCount").SpriteText.Visible = true;
                 }
                 
             }
@@ -178,6 +196,32 @@ class Inventory : ZilchComponent {
             this.RemoveItemInSlot(this.SLOT_MOUSE, true);
         } else if(!Zero.Mouse.IsButtonDown(MouseButtons.Right) && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
             this.RightButtonDown = false;
+        }
+        
+        if(this.InventoryContents[20] == 0 && this.SlotHover != -1 && this.SlotHover != this.SLOT_MOUSE) {
+            
+            this.TooltipName = this.Space.FindObjectByName("LevelSettings").ItemManager.Items[this.InventoryContents[this.SlotHover - 1]].ItemRecognizableName;
+            
+            if(this.TooltipName != "") {
+                var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
+                var itemTooltip = this.UISpace.FindObjectByName("Slot21").FindChildByName("ItemName");
+                itemTooltip.SpriteText.Text = this.TooltipName;
+                itemTooltip.SpriteText.Color = Real4(1.0);
+                if(itemMgmt.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Weapon") {
+                    itemTooltip.SpriteText.Color = Real4(0.0, 0.0, 1.0, 1.0);
+                }
+                this.UISpace.FindObjectByName("Slot21").FindChildByName("ItemName").SpriteText.Visible = true;
+            }
+            
+            this.SlotHover = -1;
+            
+        } else {
+            
+            this.TooltipName = "";
+            this.UISpace.FindObjectByName("Slot21").FindChildByName("ItemName").SpriteText.Visible = false;
+            
+            this.SlotHover = -1;
+            
         }
         
         //Console.WriteLine("Slot: `this.SlotClicked`");
