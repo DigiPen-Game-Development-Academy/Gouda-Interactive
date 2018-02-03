@@ -106,7 +106,12 @@ class Inventory : ZilchComponent {
     
     function GiveItemInSlot(itemID : Integer, slot : Integer) {
         
-        this.InventoryContents.Insert(slot, itemID);
+        if(this.InventoryContents[slot] == itemID) {
+            ++this.InventoryContentsCount[slot];
+        } else {
+            this.InventoryContents.Insert(slot, itemID);
+        }
+        
         this.RefreshInventoryIcons();
         
     }
