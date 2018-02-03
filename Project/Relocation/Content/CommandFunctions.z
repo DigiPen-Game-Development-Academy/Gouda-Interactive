@@ -64,8 +64,7 @@ class Commands : ZilchComponent {
             
             if(this.CheckForCommand("give", true, "give <itemID>", "") != 0) {
                 if(this.MainSpace.FindObjectByName("EntityPlayer") != null) {
-                    this.MainSpace.FindObjectByName("EntityPlayer").Inventory.GiveItem(Integer.Parse(this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)));
-                    this.DebugCmd.PrintToUIConsole("Item with the ID \"`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)`\" has been added to your inventory.");
+                    this.MainSpace.FindObjectByName("EntityPlayer").Inventory.GiveItem(Integer.Parse(this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)), true);
                 }
             }
             

@@ -130,48 +130,68 @@ class Inventory : ZilchComponent {
         
     }
     
-    function GiveItem(itemID : Integer) {
+    function GiveItem(itemID : Integer, notifyUser : Boolean) {
         
         var firstAvailableSlot = -1;
         
-        for(var i = 0; i < this.MaxInventorySlots - 1; ++i) {
-            
-            if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
-                firstAvailableSlot = i;
-            } else if(this.InventoryContents[i] == itemID) {
-                ++this.InventoryContentsCount[i];
-                this.RefreshInventoryIcons();
-                return;
-            }
-            
+        var cmd : TextEntry = null;
+        
+        if(notifyUser) {
+            cmd = this.UISpace.FindObjectByName("TextEntry").TextEntry;
         }
         
-        if(firstAvailableSlot != -1) {
-            this.InventoryContents[firstAvailableSlot] = itemID;
-            this.InventoryContentsCount[firstAvailableSlot] = 1;
-            this.RefreshInventoryIcons();
+        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+            for(var i = 0; i < this.MaxInventorySlots - 1; ++i) {
+                
+                if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
+                    firstAvailableSlot = i;
+                } else if(this.InventoryContents[i] == itemID) {
+                    ++this.InventoryContentsCount[i];
+                    this.RefreshInventoryIcons();
+                    if(notifyUser)
+                        cmd.PrintToUIConsole("Item with the ID \"`cmd.FinalCmd.SubStringFromRuneIndices(5, cmd.FinalCmd.Count)`\" has been added to your inventory.");
+                    return;
+                }
+                
+            }
+            
+            if(firstAvailableSlot != -1) {
+                this.InventoryContents[firstAvailableSlot] = itemID;
+                this.InventoryContentsCount[firstAvailableSlot] = 1;
+                this.RefreshInventoryIcons();
+                if(notifyUser)
+                    cmd.PrintToUIConsole("Item with the ID \"`cmd.FinalCmd.SubStringFromRuneIndices(5, cmd.FinalCmd.Count)`\" has been added to your inventory.");
+                return;
+            }
+        } else {
+            this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
             return;
         }
         
-        Console.WriteLine("Warning: Inventory full. Item with ID \"`itemID`\" was not added to the inventory.");
+        Console.WriteLine("Warning: Inventory full. Item with the ID \"`itemID`\" was not added to the inventory.");
         
     }
     
     function GiveItemInSlot(itemID : Integer, slot : Integer) {
         
-        if(slot - 1 < this.MaxInventorySlots - 1) {
-            
-            if(this.InventoryContents[slot - 1] == 0) {
-                this.InventoryContents[slot - 1] = itemID;
-                this.InventoryContentsCount[slot - 1] = 1;
-                this.RefreshInventoryIcons();
-                return;
-            } else if(this.InventoryContents[slot - 1] == itemID) {
-                ++this.InventoryContentsCount[slot - 1];
-                this.RefreshInventoryIcons();
-                return;
+        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+            if(slot - 1 < this.MaxInventorySlots - 1) {
+                
+                if(this.InventoryContents[slot - 1] == 0) {
+                    this.InventoryContents[slot - 1] = itemID;
+                    this.InventoryContentsCount[slot - 1] = 1;
+                    this.RefreshInventoryIcons();
+                    return;
+                } else if(this.InventoryContents[slot - 1] == itemID) {
+                    ++this.InventoryContentsCount[slot - 1];
+                    this.RefreshInventoryIcons();
+                    return;
+                }
+                
             }
-            
+        } else {
+            this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
+            return;
         }
         
     }
