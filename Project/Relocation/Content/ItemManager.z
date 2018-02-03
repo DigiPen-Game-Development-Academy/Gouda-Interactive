@@ -44,14 +44,14 @@ class ItemManager : ZilchComponent {
         this.Items = new Array[Item]();
         
         this.Items.Push(new Item("Circle", 0));
-        this.Items.Push(new Item("WeaponPistol", 1));
-        this.Items.Push(new Item("WeaponRevolver", 2, false));
-        this.Items.Push(new Item("WeaponRock", 3));
-        this.Items.Push(new Item("WeaponShotgun", 4));
-        this.Items.Push(new Item("WeaponBoulder", 5));
-        this.Items.Push(new Item("WeaponMinigun", 6));
-        this.Items.Push(new Item("WeaponSniper", 7));
-        this.Items.Push(new Item("WeaponGouda", 8));
+        this.Items.Push(new Item("ItemPistol", 1));
+        this.Items.Push(new Item("ItemRevolver", 2, false));
+        this.Items.Push(new Item("ItemRock", 3));
+        this.Items.Push(new Item("ItemShotgun", 4));
+        this.Items.Push(new Item("ItemBoulder", 5));
+        this.Items.Push(new Item("ItemMinigun", 6));
+        this.Items.Push(new Item("ItemSniper", 7));
+        this.Items.Push(new Item("ItemGouda", 8));
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
