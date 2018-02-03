@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-8.04971981, -3.53794003, 13.6266108],
+			Vec3 Translation = [-7.5531168, 0.764773607, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 13.3718472,
+			float Size = 8.96342278,
 		},
 		EditorCameraController = 
 		{
@@ -119,7 +119,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-8.04971981, -3.53794003, -3.51865054e-07],
+			Vec3 LookTarget = [-7.5531168, 0.764773607, -3.30157945e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -165,28 +165,10 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "5a0b6c4d60a49e16:Health",
-		LinkId = 
-		{
-			uint Id = 4,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-19.5, 9.5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Health",
-		},
-	},
-	ArchetypeInstance = 
-	{
 		string Name = "5a3e9c27b1dd386f:DebugCommand",
 		LinkId = 
 		{
-			uint Id = 5,
+			uint Id = 4,
 		},
 		Transform = 
 		{
@@ -203,7 +185,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 6,
+			uint Id = 5,
 		},
 		Named = 
 		{
@@ -221,7 +203,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 7,
+					uint Id = 6,
 				},
 				Named = 
 				{
@@ -255,7 +237,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 8,
+					uint Id = 7,
 				},
 				Named = 
 				{
@@ -284,6 +266,24 @@ Level =
 					bool AnimationActive = false,
 					float AnimationSpeed = 1,
 					uint StartFrame = 0,
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a0b6c4d60a49e16:Health",
+				LinkId = 
+				{
+					uint Id = 8,
+				},
+				Transform = 
+				{
+					Vec3 Translation = [-3, 1, 0],
+					Vec3 Scale = [0.5, 0.5, 0.5],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Named = 
+				{
+					string Name = "Health",
 				},
 			},
 			Cog = 
