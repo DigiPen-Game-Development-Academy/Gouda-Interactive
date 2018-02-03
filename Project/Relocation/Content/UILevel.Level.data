@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-1.0744288, 1.73039055, 50],
+			Vec3 Translation = [-8.32138824, 1.6543653, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 24.6597538,
+			float Size = 5.43656635,
 		},
 		EditorCameraController = 
 		{
@@ -119,7 +119,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-1.0744288, 1.73039055, -4.69649635e-08],
+			Vec3 LookTarget = [-8.32138824, 1.6543653, -3.63739446e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -392,16 +392,50 @@ Level =
 		},
 		Hierarchy = 
 		{
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 11,
+				},
+				Named = 
+				{
+					string Name = "InventoryHeader",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [-4.45000029, 1.25, 0],
+					Vec3 Scale = [0.5, 0.5, 0.5],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 0.75],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "5a399d8894a1af95:consola",
+					uint FontSize = 120,
+					string Text = "Inventory",
+					TextAlign Align = Left,
+					float PixelsPerUnit = 128,
+					bool Smoothing = true,
+				},
+			},
 			ArchetypeInstance = 
 			{
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 11,
+					uint Id = 12,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-4, 0.5, 0],
+					Vec3 Translation = [-4, 0, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -415,11 +449,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 12,
+					uint Id = 13,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-3, 0.5, 0],
+					Vec3 Translation = [-3, 0, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -433,11 +467,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 13,
+					uint Id = 14,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-2, 0.5, 0],
+					Vec3 Translation = [-2, 0, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -451,11 +485,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 14,
+					uint Id = 15,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-1, 0.5, 0],
+					Vec3 Translation = [-1, 0, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -469,11 +503,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 15,
+					uint Id = 16,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, 0.5, 0],
+					Vec3 Translation = [0, 0, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -487,11 +521,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 16,
+					uint Id = 17,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [1, 0.5, 0],
+					Vec3 Translation = [1, 0, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -505,11 +539,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 17,
+					uint Id = 18,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [2, 0.5, 0],
+					Vec3 Translation = [2, 0, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -523,11 +557,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 18,
+					uint Id = 19,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [3, 0.5, 0],
+					Vec3 Translation = [3, 0, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -541,11 +575,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 19,
+					uint Id = 20,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [4, 0.5, 0],
+					Vec3 Translation = [4, 0, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -559,11 +593,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 20,
+					uint Id = 21,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-4, -0.5, 0],
+					Vec3 Translation = [-4, -1, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -577,11 +611,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 21,
+					uint Id = 22,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-3, -0.5, 0],
+					Vec3 Translation = [-3, -1, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -595,11 +629,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 22,
+					uint Id = 23,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-2, -0.5, 0],
+					Vec3 Translation = [-2, -1, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -613,11 +647,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 23,
+					uint Id = 24,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-1, -0.5, 0],
+					Vec3 Translation = [-1, -1, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -631,11 +665,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 24,
+					uint Id = 25,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -0.5, 0],
+					Vec3 Translation = [0, -1, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -649,11 +683,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 25,
+					uint Id = 26,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [1, -0.5, 0],
+					Vec3 Translation = [1, -1, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -667,11 +701,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 26,
+					uint Id = 27,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [2, -0.5, 0],
+					Vec3 Translation = [2, -1, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -685,11 +719,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 27,
+					uint Id = 28,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [3, -0.5, 0],
+					Vec3 Translation = [3, -1, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -703,11 +737,11 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 28,
+					uint Id = 29,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [4, -0.5, 0],
+					Vec3 Translation = [4, -1, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -721,7 +755,7 @@ Level =
 				string Name = "5a384ca33d6b0b28:InventorySlotHBOH",
 				LinkId = 
 				{
-					uint Id = 29,
+					uint Id = 30,
 				},
 				Transform = 
 				{
@@ -739,7 +773,7 @@ Level =
 				string Name = "5a38436fcf259e80:InventorySlotHB",
 				LinkId = 
 				{
-					uint Id = 30,
+					uint Id = 31,
 				},
 				Transform = 
 				{
@@ -757,7 +791,7 @@ Level =
 				string Name = "5a387339fac82522:InventorySlotMouse",
 				LinkId = 
 				{
-					uint Id = 31,
+					uint Id = 32,
 				},
 				Transform = 
 				{

@@ -6,8 +6,11 @@ class Inventory : ZilchComponent {
     var UISpace : Space = null;
     
     var InventoryOpen : Boolean = false;
+    var RightButtonDown : Boolean = false;
+    
     var InventoryContents : Array[Integer];
     var InventoryContentsCount : Array[Integer];
+    
     var MaxInventorySlots : Integer = 21;
     var SlotClicked : Integer = -1;
     
@@ -120,7 +123,7 @@ class Inventory : ZilchComponent {
         var mousePos = this.UISpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 2.0);
         this.UISpace.FindObjectByName("Slot21").Transform.WorldTranslation = mousePos;
         
-        if(this.SlotClicked != -1 && this.SlotClicked != 21) {
+        if(this.SlotClicked != -1 && this.SlotClicked != 21 && Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
             
             if(this.InventoryContents[20] == 0 && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
                 this.MoveItem(this.SlotClicked, 21);
@@ -137,8 +140,14 @@ class Inventory : ZilchComponent {
             
         }
         
-        if(this.InventoryContents[20] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right)) {
+        if(this.InventoryContents[20] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !this.RightButtonDown) {
+            this.RightButtonDown = true;
             this.RemoveItemInSlot(this.SLOT_MOUSE, true);
+        } else if(this.InventoryContents[20] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            this.RightButtonDown = false;
+            this.RemoveItemInSlot(this.SLOT_MOUSE, true);
+        } else if(!Zero.Mouse.IsButtonDown(MouseButtons.Right) && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            this.RightButtonDown = false;
         }
         
         //Console.WriteLine("Slot: `this.SlotClicked`");
