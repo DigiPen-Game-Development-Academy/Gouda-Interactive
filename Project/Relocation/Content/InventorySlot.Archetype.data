@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-4, 0.5, 0],
+		Vec3 Translation = [-4, 0, 0],
 		Vec3 Scale = [0.75, 0.75, 0.75],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
+		Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.5],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -93,7 +93,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [-0.600000024, 0.75, 1],
+				Vec3 Translation = [-0.600000024, 0.800000012, 1],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
@@ -111,6 +111,40 @@ Cog =
 				uint FontSize = 60,
 				string Text = "0",
 				TextAlign Align = Left,
+				float PixelsPerUnit = 128,
+				bool Smoothing = true,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 4,
+			},
+			Named = 
+			{
+				string Name = "ItemName",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, -0.450000018, 1],
+				Vec3 Scale = [0.850000024, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteText = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [1, 1, 1, 1],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string FontName = "57343753bb4eaaec:NotoSans-Regular",
+				uint FontSize = 45,
+				string Text = "null",
+				TextAlign Align = Center,
 				float PixelsPerUnit = 128,
 				bool Smoothing = true,
 			},

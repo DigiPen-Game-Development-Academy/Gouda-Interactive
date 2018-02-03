@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-8.32138824, 1.6543653, 50],
+			Vec3 Translation = [-5.7624917, -0.63087815, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,15 +111,15 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 5.43656635,
+			float Size = 22.0463657,
 		},
 		EditorCameraController = 
 		{
 			ControlMode ControlMode = ZPlane,
-			float LookDistance = 50,
+			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-8.32138824, 1.6543653, -3.63739446e-07],
+			Vec3 LookTarget = [-5.7624917, -0.63087815, -2.51886632e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -404,7 +404,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-4.45000029, 1.25, 0],
+					Vec3 Translation = [-4.45000029, 1.39999998, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -418,7 +418,7 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "5a399d8894a1af95:consola",
+					string FontName = "57343753bb4eaaec:NotoSans-Regular",
 					uint FontSize = 120,
 					string Text = "Inventory",
 					TextAlign Align = Left,
@@ -435,7 +435,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-4, 0, 0],
+					Vec3 Translation = [-4, 0.150000006, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -453,7 +453,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-3, 0, 0],
+					Vec3 Translation = [-3, 0.150000006, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -471,7 +471,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-2, 0, 0],
+					Vec3 Translation = [-2, 0.150000006, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -489,7 +489,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-1, 0, 0],
+					Vec3 Translation = [-1, 0.150000006, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -507,7 +507,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, 0, 0],
+					Vec3 Translation = [0, 0.150000006, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -525,7 +525,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [1, 0, 0],
+					Vec3 Translation = [1, 0.150000006, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -543,7 +543,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [2, 0, 0],
+					Vec3 Translation = [2, 0.150000006, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -561,7 +561,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [3, 0, 0],
+					Vec3 Translation = [3, 0.150000006, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -579,7 +579,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [4, 0, 0],
+					Vec3 Translation = [4, 0.150000006, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -795,7 +795,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [4, -0.5, 2],
+					Vec3 Translation = [5, -0.5, 2],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},

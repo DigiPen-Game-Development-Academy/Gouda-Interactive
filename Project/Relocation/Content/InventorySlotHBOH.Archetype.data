@@ -121,5 +121,39 @@ Cog =
 				bool Smoothing = true,
 			},
 		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 4,
+			},
+			Named = 
+			{
+				string Name = "ItemName",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, -0.300000012, 1],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteText = 
+			{
+				bool Visible = false,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [1, 1, 1, 0.75],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string FontName = "5a399d8894a1af95:consola",
+				uint FontSize = 45,
+				string Text = "",
+				TextAlign Align = Center,
+				float PixelsPerUnit = 128,
+				bool Smoothing = true,
+			},
+		},
 	},
 },

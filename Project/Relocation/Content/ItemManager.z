@@ -6,12 +6,14 @@ class Item {
     var ItemID : Integer = 0;
     
     var ItemName : String = "item.Undefined.name";
+    var ItemRecognizableName : String = "Undefined Item";
     
     var Sprite : SpriteSource = SpriteSource.MissingTexture;
     
     constructor(itemName : String, itemID : Integer) {
         
         this.ItemName = itemName;
+        this.ItemRecognizableName = itemName;
         this.ItemID = itemID;
         
         this.Sprite = SpriteSource.Find(this.ItemName);
@@ -21,6 +23,7 @@ class Item {
     constructor(itemName : String, itemID : Integer, useNameAsSpriteSource : Boolean) {
         
         this.ItemName = itemName;
+        this.ItemRecognizableName = itemName;
         this.ItemID = itemID;
         
         if(useNameAsSpriteSource) {
@@ -31,6 +34,10 @@ class Item {
     
     function SetSpriteSource(sprite : String) {
         this.Sprite = SpriteSource.Find(sprite);
+    }
+    
+    function SetRecognizableName(name : String) {
+        this.ItemRecognizableName = name;
     }
     
 }
@@ -52,6 +59,18 @@ class ItemManager : ZilchComponent {
         this.Items.Push(new Item("ItemMinigun", 6));
         this.Items.Push(new Item("ItemSniper", 7));
         this.Items.Push(new Item("ItemGouda", 8));
+        this.Items.Push(new Item("ItemAmmunition", 50, false));
+        
+        this.Items[0].SetRecognizableName("");
+        this.Items[1].SetRecognizableName("Pistol");
+        this.Items[2].SetRecognizableName("Revolver");
+        this.Items[3].SetRecognizableName("Rock");
+        this.Items[4].SetRecognizableName("Shotgun");
+        this.Items[5].SetRecognizableName("Boulder");
+        this.Items[6].SetRecognizableName("Minigun");
+        this.Items[7].SetRecognizableName("Sniper");
+        this.Items[8].SetRecognizableName("Gouda Cheese");
+        this.Items[9].SetRecognizableName("Weapon Ammunition");
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
