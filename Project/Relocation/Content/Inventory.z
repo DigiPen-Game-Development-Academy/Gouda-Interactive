@@ -106,13 +106,20 @@ class Inventory : ZilchComponent {
             slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = itemMgmt.Items[this.InventoryContents[i]].Sprite;
             slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
             slotObj.FindChildByName("ItemName").SpriteText.Text = itemMgmt.Items[this.InventoryContents[i]].ItemRecognizableName;
+            slotObj.FindChildByName("ItemName").SpriteText.Color = Real4(1.0, 1.0, 1.0, 1.0);
             
             if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = false;
                 slotObj.FindChildByName("ItemCount").SpriteText.Visible = false;
             } else {
+                
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = true;
                 slotObj.FindChildByName("ItemCount").SpriteText.Visible = true;
+                
+                if(itemMgmt.Items[this.InventoryContents[i]].ItemType == "Weapon") {
+                    slotObj.FindChildByName("ItemName").SpriteText.Color = Real4(0.0, 0.0, 1.0, 1.0);
+                }
+                
             }
             
         }

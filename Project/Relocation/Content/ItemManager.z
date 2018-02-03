@@ -7,6 +7,7 @@ class Item {
     
     var ItemName : String = "item.Undefined.name";
     var ItemRecognizableName : String = "Undefined Item";
+    var ItemType : String = "Item";
     
     var Sprite : SpriteSource = SpriteSource.MissingTexture;
     
@@ -40,6 +41,10 @@ class Item {
         this.ItemRecognizableName = name;
     }
     
+    function SetItemType(type : String) {
+        this.ItemType = type;
+    }
+    
 }
 
 class ItemManager : ZilchComponent {
@@ -71,6 +76,17 @@ class ItemManager : ZilchComponent {
         this.Items[7].SetRecognizableName("Sniper");
         this.Items[8].SetRecognizableName("Gouda Cheese");
         this.Items[9].SetRecognizableName("Weapon\nAmmunition");
+        
+        this.Items[0].SetItemType("Item");
+        this.Items[1].SetItemType("Weapon");
+        this.Items[2].SetItemType("Weapon");
+        this.Items[3].SetItemType("Weapon");
+        this.Items[4].SetItemType("Weapon");
+        this.Items[5].SetItemType("Weapon");
+        this.Items[6].SetItemType("Weapon");
+        this.Items[7].SetItemType("Weapon");
+        this.Items[8].SetItemType("Weapon");
+        this.Items[9].SetItemType("Item");
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
