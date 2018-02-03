@@ -183,7 +183,7 @@ class Inventory : ZilchComponent {
                     ++this.InventoryContentsCount[i];
                     this.RefreshInventoryIcons();
                     if(notifyUser)
-                        cmd.PrintToUIConsole("Item with the ID \"`cmd.FinalCmd.SubStringFromRuneIndices(5, cmd.FinalCmd.Count)`\" has been added to your inventory.");
+                        cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
                     return;
                 }
                 
@@ -194,7 +194,7 @@ class Inventory : ZilchComponent {
                 this.InventoryContentsCount[firstAvailableSlot] = 1;
                 this.RefreshInventoryIcons();
                 if(notifyUser)
-                    cmd.PrintToUIConsole("Item with the ID \"`cmd.FinalCmd.SubStringFromRuneIndices(5, cmd.FinalCmd.Count)`\" has been added to your inventory.");
+                    cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
                 return;
             }
         } else {
@@ -203,6 +203,14 @@ class Inventory : ZilchComponent {
         }
         
         Console.WriteLine("Warning: Inventory full. Item with the ID \"`itemID`\" was not added to the inventory.");
+        
+    }
+    
+    function GiveItemWithAmount(itemID : Integer, notifyUser : Boolean, amount : Integer) {
+        
+        for(var i = 0; i < amount; ++i) {
+            this.GiveItem(itemID, notifyUser);
+        }
         
     }
     

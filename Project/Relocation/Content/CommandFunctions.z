@@ -62,9 +62,21 @@ class Commands : ZilchComponent {
             
         } else if(this.CheckForCommand("give", false, "", "") != -1) {
             
-            if(this.CheckForCommand("give", true, "give <itemID>", "") != 0) {
+            if(this.CheckForCommand("give", true, "give <itemID> [quantity]", "") != 0) {
                 if(this.MainSpace.FindObjectByName("EntityPlayer") != null) {
-                    this.MainSpace.FindObjectByName("EntityPlayer").Inventory.GiveItem(Integer.Parse(this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)), true);
+                    
+                    var quantity = this.DebugCmd.GetArgument(2, this.DebugCmd.FinalCmd);
+                    
+                    if(quantity == "") {
+                        quantity = "1";
+                    }
+                    
+                    this.MainSpace.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(
+                        Integer.Parse(this.DebugCmd.GetArgument(1, this.DebugCmd.FinalCmd)),
+                        true,
+                        Integer.Parse(quantity)
+                    );
+                    
                 }
             }
             
@@ -99,7 +111,7 @@ class Commands : ZilchComponent {
             this.DebugCmd.PrintToUIConsole("color <color> - Changes console color");
             this.DebugCmd.PrintToUIConsole("debug [true/false] - Enables/Disables debug mode");
             this.DebugCmd.PrintToUIConsole("echo <string> - Prints to console screen");
-            this.DebugCmd.PrintToUIConsole("give <itemID> - Gives player item");
+            this.DebugCmd.PrintToUIConsole("give <itemID> [quantity] - Gives player item");
             this.DebugCmd.PrintToUIConsole("god [true/false] - Makes player invincible");
             this.DebugCmd.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
             this.DebugCmd.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (Will crash if sound does not exist)");

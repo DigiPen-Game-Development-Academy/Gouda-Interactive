@@ -1,5 +1,5 @@
 // AUTHOR: HUDSON GREEN
-// CONTRIBUTORS: NONE
+// CONTRIBUTORS: N/A
 
 class TextEntry : ZilchComponent {
     
@@ -325,6 +325,31 @@ class TextEntry : ZilchComponent {
         
         this.Occurances = occurances;
         return -1;
+        
+    }
+    
+    function GetArgument(argNum : Integer, command : String) : String {
+        
+        var currArg = 0;
+        
+        var tmpArg = "";
+        
+        for(var i = 0; i < command.Count; ++i) {
+            
+            if(String.FromChar(command.Get(i)) == " ") {
+                ++currArg;
+                continue;
+            }
+            
+            if(currArg == argNum) {
+                tmpArg = String.Concatenate(tmpArg, String.FromChar(command.Get(i)));
+            } else if(currArg > argNum) {
+                break;
+            }
+            
+        }
+        
+        return tmpArg;
         
     }
     
