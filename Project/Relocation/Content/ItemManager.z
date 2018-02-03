@@ -70,7 +70,7 @@ class ItemManager : ZilchComponent {
         this.Items[6].SetRecognizableName("Minigun");
         this.Items[7].SetRecognizableName("Sniper");
         this.Items[8].SetRecognizableName("Gouda Cheese");
-        this.Items[9].SetRecognizableName("Weapon Ammunition");
+        this.Items[9].SetRecognizableName("Weapon\nAmmunition");
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
