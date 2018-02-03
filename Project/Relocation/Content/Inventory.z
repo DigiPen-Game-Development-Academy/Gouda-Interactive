@@ -137,6 +137,10 @@ class Inventory : ZilchComponent {
             
         }
         
+        if(this.InventoryContents[20] != 0 && Zero.Mouse.IsButtonDown(MouseButtons.Right)) {
+            this.RemoveItemInSlot(this.SLOT_MOUSE, true);
+        }
+        
         //Console.WriteLine("Slot: `this.SlotClicked`");
         
     }
@@ -279,6 +283,22 @@ class Inventory : ZilchComponent {
         } else {
             this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
             return;
+        }
+        
+    }
+    
+    function RemoveItemInSlot(slot : Integer, drop : Boolean) {
+        
+        var itemID = -1;
+        
+        if(this.InventoryContents[slot - 1] != 0 && this.InventoryContentsCount[slot - 1] > 0) {
+            itemID = this.InventoryContents[slot - 1];
+            --this.InventoryContentsCount[slot - 1];
+            this.RefreshInventoryIcons();
+        }
+        
+        if(drop && itemID != -1) {
+            Console.WriteLine("Implement drops. In the meantime, the item that was dropped will be deleted.");
         }
         
     }
