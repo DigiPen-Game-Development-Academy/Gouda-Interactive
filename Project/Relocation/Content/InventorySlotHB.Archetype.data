@@ -42,6 +42,14 @@ Cog =
 		string PositionY = "Bottom",
 		Vec2 PositionOffset = [-5, 2],
 	},
+	Reactive = 
+	{
+		bool Active = true,
+		bool CaptureMouse = false,
+	},
+	InventorySlot = 
+	{
+	},
 	Hierarchy = 
 	{
 		Cog = 

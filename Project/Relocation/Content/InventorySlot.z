@@ -1,0 +1,26 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class InventorySlot : ZilchComponent {
+    
+    var MainSpace : Space = null;
+    
+    function Initialize(init : CogInitializer) {
+        
+        Zero.Connect(this.Owner, Events.MouseDown, this.OnMouseDown);
+        
+    }
+    
+    function OnMouseDown(event : ViewportMouseEvent) {
+        
+        this.MainSpace = this.Space.FindObjectByName("TextEntry").Commands.MainSpace;
+        
+        Console.WriteLine("Slot clicked: `this.Owner.Name.SubStringFromRuneIndices(4, this.Owner.Name.Count)`");
+        
+        if(this.MainSpace != null) {
+            this.MainSpace.FindObjectByName("EntityPlayer").Inventory.SlotClicked = Integer.Parse(this.Owner.Name.SubStringFromRuneIndices(4, this.Owner.Name.Count));
+        }
+        
+    }
+    
+}

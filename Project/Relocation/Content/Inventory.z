@@ -8,10 +8,12 @@ class Inventory : ZilchComponent {
     var InventoryOpen : Boolean = false;
     var InventoryContents : Array[Integer];
     var InventoryContentsCount : Array[Integer];
-    var MaxInventorySlots : Integer = 20;
+    var MaxInventorySlots : Integer = 21;
+    var SlotClicked : Integer = -1;
     
     var SLOT_HAND : Integer = 19;
     var SLOT_OFFHAND : Integer = 20;
+    var SLOT_MOUSE : Integer = 21;
     
     function Initialize(init : CogInitializer) {
         
@@ -35,7 +37,7 @@ class Inventory : ZilchComponent {
         Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OpenCloseInventory);
         
     }
-
+    
     function OnLogicUpdate(event : UpdateEvent) {
         
         var inventory = this.UISpace.FindObjectByName("Inventory");
@@ -43,6 +45,7 @@ class Inventory : ZilchComponent {
         // CHECK IF INVENTORY IS OPEN
         if(this.InventoryOpen) {
             this.RefreshInventoryIcons();
+            this.MouseSlot();
             inventory.Transform.WorldTranslation = Real3(0, 0, 1);
         } else {
             inventory.Transform.WorldTranslation = Real3(0, 0, 50000);
@@ -101,11 +104,32 @@ class Inventory : ZilchComponent {
         
     }
     
+    function MouseSlot() {
+        
+        var mousePos = this.UISpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+        this.UISpace.FindObjectByName("Slot21").Transform.WorldTranslation = mousePos;
+        
+        if(this.SlotClicked != -1 && this.SlotClicked != 21) {
+            
+            if(this.InventoryContents[20] == 0) {
+                this.MoveItem(this.SlotClicked, 21);
+            } else {
+                this.MoveItem(21, this.SlotClicked);
+            }
+            
+            this.SlotClicked = -1;
+            
+        }
+        
+        Console.WriteLine("Slot: `this.SlotClicked`");
+        
+    }
+    
     function GiveItem(itemID : Integer) {
         
         var firstAvailableSlot = -1;
         
-        for(var i = 0; i < this.MaxInventorySlots; ++i) {
+        for(var i = 0; i < this.MaxInventorySlots - 1; ++i) {
             
             if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                 firstAvailableSlot = i;
@@ -130,7 +154,7 @@ class Inventory : ZilchComponent {
     
     function GiveItemInSlot(itemID : Integer, slot : Integer) {
         
-        if(slot - 1 < this.MaxInventorySlots) {
+        if(slot - 1 < this.MaxInventorySlots - 1) {
             
             if(this.InventoryContents[slot - 1] == 0) {
                 this.InventoryContents[slot - 1] = itemID;
@@ -158,6 +182,49 @@ class Inventory : ZilchComponent {
         }
         
         return false;
+        
+    }
+    
+    function CheckForItemMainHand(itemID : Integer) : Boolean {
+            
+        if(this.InventoryContents[18] == itemID) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    function MoveItem(slot : Integer, destSlot : Integer) {
+        
+        Console.WriteLine("mvItem: `slot`");
+        
+        if(slot - 1 < this.MaxInventorySlots && destSlot - 1 < this.MaxInventorySlots) {
+            
+            var tmpItem = this.InventoryContents[slot - 1];
+            var tmpItemCt = this.InventoryContentsCount[slot - 1];
+            
+            if(this.InventoryContents[slot - 1] == 0) {
+                return;
+            } else if(this.InventoryContents[destSlot - 1] != 0 && this.InventoryContents[destSlot - 1] != tmpItem) {
+                return;
+            } else {
+                
+                this.InventoryContents[slot - 1] = 0;
+                this.InventoryContentsCount[slot - 1] = 0;
+                
+                if(this.InventoryContents[destSlot - 1] == tmpItem) {
+                    this.InventoryContentsCount[destSlot - 1] += tmpItemCt;
+                } else {
+                    this.InventoryContents[destSlot - 1] = tmpItem;
+                    this.InventoryContentsCount[destSlot - 1] = tmpItemCt;
+                }
+                
+            }
+            
+            this.RefreshInventoryIcons();
+            
+        }
         
     }
     

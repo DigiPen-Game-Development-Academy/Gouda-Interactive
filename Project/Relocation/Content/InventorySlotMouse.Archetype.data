@@ -6,16 +6,16 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Slot19",
+		string Name = "Slot21",
 	},
 	Archetyped = 
 	{
-		string Name = "5a384ca33d6b0b28:InventorySlotHBOH",
+		string Name = "5a387339fac82522:InventorySlotMouse",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [8, -4.75, 0],
-		Vec3 Scale = [1, 1, 1],
+		Vec3 Translation = [4, -0.5, 0],
+		Vec3 Scale = [0.75, 0.75, 0.75],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0, 0, 0, 0.25],
+		Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -35,17 +35,6 @@ Cog =
 		bool AnimationActive = true,
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
-	},
-	ScreenAlignment = 
-	{
-		string PositionX = "Right",
-		string PositionY = "Bottom",
-		Vec2 PositionOffset = [-2, 2],
-	},
-	Reactive = 
-	{
-		bool Active = true,
-		bool CaptureMouse = false,
 	},
 	InventorySlot = 
 	{

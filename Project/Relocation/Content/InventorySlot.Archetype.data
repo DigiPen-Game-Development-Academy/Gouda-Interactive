@@ -36,6 +36,14 @@ Cog =
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
+	Reactive = 
+	{
+		bool Active = true,
+		bool CaptureMouse = false,
+	},
+	InventorySlot = 
+	{
+	},
 	Hierarchy = 
 	{
 		Cog = 

@@ -191,21 +191,21 @@ class WeaponManager : ZilchComponent {
         
         if(!this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys) {
             
-            if(Zero.Keyboard.KeyIsPressed(Keys.One) && this.Owner.Inventory.CheckForItem(1)) {
+            if(Zero.Keyboard.KeyIsPressed(Keys.One) && this.Owner.Inventory.CheckForItemMainHand(1)) {
                 this.ActiveWeapon = this.WeaponPistol;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Two) && this.Owner.Inventory.CheckForItem(2)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Two) && this.Owner.Inventory.CheckForItemMainHand(2)) {
                 this.ActiveWeapon = this.WeaponRevolver;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Three) && this.Owner.Inventory.CheckForItem(3)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Three) && this.Owner.Inventory.CheckForItemMainHand(3)) {
                 this.ActiveWeapon = this.WeaponRock;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Four) && this.Owner.Inventory.CheckForItem(4)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Four) && this.Owner.Inventory.CheckForItemMainHand(4)) {
                 this.ActiveWeapon = this.WeaponShotgun;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Five) && this.Owner.Inventory.CheckForItem(5)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Five) && this.Owner.Inventory.CheckForItemMainHand(5)) {
                 this.ActiveWeapon = this.WeaponBoulder;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Six) && this.Owner.Inventory.CheckForItem(6)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Six) && this.Owner.Inventory.CheckForItemMainHand(6)) {
                 this.ActiveWeapon = this.WeaponMinigun;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Seven) && this.Owner.Inventory.CheckForItem(7)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Seven) && this.Owner.Inventory.CheckForItemMainHand(7)) {
                 this.ActiveWeapon = this.WeaponSniper;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Eight) && this.Owner.Inventory.CheckForItem(8)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Eight) && this.Owner.Inventory.CheckForItemMainHand(8)) {
                 this.ActiveWeapon = this.WeaponGouda;
             }
             

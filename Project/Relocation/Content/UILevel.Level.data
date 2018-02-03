@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 33.2871933,
+			float Size = 24.6597538,
 		},
 		EditorCameraController = 
 		{
@@ -750,6 +750,24 @@ Level =
 				Named = 
 				{
 					string Name = "Slot20",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a387339fac82522:InventorySlotMouse",
+				LinkId = 
+				{
+					uint Id = 31,
+				},
+				Transform = 
+				{
+					Vec3 Translation = [4, -0.5, 0],
+					Vec3 Scale = [0.75, 0.75, 0.75],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Named = 
+				{
+					string Name = "Slot21",
 				},
 			},
 		},
