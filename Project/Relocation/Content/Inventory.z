@@ -7,21 +7,26 @@ class Inventory : ZilchComponent {
     
     var InventoryOpen : Boolean = false;
     var InventoryContents : Array[Integer];
+    var InventoryContentsCount : Array[Integer];
     var MaxInventorySlots : Integer = 18;
     
     function Initialize(init : CogInitializer) {
         
+        this.UISpace = this.LevelSettings.UICreator.UISpace;
+        this.UISpace.LevelSettings.MainLevelReferances.Player = this.Owner;
+        
         this.InventoryContents = new Array[Integer]();
+        this.InventoryContentsCount = new Array[Integer]();
         
         // ZERO OUT INVENTORY
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
             this.InventoryContents.Push(0);
+            this.InventoryContentsCount.Push(0);
         }
         
-        Console.WriteLine("Inventory Contents: `this.InventoryContents`");
+        this.GiveItem(1);
         
-        this.UISpace = this.LevelSettings.UICreator.UISpace;
-        this.UISpace.LevelSettings.MainLevelReferances.Player = this.Owner;
+        Console.WriteLine("Inventory Contents: `this.InventoryContents`");
         
         Zero.Connect(this.UISpace, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OpenCloseInventory);
@@ -69,10 +74,11 @@ class Inventory : ZilchComponent {
         
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
             
-            var slotObj = this.UISpace.FindObjectByName("Slot`i + 1`").FindChildByName("SlotIcon");
+            var slotObj = this.UISpace.FindObjectByName("Slot`i + 1`");
             var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
             
-            slotObj.Sprite.SpriteSource = itemMgmt.Items.Get(this.InventoryContents[i]).Sprite;
+            slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = itemMgmt.Items[this.InventoryContents[i]].Sprite;
+            slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
             
         }
         
@@ -84,7 +90,11 @@ class Inventory : ZilchComponent {
             
             if(this.InventoryContents[i] == 0) {
                 this.InventoryContents[i] = itemID;
+                this.InventoryContentsCount[i] = 1;
                 this.RefreshInventoryIcons();
+                return;
+            } else if(this.InventoryContents[i] == itemID) {
+                ++this.InventoryContentsCount[i];
                 return;
             }
             

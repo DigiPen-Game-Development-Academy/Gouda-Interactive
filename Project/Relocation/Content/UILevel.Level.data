@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 24.6597843,
+			float Size = 24.6597652,
 		},
 		EditorCameraController = 
 		{
@@ -392,15 +392,12 @@ Level =
 		},
 		Hierarchy = 
 		{
-			Cog = 
+			ArchetypeInstance = 
 			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
 					uint Id = 11,
-				},
-				Named = 
-				{
-					string Name = "Slot1",
 				},
 				Transform = 
 				{
@@ -408,72 +405,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 12,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 13,
-				},
 				Named = 
 				{
-					string Name = "Slot2",
+					string Name = "Slot1",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 12,
 				},
 				Transform = 
 				{
@@ -481,72 +423,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 14,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 15,
-				},
 				Named = 
 				{
-					string Name = "Slot3",
+					string Name = "Slot2",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 13,
 				},
 				Transform = 
 				{
@@ -554,72 +441,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 16,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 17,
-				},
 				Named = 
 				{
-					string Name = "Slot4",
+					string Name = "Slot3",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 14,
 				},
 				Transform = 
 				{
@@ -627,72 +459,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 18,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 19,
-				},
 				Named = 
 				{
-					string Name = "Slot5",
+					string Name = "Slot4",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 15,
 				},
 				Transform = 
 				{
@@ -700,72 +477,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 20,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 21,
-				},
 				Named = 
 				{
-					string Name = "Slot6",
+					string Name = "Slot5",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 16,
 				},
 				Transform = 
 				{
@@ -773,72 +495,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 22,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 23,
-				},
 				Named = 
 				{
-					string Name = "Slot7",
+					string Name = "Slot6",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 17,
 				},
 				Transform = 
 				{
@@ -846,72 +513,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 24,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 25,
-				},
 				Named = 
 				{
-					string Name = "Slot8",
+					string Name = "Slot7",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 18,
 				},
 				Transform = 
 				{
@@ -919,72 +531,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 26,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 27,
-				},
 				Named = 
 				{
-					string Name = "Slot9",
+					string Name = "Slot8",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 19,
 				},
 				Transform = 
 				{
@@ -992,72 +549,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 28,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 29,
-				},
 				Named = 
 				{
-					string Name = "Slot10",
+					string Name = "Slot9",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 20,
 				},
 				Transform = 
 				{
@@ -1065,72 +567,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 30,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 31,
-				},
 				Named = 
 				{
-					string Name = "Slot11",
+					string Name = "Slot10",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 21,
 				},
 				Transform = 
 				{
@@ -1138,72 +585,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 32,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 33,
-				},
 				Named = 
 				{
-					string Name = "Slot12",
+					string Name = "Slot11",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 22,
 				},
 				Transform = 
 				{
@@ -1211,72 +603,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 34,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 35,
-				},
 				Named = 
 				{
-					string Name = "Slot13",
+					string Name = "Slot12",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 23,
 				},
 				Transform = 
 				{
@@ -1284,72 +621,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 36,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 37,
-				},
 				Named = 
 				{
-					string Name = "Slot14",
+					string Name = "Slot13",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 24,
 				},
 				Transform = 
 				{
@@ -1357,72 +639,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 38,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 39,
-				},
 				Named = 
 				{
-					string Name = "Slot15",
+					string Name = "Slot14",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 25,
 				},
 				Transform = 
 				{
@@ -1430,72 +657,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 40,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 41,
-				},
 				Named = 
 				{
-					string Name = "Slot16",
+					string Name = "Slot15",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 26,
 				},
 				Transform = 
 				{
@@ -1503,72 +675,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 42,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 43,
-				},
 				Named = 
 				{
-					string Name = "Slot17",
+					string Name = "Slot16",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 27,
 				},
 				Transform = 
 				{
@@ -1576,72 +693,17 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 44,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 45,
-				},
 				Named = 
 				{
-					string Name = "Slot18",
+					string Name = "Slot17",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a38401d04a68bc1:InventorySlot",
+				LinkId = 
+				{
+					uint Id = 28,
 				},
 				Transform = 
 				{
@@ -1649,61 +711,9 @@ Level =
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
+				Named = 
 				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.295000017, 0.295000017, 0.295000017, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 46,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
+					string Name = "Slot18",
 				},
 			},
 		},
@@ -1712,7 +722,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 47,
+			uint Id = 29,
 		},
 		Named = 
 		{
@@ -1736,7 +746,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 48,
+					uint Id = 30,
 				},
 				Named = 
 				{
@@ -1772,7 +782,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 49,
+							uint Id = 31,
 						},
 						Named = 
 						{
@@ -1809,7 +819,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 50,
+					uint Id = 32,
 				},
 				Named = 
 				{
@@ -1845,7 +855,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 51,
+							uint Id = 33,
 						},
 						Named = 
 						{
