@@ -17,7 +17,7 @@ class InventorySlot : ZilchComponent {
         
         //Console.WriteLine("Slot clicked: `this.Owner.Name.SubStringFromRuneIndices(4, this.Owner.Name.Count)`");
         
-        if(this.MainSpace != null) {
+        if(this.MainSpace != null && this.MainSpace.FindObjectByName("EntityPlayer").Inventory.InventoryOpen && event.Mouse.IsButtonDown(MouseButtons.Left)) {
             this.MainSpace.FindObjectByName("EntityPlayer").Inventory.SlotClicked = Integer.Parse(this.Owner.Name.SubStringFromRuneIndices(4, this.Owner.Name.Count));
         }
         

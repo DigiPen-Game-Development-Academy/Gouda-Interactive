@@ -48,7 +48,18 @@ class Inventory : ZilchComponent {
             this.MouseSlot();
             inventory.Transform.WorldTranslation = Real3(0, 0, 1);
         } else {
+            
+            if(this.InventoryContents[20] != 0) {
+                var tmpItem = this.InventoryContents[20];
+                var tmpItemCt = this.InventoryContentsCount[20];
+                this.InventoryContents[20] = 0;
+                for(var i = 0; i < tmpItemCt; ++i) {
+                    this.GiveItem(tmpItem, false);
+                }
+            }
+            
             inventory.Transform.WorldTranslation = Real3(0, 0, 50000);
+            
         }
         
     }
@@ -249,6 +260,25 @@ class Inventory : ZilchComponent {
             
             this.RefreshInventoryIcons();
             
+        }
+        
+    }
+    
+    function RemoveItem(itemID : Integer) {
+        
+        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+            for(var i = 0; i < this.MaxInventorySlots - 1; ++i) {
+                
+                if(this.InventoryContents[i] == itemID) {
+                    --this.InventoryContentsCount[i];
+                    this.RefreshInventoryIcons();
+                    return;
+                }
+                
+            }
+        } else {
+            this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
+            return;
         }
         
     }
