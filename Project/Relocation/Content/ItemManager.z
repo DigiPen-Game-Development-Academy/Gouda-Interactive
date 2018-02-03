@@ -14,7 +14,7 @@ class Item {
     constructor(itemName : String, itemID : Integer) {
         
         this.ItemName = itemName;
-        this.ItemRecognizableName = itemName;
+        this.ItemRecognizableName = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
         this.ItemID = itemID;
         
         this.Sprite = SpriteSource.Find(this.ItemName);
@@ -24,7 +24,7 @@ class Item {
     constructor(itemName : String, itemID : Integer, useNameAsSpriteSource : Boolean) {
         
         this.ItemName = itemName;
-        this.ItemRecognizableName = itemName;
+        this.ItemRecognizableName = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
         this.ItemID = itemID;
         
         if(useNameAsSpriteSource) {
@@ -55,38 +55,53 @@ class ItemManager : ZilchComponent {
         
         this.Items = new Array[Item]();
         
-        this.Items.Push(new Item("Circle", 0));
-        this.Items.Push(new Item("ItemPistol", 1));
-        this.Items.Push(new Item("ItemRevolver", 2, false));
-        this.Items.Push(new Item("ItemRock", 3));
-        this.Items.Push(new Item("ItemShotgun", 4));
-        this.Items.Push(new Item("ItemBoulder", 5));
-        this.Items.Push(new Item("ItemMinigun", 6));
-        this.Items.Push(new Item("ItemSniper", 7));
-        this.Items.Push(new Item("ItemGouda", 8));
-        this.Items.Push(new Item("ItemAmmunition", 50, false));
+        this.Items.Push(new Item("Circle",          00, true));
+        this.Items.Push(new Item("ItemPistol",      01, true));
+        this.Items.Push(new Item("ItemRevolver",    02, false));
+        this.Items.Push(new Item("ItemRock",        03, true));
+        this.Items.Push(new Item("ItemShotgun",     04, true));
+        this.Items.Push(new Item("ItemBoulder",     05, true));
+        this.Items.Push(new Item("ItemMinigun",     06, true));
+        this.Items.Push(new Item("ItemSniper",      07, true));
+        this.Items.Push(new Item("ItemGouda",       08, true));
+        this.Items.Push(new Item("ItemAmmunition",  49, false));
+        this.Items.Push(new Item("ItemHealthPack",  50, false));
+        this.Items.Push(new Item("ItemPlaceholder", 51, false));
+        this.Items.Push(new Item("ItemPlaceholder", 52, false));
+        this.Items.Push(new Item("ItemPlaceholder", 53, false));
+        this.Items.Push(new Item("ItemPlaceholder", 54, false));
+        this.Items.Push(new Item("ItemPlaceholder", 55, false));
+        this.Items.Push(new Item("ItemDropDefault", 56, false));
         
-        this.Items[0].SetRecognizableName("");
-        this.Items[1].SetRecognizableName("Pistol");
-        this.Items[2].SetRecognizableName("Revolver");
-        this.Items[3].SetRecognizableName("Rock");
-        this.Items[4].SetRecognizableName("Shotgun");
-        this.Items[5].SetRecognizableName("Boulder");
-        this.Items[6].SetRecognizableName("Minigun");
-        this.Items[7].SetRecognizableName("Sniper");
-        this.Items[8].SetRecognizableName("Gouda Cheese");
-        this.Items[9].SetRecognizableName("Weapon\nAmmunition");
+        this.Items[00].SetRecognizableName("");
+        this.Items[01].SetRecognizableName("Pistol");
+        this.Items[02].SetRecognizableName("Revolver");
+        this.Items[03].SetRecognizableName("Rock");
+        this.Items[04].SetRecognizableName("Shotgun");
+        this.Items[05].SetRecognizableName("Boulder");
+        this.Items[06].SetRecognizableName("Minigun");
+        this.Items[07].SetRecognizableName("Sniper");
+        this.Items[08].SetRecognizableName("Gouda Cheese");
+        this.Items[09].SetRecognizableName("Weapon\nAmmunition");
+        this.Items[10].SetRecognizableName("Health Pack");
         
-        this.Items[0].SetItemType("Item");
-        this.Items[1].SetItemType("Weapon");
-        this.Items[2].SetItemType("Weapon");
-        this.Items[3].SetItemType("Weapon");
-        this.Items[4].SetItemType("Weapon");
-        this.Items[5].SetItemType("Weapon");
-        this.Items[6].SetItemType("Weapon");
-        this.Items[7].SetItemType("Weapon");
-        this.Items[8].SetItemType("Weapon");
-        this.Items[9].SetItemType("Item");
+        this.Items[00].SetItemType("Item");
+        this.Items[01].SetItemType("Weapon");
+        this.Items[02].SetItemType("Weapon");
+        this.Items[03].SetItemType("Weapon");
+        this.Items[04].SetItemType("Weapon");
+        this.Items[05].SetItemType("Weapon");
+        this.Items[06].SetItemType("Weapon");
+        this.Items[07].SetItemType("Weapon");
+        this.Items[08].SetItemType("Weapon");
+        this.Items[09].SetItemType("Item");
+        this.Items[10].SetItemType("Item");
+        this.Items[11].SetItemType("Item");
+        this.Items[12].SetItemType("Item");
+        this.Items[13].SetItemType("Item");
+        this.Items[14].SetItemType("Item");
+        this.Items[15].SetItemType("Item");
+        this.Items[16].SetItemType("Item");
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
