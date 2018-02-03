@@ -137,7 +137,7 @@ class Inventory : ZilchComponent {
             
         }
         
-        if(this.InventoryContents[20] != 0 && Zero.Mouse.IsButtonDown(MouseButtons.Right)) {
+        if(this.InventoryContents[20] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right)) {
             this.RemoveItemInSlot(this.SLOT_MOUSE, true);
         }
         
