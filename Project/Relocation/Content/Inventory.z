@@ -8,7 +8,10 @@ class Inventory : ZilchComponent {
     var InventoryOpen : Boolean = false;
     var InventoryContents : Array[Integer];
     var InventoryContentsCount : Array[Integer];
-    var MaxInventorySlots : Integer = 18;
+    var MaxInventorySlots : Integer = 20;
+    
+    var SLOT_HAND : Integer = 19;
+    var SLOT_OFFHAND : Integer = 20;
     
     function Initialize(init : CogInitializer) {
         
@@ -24,7 +27,7 @@ class Inventory : ZilchComponent {
             this.InventoryContentsCount.Push(0);
         }
         
-        this.GiveItem(1);
+        this.GiveItemInSlot(1, this.SLOT_HAND);
         
         Console.WriteLine("Inventory Contents: `this.InventoryContents`");
         
@@ -86,18 +89,25 @@ class Inventory : ZilchComponent {
     
     function GiveItem(itemID : Integer) {
         
+        var firstAvailableSlot = -1;
+        
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
             
-            if(this.InventoryContents[i] == 0) {
-                this.InventoryContents[i] = itemID;
-                this.InventoryContentsCount[i] = 1;
-                this.RefreshInventoryIcons();
-                return;
+            if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
+                firstAvailableSlot = i;
             } else if(this.InventoryContents[i] == itemID) {
                 ++this.InventoryContentsCount[i];
+                this.RefreshInventoryIcons();
                 return;
             }
             
+        }
+        
+        if(firstAvailableSlot != -1) {
+            this.InventoryContents[firstAvailableSlot] = itemID;
+            this.InventoryContentsCount[firstAvailableSlot] = 1;
+            this.RefreshInventoryIcons();
+            return;
         }
         
         Console.WriteLine("Warning: Inventory full. Item with ID \"`itemID`\" was not added to the inventory.");
@@ -106,13 +116,20 @@ class Inventory : ZilchComponent {
     
     function GiveItemInSlot(itemID : Integer, slot : Integer) {
         
-        if(this.InventoryContents[slot] == itemID) {
-            ++this.InventoryContentsCount[slot];
-        } else {
-            this.InventoryContents.Insert(slot, itemID);
+        if(slot - 1 < this.MaxInventorySlots) {
+            
+            if(this.InventoryContents[slot - 1] == 0) {
+                this.InventoryContents[slot - 1] = itemID;
+                this.InventoryContentsCount[slot - 1] = 1;
+                this.RefreshInventoryIcons();
+                return;
+            } else if(this.InventoryContents[slot - 1] == itemID) {
+                ++this.InventoryContentsCount[slot - 1];
+                this.RefreshInventoryIcons();
+                return;
+            }
+            
         }
-        
-        this.RefreshInventoryIcons();
         
     }
     

@@ -93,9 +93,9 @@ class Weapon {
     
     function UpdateWeapon(dt : Real) {
         
-        var uiSpace = this.Space.FindObjectByName("LevelSettings").UICreator.UISpace;
-        uiSpace.FindObjectByName("MainHandIcon").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Item", this.ItemName));
-        uiSpace.FindObjectByName("MainHandIcon").Sprite.StartFrame = 1;
+        //var uiSpace = this.Space.FindObjectByName("LevelSettings").UICreator.UISpace;
+        //uiSpace.FindObjectByName("Slot20").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Item", this.ItemName));
+        //uiSpace.FindObjectByName("Slot20").Sprite.StartFrame = 1;
         
         if(this.CurrCooldown <= 0.0) {
             if(Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
