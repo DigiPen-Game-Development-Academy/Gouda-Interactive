@@ -117,7 +117,7 @@ class Inventory : ZilchComponent {
     
     function MouseSlot() {
         
-        var mousePos = this.UISpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 1.0);
+        var mousePos = this.UISpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 2.0);
         this.UISpace.FindObjectByName("Slot21").Transform.WorldTranslation = mousePos;
         
         if(this.SlotClicked != -1 && this.SlotClicked != 21) {
