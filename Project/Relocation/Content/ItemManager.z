@@ -1,0 +1,64 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class Item {
+    
+    var ItemID : Integer = 0;
+    
+    var ItemName : String = "item.Undefined.name";
+    
+    var Sprite : SpriteSource = SpriteSource.Circle;
+    
+    constructor(itemName : String, itemID : Integer) {
+        
+        this.ItemName = itemName;
+        this.ItemID = itemID;
+        
+        this.Sprite = SpriteSource.Find(this.ItemName);
+        
+    }
+    
+    constructor(itemName : String, itemID : Integer, useNameAsSpriteSource : Boolean) {
+        
+        this.ItemName = itemName;
+        this.ItemID = itemID;
+        
+        if(useNameAsSpriteSource) {
+            this.Sprite = SpriteSource.Find(this.ItemName);
+        }
+        
+    }
+    
+    function SetSpriteSource(sprite : String) {
+        this.Sprite = SpriteSource.Find(sprite);
+    }
+    
+}
+
+class ItemManager : ZilchComponent {
+    
+    var Items : Array[Item] = null;
+    
+    function Initialize(init : CogInitializer) {
+        
+        this.Items = new Array[Item]();
+        
+        this.Items.Push(new Item("Circle", 0));
+        this.Items.Push(new Item("WeaponPistol", 1));
+        this.Items.Push(new Item("WeaponRevolver", 2, false));
+        this.Items.Push(new Item("WeaponRock", 3));
+        this.Items.Push(new Item("WeaponShotgun", 4));
+        this.Items.Push(new Item("WeaponBoulder", 5));
+        this.Items.Push(new Item("WeaponMinigun", 6));
+        this.Items.Push(new Item("WeaponSniper", 7));
+        this.Items.Push(new Item("WeaponGouda", 8));
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+    }
+    
+}

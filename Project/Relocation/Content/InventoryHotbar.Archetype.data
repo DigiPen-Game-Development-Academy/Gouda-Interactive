@@ -6,11 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Inventory",
+		string Name = "InventoryHotbar",
 	},
 	Archetyped = 
 	{
-		string Name = "5a92397b65a441cd:UIInventory",
+		string Name = "5a385621e3532ce5:InventoryHotbar",
 	},
 	Transform = 
 	{
@@ -75,7 +75,7 @@ Cog =
 					Transform = 
 					{
 						Vec3 Translation = [0, 0, 1],
-						Vec3 Scale = [0.75, 0.75, 0.75],
+						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
 					Sprite = 
@@ -148,7 +148,7 @@ Cog =
 					Transform = 
 					{
 						Vec3 Translation = [0, 0, 1],
-						Vec3 Scale = [0.75, 0.75, 0.75],
+						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
 					Sprite = 
@@ -161,7 +161,7 @@ Cog =
 						BlendMode BlendMode = Alpha,
 						SpriteGeometryMode GeometryMode = ZPlane,
 						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "5274db4c2e7c11f9:Circle",
+						string SpriteSource = "4e07948c35993095:DefaultSprite",
 						bool RenderMask = false,
 						bool FlipX = false,
 						bool FlipY = false,

@@ -89,6 +89,9 @@ Level =
 			string UIArchetype = "554cea0f94af6dc4:Space",
 			bool ReloadIfSameLevel = true,
 		},
+		ItemManager = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -114,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 5.43655825,
+			float Size = 16.3323154,
 		},
 		EditorCameraController = 
 		{

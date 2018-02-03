@@ -1,47 +1,96 @@
-class Inventory : ZilchComponent
-{
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class Inventory : ZilchComponent {
+    
     var UISpace : Space = null;
     
     var InventoryOpen : Boolean = false;
+    var InventoryContents : Array[Integer];
+    var MaxInventorySlots : Integer = 18;
     
-    function Initialize(init : CogInitializer)
-    {
-        this.UISpace = this.LevelSettings.UICreator.UISpace;
+    function Initialize(init : CogInitializer) {
         
+        this.InventoryContents = new Array[Integer]();
+        
+        for(var i = 0; i < this.MaxInventorySlots; ++i) {
+            this.InventoryContents.Push(0);
+        }
+        
+        Console.WriteLine("Inventory Contents: `this.InventoryContents`");
+        
+        this.UISpace = this.LevelSettings.UICreator.UISpace;
         this.UISpace.LevelSettings.MainLevelReferances.Player = this.Owner;
         
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.AddItem(1);
         
+        Zero.Connect(this.UISpace, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OpenCloseInventory);
+        
     }
 
-    function OnLogicUpdate(event : UpdateEvent)
-    {
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        var inventory = this.UISpace.FindObjectByName("Inventory");
+        
+        // CHECK IF INVENTORY IS OPEN
+        if(this.InventoryOpen) {
+            this.RefreshInventoryIcons();
+            inventory.Transform.WorldTranslation = Real3(0, 0, 1);
+        } else {
+            inventory.Transform.WorldTranslation = Real3(0, 0, 50000);
+        }
+        
     }
     
-    function OpenCloseInventory(event : KeyboardEvent)
-    {
-        if (event.Key == Keys.E && !this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys)
-        {
+    function OpenCloseInventory(event : KeyboardEvent) {
+        if(event.Key == Keys.E && !this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys) {
             this.ToggleInventory();
         }
     }
     
-    function ToggleInventory()
-    {
-        if (this.InventoryOpen == false)
-        {
-            this.Space.TimeSpace.Paused = true;
+    function ToggleInventory() {
+        
+        // TOGGLE INVENTORY AND TIMESPACE PAUSE
+        this.Space.TimeSpace.Paused = !this.Space.TimeSpace.Paused;
+        this.InventoryOpen = !this.InventoryOpen;
+        
+        Console.WriteLine("Inventory: `this.InventoryOpen`");
+        
+    }
+    
+    function RefreshInventoryIcons() {
+        
+        for(var i = 0; i < this.MaxInventorySlots; ++i) {
             
-            this.InventoryOpen = true;
-        }
-        else
-        {
-            this.Space.TimeSpace.Paused = false;
+            var slotObj = this.UISpace.FindObjectByName("Slot`i + 1`").FindChildByName("SlotIcon");
+            var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
             
-            this.InventoryOpen = false;
+            slotObj.Sprite.SpriteSource = itemMgmt.Items.Get(this.InventoryContents[i]).Sprite;
+            
         }
         
-        Console.WriteLine("Toggle");
     }
+    
+    function AddItem(itemID : Integer) {
+        
+        for(var i = 0; i < this.MaxInventorySlots; ++i) {
+            
+            if(this.InventoryContents[i] == 0) {
+                this.InventoryContents[i] = itemID;
+                return;
+            }
+            
+        }
+        
+        Console.WriteLine("Warning: Inventory full. Item with ID \"`itemID`\" was not added to the inventory.");
+        
+    }
+    
+    function AddItemInSlot(itemID : Integer, slot : Integer) {
+        
+        this.InventoryContents.Insert(slot, itemID);
+        
+    }
+    
 }
