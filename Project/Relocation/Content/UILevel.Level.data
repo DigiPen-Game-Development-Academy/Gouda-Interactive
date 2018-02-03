@@ -734,19 +734,12 @@ Level =
 					string Name = "Slot19",
 				},
 			},
-			Cog = 
+			ArchetypeInstance = 
 			{
+				string Name = "5a38436fcf259e80:InventorySlotHB",
 				LinkId = 
 				{
 					uint Id = 30,
-				},
-				Named = 
-				{
-					string Name = "Slot20",
-				},
-				Archetyped = 
-				{
-					string Name = "5a38436fcf259e80:InventorySlotHB",
 				},
 				Transform = 
 				{
@@ -754,101 +747,9 @@ Level =
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
+				Named = 
 				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0, 0, 0, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5586f579ca73ecc2:SquareBordered",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				ScreenAlignment = 
-				{
-					string PositionX = "Right",
-					string PositionY = "Bottom",
-					Vec2 PositionOffset = [-5, 2],
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 31,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 32,
-						},
-						Named = 
-						{
-							string Name = "ItemCount",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-0.600000024, 0.75, 0],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						SpriteText = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string FontName = "5a399d8894a1af95:consola",
-							uint FontSize = 60,
-							string Text = "0",
-							TextAlign Align = Left,
-							float PixelsPerUnit = 128,
-							bool Smoothing = true,
-						},
-					},
+					string Name = "Slot20",
 				},
 			},
 		},

@@ -8,6 +8,10 @@ Cog =
 	{
 		string Name = "Slot19",
 	},
+	Archetyped = 
+	{
+		string Name = "5a384ca33d6b0b28:InventorySlotHBOH",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [8, -4.75, 0],
@@ -53,7 +57,7 @@ Cog =
 			Transform = 
 			{
 				Vec3 Translation = [0, 0, 1],
-				Vec3 Scale = [1, 1, 1],
+				Vec3 Scale = [0.949999988, 0.949999988, 0.949999988],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -87,7 +91,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [-0.600000024, 0.75, 0],
+				Vec3 Translation = [-0.600000024, 0.75, 1],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},

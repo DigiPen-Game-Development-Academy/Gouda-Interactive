@@ -7,7 +7,7 @@ class Item {
     
     var ItemName : String = "item.Undefined.name";
     
-    var Sprite : SpriteSource = SpriteSource.Circle;
+    var Sprite : SpriteSource = SpriteSource.MissingTexture;
     
     constructor(itemName : String, itemID : Integer) {
         
