@@ -118,14 +118,17 @@ class WeaponManager : ZilchComponent {
     var ActiveWeapon : Weapon = null;
     
     // WEAPONS (RANGED)
-    var WeaponPistol    : Weapon;
-    var WeaponRevolver  : Weapon;
-    var WeaponRock      : Weapon;
-    var WeaponShotgun   : Weapon;
-    var WeaponBoulder   : Weapon;
-    var WeaponMinigun   : Weapon;
-    var WeaponSniper    : Weapon;
-    var WeaponGouda     : Weapon;
+    var WeaponPistol    : Weapon = null;
+    var WeaponRevolver  : Weapon = null;
+    var WeaponRock      : Weapon = null;
+    var WeaponShotgun   : Weapon = null;
+    var WeaponBoulder   : Weapon = null;
+    var WeaponMinigun   : Weapon = null;
+    var WeaponSniper    : Weapon = null;
+    var WeaponGouda     : Weapon = null;
+    
+    // WEAPONS (MELEE)
+    var WeaponHand : Weapon = null;
     
     function Initialize(init : CogInitializer) {
         
@@ -143,6 +146,9 @@ class WeaponManager : ZilchComponent {
         this.WeaponMinigun = new Weapon(this.Space, "Minigun", 6, true, 0.05, 0.0);
         this.WeaponSniper = new Weapon(this.Space, "Sniper", 7, true, 1.75, 0.0);
         this.WeaponGouda = new Weapon(this.Space, "Gouda", 8, true, 1.25, 0.0);
+        
+        // MELEE WEAPONS
+        this.WeaponHand = new Weapon(this.Space, "Hand", 9, false);
         
         // SET WEAPON TIER
         this.WeaponShotgun.SetTier(2);
@@ -191,27 +197,34 @@ class WeaponManager : ZilchComponent {
         
         if(!this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys) {
             
-            if(Zero.Keyboard.KeyIsPressed(Keys.One) && this.Owner.Inventory.CheckForItemMainHand(1)) {
+            if(this.Owner.Inventory.CheckForItemMainHand(0)) {
+                this.ActiveWeapon = this.WeaponHand;
+            } else if(this.Owner.Inventory.CheckForItemMainHand(1)) {
                 this.ActiveWeapon = this.WeaponPistol;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Two) && this.Owner.Inventory.CheckForItemMainHand(2)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(2)) {
                 this.ActiveWeapon = this.WeaponRevolver;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Three) && this.Owner.Inventory.CheckForItemMainHand(3)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(3)) {
                 this.ActiveWeapon = this.WeaponRock;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Four) && this.Owner.Inventory.CheckForItemMainHand(4)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(4)) {
                 this.ActiveWeapon = this.WeaponShotgun;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Five) && this.Owner.Inventory.CheckForItemMainHand(5)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(5)) {
                 this.ActiveWeapon = this.WeaponBoulder;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Six) && this.Owner.Inventory.CheckForItemMainHand(6)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(6)) {
                 this.ActiveWeapon = this.WeaponMinigun;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Seven) && this.Owner.Inventory.CheckForItemMainHand(7)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(7)) {
                 this.ActiveWeapon = this.WeaponSniper;
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Eight) && this.Owner.Inventory.CheckForItemMainHand(8)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(8)) {
                 this.ActiveWeapon = this.WeaponGouda;
             }
             
             // UPDATE ACTIVE WEAPON
             this.ActiveWeapon.UpdateWeapon(event.Dt);
-            this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Weapon", this.ActiveWeapon.ItemName));
+            if(this.ActiveWeapon.ItemName != "Hand") {
+                this.Owner.FindChildByName("EntityGun").Sprite.Visible = true;
+                this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Weapon", this.ActiveWeapon.ItemName));
+            } else {
+                this.Owner.FindChildByName("EntityGun").Sprite.Visible = false;
+            }
             
         }
         

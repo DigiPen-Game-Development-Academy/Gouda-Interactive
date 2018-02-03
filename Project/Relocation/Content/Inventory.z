@@ -111,17 +111,22 @@ class Inventory : ZilchComponent {
         
         if(this.SlotClicked != -1 && this.SlotClicked != 21) {
             
-            if(this.InventoryContents[20] == 0) {
+            if(this.InventoryContents[20] == 0 && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
                 this.MoveItem(this.SlotClicked, 21);
-            } else {
+            } else if(!Zero.Keyboard.KeyIsDown(Keys.Shift)) {
                 this.MoveItem(21, this.SlotClicked);
+            }
+            
+            if(this.InventoryContents[20] == 0 && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                this.MoveItem(this.SlotClicked, 19);
+                this.MoveItem(this.SlotClicked, 20);
             }
             
             this.SlotClicked = -1;
             
         }
         
-        Console.WriteLine("Slot: `this.SlotClicked`");
+        //Console.WriteLine("Slot: `this.SlotClicked`");
         
     }
     
@@ -197,7 +202,7 @@ class Inventory : ZilchComponent {
     
     function MoveItem(slot : Integer, destSlot : Integer) {
         
-        Console.WriteLine("mvItem: `slot`");
+        //Console.WriteLine("mvItem: `slot`");
         
         if(slot - 1 < this.MaxInventorySlots && destSlot - 1 < this.MaxInventorySlots) {
             
