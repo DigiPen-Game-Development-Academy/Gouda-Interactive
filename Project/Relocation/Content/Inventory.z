@@ -13,6 +13,7 @@ class Inventory : ZilchComponent {
         
         this.InventoryContents = new Array[Integer]();
         
+        // ZERO OUT INVENTORY
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
             this.InventoryContents.Push(0);
         }
@@ -21,8 +22,6 @@ class Inventory : ZilchComponent {
         
         this.UISpace = this.LevelSettings.UICreator.UISpace;
         this.UISpace.LevelSettings.MainLevelReferances.Player = this.Owner;
-        
-        this.AddItem(1);
         
         Zero.Connect(this.UISpace, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OpenCloseInventory);
@@ -44,9 +43,16 @@ class Inventory : ZilchComponent {
     }
     
     function OpenCloseInventory(event : KeyboardEvent) {
+        
         if(event.Key == Keys.E && !this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys) {
             this.ToggleInventory();
         }
+        
+        if(event.Key == Keys.Escape && !this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys && this.InventoryOpen) {
+            this.Space.TimeSpace.Paused = false;
+            this.InventoryOpen = false;
+        }
+        
     }
     
     function ToggleInventory() {
@@ -72,12 +78,13 @@ class Inventory : ZilchComponent {
         
     }
     
-    function AddItem(itemID : Integer) {
+    function GiveItem(itemID : Integer) {
         
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
             
             if(this.InventoryContents[i] == 0) {
                 this.InventoryContents[i] = itemID;
+                this.RefreshInventoryIcons();
                 return;
             }
             
@@ -87,9 +94,24 @@ class Inventory : ZilchComponent {
         
     }
     
-    function AddItemInSlot(itemID : Integer, slot : Integer) {
+    function GiveItemInSlot(itemID : Integer, slot : Integer) {
         
         this.InventoryContents.Insert(slot, itemID);
+        this.RefreshInventoryIcons();
+        
+    }
+    
+    function CheckForItem(itemID : Integer) : Boolean {
+        
+        for(var i = 0; i < this.MaxInventorySlots; ++i) {
+            
+            if(this.InventoryContents[i] == itemID) {
+                return true;
+            }
+            
+        }
+        
+        return false;
         
     }
     

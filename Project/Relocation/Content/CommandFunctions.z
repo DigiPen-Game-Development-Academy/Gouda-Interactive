@@ -23,6 +23,8 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.CommandsAll.Push("debug");
         this.Owner.TextEntry.CommandsAll.Push("echo");
         this.Owner.TextEntry.Commands.Push("echo");
+        this.Owner.TextEntry.CommandsAll.Push("give");
+        this.Owner.TextEntry.Commands.Push("give");
         this.Owner.TextEntry.CommandsAll.Push("god");
         this.Owner.TextEntry.Commands.Push("god");
         this.Owner.TextEntry.Commands.Push("help");
@@ -58,6 +60,15 @@ class Commands : ZilchComponent {
                 this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
             }
             
+        } else if(this.CheckForCommand("give", false, "", "") != -1) {
+            
+            if(this.CheckForCommand("give", true, "give <itemID>", "") != 0) {
+                if(this.MainSpace.FindObjectByName("EntityPlayer") != null) {
+                    this.MainSpace.FindObjectByName("EntityPlayer").Inventory.GiveItem(Integer.Parse(this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)));
+                    this.DebugCmd.PrintToUIConsole("Item with the ID \"`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)`\" has been added to your inventory.");
+                }
+            }
+            
         } else if(this.CheckForCommand("god", false, "", "") != -1) {
             
             if(this.DebugCmd.FinalCmd.EndsWith("true")) {
@@ -89,6 +100,7 @@ class Commands : ZilchComponent {
             this.DebugCmd.PrintToUIConsole("color <color> - Changes console color");
             this.DebugCmd.PrintToUIConsole("debug [true/false] - Enables/Disables debug mode");
             this.DebugCmd.PrintToUIConsole("echo <string> - Prints to console screen");
+            this.DebugCmd.PrintToUIConsole("give <itemID> - Gives player item");
             this.DebugCmd.PrintToUIConsole("god [true/false] - Makes player invincible");
             this.DebugCmd.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
             this.DebugCmd.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (Will crash if sound does not exist)");
