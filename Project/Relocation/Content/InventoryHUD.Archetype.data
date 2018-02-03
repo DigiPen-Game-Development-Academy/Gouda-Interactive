@@ -41,7 +41,7 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "Slot19H",
+				string Name = "Slot20H",
 			},
 		},
 		ArchetypeInstance = 
@@ -59,7 +59,7 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "Slot20H",
+				string Name = "Slot19H",
 			},
 		},
 	},
