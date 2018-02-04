@@ -1,27 +1,34 @@
 Items:
 x = Not Complete
 / = Complete
-
-Pistol Ammo -------- x
-Shotgun Ammo ------- x
-Minigun Ammo ------- x
-Sniper Ammo -------- x
-Pistol ------------- /
-Shotgun ------------ /
-Minigun ------------ /
-Sniper ------------- /
-Revolver ----------- /
-Gouda Cheese ------- /
-Rock --------------- /
-Boulder ------------ /
-Iron Ore ----------- /
-Iron --------------- /
-Gold --------------- /
-Wood --------------- x
-Stick -------------- /
-Meat --------------- /
-Cooked Meat -------- x
-Leather ------------ /
-Green Been? Beens? - /
-Water Bottle Empty - x
-Water Bottle Full -- x
+A = Art
+G = In Game
+                     A G
+Pistol Ammo -------- x /
+Shotgun Ammo ------- x /
+Minigun Ammo ------- x /
+Sniper Ammo -------- x /
+Pistol ------------- / /
+Shotgun ------------ / /
+Minigun ------------ / /
+Sniper ------------- / /
+Revolver ----------- / /
+Gouda Cheese ------- / /
+Rock --------------- / /
+Boulder ------------ / /
+Iron Ore ----------- / /
+Iron --------------- / /
+Copper Ore --------- x /
+Copper ------------- x /
+Gold Ore ----------- x /
+Gold --------------- / /
+Titanium Ore ------- x x
+Titanium ----------- x x
+Wood --------------- x x
+Stick -------------- / x
+Meat --------------- / x
+Cooked Meat -------- x x
+Leather ------------ / x
+Green Been? Beens? - / x
+Water Bottle Empty - x x
+Water Bottle Full -- x x
