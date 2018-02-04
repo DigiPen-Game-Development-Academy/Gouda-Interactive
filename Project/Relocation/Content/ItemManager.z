@@ -134,7 +134,7 @@ class ItemManager : ZilchComponent {
         
         this.ID = 0;
         
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AIR
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Air");          // AIR
         this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // PISTOL
         this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // REVOLVER
         this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // ROCK
@@ -149,12 +149,12 @@ class ItemManager : ZilchComponent {
         this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (ASSAULT RIFLE)
         this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SNIPER RIFLE)
         this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // HEALTH PACK
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // IRON ORE
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // IRON
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // COPPER ORE
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // COPPER
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // GOLD ORE
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // GOLD
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // IRON ORE
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // IRON
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // COPPER ORE
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // COPPER
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD ORE
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD
         
         this.ID = 0;
         
@@ -172,7 +172,7 @@ class ItemManager : ZilchComponent {
         this.ID = 0;
         while(this.ID < this.Items.Count)
             this.ID = this.Items[this.ID].SetID(this.ID);
-        Console.WriteLine("`this.ID` items successfully created");
+        Console.WriteLine("`this.ID - 1` items successfully created");
         this.ID = 0;
     }
     

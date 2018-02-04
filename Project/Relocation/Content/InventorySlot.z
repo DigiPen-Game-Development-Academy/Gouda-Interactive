@@ -14,7 +14,7 @@ class InventorySlot : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
-        if(this.Owner.Name == "Slot21" && this.Owner.FindChildByName("ItemName").SpriteText.Text != "") {
+        if(this.Owner.Name == "Slot1" && this.Owner.FindChildByName("ItemName").SpriteText.Text != "") {
             this.Owner.FindChildByName("ItemName").Sprite.Visible = true;
         } else {
             this.Owner.FindChildByName("ItemName").Sprite.Visible = false;

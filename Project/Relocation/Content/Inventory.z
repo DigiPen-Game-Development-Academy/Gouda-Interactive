@@ -15,9 +15,9 @@ class Inventory : ZilchComponent {
     var SlotClicked : Integer = -1;
     var SlotHover : Integer = -1;
     
-    var SLOT_HAND : Integer = 19;
-    var SLOT_OFFHAND : Integer = 20;
-    var SLOT_MOUSE : Integer = 21;
+    var SLOT_HAND : Integer = 2;
+    var SLOT_OFFHAND : Integer = 3;
+    var SLOT_MOUSE : Integer = 1;
     var TooltipName : String = "";
     
     function Initialize(init : CogInitializer) {
@@ -54,13 +54,14 @@ class Inventory : ZilchComponent {
             inventory.Transform.WorldTranslation = Real3(0, 0, 1);
         } else {
             
-            if(this.InventoryContents[20] != 0) {
-                var tmpItem = this.InventoryContents[20];
-                var tmpItemCt = this.InventoryContentsCount[20];
-                this.InventoryContents[20] = 0;
-                for(var i = 0; i < tmpItemCt; ++i) {
+            if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0) {
+                var tmpItem = this.InventoryContents[this.SLOT_MOUSE - 1];
+                var tmpItemCt = this.InventoryContentsCount[this.SLOT_MOUSE - 1];
+                this.InventoryContents[this.SLOT_MOUSE - 1] = 0;
+                /*for(var i = 0; i < tmpItemCt; ++i) {
                     this.GiveItem(tmpItem, false);
-                }
+                }*/
+                this.GiveItemWithAmount(tmpItem, false, tmpItemCt);
             }
             
             inventory.Transform.WorldTranslation = Real3(0, 0, 50000);
@@ -124,7 +125,7 @@ class Inventory : ZilchComponent {
                 
             }
             
-            if(i == 18 || i == 19) {
+            if(i == this.SLOT_HAND - 1 || i == this.SLOT_OFFHAND - 1) {
                 
                 slotObj = this.UISpace.FindObjectByName("Slot`i + 1`H");
                 slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = itemMgmt.Items[this.InventoryContents[i]].Sprite;
@@ -147,30 +148,30 @@ class Inventory : ZilchComponent {
     function MouseSlot() {
         
         var mousePos = this.UISpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 2.0);
-        this.UISpace.FindObjectByName("Slot21").Transform.WorldTranslation = mousePos;
+        this.UISpace.FindObjectByName("Slot1").Transform.WorldTranslation = mousePos;
         
-        if(this.SlotClicked != -1 && this.SlotClicked != 21 && Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
+        if(this.SlotClicked != -1 && this.SlotClicked != this.SLOT_MOUSE && Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
             
-            if(this.InventoryContents[20] == 0 && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-                this.MoveItem(this.SlotClicked, 21);
+            if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0 && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                this.MoveItem(this.SlotClicked, this.SLOT_MOUSE);
             } else if(!Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-                this.MoveItem(21, this.SlotClicked);
+                this.MoveItem(this.SLOT_MOUSE, this.SlotClicked);
             }
             
-            if(this.InventoryContents[20] == 0 && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-                this.MoveItem(this.SlotClicked, 19);
-                this.MoveItem(this.SlotClicked, 20);
+            if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0 && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                this.MoveItem(this.SlotClicked, this.SLOT_HAND);
+                this.MoveItem(this.SlotClicked, this.SLOT_OFFHAND);
             }
             
             this.SlotClicked = -1;
             
-        } else if(this.SlotClicked != -1 && this.SlotClicked != 21 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+        } else if(this.SlotClicked != -1 && this.SlotClicked != this.SLOT_MOUSE && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
             
             this.RightButtonDown = true;
             
             var itemInSlot = this.InventoryContents[this.SlotClicked - 1];
             
-            if(this.InventoryContents[20] == 0) {
+            if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0) {
                 
                 var itemCt = this.InventoryContentsCount[this.SlotClicked - 1];
                 var itemCtFirstHalf = Math.Ceil(itemCt / 2.0) as Integer;
@@ -179,38 +180,38 @@ class Inventory : ZilchComponent {
                 this.RemoveItemsInSlot(this.SlotClicked, false, itemCtFirstHalf);
                 this.GiveItemsInSlot(itemInSlot, this.SLOT_MOUSE, itemCtSecondHalf, true);
                 
-            } else if(this.InventoryContents[20] != 0 && (this.InventoryContents[this.SlotClicked - 1] == 0 || this.InventoryContents[this.SlotClicked - 1] == this.InventoryContents[20])) {
+            } else if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0 && (this.InventoryContents[this.SlotClicked - 1] == 0 || this.InventoryContents[this.SlotClicked - 1] == this.InventoryContents[this.SLOT_MOUSE - 1])) {
                  
-                this.GiveItemInSlot(this.InventoryContents[20], this.SlotClicked);
+                this.GiveItemInSlot(this.InventoryContents[this.SLOT_MOUSE - 1], this.SlotClicked);
                 this.RemoveItemInSlot(this.SLOT_MOUSE, false);
                 
             }
             
             this.SlotClicked = -1;
             
-        } else if(this.InventoryContents[20] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !this.RightButtonDown) {
+        } else if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !this.RightButtonDown) {
             this.RightButtonDown = true;
             this.RemoveItemInSlot(this.SLOT_MOUSE, true);
-        } else if(this.InventoryContents[20] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+        } else if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
             this.RightButtonDown = false;
             this.RemoveItemInSlot(this.SLOT_MOUSE, true);
         } else if(!Zero.Mouse.IsButtonDown(MouseButtons.Right) && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
             this.RightButtonDown = false;
         }
         
-        if(this.InventoryContents[20] == 0 && this.SlotHover != -1 && this.SlotHover != this.SLOT_MOUSE) {
+        if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0 && this.SlotHover != -1 && this.SlotHover != this.SLOT_MOUSE) {
             
             this.TooltipName = this.Space.FindObjectByName("LevelSettings").ItemManager.Items[this.InventoryContents[this.SlotHover - 1]].ItemRecognizableName;
             
             if(this.TooltipName != "") {
                 var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
-                var itemTooltip = this.UISpace.FindObjectByName("Slot21").FindChildByName("ItemName");
+                var itemTooltip = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName");
                 itemTooltip.SpriteText.Text = this.TooltipName;
                 itemTooltip.SpriteText.Color = Real4(1.0);
                 if(itemMgmt.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Weapon") {
                     itemTooltip.SpriteText.Color = Real4(0.1, 1.0, 0.1, 1.0);
                 }
-                this.UISpace.FindObjectByName("Slot21").FindChildByName("ItemName").SpriteText.Visible = true;
+                this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = true;
             }
             
             this.SlotHover = -1;
@@ -218,7 +219,7 @@ class Inventory : ZilchComponent {
         } else {
             
             this.TooltipName = "";
-            this.UISpace.FindObjectByName("Slot21").FindChildByName("ItemName").SpriteText.Visible = false;
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = false;
             
             this.SlotHover = -1;
             
@@ -241,7 +242,7 @@ class Inventory : ZilchComponent {
         }
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
-            for(var i = 0; i < this.MaxInventorySlots - 1; ++i) {
+            for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots; ++i) {
                 
                 if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                     firstAvailableSlot = i;
@@ -285,7 +286,7 @@ class Inventory : ZilchComponent {
         }
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
-            for(var i = 0; i < this.MaxInventorySlots - 1; ++i) {
+            for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots; ++i) {
                 
                 if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                     firstAvailableSlot = i;
@@ -321,7 +322,7 @@ class Inventory : ZilchComponent {
         itemID = Math.Abs(itemID);
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
-            if(slot - 1 < this.MaxInventorySlots - 1) {
+            if(slot < this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
                 
                 if(this.InventoryContents[slot - 1] == 0) {
                     this.InventoryContents[slot - 1] = itemID;
@@ -347,7 +348,7 @@ class Inventory : ZilchComponent {
         itemID = Math.Abs(itemID);
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
-            if(slot - 1 < this.MaxInventorySlots - 1) {
+            if(slot < this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
                 
                 if(this.InventoryContents[slot - 1] == 0) {
                     this.InventoryContents[slot - 1] = itemID;
@@ -401,7 +402,7 @@ class Inventory : ZilchComponent {
         
         itemID = Math.Abs(itemID);
             
-        if(this.InventoryContents[18] == itemID) {
+        if(this.InventoryContents[this.SLOT_HAND - 1] == itemID) {
             return true;
         } else {
             return false;
@@ -451,7 +452,7 @@ class Inventory : ZilchComponent {
         itemID = Math.Abs(itemID);
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
-            for(var i = 0; i < this.MaxInventorySlots - 1; ++i) {
+            for(var i = 0; i < this.MaxInventorySlots; ++i) {
                 
                 if(this.InventoryContents[i] == itemID) {
                     --this.InventoryContentsCount[i];
