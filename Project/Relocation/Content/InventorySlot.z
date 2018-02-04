@@ -23,7 +23,7 @@ class InventorySlot : ZilchComponent {
     
     function OnMouseEnter(event : ViewportMouseEvent) {
         
-        this.MainSpace = this.Space.FindObjectByName("TextEntry").Commands.MainSpace;
+        this.MainSpace = this.Space.FindObjectByName("DebugCommand").FindChildByName("TextEntry").Commands.MainSpace;
         
         if(this.MainSpace != null && this.MainSpace.FindObjectByName("EntityPlayer").Inventory.InventoryOpen) {
             this.MainSpace.FindObjectByName("EntityPlayer").Inventory.SlotHover = Integer.Parse(this.Owner.Name.SubStringFromRuneIndices(4, this.Owner.Name.Count));
@@ -33,7 +33,7 @@ class InventorySlot : ZilchComponent {
     
     function OnMouseDown(event : ViewportMouseEvent) {
         
-        this.MainSpace = this.Space.FindObjectByName("TextEntry").Commands.MainSpace;
+        this.MainSpace = this.Space.FindObjectByName("DebugCommand").FindChildByName("TextEntry").Commands.MainSpace;
         
         //Console.WriteLine("Slot clicked: `this.Owner.Name.SubStringFromRuneIndices(4, this.Owner.Name.Count)`");
         

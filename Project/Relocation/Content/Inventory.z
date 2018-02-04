@@ -71,11 +71,11 @@ class Inventory : ZilchComponent {
     
     function OpenCloseInventory(event : KeyboardEvent) {
         
-        if(event.Key == Keys.E && !this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys) {
+        if(event.Key == Keys.E && !this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
             this.ToggleInventory();
         }
         
-        if(event.Key == Keys.Escape && !this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys && this.InventoryOpen) {
+        if(event.Key == Keys.Escape && !this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys && this.InventoryOpen) {
             this.Space.TimeSpace.Paused = false;
             this.InventoryOpen = false;
         }
@@ -237,7 +237,7 @@ class Inventory : ZilchComponent {
         itemID = Math.Abs(itemID);
         
         if(notifyUser) {
-            cmd = this.UISpace.FindObjectByName("TextEntry").TextEntry;
+            cmd = this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry;
         }
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
@@ -264,7 +264,7 @@ class Inventory : ZilchComponent {
                 return;
             }
         } else {
-            this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
+            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
             return;
         }
         
@@ -281,7 +281,7 @@ class Inventory : ZilchComponent {
         itemID = Math.Abs(itemID);
         
         if(notifyUser) {
-            cmd = this.UISpace.FindObjectByName("TextEntry").TextEntry;
+            cmd = this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry;
         }
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
@@ -308,7 +308,7 @@ class Inventory : ZilchComponent {
                 return;
             }
         } else {
-            this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
+            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
             return;
         }
         
@@ -336,7 +336,7 @@ class Inventory : ZilchComponent {
                 
             }
         } else {
-            this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
+            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
             return;
         }
         
@@ -375,7 +375,7 @@ class Inventory : ZilchComponent {
                 
             }
         } else {
-            this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
+            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
             return;
         }
         
@@ -461,7 +461,7 @@ class Inventory : ZilchComponent {
                 
             }
         } else {
-            this.UISpace.FindObjectByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
+            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
             return;
         }
         

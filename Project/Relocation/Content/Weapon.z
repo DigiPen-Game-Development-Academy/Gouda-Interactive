@@ -264,7 +264,7 @@ class WeaponManager : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(!this.UISpace.FindObjectByName("TextEntry").TextEntry.CaptureKeys) {
+        if(!this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
             
             if(this.Owner.Inventory.CheckForItemMainHand(0)) {
                 this.ActiveWeapon = this.WeaponHand;

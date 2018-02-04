@@ -352,6 +352,7 @@ Level =
 					string TextBoxBackground = "TextBoxBG",
 					Vec2 TextCharDimensions = [0.25999999, 0.5],
 					int MaxCharsPerLine = 74,
+					int MaxCharLimit = 50000,
 				},
 				Commands = 
 				{
@@ -647,9 +648,7 @@ Level =
 							string TextBoxBackground = "TextBoxBG",
 							Vec2 TextCharDimensions = [0.430000007, 0.800000012],
 							int MaxCharsPerLine = 16,
-						},
-						Commands = 
-						{
+							int MaxCharLimit = 12,
 						},
 						Reactive = 
 						{

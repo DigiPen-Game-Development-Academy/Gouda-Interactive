@@ -15,8 +15,8 @@ class UICreator : ZilchComponent {
         
         this.UISpace.LoadLevel(this.UILevel);
         
-        if(this.UISpace.FindObjectByName("TextEntry") != null) {
-            this.UISpace.FindObjectByName("TextEntry").Commands.MainSpace = this.Space;
+        if(this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry") != null) {
+            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").Commands.MainSpace = this.Space;
         }
         
     }

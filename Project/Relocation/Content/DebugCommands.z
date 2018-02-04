@@ -8,6 +8,7 @@ class TextEntry : ZilchComponent {
     [Property] var TextBoxBackground : String = "TextBoxBG";
     [Property] var TextCharDimensions : Real2 = Real2(0.26, 0.5);
     [Property] var MaxCharsPerLine : Integer = 75;
+    [Property] var MaxCharLimit : Integer = 50000;
     
     var DebugEnabled : Boolean = false;
     var GodMode : Boolean = false;
@@ -36,7 +37,8 @@ class TextEntry : ZilchComponent {
         
         this.CommandHistory = new Array[String]();
         
-        this.Owner.Commands.CreateCommands();
+        if(this.Owner.Commands != null)
+            this.Owner.Commands.CreateCommands();
         
         Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -193,7 +195,7 @@ class TextEntry : ZilchComponent {
         if(this.CaptureKeys) {
             
             // CHECK IF TEXT IS RENDERABLE (IS A LETTER/NUMBER/SYMBOL)
-            if(this.IsRenderable(event.Character)) {
+            if(this.IsRenderable(event.Character) && this.CommandString.Count < this.MaxCharLimit) {
                 if(!this.IsTextSelected) {
                     this.CycleThroughCommands = false;
                     this.CycleThroughCmdsAll = false;
