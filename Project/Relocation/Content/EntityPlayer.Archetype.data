@@ -50,8 +50,8 @@ Cog =
 	},
 	Movement = 
 	{
-		float Speed = 100,
-		float RunSpeed = 150,
+		float Speed = 150,
+		float RunSpeed = 200,
 	},
 	WeaponManager = 
 	{
