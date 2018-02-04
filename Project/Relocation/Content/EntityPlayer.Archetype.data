@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-5.63115501, 5.28121328, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -68,10 +68,16 @@ Cog =
 	},
 	Health = 
 	{
-		float MaxHealth = 10,
+		float MaxHealth = 25,
+		bool IsInvincible = false,
 	},
 	Inventory = 
 	{
+	},
+	PlayerProperties = 
+	{
+		string PlayerName = "Astronaut Zero",
+		int PlayerSkin = 0,
 	},
 	Hierarchy = 
 	{

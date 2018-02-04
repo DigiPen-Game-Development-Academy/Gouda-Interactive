@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-19.5, -9.5, 0],
+		Vec3 Translation = [-19.5, -9.5, 5],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -55,7 +55,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [0, 1, 0],
+				Vec3 Translation = [0, 1, 1],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
@@ -184,6 +184,9 @@ Cog =
 			{
 				bool IsCommandTextBox = true,
 				string ConsoleTextboxName = "Console",
+				string TextBoxBackground = "TextBoxBG",
+				float TextCharWidth = 0.25999999,
+				int MaxCharsPerLine = 74,
 			},
 			Commands = 
 			{

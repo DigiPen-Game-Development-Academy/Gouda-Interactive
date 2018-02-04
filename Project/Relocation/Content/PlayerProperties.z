@@ -1,0 +1,50 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class PlayerProperties : ZilchComponent {
+    
+    [Property] var PlayerName : String = "Astronaut Zero";
+    [Property] var PlayerSkin : Integer = 0;
+    
+    var UISpace : Space = null;
+    
+    function Initialize(init : CogInitializer) {
+        
+        this.UISpace = this.Space.FindObjectByName("LevelSettings").UICreator.UISpace;
+        
+        this.SetUsername(this.PlayerName);
+        this.SetSkin(this.PlayerSkin);
+        
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("PlayerName").SpriteText.Text != this.PlayerName) {
+            this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("PlayerName").SpriteText.Text = this.PlayerName;
+        }
+        
+    }
+    
+    function SetUsername(username : String) {
+        this.PlayerName = username;
+    }
+    
+    function SetSkin(skinID : Integer) {
+        
+        this.PlayerSkin = skinID;
+        
+        if(skinID == 0) {
+            this.Owner.Sprite.SpriteSource = SpriteSource.EntityPlayer;
+            this.Owner.Sprite.Color = Real4(1.0);
+            this.Owner.Sprite.BlendMode = BlendMode.Alpha;
+        } else if(skinID == 1) {
+            this.Owner.Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.Owner.Sprite.Color = Real4(1.0);
+            this.Owner.Sprite.BlendMode = BlendMode.Additive;
+        }
+        
+    }
+    
+}

@@ -5,6 +5,9 @@ class TextEntry : ZilchComponent {
     
     [Property] var IsCommandTextBox : Boolean = false;
     [Property] var ConsoleTextboxName : String = "Console";
+    [Property] var TextBoxBackground : String = "TextBoxBG";
+    [Property] var TextCharDimensions : Real2 = Real2(0.26, 0.5);
+    [Property] var MaxCharsPerLine : Integer = 75;
     
     var DebugEnabled : Boolean = false;
     var GodMode : Boolean = false;
@@ -13,6 +16,7 @@ class TextEntry : ZilchComponent {
     var CycleThroughCommands : Boolean = false;
     var CycleThroughCmdsAll : Boolean = false;
     var IsTextSelected : Boolean = false;
+    var WasClicked : Boolean = false;
     
     var CommandString : String = "";
     var FinalCmd : String = "";
@@ -22,8 +26,6 @@ class TextEntry : ZilchComponent {
     var CommandHistory : Array[String];
     var Commands : Array[String];
     var CommandsAll : Array[String];
-    
-    var TextCharWidth : Real = 0.26;
     
     var CmdHistoryIndex : Integer = 0;
     var AutocompleteIndex : Integer = 0;
@@ -38,10 +40,11 @@ class TextEntry : ZilchComponent {
         
         Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
         Zero.Connect(Zero.Keyboard, Events.TextTyped, this.OnTextTyped);
         
     }
-
+    
     function OnGameRequestQuit(event : GameEvent) {
         event.Handled = true;
     }
@@ -59,6 +62,7 @@ class TextEntry : ZilchComponent {
                 this.IsTextSelected = false;
                 this.CycleThroughCommands = false;
                 this.CycleThroughCmdsAll = false;
+                this.WasClicked = false;
                 
                 this.CmdHistoryIndex = this.CommandHistory.Count;
                 this.AutocompleteIndex = 0;
@@ -70,16 +74,24 @@ class TextEntry : ZilchComponent {
                 this.IsTextSelected = false;
                 this.CycleThroughCommands = false;
                 this.CycleThroughCmdsAll = false;
+                this.WasClicked = false;
                 
                 if(this.CommandString != "") {
+                    
                     this.CmdHistoryIndex = this.CommandHistory.Count + 1;
                     this.CommandHistory.Push(this.CommandString);
+                    
+                    if(!this.IsCommandTextBox) {
+                        this.CaptureKeys = false;
+                        this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Text = this.FinalCmd;
+                    }
+                    
                 }
                 
                 this.CommandString = "";
                 this.TempCommandStr = "";
                 
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Up)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Up) && this.IsCommandTextBox) {
                 
                 this.IsTextSelected = false;
                 
@@ -92,7 +104,7 @@ class TextEntry : ZilchComponent {
                     
                 }
                 
-            } else if(Zero.Keyboard.KeyIsPressed(Keys.Down)) {
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Down) && this.IsCommandTextBox) {
                 
                 this.IsTextSelected = false;
                 
@@ -116,27 +128,27 @@ class TextEntry : ZilchComponent {
                 
                 this.IsTextSelected = true;
                 
-                var txtSelect = this.Space.FindObjectByName("TextBoxSelection");
+                var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
                 
                 txtSelect.Sprite.Visible = true;
                 
-                txtSelect.Transform.Scale = Real3((this.Owner.SpriteText.Text.Count - 1) * this.TextCharWidth, 0.5, 1);
+                txtSelect.Transform.Scale = Real3((this.Owner.SpriteText.Text.Count - 1) * this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
                 
             } else if(Zero.Keyboard.KeyIsDown(Keys.Right) || Zero.Keyboard.KeyIsDown(Keys.Left)) {
                 this.IsTextSelected = false;
             }
             
             if(!this.IsTextSelected) {
-                var txtSelect = this.Space.FindObjectByName("TextBoxSelection");
+                var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
                 
                 txtSelect.Sprite.Visible = false;
-                txtSelect.Transform.Scale = Real3(this.TextCharWidth, 0.5, 1);
+                txtSelect.Transform.Scale = Real3(this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
             }
             
-            if(this.CommandString.Count < 75) {
+            if(this.CommandString.Count <= this.MaxCharsPerLine) {
                 this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|");
             } else {
-                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|").SubStringFromRuneIndices(this.CommandString.Count - 74, this.CommandString.Count);
+                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|").SubStringFromRuneIndices(this.CommandString.Count - (this.MaxCharsPerLine), this.CommandString.Count + 1);
             }
             
         } else if(this.Owner.SpriteText.Text.Count > 0) {
@@ -144,16 +156,19 @@ class TextEntry : ZilchComponent {
         }
         
         if(this.CaptureKeys) {
-            this.Space.FindObjectByName("TextBoxBG").Sprite.Visible = true;
-            this.Space.FindObjectByName("Console").SpriteText.Visible = true;
+            this.Owner.Parent.FindChildByName(this.TextBoxBackground).Sprite.Visible = true;
+            if(this.IsCommandTextBox)
+                this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = true;
         } else {
-            this.Space.FindObjectByName("TextBoxBG").Sprite.Visible = false;
-            this.Space.FindObjectByName("Console").SpriteText.Visible = false;
+            this.Owner.Parent.FindChildByName(this.TextBoxBackground).Sprite.Visible = false;
+            if(this.IsCommandTextBox)
+                this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = false;
             this.IsTextSelected = false;
         }
         
-        if(Zero.Keyboard.KeyIsPressed(Keys.Enter) && !this.CaptureKeys) {
+        if(((Zero.Keyboard.KeyIsPressed(Keys.Tilde) && this.IsCommandTextBox) || (this.WasClicked && !this.IsCommandTextBox)) && !this.CaptureKeys) {
             this.CaptureKeys = true;
+            this.WasClicked = false;
         }
         
         // COMMANDS
@@ -161,6 +176,14 @@ class TextEntry : ZilchComponent {
             
             this.Owner.Commands.CommandFunctions();
             
+        }
+        
+    }
+    
+    function OnMouseUpdate(event : ViewportMouseEvent) {
+        
+        if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left)) {
+            this.WasClicked = true;
         }
         
     }
@@ -205,7 +228,7 @@ class TextEntry : ZilchComponent {
             }
             
             // CHECK FOR TAB
-            if(event.Character == 9) {
+            if(event.Character == 9 && this.IsCommandTextBox) {
                 
                 this.IsTextSelected = false;
                 
@@ -248,7 +271,7 @@ class TextEntry : ZilchComponent {
     
     function PrintToUIConsole(text : String) {
         
-        var maxLength = 75;
+        var maxLength = this.MaxCharsPerLine;
         var tmpTxt = "";
         
         if(text.Count > maxLength) {
@@ -284,7 +307,7 @@ class TextEntry : ZilchComponent {
         var console = this.Space.FindObjectByName(this.ConsoleTextboxName);
         
         console.SpriteText.Text = this.ConsoleLog;
-        console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y + 0.5, 0);
+        console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y + 0.5, 5);
         
     }
     
