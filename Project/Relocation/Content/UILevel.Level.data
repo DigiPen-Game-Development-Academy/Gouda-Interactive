@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-6.14625454, -0.172315374, 13.6266108],
+			Vec3 Translation = [-5.88321304, -2.38624907, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 9.90612316,
+			float Size = 10.947958,
 		},
 		EditorCameraController = 
 		{
@@ -119,7 +119,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-6.14625454, -0.172315374, -2.68662802e-07],
+			Vec3 LookTarget = [-5.88321304, -2.38624907, -2.57164828e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -720,12 +720,51 @@ Level =
 					float AnimationSpeed = 1,
 					uint StartFrame = 0,
 				},
+				Hierarchy = 
+				{
+					ArchetypeInstance = 
+					{
+						string Name = "5a3b2bc8dcaa3ef9:ArrowButtonsSkin",
+						LinkId = 
+						{
+							uint Id = 20,
+						},
+						Transform = 
+						{
+							Vec3 Translation = [-0.100000001, -0.600000024, 0],
+							Vec3 Scale = [0.150000006, 0.150000006, 0.150000006],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Named = 
+						{
+							string Name = "ArrowLeft",
+						},
+					},
+					ArchetypeInstance = 
+					{
+						string Name = "5a3b2bc8dcaa3ef9:ArrowButtonsSkin",
+						LinkId = 
+						{
+							uint Id = 21,
+						},
+						Transform = 
+						{
+							Vec3 Translation = [0.100000001, -0.600000024, 0],
+							Vec3 Scale = [0.150000006, 0.150000006, 0.150000006],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Named = 
+						{
+							string Name = "ArrowLeft",
+						},
+					},
+				},
 			},
 			Cog = 
 			{
 				LinkId = 
 				{
-					uint Id = 20,
+					uint Id = 22,
 				},
 				Named = 
 				{
@@ -760,7 +799,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 21,
+					uint Id = 23,
 				},
 				Transform = 
 				{
@@ -778,7 +817,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 22,
+					uint Id = 24,
 				},
 				Transform = 
 				{
@@ -796,7 +835,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 23,
+					uint Id = 25,
 				},
 				Transform = 
 				{
@@ -813,7 +852,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 24,
+					uint Id = 26,
 				},
 				Named = 
 				{
@@ -861,7 +900,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 25,
+							uint Id = 27,
 						},
 						Named = 
 						{
@@ -896,7 +935,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 26,
+							uint Id = 28,
 						},
 						Named = 
 						{
@@ -930,7 +969,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 27,
+							uint Id = 29,
 						},
 						Named = 
 						{
@@ -967,7 +1006,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 28,
+					uint Id = 30,
 				},
 				Transform = 
 				{
@@ -985,7 +1024,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 29,
+					uint Id = 31,
 				},
 				Transform = 
 				{
@@ -1003,7 +1042,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 30,
+					uint Id = 32,
 				},
 				Transform = 
 				{
@@ -1021,7 +1060,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 31,
+					uint Id = 33,
 				},
 				Transform = 
 				{
@@ -1039,7 +1078,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 32,
+					uint Id = 34,
 				},
 				Transform = 
 				{
@@ -1057,7 +1096,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 33,
+					uint Id = 35,
 				},
 				Transform = 
 				{
@@ -1075,7 +1114,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 34,
+					uint Id = 36,
 				},
 				Transform = 
 				{
@@ -1093,7 +1132,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 35,
+					uint Id = 37,
 				},
 				Transform = 
 				{
@@ -1111,7 +1150,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 36,
+					uint Id = 38,
 				},
 				Transform = 
 				{
@@ -1129,7 +1168,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 37,
+					uint Id = 39,
 				},
 				Transform = 
 				{
@@ -1147,7 +1186,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 38,
+					uint Id = 40,
 				},
 				Transform = 
 				{
@@ -1165,7 +1204,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 39,
+					uint Id = 41,
 				},
 				Transform = 
 				{
@@ -1183,7 +1222,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 40,
+					uint Id = 42,
 				},
 				Transform = 
 				{
@@ -1201,7 +1240,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 41,
+					uint Id = 43,
 				},
 				Transform = 
 				{
@@ -1219,7 +1258,7 @@ Level =
 				string Name = "5a384ca33d6b0b28:InventorySlotHBOH",
 				LinkId = 
 				{
-					uint Id = 42,
+					uint Id = 44,
 				},
 				Transform = 
 				{
@@ -1237,7 +1276,7 @@ Level =
 				string Name = "5a38436fcf259e80:InventorySlotHB",
 				LinkId = 
 				{
-					uint Id = 43,
+					uint Id = 45,
 				},
 				Transform = 
 				{
@@ -1255,7 +1294,7 @@ Level =
 				string Name = "5a387339fac82522:InventorySlotMouse",
 				LinkId = 
 				{
-					uint Id = 44,
+					uint Id = 46,
 				},
 				Transform = 
 				{
@@ -1275,7 +1314,7 @@ Level =
 		string Name = "5a3b7b75ae7ed0a8:InventoryHUD",
 		LinkId = 
 		{
-			uint Id = 45,
+			uint Id = 47,
 		},
 		Transform = 
 		{

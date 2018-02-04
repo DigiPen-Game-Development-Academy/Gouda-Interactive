@@ -117,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 8.96336555,
+			float Size = 12.0992775,
 		},
 		EditorCameraController = 
 		{
@@ -137,12 +137,19 @@ Level =
 			bool Wireframe = false,
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "5a1a8ffcc9bbe2f5:EntityPlayer",
 		LinkId = 
 		{
 			uint Id = 4,
+		},
+		Named = 
+		{
+			string Name = "EntityPlayer",
+		},
+		Archetyped = 
+		{
+			string Name = "5a1a8ffcc9bbe2f5:EntityPlayer",
 		},
 		Transform = 
 		{
@@ -150,16 +157,126 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "EntityPlayer",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5a11c5d0b56f342e:EntityPlayer",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = false,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = false,
+			bool RotationLocked = true,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
+		},
+		Movement = 
+		{
+			float Speed = 100,
+			float RunSpeed = 150,
+		},
+		WeaponManager = 
+		{
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		Health = 
+		{
+			float MaxHealth = 25,
+			bool IsInvincible = false,
+		},
+		Inventory = 
+		{
+		},
+		PlayerProperties = 
+		{
+			string PlayerName = "Astronaut Zero",
+			int PlayerSkin = 0,
+		},
+		Hierarchy = 
+		{
+			ArchetypeInstance = 
+			{
+				string Name = "5a11d69cc4ba5a24:EntityGun",
+				LinkId = 
+				{
+					uint Id = 5,
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, -0.200000003, 0],
+					Vec3 Scale = [0.349999994, 0.349999994, 0.349999994],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Named = 
+				{
+					string Name = "EntityGun",
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 2,
+				},
+				Named = 
+				{
+					string Name = "Camera",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, 0, 40],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Camera = 
+				{
+					ProjectionMode ProjectionMode = Orthographic,
+					Facing Facing = NegativeZ,
+					CameraTransparentSort TransparentSort = InheritFromSpace,
+					float FieldOfView = 45,
+					float NearPlane = 0.5,
+					float FarPlane = 200,
+					float Size = 8,
+				},
+				SoundListener = 
+				{
+					bool Active = true,
+					float Volume = 1,
+				},
+			},
 		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 5,
+			uint Id = 6,
 		},
 		Named = 
 		{
@@ -235,7 +352,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 6,
+			uint Id = 7,
 		},
 		Named = 
 		{

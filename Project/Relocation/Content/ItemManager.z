@@ -74,12 +74,12 @@ class ItemManager : ZilchComponent {
         this.Items.Push(new Item("ItemDropDefault",         56, false));
         
         this.Items[00].SetRecognizableName("");
-        this.Items[01].SetRecognizableName("Undecided (Pistol)");
+        this.Items[01].SetRecognizableName("hold on a sec (Pistol)");
         this.Items[02].SetRecognizableName("Undecided (Revolver)");
         this.Items[03].SetRecognizableName("Rock");
         this.Items[04].SetRecognizableName("Undecided (Shotgun)");
         this.Items[05].SetRecognizableName("Boulder");
-        this.Items[06].SetRecognizableName("L134D (Minigun)");
+        this.Items[06].SetRecognizableName("L134 Devastator (Minigun)");
         this.Items[07].SetRecognizableName("Undecided (Sniper Rifle)");
         this.Items[08].SetRecognizableName("Gouda Cheese");
         this.Items[09].SetRecognizableName("Ammunition (Pistol)");

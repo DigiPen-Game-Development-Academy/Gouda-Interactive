@@ -6,6 +6,8 @@ class PlayerProperties : ZilchComponent {
     [Property] var PlayerName : String = "Astronaut Zero";
     [Property] var PlayerSkin : Integer = 0;
     
+    var SkinCount : Integer = 1;
+    
     var UISpace : Space = null;
     
     function Initialize(init : CogInitializer) {
@@ -37,12 +39,16 @@ class PlayerProperties : ZilchComponent {
         
         if(skinID == 0) {
             this.Owner.Sprite.SpriteSource = SpriteSource.EntityPlayer;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.SpriteSource = SpriteSource.EntityPlayer;
             this.Owner.Sprite.Color = Real4(1.0);
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.Color = Real4(1.0);
             this.Owner.Sprite.BlendMode = BlendMode.Alpha;
         } else if(skinID == 1) {
             this.Owner.Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
             this.Owner.Sprite.Color = Real4(1.0);
-            this.Owner.Sprite.BlendMode = BlendMode.Additive;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.Color = Real4(1.0);
+            this.Owner.Sprite.BlendMode = BlendMode.Alpha;
         }
         
     }
