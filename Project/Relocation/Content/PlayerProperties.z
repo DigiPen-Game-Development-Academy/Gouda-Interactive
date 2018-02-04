@@ -48,7 +48,7 @@ class PlayerProperties : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(this.Space.FindObjectByName("BiomeWater").FindChildByName("DefaultTile") != null && !this.HasMadeWaterGhost) {
+        if(this.Space.FindObjectByName("BiomeWater") != null && this.Space.FindObjectByName("BiomeWater").FindChildByName("DefaultTile") != null && !this.HasMadeWaterGhost) {
             this.HasMadeWaterGhost = true;
         }
         
