@@ -1,0 +1,4 @@
+class LastUsedEnterancePosition : ZilchComponent
+{
+    var LastUsedPosition : Real3;
+}
