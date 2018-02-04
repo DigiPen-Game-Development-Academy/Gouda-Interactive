@@ -25,9 +25,11 @@ class SkinButton : ZilchComponent {
             
             if(this.Owner.Name == "ArrowLeft" && playerSkinID > 0) {
                 --playerSkinID;
-            } else if(playerSkinID < playerProp.SkinCount) {
+            } else if(this.Owner.Name == "ArrowRight" && playerSkinID < playerProp.SkinCount) {
                 ++playerSkinID;
             }
+            
+            this.Owner.Parent.FindChildByName("SkinNumber").SpriteText.Text = "`playerSkinID`";
             
             playerProp.SetSkin(playerSkinID);
             
