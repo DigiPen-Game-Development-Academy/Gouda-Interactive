@@ -5,6 +5,9 @@ class PlayerProperties : ZilchComponent {
     
     [Property] var PlayerName : String = "Astronaut Zero";
     [Property] var PlayerSkin : Integer = 0;
+    [Property] var IsInWater : Boolean = false;
+    
+    var HasMadeWaterGhost : Boolean = false;
     
     var SkinCount : Integer = 5;
     
@@ -17,14 +20,51 @@ class PlayerProperties : ZilchComponent {
         this.SetUsername(this.PlayerName);
         this.SetSkin(this.PlayerSkin);
         
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnCollisionStarted(event : CollisionEvent) {
+        
+        if(event.OtherObject.Parent != null && event.OtherObject.Parent.Name == "BiomeWater") {
+            this.IsInWater = true;
+            Console.WriteLine("In Water!");
+        }
+        
+        Console.WriteLine("OtherObject: `event.OtherObject.Name`");
+        
+    }
+    
+    function OnCollisionEnded(event : CollisionEvent) {
+        
+        if(event.OtherObject.Parent != null && event.OtherObject.Parent.Name == "BiomeWater") {
+            this.IsInWater = false;
+            Console.WriteLine("Not In Water!");
+        }
         
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
         
+        if(this.Space.FindObjectByName("BiomeWater").FindChildByName("DefaultTile") != null && !this.HasMadeWaterGhost) {
+            this.HasMadeWaterGhost = true;
+        }
+        
         if(this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("PlayerName").SpriteText.Text != this.PlayerName) {
             this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("PlayerName").SpriteText.Text = this.PlayerName;
+        }
+        
+        var waterPart = this.Owner.FindChildByName("ParticleWater");
+        var waterSplash = this.Owner.FindChildByName("ParticleWater").FindChildByName("ParticleWaterSplash");
+        
+        if(this.IsInWater) {
+            waterPart.SpriteParticleSystem.Visible = true;
+            waterSplash.SpriteParticleSystem.Visible = true;
+        } else {
+            waterPart.SpriteParticleSystem.Visible = false;
+            waterSplash.SpriteParticleSystem.Visible = false;
         }
         
     }
