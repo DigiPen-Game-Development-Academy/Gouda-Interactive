@@ -89,6 +89,9 @@ Level =
 			string UIArchetype = "554cea0f94af6dc4:Space",
 			bool ReloadIfSameLevel = true,
 		},
+		ItemManager = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -404,6 +407,7 @@ Level =
 		Health = 
 		{
 			float MaxHealth = 10,
+			bool IsInvincible = false,
 		},
 		BoxCollider = 
 		{
