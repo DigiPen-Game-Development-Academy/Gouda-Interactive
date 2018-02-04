@@ -1,0 +1,27 @@
+Items:
+x = Not Complete
+/ = Complete
+
+Pistol Ammo -------- x
+Shotgun Ammo ------- x
+Minigun Ammo ------- x
+Sniper Ammo -------- x
+Pistol ------------- /
+Shotgun ------------ /
+Minigun ------------ /
+Sniper ------------- /
+Revolver ----------- /
+Gouda Cheese ------- /
+Rock --------------- /
+Boulder ------------ /
+Iron Ore ----------- /
+Iron --------------- /
+Gold --------------- /
+Wood --------------- x
+Stick -------------- /
+Meat --------------- /
+Cooked Meat -------- x
+Leather ------------ /
+Green Been? Beens? - /
+Water Bottle Empty - x
+Water Bottle Full -- x
