@@ -6,7 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Slot19",
+		string Name = "Slot20H",
+	},
+	Archetyped = 
+	{
+		string Name = "5a3b64c28d512b65:InventoryHUDSlotHBOH",
 	},
 	Transform = 
 	{
@@ -20,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 1, 1, 0.75],
+		Vec4 Color = [0.466666698, 0.466666698, 0.466666698, 0.75],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",

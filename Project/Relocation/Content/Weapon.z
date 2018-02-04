@@ -20,6 +20,7 @@ class Weapon {
     var Cooldown : Real = 0.0;
     var CurrCooldown : Real = 0.0;
     var BatteryLife : Real = 0.0;
+    var ReloadTime : Real = 3.0;
     
     var BulletSpeed : Real = 5.0;
     var Accuracy : Real = 0.0;
@@ -133,7 +134,8 @@ class Weapon {
                     if(inv.CheckForItem(this.AmmoTypeID)) {
                         this.RefillAmmo();
                         inv.RemoveItem(this.AmmoTypeID);
-                        this.CurrCooldown = 3;
+                        this.CurrCooldown = this.ReloadTime;
+                        
                         // PLAY 3 SECOND RELOADING SOUND
                     }
                     
@@ -216,7 +218,7 @@ class WeaponManager : ZilchComponent {
         this.WeaponShotgun.SetMaxAmmoAmount(12);
         this.WeaponBoulder.SetMaxAmmoAmount(1);
         
-        this.WeaponMinigun.SetMaxAmmoAmount(100);
+        this.WeaponMinigun.SetMaxAmmoAmount(350);
         this.WeaponSniper.SetMaxAmmoAmount(4);
         this.WeaponGouda.SetMaxAmmoAmount(1);
         
@@ -231,6 +233,11 @@ class WeaponManager : ZilchComponent {
         this.WeaponMinigun.SetAmmoType(11);
         this.WeaponSniper.SetAmmoType(13);
         this.WeaponGouda.SetAmmoType(8);
+        
+        // SET RELOAD TIME
+        this.WeaponRock.ReloadTime = 0;
+        this.WeaponBoulder.ReloadTime = 0;
+        this.WeaponGouda.ReloadTime = 0;
         
         // SET BULLET SPAWN LOCATION
         //this.WeaponPistol.SetBulletSpawnPosition(0.45);

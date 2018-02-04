@@ -74,20 +74,20 @@ class ItemManager : ZilchComponent {
         this.Items.Push(new Item("ItemDropDefault",         56, false));
         
         this.Items[00].SetRecognizableName("");
-        this.Items[01].SetRecognizableName("Pistol");
-        this.Items[02].SetRecognizableName("Revolver");
+        this.Items[01].SetRecognizableName("Undecided (Pistol)");
+        this.Items[02].SetRecognizableName("Undecided (Revolver)");
         this.Items[03].SetRecognizableName("Rock");
-        this.Items[04].SetRecognizableName("Shotgun");
+        this.Items[04].SetRecognizableName("Undecided (Shotgun)");
         this.Items[05].SetRecognizableName("Boulder");
-        this.Items[06].SetRecognizableName("Minigun");
-        this.Items[07].SetRecognizableName("Sniper");
+        this.Items[06].SetRecognizableName("L134D (Minigun)");
+        this.Items[07].SetRecognizableName("Undecided (Sniper Rifle)");
         this.Items[08].SetRecognizableName("Gouda Cheese");
-        this.Items[09].SetRecognizableName("Pistol Ammunition");
-        this.Items[10].SetRecognizableName("Shotgun Ammunition");
-        this.Items[11].SetRecognizableName("Minigun Ammunition");
-        this.Items[12].SetRecognizableName("Assault Ammunition");
-        this.Items[13].SetRecognizableName("Sniper Ammunition");
-        this.Items[14].SetRecognizableName("Health Pack Ammunition");
+        this.Items[09].SetRecognizableName("Ammunition (Pistol)");
+        this.Items[10].SetRecognizableName("Ammunition (Shotgun)");
+        this.Items[11].SetRecognizableName("Ammunition (Minigun)");
+        this.Items[12].SetRecognizableName("Ammunition (Assault Rifle)");
+        this.Items[13].SetRecognizableName("Ammunition (Sniper Rifle)");
+        this.Items[14].SetRecognizableName("Health Pack");
         this.Items[15].SetRecognizableName("placeholder");
         this.Items[16].SetRecognizableName("dropdefault");
         
