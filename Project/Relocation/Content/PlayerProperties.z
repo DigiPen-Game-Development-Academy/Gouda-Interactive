@@ -5,6 +5,7 @@ class PlayerProperties : ZilchComponent {
     
     [Property] var PlayerName : String = "Astronaut Zero";
     [Property] var PlayerSkin : Integer = 0;
+    [Property] var SpawnPosition : Real3 = Real3(0);
     [Property] var IsInWater : Boolean = false;
     
     var HasMadeWaterGhost : Boolean = false;
@@ -19,6 +20,8 @@ class PlayerProperties : ZilchComponent {
         
         this.SetUsername(this.PlayerName);
         this.SetSkin(this.PlayerSkin);
+        
+        this.Owner.Transform.WorldTranslation = this.SpawnPosition;
         
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
