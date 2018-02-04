@@ -1,0 +1,158 @@
+// Object data:
+/*
+
+Selection selection = 
+{
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 1,
+		},
+		Named = 
+		{
+			string Name = "TileMap",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, -1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		MultiSprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		},
+		TileMap = 
+		{
+			string SourceName = "5a22f2620c809f35:Level_TileMap01",
+			string PaletteName = "5a312416ce0cf08e:BlackWhite",
+			float UnitsPerTile = 1,
+			float MeshThickness = 1.20000005,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 2,
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-5, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		DestroyOnClick = 
+		{
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 3,
+		},
+		Named = 
+		{
+			string Name = "TileMap",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		MultiSprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		},
+		TileMap = 
+		{
+			string SourceName = "5a22f48fffdd5332:Level_TileMap00",
+			string PaletteName = "5a312416ce0cf08e:BlackWhite",
+			float UnitsPerTile = 1,
+			float MeshThickness = 1.20000005,
+		},
+		DestroyChildrenOnClick = 
+		{
+		},
+	},
+},
+
+*/
+
+class DestroyChildrenOnClick : ZilchComponent
+{
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+  }
+  function OnAllObjectsInitialized(event : CogInitializerEvent) {
+    foreach (var child in this.Owner.Children) {
+      child.AddComponentByName(typeid(Reactive).Name);
+      child.AddComponentByName(typeid(DestroyOnClick).Name);
+      // Either this or calling Initialize() on each child is required, because tile objects
+      // don't get their Initialize() called.
+      Zero.Connect(this.Space, Events.MouseUpdate, child.DestroyOnClick.OnMouseUpdate);
+    }
+  }
+}
+
+class DestroyOnClick : ZilchComponent
+{
+  function Initialize(init : CogInitializer) {
+    // This won't happen on tile objects unless you call their initialize manually
+    Zero.Connect(this.Space, Events.MouseUpdate, this.OnMouseUpdate);
+    // Notice that this doesn't happen for tiles, but it happens for standalone objects
+    Console.WriteLine("Hello???");
+  }
+  [Extension(typeid(Real))] function InRange(center : Real, width : Real) : Boolean {
+    return this.X >= center - Math.Abs(width / 2) && this.X <= center + Math.Abs(width / 2);
+  }
+  function OnMouseUpdate(event : ViewportMouseEvent) {
+    if (event.IsButtonDown(MouseButtons.Left)) {
+      var pos = this.Owner.Transform.WorldTranslation;
+      var size = this.Owner.Transform.WorldScale;
+      var mouse = event.ToWorldZPlane(pos.Z).XY;
+      if (mouse.X.InRange(pos.X, size.X) && mouse.Y.InRange(pos.Y, size.Y)) {
+        this.Owner.Destroy();
+      }
+    }
+  }
+}
