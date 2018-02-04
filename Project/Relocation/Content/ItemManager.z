@@ -3,29 +3,32 @@
 
 class Item {
     
-    var ItemID : Integer = 0;
-    
     var ItemName : String = "item.Undefined.name";
+    var ItemRecognizableNameBase : String = "Undefined Item";
     var ItemRecognizableName : String = "Undefined Item";
     var ItemType : String = "Item";
     
+    var ItemID : Integer = 0;
+    
+    var ShowID : Boolean = false;
+    
     var Sprite : SpriteSource = SpriteSource.MissingTexture;
     
-    constructor(itemName : String, itemID : Integer) {
+    constructor(itemName : String) {
         
         this.ItemName = itemName;
-        this.ItemRecognizableName = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
-        this.ItemID = itemID;
+        this.ItemRecognizableNameBase = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
+        this.ItemRecognizableName = this.ItemRecognizableNameBase;
         
         this.Sprite = SpriteSource.Find(this.ItemName);
         
     }
     
-    constructor(itemName : String, itemID : Integer, useNameAsSpriteSource : Boolean) {
+    constructor(itemName : String, useNameAsSpriteSource : Boolean) {
         
         this.ItemName = itemName;
-        this.ItemRecognizableName = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
-        this.ItemID = itemID;
+        this.ItemRecognizableNameBase = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
+        this.ItemRecognizableName = this.ItemRecognizableNameBase;
         
         if(useNameAsSpriteSource) {
             this.Sprite = SpriteSource.Find(this.ItemName);
@@ -37,12 +40,39 @@ class Item {
         this.Sprite = SpriteSource.Find(sprite);
     }
     
-    function SetRecognizableName(name : String) {
-        this.ItemRecognizableName = name;
+    function SetRecognizableName(id : Integer, name : String) : Integer {
+        this.ItemRecognizableNameBase = name;
+        this.ShowLabelID(this.ItemID, this.ShowID);
+        ++id;
+        return id;
     }
     
-    function SetItemType(type : String) {
+    function SetItemType(id : Integer, type : String) : Integer {
         this.ItemType = type;
+        ++id;
+        return id;
+    }
+    
+    function SetID(id : Integer) : Integer {
+        this.ItemID = id;
+        ++id;
+        return id;
+    }
+    
+    function ShowLabelID(id : Integer, showID : Boolean) : Integer {
+        
+        this.ShowID = showID;
+        
+        if(showID && this.ItemRecognizableNameBase != "") {
+            this.ItemRecognizableName = String.Concatenate(this.ItemRecognizableNameBase, " [ID #`this.ItemID`]");
+        } else {
+            this.ItemRecognizableName = this.ItemRecognizableNameBase;
+        }
+        
+        ++id;
+        
+        return id;
+        
     }
     
 }
@@ -50,76 +80,85 @@ class Item {
 class ItemManager : ZilchComponent {
     
     var Items : Array[Item] = null;
+    var ID : Integer = 0;
     
     function Initialize(init : CogInitializer) {
         
         this.Items = new Array[Item]();
         
-        this.Items.Push(new Item("Circle",                  00, true));
-        this.Items.Push(new Item("ItemPistol",              01, true));
-        this.Items.Push(new Item("ItemRevolver",            02, false));
-        this.Items.Push(new Item("ItemRock",                03, true));
-        this.Items.Push(new Item("ItemShotgun",             04, true));
-        this.Items.Push(new Item("ItemBoulder",             05, true));
-        this.Items.Push(new Item("ItemMinigun",             06, true));
-        this.Items.Push(new Item("ItemSniper",              07, true));
-        this.Items.Push(new Item("ItemGouda",               08, true));
-        this.Items.Push(new Item("ItemAmmunitionPistol",    49, false));
-        this.Items.Push(new Item("ItemAmmunitionShotgun",   50, false));
-        this.Items.Push(new Item("ItemAmmunitionMinigun",   51, false));
-        this.Items.Push(new Item("ItemAmmunitionAssault",   52, false));
-        this.Items.Push(new Item("ItemAmmunitionSniper",    53, false));
-        this.Items.Push(new Item("ItemHealthPack",          54, false));
-        this.Items.Push(new Item("ItemIronOre",             55, false));
-        this.Items.Push(new Item("ItemIron",                56, false));
-        this.Items.Push(new Item("ItemCopperOre",           57, false));
-        this.Items.Push(new Item("ItemCopper",              58, false));
-        this.Items.Push(new Item("ItemGoldOre",             59, false));
-        this.Items.Push(new Item("ItemGold",                60, false));
+        this.Items.Push(new Item("Circle",              true));
+        this.Items.Push(new Item("ItemPistol",          true));
+        this.Items.Push(new Item("ItemRevolver",        false));
+        this.Items.Push(new Item("ItemRock",            true));
+        this.Items.Push(new Item("ItemShotgun",         true));
+        this.Items.Push(new Item("ItemBoulder",         true));
+        this.Items.Push(new Item("ItemMinigun",         true));
+        this.Items.Push(new Item("ItemSniper",          true));
+        this.Items.Push(new Item("ItemGouda",           true));
+        this.Items.Push(new Item("ItemAmmoPistol",      true));
+        this.Items.Push(new Item("ItemAmmoShotgun",     true));
+        this.Items.Push(new Item("ItemAmmoMinigun",     true));
+        this.Items.Push(new Item("ItemAmmoAssault",     false));
+        this.Items.Push(new Item("ItemAmmoSniper",      true));
+        this.Items.Push(new Item("ItemHealthPack",      false));
+        this.Items.Push(new Item("ItemIronOre",         true));
+        this.Items.Push(new Item("ItemIron",            true));
+        this.Items.Push(new Item("ItemCopperOre",       false));
+        this.Items.Push(new Item("ItemCopper",          false));
+        this.Items.Push(new Item("ItemGoldOre",         false));
+        this.Items.Push(new Item("ItemGold",            true));
         
-        this.Items[00].SetRecognizableName("");
-        this.Items[01].SetRecognizableName("hold on a sec (Pistol)");
-        this.Items[02].SetRecognizableName("Undecided (Revolver)");
-        this.Items[03].SetRecognizableName("Rock");
-        this.Items[04].SetRecognizableName("Undecided (Shotgun)");
-        this.Items[05].SetRecognizableName("Boulder");
-        this.Items[06].SetRecognizableName("L134 Devastator (Minigun)");
-        this.Items[07].SetRecognizableName("Undecided (Sniper Rifle)");
-        this.Items[08].SetRecognizableName("Gouda Cheese");
-        this.Items[09].SetRecognizableName("Ammunition (Pistol)");
-        this.Items[10].SetRecognizableName("Ammunition (Shotgun)");
-        this.Items[11].SetRecognizableName("Ammunition (Minigun)");
-        this.Items[12].SetRecognizableName("Ammunition (Assault Rifle)");
-        this.Items[13].SetRecognizableName("Ammunition (Sniper Rifle)");
-        this.Items[14].SetRecognizableName("Health Pack");
-        this.Items[15].SetRecognizableName("Iron (Unprocessed)");
-        this.Items[16].SetRecognizableName("Iron (Processed)");
-        this.Items[17].SetRecognizableName("Copper (Unprocessed)");
-        this.Items[18].SetRecognizableName("Copper (Processed)");
-        this.Items[19].SetRecognizableName("Gold (Unprocessed)");
-        this.Items[20].SetRecognizableName("Gold (Processed)");
+        this.GiveItemsID();
         
-        this.Items[00].SetItemType("Item");
-        this.Items[01].SetItemType("Weapon");
-        this.Items[02].SetItemType("Weapon");
-        this.Items[03].SetItemType("Weapon");
-        this.Items[04].SetItemType("Weapon");
-        this.Items[05].SetItemType("Weapon");
-        this.Items[06].SetItemType("Weapon");
-        this.Items[07].SetItemType("Weapon");
-        this.Items[08].SetItemType("Weapon");
-        this.Items[09].SetItemType("Item");
-        this.Items[10].SetItemType("Item");
-        this.Items[11].SetItemType("Item");
-        this.Items[12].SetItemType("Item");
-        this.Items[13].SetItemType("Item");
-        this.Items[14].SetItemType("Item");
-        this.Items[15].SetItemType("Item");
-        this.Items[16].SetItemType("Item");
-        this.Items[17].SetItemType("Item");
-        this.Items[18].SetItemType("Item");
-        this.Items[19].SetItemType("Item");
-        this.Items[20].SetItemType("Item");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "hold on a sec (Pistol)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Revolver)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Rock");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Shotgun)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Boulder");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "L134 Devastator (Minigun)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Sniper Rifle)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Gouda Cheese");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Pistol)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Shotgun)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Minigun)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Assault Rifle)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Sniper Rifle)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Health Pack");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Iron (Unprocessed)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Iron (Processed)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Copper (Unprocessed)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Copper (Processed)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Gold (Unprocessed)");
+        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Gold (Processed)");
+        
+        this.ID = 0;
+        
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AIR
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // PISTOL
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // REVOLVER
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // ROCK
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // SHOTGUN
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // BOULDER
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // MINIGUN
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // SNIPER RIFLE
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // GOUDA CHEESE
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (PISTOL)
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SHOTGUN)
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (MINIGUN)
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (ASSAULT RIFLE)
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SNIPER RIFLE)
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // HEALTH PACK
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // IRON ORE
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // IRON
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // COPPER ORE
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // COPPER
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // GOLD ORE
+        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // GOLD
+        
+        this.ID = 0;
+        
+        this.ShowItemIDs(true);
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -127,6 +166,21 @@ class ItemManager : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
+    }
+    
+    function GiveItemsID() {
+        this.ID = 0;
+        while(this.ID < this.Items.Count)
+            this.ID = this.Items[this.ID].SetID(this.ID);
+        Console.WriteLine("`this.ID` items successfully created");
+        this.ID = 0;
+    }
+    
+    function ShowItemIDs(showIDs : Boolean) {
+        this.ID = 0;
+        while(this.ID < this.Items.Count)
+            this.ID = this.Items[this.ID].ShowLabelID(this.ID, showIDs);
+        this.ID = 0;
     }
     
 }
