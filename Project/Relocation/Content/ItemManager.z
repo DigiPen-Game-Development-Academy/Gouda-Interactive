@@ -70,8 +70,12 @@ class ItemManager : ZilchComponent {
         this.Items.Push(new Item("ItemAmmunitionAssault",   52, false));
         this.Items.Push(new Item("ItemAmmunitionSniper",    53, false));
         this.Items.Push(new Item("ItemHealthPack",          54, false));
-        this.Items.Push(new Item("ItemPlaceholder",         55, false));
-        this.Items.Push(new Item("ItemDropDefault",         56, false));
+        this.Items.Push(new Item("ItemIronOre",             55, false));
+        this.Items.Push(new Item("ItemIron",                56, false));
+        this.Items.Push(new Item("ItemCopperOre",           57, false));
+        this.Items.Push(new Item("ItemCopper",              58, false));
+        this.Items.Push(new Item("ItemGoldOre",             59, false));
+        this.Items.Push(new Item("ItemGold",                60, false));
         
         this.Items[00].SetRecognizableName("");
         this.Items[01].SetRecognizableName("hold on a sec (Pistol)");
@@ -88,8 +92,12 @@ class ItemManager : ZilchComponent {
         this.Items[12].SetRecognizableName("Ammunition (Assault Rifle)");
         this.Items[13].SetRecognizableName("Ammunition (Sniper Rifle)");
         this.Items[14].SetRecognizableName("Health Pack");
-        this.Items[15].SetRecognizableName("placeholder");
-        this.Items[16].SetRecognizableName("dropdefault");
+        this.Items[15].SetRecognizableName("Iron (Unprocessed)");
+        this.Items[16].SetRecognizableName("Iron (Processed)");
+        this.Items[17].SetRecognizableName("Copper (Unprocessed)");
+        this.Items[18].SetRecognizableName("Copper (Processed)");
+        this.Items[19].SetRecognizableName("Gold (Unprocessed)");
+        this.Items[20].SetRecognizableName("Gold (Processed)");
         
         this.Items[00].SetItemType("Item");
         this.Items[01].SetItemType("Weapon");
@@ -108,6 +116,10 @@ class ItemManager : ZilchComponent {
         this.Items[14].SetItemType("Item");
         this.Items[15].SetItemType("Item");
         this.Items[16].SetItemType("Item");
+        this.Items[17].SetItemType("Item");
+        this.Items[18].SetItemType("Item");
+        this.Items[19].SetItemType("Item");
+        this.Items[20].SetItemType("Item");
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
