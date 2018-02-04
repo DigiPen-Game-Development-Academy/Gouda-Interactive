@@ -264,9 +264,9 @@ class Movement : ZilchComponent {
             if(this.Owner.Sprite.CurrentFrame < this.StartFrame) {
                 this.Owner.Sprite.AnimationSpeed = 10;
             } else if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-                this.Owner.Sprite.AnimationSpeed = 1;
+                this.Owner.Sprite.AnimationSpeed = 1.5;
             } else {
-                this.Owner.Sprite.AnimationSpeed = 0.7;
+                this.Owner.Sprite.AnimationSpeed = 1.25;
             }
             
             if(this.Owner.Sprite.CurrentFrame >= this.EndFrame) {
