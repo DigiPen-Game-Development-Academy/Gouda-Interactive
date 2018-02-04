@@ -6,7 +6,7 @@ class PlayerProperties : ZilchComponent {
     [Property] var PlayerName : String = "Astronaut Zero";
     [Property] var PlayerSkin : Integer = 0;
     
-    var SkinCount : Integer = 1;
+    var SkinCount : Integer = 5;
     
     var UISpace : Space = null;
     
@@ -43,12 +43,42 @@ class PlayerProperties : ZilchComponent {
             this.Owner.Sprite.Color = Real4(1.0);
             this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.Color = Real4(1.0);
             this.Owner.Sprite.BlendMode = BlendMode.Alpha;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.BlendMode = BlendMode.Alpha;
         } else if(skinID == 1) {
             this.Owner.Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
             this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
             this.Owner.Sprite.Color = Real4(1.0);
             this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.Color = Real4(1.0);
             this.Owner.Sprite.BlendMode = BlendMode.Alpha;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.BlendMode = BlendMode.Alpha;
+        } else if(skinID == 2) {
+            this.Owner.Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.Owner.Sprite.Color = Real4(1.0, 0.0, 0.0, 1.0);
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.Color = Real4(1.0, 0.0, 0.0, 1.0);
+            this.Owner.Sprite.BlendMode = BlendMode.Alpha;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.BlendMode = BlendMode.Alpha;
+        } else if(skinID == 3) {
+            this.Owner.Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.Owner.Sprite.Color = Real4(0.0, 1.0, 0.0, 1.0);
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.Color = Real4(0.0, 1.0, 0.0, 1.0);
+            this.Owner.Sprite.BlendMode = BlendMode.Alpha;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.BlendMode = BlendMode.Alpha;
+        } else if(skinID == 4) {
+            this.Owner.Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.Owner.Sprite.Color = Real4(1.0, 0.7, 0.0, 1.0);
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.Color = Real4(1.0, 0.7, 0.0, 1.0);
+            this.Owner.Sprite.BlendMode = BlendMode.Alpha;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.BlendMode = BlendMode.Alpha;
+        } else if(skinID == 5) {
+            this.Owner.Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.SpriteSource = SpriteSource.EntityPlayerWhite;
+            this.Owner.Sprite.Color = Real4(1.0);
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.Color = Real4(1.0);
+            this.Owner.Sprite.BlendMode = BlendMode.Additive;
+            this.UISpace.FindObjectByName("InventoryPlayerPreview").Sprite.BlendMode = BlendMode.Additive;
         }
         
     }
