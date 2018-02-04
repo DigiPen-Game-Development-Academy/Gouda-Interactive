@@ -1,0 +1,43 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
+class CaveEnteranceExit : ZilchComponent
+{
+    [Property] var CaveEnterance : Boolean = true;
+    [Property] var DistanceAwayFromOtherSide : Real3;
+    
+    var SurfaceLevel : Level = Level.Find("MylesSandbox");
+    
+    [Property] var CaveLevel : Level = Level.Find("CaveLevel");
+    [Property] var SpaceArchytype : Archetype = Archetype.Space;
+    var CaveSpace : Space = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.GoToFromCave);
+    }
+
+    function GoToFromCave(event : CollisionEvent)
+    {
+        if (event.OtherObject.Name != "EntityPlayer")
+            return;
+        
+        if (this.CaveEnterance == true)
+        {
+            this.CaveSpace = this.GameSession.CreateNamedSpace("CaveSpace", this.SpaceArchytype);
+            
+            this.CaveSpace.LoadLevel(this.CaveLevel);
+            
+            this.CaveSpace.FindObjectByName("EntityPlayer").Transform.Translation = this.DistanceAwayFromOtherSide + this.Owner.Transform.Translation;
+            
+            this.LevelSettings.UICreator.UISpace.Destroy();
+            
+            this.Space.Destroy();
+        }
+        else
+        {
+        }
+        
+        
+    }
+}

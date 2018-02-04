@@ -109,7 +109,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.47471142, 5.09295464, 50],
+			Vec3 Translation = [-1.94402051, 5.09295464, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -129,7 +129,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-4.47471142, 5.09295464, 5.05497333e-08],
+			Vec3 LookTarget = [-1.94402051, 5.09295464, 5.05497333e-08],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -221,6 +221,7 @@ Level =
 		{
 			string PlayerName = "Astronaut Zero",
 			int PlayerSkin = 0,
+			bool IsInWater = false,
 		},
 		Hierarchy = 
 		{
@@ -693,7 +694,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.29629588, 7.86303902, 5.05497333e-08],
+			Vec3 Translation = [-1.83644462, 7.97061491, 5.05497333e-08],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -715,10 +716,6 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
-		CaveEnterance = 
-		{
-			bool CaveEnterance = true,
-		},
 		BoxCollider = 
 		{
 			bool Ghost = false,
@@ -728,6 +725,13 @@ Level =
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		CaveEnteranceExit = 
+		{
+			bool CaveEnterance = true,
+			Vec3 DistanceAwayFromOtherSide = [0, 0, 0],
+			string CaveLevel = "5a25f27a75690dbb:CaveLevel",
+			string SpaceArchytype = "554cea0f94af6dc4:Space",
 		},
 	},
 },
