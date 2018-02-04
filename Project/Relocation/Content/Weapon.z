@@ -6,12 +6,16 @@ class Weapon {
     var Space : Space;
     
     var ItemName : String = "WeaponUndefined";
+    var AmmoTypeID : Integer = 0;
     var ItemID : Integer = 0;
     var ItemTier : Integer = 1;
     
+    var MaxAmmo : Integer = -1;
+    var CurrentAmmo : Integer = -1;
+    
     var IsRanged : Boolean = false;
-    var IsUnlocked : Boolean = false;
     var IsShotgun : Boolean = false;
+    var IsLoaded : Boolean = true;
     
     var Cooldown : Real = 0.0;
     var CurrCooldown : Real = 0.0;
@@ -56,6 +60,19 @@ class Weapon {
         this.BulletSpawnLocation = Real3(pos.X, pos.Y, -0.05);
     }
     
+    function SetMaxAmmoAmount(amount : Integer) {
+        this.MaxAmmo = amount;
+        this.CurrentAmmo = amount;
+    }
+    
+    function SetAmmoType(type : Integer) {
+        this.AmmoTypeID = type;
+    }
+    
+    function RefillAmmo() {
+        this.CurrentAmmo = this.MaxAmmo;
+    }
+    
     function UseWeapon() {
         
         if(this.IsRanged) {
@@ -85,6 +102,10 @@ class Weapon {
                 
             }
             
+            if(this.MaxAmmo != -1) {
+                --this.CurrentAmmo;
+            }
+            
         } else {
             // MELEE
         }
@@ -98,9 +119,26 @@ class Weapon {
         //uiSpace.FindObjectByName("Slot20").Sprite.StartFrame = 1;
         
         if(this.CurrCooldown <= 0.0) {
-            if(Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
+            if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && (this.CurrentAmmo > 0 || this.CurrentAmmo == -1)) {
                 this.CurrCooldown = this.Cooldown;
                 this.UseWeapon();
+            } else if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.CurrentAmmo <= 0 && this.CurrentAmmo != -1) {
+                
+                // PLAY OUT OF AMMO SOUND
+                
+                if(this.Space.FindObjectByName("EntityPlayer").Inventory != null) {
+                    
+                    var inv = this.Space.FindObjectByName("EntityPlayer").Inventory;
+                    
+                    if(inv.CheckForItem(this.AmmoTypeID)) {
+                        this.RefillAmmo();
+                        inv.RemoveItem(this.AmmoTypeID);
+                        this.CurrCooldown = 3;
+                        // PLAY 3 SECOND RELOADING SOUND
+                    }
+                    
+                }
+                
             }
         } else {
             this.CurrCooldown -= dt;
@@ -169,6 +207,30 @@ class WeaponManager : ZilchComponent {
         this.WeaponMinigun.SetAccuracy(0.6);
         this.WeaponSniper.SetAccuracy(0.05);
         this.WeaponGouda.SetAccuracy(0.25);
+        
+        // SET AMMO AMOUNT
+        this.WeaponPistol.SetMaxAmmoAmount(-1);
+        this.WeaponRevolver.SetMaxAmmoAmount(6);
+        this.WeaponRock.SetMaxAmmoAmount(1);
+        
+        this.WeaponShotgun.SetMaxAmmoAmount(12);
+        this.WeaponBoulder.SetMaxAmmoAmount(1);
+        
+        this.WeaponMinigun.SetMaxAmmoAmount(100);
+        this.WeaponSniper.SetMaxAmmoAmount(4);
+        this.WeaponGouda.SetMaxAmmoAmount(1);
+        
+        // SET AMMO TYPE
+        this.WeaponPistol.SetAmmoType(9);
+        this.WeaponRevolver.SetAmmoType(9);
+        this.WeaponRock.SetAmmoType(3);
+        
+        this.WeaponShotgun.SetAmmoType(10);
+        this.WeaponBoulder.SetAmmoType(5);
+        
+        this.WeaponMinigun.SetAmmoType(11);
+        this.WeaponSniper.SetAmmoType(13);
+        this.WeaponGouda.SetAmmoType(8);
         
         // SET BULLET SPAWN LOCATION
         //this.WeaponPistol.SetBulletSpawnPosition(0.45);

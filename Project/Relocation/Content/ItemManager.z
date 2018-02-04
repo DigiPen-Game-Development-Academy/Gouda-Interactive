@@ -55,23 +55,23 @@ class ItemManager : ZilchComponent {
         
         this.Items = new Array[Item]();
         
-        this.Items.Push(new Item("Circle",          00, true));
-        this.Items.Push(new Item("ItemPistol",      01, true));
-        this.Items.Push(new Item("ItemRevolver",    02, false));
-        this.Items.Push(new Item("ItemRock",        03, true));
-        this.Items.Push(new Item("ItemShotgun",     04, true));
-        this.Items.Push(new Item("ItemBoulder",     05, true));
-        this.Items.Push(new Item("ItemMinigun",     06, true));
-        this.Items.Push(new Item("ItemSniper",      07, true));
-        this.Items.Push(new Item("ItemGouda",       08, true));
-        this.Items.Push(new Item("ItemAmmunition",  49, false));
-        this.Items.Push(new Item("ItemHealthPack",  50, false));
-        this.Items.Push(new Item("ItemPlaceholder", 51, false));
-        this.Items.Push(new Item("ItemPlaceholder", 52, false));
-        this.Items.Push(new Item("ItemPlaceholder", 53, false));
-        this.Items.Push(new Item("ItemPlaceholder", 54, false));
-        this.Items.Push(new Item("ItemPlaceholder", 55, false));
-        this.Items.Push(new Item("ItemDropDefault", 56, false));
+        this.Items.Push(new Item("Circle",                  00, true));
+        this.Items.Push(new Item("ItemPistol",              01, true));
+        this.Items.Push(new Item("ItemRevolver",            02, false));
+        this.Items.Push(new Item("ItemRock",                03, true));
+        this.Items.Push(new Item("ItemShotgun",             04, true));
+        this.Items.Push(new Item("ItemBoulder",             05, true));
+        this.Items.Push(new Item("ItemMinigun",             06, true));
+        this.Items.Push(new Item("ItemSniper",              07, true));
+        this.Items.Push(new Item("ItemGouda",               08, true));
+        this.Items.Push(new Item("ItemAmmunitionPistol",    49, false));
+        this.Items.Push(new Item("ItemAmmunitionShotgun",   50, false));
+        this.Items.Push(new Item("ItemAmmunitionMinigun",   51, false));
+        this.Items.Push(new Item("ItemAmmunitionAssault",   52, false));
+        this.Items.Push(new Item("ItemAmmunitionSniper",    53, false));
+        this.Items.Push(new Item("ItemHealthPack",          54, false));
+        this.Items.Push(new Item("ItemPlaceholder",         55, false));
+        this.Items.Push(new Item("ItemDropDefault",         56, false));
         
         this.Items[00].SetRecognizableName("");
         this.Items[01].SetRecognizableName("Pistol");
@@ -82,8 +82,14 @@ class ItemManager : ZilchComponent {
         this.Items[06].SetRecognizableName("Minigun");
         this.Items[07].SetRecognizableName("Sniper");
         this.Items[08].SetRecognizableName("Gouda Cheese");
-        this.Items[09].SetRecognizableName("Weapon Ammunition");
-        this.Items[10].SetRecognizableName("Health Pack");
+        this.Items[09].SetRecognizableName("Pistol Ammunition");
+        this.Items[10].SetRecognizableName("Shotgun Ammunition");
+        this.Items[11].SetRecognizableName("Minigun Ammunition");
+        this.Items[12].SetRecognizableName("Assault Ammunition");
+        this.Items[13].SetRecognizableName("Sniper Ammunition");
+        this.Items[14].SetRecognizableName("Health Pack Ammunition");
+        this.Items[15].SetRecognizableName("placeholder");
+        this.Items[16].SetRecognizableName("dropdefault");
         
         this.Items[00].SetItemType("Item");
         this.Items[01].SetItemType("Weapon");
