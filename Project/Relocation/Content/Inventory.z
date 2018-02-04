@@ -208,7 +208,7 @@ class Inventory : ZilchComponent {
                 itemTooltip.SpriteText.Text = this.TooltipName;
                 itemTooltip.SpriteText.Color = Real4(1.0);
                 if(itemMgmt.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Weapon") {
-                    itemTooltip.SpriteText.Color = Real4(0.0, 0.0, 1.0, 1.0);
+                    itemTooltip.SpriteText.Color = Real4(0.1, 1.0, 0.1, 1.0);
                 }
                 this.UISpace.FindObjectByName("Slot21").FindChildByName("ItemName").SpriteText.Visible = true;
             }

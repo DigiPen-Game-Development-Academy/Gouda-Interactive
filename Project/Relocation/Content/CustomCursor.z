@@ -1,0 +1,19 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class CustomCursor : ZilchComponent {
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Space, Events.MouseMove, this.OnMouseMove);
+    }
+    
+    function OnMouseMove(event : ViewportMouseEvent) {
+        
+        var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 30.0);
+        
+        event.Mouse.Cursor = Cursor.Invisible;
+        this.Owner.Transform.WorldTranslation = mousePos;
+        
+    }
+    
+}
