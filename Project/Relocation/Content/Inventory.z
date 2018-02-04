@@ -72,11 +72,14 @@ class Inventory : ZilchComponent {
     
     function OpenCloseInventory(event : KeyboardEvent) {
         
-        if(event.Key == Keys.E && !this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
+        var commandScreenCapture = this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys;
+        var playerNameScreenCapture = this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("TextEntry").TextEntry.CaptureKeys;
+        
+        if(event.Key == Keys.E && !commandScreenCapture && !playerNameScreenCapture) {
             this.ToggleInventory();
         }
         
-        if(event.Key == Keys.Escape && !this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys && this.InventoryOpen) {
+        if(event.Key == Keys.Escape && !commandScreenCapture && !playerNameScreenCapture && this.InventoryOpen) {
             this.Space.TimeSpace.Paused = false;
             this.InventoryOpen = false;
         }
