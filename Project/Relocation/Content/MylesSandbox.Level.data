@@ -111,7 +111,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.55625963, 5.06106615, 90],
+			Vec3 Translation = [10.2288647, 1010.00513, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -123,7 +123,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 27.2532139,
+			float Size = 59.9281502,
 		},
 		EditorCameraController = 
 		{
@@ -131,7 +131,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-2.55625963, 5.06106615, 40],
+			Vec3 LookTarget = [10.2288647, 1010.00513, 9.74266783e-08],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -254,7 +254,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 6,
+					uint Id = 2,
 				},
 				Named = 
 				{
@@ -274,7 +274,7 @@ Level =
 					float FieldOfView = 45,
 					float NearPlane = 0.5,
 					float FarPlane = 200,
-					float Size = 100,
+					float Size = 8,
 				},
 				SoundListener = 
 				{
@@ -286,7 +286,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 7,
+					uint Id = 6,
 				},
 				Named = 
 				{
@@ -363,7 +363,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 8,
+							uint Id = 7,
 						},
 						Named = 
 						{
@@ -443,7 +443,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 8,
 		},
 		Named = 
 		{
@@ -473,178 +473,16 @@ Level =
 		TileMap = 
 		{
 			string SourceName = "5a2bd46a4b2fc54d:MylesSandbox_TileMap10",
-			string PaletteName = "5a312416ce0cf08e:BlackWhite",
+			string PaletteName = "5a2bd7a818a68182:Tiles",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34f95863ed00f4:Tile2",
-		LinkId = 
-		{
-			uint Id = 10,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [18, 1000, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile2",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34f95c7c1a591f:Tile3",
-		LinkId = 
-		{
-			uint Id = 11,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [36, 1000, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile3",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34faa17f701526:Tile6",
-		LinkId = 
-		{
-			uint Id = 12,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [36, 982, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile6",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34faab7de10abc:Tile5",
-		LinkId = 
-		{
-			uint Id = 13,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [18, 982, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile5",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34f9517cbb3c0a:Tile4",
-		LinkId = 
-		{
-			uint Id = 14,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 982, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile4",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34fabf7833191b:Tile7",
-		LinkId = 
-		{
-			uint Id = 15,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 964, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile7",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34fab3795c76af:Tile8",
-		LinkId = 
-		{
-			uint Id = 16,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [18, 964, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile8",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34fab779d32384:Tile9",
-		LinkId = 
-		{
-			uint Id = 17,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [36, 964, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile9",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34faba7f9c9bdd:Start",
-		LinkId = 
-		{
-			uint Id = 18,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [54, 982, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Start",
 		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 19,
+			uint Id = 9,
 		},
 		Named = 
 		{
@@ -750,7 +588,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 20,
+					uint Id = 10,
 				},
 				Named = 
 				{
@@ -795,7 +633,7 @@ Level =
 		string Name = "5a393d4c514ebbee:HitBox",
 		LinkId = 
 		{
-			uint Id = 21,
+			uint Id = 11,
 		},
 		Transform = 
 		{
@@ -812,7 +650,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 22,
+			uint Id = 12,
 		},
 		Named = 
 		{
@@ -870,7 +708,7 @@ Level =
 		string Name = "5a240449292b4c0b:CaveEnteranceExit",
 		LinkId = 
 		{
-			uint Id = 23,
+			uint Id = 13,
 		},
 		Transform = 
 		{
@@ -887,7 +725,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 24,
+			uint Id = 14,
 		},
 		Named = 
 		{
