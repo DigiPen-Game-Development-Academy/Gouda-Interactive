@@ -105,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-8.44767475, -7.63078308, 11.2432985],
+			Vec3 Translation = [-0.520784318, 2.0953505, 46.6066284],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,15 +117,15 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 24.6597595,
+			float Size = 74.0819168,
 		},
 		EditorCameraController = 
 		{
 			ControlMode ControlMode = ZPlane,
-			float LookDistance = 13.6619482,
+			float LookDistance = 45.359108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-8.44767475, -7.63078308, -2.41864991],
+			Vec3 LookTarget = [-0.520784318, 2.0953505, 1.24752176],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -260,260 +260,267 @@ Level =
 			float MeshThickness = 1.20000005,
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5a3bcb07ddecc85a:BuildingHut",
 		LinkId = 
 		{
 			uint Id = 8,
 		},
-		Named = 
-		{
-			string Name = "Buildings",
-		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, -0.5],
+			Vec3 Translation = [-18, 12, 1],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Hierarchy = 
+		Named = 
 		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 9,
-				},
-				Named = 
-				{
-					string Name = "Huts",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 1, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Hierarchy = 
-				{
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 10,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-10, 6, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 11,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-10, -1, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 12,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-10, -8, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 13,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-20, 6, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 14,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-20, -1, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 15,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-20, -8, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 16,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-32, 6, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 17,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-32, -1, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 18,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-32, -8, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 19,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-26, -1, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 20,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-26, 6, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5a3bcb07ddecc85a:BuildingHut",
-						LinkId = 
-						{
-							uint Id = 21,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-26, -8, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "BuildingHut",
-						},
-					},
-				},
-			},
+			string Name = "BuildingHut",
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Named = 
+		{
+			string Name = "BuildingHut",
+		},
+		Archetyped = 
+		{
+			string Name = "5a3bcb07ddecc85a:BuildingHut",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-22.5, 12, 1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1.375, 1.375, 1.375],
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Named = 
+		{
+			string Name = "BuildingHut",
+		},
+		Archetyped = 
+		{
+			string Name = "5a3bcb07ddecc85a:BuildingHut",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-29, 12, 1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1.375, 1.375, 1.375],
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 11,
+		},
+		Named = 
+		{
+			string Name = "BuildingHut",
+		},
+		Archetyped = 
+		{
+			string Name = "5a3bcb07ddecc85a:BuildingHut",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-18, 7.5, 1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1.375, 1.375, 1.375],
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Named = 
+		{
+			string Name = "BuildingHut",
+		},
+		Archetyped = 
+		{
+			string Name = "5a3bcb07ddecc85a:BuildingHut",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-22.5, 7.5, 1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1.375, 1.375, 1.375],
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Named = 
+		{
+			string Name = "BuildingHut",
+		},
+		Archetyped = 
+		{
+			string Name = "5a3bcb07ddecc85a:BuildingHut",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-29, 7.5, 1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1.375, 1.375, 1.375],
 		},
 	},
 },
