@@ -6,6 +6,7 @@ class Inventory : ZilchComponent {
     var UISpace : Space = null;
     
     var InventoryOpen : Boolean = false;
+    var CraftingOpen : Boolean = false;
     var RightButtonDown : Boolean = false;
     
     var InventoryContents : Array[Integer];
@@ -51,7 +52,19 @@ class Inventory : ZilchComponent {
         if(this.InventoryOpen) {
             this.RefreshInventoryIcons();
             this.MouseSlot();
-            inventory.Transform.WorldTranslation = Real3(0, 0, 1);
+            
+            if(Zero.Keyboard.KeyIsPressed(Keys.C)) {
+                this.CraftingOpen = !this.CraftingOpen;
+            }
+            
+            if(!this.CraftingOpen) {
+                inventory.Transform.WorldTranslation = Real3(0, 0, 1);
+                inventory.FindChildByName("Crafting").Transform.WorldTranslation = Real3(0, 0, 50000);
+            } else {
+                inventory.Transform.WorldTranslation = Real3(4, 0, 1);
+                inventory.FindChildByName("Crafting").Transform.WorldTranslation = Real3(-10.75, 0, 1);
+            }
+            
         } else {
             
             if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0) {
