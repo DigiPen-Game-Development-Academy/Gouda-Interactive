@@ -7,8 +7,7 @@ class WorldGeneration : ZilchComponent
     
     var TileLocations : Array[Real3] = Array[Real3]();
     
-    [Property] var MapRadius : Real = 240.0;
-    [Property] var TileDiameter : Integer = 32;
+    [Property] var MapRadius : Real = 32.0;
     [Property] var MaxRadiusFromPlayer : Real = 64;
     
     var TileSpawnLocation : Real3;
@@ -61,7 +60,7 @@ class WorldGeneration : ZilchComponent
             else
                 this.TileToSpawn = Archetype.Find(this.Space.FindObjectByName("Tile`tileToSpawn`").ArchetypeName);
             
-            this.Space.CreateAtPosition(this.TileToSpawn, this.TileSpawnLocation);
+            this.Space.CreateAtPosition(Archetype.Tile1, this.TileSpawnLocation);
             
             this.TileLocations.Add(this.TileSpawnLocation);
             
@@ -77,6 +76,10 @@ class WorldGeneration : ZilchComponent
     {
         Console.WriteLine("Checking For Tile at Position: `position`");
         
+        var tileAtLocation = Array[Boolean]();
+        
+        //this.TileLocations.FindFirstIndex
+        
         if (this.TileLocations.Count == 0)
             return false;
         
@@ -84,18 +87,39 @@ class WorldGeneration : ZilchComponent
         {
             if (this.TileLocations[i].X == position.X && this.TileLocations[i].Y == position.Y)
             {
-                return true;
+                tileAtLocation.Add(true);
+            }
+            else
+            {
+                tileAtLocation.Add(false);
             }
         }
         
-        return false;
+        Console.WriteLine("Tile Locations:`this.TileLocations`");
+        
+        tileAtLocation.RemoveAll(true);
+        
+        Console.WriteLine("tileAtLocation: `tileAtLocation`, count: `tileAtLocation.Count`");
+        
+        Console.WriteLine("`tileAtLocation.Count`");
+        
+        if (tileAtLocation.Count > 0)
+        {
+            Console.WriteLine("--------------------false");
+            return false;
+        }
+        else
+        {
+            Console.WriteLine("--------------------true");
+            return true;
+        }
     }
     
     function MoveToNextTile()
     {
-        this.TileSpawnLocation += Real3(this.TileDiameter, 0.0, 0.0);
+        this.TileSpawnLocation += Real3(32.0, 0.0, 0.0);
         
         if (this.TileSpawnLocation.X > this.MapRadius)
-            this.TileSpawnLocation = Real3(-this.MapRadius, this.TileSpawnLocation.Y - this.TileDiameter, 0.0);
+            this.TileSpawnLocation = Real3(-this.MapRadius, this.TileSpawnLocation.Y - 32, 0.0);
     }
 }
