@@ -8,6 +8,7 @@ class WorldGeneration : ZilchComponent
     var TileLocations : Array[Real3] = Array[Real3]();
     
     [Property] var MapRadius : Real = 240.0;
+    [Property] var NumberOfTiles : Integer = 1;
     [Property] var TileDiameter : Integer = 32;
     [Property] var MaxRadiusFromPlayer : Real = 64;
     
@@ -54,12 +55,11 @@ class WorldGeneration : ZilchComponent
             Console.WriteLine("Checkpoint 3");
             
             var tileToSpawnGen = new Random();
-            var tileToSpawn = tileToSpawnGen.DieRoll(9);
+            var tileToSpawn = Math.Round(tileToSpawnGen.Range(1, this.NumberOfTiles));
             
-            if (this.TileSpawnLocation == Real3(0.0, 0.0, 0.0))
-                this.TileToSpawn = Archetype.Start;
-            else
-                this.TileToSpawn = Archetype.Find(this.Space.FindObjectByName("Tile`tileToSpawn`").ArchetypeName);
+            Console.WriteLine("TileToSpawn: `tileToSpawn`");
+            
+            this.TileToSpawn = Archetype.Find(this.Space.FindObjectByName("Tile`tileToSpawn`").ArchetypeName);
             
             this.Space.CreateAtPosition(this.TileToSpawn, this.TileSpawnLocation);
             

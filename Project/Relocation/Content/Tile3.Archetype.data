@@ -8,9 +8,13 @@ Cog =
 	{
 		string Name = "Tile3",
 	},
+	Archetyped = 
+	{
+		string Name = "5a34f95c7c1a591f:Tile3",
+	},
 	Transform = 
 	{
-		Vec3 Translation = [36, 1000, 0],
+		Vec3 Translation = [82, 1000, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -27,8 +31,8 @@ Cog =
 	},
 	TileMap = 
 	{
-		string SourceName = "5a34f95c7c665472:MylesSandbox_TileMap03",
-		string PaletteName = "5a312416ce0cf08e:BlackWhite",
+		string SourceName = "5a2bb6edcad4527a:MylesSandbox_TileMap23",
+		string PaletteName = "5a2bd7a818a68182:Tiles",
 		float UnitsPerTile = 1,
 		float MeshThickness = 1.20000005,
 	},
