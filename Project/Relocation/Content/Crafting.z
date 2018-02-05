@@ -1,0 +1,90 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class Crafting : ZilchComponent {
+    
+    var UISpace : Space = null;
+    
+    var ItemIron : Array[Integer] = null;
+    
+    var MaxItemsInRecipe : Integer = 3;
+     
+    function Initialize(init : CogInitializer) {
+        
+        this.ItemIron = this.CreateRecipe(
+            15, 0, 0,
+            1, 0, 0,
+            16
+        );
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.One)) {
+            this.UseRecipe(this.ItemIron, false);
+        }
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
+            Console.WriteLine("Inv: `this.Owner.Inventory.InventoryContents`");
+            Console.WriteLine("Cnt: `this.Owner.Inventory.InventoryContentsCount`");
+        }
+        
+    }
+    
+    function CreateRecipe(id1 : Integer, id2 : Integer, id3 : Integer, amt1 : Integer, amt2 : Integer, amt3 : Integer, item : Integer) : Array[Integer] {
+        
+        var array = new Array[Integer]();
+        
+        array.Push(id1);
+        array.Push(id2);
+        array.Push(id3);
+        
+        array.Push(amt1);
+        array.Push(amt2);
+        array.Push(amt3);
+        
+        array.Push(item);
+        
+        return array;
+        
+    }
+    
+    function CheckForResources(recipe : Array[Integer]) : Boolean {
+        
+        for(var i = 0; i < this.MaxItemsInRecipe - 1; ++i) {
+            if(this.Owner.Inventory.CheckForItems(recipe[i], recipe[i + this.MaxItemsInRecipe])) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+        
+        return true;
+        
+    }
+    
+    function UseRecipe(recipe : Array[Integer], useAllItems : Boolean) {
+        
+        var canCraft = false;
+        
+        if(this.CheckForResources(recipe)) {
+            canCraft = true;
+        } else {
+            Console.WriteLine("You do not have enough resources to craft this item.");
+            return;
+        }
+        
+        Console.WriteLine("canCraft = `canCraft`");
+        
+        for(var i = 0; i < this.MaxItemsInRecipe - 1; ++i) {
+            this.Owner.Inventory.RemoveItems(recipe[i], recipe[i + this.MaxItemsInRecipe]);
+        }
+        
+        this.Owner.Inventory.GiveItem(recipe[this.MaxItemsInRecipe * 2], false);
+        
+    }
+    
+}
