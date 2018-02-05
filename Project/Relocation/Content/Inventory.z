@@ -496,6 +496,10 @@ class Inventory : ZilchComponent {
         
     }
     
+    function GetItemInMainHand() : Integer {
+        return this.InventoryContents[this.SLOT_HAND - 1];
+    }
+    
     function MoveItem(slot : Integer, destSlot : Integer) {
         
         //Console.WriteLine("mvItem: `slot`");

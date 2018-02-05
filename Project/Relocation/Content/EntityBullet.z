@@ -2,11 +2,13 @@ class EntityBullet : ZilchComponent {
     
     function Initialize(init : CogInitializer) {
         
-        if(this.Space.FindObjectByName("EntityPlayer").WeaponManager.ActiveWeapon.ItemName == "WeaponGouda") {
+        /*if(this.Space.FindObjectByName("EntityPlayer").WeaponManager.ActiveWeapon.ItemName == "WeaponGouda") {
             this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawnDank"));
         } else {
             this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
-        }
+        }*/
+        
+        this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
         
     }
     

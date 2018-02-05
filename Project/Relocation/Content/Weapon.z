@@ -1,13 +1,11 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
-class Weapon {
+class Weapon : Item {
     
     var Space : Space;
     
-    var ItemName : String = "WeaponUndefined";
     var AmmoTypeID : Integer = 0;
-    var ItemID : Integer = 0;
     var ItemTier : Integer = 1;
     
     var MaxAmmo : Integer = -1;
@@ -27,23 +25,49 @@ class Weapon {
     
     var BulletSpawnLocation : Real3 = Real3(0.2, 0.0, 0.0);
     
-    constructor(space : Space, itemName : String, itemID : Integer, isRanged : Boolean) {
+    constructor(itemName : String, space : Space, isRanged : Boolean) : base(itemName) {
+        
+        this.ItemName = itemName;
+        this.ItemRecognizableNameBase = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
+        this.ItemRecognizableName = this.ItemRecognizableNameBase;
+        this.Space = space;
+        this.IsRanged = isRanged;
+        
+        this.Sprite = SpriteSource.Find(this.ItemName);
+        
+    }
+    
+    constructor(itemName : String, useNameAsSpriteSource : Boolean, space : Space, isRanged : Boolean, cooldown : Real, batteryLife : Real) : base(itemName, useNameAsSpriteSource) {
+        
+        this.ItemName = itemName;
+        this.ItemRecognizableNameBase = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
+        this.ItemRecognizableName = this.ItemRecognizableNameBase;
+        this.Space = space;
+        this.IsRanged = isRanged;
+        this.Cooldown = cooldown;
+        this.BatteryLife = batteryLife;
+        
+        if(useNameAsSpriteSource) {
+            this.Sprite = SpriteSource.Find(this.ItemName);
+        }
+        
+    }
+    
+    /*constructor(space : Space, itemName : String, isRanged : Boolean) : base(itemName, false) {
         this.Space = space;
         this.ItemName = itemName;
-        this.ItemID = itemID;
         this.IsRanged = isRanged;
         Console.WriteLine("Weapon with name \"`this.ItemName`\" has been created.");
     }
     
-    constructor(space : Space, itemName : String, itemID : Integer, isRanged : Boolean, cooldown : Real, batteryLife : Real) {
+    constructor(space : Space, itemName : String, isRanged : Boolean, cooldown : Real, batteryLife : Real) : base(itemName, false) {
         this.Space = space;
         this.ItemName = itemName;
-        this.ItemID = itemID;
         this.IsRanged = isRanged;
         this.Cooldown = cooldown;
         this.BatteryLife = batteryLife;
         Console.WriteLine("Weapon with name \"`this.ItemName`\" has been created.");
-    }
+    }*/
     
     function SetTier(tier : Integer) {
         this.ItemTier = tier;
@@ -113,7 +137,7 @@ class Weapon {
         
     }
     
-    function UpdateWeapon(dt : Real) {
+    function Update(dt : Real) {
         
         //var uiSpace = this.Space.FindObjectByName("LevelSettings").UICreator.UISpace;
         //uiSpace.FindObjectByName("Slot20").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Item", this.ItemName));
@@ -145,160 +169,6 @@ class Weapon {
         } else {
             this.CurrCooldown -= dt;
         }
-    }
-    
-}
-
-class WeaponManager : ZilchComponent {
-    
-    // UI SPACE
-    var UISpace : Space = null;
-    
-    // ACTIVE WEAPON
-    var ActiveWeapon : Weapon = null;
-    
-    // WEAPONS (RANGED)
-    var WeaponPistol    : Weapon = null;
-    var WeaponRevolver  : Weapon = null;
-    var WeaponRock      : Weapon = null;
-    var WeaponShotgun   : Weapon = null;
-    var WeaponBoulder   : Weapon = null;
-    var WeaponMinigun   : Weapon = null;
-    var WeaponSniper    : Weapon = null;
-    var WeaponGouda     : Weapon = null;
-    
-    // WEAPONS (MELEE)
-    var WeaponHand : Weapon = null;
-    
-    function Initialize(init : CogInitializer) {
-        
-        // LINK UI SPACE
-        this.UISpace = this.LevelSettings.UICreator.UISpace;
-        
-        // RANGED WEAPONS
-        this.WeaponPistol = new Weapon(this.Space, "Pistol", 1, true, 0.75, 0.0);
-        this.WeaponRevolver = new Weapon(this.Space, "Revolver", 2, true, 1.25, 0.0);
-        this.WeaponRock = new Weapon(this.Space, "Rock", 3, true, 0.5, 0.0);
-        
-        this.WeaponShotgun = new Weapon(this.Space, "Shotgun", 4, true, 1.5, 0.0);
-        this.WeaponBoulder = new Weapon(this.Space, "Boulder", 5, true, 1.0, 0.0);
-        
-        this.WeaponMinigun = new Weapon(this.Space, "Minigun", 6, true, 0.05, 0.0);
-        this.WeaponSniper = new Weapon(this.Space, "Sniper", 7, true, 1.75, 0.0);
-        this.WeaponGouda = new Weapon(this.Space, "Gouda", 8, true, 1.25, 0.0);
-        
-        // MELEE WEAPONS
-        this.WeaponHand = new Weapon(this.Space, "Hand", 9, false);
-        
-        // SET WEAPON TIER
-        this.WeaponShotgun.SetTier(2);
-        this.WeaponBoulder.SetTier(2);
-        
-        this.WeaponMinigun.SetTier(3);
-        this.WeaponSniper.SetTier(3);
-        this.WeaponGouda.SetTier(3);
-        
-        // SET ACCURACY
-        this.WeaponPistol.SetAccuracy(0.45);
-        this.WeaponRevolver.SetAccuracy(0.25);
-        this.WeaponRock.SetAccuracy(0.75);
-        
-        this.WeaponShotgun.SetAccuracy(1.6);
-        this.WeaponBoulder.SetAccuracy(0.75);
-        
-        this.WeaponMinigun.SetAccuracy(0.6);
-        this.WeaponSniper.SetAccuracy(0.05);
-        this.WeaponGouda.SetAccuracy(0.25);
-        
-        // SET AMMO AMOUNT
-        this.WeaponPistol.SetMaxAmmoAmount(-1);
-        this.WeaponRevolver.SetMaxAmmoAmount(6);
-        this.WeaponRock.SetMaxAmmoAmount(1);
-        
-        this.WeaponShotgun.SetMaxAmmoAmount(12);
-        this.WeaponBoulder.SetMaxAmmoAmount(1);
-        
-        this.WeaponMinigun.SetMaxAmmoAmount(350);
-        this.WeaponSniper.SetMaxAmmoAmount(4);
-        this.WeaponGouda.SetMaxAmmoAmount(1);
-        
-        // SET AMMO TYPE
-        this.WeaponPistol.SetAmmoType(9);
-        this.WeaponRevolver.SetAmmoType(9);
-        this.WeaponRock.SetAmmoType(3);
-        
-        this.WeaponShotgun.SetAmmoType(10);
-        this.WeaponBoulder.SetAmmoType(5);
-        
-        this.WeaponMinigun.SetAmmoType(11);
-        this.WeaponSniper.SetAmmoType(13);
-        this.WeaponGouda.SetAmmoType(8);
-        
-        // SET RELOAD TIME
-        this.WeaponRock.ReloadTime = 0;
-        this.WeaponBoulder.ReloadTime = 0;
-        this.WeaponGouda.ReloadTime = 0;
-        
-        // SET BULLET SPAWN LOCATION
-        //this.WeaponPistol.SetBulletSpawnPosition(0.45);
-        //this.WeaponRevolver.SetBulletSpawnPosition(0.25);
-        //this.WeaponRock.SetBulletSpawnPosition(0.75);
-        
-        //this.WeaponShotgun.SetBulletSpawnPosition(0.6);
-        //this.WeaponBoulder.SetBulletSpawnPosition(0.75);
-        
-        this.WeaponMinigun.SetBulletSpawnPosition(this.Owner.FindChildByName("EntityGun").Transform.Translation.XY + Real2(0.0, 0.1));
-        //this.WeaponSniper.SetBulletSpawnPosition(0.05);
-        //this.WeaponGouda.SetBulletSpawnPosition(0.25);
-        
-        // SET AS SHOTGUN
-        this.WeaponShotgun.IsShotgun = true;
-        
-        // SET ACTIVE WEAPON
-        this.ActiveWeapon = this.WeaponPistol;
-        
-        // CONNECT LOGIC UPDATE
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        
-    }
-    
-    function OnLogicUpdate(event : UpdateEvent) {
-        
-        if(!this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
-            
-            if(this.Owner.Inventory.CheckForItemMainHand(0)) {
-                this.ActiveWeapon = this.WeaponHand;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(1)) {
-                this.ActiveWeapon = this.WeaponPistol;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(2)) {
-                this.ActiveWeapon = this.WeaponRevolver;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(3)) {
-                this.ActiveWeapon = this.WeaponRock;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(4)) {
-                this.ActiveWeapon = this.WeaponShotgun;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(5)) {
-                this.ActiveWeapon = this.WeaponBoulder;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(6)) {
-                this.ActiveWeapon = this.WeaponMinigun;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(7)) {
-                this.ActiveWeapon = this.WeaponSniper;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(8)) {
-                this.ActiveWeapon = this.WeaponGouda;
-            } else {
-                this.ActiveWeapon = this.WeaponHand;
-            }
-            
-            // UPDATE ACTIVE WEAPON
-            this.ActiveWeapon.UpdateWeapon(event.Dt);
-            if(this.ActiveWeapon.ItemName != "Hand") {
-                this.Owner.FindChildByName("EntityGun").Sprite.Visible = true;
-                this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Weapon", this.ActiveWeapon.ItemName));
-            } else {
-                this.Owner.FindChildByName("EntityGun").Sprite.Visible = false;
-            }
-            
-        }
-        
     }
     
 }

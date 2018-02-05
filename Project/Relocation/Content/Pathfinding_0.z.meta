@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "Pathfinding",
+		uint64 ResourceId = 5a3a9239884b1656,
+	},
+},

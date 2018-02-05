@@ -1,85 +1,9 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
-class Item {
-    
-    var ItemName : String = "item.Undefined.name";
-    var ItemRecognizableNameBase : String = "Undefined Item";
-    var ItemRecognizableName : String = "Undefined Item";
-    var ItemType : String = "Item";
-    
-    var ItemID : Integer = 0;
-    
-    var ShowID : Boolean = false;
-    
-    var Sprite : SpriteSource = SpriteSource.MissingTexture;
-    
-    constructor(itemName : String) {
-        
-        this.ItemName = itemName;
-        this.ItemRecognizableNameBase = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
-        this.ItemRecognizableName = this.ItemRecognizableNameBase;
-        
-        this.Sprite = SpriteSource.Find(this.ItemName);
-        
-    }
-    
-    constructor(itemName : String, useNameAsSpriteSource : Boolean) {
-        
-        this.ItemName = itemName;
-        this.ItemRecognizableNameBase = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
-        this.ItemRecognizableName = this.ItemRecognizableNameBase;
-        
-        if(useNameAsSpriteSource) {
-            this.Sprite = SpriteSource.Find(this.ItemName);
-        }
-        
-    }
-    
-    function SetSpriteSource(sprite : String) {
-        this.Sprite = SpriteSource.Find(sprite);
-    }
-    
-    function SetRecognizableName(id : Integer, name : String) : Integer {
-        this.ItemRecognizableNameBase = name;
-        this.ShowLabelID(this.ItemID, this.ShowID);
-        ++id;
-        return id;
-    }
-    
-    function SetItemType(id : Integer, type : String) : Integer {
-        this.ItemType = type;
-        ++id;
-        return id;
-    }
-    
-    function SetID(id : Integer) : Integer {
-        this.ItemID = id;
-        ++id;
-        return id;
-    }
-    
-    function ShowLabelID(id : Integer, showID : Boolean) : Integer {
-        
-        this.ShowID = showID;
-        
-        if(showID && this.ItemRecognizableNameBase != "") {
-            this.ItemRecognizableName = String.Concatenate(this.ItemRecognizableNameBase, " [ID #`this.ItemID`]");
-        } else {
-            this.ItemRecognizableName = this.ItemRecognizableNameBase;
-        }
-        
-        ++id;
-        
-        return id;
-        
-    }
-    
-}
-
 class ItemManager : ZilchComponent {
     
-    var Items : Array[Item] = null;
+    var Items : Array[Item] = Global.Items;
     var ID : Integer = 0;
     
     function Initialize(init : CogInitializer) {
@@ -87,14 +11,16 @@ class ItemManager : ZilchComponent {
         this.Items = new Array[Item]();
         
         this.Items.Push(new Item("Circle",              true));
-        this.Items.Push(new Item("ItemPistol",          true));
-        this.Items.Push(new Item("ItemRevolver",        false));
-        this.Items.Push(new Item("ItemRock",            true));
-        this.Items.Push(new Item("ItemShotgun",         true));
-        this.Items.Push(new Item("ItemBoulder",         true));
-        this.Items.Push(new Item("ItemMinigun",         true));
-        this.Items.Push(new Item("ItemSniper",          true));
-        this.Items.Push(new Item("ItemGouda",           true));
+        
+        this.Items.Push(new Weapon("ItemPistol",        true,       this.Space, true,   0.75, 0.0));
+        this.Items.Push(new Weapon("ItemRevolver",      false,      this.Space, false,  1.25, 0.0));
+        this.Items.Push(new Weapon("ItemRock",          true,       this.Space, true,   0.50, 0.0));
+        this.Items.Push(new Weapon("ItemShotgun",       true,       this.Space, true,   1.50, 0.0));
+        this.Items.Push(new Weapon("ItemBoulder",       true,       this.Space, true,   1.00, 0.0));
+        this.Items.Push(new Weapon("ItemMinigun",       true,       this.Space, true,   0.05, 0.0));
+        this.Items.Push(new Weapon("ItemSniper",        true,       this.Space, true,   1.75, 0.0));
+        this.Items.Push(new Weapon("ItemGouda",         true,       this.Space, true,   1.25, 0.0));
+        
         this.Items.Push(new Item("ItemAmmoPistol",      true));
         this.Items.Push(new Item("ItemAmmoShotgun",     true));
         this.Items.Push(new Item("ItemAmmoMinigun",     true));
@@ -166,6 +92,8 @@ class ItemManager : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
+        this.UpdateItems(event.Dt);
+        
     }
     
     function GiveItemsID() {
@@ -181,6 +109,21 @@ class ItemManager : ZilchComponent {
         while(this.ID < this.Items.Count)
             this.ID = this.Items[this.ID].ShowLabelID(this.ID, showIDs);
         this.ID = 0;
+    }
+    
+    function UpdateItems(dt : Real) {
+        var currID = this.Space.FindObjectByName(Global.EntityPlayer).Inventory.GetItemInMainHand();
+        this.Items[currID].Update(dt);
+        if(this.Items[currID].ItemRecognizableNameBase != "") {
+            this.Space.FindObjectByName(Global.EntityPlayer).FindChildByName("EntityGun").Sprite.Visible = true;
+            if(this.Items[currID].ItemType == "Weapon") {
+                this.Space.FindObjectByName(Global.EntityPlayer).FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Weapon", this.Items[currID].ItemName.SubStringFromRuneIndices(4, this.Items[currID].ItemName.Count)));
+            } else if(this.Items[currID].Sprite != SpriteSource.Circle) {
+                this.Space.FindObjectByName(Global.EntityPlayer).FindChildByName("EntityGun").Sprite.SpriteSource = this.Items[currID].Sprite;
+            }
+        } else {
+            this.Space.FindObjectByName(Global.EntityPlayer).FindChildByName("EntityGun").Sprite.Visible = false;
+        }
     }
     
 }

@@ -1,0 +1,10 @@
+class Global {
+    
+    [Static] var EntityPlayer : String = "EntityPlayer";
+    
+    [Static] var Items : Array[Item] = null;
+    [Static] var Weapons : Array[Weapon] = null;
+    
+    [Static] var Inventory : Inventory = null;
+    
+}

@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "GlobalVariables",
+		uint64 ResourceId = 5a3a9bfa8722d3d8,
+	},
+},
