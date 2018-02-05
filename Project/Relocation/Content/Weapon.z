@@ -152,6 +152,7 @@ class Weapon {
 class WeaponManager : ZilchComponent {
     
     var IsHoldingWeapon : Boolean = false;
+    var MouseClick : Boolean = false;
     
     // UI SPACE
     var UISpace : Space = null;
@@ -298,7 +299,7 @@ class WeaponManager : ZilchComponent {
             
             // UPDATE ACTIVE WEAPON
             this.ActiveWeapon.UpdateWeapon(event.Dt);
-            if(/*this.ActiveWeapon.ItemName != "Hand"*/this.IsHoldingWeapon) {
+            if(this.ActiveWeapon.ItemName != "Hand" && this.IsHoldingWeapon) {
                 this.Owner.FindChildByName("EntityGun").Sprite.Visible = true;
                 this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Weapon", this.ActiveWeapon.ItemName));
             } else {
@@ -306,6 +307,12 @@ class WeaponManager : ZilchComponent {
                 if(this.Owner.Inventory.GetItemInMainHand() != 0) {
                     this.Owner.FindChildByName("EntityGun").Sprite.Visible = true;
                     this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = this.Space.FindObjectByName("LevelSettings").ItemManager.Items[currID].Sprite;
+                    if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && !this.MouseClick) {
+                        this.Space.FindObjectByName("LevelSettings").ItemManager.Items[currID].Update(event.Dt);
+                        this.MouseClick = true;
+                    } else if(!Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
+                        this.MouseClick = false;
+                    }
                 } else {
                     this.Owner.FindChildByName("EntityGun").Sprite.Visible = false;
                 }

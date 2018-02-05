@@ -1,0 +1,7 @@
+class Global {
+    
+    [Static] var EntityPlayer : String = "EntityPlayer";
+    
+    [Static] var Space : Space = null;
+    
+}

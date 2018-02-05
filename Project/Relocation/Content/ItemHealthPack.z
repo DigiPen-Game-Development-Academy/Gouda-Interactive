@@ -1,0 +1,18 @@
+class HPack : Item {
+    
+    function Update(dt : Real) {
+        
+        if(Global.Space != null && Global.Space.FindObjectByName(Global.EntityPlayer) != null) {
+            
+            var healthScript = Global.Space.FindObjectByName(Global.EntityPlayer).Health;
+            
+            if(healthScript.CurrentHealth < healthScript.MaxHealth) {
+                healthScript.CurrentHealth = healthScript.MaxHealth;
+                Global.Space.FindObjectByName(Global.EntityPlayer).Inventory.RemoveItemInSlot(2, false);
+            }
+            
+        }
+        
+    }
+    
+}
