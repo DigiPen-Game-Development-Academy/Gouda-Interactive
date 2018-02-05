@@ -151,6 +151,8 @@ class Weapon {
 
 class WeaponManager : ZilchComponent {
     
+    var IsHoldingWeapon : Boolean = false;
+    
     // UI SPACE
     var UISpace : Space = null;
     
@@ -288,13 +290,25 @@ class WeaponManager : ZilchComponent {
                 this.ActiveWeapon = this.WeaponHand;
             }
             
+            if(this.ActiveWeapon == this.WeaponHand) {
+                this.IsHoldingWeapon = false;
+            } else {
+                this.IsHoldingWeapon = true;
+            }
+            
             // UPDATE ACTIVE WEAPON
             this.ActiveWeapon.UpdateWeapon(event.Dt);
-            if(this.ActiveWeapon.ItemName != "Hand") {
+            if(/*this.ActiveWeapon.ItemName != "Hand"*/this.IsHoldingWeapon) {
                 this.Owner.FindChildByName("EntityGun").Sprite.Visible = true;
                 this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Weapon", this.ActiveWeapon.ItemName));
             } else {
-                this.Owner.FindChildByName("EntityGun").Sprite.Visible = false;
+                var currID = this.Owner.Inventory.GetItemInMainHand();
+                if(this.Owner.Inventory.GetItemInMainHand() != 0) {
+                    this.Owner.FindChildByName("EntityGun").Sprite.Visible = true;
+                    this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = this.Space.FindObjectByName("LevelSettings").ItemManager.Items[currID].Sprite;
+                } else {
+                    this.Owner.FindChildByName("EntityGun").Sprite.Visible = false;
+                }
             }
             
         }
