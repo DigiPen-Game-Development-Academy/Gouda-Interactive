@@ -125,7 +125,7 @@ Cog =
 			Transform = 
 			{
 				Vec3 Translation = [0.460000008, -0.0500000007, 0],
-				Vec3 Scale = [0.300000012, 0.5, 1],
+				Vec3 Scale = [0.5, 0.5, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -185,8 +185,9 @@ Cog =
 				bool IsCommandTextBox = true,
 				string ConsoleTextboxName = "Console",
 				string TextBoxBackground = "TextBoxBG",
-				float TextCharWidth = 0.25999999,
+				Vec2 TextCharDimensions = [0.25999999, 0.5],
 				int MaxCharsPerLine = 74,
+				int MaxCharLimit = 50000,
 			},
 			Commands = 
 			{

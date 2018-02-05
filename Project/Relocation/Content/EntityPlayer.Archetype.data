@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-25.6000004, 17.8500004, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -74,12 +74,16 @@ Cog =
 	Inventory = 
 	{
 	},
+	Crafting = 
+	{
+	},
 	PlayerProperties = 
 	{
 		string PlayerName = "Astronaut Zero",
 		int PlayerSkin = 0,
 		Vec3 SpawnPosition = [0, 0, 0],
 		bool IsInWater = false,
+		float CurrencyCount = 0,
 	},
 	Hierarchy = 
 	{

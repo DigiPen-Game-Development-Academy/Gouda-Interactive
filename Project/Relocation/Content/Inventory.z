@@ -6,6 +6,7 @@ class Inventory : ZilchComponent {
     var UISpace : Space = null;
     
     var InventoryOpen : Boolean = false;
+    var InventoryOpenFirst : Boolean = false;
     var CraftingOpen : Boolean = false;
     var RightButtonDown : Boolean = false;
     
@@ -57,15 +58,24 @@ class Inventory : ZilchComponent {
                 this.CraftingOpen = !this.CraftingOpen;
             }
             
-            if(!this.CraftingOpen) {
+            if(!this.InventoryOpenFirst) {
                 inventory.Transform.WorldTranslation = Real3(0, 0, 1);
-                inventory.FindChildByName("Crafting").Transform.WorldTranslation = Real3(0, 0, 50000);
+                inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(0, 0, 50000);
+                this.InventoryOpenFirst = true;
+                return;
             } else {
-                inventory.Transform.WorldTranslation = Real3(4, 0, 1);
-                inventory.FindChildByName("Crafting").Transform.WorldTranslation = Real3(-10.75, 0, 1);
+                if(!this.CraftingOpen) {
+                    inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(0, 0, 50000);
+                    inventory.Transform.WorldTranslation = Real3(0, 0, 1);
+                } else {
+                    inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(-10.75, 0, 0);
+                    inventory.Transform.WorldTranslation = Real3(4, 0, 1);
+                }
             }
             
         } else {
+            
+            this.InventoryOpenFirst = false;
             
             if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0) {
                 var tmpItem = this.InventoryContents[this.SLOT_MOUSE - 1];
@@ -258,16 +268,36 @@ class Inventory : ZilchComponent {
         }
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
-            for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots; ++i) {
+            
+            var hasGoneThru = false;
+            
+            for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots + this.SLOT_OFFHAND; ++i) {
                 
-                if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
-                    firstAvailableSlot = i;
-                } else if(this.InventoryContents[i] == itemID) {
-                    ++this.InventoryContentsCount[i];
-                    this.RefreshInventoryIcons();
-                    if(notifyUser)
-                        cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
-                    return;
+                if(i < this.MaxInventorySlots && !hasGoneThru) {
+                    if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
+                        firstAvailableSlot = i;
+                    } else if(this.InventoryContents[i] == itemID) {
+                        ++this.InventoryContentsCount[i];
+                        this.RefreshInventoryIcons();
+                        if(notifyUser)
+                            cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
+                        return;
+                    }
+                } else if(i < this.SLOT_OFFHAND && hasGoneThru) {
+                    if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
+                        firstAvailableSlot = i;
+                    } else if(this.InventoryContents[i] == itemID) {
+                        ++this.InventoryContentsCount[i];
+                        this.RefreshInventoryIcons();
+                        if(notifyUser)
+                            cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
+                        return;
+                    }
+                } else if(i >= this.SLOT_OFFHAND && hasGoneThru) {
+                    break;
+                } else {
+                    i = 0;
+                    hasGoneThru = true;
                 }
                 
             }
@@ -302,16 +332,36 @@ class Inventory : ZilchComponent {
         }
         
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
-            for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots; ++i) {
+            
+            var hasGoneThru = false;
+            
+            for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots + this.SLOT_OFFHAND; ++i) {
                 
-                if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
-                    firstAvailableSlot = i;
-                } else if(this.InventoryContents[i] == itemID) {
-                    this.InventoryContentsCount[i] += amount;
-                    this.RefreshInventoryIcons();
-                    if(notifyUser)
-                        cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
-                    return;
+                if(i < this.MaxInventorySlots && !hasGoneThru) {
+                    if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
+                        firstAvailableSlot = i;
+                    } else if(this.InventoryContents[i] == itemID) {
+                        this.InventoryContentsCount[i] += amount;
+                        this.RefreshInventoryIcons();
+                        if(notifyUser)
+                            cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
+                        return;
+                    }
+                } else if(i < this.SLOT_OFFHAND && hasGoneThru) {
+                    if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
+                        firstAvailableSlot = i;
+                    } else if(this.InventoryContents[i] == itemID) {
+                        ++this.InventoryContentsCount[i];
+                        this.RefreshInventoryIcons();
+                        if(notifyUser)
+                            cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
+                        return;
+                    }
+                } else if(i >= this.SLOT_OFFHAND && hasGoneThru) {
+                    break;
+                } else {
+                    i = 0;
+                    hasGoneThru = true;
                 }
                 
             }
@@ -414,6 +464,26 @@ class Inventory : ZilchComponent {
         
     }
     
+    function CheckForItems(itemID : Integer, amount : Integer) : Boolean {
+        
+        itemID = Math.Abs(itemID);
+        
+        var itemCount = 0;
+        
+        for(var i = 0; i < this.MaxInventorySlots; ++i) {
+            if(this.InventoryContents[i] == itemID) {
+                itemCount += this.InventoryContentsCount[i];
+            }
+        }
+        
+        if(itemCount >= amount) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
     function CheckForItemMainHand(itemID : Integer) : Boolean {
         
         itemID = Math.Abs(itemID);
@@ -467,11 +537,36 @@ class Inventory : ZilchComponent {
         
         itemID = Math.Abs(itemID);
         
+        if(itemID == 0) {
+            return;
+        }
+        
         if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
             for(var i = 0; i < this.MaxInventorySlots; ++i) {
                 
                 if(this.InventoryContents[i] == itemID) {
                     --this.InventoryContentsCount[i];
+                    this.RefreshInventoryIcons();
+                    return;
+                }
+                
+            }
+        } else {
+            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
+            return;
+        }
+        
+    }
+    
+    function RemoveItems(itemID : Integer, amount : Integer) {
+        
+        itemID = Math.Abs(itemID);
+        
+        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+            for(var i = 0; i < this.MaxInventorySlots; ++i) {
+                
+                if(this.InventoryContents[i] == itemID) {
+                    this.InventoryContentsCount[i] -= amount;
                     this.RefreshInventoryIcons();
                     return;
                 }
