@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-0.5, 2.5, 0],
+		Vec3 Translation = [9.58366776, -0.947378755, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -38,7 +38,7 @@ Cog =
 	},
 	EntityEnemy = 
 	{
-		float AttackCooldown = 1,
+		float AttackCooldown = 2,
 		bool CanShoot = true,
 		bool CanAttackForward = true,
 		float AttackDamage = 2,
@@ -70,6 +70,7 @@ Cog =
 	Health = 
 	{
 		float MaxHealth = 10,
+		bool IsInvincible = false,
 	},
 	BoxCollider = 
 	{
@@ -86,6 +87,10 @@ Cog =
 		float SightRadius = 8,
 		float Speed = 75,
 		int ChanceOfMoving = 25,
+		float UpdateMemoriesCooldown = 0.5,
+		float CreateNewMemoryCooldown = 0.5,
+		float TimeTillUpdateMemories = 0,
+		float TimeTillMoveToNextMemory = 0,
 	},
 	RigidBody = 
 	{
