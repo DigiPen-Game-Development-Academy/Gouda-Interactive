@@ -20,10 +20,16 @@ class PathFinding : ZilchComponent
     var Memories : Array[Real3] = Array[Real3]();
     
     [Property] var UpdateMemoriesCooldown : Real = 0.5;
+    [Property] var CreateNewMemoryCooldown : Real = 0.5;
+    var TimeTillNewMemory : Real = 0.0;
     [Property] var TimeTillUpdateMemories : Real = 0.0;
+    [Property] var TimeTillMoveToNextMemory : Real = 0.0;
     
     function Initialize(init : CogInitializer)
     {
+        for (var i = 0; i < 50; ++i)
+            this.Memories.Add(Real3(0.0, 0.0, 0.0));
+        
         this.TimeTillUpdateMemories = this.UpdateMemoriesCooldown;
         
         this.Player = this.Space.FindObjectByName("EntityPlayer");
@@ -33,6 +39,23 @@ class PathFinding : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.TimeTillUpdateMemories -= event.Dt;
+        this.TimeTillNewMemory -= event.Dt;
+        
+        Console.WriteLine("`this.Memories`");
+        
+        if (this.TimeTillUpdateMemories <= 0.0)
+        {
+            this.UpdateMemories();
+            this.TimeTillUpdateMemories = this.UpdateMemoriesCooldown;
+        }
+        
+        if (this.TimeTillNewMemory <= 0.0)
+        {
+            this.CreateNewMemory();
+            this.TimeTillNewMemory = this.CreateNewMemoryCooldown;
+        }
+        
         if (this.Player == null)
             return;
         
@@ -41,14 +64,17 @@ class PathFinding : ZilchComponent
     
     function Move()
     {
+        if (this.LookAtPlayer().ObjectHit != null)
         if (this.LookAtPlayer().ObjectHit.Name == "EntityPlayer")
             this.MoveTowardsPlayer();
         else
-            this.MoveTowardsMemories();
+            this.MoveTowardsMemory(0);
     }
     
     function LookAtPlayer() : CastResult
     {
+        this.LookAtPoint(this.Space.FindObjectByName("EntityPlayer").Transform.Translation);
+        
         var ray = Ray();
         var thisPosition = this.Owner.Transform.WorldTranslation;
         var rayDirection = this.Owner.Orientation.WorldForward;
@@ -64,19 +90,17 @@ class PathFinding : ZilchComponent
         this.LookAtPoint(this.LookAtPlayer().ObjectHit.Transform.Translation);
         
         this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+        
+        this.TimeTillMoveToNextMemory = this.TimeTillUpdateMemories;
     }
     
-    function MoveTowardsMemories()
+    function MoveTowardsMemory(memoryNumber : Integer)
     {
-        for (var i = 0; i < this.Memories.Count; ++i)
-        {
-            if (this.TestForApproxamentlyEqual(this.Owner.Transform.Translation, this.Memories[i], 0.1))
-            {
-                this.Memories.RemoveAt(i);
-                
-                this.LookAtPoint(this.Memories[i - 1]);
-            }
-        }
+        Console.WriteLine("Moving towards memory: `memoryNumber`");
+        
+        this.LookAtPoint(this.Memories[memoryNumber]);
+        
+        this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
     }
     
     function LookAtPoint(point : Real3)
@@ -88,6 +112,26 @@ class PathFinding : ZilchComponent
         this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
     }
     
+    function UpdateMemories()
+    {
+        for (var i = 0; i < 49; ++i)
+            this.Memories[i] = this.Memories[i + 1];
+    }
+    
+    function CreateNewMemory()
+    {
+        this.Memories.Add(this.Space.FindObjectByName("EntityPlayer").Transform.Translation);
+    }
+    
+    function TestForApproxamentlyEqual(position1 : Real3, position2 : Real3, amount : Real) : Boolean
+    {
+        if (Math.ApproximatelyEqual(position1.X, position2.X, amount) &&
+            Math.ApproximatelyEqual(position1.Y, position2.Y, amount))
+            return true;
+        else
+            return false;
+    }
+    
     function CheckIfOutOfSight(from : Real3) : Boolean
     {
         var translation = this.Owner.Transform.Translation;
@@ -96,25 +140,6 @@ class PathFinding : ZilchComponent
             from.X <= translation.X - this.SightRadius) ||
             (from.Y >= translation.Y + this.SightRadius ||
             from.Y <= translation.Y - this.SightRadius))
-            return true;
-        else
-            return false;
-    }
-    
-    function UpdateMemories()
-    {
-        for (var i = 4; i > 0; --i)
-        {
-            this.Memories[i] = this.Memories[i - 1];
-        }
-        
-        this.Memories[0] = this.Space.FindObjectByName("EntityPlayer").Transform.Translation;
-    }
-    
-    function TestForApproxamentlyEqual(position1 : Real3, position2 : Real3, amount : Real) : Boolean
-    {
-        if (Math.ApproximatelyEqual(position1.X, position2.X, amount) &&
-            Math.ApproximatelyEqual(position1.Y, position2.Y, amount))
             return true;
         else
             return false;
