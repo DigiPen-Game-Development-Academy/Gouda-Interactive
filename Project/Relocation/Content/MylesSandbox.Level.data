@@ -95,7 +95,7 @@ Level =
 		WorldGeneration = 
 		{
 			float MapRadius = 240,
-			int NumberOfTiles = 2,
+			int NumberOfTiles = 9,
 			int TileDiameter = 32,
 			float MaxRadiusFromPlayer = 64,
 		},
@@ -112,7 +112,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [41.5589981, 997.141479, 50],
+			Vec3 Translation = [-5.63115501, 5.16871357, 50.375],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -124,7 +124,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 6.72056484,
+			float Size = 20.1897087,
 		},
 		EditorCameraController = 
 		{
@@ -132,7 +132,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [41.5589981, 997.141479, 2.44334331e-08],
+			Vec3 LookTarget = [-5.63115501, 5.16871357, 0.375],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -196,8 +196,8 @@ Level =
 		},
 		Movement = 
 		{
-			float Speed = 150,
-			float RunSpeed = 200,
+			float Speed = 450,
+			float RunSpeed = 600,
 		},
 		WeaponManager = 
 		{
@@ -220,9 +220,6 @@ Level =
 		Inventory = 
 		{
 		},
-		Crafting = 
-		{
-		},
 		PlayerProperties = 
 		{
 			string PlayerName = "Astronaut Zero",
@@ -230,6 +227,9 @@ Level =
 			Vec3 SpawnPosition = [0, 0, 0],
 			bool IsInWater = false,
 			float CurrencyCount = 0,
+		},
+		Crafting = 
+		{
 		},
 		Hierarchy = 
 		{
@@ -255,7 +255,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 2,
+					uint Id = 6,
 				},
 				Named = 
 				{
@@ -275,7 +275,7 @@ Level =
 					float FieldOfView = 45,
 					float NearPlane = 0.5,
 					float FarPlane = 200,
-					float Size = 8,
+					float Size = 100,
 				},
 				SoundListener = 
 				{
@@ -287,7 +287,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 6,
+					uint Id = 7,
 				},
 				Named = 
 				{
@@ -364,7 +364,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 7,
+							uint Id = 8,
 						},
 						Named = 
 						{
@@ -444,7 +444,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 8,
+			uint Id = 9,
 		},
 		Named = 
 		{
@@ -550,7 +550,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 9,
+					uint Id = 10,
 				},
 				Named = 
 				{
@@ -595,7 +595,7 @@ Level =
 		string Name = "5a240449292b4c0b:CaveEnteranceExit",
 		LinkId = 
 		{
-			uint Id = 10,
+			uint Id = 11,
 		},
 		Transform = 
 		{
@@ -612,7 +612,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 11,
+			uint Id = 12,
 		},
 		Named = 
 		{
@@ -654,7 +654,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 12,
+			uint Id = 13,
 		},
 		Named = 
 		{
@@ -683,7 +683,7 @@ Level =
 		},
 		TileMap = 
 		{
-			string SourceName = "5a2a6e2d5d9167e9:MylesSandbox_TileMap35",
+			string SourceName = "5a2a88361ca85aad:MylesSandbox_TileMap36",
 			string PaletteName = "5a2bd7a818a68182:Tiles",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
@@ -697,7 +697,7 @@ Level =
 		string Name = "5a34f95c7c1a591f:Tile3",
 		LinkId = 
 		{
-			uint Id = 13,
+			uint Id = 14,
 		},
 		Transform = 
 		{
@@ -715,7 +715,7 @@ Level =
 		string Name = "5a34f9517cbb3c0a:Tile4",
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 15,
 		},
 		Transform = 
 		{
@@ -733,7 +733,7 @@ Level =
 		string Name = "5a34faab7de10abc:Tile5",
 		LinkId = 
 		{
-			uint Id = 15,
+			uint Id = 16,
 		},
 		Transform = 
 		{
@@ -751,7 +751,7 @@ Level =
 		string Name = "5a34faa17f701526:Tile6",
 		LinkId = 
 		{
-			uint Id = 16,
+			uint Id = 17,
 		},
 		Transform = 
 		{
@@ -769,7 +769,7 @@ Level =
 		string Name = "5a34fabf7833191b:Tile7",
 		LinkId = 
 		{
-			uint Id = 17,
+			uint Id = 18,
 		},
 		Transform = 
 		{
@@ -787,7 +787,7 @@ Level =
 		string Name = "5a34fab3795c76af:Tile8",
 		LinkId = 
 		{
-			uint Id = 18,
+			uint Id = 19,
 		},
 		Transform = 
 		{
@@ -805,7 +805,7 @@ Level =
 		string Name = "5a34fab779d32384:Tile9",
 		LinkId = 
 		{
-			uint Id = 19,
+			uint Id = 20,
 		},
 		Transform = 
 		{
