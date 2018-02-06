@@ -54,6 +54,9 @@ class EntityEnemy : ZilchComponent
     
     function Shoot()
     {
+        if (this.Owner.PathFinding.LookAtPlayer().ObjectHit.Name != "EntityPlayer")
+            return;
+        
         var lazer = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), this.Owner.Transform.Translation);
         
         lazer.RigidBody.Velocity = this.Owner.Orientation.WorldForward * 2;
