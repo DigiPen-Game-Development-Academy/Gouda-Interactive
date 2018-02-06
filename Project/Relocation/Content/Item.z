@@ -74,9 +74,8 @@ class Item {
         
         if(showID && this.ItemRecognizableNameBase != "") {
             this.ItemRecognizableName = String.Concatenate(this.ItemRecognizableNameBase, " [ID #`this.ItemID`]");
-            this.ItemRecognizableName = String.Concatenate(this.ItemRecognizableName, this.ItemLore);
         } else {
-            this.ItemRecognizableName = String.Concatenate(this.ItemRecognizableNameBase, this.ItemLore);
+            this.ItemRecognizableName = this.ItemRecognizableNameBase;
         }
         
         ++id;

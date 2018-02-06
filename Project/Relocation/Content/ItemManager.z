@@ -41,7 +41,7 @@ class ItemManager : ZilchComponent {
         
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "The \"Laser\" (Pistol)", "Starter weapon");
-        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Time Space Warper (Revolver)", "It is said that it can break everything\njust by holding it...");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Time Space Warper (Revolver)", "It is said that it will break everything\njust by holding it...");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Rock");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "\"Get Off My Lawn\" (Shotgun)");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Boulder");

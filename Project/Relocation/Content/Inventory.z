@@ -22,7 +22,9 @@ class Inventory : ZilchComponent {
     var SLOT_HAND : Integer = 2;
     var SLOT_OFFHAND : Integer = 3;
     var SLOT_MOUSE : Integer = 1;
+    
     var TooltipName : String = "";
+    var TooltipLoreName : String = "";
     
     function Initialize(init : CogInitializer) {
         
@@ -237,17 +239,21 @@ class Inventory : ZilchComponent {
             
             if(this.Owner.Crafting.GetTooltipName() == "State.False") {
                 this.TooltipName = Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemRecognizableName;
+                this.TooltipLoreName = Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemLore;
             }
             
             if(this.TooltipName != "") {
                 var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
                 var itemTooltip = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName");
+                var itemTooltipLore = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore");
                 itemTooltip.SpriteText.Text = this.TooltipName;
+                itemTooltipLore.SpriteText.Text = this.TooltipLoreName;
                 itemTooltip.SpriteText.Color = Real4(1.0);
                 if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Weapon") {
                     itemTooltip.SpriteText.Color = Real4(0.1, 1.0, 0.1, 1.0);
                 }
                 itemTooltip.SpriteText.Visible = true;
+                itemTooltipLore.SpriteText.Visible = true;
             }
             
             this.SlotHover = -1;
@@ -255,15 +261,19 @@ class Inventory : ZilchComponent {
         } else if(this.Owner.Crafting.GetTooltipName() == "State.False") {
             
             this.TooltipName = "";
+            this.TooltipLoreName = "";
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = false;
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore").SpriteText.Visible = false;
             
             this.SlotHover = -1;
             
         } else {
             this.TooltipName = this.Owner.Crafting.GetTooltipName();
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Text = this.TooltipName;
+            this.TooltipLoreName = "";
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Color = Real4(1.0);
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = true;
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore").SpriteText.Visible = false;
         }
         
         //Console.WriteLine("Slot: `this.SlotClicked`");
