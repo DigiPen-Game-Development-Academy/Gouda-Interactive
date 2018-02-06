@@ -32,6 +32,7 @@ class Crafting : ZilchComponent {
     var SlotClicked : Integer = -1;
     
     var SlotHover : Integer = -1;
+    var LastSlotHover : Integer = -1;
     var CRSlotHover : Integer = -1;
     
     var ScrollPosition : Integer = 0;
@@ -203,9 +204,10 @@ class Crafting : ZilchComponent {
     function GetTooltipName() : String {
         
         if(this.SlotHover != -1 && this.CRSlotHover == -1) {
+            this.LastSlotHover = this.SlotHover;
             return Relocation.Items[this.CraftingRecipes[this.SlotHover - 1 + (this.MaxCraftingSlots * this.ScrollPosition)].Recipe[6]].ItemRecognizableName;
-        } else if(this.SlotHover == -1 && this.CRSlotHover != -1) {
-            return Relocation.Items[this.CraftingRecipes[0 + (this.MaxCraftingSlots * this.ScrollPosition)].Recipe[this.CRSlotHover - 1]].ItemRecognizableName;
+        } else if(this.SlotHover == -1 && this.LastSlotHover != -1 && this.CRSlotHover != -1) {
+            return Relocation.Items[this.CraftingRecipes[this.LastSlotHover - 1 + (this.MaxCraftingSlots * this.ScrollPosition)].Recipe[this.CRSlotHover - 1]].ItemRecognizableName;
         } else {
             return "State.False";
         }
