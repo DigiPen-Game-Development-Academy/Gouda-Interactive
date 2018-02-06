@@ -10,27 +10,31 @@ class ItemManager : ZilchComponent {
         
         Relocation.Items = new Array[Item]();
         
-        Relocation.Items.Push(new Item("Circle",                      true));
-        Relocation.Items.Push(new Item("ItemPistol",                  true));
-        Relocation.Items.Push(new Item("ItemRevolver",                false));
-        Relocation.Items.Push(new Item("ItemRock",                    true));
-        Relocation.Items.Push(new Item("ItemShotgun",                 true));
-        Relocation.Items.Push(new Item("ItemBoulder",                 true));
-        Relocation.Items.Push(new Item("ItemMinigun",                 true));
-        Relocation.Items.Push(new Item("ItemSniper",                  true));
-        Relocation.Items.Push(new Item("ItemGouda",                   true));
-        Relocation.Items.Push(new Item("ItemAmmoPistol",              true));
-        Relocation.Items.Push(new Item("ItemAmmoShotgun",             true));
-        Relocation.Items.Push(new Item("ItemAmmoMinigun",             true));
-        Relocation.Items.Push(new Item("ItemAmmoAssault",             false));
-        Relocation.Items.Push(new Item("ItemAmmoSniper",              true));
-        Relocation.Items.Push(new HPack("ItemHealthPack",             false));
-        Relocation.Items.Push(new Item("ItemCopperOre",               false));
-        Relocation.Items.Push(new Item("ItemCopper",                  false));
-        Relocation.Items.Push(new Item("ItemIronOre",                 true));
-        Relocation.Items.Push(new Item("ItemIron",                    true));
-        Relocation.Items.Push(new Item("ItemGoldOre",                 false));
-        Relocation.Items.Push(new Item("ItemGold",                    true));
+        Relocation.Items.Push(new Item("Circle",                        true));
+        Relocation.Items.Push(new Item("ItemPistol",                    true));
+        Relocation.Items.Push(new Item("ItemRevolver",                  false));
+        Relocation.Items.Push(new Item("ItemRock",                      true));
+        Relocation.Items.Push(new Item("ItemShotgun",                   true));
+        Relocation.Items.Push(new Item("ItemBoulder",                   true));
+        Relocation.Items.Push(new Item("ItemMinigun",                   true));
+        Relocation.Items.Push(new Item("ItemSniper",                    true));
+        Relocation.Items.Push(new Item("ItemGouda",                     true));
+        Relocation.Items.Push(new Item("ItemAmmoPistol",                true));
+        Relocation.Items.Push(new Item("ItemAmmoShotgun",               true));
+        Relocation.Items.Push(new Item("ItemAmmoMinigun",               true));
+        Relocation.Items.Push(new Item("ItemAmmoAssault",               false));
+        Relocation.Items.Push(new Item("ItemAmmoSniper",                true));
+        Relocation.Items.Push(new HPack("ItemHealthPack",               false));
+        Relocation.Items.Push(new Item("ItemCopperOre",                 false));
+        Relocation.Items.Push(new Item("ItemCopper",                    false));
+        Relocation.Items.Push(new Item("ItemIronOre",                   true));
+        Relocation.Items.Push(new Item("ItemIron",                      true));
+        Relocation.Items.Push(new Item("ItemGoldOre",                   false));
+        Relocation.Items.Push(new Item("ItemGold",                      true));
+        Relocation.Items.Push(new Item("ItemTitaniumOre",               false));
+        Relocation.Items.Push(new Item("ItemTitanium",                  false));
+        Relocation.Items.Push(new Item("ItemPlatinumOre",               false));
+        Relocation.Items.Push(new Item("ItemPlatinum",                  false));
         
         this.GiveItemsID();
         

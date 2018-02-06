@@ -255,10 +255,10 @@ paket-files/
 .idea/
 *.sln.iml
 
-# Stop Sage from uploading ProjectScreenshot.png
-Project/The Sparce/EditorContent/ProjectScreenshot.png
+# Stop from uploading ProjectScreenshot.png
+Project/Relocation/EditorContent/ProjectScreenshot.png
 
 # Important Gitignore Stuff -Matt
 #.gitignore
-Project/The Sparce/Content/GlobalTestingSandbox.Level.data
+Project/Relocation/Content/GlobalTestingSandbox.Level.data
 *.bin

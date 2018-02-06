@@ -17,6 +17,10 @@ class Crafting : ZilchComponent {
     var ItemCopper : Array[Integer] = null;
     var ItemIron : Array[Integer] = null;
     var ItemGold : Array[Integer] = null;
+    var ItemTitanium : Array[Integer] = null;
+    var ItemPlatinum : Array[Integer] = null;
+    
+    var ItemAmmoPistol : ArrayRange[Integer] = null;
     
     var CraftingRecipes : Array[Recipe] = null;
     var CraftableItems : Array[Integer] = null;
@@ -61,11 +65,23 @@ class Crafting : ZilchComponent {
             20
         );
         
+        this.ItemTitanium = this.CreateRecipe(
+            21, 0, 0,
+            1, 0, 0,
+            22
+        );
+        
+        this.ItemPlatinum = this.CreateRecipe(
+            23, 0, 0,
+            1, 0, 0,
+            24
+        );
+        
         this.CraftingRecipes.Push(new Recipe(this.ItemCopper));
         this.CraftingRecipes.Push(new Recipe(this.ItemIron));
         this.CraftingRecipes.Push(new Recipe(this.ItemGold));
-        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
-        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemTitanium));
+        this.CraftingRecipes.Push(new Recipe(this.ItemPlatinum));
         this.CraftingRecipes.Push(new Recipe(this.ItemAir));
         
         this.CraftingRecipes.Push(new Recipe(this.ItemAir));
@@ -79,8 +95,8 @@ class Crafting : ZilchComponent {
         this.CraftableItems.Push(16);
         this.CraftableItems.Push(18);
         this.CraftableItems.Push(20);
-        this.CraftableItems.Push(0);
-        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(22);
+        this.CraftableItems.Push(24);
         this.CraftableItems.Push(0);
         
         this.CraftableItems.Push(0);
