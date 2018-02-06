@@ -17,13 +17,7 @@ class PathFinding : ZilchComponent
     
     var CastResult : CastResult;
     
-    var PlayerMemory1 : Real3;
-    var PlayerMemory2 : Real3;
-    var PlayerMemory3 : Real3;
-    var PlayerMemory4 : Real3;
-    var PlayerMemory5 : Real3;
-    var PlayerMemory6 : Real3;
-    var ClosestMemory : Real3;
+    var Memories : Array[Real3] = Array[Real3]();
     
     [Property] var UpdateMemoriesCooldown : Real = 0.5;
     [Property] var TimeTillUpdateMemories : Real = 0.0;
@@ -58,10 +52,27 @@ class PathFinding : ZilchComponent
         if (this.CastResult.ObjectHit == null)
             return;
         
-        this.MoveTowardsPlayer();
+        
     }
     
-    function LookAtPoint(point : Real3)
+    function Move()
+    {
+        
+    }
+    
+    function LookAtPlayer() : CastResult
+    {
+         var ray = Ray();
+        var thisPosition = this.Owner.Transform.WorldTranslation;
+        var rayDirection = this.Owner.Orientation.WorldForward;
+        
+        ray.Start = thisPosition;
+        ray.Direction = rayDirection;
+        
+        return this.Space.PhysicsSpace.CastRayFirst(ray);
+    }
+    
+    /*function LookAtPoint(point : Real3)
     {
         // Look at player
         this.Owner.Orientation.LookAtPoint(point);
@@ -139,7 +150,7 @@ class PathFinding : ZilchComponent
         }
         else
         {
-            this.LookAtPoint(this.PlayerMemory1);
+            //this.LookAtPoint(this.PlayerMemory1);
             
             this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
         }
@@ -154,7 +165,7 @@ class PathFinding : ZilchComponent
         this.PlayerMemory2 = this.PlayerMemory1;
         this.PlayerMemory1 = this.Player.Transform.Translation;
         
-        /*var closest = 0;
+        var closest = 0;
         
         var memory1 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory1).X + 
             (this.Player.Transform.Translation - this.PlayerMemory1).Y);
@@ -181,8 +192,8 @@ class PathFinding : ZilchComponent
         if (closest == 3) this.ClosestMemory = this.PlayerMemory3;
         if (closest == 4) this.ClosestMemory = this.PlayerMemory4;
         if (closest == 5) this.ClosestMemory = this.PlayerMemory5;
-        if (closest == 6) this.ClosestMemory = this.PlayerMemory6;*/
+        if (closest == 6) this.ClosestMemory = this.PlayerMemory6;
         
-        Console.WriteLine("`this.ClosestMemory`");
-    }
+        //Console.WriteLine("`this.ClosestMemory`");
+    }*/
 }

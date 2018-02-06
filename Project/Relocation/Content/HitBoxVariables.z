@@ -24,6 +24,10 @@ class HitBoxVariables : ZilchComponent
         {
             return;
         }
+        else if (event.OtherObject.Name == "EntityEnemy" && this.AttackByPlayer == false)
+        {
+            return;
+        }
         
         this.Owner.Destroy();
     }
