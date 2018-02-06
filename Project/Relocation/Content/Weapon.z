@@ -100,6 +100,7 @@ class Weapon {
                 var velocity = Real3(dif.X / magnitude * this.BulletSpeed + accuracy, dif.Y / magnitude * this.BulletSpeed + accuracy, 0.0);
                 
                 bullet.RigidBody.Velocity = velocity;
+                bullet.HitBoxVariables.Amount = 1;
                 
             }
             
