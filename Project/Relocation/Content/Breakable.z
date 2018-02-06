@@ -3,10 +3,19 @@
 
 class Breakable : ZilchComponent
 {
-    var Player : Cog = null;
+    /* Properties are set in a archetype (see archetype "Rock" for example).
+       This archeype is then put on each tile that should act as that block
+       (so you cannot have one rock that takes 1 second to break and another
+       that takes 5 seconds to break)*/
     
+    // Time it takes for the block to break
+    [Property] var BreakTime : Real = 1.0;
+    // Time until the block breaks
+    var TimeTillBreak : Real = 0.0;
+    // Tool that if used, makes the block break faster
     [Property] var ToolType : String = "None";
     
+    // Loot ID's and amounts that the block can drop.
     [Property] var Loot1ID : Integer = 0;
     [Property] var Loot1MaxAmount : Integer = 0;
     [Property] var Loot2ID : Integer = 0;
@@ -14,25 +23,29 @@ class Breakable : ZilchComponent
     [Property] var Loot3ID : Integer = 0;
     [Property] var Loot3MaxAmount : Integer = 0;
     
-    function Initialize(init : CogInitializer)
-    {
-    }
-
-    function OnLogicUpdate(event : UpdateEvent)
-    {
-    }
-    
     function Break(event : ViewportMouseEvent)
     {
+        // Get the mouse position
         var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
         
-        if (event.IsButtonDown(MouseButtons.Left) && this.IsMouseOnObject(mousePosition))
+        // If the right mouse button is down and if the mouse is over the block
+        if (event.IsButtonDown(MouseButtons.Right) && this.IsMouseOnObject(mousePosition))
         {
-            Console.WriteLine("Break");
-            
+            // Check to see if the player is alive
             if (this.Space.FindObjectByName("EntityPlayer") == null)
                 return;
             
+            // Decrease the time until the block breaks (it is increasing but is 
+            // getting closer to "this.BreakTime" please do not change)
+            this.TimeTillBreak += 0.0166667;
+            
+            Console.WriteLine("Break");
+            
+            // If the block is not all the way broken, do not destroy it
+            if (this.TimeTillBreak < this.BreakTime)
+                return;
+            
+            // Add items to the players inventory
             if (this.Loot1ID != 0)
                 this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot1ID, false, this.DieRoll(this.Loot1MaxAmount));
             if (this.Loot2ID != 0)
@@ -40,15 +53,18 @@ class Breakable : ZilchComponent
             if (this.Loot3ID != 0)
                 this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot3ID, false, this.DieRoll(this.Loot3MaxAmount));
             
+            // Destroy the block
             this.Owner.Destroy();
         }
     }
     
     function IsMouseOnObject(mousePosition : Real3) : Boolean
     {
+        // Get the blocks position and size
         var ownerPosition = this.Owner.Transform.WorldTranslation;
         var ownerSize = this.Owner.Transform.WorldScale / 2;
         
+        // Check to see if the mouse is over the block
         if (mousePosition.X >= ownerPosition.X - ownerSize.X &&
             mousePosition.X <= ownerPosition.X + ownerSize.X &&
             mousePosition.Y >= ownerPosition.Y - ownerSize.Y &&
@@ -60,6 +76,7 @@ class Breakable : ZilchComponent
     
     function DieRoll(sides : Integer) : Integer
     {
+        // Roll a die
         var randomGen = new Random();
         return randomGen.DieRoll(sides);
     }

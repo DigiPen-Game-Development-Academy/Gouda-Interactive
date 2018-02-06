@@ -31,9 +31,12 @@ Cog =
 	},
 	TileMap = 
 	{
-		string SourceName = "5a2bb685cf1eac89:MylesSandbox_TileMap22",
+		string SourceName = "5a2bb7e1e53f4ad7:MylesSandbox_TileMap30",
 		string PaletteName = "5a2bd7a818a68182:Tiles",
 		float UnitsPerTile = 1,
 		float MeshThickness = 1.20000005,
+	},
+	InitializeChildren = 
+	{
 	},
 },
