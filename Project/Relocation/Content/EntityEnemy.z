@@ -48,7 +48,7 @@ class EntityEnemy : ZilchComponent
         
         // Attack
         
-        if (this.CanShoot == true && this.TimeTillAttack <= 0.0)
+        if (this.TimeTillAttack <= 0.0)
             this.Shoot();
     }
     
@@ -57,6 +57,13 @@ class EntityEnemy : ZilchComponent
         var lazer = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), this.Owner.Transform.Translation);
         
         lazer.RigidBody.Velocity = this.Owner.Orientation.WorldForward * 2;
+        
+        lazer.HitBoxVariables.AttackByPlayer = false;
+        lazer.HitBoxVariables.Amount = 3;
+        
+        this.TimeTillAttack = this.AttackCooldown;
+        
+        Console.WriteLine("Shoot");
     }
     
     function LookAtPlayer()
