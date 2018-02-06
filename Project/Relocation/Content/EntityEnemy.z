@@ -1,5 +1,5 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: N/A
+// CONTRIBUTORS: Kevin Panasyuk
 
 class EntityEnemy : ZilchComponent
 {
@@ -47,48 +47,16 @@ class EntityEnemy : ZilchComponent
         //this.LookAtPlayer();
         
         // Attack
-        if (this.CanAttackForward == true && this.CanShoot == true && this.TimeTillAttack <= 0.0)
-        {
-            var differance = this.Player.Transform.Translation - this.Owner.Transform.Translation;
-            
-            if (differance.X < -2.5 || differance.X > 2.5 || differance.Y < -2.5 || differance.Y > 2.5)
-                this.Shoot();
-            else
-                this.AttackBasedOnRadius();
-        }
-        else if (this.CanAttackForward == true && this.TimeTillAttack <= 0.0)
-            this.AttackBasedOnRadius();
-        else if (this.CanShoot == true && this.TimeTillAttack <= 0.0)
+        
+        if (this.CanShoot == true && this.TimeTillAttack <= 0.0)
             this.Shoot();
-    }
-    
-    function AttackBasedOnRadius()
-    {
-        // If the player is within the attack radius
-        if (this.Player.Transform.Translation.X <= this.Owner.Transform.Translation.X + this.AttackWithinRadiusOf &&
-            this.Player.Transform.Translation.X >= this.Owner.Transform.Translation.X - this.AttackWithinRadiusOf &&
-            this.Player.Transform.Translation.Y <= this.Owner.Transform.Translation.Y + this.AttackWithinRadiusOf &&
-            this.Player.Transform.Translation.Y >= this.Owner.Transform.Translation.Y - this.AttackWithinRadiusOf)
-        {
-            // Reset the attack timer
-            this.TimeTillAttack = this.AttackCooldown;
-            
-            // Create hitbox
-            var hitbox = this.Space.CreateAtPosition(Archetype.HitBox, this.Owner.Transform.Translation + this.Owner.Orientation.WorldForward);
-            hitbox.Orientation.LookAtDirection(this.Owner.Orientation.WorldForward);
-            hitbox.BoxCollider.Size = Real3(1.0, this.HitboxSize, 1.0);
-            
-            var randomGen = new Random();
-            var random = randomGen.Range(-this.AttackDamage / 5, this.AttackDamage / 5);
-            
-            hitbox.HitBoxVariables.Amount = this.AttackDamage + random;
-            hitbox.HitBoxVariables.AttackByPlayer = false;
-        }
     }
     
     function Shoot()
     {
+        var lazer = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), this.Owner.Transform.Translation);
         
+        lazer.RigidBody.Velocity = this.Owner.Orientation.WorldForward * 2;
     }
     
     function LookAtPlayer()
