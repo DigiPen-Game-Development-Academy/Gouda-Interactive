@@ -2,85 +2,83 @@
 // CONTRIBUTORS: N/A
 
 class ItemManager : ZilchComponent {
-    
-    var Items : Array[Item] = null;
     var ID : Integer = 0;
     
     function Initialize(init : CogInitializer) {
         
-        Global.Space = this.Space;
+        Relocation.Space = this.Space;
         
-        this.Items = new Array[Item]();
+        Relocation.Items = new Array[Item]();
         
-        this.Items.Push(new Item("Circle",                      true));
-        this.Items.Push(new Item("ItemPistol",                  true));
-        this.Items.Push(new Item("ItemRevolver",                false));
-        this.Items.Push(new Item("ItemRock",                    true));
-        this.Items.Push(new Item("ItemShotgun",                 true));
-        this.Items.Push(new Item("ItemBoulder",                 true));
-        this.Items.Push(new Item("ItemMinigun",                 true));
-        this.Items.Push(new Item("ItemSniper",                  true));
-        this.Items.Push(new Item("ItemGouda",                   true));
-        this.Items.Push(new Item("ItemAmmoPistol",              true));
-        this.Items.Push(new Item("ItemAmmoShotgun",             true));
-        this.Items.Push(new Item("ItemAmmoMinigun",             true));
-        this.Items.Push(new Item("ItemAmmoAssault",             false));
-        this.Items.Push(new Item("ItemAmmoSniper",              true));
-        this.Items.Push(new HPack("ItemHealthPack",             false));
-        this.Items.Push(new Item("ItemIronOre",                 true));
-        this.Items.Push(new Item("ItemIron",                    true));
-        this.Items.Push(new Item("ItemCopperOre",               false));
-        this.Items.Push(new Item("ItemCopper",                  false));
-        this.Items.Push(new Item("ItemGoldOre",                 false));
-        this.Items.Push(new Item("ItemGold",                    true));
+        Relocation.Items.Push(new Item("Circle",                      true));
+        Relocation.Items.Push(new Item("ItemPistol",                  true));
+        Relocation.Items.Push(new Item("ItemRevolver",                false));
+        Relocation.Items.Push(new Item("ItemRock",                    true));
+        Relocation.Items.Push(new Item("ItemShotgun",                 true));
+        Relocation.Items.Push(new Item("ItemBoulder",                 true));
+        Relocation.Items.Push(new Item("ItemMinigun",                 true));
+        Relocation.Items.Push(new Item("ItemSniper",                  true));
+        Relocation.Items.Push(new Item("ItemGouda",                   true));
+        Relocation.Items.Push(new Item("ItemAmmoPistol",              true));
+        Relocation.Items.Push(new Item("ItemAmmoShotgun",             true));
+        Relocation.Items.Push(new Item("ItemAmmoMinigun",             true));
+        Relocation.Items.Push(new Item("ItemAmmoAssault",             false));
+        Relocation.Items.Push(new Item("ItemAmmoSniper",              true));
+        Relocation.Items.Push(new HPack("ItemHealthPack",             false));
+        Relocation.Items.Push(new Item("ItemCopperOre",               false));
+        Relocation.Items.Push(new Item("ItemCopper",                  false));
+        Relocation.Items.Push(new Item("ItemIronOre",                 true));
+        Relocation.Items.Push(new Item("ItemIron",                    true));
+        Relocation.Items.Push(new Item("ItemGoldOre",                 false));
+        Relocation.Items.Push(new Item("ItemGold",                    true));
         
         this.GiveItemsID();
         
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "hold on a sec (Pistol)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Revolver)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Rock");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Shotgun)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Boulder");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "L134 Devastator (Minigun)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Sniper Rifle)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Gouda Cheese");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Pistol)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Shotgun)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Minigun)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Assault Rifle)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Sniper Rifle)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Health Pack");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Iron (Unprocessed)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Iron (Processed)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Copper (Unprocessed)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Copper (Processed)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Gold (Unprocessed)");
-        this.ID = this.Items[this.ID].SetRecognizableName(this.ID, "Gold (Processed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "hold on a sec (Pistol)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Revolver)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Rock");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Shotgun)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Boulder");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "L134 Devastator (Minigun)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Sniper Rifle)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Gouda Cheese");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Pistol)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Shotgun)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Minigun)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Assault Rifle)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Sniper Rifle)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Health Pack");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Copper (Unprocessed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Copper (Processed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Iron (Unprocessed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Iron (Processed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Gold (Unprocessed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Gold (Processed)");
         
         this.ID = 0;
         
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Air");          // AIR
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // PISTOL
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // REVOLVER
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // ROCK
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // SHOTGUN
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // BOULDER
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // MINIGUN
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // SNIPER RIFLE
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Weapon");       // GOUDA CHEESE
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (PISTOL)
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SHOTGUN)
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (MINIGUN)
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (ASSAULT RIFLE)
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SNIPER RIFLE)
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Item");         // HEALTH PACK
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // IRON ORE
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // IRON
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // COPPER ORE
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // COPPER
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD ORE
-        this.ID = this.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Air");          // AIR
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // PISTOL
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // REVOLVER
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // ROCK
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // SHOTGUN
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // BOULDER
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // MINIGUN
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // SNIPER RIFLE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // GOUDA CHEESE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (PISTOL)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SHOTGUN)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (MINIGUN)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (ASSAULT RIFLE)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SNIPER RIFLE)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // HEALTH PACK
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // COPPER ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // COPPER
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // IRON ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // IRON
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD
         
         this.ID = 0;
         
@@ -96,16 +94,16 @@ class ItemManager : ZilchComponent {
     
     function GiveItemsID() {
         this.ID = 0;
-        while(this.ID < this.Items.Count)
-            this.ID = this.Items[this.ID].SetID(this.ID);
+        while(this.ID < Relocation.Items.Count)
+            this.ID = Relocation.Items[this.ID].SetID(this.ID);
         Console.WriteLine("`this.ID - 1` items successfully created");
         this.ID = 0;
     }
     
     function ShowItemIDs(showIDs : Boolean) {
         this.ID = 0;
-        while(this.ID < this.Items.Count)
-            this.ID = this.Items[this.ID].ShowLabelID(this.ID, showIDs);
+        while(this.ID < Relocation.Items.Count)
+            this.ID = Relocation.Items[this.ID].ShowLabelID(this.ID, showIDs);
         this.ID = 0;
     }
     

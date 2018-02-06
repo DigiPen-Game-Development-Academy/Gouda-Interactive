@@ -1,7 +1,10 @@
-class Global {
+class Relocation {
     
     [Static] var EntityPlayer : String = "EntityPlayer";
     
     [Static] var Space : Space = null;
+    [Static] var UISpace : Space = null;
+    
+    [Static] var Items : Array[Item] = null;
     
 }

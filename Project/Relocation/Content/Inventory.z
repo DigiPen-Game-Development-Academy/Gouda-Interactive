@@ -3,6 +3,8 @@
 
 class Inventory : ZilchComponent {
     
+    [Dependency] var Crafting : Crafting = null;
+    
     var UISpace : Space = null;
     
     var InventoryOpen : Boolean = false;
@@ -51,6 +53,8 @@ class Inventory : ZilchComponent {
         
         // CHECK IF INVENTORY IS OPEN
         if(this.InventoryOpen) {
+            
+            this.Owner.Crafting.OnPausedLogicUpdate(event);
             this.RefreshInventoryIcons();
             this.MouseSlot();
             
@@ -68,10 +72,12 @@ class Inventory : ZilchComponent {
                     inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(0, 0, 50000);
                     inventory.Transform.WorldTranslation = Real3(0, 0, 1);
                 } else {
-                    inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(-10.75, 0, 0);
-                    inventory.Transform.WorldTranslation = Real3(4, 0, 1);
+                    inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(10.75, 0, 0);
+                    inventory.Transform.WorldTranslation = Real3(-4, 0, 1);
                 }
             }
+            
+            this.Owner.Crafting.PausedLogicUpdateEnd();
             
         } else {
             
@@ -132,9 +138,9 @@ class Inventory : ZilchComponent {
             var slotObj = this.UISpace.FindObjectByName("Slot`i + 1`");
             var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
             
-            slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = itemMgmt.Items[this.InventoryContents[i]].Sprite;
+            slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[this.InventoryContents[i]].Sprite;
             slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
-            slotObj.FindChildByName("ItemName").SpriteText.Text = itemMgmt.Items[this.InventoryContents[i]].ItemRecognizableName;
+            slotObj.FindChildByName("ItemName").SpriteText.Text = Relocation.Items[this.InventoryContents[i]].ItemRecognizableName;
             //slotObj.FindChildByName("ItemName").SpriteText.Color = Real4(1.0, 1.0, 1.0, 1.0);
             
             if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
@@ -154,7 +160,7 @@ class Inventory : ZilchComponent {
             if(i == this.SLOT_HAND - 1 || i == this.SLOT_OFFHAND - 1) {
                 
                 slotObj = this.UISpace.FindObjectByName("Slot`i + 1`H");
-                slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = itemMgmt.Items[this.InventoryContents[i]].Sprite;
+                slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[this.InventoryContents[i]].Sprite;
                 slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
                 
                 if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
@@ -166,6 +172,8 @@ class Inventory : ZilchComponent {
                 }
                 
             }
+            
+            this.Owner.Crafting.RefreshIcons(i);
             
         }
         
@@ -227,14 +235,16 @@ class Inventory : ZilchComponent {
         
         if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0 && this.SlotHover != -1 && this.SlotHover != this.SLOT_MOUSE) {
             
-            this.TooltipName = this.Space.FindObjectByName("LevelSettings").ItemManager.Items[this.InventoryContents[this.SlotHover - 1]].ItemRecognizableName;
+            if(this.Owner.Crafting.GetTooltipName() == "State.False") {
+                this.TooltipName = Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemRecognizableName;
+            }
             
             if(this.TooltipName != "") {
                 var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
                 var itemTooltip = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName");
                 itemTooltip.SpriteText.Text = this.TooltipName;
                 itemTooltip.SpriteText.Color = Real4(1.0);
-                if(itemMgmt.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Weapon") {
+                if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Weapon") {
                     itemTooltip.SpriteText.Color = Real4(0.1, 1.0, 0.1, 1.0);
                 }
                 this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = true;
@@ -242,13 +252,17 @@ class Inventory : ZilchComponent {
             
             this.SlotHover = -1;
             
-        } else {
+        } else if(this.Owner.Crafting.GetTooltipName() == "State.False") {
             
             this.TooltipName = "";
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = false;
             
             this.SlotHover = -1;
             
+        } else {
+            this.TooltipName = this.Owner.Crafting.GetTooltipName();
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Text = this.TooltipName;
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = true;
         }
         
         //Console.WriteLine("Slot: `this.SlotClicked`");
@@ -267,7 +281,7 @@ class Inventory : ZilchComponent {
             cmd = this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry;
         }
         
-        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+        if(itemID < Relocation.Items.Count) {
             
             var hasGoneThru = false;
             
@@ -331,7 +345,7 @@ class Inventory : ZilchComponent {
             cmd = this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry;
         }
         
-        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+        if(itemID < Relocation.Items.Count) {
             
             var hasGoneThru = false;
             
@@ -387,7 +401,7 @@ class Inventory : ZilchComponent {
         
         itemID = Math.Abs(itemID);
         
-        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+        if(itemID < Relocation.Items.Count) {
             if(slot < this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
                 
                 if(this.InventoryContents[slot - 1] == 0) {
@@ -413,7 +427,7 @@ class Inventory : ZilchComponent {
         
         itemID = Math.Abs(itemID);
         
-        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+        if(itemID < Relocation.Items.Count) {
             if(slot < this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
                 
                 if(this.InventoryContents[slot - 1] == 0) {
@@ -545,7 +559,7 @@ class Inventory : ZilchComponent {
             return;
         }
         
-        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+        if(itemID < Relocation.Items.Count) {
             for(var i = 0; i < this.MaxInventorySlots; ++i) {
                 
                 if(this.InventoryContents[i] == itemID) {
@@ -566,7 +580,7 @@ class Inventory : ZilchComponent {
         
         itemID = Math.Abs(itemID);
         
-        if(itemID < this.Space.FindObjectByName("LevelSettings").ItemManager.Items.Count) {
+        if(itemID < Relocation.Items.Count) {
             for(var i = 0; i < this.MaxInventorySlots; ++i) {
                 
                 if(this.InventoryContents[i] == itemID) {

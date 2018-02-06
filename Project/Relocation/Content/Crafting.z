@@ -1,35 +1,163 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
+class Recipe {
+    
+    var Recipe : Array[Integer] = null;
+    
+    constructor(recipe : Array[Integer]) {
+        this.Recipe = recipe;
+    }
+    
+}
+
 class Crafting : ZilchComponent {
     
-    var UISpace : Space = null;
-    
+    var ItemCopper : Array[Integer] = null;
     var ItemIron : Array[Integer] = null;
+    var ItemGold : Array[Integer] = null;
+    
+    var CraftingRecipes : Array[Recipe] = null;
+    var CraftableItems : Array[Integer] = null;
+    
+    var SlotClicked : Integer = -1;
+    
+    var SlotHover : Integer = -1;
     
     var MaxItemsInRecipe : Integer = 3;
+    var MaxCraftingSlots : Integer = 6;
      
     function Initialize(init : CogInitializer) {
         
-        this.ItemIron = this.CreateRecipe(
+        this.CraftingRecipes = new Array[Recipe]();
+        this.CraftableItems = new Array[Integer]();
+        
+        // CREATE RECIPE
+        this.ItemCopper = this.CreateRecipe(
             15, 0, 0,
             1, 0, 0,
             16
         );
         
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.ItemIron = this.CreateRecipe(
+            17, 0, 0,
+            1, 0, 0,
+            18
+        );
+        
+        this.ItemGold = this.CreateRecipe(
+            19, 0, 0,
+            1, 0, 0,
+            20
+        );
+        
+        this.CraftingRecipes.Push(new Recipe(this.ItemCopper));
+        this.CraftingRecipes.Push(new Recipe(this.ItemIron));
+        this.CraftingRecipes.Push(new Recipe(this.ItemGold));
+        this.CraftingRecipes.Push(new Recipe(this.ItemGold));
+        this.CraftingRecipes.Push(new Recipe(this.ItemGold));
+        this.CraftingRecipes.Push(new Recipe(this.ItemGold));
+        
+        // ADD CRAFTABLE ITEMS TO LIST
+        this.CraftableItems.Push(16);
+        this.CraftableItems.Push(18);
+        this.CraftableItems.Push(20);
+        this.CraftableItems.Push(16);
+        this.CraftableItems.Push(16);
+        this.CraftableItems.Push(16);
+        
+        this.ShowItemsInCraftingMenu(this.CraftableItems, 0);
+        
+        Zero.Connect(Relocation.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(Zero.Keyboard.KeyIsPressed(Keys.One)) {
-            this.UseRecipe(this.ItemIron, false);
+        /*if(Zero.Keyboard.KeyIsPressed(Keys.One)) {
+            this.UseRecipe(this.CraftingRecipes, 0, false);
+        }*/
+        
+        if(this.SlotClicked != -1) {
+            this.UseRecipe(this.CraftingRecipes, this.SlotClicked, false);
+            this.SlotClicked = -1;
+        }
+        
+        if(this.SlotHover != -1) {
+            this.ShowCraftingRequirements(this.CraftingRecipes, 0, this.SlotHover);
+            this.SlotHover = -1;
         }
         
         if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
             Console.WriteLine("Inv: `this.Owner.Inventory.InventoryContents`");
             Console.WriteLine("Cnt: `this.Owner.Inventory.InventoryContentsCount`");
+        }
+        
+    }
+    
+    function OnPausedLogicUpdate(event : UpdateEvent) {
+        if(this.SlotClicked != -1) {
+            this.UseRecipe(this.CraftingRecipes, this.SlotClicked, false);
+        }
+        
+        if(this.SlotHover != -1) {
+            this.ShowCraftingRequirements(this.CraftingRecipes, 0, this.SlotHover);
+        }
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
+            Console.WriteLine("Inv: `this.Owner.Inventory.InventoryContents`");
+            Console.WriteLine("Cnt: `this.Owner.Inventory.InventoryContentsCount`");
+        }
+    }
+    
+    function PausedLogicUpdateEnd() {
+        this.SlotClicked = -1;
+        this.SlotHover = -1;
+    }
+    
+    function RefreshIcons(i : Integer) {
+        
+        if(Relocation.UISpace.FindObjectByName("CraftingItem`i + 1`") != null) {
+            var slotObj = Relocation.UISpace.FindObjectByName("CraftingItem`i + 1`");
+            
+            if(this.CraftingRecipes != null && this.Owner.Inventory.TooltipName != null) {
+                slotObj.FindChildByName("ItemName").SpriteText.Text = Relocation.Items[this.CraftingRecipes[i].Recipe[6]].ItemRecognizableName;
+                this.Owner.Inventory.TooltipName = Relocation.Items[this.CraftingRecipes[i].Recipe[6]].ItemRecognizableName;
+            } else if(this.Owner.Inventory.TooltipName == slotObj.FindChildByName("ItemName").SpriteText.Text) {
+                this.Owner.Inventory.TooltipName = "Air";
+            }
+            slotObj.FindChildByName("ItemCount").SpriteText.Text = "1";
+        }
+        
+    }
+    
+    function GetTooltipName() : String {
+        
+        Console.WriteLine("`this.SlotHover`");
+        
+        if(this.SlotHover != -1) {
+            return Relocation.Items[this.CraftingRecipes[this.SlotHover - 1].Recipe[6]].ItemRecognizableName;
+        } else {
+            return "State.False";
+        }
+    }
+    
+    function ShowItemsInCraftingMenu(items : Array[Integer], scrollPosition : Integer) {
+        
+        for(var i = 0; i < this.MaxCraftingSlots; ++i) {
+            
+            Relocation.UISpace.FindObjectByName("CraftingItem`i + 1`").FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[items[i + (this.MaxCraftingSlots * scrollPosition)]].Sprite;
+            
+        }
+        
+    }
+    
+    function ShowCraftingRequirements(recipe : Array[Recipe], scrollPosition : Integer, craftingID : Integer) {
+        
+        for(var i = 0; i < 3; ++i) {
+            
+            Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[recipe[craftingID - 1].Recipe[i]].Sprite;
+            
         }
         
     }
@@ -52,10 +180,10 @@ class Crafting : ZilchComponent {
         
     }
     
-    function CheckForResources(recipe : Array[Integer]) : Boolean {
+    function CheckForResources(recipe : Array[Recipe], recipeID : Integer) : Boolean {
         
         for(var i = 0; i < this.MaxItemsInRecipe - 1; ++i) {
-            if(this.Owner.Inventory.CheckForItems(recipe[i], recipe[i + this.MaxItemsInRecipe])) {
+            if(this.Owner.Inventory.CheckForItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe])) {
                 continue;
             } else {
                 return false;
@@ -66,11 +194,11 @@ class Crafting : ZilchComponent {
         
     }
     
-    function UseRecipe(recipe : Array[Integer], useAllItems : Boolean) {
+    function UseRecipe(recipe : Array[Recipe], recipeID : Integer, useAllItems : Boolean) {
         
         var canCraft = false;
         
-        if(this.CheckForResources(recipe)) {
+        if(this.CheckForResources(recipe, recipeID)) {
             canCraft = true;
         } else {
             Console.WriteLine("You do not have enough resources to craft this item.");
@@ -80,10 +208,10 @@ class Crafting : ZilchComponent {
         Console.WriteLine("canCraft = `canCraft`");
         
         for(var i = 0; i < this.MaxItemsInRecipe - 1; ++i) {
-            this.Owner.Inventory.RemoveItems(recipe[i], recipe[i + this.MaxItemsInRecipe]);
+            this.Owner.Inventory.RemoveItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe]);
         }
         
-        this.Owner.Inventory.GiveItem(recipe[this.MaxItemsInRecipe * 2], false);
+        this.Owner.Inventory.GiveItem(recipe[recipeID - 1].Recipe[this.MaxItemsInRecipe * 2], false);
         
     }
     
