@@ -44,7 +44,62 @@ class Crafting : ZilchComponent {
         this.CraftingRecipes = new Array[Recipe]();
         this.CraftableItems = new Array[Integer]();
         
-        this.CreateRecipe();
+        // CREATE RECIPE
+        this.ItemAir = this.CreateRecipe(
+            0, 0, 0,
+            0, 0, 0,
+            0
+        );
+        this.ItemCopper = this.CreateRecipe(
+            15, 0, 0,
+            1, 0, 0,
+            16
+        );
+        this.ItemIron = this.CreateRecipe(
+            17, 0, 0,
+            1, 0, 0,
+            18
+        );
+        this.ItemGold = this.CreateRecipe(
+            19, 0, 0,
+            1, 0, 0,
+            20
+        );
+        this.ItemTitanium = this.CreateRecipe(
+            21, 0, 0,
+            1, 0, 0,
+            22
+        );
+        this.ItemPlatinum = this.CreateRecipe(
+            23, 0, 0,
+            1, 0, 0,
+            24
+        );
+        this.ItemAmmoPistol = this.CreateRecipe(
+            18, 20, 0,
+            3, 1, 0,
+            9
+        );
+        this.ItemAmmoShotgun = this.CreateRecipe(
+            18, 20, 0,
+            3, 1, 0,
+            10
+        );
+        this.ItemAmmoMinigun = this.CreateRecipe(
+            18, 20, 0,
+            3, 1, 0,
+            11
+        );
+        this.ItemAmmoAssault = this.CreateRecipe(
+            18, 20, 0,
+            3, 1, 0,
+            12
+        );
+        this.ItemAmmoSniper = this.CreateRecipe(
+            18, 20, 0,
+            3, 1, 0,
+            13
+        );
         
         this.CraftingRecipes.Push(new Recipe(this.ItemCopper));
         this.CraftingRecipes.Push(new Recipe(this.ItemIron));
@@ -169,11 +224,17 @@ class Crafting : ZilchComponent {
         
         for(var i = 0; i < 3; ++i) {
             
+            var craftingRIcon = Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon");
+            var craftingRCt = Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("ItemCount");
+            
             if(Relocation.Items[recipe[craftingID - 1].Recipe[i]].Sprite != SpriteSource.Circle) {
-                Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon").Sprite.Visible = true;
-                Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[recipe[craftingID - 1].Recipe[i]].Sprite;
+                craftingRIcon.Sprite.Visible = true;
+                craftingRCt.SpriteText.Visible = true;
+                craftingRIcon.Sprite.SpriteSource = Relocation.Items[recipe[craftingID - 1].Recipe[i]].Sprite;
+                craftingRCt.SpriteText.Text = "`recipe[craftingID - 1].Recipe[i + this.MaxItemsInRecipe]`";
             } else {
-                Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon").Sprite.Visible = false;
+                craftingRIcon.Sprite.Visible = false;
+                craftingRCt.SpriteText.Visible = false;
             }
             
         }
@@ -237,76 +298,6 @@ class Crafting : ZilchComponent {
         this.ScrollPosition = pos;
         this.ShowItemsInCraftingMenu(this.CraftableItems, this.ScrollPosition);
         this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, 6);
-    }
-    
-    function CreateRecipe() {
-        
-        // CREATE RECIPE
-        this.ItemAir = this.CreateRecipe(
-            0, 0, 0,
-            0, 0, 0,
-            0
-        );
-        
-        this.ItemCopper = this.CreateRecipe(
-            15, 0, 0,
-            1, 0, 0,
-            16
-        );
-        
-        this.ItemIron = this.CreateRecipe(
-            17, 0, 0,
-            1, 0, 0,
-            18
-        );
-        
-        this.ItemGold = this.CreateRecipe(
-            19, 0, 0,
-            1, 0, 0,
-            20
-        );
-        
-        this.ItemTitanium = this.CreateRecipe(
-            21, 0, 0,
-            1, 0, 0,
-            22
-        );
-        
-        this.ItemPlatinum = this.CreateRecipe(
-            23, 0, 0,
-            1, 0, 0,
-            24
-        );
-        
-        this.ItemAmmoPistol = this.CreateRecipe(
-            0, 0, 0,
-            0, 0, 0,
-            9
-        );
-        
-        this.ItemAmmoShotgun = this.CreateRecipe(
-            0, 0, 0,
-            0, 0, 0,
-            10
-        );
-        
-        this.ItemAmmoMinigun = this.CreateRecipe(
-            0, 0, 0,
-            0, 0, 0,
-            11
-        );
-        
-        this.ItemAmmoAssault = this.CreateRecipe(
-            0, 0, 0,
-            0, 0, 0,
-            12
-        );
-        
-        this.ItemAmmoSniper = this.CreateRecipe(
-            1, 0, 0,
-            1, 0, 0,
-            13
-        );
     }
     
 }
