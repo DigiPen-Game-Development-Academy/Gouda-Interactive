@@ -33,36 +33,23 @@ class PathFinding : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.TimeTillUpdateMemories -= event.Dt;
-        
         if (this.Player == null)
             return;
         
-        var ray = Ray();
-        var thisPosition = this.Owner.Transform.WorldTranslation;
-        var rayDirection = this.Owner.Orientation.WorldForward;
-        
-        ray.Start = thisPosition;
-        ray.Direction = rayDirection;
-        
-        this.CastResult = this.Space.PhysicsSpace.CastRayFirst(ray);
-        
-        //this.MoveRandomly();
-        
-        if (this.CastResult.ObjectHit == null)
-            return;
-        
-        
+        this.Move();
     }
     
     function Move()
     {
-        
+        if (this.LookAtPlayer().ObjectHit.Name == "EntityPlayer")
+            this.MoveTowardsPlayer();
+        else
+            this.MoveTowardsMemories();
     }
     
     function LookAtPlayer() : CastResult
     {
-         var ray = Ray();
+        var ray = Ray();
         var thisPosition = this.Owner.Transform.WorldTranslation;
         var rayDirection = this.Owner.Orientation.WorldForward;
         
@@ -72,9 +59,29 @@ class PathFinding : ZilchComponent
         return this.Space.PhysicsSpace.CastRayFirst(ray);
     }
     
-    /*function LookAtPoint(point : Real3)
+    function MoveTowardsPlayer()
     {
-        // Look at player
+        this.LookAtPoint(this.LookAtPlayer().ObjectHit.Transform.Translation);
+        
+        this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+    }
+    
+    function MoveTowardsMemories()
+    {
+        for (var i = 0; i < this.Memories.Count; ++i)
+        {
+            if (this.TestForApproxamentlyEqual(this.Owner.Transform.Translation, this.Memories[i], 0.1))
+            {
+                this.Memories.RemoveAt(i);
+                
+                this.LookAtPoint(this.Memories[i - 1]);
+            }
+        }
+    }
+    
+    function LookAtPoint(point : Real3)
+    {
+        // Look at point
         this.Owner.Orientation.LookAtPoint(point);
         
         // Make enemy sprite face up
@@ -94,7 +101,26 @@ class PathFinding : ZilchComponent
             return false;
     }
     
-    function MoveRandomly()
+    function UpdateMemories()
+    {
+        for (var i = 4; i > 0; --i)
+        {
+            this.Memories[i] = this.Memories[i - 1];
+        }
+        
+        this.Memories[0] = this.Space.FindObjectByName("EntityPlayer").Transform.Translation;
+    }
+    
+    function TestForApproxamentlyEqual(position1 : Real3, position2 : Real3, amount : Real) : Boolean
+    {
+        if (Math.ApproximatelyEqual(position1.X, position2.X, amount) &&
+            Math.ApproximatelyEqual(position1.Y, position2.Y, amount))
+            return true;
+        else
+            return false;
+    }
+    
+    /*function MoveRandomly()
     {
         if (this.CastResult.ObjectHit != null)
             if (this.CastResult.ObjectHit.Name == "EntityPlyaer")
