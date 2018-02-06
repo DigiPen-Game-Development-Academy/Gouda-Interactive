@@ -301,15 +301,15 @@ class Inventory : ZilchComponent {
             
         } else {
             
-            this.TooltipName = this.Owner.Crafting.GetTooltipName();
-            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Text = this.TooltipName;
-            this.TooltipLoreName = "";
-            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Color = Real4(1.0);
-            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = true;
-            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore").SpriteText.Visible = false;
-            
             var itemTooltip = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName");
             var itemNameBG = itemTooltip.FindChildByName("ItemNameBG");
+            
+            this.TooltipName = this.Owner.Crafting.GetTooltipName();
+            this.TooltipLoreName = "";
+            itemTooltip.SpriteText.Text = this.TooltipName;
+            itemTooltip.SpriteText.Color = Real4(1.0);
+            itemTooltip.SpriteText.Visible = true;
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore").SpriteText.Visible = false;
             
             // TOOLTIP BACKGROUND
             if(itemNameBG != null && this.TooltipName != "") {

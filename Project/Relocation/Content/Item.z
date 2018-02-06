@@ -41,14 +41,14 @@ class Item {
         this.Sprite = SpriteSource.Find(sprite);
     }
     
-    function SetRecognizableName(id : Integer, name : String) : Integer {
+    function SetDisplayName(id : Integer, name : String) : Integer {
         this.ItemRecognizableNameBase = name;
         this.ShowLabelID(this.ItemID, this.ShowID);
         ++id;
         return id;
     }
     
-    function SetRecognizableName(id : Integer, name : String, lore : String) : Integer {
+    function SetDisplayName(id : Integer, name : String, lore : String) : Integer {
         this.ItemRecognizableNameBase = name;
         this.ItemLore = lore;
         this.ShowLabelID(this.ItemID, this.ShowID);
