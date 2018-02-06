@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.02200508, 8.09533215, 13.6266108],
+			Vec3 Translation = [-17.1398468, -0.808051348, 13.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 7.33859205,
+			float Size = 12.0992918,
 		},
 		EditorCameraController = 
 		{
@@ -119,7 +119,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-2.02200508, 8.09533215, -8.8387047e-08],
+			Vec3 LookTarget = [-17.1398468, -0.808051348, -7.49208766e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -521,6 +521,10 @@ Level =
 							bool Active = true,
 							bool CaptureMouse = false,
 						},
+						CraftingSlot = 
+						{
+							bool IsCraftingSlot = false,
+						},
 						Hierarchy = 
 						{
 							Cog = 
@@ -667,6 +671,10 @@ Level =
 							bool Active = true,
 							bool CaptureMouse = false,
 						},
+						CraftingSlot = 
+						{
+							bool IsCraftingSlot = false,
+						},
 						Hierarchy = 
 						{
 							Cog = 
@@ -812,6 +820,10 @@ Level =
 						{
 							bool Active = true,
 							bool CaptureMouse = false,
+						},
+						CraftingSlot = 
+						{
+							bool IsCraftingSlot = false,
 						},
 						Hierarchy = 
 						{
