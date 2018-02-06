@@ -40,13 +40,13 @@ class ItemManager : ZilchComponent {
         this.GiveItemsID();
         
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "");
-        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "hold on a sec (Pistol)");
-        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Revolver)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "The \"Laser\" (Pistol)", "Starter weapon");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Time Space Warper (Revolver)", "It is said that it can break everything\njust by holding it...");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Rock");
-        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Shotgun)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "\"Get Off My Lawn\" (Shotgun)");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Boulder");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "L134 Devastator (Minigun)");
-        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Sniper Rifle)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Photon Sniper (Sniper Rifle)");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Gouda Cheese");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Pistol)");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Shotgun)");

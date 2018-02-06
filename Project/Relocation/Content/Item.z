@@ -7,6 +7,7 @@ class Item {
     var ItemRecognizableNameBase : String = "Undefined Item";
     var ItemRecognizableName : String = "Undefined Item";
     var ItemType : String = "Item";
+    var ItemLore : String = "";
     
     var ItemID : Integer = 0;
     
@@ -47,6 +48,14 @@ class Item {
         return id;
     }
     
+    function SetRecognizableName(id : Integer, name : String, lore : String) : Integer {
+        this.ItemRecognizableNameBase = name;
+        this.ItemLore = String.Concatenate("\n", lore);
+        this.ShowLabelID(this.ItemID, this.ShowID);
+        ++id;
+        return id;
+    }
+    
     function SetItemType(id : Integer, type : String) : Integer {
         this.ItemType = type;
         ++id;
@@ -65,8 +74,9 @@ class Item {
         
         if(showID && this.ItemRecognizableNameBase != "") {
             this.ItemRecognizableName = String.Concatenate(this.ItemRecognizableNameBase, " [ID #`this.ItemID`]");
+            this.ItemRecognizableName = String.Concatenate(this.ItemRecognizableName, this.ItemLore);
         } else {
-            this.ItemRecognizableName = this.ItemRecognizableNameBase;
+            this.ItemRecognizableName = String.Concatenate(this.ItemRecognizableNameBase, this.ItemLore);
         }
         
         ++id;
