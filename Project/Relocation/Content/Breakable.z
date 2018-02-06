@@ -5,6 +5,8 @@ class Breakable : ZilchComponent
 {
     var Player : Cog = null;
     
+    [Property] var BreakTime : Real = 1.0;
+    var TimeTillBreak : Real = 0.0;
     [Property] var ToolType : String = "None";
     
     [Property] var Loot1ID : Integer = 0;
@@ -26,11 +28,16 @@ class Breakable : ZilchComponent
     {
         var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
         
-        if (event.IsButtonDown(MouseButtons.Left) && this.IsMouseOnObject(mousePosition))
+        if (event.IsButtonDown(MouseButtons.Right) && this.IsMouseOnObject(mousePosition))
         {
+            this.TimeTillBreak += 0.0166667;
+            
             Console.WriteLine("Break");
             
             if (this.Space.FindObjectByName("EntityPlayer") == null)
+                return;
+            
+            if (this.TimeTillBreak < this.BreakTime)
                 return;
             
             if (this.Loot1ID != 0)
