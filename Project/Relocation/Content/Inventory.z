@@ -247,7 +247,7 @@ class Inventory : ZilchComponent {
                 if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Weapon") {
                     itemTooltip.SpriteText.Color = Real4(0.1, 1.0, 0.1, 1.0);
                 }
-                this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = true;
+                itemTooltip.SpriteText.Visible = true;
             }
             
             this.SlotHover = -1;
@@ -262,6 +262,7 @@ class Inventory : ZilchComponent {
         } else {
             this.TooltipName = this.Owner.Crafting.GetTooltipName();
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Text = this.TooltipName;
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Color = Real4(1.0);
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = true;
         }
         

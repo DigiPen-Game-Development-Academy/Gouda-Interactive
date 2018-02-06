@@ -13,6 +13,7 @@ class Recipe {
 
 class Crafting : ZilchComponent {
     
+    var ItemAir : Array[Integer] = null;
     var ItemCopper : Array[Integer] = null;
     var ItemIron : Array[Integer] = null;
     var ItemGold : Array[Integer] = null;
@@ -24,6 +25,9 @@ class Crafting : ZilchComponent {
     
     var SlotHover : Integer = -1;
     
+    var ScrollPosition : Integer = 0;
+    var MaxScroll : Integer = 1;
+    
     var MaxItemsInRecipe : Integer = 3;
     var MaxCraftingSlots : Integer = 6;
      
@@ -33,6 +37,12 @@ class Crafting : ZilchComponent {
         this.CraftableItems = new Array[Integer]();
         
         // CREATE RECIPE
+        this.ItemAir = this.CreateRecipe(
+            0, 0, 0,
+            0, 0, 0,
+            0
+        );
+        
         this.ItemCopper = this.CreateRecipe(
             15, 0, 0,
             1, 0, 0,
@@ -54,19 +64,34 @@ class Crafting : ZilchComponent {
         this.CraftingRecipes.Push(new Recipe(this.ItemCopper));
         this.CraftingRecipes.Push(new Recipe(this.ItemIron));
         this.CraftingRecipes.Push(new Recipe(this.ItemGold));
-        this.CraftingRecipes.Push(new Recipe(this.ItemGold));
-        this.CraftingRecipes.Push(new Recipe(this.ItemGold));
-        this.CraftingRecipes.Push(new Recipe(this.ItemGold));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
         
         // ADD CRAFTABLE ITEMS TO LIST
         this.CraftableItems.Push(16);
         this.CraftableItems.Push(18);
         this.CraftableItems.Push(20);
-        this.CraftableItems.Push(16);
-        this.CraftableItems.Push(16);
-        this.CraftableItems.Push(16);
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
         
-        this.ShowItemsInCraftingMenu(this.CraftableItems, 0);
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
+        
+        this.ShowItemsInCraftingMenu(this.CraftableItems, this.ScrollPosition);
+        this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, 6);
         
         Zero.Connect(Relocation.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -79,12 +104,12 @@ class Crafting : ZilchComponent {
         }*/
         
         if(this.SlotClicked != -1) {
-            this.UseRecipe(this.CraftingRecipes, this.SlotClicked, false);
+            this.UseRecipe(this.CraftingRecipes, this.SlotClicked  + (this.MaxCraftingSlots * this.ScrollPosition), false);
             this.SlotClicked = -1;
         }
         
         if(this.SlotHover != -1) {
-            this.ShowCraftingRequirements(this.CraftingRecipes, 0, this.SlotHover);
+            this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, this.SlotHover + (this.MaxCraftingSlots * this.ScrollPosition));
             this.SlotHover = -1;
         }
         
@@ -97,11 +122,11 @@ class Crafting : ZilchComponent {
     
     function OnPausedLogicUpdate(event : UpdateEvent) {
         if(this.SlotClicked != -1) {
-            this.UseRecipe(this.CraftingRecipes, this.SlotClicked, false);
+            this.UseRecipe(this.CraftingRecipes, this.SlotClicked + (this.MaxCraftingSlots * this.ScrollPosition), false);
         }
         
         if(this.SlotHover != -1) {
-            this.ShowCraftingRequirements(this.CraftingRecipes, 0, this.SlotHover);
+            this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, this.SlotHover + (this.MaxCraftingSlots * this.ScrollPosition));
         }
         
         if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
@@ -134,7 +159,7 @@ class Crafting : ZilchComponent {
     function GetTooltipName() : String {
         
         if(this.SlotHover != -1) {
-            return Relocation.Items[this.CraftingRecipes[this.SlotHover - 1].Recipe[6]].ItemRecognizableName;
+            return Relocation.Items[this.CraftingRecipes[this.SlotHover - 1 + (this.MaxCraftingSlots * this.ScrollPosition)].Recipe[6]].ItemRecognizableName;
         } else {
             return "State.False";
         }
@@ -144,7 +169,12 @@ class Crafting : ZilchComponent {
         
         for(var i = 0; i < this.MaxCraftingSlots; ++i) {
             
-            Relocation.UISpace.FindObjectByName("CraftingItem`i + 1`").FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[items[i + (this.MaxCraftingSlots * scrollPosition)]].Sprite;
+            if(Relocation.Items[items[i + (this.MaxCraftingSlots * scrollPosition)]].Sprite != SpriteSource.Circle) {
+                Relocation.UISpace.FindObjectByName("CraftingItem`i + 1`").FindChildByName("SlotIcon").Sprite.Visible = true;
+                Relocation.UISpace.FindObjectByName("CraftingItem`i + 1`").FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[items[i + (this.MaxCraftingSlots * scrollPosition)]].Sprite;
+            } else {
+                Relocation.UISpace.FindObjectByName("CraftingItem`i + 1`").FindChildByName("SlotIcon").Sprite.Visible = false;
+            }
             
         }
         
@@ -154,7 +184,12 @@ class Crafting : ZilchComponent {
         
         for(var i = 0; i < 3; ++i) {
             
-            Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[recipe[craftingID - 1].Recipe[i]].Sprite;
+            if(Relocation.Items[recipe[craftingID - 1].Recipe[i]].Sprite != SpriteSource.Circle) {
+                Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon").Sprite.Visible = true;
+                Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[recipe[craftingID - 1 + (this.MaxCraftingSlots * scrollPosition)].Recipe[i]].Sprite;
+            } else {
+                Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon").Sprite.Visible = false;
+            }
             
         }
         
@@ -180,7 +215,7 @@ class Crafting : ZilchComponent {
     
     function CheckForResources(recipe : Array[Recipe], recipeID : Integer) : Boolean {
         
-        for(var i = 0; i < this.MaxItemsInRecipe - 1; ++i) {
+        for(var i = 0; i < this.MaxItemsInRecipe; ++i) {
             if(this.Owner.Inventory.CheckForItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe])) {
                 continue;
             } else {
