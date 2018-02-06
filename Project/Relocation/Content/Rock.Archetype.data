@@ -1,0 +1,30 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "Rock",
+	},
+	Archetyped = 
+	{
+		string Name = "5a2b9a3928eefa34:Rock",
+	},
+	Breakable = 
+	{
+		string ToolType = "None",
+		int Loot1ID = 3,
+		int Loot1MaxAmount = 3,
+		int Loot2ID = 0,
+		int Loot2MaxAmount = 0,
+		int Loot3ID = 0,
+		int Loot3MaxAmount = 0,
+	},
+	Reactive = 
+	{
+		bool Active = true,
+		bool CaptureMouse = false,
+	},
+},

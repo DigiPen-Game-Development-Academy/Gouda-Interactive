@@ -1,0 +1,16 @@
+class InitializeChildren : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(init, Events.AllObjectsInitialized, this.InitializeChildren);
+    }
+    
+    function InitializeChildren(event : CogInitializerEvent)
+    {
+        foreach (var child in this.Owner.Children)
+        {
+            if (child.Breakable != null)
+                Zero.Connect(this.Space, Events.MouseUpdate, child.Breakable.Break);
+        }
+    }
+}

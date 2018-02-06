@@ -16,30 +16,46 @@ class Breakable : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
-        this.Player = this.Space.FindObjectByName("EntityPlayer");
-        
-        this.Break();
-        
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
     }
     
-    function Break()
+    function Break(event : ViewportMouseEvent)
     {
-        if (this.Player == null)
-            return;
+        var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
         
-        if (this.Loot1ID != 0)
-            this.Player.Inventory.GiveItemWithAmount(this.Loot1ID, false, this.DieRoll(this.Loot1MaxAmount));
-        if (this.Loot2ID != 0)
-            this.Player.Inventory.GiveItemWithAmount(this.Loot2ID, false, this.DieRoll(this.Loot2MaxAmount));
-        if (this.Loot3ID != 0)
-            this.Player.Inventory.GiveItemWithAmount(this.Loot3ID, false, this.DieRoll(this.Loot3MaxAmount));
+        if (event.IsButtonDown(MouseButtons.Left) && this.IsMouseOnObject(mousePosition))
+        {
+            Console.WriteLine("Break");
+            
+            if (this.Space.FindObjectByName("EntityPlayer") == null)
+                return;
+            
+            if (this.Loot1ID != 0)
+                this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot1ID, false, this.DieRoll(this.Loot1MaxAmount));
+            if (this.Loot2ID != 0)
+                this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot2ID, false, this.DieRoll(this.Loot2MaxAmount));
+            if (this.Loot3ID != 0)
+                this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot3ID, false, this.DieRoll(this.Loot3MaxAmount));
+            
+            this.Owner.Destroy();
+        }
+    }
+    
+    function IsMouseOnObject(mousePosition : Real3) : Boolean
+    {
+        var ownerPosition = this.Owner.Transform.WorldTranslation;
+        var ownerSize = this.Owner.Transform.WorldScale / 2;
         
-        this.Owner.Destroy();
+        if (mousePosition.X >= ownerPosition.X - ownerSize.X &&
+            mousePosition.X <= ownerPosition.X + ownerSize.X &&
+            mousePosition.Y >= ownerPosition.Y - ownerSize.Y &&
+            mousePosition.Y <= ownerPosition.Y + ownerSize.Y)
+            return true;
+        else
+            return false;
     }
     
     function DieRoll(sides : Integer) : Integer
