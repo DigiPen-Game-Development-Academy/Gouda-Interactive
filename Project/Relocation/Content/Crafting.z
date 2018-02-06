@@ -248,4 +248,10 @@ class Crafting : ZilchComponent {
         
     }
     
+    function SetScrollPosition(pos : Integer) {
+        this.ScrollPosition = pos;
+        this.ShowItemsInCraftingMenu(this.CraftableItems, this.ScrollPosition);
+        this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, 6);
+    }
+    
 }
