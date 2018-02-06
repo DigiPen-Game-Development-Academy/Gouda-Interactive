@@ -261,4 +261,4 @@ Project/Relocation/EditorContent/ProjectScreenshot.png
 # Important Gitignore Stuff -Matt
 #.gitignore
 Project/Relocation/Content/GlobalTestingSandbox.Level.data
-*.bin
+#*.bin
