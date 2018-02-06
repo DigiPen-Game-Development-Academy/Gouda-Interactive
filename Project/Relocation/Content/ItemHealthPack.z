@@ -1,5 +1,11 @@
 class HPack : Item {
     
+    var HealAmount : Real = 25;
+    
+    constructor(itemName : String, useNameAsSpriteSource : Boolean, healAmt : Real) : base(itemName, useNameAsSpriteSource) {
+        this.HealAmount = healAmt;
+    }
+    
     function Update(dt : Real) {
         
         if(Relocation.Space != null && Relocation.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
@@ -7,7 +13,10 @@ class HPack : Item {
             var healthScript = Relocation.Space.FindObjectByName(Relocation.EntityPlayer).Health;
             
             if(healthScript.CurrentHealth < healthScript.MaxHealth) {
-                healthScript.CurrentHealth = healthScript.MaxHealth;
+                healthScript.CurrentHealth += this.HealAmount;
+                if(healthScript.CurrentHealth > healthScript.MaxHealth) {
+                    healthScript.CurrentHealth = healthScript.MaxHealth;
+                }
                 Relocation.Space.FindObjectByName(Relocation.EntityPlayer).Inventory.RemoveItemInSlot(2, false);
             }
             
