@@ -133,8 +133,6 @@ class Crafting : ZilchComponent {
     
     function GetTooltipName() : String {
         
-        Console.WriteLine("`this.SlotHover`");
-        
         if(this.SlotHover != -1) {
             return Relocation.Items[this.CraftingRecipes[this.SlotHover - 1].Recipe[6]].ItemRecognizableName;
         } else {

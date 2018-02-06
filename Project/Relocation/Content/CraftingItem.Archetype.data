@@ -39,7 +39,7 @@ Cog =
 	Reactive = 
 	{
 		bool Active = true,
-		bool CaptureMouse = true,
+		bool CaptureMouse = false,
 	},
 	CraftingSlot = 
 	{
