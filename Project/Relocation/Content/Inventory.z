@@ -366,7 +366,7 @@ class Inventory : ZilchComponent {
                     if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                         firstAvailableSlot = i;
                     } else if(this.InventoryContents[i] == itemID) {
-                        ++this.InventoryContentsCount[i];
+                        this.InventoryContentsCount[i] += amount;
                         this.RefreshInventoryIcons();
                         if(notifyUser)
                             cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
