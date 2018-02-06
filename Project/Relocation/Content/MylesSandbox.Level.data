@@ -92,13 +92,6 @@ Level =
 		ItemManager = 
 		{
 		},
-		WorldGeneration = 
-		{
-			float MapRadius = 240,
-			int NumberOfTiles = 9,
-			int TileDiameter = 32,
-			float MaxRadiusFromPlayer = 64,
-		},
 	},
 	Cog = 
 	{
@@ -112,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [36.4252472, 989.180176, 50],
+			Vec3 Translation = [-1.31684923, 4.7664876, 50.375],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -124,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 44.9329338,
+			float Size = 14.9568863,
 		},
 		EditorCameraController = 
 		{
@@ -132,7 +125,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [36.4252472, 989.180176, 1.59219803e-06],
+			Vec3 LookTarget = [-1.31684923, 4.7664876, 0.375000149],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -368,6 +361,16 @@ Level =
 			Vec3 Velocity = [0, 0, 0],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
+		Breakable = 
+		{
+			string ToolType = "None",
+			int Loot1ID = 4,
+			int Loot1MaxAmount = 4,
+			int Loot2ID = 3,
+			int Loot2MaxAmount = 10,
+			int Loot3ID = 9,
+			int Loot3MaxAmount = 1,
+		},
 	},
 	ArchetypeInstance = 
 	{
@@ -568,6 +571,41 @@ Level =
 		Named = 
 		{
 			string Name = "Tile9",
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 18,
+		},
+		Named = 
+		{
+			string Name = "TestTileMap",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		MultiSprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		},
+		TileMap = 
+		{
+			string SourceName = "5a2b94f9c27979cd:MylesSandbox_TileMap33",
+			string PaletteName = "",
+			float UnitsPerTile = 1,
+			float MeshThickness = 1.20000005,
 		},
 	},
 },

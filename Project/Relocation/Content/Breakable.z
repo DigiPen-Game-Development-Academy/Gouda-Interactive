@@ -1,0 +1,50 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
+class Breakable : ZilchComponent
+{
+    var Player : Cog = null;
+    
+    [Property] var ToolType : String = "None";
+    
+    [Property] var Loot1ID : Integer = 0;
+    [Property] var Loot1MaxAmount : Integer = 0;
+    [Property] var Loot2ID : Integer = 0;
+    [Property] var Loot2MaxAmount : Integer = 0;
+    [Property] var Loot3ID : Integer = 0;
+    [Property] var Loot3MaxAmount : Integer = 0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.Player = this.Space.FindObjectByName("EntityPlayer");
+        
+        this.Break();
+        
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+    
+    function Break()
+    {
+        if (this.Player == null)
+            return;
+        
+        if (this.Loot1ID != 0)
+            this.Player.Inventory.GiveItemWithAmount(this.Loot1ID, false, this.DieRoll(this.Loot1MaxAmount));
+        if (this.Loot2ID != 0)
+            this.Player.Inventory.GiveItemWithAmount(this.Loot2ID, false, this.DieRoll(this.Loot2MaxAmount));
+        if (this.Loot3ID != 0)
+            this.Player.Inventory.GiveItemWithAmount(this.Loot3ID, false, this.DieRoll(this.Loot3MaxAmount));
+        
+        this.Owner.Destroy();
+    }
+    
+    function DieRoll(sides : Integer) : Integer
+    {
+        var randomGen = new Random();
+        return randomGen.DieRoll(sides);
+    }
+}
