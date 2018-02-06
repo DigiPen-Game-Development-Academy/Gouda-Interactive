@@ -74,6 +74,9 @@ Cog =
 	Inventory = 
 	{
 	},
+	Crafting = 
+	{
+	},
 	PlayerProperties = 
 	{
 		string PlayerName = "Astronaut Zero",
@@ -81,9 +84,6 @@ Cog =
 		Vec3 SpawnPosition = [0, 0, 0],
 		bool IsInWater = false,
 		float CurrencyCount = 0,
-	},
-	Crafting = 
-	{
 	},
 	Hierarchy = 
 	{

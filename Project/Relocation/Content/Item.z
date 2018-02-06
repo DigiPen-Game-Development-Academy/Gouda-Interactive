@@ -7,6 +7,7 @@ class Item {
     var ItemRecognizableNameBase : String = "Undefined Item";
     var ItemRecognizableName : String = "Undefined Item";
     var ItemType : String = "Item";
+    var ItemLore : String = "";
     
     var ItemID : Integer = 0;
     
@@ -42,6 +43,14 @@ class Item {
     
     function SetRecognizableName(id : Integer, name : String) : Integer {
         this.ItemRecognizableNameBase = name;
+        this.ShowLabelID(this.ItemID, this.ShowID);
+        ++id;
+        return id;
+    }
+    
+    function SetRecognizableName(id : Integer, name : String, lore : String) : Integer {
+        this.ItemRecognizableNameBase = name;
+        this.ItemLore = lore;
         this.ShowLabelID(this.ItemID, this.ShowID);
         ++id;
         return id;

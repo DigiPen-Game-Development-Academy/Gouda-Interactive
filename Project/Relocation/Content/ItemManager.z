@@ -24,7 +24,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemAmmoMinigun",               true));
         Relocation.Items.Push(new Item("ItemAmmoAssault",               false));
         Relocation.Items.Push(new Item("ItemAmmoSniper",                true));
-        Relocation.Items.Push(new HPack("ItemHealthPack",               false));
+        Relocation.Items.Push(new HPack("ItemHealthPack",               false, 10));
         Relocation.Items.Push(new Item("ItemCopperOre",                 false));
         Relocation.Items.Push(new Item("ItemCopper",                    false));
         Relocation.Items.Push(new Item("ItemIronOre",                   true));
@@ -35,17 +35,18 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemTitanium",                  false));
         Relocation.Items.Push(new Item("ItemPlatinumOre",               false));
         Relocation.Items.Push(new Item("ItemPlatinum",                  false));
+        Relocation.Items.Push(new HPack("ItemGreenBean",                true, 1));
         
         this.GiveItemsID();
         
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "");
-        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "hold on a sec (Pistol)");
-        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Revolver)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "The \"Laser\" (Pistol)", "Starter weapon");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Time Space Warper (Revolver)", "It is said that it will break everything\njust by holding it...");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Rock");
-        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Shotgun)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "\"Get Off My Lawn\" (Shotgun)");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Boulder");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "L134 Devastator (Minigun)");
-        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Undecided (Sniper Rifle)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Photon Sniper (Sniper Rifle)");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Gouda Cheese");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Pistol)");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Ammunition (Shotgun)");
@@ -59,6 +60,11 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Iron (Processed)");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Gold (Unprocessed)");
         this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Gold (Processed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Titanium (Unprocessed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Titanium (Processed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Platinum (Unprocessed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Platinum (Processed)");
+        this.ID = Relocation.Items[this.ID].SetRecognizableName(this.ID, "Grean Bean");
         
         this.ID = 0;
         
@@ -83,6 +89,11 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // IRON
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD ORE
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // TITANIUM ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // TITANIUM
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // PLATINUM ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // PLATINUM
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Food");         // GREEN BEAN
         
         this.ID = 0;
         

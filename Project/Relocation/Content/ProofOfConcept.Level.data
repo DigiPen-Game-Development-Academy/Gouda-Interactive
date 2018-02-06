@@ -55,13 +55,13 @@ Level =
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
 			},
-			ViewportScaling Scaling = Fill,
+			ViewportScaling Scaling = Letterbox,
 			Vec2 Resolution = [1280, 720],
 			Vec4 MarginColor = [0, 0, 0, 1],
 		},
 		ForwardRenderer = 
 		{
-			Vec4 ClearColor = [0.720000029, 0.410400152, 0, 1],
+			Vec4 ClearColor = [0.155000001, 0.155000001, 0.155000001, 1],
 			bool DrawNonVisible = false,
 			bool DrawDebugObjects = true,
 			bool DrawEditorIcons = true,
@@ -83,14 +83,21 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		ItemManager = 
+		{
+		},
 		UICreator = 
 		{
 			string UILevel = "5a0b73429c761ee6:UILevel",
 			string UIArchetype = "554cea0f94af6dc4:Space",
 			bool ReloadIfSameLevel = true,
 		},
-		ItemManager = 
+		WorldGeneration = 
 		{
+			float MapRadius = 240,
+			int NumberOfTiles = 9,
+			int TileDiameter = 32,
+			float MaxRadiusFromPlayer = 64,
 		},
 	},
 	Cog = 
@@ -105,7 +112,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.0948255435, 0.0660055131, 50],
+			Vec3 Translation = [-0.377634346, -0.515842438, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,7 +124,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 2.69971585,
+			float Size = 18.2683792,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +132,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.0948255435, 0.0660055131, -4.14496171e-09],
+			Vec3 LookTarget = [-0.377634346, -0.515842438, 1.03255452e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -146,7 +153,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 0],
+			Vec3 Translation = [2.28681302, 1.45222461, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -155,80 +162,189 @@ Level =
 			string Name = "EntityPlayer",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5a34f947635d7e99:Tile1",
 		LinkId = 
 		{
 			uint Id = 5,
 		},
-		Named = 
-		{
-			string Name = "ParticleFlash",
-		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 0],
+			Vec3 Translation = [-15.1138792, 340.92746, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		SpriteParticleSystem = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			SystemChildMode ChildMode = Independent,
-			SystemSpace SystemSpace = WorldSpace,
-			uint DrawOrder = 0,
-			Vec4 Tint = [1, 0.87843138, 0.501960814, 0.25],
-			float WarmUpTime = 0,
-			ParticleGeometry GeometryMode = Billboarded,
-			ParticleRenderMode RenderMode = Additive,
-			ParticleSortMode SortMode = Youngest,
-			ParticleAnimation ParticleAnimation = Single,
-			string Texture = "5310e87a46fe94be:FlashParticle",
-			float VelocityScale = 1,
-			float LengthScale = 1,
-			float MaxParticleSize = 100,
-			Vec3 SystemSize = [4, 4, 4],
+			string Name = "Tile1",
 		},
-		SphericalParticleEmitter = 
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f95863ed00f4:Tile2",
+		LinkId = 
 		{
-			bool Active = true,
-			uint EmitCount = 12,
-			float EmitRate = 200,
-			float EmitVariance = 0,
-			float Size = 8,
-			float SizeVariance = 2,
-			float Lifetime = 0.0500000007,
-			float LifetimeVariance = 0,
-			float Spin = 0,
-			float SpinVariance = 50,
-			bool RandomSpin = true,
-			float Fill = 1,
-			float EmitterVelocityPercent = 0,
-			Vec3 StartVelocity = [0, 0, 0],
-			Vec3 RandomVelocity = [20, 20, 20],
-			Vec3 TangentVelocity = [0, 0, 0],
-			Vec3 EmitterSize = [1, 1, 1],
-			bool FastMovingEmitter = false,
+			uint Id = 6,
 		},
-		LinearParticleAnimator = 
+		Transform = 
 		{
-			Vec3 Force = [0, 0, 0],
-			Vec3 RandomForce = [0, 0, 0],
-			float Torque = 0,
-			float Growth = 0,
-			float Dampening = 0,
-			Vec3 Twist = [0, 0, 0],
+			Vec3 Translation = [23.4985867, 339.461151, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
 		},
-		ParticleColorAnimator = 
+		Named = 
 		{
-			Vec4 Color0 = [1, 1, 1, 0],
-			Vec4 Color1 = [1, 1, 1, 1],
-			Vec4 Color2 = [1, 1, 1, 1],
-			Vec4 Color3 = [1, 1, 1, 1],
-			Vec4 Color4 = [1, 1, 1, 0],
+			string Name = "Tile2",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f95c7c1a591f:Tile3",
+		LinkId = 
+		{
+			uint Id = 7,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [64.2281799, 338.650024, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile3",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f9517cbb3c0a:Tile4",
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-20.4174919, 302.429535, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile4",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34faab7de10abc:Tile5",
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [22.8895931, 303.610626, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile5",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34faa17f701526:Tile6",
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [63.243927, 302.035828, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile6",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34fabf7833191b:Tile7",
+		LinkId = 
+		{
+			uint Id = 11,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-21.2048931, 265.815338, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile7",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34fab3795c76af:Tile8",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [25.6455059, 263.453125, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile8",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34fab779d32384:Tile9",
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [62.4565277, 266.996429, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile9",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a380a0164d081c9:EntityEnemy",
+		LinkId = 
+		{
+			uint Id = 14,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [9.58366776, -0.947378755, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Area = 
+		{
+			Vec2 Size = [1, 1],
+			Location Origin = Center,
+		},
+		Named = 
+		{
+			string Name = "EntityEnemy",
 		},
 	},
 },

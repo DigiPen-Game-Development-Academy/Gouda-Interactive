@@ -22,7 +22,9 @@ class Inventory : ZilchComponent {
     var SLOT_HAND : Integer = 2;
     var SLOT_OFFHAND : Integer = 3;
     var SLOT_MOUSE : Integer = 1;
+    
     var TooltipName : String = "";
+    var TooltipLoreName : String = "";
     
     function Initialize(init : CogInitializer) {
         
@@ -181,9 +183,11 @@ class Inventory : ZilchComponent {
     
     function MouseSlot() {
         
-        var mousePos = this.UISpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 2.0);
+        // SET MOUSE SLOT POSITION
+        var mousePos = this.UISpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 5.0);
         this.UISpace.FindObjectByName("Slot1").Transform.WorldTranslation = mousePos;
         
+        // MOVING ITEMS
         if(this.SlotClicked != -1 && this.SlotClicked != this.SLOT_MOUSE && Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
             
             if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0 && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
@@ -233,21 +237,53 @@ class Inventory : ZilchComponent {
             this.RightButtonDown = false;
         }
         
+        // TOOLTIPS AND LORE
         if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0 && this.SlotHover != -1 && this.SlotHover != this.SLOT_MOUSE) {
             
             if(this.Owner.Crafting.GetTooltipName() == "State.False") {
                 this.TooltipName = Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemRecognizableName;
+                this.TooltipLoreName = Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemLore;
             }
             
             if(this.TooltipName != "") {
+                
                 var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
                 var itemTooltip = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName");
+                var itemTooltipLore = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore");
+                var itemNameBG = itemTooltip.FindChildByName("ItemNameBG");
+                
                 itemTooltip.SpriteText.Text = this.TooltipName;
+                itemTooltipLore.SpriteText.Text = this.TooltipLoreName;
                 itemTooltip.SpriteText.Color = Real4(1.0);
+                
+                // TOOLTIP BACKGROUND
+                if(itemNameBG != null) {
+                    
+                    var txtWH = itemTooltip.SpriteText.MeasureText();
+                    var loreTxtWH = itemTooltipLore.SpriteText.MeasureText();
+                    
+                    var cardWH = Real2(txtWH.X, txtWH.Y);
+                    
+                    if(txtWH.X < loreTxtWH.X) {
+                        cardWH = Real2(loreTxtWH.X, cardWH.Y);
+                    }
+                    
+                    if(itemTooltipLore.SpriteText.Text.Count > 0) {
+                        cardWH = Real2(cardWH.X, txtWH.Y + loreTxtWH.Y);
+                    }
+                    
+                    itemNameBG.Sprite.Visible = true;
+                    itemNameBG.Transform.Scale = Real3(cardWH.X + 0.5, cardWH.Y + 0.2, 1);
+                    
+                }
+                
                 if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Weapon") {
                     itemTooltip.SpriteText.Color = Real4(0.1, 1.0, 0.1, 1.0);
                 }
+                
                 itemTooltip.SpriteText.Visible = true;
+                itemTooltipLore.SpriteText.Visible = true;
+                
             }
             
             this.SlotHover = -1;
@@ -255,15 +291,38 @@ class Inventory : ZilchComponent {
         } else if(this.Owner.Crafting.GetTooltipName() == "State.False") {
             
             this.TooltipName = "";
+            this.TooltipLoreName = "";
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = false;
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore").SpriteText.Visible = false;
+            
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").FindChildByName("ItemNameBG").Sprite.Visible = false;
             
             this.SlotHover = -1;
             
         } else {
+            
             this.TooltipName = this.Owner.Crafting.GetTooltipName();
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Text = this.TooltipName;
+            this.TooltipLoreName = "";
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Color = Real4(1.0);
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = true;
+            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore").SpriteText.Visible = false;
+            
+            var itemTooltip = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName");
+            var itemNameBG = itemTooltip.FindChildByName("ItemNameBG");
+            
+            // TOOLTIP BACKGROUND
+            if(itemNameBG != null && this.TooltipName != "") {
+                
+                var txtWH = itemTooltip.SpriteText.MeasureText();
+                
+                var cardWH = Real2(txtWH.X, txtWH.Y);
+                
+                itemNameBG.Sprite.Visible = true;
+                itemNameBG.Transform.Scale = Real3(cardWH.X + 0.5, cardWH.Y + 0.2, 1);
+                
+            }
+            
         }
         
         //Console.WriteLine("Slot: `this.SlotClicked`");
@@ -366,7 +425,7 @@ class Inventory : ZilchComponent {
                     if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                         firstAvailableSlot = i;
                     } else if(this.InventoryContents[i] == itemID) {
-                        ++this.InventoryContentsCount[i];
+                        this.InventoryContentsCount[i] += amount;
                         this.RefreshInventoryIcons();
                         if(notifyUser)
                             cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
