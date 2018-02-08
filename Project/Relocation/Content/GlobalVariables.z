@@ -7,4 +7,6 @@ class Relocation {
     
     [Static] var Items : Array[Item] = null;
     
+    [Static] var ItemManager : ItemManager = null;
+    
 }
