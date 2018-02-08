@@ -42,8 +42,6 @@ class Inventory : ZilchComponent {
         
         this.GiveItemInSlot(1, this.SLOT_HAND);
         
-        Console.WriteLine("Inventory Contents: `this.InventoryContents`");
-        
         Zero.Connect(this.UISpace, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OpenCloseInventory);
         
@@ -89,9 +87,6 @@ class Inventory : ZilchComponent {
                 var tmpItem = this.InventoryContents[this.SLOT_MOUSE - 1];
                 var tmpItemCt = this.InventoryContentsCount[this.SLOT_MOUSE - 1];
                 this.InventoryContents[this.SLOT_MOUSE - 1] = 0;
-                /*for(var i = 0; i < tmpItemCt; ++i) {
-                    this.GiveItem(tmpItem, false);
-                }*/
                 this.GiveItemWithAmount(tmpItem, false, tmpItemCt);
             }
             
@@ -108,23 +103,17 @@ class Inventory : ZilchComponent {
         
         if(event.Key == Keys.E && !commandScreenCapture && !playerNameScreenCapture) {
             this.ToggleInventory();
-        }
-        
-        if(event.Key == Keys.Escape && !commandScreenCapture && !playerNameScreenCapture && this.InventoryOpen) {
+        } else if(event.Key == Keys.Escape && !commandScreenCapture && !playerNameScreenCapture && this.InventoryOpen) {
             this.Space.TimeSpace.Paused = false;
             this.InventoryOpen = false;
         }
         
     }
     
+    // TOGGLE INVENTORY AND TIMESPACE PAUSE
     function ToggleInventory() {
-        
-        // TOGGLE INVENTORY AND TIMESPACE PAUSE
         this.Space.TimeSpace.Paused = !this.Space.TimeSpace.Paused;
         this.InventoryOpen = !this.InventoryOpen;
-        
-        Console.WriteLine("Inventory: `this.InventoryOpen`");
-        
     }
     
     function RefreshInventoryIcons() {
@@ -143,20 +132,13 @@ class Inventory : ZilchComponent {
             slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[this.InventoryContents[i]].Sprite;
             slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
             slotObj.FindChildByName("ItemName").SpriteText.Text = Relocation.Items[this.InventoryContents[i]].ItemRecognizableName;
-            //slotObj.FindChildByName("ItemName").SpriteText.Color = Real4(1.0, 1.0, 1.0, 1.0);
             
             if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = false;
                 slotObj.FindChildByName("ItemCount").SpriteText.Visible = false;
             } else {
-                
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = true;
                 slotObj.FindChildByName("ItemCount").SpriteText.Visible = true;
-                
-                /*if(itemMgmt.Items[this.InventoryContents[i]].ItemType == "Weapon") {
-                    slotObj.FindChildByName("ItemName").SpriteText.Color = Real4(0.0, 0.0, 1.0, 1.0);
-                }*/
-                
             }
             
             if(i == this.SLOT_HAND - 1 || i == this.SLOT_OFFHAND - 1) {
@@ -219,10 +201,8 @@ class Inventory : ZilchComponent {
                 this.GiveItemsInSlot(itemInSlot, this.SLOT_MOUSE, itemCtSecondHalf, true);
                 
             } else if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0 && (this.InventoryContents[this.SlotClicked - 1] == 0 || this.InventoryContents[this.SlotClicked - 1] == this.InventoryContents[this.SLOT_MOUSE - 1])) {
-                 
                 this.GiveItemInSlot(this.InventoryContents[this.SLOT_MOUSE - 1], this.SlotClicked);
                 this.RemoveItemInSlot(this.SLOT_MOUSE, false);
-                
             }
             
             this.SlotClicked = -1;
@@ -294,7 +274,6 @@ class Inventory : ZilchComponent {
             this.TooltipLoreName = "";
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = false;
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore").SpriteText.Visible = false;
-            
             this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").FindChildByName("ItemNameBG").Sprite.Visible = false;
             
             this.SlotHover = -1;
@@ -315,7 +294,6 @@ class Inventory : ZilchComponent {
             if(itemNameBG != null && this.TooltipName != "") {
                 
                 var txtWH = itemTooltip.SpriteText.MeasureText();
-                
                 var cardWH = Real2(txtWH.X, txtWH.Y);
                 
                 itemNameBG.Sprite.Visible = true;
@@ -323,16 +301,15 @@ class Inventory : ZilchComponent {
                 
             }
             
+            this.SlotHover = -1;
+            
         }
-        
-        //Console.WriteLine("Slot: `this.SlotClicked`");
         
     }
     
     function GiveItem(itemID : Integer, notifyUser : Boolean) {
         
         var firstAvailableSlot = -1;
-        
         var cmd : TextEntry = null;
         
         itemID = Math.Abs(itemID);
@@ -346,18 +323,7 @@ class Inventory : ZilchComponent {
             var hasGoneThru = false;
             
             for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots + this.SLOT_OFFHAND; ++i) {
-                
-                if(i < this.MaxInventorySlots && !hasGoneThru) {
-                    if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
-                        firstAvailableSlot = i;
-                    } else if(this.InventoryContents[i] == itemID) {
-                        ++this.InventoryContentsCount[i];
-                        this.RefreshInventoryIcons();
-                        if(notifyUser)
-                            cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
-                        return;
-                    }
-                } else if(i < this.SLOT_OFFHAND && hasGoneThru) {
+                if((i < this.MaxInventorySlots && !hasGoneThru) || (i < this.SLOT_OFFHAND && hasGoneThru)) {
                     if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                         firstAvailableSlot = i;
                     } else if(this.InventoryContents[i] == itemID) {
@@ -373,7 +339,6 @@ class Inventory : ZilchComponent {
                     i = 0;
                     hasGoneThru = true;
                 }
-                
             }
             
             if(firstAvailableSlot != -1) {
@@ -384,6 +349,7 @@ class Inventory : ZilchComponent {
                     cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
                 return;
             }
+            
         } else {
             this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
             return;
@@ -396,7 +362,6 @@ class Inventory : ZilchComponent {
     function GiveItemWithAmount(itemID : Integer, notifyUser : Boolean, amount : Integer) {
         
         var firstAvailableSlot = -1;
-        
         var cmd : TextEntry = null;
         
         itemID = Math.Abs(itemID);
@@ -410,18 +375,7 @@ class Inventory : ZilchComponent {
             var hasGoneThru = false;
             
             for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots + this.SLOT_OFFHAND; ++i) {
-                
-                if(i < this.MaxInventorySlots && !hasGoneThru) {
-                    if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
-                        firstAvailableSlot = i;
-                    } else if(this.InventoryContents[i] == itemID) {
-                        this.InventoryContentsCount[i] += amount;
-                        this.RefreshInventoryIcons();
-                        if(notifyUser)
-                            cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
-                        return;
-                    }
-                } else if(i < this.SLOT_OFFHAND && hasGoneThru) {
+                if((i < this.MaxInventorySlots && !hasGoneThru) || (i < this.SLOT_OFFHAND && hasGoneThru)) {
                     if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                         firstAvailableSlot = i;
                     } else if(this.InventoryContents[i] == itemID) {
@@ -437,7 +391,6 @@ class Inventory : ZilchComponent {
                     i = 0;
                     hasGoneThru = true;
                 }
-                
             }
             
             if(firstAvailableSlot != -1) {
@@ -448,6 +401,7 @@ class Inventory : ZilchComponent {
                     cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
                 return;
             }
+            
         } else {
             this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
             return;
@@ -524,17 +478,17 @@ class Inventory : ZilchComponent {
     
     function CheckForItem(itemID : Integer) : Boolean {
         
-        itemID = Math.Abs(itemID);
+        /*itemID = Math.Abs(itemID);
         
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
-            
             if(this.InventoryContents[i] == itemID) {
                 return true;
             }
-            
         }
         
-        return false;
+        return false;*/
+        
+        return this.CheckForItems(itemID, 1);
         
     }
     
@@ -576,8 +530,6 @@ class Inventory : ZilchComponent {
     
     function MoveItem(slot : Integer, destSlot : Integer) {
         
-        //Console.WriteLine("mvItem: `slot`");
-        
         if(slot - 1 < this.MaxInventorySlots && destSlot - 1 < this.MaxInventorySlots) {
             
             var tmpItem = this.InventoryContents[slot - 1];
@@ -612,28 +564,7 @@ class Inventory : ZilchComponent {
     }
     
     function RemoveItem(itemID : Integer) {
-        
-        itemID = Math.Abs(itemID);
-        
-        if(itemID == 0) {
-            return;
-        }
-        
-        if(itemID < Relocation.Items.Count) {
-            for(var i = 0; i < this.MaxInventorySlots; ++i) {
-                
-                if(this.InventoryContents[i] == itemID) {
-                    --this.InventoryContentsCount[i];
-                    this.RefreshInventoryIcons();
-                    return;
-                }
-                
-            }
-        } else {
-            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
-            return;
-        }
-        
+        this.RemoveItems(itemID, 1);
     }
     
     function RemoveItems(itemID : Integer, amount : Integer) {
@@ -642,13 +573,11 @@ class Inventory : ZilchComponent {
         
         if(itemID < Relocation.Items.Count) {
             for(var i = 0; i < this.MaxInventorySlots; ++i) {
-                
                 if(this.InventoryContents[i] == itemID) {
                     this.InventoryContentsCount[i] -= amount;
                     this.RefreshInventoryIcons();
                     return;
                 }
-                
             }
         } else {
             this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
@@ -658,19 +587,7 @@ class Inventory : ZilchComponent {
     }
     
     function RemoveItemInSlot(slot : Integer, drop : Boolean) {
-        
-        var itemID = -1;
-        
-        if(this.InventoryContents[slot - 1] != 0 && this.InventoryContentsCount[slot - 1] > 0) {
-            itemID = this.InventoryContents[slot - 1];
-            --this.InventoryContentsCount[slot - 1];
-            this.RefreshInventoryIcons();
-        }
-        
-        if(drop && itemID != -1) {
-            Console.WriteLine("Implement drops. In the meantime, the item that was dropped will be deleted.");
-        }
-        
+        this.RemoveItemsInSlot(slot, drop, 1);
     }
     
     function RemoveItemsInSlot(slot : Integer, drop : Boolean, amount : Integer) {
