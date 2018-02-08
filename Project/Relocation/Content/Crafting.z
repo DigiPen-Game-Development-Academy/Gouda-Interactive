@@ -53,54 +53,54 @@ class Crafting : ZilchComponent {
             0
         );
         this.ItemCopper = this.CreateRecipe(
-            15, 0, 0,
+            20, 0, 0,
             1, 0, 0,
-            16
+            21
         );
         this.ItemIron = this.CreateRecipe(
-            17, 0, 0,
+            22, 0, 0,
             1, 0, 0,
-            18
+            23
         );
         this.ItemGold = this.CreateRecipe(
-            19, 0, 0,
+            24, 0, 0,
             1, 0, 0,
-            20
+            25
         );
         this.ItemTitanium = this.CreateRecipe(
-            21, 0, 0,
+            26, 0, 0,
             1, 0, 0,
-            22
+            27
         );
         this.ItemPlatinum = this.CreateRecipe(
-            23, 0, 0,
+            28, 0, 0,
             1, 0, 0,
-            24
+            29
         );
         this.ItemAmmoPistol = this.CreateRecipe(
-            18, 20, 0,
+            23, 25, 0,
             3, 1, 0,
-            9
+            14
         );
         this.ItemAmmoShotgun = this.CreateRecipe(
-            18, 20, 0,
+            23, 25, 0,
             3, 1, 0,
-            10
+            15
         );
         this.ItemAmmoMinigun = this.CreateRecipe(
-            18, 20, 0,
+            23, 25, 0,
             3, 1, 0,
-            11
+            16
         );
         this.ItemAmmoAssault = this.CreateRecipe(
-            18, 20, 0,
+            23, 25, 0,
             3, 1, 0,
-            12
+            17
         );
         this.ItemAmmoSniper = this.CreateRecipe(
-            18, 20, 0,
+            23, 25, 0,
             3, 1, 0,
-            13
+            18
         );
         
         this.CraftingRecipes.Push(new Recipe(this.ItemCopper));
@@ -118,18 +118,18 @@ class Crafting : ZilchComponent {
         this.CraftingRecipes.Push(new Recipe(this.ItemAir));
         
         // ADD CRAFTABLE ITEMS TO LIST
-        this.CraftableItems.Push(16);
-        this.CraftableItems.Push(18);
-        this.CraftableItems.Push(20);
-        this.CraftableItems.Push(22);
-        this.CraftableItems.Push(24);
+        this.CraftableItems.Push(21);
+        this.CraftableItems.Push(23);
+        this.CraftableItems.Push(25);
+        this.CraftableItems.Push(27);
+        this.CraftableItems.Push(29);
         this.CraftableItems.Push(0);
         
-        this.CraftableItems.Push(9);
-        this.CraftableItems.Push(10);
-        this.CraftableItems.Push(11);
-        this.CraftableItems.Push(12);
-        this.CraftableItems.Push(13);
+        this.CraftableItems.Push(14);
+        this.CraftableItems.Push(15);
+        this.CraftableItems.Push(16);
+        this.CraftableItems.Push(17);
+        this.CraftableItems.Push(18);
         this.CraftableItems.Push(0);
         
         this.ShowItemsInCraftingMenu(this.CraftableItems, this.ScrollPosition);
