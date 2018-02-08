@@ -1,12 +1,49 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
 class EntityBullet : ZilchComponent {
+    
+    [Property] var FromPlayer : Boolean = true;
+    [Property] var Damage : Real = 1;
     
     function Initialize(init : CogInitializer) {
         
-        if(this.Space.FindObjectByName("EntityPlayer").WeaponManager.ActiveWeapon.ItemName == "WeaponGouda") {
+        /*if(this.Space.FindObjectByName("EntityPlayer").WeaponManager.ActiveWeapon.ItemName == "WeaponGouda") {
             this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawnDank"));
         } else {
             this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
+        }*/
+        
+        this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
+        
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnCollisionStarted(event : CollisionEvent) {
+        
+        if(event.OtherObject.Name == Relocation.EntityPlayer && !this.FromPlayer) {
+            
+            if(!event.OtherObject.Health.IsInvincible) {
+                event.OtherObject.Health.DecreaseHealth(this.Damage);
+            }
+            
+            this.Owner.Destroy();
+            
+        } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer) {
+            
+            if(event.OtherObject.Health != null) {
+                event.OtherObject.Health.DecreaseHealth(this.Damage);
+            }
+            
+            this.Owner.Destroy();
+            
         }
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
         
     }
     
