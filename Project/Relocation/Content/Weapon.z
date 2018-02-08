@@ -22,6 +22,7 @@ class Weapon {
     var BatteryLife : Real = 0.0;
     var ReloadTime : Real = 3.0;
     
+    var BulletDamage : Real = 1.0;
     var BulletSpeed : Real = 5.0;
     var Accuracy : Real = 0.0;
     
@@ -100,7 +101,8 @@ class Weapon {
                 var velocity = Real3(dif.X / magnitude * this.BulletSpeed + accuracy, dif.Y / magnitude * this.BulletSpeed + accuracy, 0.0);
                 
                 bullet.RigidBody.Velocity = velocity;
-                bullet.HitBoxVariables.Amount = 1;
+                bullet.EntityBullet.FromPlayer = true;
+                bullet.EntityBullet.Damage = this.BulletDamage;
                 
             }
             

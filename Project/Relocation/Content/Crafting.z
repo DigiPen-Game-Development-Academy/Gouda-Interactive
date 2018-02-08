@@ -292,8 +292,6 @@ class Crafting : ZilchComponent {
             return;
         }
         
-        Console.WriteLine("canCraft = `canCraft`");
-        
         for(var i = 0; i < this.MaxItemsInRecipe - 1; ++i) {
             this.Owner.Inventory.RemoveItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe]);
         }
