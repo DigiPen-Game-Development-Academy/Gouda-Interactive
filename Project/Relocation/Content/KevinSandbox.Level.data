@@ -92,6 +92,13 @@ Level =
 			string UIArchetype = "554cea0f94af6dc4:Space",
 			bool ReloadIfSameLevel = true,
 		},
+		WorldGeneration = 
+		{
+			float MapRadius = 240,
+			int NumberOfTiles = 1,
+			int TileDiameter = 32,
+			float MaxRadiusFromPlayer = 64,
+		},
 	},
 	Cog = 
 	{
@@ -105,7 +112,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [-7.6719799, 1.54840457, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,7 +124,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 20,
+			float Size = 100,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +132,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [-7.6719799, 1.54840457, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -176,6 +183,168 @@ Level =
 		Named = 
 		{
 			string Name = "EntityEnemy",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f947635d7e99:Tile1",
+		LinkId = 
+		{
+			uint Id = 6,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-61, 200, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile1",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f95863ed00f4:Tile2",
+		LinkId = 
+		{
+			uint Id = 7,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-26.4906597, 200, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile2",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f95c7c1a591f:Tile3",
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [8, 200, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile3",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f9517cbb3c0a:Tile4",
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [43, 200, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile4",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34faab7de10abc:Tile5",
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-61, 165, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile5",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34faa17f701526:Tile6",
+		LinkId = 
+		{
+			uint Id = 11,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-26.4906998, 165, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile6",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34fabf7833191b:Tile7",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [8, 165, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile7",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34fab3795c76af:Tile8",
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [43, 165, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile8",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34fab779d32384:Tile9",
+		LinkId = 
+		{
+			uint Id = 14,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-61, 130, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile9",
 		},
 	},
 },
