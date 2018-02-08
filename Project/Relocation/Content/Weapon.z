@@ -229,16 +229,16 @@ class WeaponManager : ZilchComponent {
         this.WeaponGouda.SetMaxAmmoAmount(1);
         
         // SET AMMO TYPE
-        this.WeaponPistol.SetAmmoType(9);
-        this.WeaponRevolver.SetAmmoType(9);
-        this.WeaponRock.SetAmmoType(3);
+        this.WeaponPistol.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemAmmoPistol"));
+        this.WeaponRevolver.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemAmmoPistol"));
+        this.WeaponRock.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemRock"));
         
-        this.WeaponShotgun.SetAmmoType(10);
-        this.WeaponBoulder.SetAmmoType(5);
+        this.WeaponShotgun.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemAmmoShotgun"));
+        this.WeaponBoulder.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemBoulder"));
         
-        this.WeaponMinigun.SetAmmoType(11);
-        this.WeaponSniper.SetAmmoType(13);
-        this.WeaponGouda.SetAmmoType(8);
+        this.WeaponMinigun.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemAmmoMinigun"));
+        this.WeaponSniper.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemAmmoSniper"));
+        this.WeaponGouda.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemGouda"));
         
         // SET RELOAD TIME
         this.WeaponRock.ReloadTime = 0;
@@ -274,21 +274,21 @@ class WeaponManager : ZilchComponent {
             
             if(this.Owner.Inventory.CheckForItemMainHand(0)) {
                 this.ActiveWeapon = this.WeaponHand;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(1)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemPistol"))) {
                 this.ActiveWeapon = this.WeaponPistol;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(2)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemRevolver"))) {
                 this.ActiveWeapon = this.WeaponRevolver;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(3)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemRock"))) {
                 this.ActiveWeapon = this.WeaponRock;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(4)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemShotgun"))) {
                 this.ActiveWeapon = this.WeaponShotgun;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(5)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemBoulder"))) {
                 this.ActiveWeapon = this.WeaponBoulder;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(6)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemMinigun"))) {
                 this.ActiveWeapon = this.WeaponMinigun;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(7)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemSniper"))) {
                 this.ActiveWeapon = this.WeaponSniper;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(8)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemGouda"))) {
                 this.ActiveWeapon = this.WeaponGouda;
             } else {
                 this.ActiveWeapon = this.WeaponHand;

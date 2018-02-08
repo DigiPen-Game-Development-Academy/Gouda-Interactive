@@ -2,13 +2,18 @@
 // CONTRIBUTORS: N/A
 
 class ItemManager : ZilchComponent {
+    
     var ID : Integer = 0;
+    var Spacers : Array[Integer] = null;
+    var CurrentSpacerIndex : Integer = 0;
     
     function Initialize(init : CogInitializer) {
         
         Relocation.Space = this.Space;
+        Relocation.ItemManager = this.Owner.ItemManager;
         
         Relocation.Items = new Array[Item]();
+        this.Spacers = new Array[Integer]();
         
         Relocation.Items.Push(new Item("Circle",                        true));
         Relocation.Items.Push(new Item("ItemPistol",                    true));
@@ -19,11 +24,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemMinigun",                   true));
         Relocation.Items.Push(new Item("ItemSniper",                    true));
         Relocation.Items.Push(new Item("ItemGouda",                     true));
-        Relocation.Items.Push(new Item("ItemNull",                      false));
-        Relocation.Items.Push(new Item("ItemNull",                      false));
-        Relocation.Items.Push(new Item("ItemNull",                      false));
-        Relocation.Items.Push(new Item("ItemNull",                      false));
-        Relocation.Items.Push(new Item("ItemNull",                      false));
+        this.AddSpacerItems(5);
         Relocation.Items.Push(new Item("ItemAmmoPistol",                true));
         Relocation.Items.Push(new Item("ItemAmmoShotgun",               true));
         Relocation.Items.Push(new Item("ItemAmmoMinigun",               true));
@@ -40,10 +41,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemTitanium",                  false));
         Relocation.Items.Push(new Item("ItemPlatinumOre",               false));
         Relocation.Items.Push(new Item("ItemPlatinum",                  false));
-        Relocation.Items.Push(new Item("ItemNull",                      false));
-        Relocation.Items.Push(new Item("ItemNull",                      false));
-        Relocation.Items.Push(new Item("ItemNull",                      false));
-        Relocation.Items.Push(new Item("ItemNull",                      false));
+        this.AddSpacerItems(4);
         Relocation.Items.Push(new HPack("ItemGreenBean",                true, 1));
         
         this.GiveItemsID();
@@ -57,12 +55,7 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "L134 Devastator (Minigun)");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Photon Sniper (Sniper Rifle)");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gouda Cheese");
-        //this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "null");
-        //this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "null");
-        //this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "null");
-        //this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "null");
-        //this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "null");
-        this.ID += 5;
+        this.SkipSpacer();
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Pistol)");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Shotgun)");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Minigun)");
@@ -79,10 +72,10 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Titanium (Processed)");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Unprocessed)");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Processed)");
-        this.ID += 4;
+        this.SkipSpacer();
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Green Bean");
         
-        this.ID = 0;
+        this.PropertySeperator();
         
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Air");          // AIR
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // PISTOL
@@ -93,11 +86,7 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // MINIGUN
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // SNIPER RIFLE
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // GOUDA CHEESE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Null");          // AIR
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Null");          // AIR
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Null");          // AIR
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Null");          // AIR
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Null");          // AIR
+        this.SkipSpacer();
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (PISTOL)
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SHOTGUN)
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (MINIGUN)
@@ -114,10 +103,10 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // TITANIUM
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // PLATINUM ORE
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // PLATINUM
-        this.ID += 4;
+        this.SkipSpacer();
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Food");         // GREEN BEAN
         
-        this.ID = 0;
+        this.PropertySeperator();
         
         this.ShowItemIDs(true);
         
@@ -142,6 +131,41 @@ class ItemManager : ZilchComponent {
         while(this.ID < Relocation.Items.Count)
             this.ID = Relocation.Items[this.ID].ShowLabelID(this.ID, showIDs);
         this.ID = 0;
+    }
+    
+    function AddSpacerItems(amount : Integer) {
+        
+        for(var i = 0; i < amount; ++i) {
+            Relocation.Items.Push(new Item("ItemNull", false));
+        }
+        
+        this.Spacers.Push(amount);
+        
+    }
+    
+    function SkipSpacer() {
+        
+        this.ID += this.Spacers[this.CurrentSpacerIndex];
+        
+        ++this.CurrentSpacerIndex;
+        
+    }
+    
+    function PropertySeperator() {
+        this.ID = 0;
+        this.CurrentSpacerIndex = 0;
+    }
+    
+    function GetIDByName(name : String) : Integer {
+        
+        for(var i = 0; i < Relocation.Items.Count; ++i) {
+            if(Relocation.Items[i].ItemName == name) {
+                return i;
+            }
+        }
+        
+        return -999;
+        
     }
     
 }
