@@ -94,22 +94,6 @@ class Breakable : ZilchComponent
             return false;
     }
     
-    /*function CheckForPlayerWithinRadiusOf(radius : Real) : Boolean
-    {
-        // Get the blocks position and size
-        var ownerPosition = this.Owner.Transform.WorldTranslation;
-        var ownerSize = this.Owner.Transform.WorldScale / 2;
-        
-        // Check to see if the mouse is over the block
-        if (mousePosition.X >= ownerPosition.X - ownerSize.X &&
-            mousePosition.X <= ownerPosition.X + ownerSize.X &&
-            mousePosition.Y >= ownerPosition.Y - ownerSize.Y &&
-            mousePosition.Y <= ownerPosition.Y + ownerSize.Y)
-            return true;
-        else
-            return false;
-    }*/
-    
     function DieRoll(sides : Integer) : Integer
     {
         // Roll a die

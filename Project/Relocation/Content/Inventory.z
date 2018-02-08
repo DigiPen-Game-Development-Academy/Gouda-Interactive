@@ -133,12 +133,23 @@ class Inventory : ZilchComponent {
             slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
             slotObj.FindChildByName("ItemName").SpriteText.Text = Relocation.Items[this.InventoryContents[i]].ItemRecognizableName;
             
+            if(slotObj.Name == "Slot1") {
+                slotObj.FindChildByName("ItemLore").SpriteText.Text = Relocation.Items[this.InventoryContents[i]].ItemLore;
+            }
+            
             if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = false;
                 slotObj.FindChildByName("ItemCount").SpriteText.Visible = false;
+                if(slotObj.Name == "Slot1") {
+                    slotObj.FindChildByName("ItemLore").SpriteText.Visible = false;
+                    slotObj.FindChildByName("ItemName").FindChildByName("ItemNameBG").Sprite.Visible = false;
+                }
             } else {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = true;
                 slotObj.FindChildByName("ItemCount").SpriteText.Visible = true;
+                if(slotObj.Name == "Slot1") {
+                    slotObj.FindChildByName("ItemLore").SpriteText.Visible = true;
+                }
             }
             
             if(i == this.SLOT_HAND - 1 || i == this.SLOT_OFFHAND - 1) {

@@ -39,7 +39,7 @@ class CraftingScrollButton : ZilchComponent {
                 scrollPos = player.Crafting.ScrollPosition;
                 
                 if(this.Owner.Parent.FindChildByName("ScrollNumber") != null) {
-                    this.Owner.Parent.FindChildByName("ScrollNumber").SpriteText.Text = "`scrollPos`";
+                    this.Owner.Parent.FindChildByName("ScrollNumber").SpriteText.Text = "`scrollPos + 1`";
                 }
                 
             }
