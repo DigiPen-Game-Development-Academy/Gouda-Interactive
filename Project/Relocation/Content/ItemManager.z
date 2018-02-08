@@ -57,84 +57,84 @@ class ItemManager : ZilchComponent {
         this.GiveItemsID();
         
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "The \"Laser\" (Pistol)", "Starter weapon. Not very powerful, but has\nunlimited ammo.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Time Space Warper (Revolver)", "It is said that it will break everything\njust by holding it...");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Rock");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "\"Get Off My Lawn\" (Shotgun)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Boulder");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "L134 Devastator (Minigun)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Photon Sniper (Sniper Rifle)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gouda Cheese");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "The \"Laser\" (Pistol)",               "Starter weapon. Not very\npowerful, but has unlimited\nammo.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Time Space Warper (Revolver)",         "It is said that it will break\neverything just by holding\nit...");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Rock",                                 "You should have crafted more\nammo before you went out on\nyour journey. At least you have\nthese...");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "\"Get Off My Lawn\" (Shotgun)",        "Deters intruders. Good at keeping\nthem off your lawn.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Boulder",                              "More effective than a rock, but you\nstill should have made ammo for\nyour weapons.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "L134 Devastator (Minigun)",            "There's nothing more satisfying\nthan hearing those barrels spin\nup as your enemies realize what\nthey have gotten into...");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Photon Sniper (Sniper Rifle)",         "MOM! GET THE CAMERA!!!");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gouda Cheese",                         "While the previous throwables did\nthe job when you ran out of ammo\nthis one is a whole different story...");
         this.SkipSpacer();
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Pistol)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Shotgun)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Minigun)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Assault Rifle)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Sniper Rifle)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Health Pack");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Unprocessed)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Processed)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Unprocessed)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Processed)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gold (Unprocessed)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gold (Processed)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Titanium (Unprocessed)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Titanium (Processed)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Unprocessed)");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Processed)");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Pistol)",                  "Ammo");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Shotgun)",                 "Ammo");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Minigun)",                 "Ammo");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Assault Rifle)",           "Ammo");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Sniper Rifle)",            "Ammo");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Health Pack",                          "Fully heals player when you screw\nup.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Unprocessed)",                 "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Processed)",                   "Can be used to make electronics\nand other cool stuff.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Unprocessed)",                   "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Processed)",                     "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gold (Unprocessed)",                   "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gold (Processed)",                     "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Titanium (Unprocessed)",               "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Titanium (Processed)",                 "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Unprocessed)",               "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Processed)",                 "Resource");
         this.SkipSpacer();
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Trigger", "Gun Part");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Handle", "Gun Part");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Base", "Gun Part");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Base (Minigun)", "Gun Part");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Partially Assembled Gun", "Gun Part");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Partially Assembled Minigun", "Gun Part");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Barrel (Short)", "Gun Part");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Barrel (Long)", "Gun Part");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Rifle Stock", "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Trigger",                              "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Handle",                           "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Base",                             "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Base (Minigun)",                   "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Partially Assembled Gun",              "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Partially Assembled Minigun",          "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Barrel (Short)",                   "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Barrel (Long)",                    "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Rifle Stock",                          "Gun Part");
         this.SkipSpacer();
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Green Bean");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Green Bean",                           "A bean from earth that happens to\nbe green.");
         
         this.PropertySeperator();
         
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Air");          // AIR
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // PISTOL
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // REVOLVER
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // ROCK
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // SHOTGUN
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // BOULDER
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // MINIGUN
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // SNIPER RIFLE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Weapon");       // GOUDA CHEESE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Air");                    // AIR
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponCommon");           // PISTOL
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponCommon");           // REVOLVER
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponCommon");           // ROCK
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponEpic");             // SHOTGUN
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponEpic");             // BOULDER
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponLegendary");        // MINIGUN
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponLegendary");        // SNIPER RIFLE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponLegendary");        // GOUDA CHEESE
         this.SkipSpacer();
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (PISTOL)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SHOTGUN)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (MINIGUN)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (ASSAULT RIFLE)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // AMMO (SNIPER RIFLE)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // HEALTH PACK
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // COPPER ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // COPPER
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // IRON ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // IRON
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // GOLD
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // TITANIUM ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // TITANIUM
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // PLATINUM ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // PLATINUM
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (PISTOL)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (SHOTGUN)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (MINIGUN)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (ASSAULT RIFLE)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (SNIPER RIFLE)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Health");                 // HEALTH PACK
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // COPPER ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // COPPER
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // IRON ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // IRON
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // GOLD ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // GOLD
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // TITANIUM ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // TITANIUM
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // PLATINUM ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // PLATINUM
         this.SkipSpacer();
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Trigger (GUN PART)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Handle (GUN PART)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Base (GUN PART)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Minigun Base (GUN PART)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Partial Assembled (GUN PART)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Partial Assembled MG (GUN PART)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Barrel (GUN PART)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Barrel Long (GUN PART)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Stock (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // Trigger (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // Handle (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // Base (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // Minigun Base (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // Partial Assembled (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // Partial Assembled MG (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // Barrel (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // Barrel Long (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // Stock (GUN PART)
         this.SkipSpacer();
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Food");         // GREEN BEAN
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Food");                   // GREEN BEAN
         
         this.PropertySeperator();
         

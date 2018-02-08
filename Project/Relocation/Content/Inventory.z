@@ -268,8 +268,16 @@ class Inventory : ZilchComponent {
                     
                 }
                 
-                if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Weapon") {
+                if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "WeaponCommon") {
                     itemTooltip.SpriteText.Color = Real4(0.1, 1.0, 0.1, 1.0);
+                } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "WeaponEpic") {
+                    itemTooltip.SpriteText.Color = Real4(0.7, 0.3, 0.9, 1.0);
+                } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "WeaponLegendary") {
+                    itemTooltip.SpriteText.Color = Real4(1.0, 0.7, 0.0, 1.0);
+                } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Resource") {
+                    itemTooltip.SpriteText.Color = Real4(0.6, 0.6, 0.6, 1.0);
+                } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Health") {
+                    itemTooltip.SpriteText.Color = Real4(1.0, 0.0, 0.0, 1.0);
                 }
                 
                 itemTooltip.SpriteText.Visible = true;
