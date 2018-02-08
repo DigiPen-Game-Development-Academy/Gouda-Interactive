@@ -26,6 +26,13 @@ class Crafting : ZilchComponent {
     var ItemAmmoAssault : Array[Integer] = null;
     var ItemAmmoSniper  : Array[Integer] = null;
     
+    var ItemPistol      : Array[Integer] = null;
+    var ItemRevolver    : Array[Integer] = null;
+    var ItemShotgun     : Array[Integer] = null;
+    var ItemMinigun     : Array[Integer] = null;
+    var ItemSniper      : Array[Integer] = null;
+    var ItemGouda       : Array[Integer] = null;
+    
     var CraftingRecipes : Array[Recipe] = null;
     var CraftableItems : Array[Integer] = null;
     
@@ -36,7 +43,7 @@ class Crafting : ZilchComponent {
     var CRSlotHover : Integer = -1;
     
     var ScrollPosition : Integer = 0;
-    var MaxScroll : Integer = 1;
+    var MaxScroll : Integer = 2;
     
     var MaxItemsInRecipe : Integer = 3;
     var MaxCraftingSlots : Integer = 6;
@@ -53,54 +60,117 @@ class Crafting : ZilchComponent {
             0
         );
         this.ItemCopper = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemCopperOre"), 0, 0,
+            Relocation.ItemManager.GetIDByName("ItemCopperOre"),
+            0,
+            0,
             1, 0, 0,
             Relocation.ItemManager.GetIDByName("ItemCopper")
         );
         this.ItemIron = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemIronOre"), 0, 0,
+            Relocation.ItemManager.GetIDByName("ItemIronOre"),
+            0,
+            0,
             1, 0, 0,
             Relocation.ItemManager.GetIDByName("ItemIron")
         );
         this.ItemGold = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemGoldOre"), 0, 0,
+            Relocation.ItemManager.GetIDByName("ItemGoldOre"),
+            0,
+            0,
             1, 0, 0,
             Relocation.ItemManager.GetIDByName("ItemGold")
         );
         this.ItemTitanium = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemTitaniumOre"), 0, 0,
+            Relocation.ItemManager.GetIDByName("ItemTitaniumOre"),
+            0,
+            0,
             1, 0, 0,
             Relocation.ItemManager.GetIDByName("ItemTitanium")
         );
         this.ItemPlatinum = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemPlatinumOre"), 0, 0,
+            Relocation.ItemManager.GetIDByName("ItemPlatinumOre"),
+            0,
+            0,
             1, 0, 0,
             Relocation.ItemManager.GetIDByName("ItemPlatinum")
         );
         this.ItemAmmoPistol = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemIron"), Relocation.ItemManager.GetIDByName("ItemGold"), 0,
+            Relocation.ItemManager.GetIDByName("ItemIron"),
+            Relocation.ItemManager.GetIDByName("ItemGold"),
+            0,
             3, 1, 0,
             Relocation.ItemManager.GetIDByName("ItemAmmoPistol")
         );
         this.ItemAmmoShotgun = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemIron"), Relocation.ItemManager.GetIDByName("ItemGold"), 0,
+            Relocation.ItemManager.GetIDByName("ItemIron"),
+            Relocation.ItemManager.GetIDByName("ItemGold"),
+            0,
             3, 1, 0,
             Relocation.ItemManager.GetIDByName("ItemAmmoShotgun")
         );
         this.ItemAmmoMinigun = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemIron"), Relocation.ItemManager.GetIDByName("ItemGold"), 0,
+            Relocation.ItemManager.GetIDByName("ItemIron"),
+            Relocation.ItemManager.GetIDByName("ItemGold"),
+            0,
             3, 1, 0,
             Relocation.ItemManager.GetIDByName("ItemAmmoMinigun")
         );
         this.ItemAmmoAssault = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemIron"), Relocation.ItemManager.GetIDByName("ItemGold"), 0,
+            Relocation.ItemManager.GetIDByName("ItemIron"),
+            Relocation.ItemManager.GetIDByName("ItemGold"),
+            0,
             3, 1, 0,
             Relocation.ItemManager.GetIDByName("ItemAmmoAssault")
         );
         this.ItemAmmoSniper = this.CreateRecipe(
-            Relocation.ItemManager.GetIDByName("ItemIron"), Relocation.ItemManager.GetIDByName("ItemGold"), 0,
+            Relocation.ItemManager.GetIDByName("ItemIron"),
+            Relocation.ItemManager.GetIDByName("ItemGold"),
+            0,
             3, 1, 0,
             Relocation.ItemManager.GetIDByName("ItemAmmoSniper")
+        );
+        
+        this.ItemPistol = this.CreateRecipe(
+            Relocation.ItemManager.GetIDByName("ItemGunPartialAssembled"),
+            Relocation.ItemManager.GetIDByName("ItemGunBarrel"),
+            0,
+            1, 1, 0,
+            Relocation.ItemManager.GetIDByName("ItemPistol")
+        );
+        this.ItemRevolver = this.CreateRecipe(
+            Relocation.ItemManager.GetIDByName("ItemGunPartialAssembled"),
+            Relocation.ItemManager.GetIDByName("ItemGunBarrel"),
+            0,
+            1, 1, 0,
+            Relocation.ItemManager.GetIDByName("ItemRevolver")
+        );
+        this.ItemShotgun = this.CreateRecipe(
+            Relocation.ItemManager.GetIDByName("ItemGunStock"),
+            Relocation.ItemManager.GetIDByName("ItemGunPartialAssembled"),
+            Relocation.ItemManager.GetIDByName("ItemGunBarrelLong"),
+            1, 1, 1,
+            Relocation.ItemManager.GetIDByName("ItemShotgun")
+        );
+        this.ItemMinigun = this.CreateRecipe(
+            Relocation.ItemManager.GetIDByName("ItemGunStock"),
+            Relocation.ItemManager.GetIDByName("ItemGunPartialAssembledMG"),
+            Relocation.ItemManager.GetIDByName("ItemGunBarrelLong"),
+            1, 1, 8,
+            Relocation.ItemManager.GetIDByName("ItemMinigun")
+        );
+        this.ItemSniper = this.CreateRecipe(
+            Relocation.ItemManager.GetIDByName("ItemGunStock"),
+            Relocation.ItemManager.GetIDByName("ItemGunPartialAssembled"),
+            Relocation.ItemManager.GetIDByName("ItemGunBarrelLong"),
+            1, 1, 1,
+            Relocation.ItemManager.GetIDByName("ItemSniper")
+        );
+        this.ItemGouda = this.CreateRecipe(
+            Relocation.ItemManager.GetIDByName("ItemPistol"),
+            Relocation.ItemManager.GetIDByName("ItemRock"),
+            Relocation.ItemManager.GetIDByName("ItemBoulder"),
+            1, 16, 8,
+            Relocation.ItemManager.GetIDByName("ItemGouda")
         );
         
         this.CraftingRecipes.Push(new Recipe(this.ItemCopper));
@@ -117,6 +187,13 @@ class Crafting : ZilchComponent {
         this.CraftingRecipes.Push(new Recipe(this.ItemAmmoSniper));
         this.CraftingRecipes.Push(new Recipe(this.ItemAir));
         
+        this.CraftingRecipes.Push(new Recipe(this.ItemPistol));
+        this.CraftingRecipes.Push(new Recipe(this.ItemRevolver));
+        this.CraftingRecipes.Push(new Recipe(this.ItemShotgun));
+        this.CraftingRecipes.Push(new Recipe(this.ItemMinigun));
+        this.CraftingRecipes.Push(new Recipe(this.ItemSniper));
+        this.CraftingRecipes.Push(new Recipe(this.ItemGouda));
+        
         // ADD CRAFTABLE ITEMS TO LIST
         this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemCopper"));
         this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemIron"));
@@ -131,6 +208,13 @@ class Crafting : ZilchComponent {
         this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemAmmoAssault"));
         this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemAmmoSniper"));
         this.CraftableItems.Push(0);
+        
+        this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemPistol"));
+        this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemRevolver"));
+        this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemShotgun"));
+        this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemMinigun"));
+        this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemSniper"));
+        this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemGouda"));
         
         this.ShowItemsInCraftingMenu(this.CraftableItems, this.ScrollPosition);
         this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, 6);

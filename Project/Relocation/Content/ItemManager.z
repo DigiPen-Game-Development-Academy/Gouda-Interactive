@@ -41,7 +41,17 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemTitanium",                  true));
         Relocation.Items.Push(new Item("ItemPlatinumOre",               true));
         Relocation.Items.Push(new Item("ItemPlatinum",                  true));
-        this.AddSpacerItems(4);
+        this.AddSpacerItems(6);
+        Relocation.Items.Push(new Item("ItemGunTrigger",                false));
+        Relocation.Items.Push(new Item("ItemGunHandle",                 false));
+        Relocation.Items.Push(new Item("ItemGunBase",                   false));
+        Relocation.Items.Push(new Item("ItemGunBaseMinigun",            false));
+        Relocation.Items.Push(new Item("ItemGunPartialAssembled",       false));
+        Relocation.Items.Push(new Item("ItemGunPartialAssembledMG",     false));
+        Relocation.Items.Push(new Item("ItemGunBarrel",                 false));
+        Relocation.Items.Push(new Item("ItemGunBarrelLong",             false));
+        Relocation.Items.Push(new Item("ItemGunStock",                  false));
+        this.AddSpacerItems(15);
         Relocation.Items.Push(new HPack("ItemGreenBean",                true, 1));
         
         this.GiveItemsID();
@@ -73,6 +83,16 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Unprocessed)");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Processed)");
         this.SkipSpacer();
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Trigger", "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Handle", "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Base", "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Base (Minigun)", "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Partially Assembled Gun", "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Partially Assembled Minigun", "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Barrel (Short)", "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Barrel (Long)", "Gun Part");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Rifle Stock", "Gun Part");
+        this.SkipSpacer();
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Green Bean");
         
         this.PropertySeperator();
@@ -103,6 +123,16 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // TITANIUM
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // PLATINUM ORE
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");     // PLATINUM
+        this.SkipSpacer();
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Trigger (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Handle (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Base (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Minigun Base (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Partial Assembled (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Partial Assembled MG (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Barrel (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Barrel Long (GUN PART)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");         // Stock (GUN PART)
         this.SkipSpacer();
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Food");         // GREEN BEAN
         
