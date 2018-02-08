@@ -2,8 +2,8 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "ItemGold",
-		uint64 ResourceId = 5a072d6362a9ee3f,
+		string Name = "ItemPlatinumOre",
+		uint64 ResourceId = 5a072c7d0e827634,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 16,
 		uint FrameSizeY = 16,

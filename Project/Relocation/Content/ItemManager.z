@@ -31,16 +31,16 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemAmmoAssault",               false));
         Relocation.Items.Push(new Item("ItemAmmoSniper",                true));
         Relocation.Items.Push(new HPack("ItemHealthPack",               false, 10));
-        Relocation.Items.Push(new Item("ItemCopperOre",                 false));
-        Relocation.Items.Push(new Item("ItemCopper",                    false));
+        Relocation.Items.Push(new Item("ItemCopperOre",                 true));
+        Relocation.Items.Push(new Item("ItemCopper",                    true));
         Relocation.Items.Push(new Item("ItemIronOre",                   true));
         Relocation.Items.Push(new Item("ItemIron",                      true));
-        Relocation.Items.Push(new Item("ItemGoldOre",                   false));
+        Relocation.Items.Push(new Item("ItemGoldOre",                   true));
         Relocation.Items.Push(new Item("ItemGold",                      true));
-        Relocation.Items.Push(new Item("ItemTitaniumOre",               false));
-        Relocation.Items.Push(new Item("ItemTitanium",                  false));
-        Relocation.Items.Push(new Item("ItemPlatinumOre",               false));
-        Relocation.Items.Push(new Item("ItemPlatinum",                  false));
+        Relocation.Items.Push(new Item("ItemTitaniumOre",               true));
+        Relocation.Items.Push(new Item("ItemTitanium",                  true));
+        Relocation.Items.Push(new Item("ItemPlatinumOre",               true));
+        Relocation.Items.Push(new Item("ItemPlatinum",                  true));
         this.AddSpacerItems(4);
         Relocation.Items.Push(new HPack("ItemGreenBean",                true, 1));
         
