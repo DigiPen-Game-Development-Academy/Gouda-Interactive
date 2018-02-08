@@ -62,8 +62,8 @@ class EntityEnemy : ZilchComponent
         
         lazer.RigidBody.Velocity = this.Owner.Orientation.WorldForward * 2;
         
-        lazer.HitBoxVariables.AttackByPlayer = false;
-        lazer.HitBoxVariables.Amount = 3;
+        lazer.EntityBullet.FromPlayer = false;
+        lazer.EntityBullet.Damage = 3;
         
         this.TimeTillAttack = this.AttackCooldown;
         
