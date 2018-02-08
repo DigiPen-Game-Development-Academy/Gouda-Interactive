@@ -28,14 +28,17 @@ class HitBoxVariables : ZilchComponent
         {
             return;
         }
+        else if (event.OtherObject.Breakable != null)
+        {
+            event.OtherObject.Breakable.TimeTillBreak += this.Amount;
+            
+            Console.WriteLine("Laser hit: `event.OtherObject.Name`");
+        }
         
         this.Owner.Destroy();
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        //Console.WriteLine("`this.Amount`");
-        
-        this.Owner.BoxCollider.Offset = Real3(0.0, 0.5 * (this.Owner.BoxCollider.Size.Y - 1.0), 0.0);
     }
 }

@@ -12,7 +12,10 @@ class InitializeChildren : ZilchComponent
         {
             // Connect to the "Break" function
             if (child.Breakable != null)
-                Zero.Connect(this.Space, Events.MouseUpdate, child.Breakable.Break);
+            {
+                Zero.Connect(this.Space, Events.MouseUpdate, child.Breakable.BreakOnMine);
+                Zero.Connect(child, Events.CollisionStarted, child.Breakable.BreakOnCollision);
+            }
         }
     }
 }

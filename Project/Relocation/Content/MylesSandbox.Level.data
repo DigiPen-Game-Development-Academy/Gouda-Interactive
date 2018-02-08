@@ -105,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-1.37935567, 4.62350082, 50],
+			Vec3 Translation = [-3.10035372, -0.224675775, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 7.3385973,
+			float Size = 10.9478979,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +125,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-1.37935567, 4.62350082, 0],
+			Vec3 LookTarget = [-3.10035372, -0.224675775, 2.08002604e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -155,168 +155,16 @@ Level =
 			string Name = "EntityPlayer",
 		},
 	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Named = 
-		{
-			string Name = "EntityEnemy",
-		},
-		Archetyped = 
-		{
-			string Name = "5a380a0164d081c9:EntityEnemy",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-0.5, 2.5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = false,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		EntityEnemy = 
-		{
-			float AttackCooldown = 1,
-			bool CanShoot = true,
-			bool CanAttackForward = true,
-			float AttackDamage = 2,
-			float AttackWithinRadiusOf = 3,
-			float HitboxSize = 1.75,
-			float HitboxLifetime = 0.100000001,
-			bool CanMove = false,
-			string LookUp = "5a38055fca8ef1dc:Up",
-			string LookUpRight = "5a38055fca8fb5d5:UpRight",
-			string LookRight = "5a38055fca805178:Right",
-			string LookDownRight = "5a38055fca80ebd1:DownRight",
-			string LookDown = "5a38055fca81939e:Down",
-			string LookDownLeft = "5a38055fca8ce913:DownLeft",
-			string LookLeft = "5a38055fca8daf58:Left",
-			string LookUpLeft = "5a38055fca8e5568:UpLeft",
-		},
-		Orientation = 
-		{
-			Vec3 GlobalUp = [0, 0, 1],
-			Vec3 UpVector = [0, 0, 1],
-			Vec3 ForwardVector = [0, 1, 0],
-			OrientationBases DefaultBases = Custom,
-		},
-		Area = 
-		{
-			Vec2 Size = [1, 1],
-			Location Origin = Center,
-		},
-		Health = 
-		{
-			float MaxHealth = 10,
-			bool IsInvincible = false,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		PathFinding = 
-		{
-			float SightRadius = 8,
-			float Speed = 75,
-			int ChanceOfMoving = 25,
-			float UpdateMemoriesCooldown = 0.600000024,
-			float CreateNewMemoryCooldown = 0.600000024,
-			float TimeTillUpdateMemories = 0,
-			float TimeTillMoveToNextMemory = 0,
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = true,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		Hierarchy = 
-		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 6,
-				},
-				Named = 
-				{
-					string Name = "EnemySprite",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5275aa4d802dd6dc:Square",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Orientation = 
-				{
-					Vec3 GlobalUp = [0, 0, 1],
-					Vec3 UpVector = [0, 0, 1],
-					Vec3 ForwardVector = [0, 1, 0],
-					OrientationBases DefaultBases = ForwardYUpZ,
-				},
-			},
-		},
-	},
 	ArchetypeInstance = 
 	{
 		string Name = "5a240449292b4c0b:CaveEnteranceExit",
 		LinkId = 
 		{
-			uint Id = 7,
+			uint Id = 5,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [18.1291523, 14.5683174, 5.05497333e-08],
+			Vec3 Translation = [-1.37451363, 8.42387104, 5.05497333e-08],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -329,7 +177,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 8,
+			uint Id = 6,
 		},
 		Named = 
 		{
@@ -371,7 +219,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 7,
 		},
 		Named = 
 		{
@@ -414,7 +262,7 @@ Level =
 		string Name = "5a34f95c7c1a591f:Tile3",
 		LinkId = 
 		{
-			uint Id = 10,
+			uint Id = 8,
 		},
 		Transform = 
 		{
@@ -432,7 +280,7 @@ Level =
 		string Name = "5a34f9517cbb3c0a:Tile4",
 		LinkId = 
 		{
-			uint Id = 11,
+			uint Id = 9,
 		},
 		Transform = 
 		{
@@ -450,7 +298,7 @@ Level =
 		string Name = "5a34faab7de10abc:Tile5",
 		LinkId = 
 		{
-			uint Id = 12,
+			uint Id = 10,
 		},
 		Transform = 
 		{
@@ -468,7 +316,7 @@ Level =
 		string Name = "5a34faa17f701526:Tile6",
 		LinkId = 
 		{
-			uint Id = 13,
+			uint Id = 11,
 		},
 		Transform = 
 		{
@@ -486,7 +334,7 @@ Level =
 		string Name = "5a34fabf7833191b:Tile7",
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 12,
 		},
 		Transform = 
 		{
@@ -504,7 +352,7 @@ Level =
 		string Name = "5a34fab3795c76af:Tile8",
 		LinkId = 
 		{
-			uint Id = 15,
+			uint Id = 13,
 		},
 		Transform = 
 		{
@@ -522,7 +370,7 @@ Level =
 		string Name = "5a34fab779d32384:Tile9",
 		LinkId = 
 		{
-			uint Id = 16,
+			uint Id = 14,
 		},
 		Transform = 
 		{
@@ -539,19 +387,19 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 17,
+			uint Id = 15,
 		},
 		Named = 
 		{
-			string Name = "Sprite",
+			string Name = "Breakable Test",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [4.21085596, 1.41789913, 0.375000596],
-			Vec3 Scale = [1, 10, 1],
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		MultiSprite = 
 		{
 			bool Visible = true,
 			bool VisibilityCulling = true,
@@ -561,23 +409,16 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
 		},
-		BoxCollider = 
+		TileMap = 
 		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
+			string SourceName = "5a2fedbc86b76042:MylesSandbox_TileMap39",
+			string PaletteName = "5a2bd7a818a68182:Tiles",
+			float UnitsPerTile = 1,
+			float MeshThickness = 1.20000005,
+		},
+		InitializeChildren = 
+		{
 		},
 	},
 },
