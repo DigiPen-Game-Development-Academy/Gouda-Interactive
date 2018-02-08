@@ -31,6 +31,12 @@ class EntityBullet : ZilchComponent {
             
             this.Owner.Destroy();
             
+        } else if(event.OtherObject.Breakable != null) {
+            event.OtherObject.Breakable.TimeTillBreak += this.Damage;
+            
+            this.Owner.Destroy();
+            
+            Console.WriteLine("Laser hit: `event.OtherObject.Name`");
         } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer) {
             
             if(event.OtherObject.Health != null) {
@@ -39,10 +45,6 @@ class EntityBullet : ZilchComponent {
             
             this.Owner.Destroy();
             
-        } else if(event.OtherObject.Breakable != null) {
-            event.OtherObject.Breakable.TimeTillBreak += this.Damage;
-            
-            Console.WriteLine("Laser hit: `event.OtherObject.Name`");
         }
         
     }
