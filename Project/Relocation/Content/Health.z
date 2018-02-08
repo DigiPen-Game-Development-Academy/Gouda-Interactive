@@ -47,7 +47,7 @@ class Health : ZilchComponent
             if(!this.IsInvincible)
                 this.UISpace.FindObjectByName("Health").SpriteText.Text = "HP: `this.CurrentHealth`";
             else
-                this.UISpace.FindObjectByName("Health").SpriteText.Text = "HP: `this.CurrentHealth` (God Mode)";
+                this.UISpace.FindObjectByName("Health").SpriteText.Text = "HP: `this.CurrentHealth`\n(God Mode)";
         }
         
     }
