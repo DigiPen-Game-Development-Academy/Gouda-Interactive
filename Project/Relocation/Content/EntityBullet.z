@@ -1,5 +1,5 @@
 // AUTHOR: HUDSON GREEN
-// CONTRIBUTORS: N/A
+// CONTRIBUTORS: MYLES BUSIG
 
 class EntityBullet : ZilchComponent {
     
@@ -39,6 +39,10 @@ class EntityBullet : ZilchComponent {
             
             this.Owner.Destroy();
             
+        } else if(event.OtherObject.Breakable != null) {
+            event.OtherObject.Breakable.TimeTillBreak += this.Damage;
+            
+            Console.WriteLine("Laser hit: `event.OtherObject.Name`");
         }
         
     }
