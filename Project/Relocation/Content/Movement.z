@@ -83,7 +83,7 @@ class Movement : ZilchComponent {
                 this.StartFrame = 36;
                 this.EndFrame = 41;
                 
-                weapon.Transform.Translation = Real3(-0.35, -0.1, 0.05);
+                weapon.Transform.Translation = Real3(-0.35, -0.1, -0.05);
                 weapon.Sprite.StartFrame = 1;
                 weapon.Sprite.FlipX = true;
                 
@@ -107,7 +107,7 @@ class Movement : ZilchComponent {
                 this.StartFrame = 24;
                 this.EndFrame = 29;
                 
-                weapon.Transform.Translation = Real3(0.15, -0.15, 0.05);
+                weapon.Transform.Translation = Real3(0.15, -0.15, -0.05);
                 weapon.Sprite.StartFrame = 3;
                 weapon.Sprite.FlipX = true;
                 
@@ -187,7 +187,7 @@ class Movement : ZilchComponent {
                 this.StartFrame = 36;
                 this.EndFrame = 41;
                 
-                weapon.Transform.Translation = Real3(-0.35, -0.1, 0.05);
+                weapon.Transform.Translation = Real3(-0.35, -0.1, -0.05);
                 weapon.Sprite.StartFrame = 1;
                 weapon.Sprite.FlipX = true;
                 
@@ -205,7 +205,7 @@ class Movement : ZilchComponent {
                 this.StartFrame = 24;
                 this.EndFrame = 29;
                 
-                weapon.Transform.Translation = Real3(0.15, -0.15, 0.05);
+                weapon.Transform.Translation = Real3(0.15, -0.15, -0.05);
                 weapon.Sprite.StartFrame = 3;
                 weapon.Sprite.FlipX = true;
                 
