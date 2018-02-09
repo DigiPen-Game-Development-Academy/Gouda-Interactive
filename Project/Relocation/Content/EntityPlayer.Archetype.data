@@ -48,11 +48,6 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	Movement = 
-	{
-		float Speed = 150,
-		float RunSpeed = 200,
-	},
 	BoxCollider = 
 	{
 		bool Ghost = false,
@@ -62,6 +57,11 @@ Cog =
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.5, 0.5, 0.5],
+	},
+	Movement = 
+	{
+		float Speed = 150,
+		float RunSpeed = 200,
 	},
 	WeaponManager = 
 	{
