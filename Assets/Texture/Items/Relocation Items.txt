@@ -1,6 +1,7 @@
 Items:
 x = Not Complete
 / = Complete
+? = Unknown
 A = Art
 G = In Game
                      A G
@@ -24,6 +25,8 @@ Gold Ore ----------- x /
 Gold --------------- / /
 Titanium Ore ------- x x
 Titanium ----------- x x
+Platinum Ore ------- / ?
+Platinum ----------- / ?
 Wood --------------- x x
 Stick -------------- / x
 Meat --------------- / x
