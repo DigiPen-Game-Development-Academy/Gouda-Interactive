@@ -1,8 +1,0 @@
-TextContent = 
-{
-	ZilchScriptBuilder = 
-	{
-		string Name = "Despawner",
-		uint64 ResourceId = 5af8b0bcb2130a6b,
-	},
-},
