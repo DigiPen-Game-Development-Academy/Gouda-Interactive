@@ -1,3 +1,6 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
 class Relocation {
     
     [Static] var EntityPlayer : String = "EntityPlayer";
@@ -8,5 +11,7 @@ class Relocation {
     [Static] var Items : Array[Item] = null;
     
     [Static] var ItemManager : ItemManager = null;
+    
+    [Static] var DebugMode : Boolean = false;
     
 }

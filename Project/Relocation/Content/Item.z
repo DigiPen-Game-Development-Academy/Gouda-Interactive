@@ -65,6 +65,7 @@ class Item {
     function SetID(id : Integer) : Integer {
         this.ItemID = id;
         ++id;
+        Console.WriteLine("[Item Manager] Setting ID to `this.ItemID` for item with name \"`this.ItemName`\"");
         return id;
     }
     
