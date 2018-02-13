@@ -17,7 +17,7 @@ class Tooltip : ZilchComponent {
 
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(this.TooltipActive && this.TooltipName != "") {
+        if(this.TooltipActive && this.TooltipName != "" && this.TooltipName != "State.False") {
             this.DisplayTooltip_();
         } else {
             this.ResetTooltip();

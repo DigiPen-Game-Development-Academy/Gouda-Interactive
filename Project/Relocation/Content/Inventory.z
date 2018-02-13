@@ -133,23 +133,16 @@ class Inventory : ZilchComponent {
             slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
             slotObj.FindChildByName("ItemName").SpriteText.Text = Relocation.Items[this.InventoryContents[i]].ItemRecognizableName;
             
-            if(slotObj.Name == "Slot1") {
-                slotObj.FindChildByName("ItemLore").SpriteText.Text = Relocation.Items[this.InventoryContents[i]].ItemLore;
-            }
-            
             if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = false;
                 slotObj.FindChildByName("ItemCount").SpriteText.Visible = false;
                 if(slotObj.Name == "Slot1") {
-                    slotObj.FindChildByName("ItemLore").SpriteText.Visible = false;
-                    slotObj.FindChildByName("ItemName").FindChildByName("ItemNameBG").Sprite.Visible = false;
+                    Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(false);
+                    
                 }
             } else {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = true;
                 slotObj.FindChildByName("ItemCount").SpriteText.Visible = true;
-                if(slotObj.Name == "Slot1") {
-                    slotObj.FindChildByName("ItemLore").SpriteText.Visible = true;
-                }
             }
             
             if(i == this.SLOT_HAND - 1 || i == this.SLOT_OFFHAND - 1) {
@@ -239,49 +232,23 @@ class Inventory : ZilchComponent {
             if(this.TooltipName != "") {
                 
                 var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
-                var itemTooltip = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName");
-                var itemTooltipLore = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore");
-                var itemNameBG = itemTooltip.FindChildByName("ItemNameBG");
-                
-                itemTooltip.SpriteText.Text = this.TooltipName;
-                itemTooltipLore.SpriteText.Text = this.TooltipLoreName;
-                itemTooltip.SpriteText.Color = Real4(1.0);
-                
-                // TOOLTIP BACKGROUND
-                if(itemNameBG != null) {
-                    
-                    var txtWH = itemTooltip.SpriteText.MeasureText();
-                    var loreTxtWH = itemTooltipLore.SpriteText.MeasureText();
-                    
-                    var cardWH = Real2(txtWH.X, txtWH.Y);
-                    
-                    if(txtWH.X < loreTxtWH.X) {
-                        cardWH = Real2(loreTxtWH.X, cardWH.Y);
-                    }
-                    
-                    if(itemTooltipLore.SpriteText.Text.Count > 0) {
-                        cardWH = Real2(cardWH.X, txtWH.Y + loreTxtWH.Y);
-                    }
-                    
-                    itemNameBG.Sprite.Visible = true;
-                    itemNameBG.Transform.Scale = Real3(cardWH.X + 0.5, cardWH.Y + 0.2, 1);
-                    
-                }
+                var tooltipColor = Real4(1.0);
+                var tooltipLoreColor = Real4(1.0, 1.0, 1.0, 0.9);
                 
                 if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "WeaponCommon") {
-                    itemTooltip.SpriteText.Color = Real4(0.1, 1.0, 0.1, 1.0);
+                    tooltipColor = Real4(0.1, 1.0, 0.1, 1.0);
                 } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "WeaponEpic") {
-                    itemTooltip.SpriteText.Color = Real4(0.7, 0.3, 0.9, 1.0);
+                    tooltipColor = Real4(0.7, 0.3, 0.9, 1.0);
                 } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "WeaponLegendary") {
-                    itemTooltip.SpriteText.Color = Real4(1.0, 0.7, 0.0, 1.0);
+                    tooltipColor = Real4(1.0, 0.7, 0.0, 1.0);
                 } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Resource") {
-                    itemTooltip.SpriteText.Color = Real4(0.6, 0.6, 0.6, 1.0);
+                    tooltipColor = Real4(0.6, 0.6, 0.6, 1.0);
                 } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Health") {
-                    itemTooltip.SpriteText.Color = Real4(1.0, 0.0, 0.0, 1.0);
+                    tooltipColor = Real4(1.0, 0.0, 0.0, 1.0);
                 }
                 
-                itemTooltip.SpriteText.Visible = true;
-                itemTooltipLore.SpriteText.Visible = true;
+                Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
+                Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(this.TooltipName, this.TooltipLoreName, tooltipColor, tooltipLoreColor);
                 
             }
             
@@ -291,34 +258,18 @@ class Inventory : ZilchComponent {
             
             this.TooltipName = "";
             this.TooltipLoreName = "";
-            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").SpriteText.Visible = false;
-            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore").SpriteText.Visible = false;
-            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName").FindChildByName("ItemNameBG").Sprite.Visible = false;
+            
+            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(false);
             
             this.SlotHover = -1;
             
         } else {
             
-            var itemTooltip = this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemName");
-            var itemNameBG = itemTooltip.FindChildByName("ItemNameBG");
-            
             this.TooltipName = this.Owner.Crafting.GetTooltipName();
             this.TooltipLoreName = "";
-            itemTooltip.SpriteText.Text = this.TooltipName;
-            itemTooltip.SpriteText.Color = Real4(1.0);
-            itemTooltip.SpriteText.Visible = true;
-            this.UISpace.FindObjectByName("Slot1").FindChildByName("ItemLore").SpriteText.Visible = false;
             
-            // TOOLTIP BACKGROUND
-            if(itemNameBG != null && this.TooltipName != "") {
-                
-                var txtWH = itemTooltip.SpriteText.MeasureText();
-                var cardWH = Real2(txtWH.X, txtWH.Y);
-                
-                itemNameBG.Sprite.Visible = true;
-                itemNameBG.Transform.Scale = Real3(cardWH.X + 0.5, cardWH.Y + 0.2, 1);
-                
-            }
+            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
+            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(this.TooltipName, this.TooltipLoreName, Real4(1.0), Real4(1.0));
             
             this.SlotHover = -1;
             
