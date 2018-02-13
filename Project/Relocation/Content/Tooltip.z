@@ -2,6 +2,7 @@ class Tooltip : ZilchComponent {
     
     var TooltipActive : Boolean = false;
     var UseMousePosition : Boolean = true;
+    var TooltipLeftAlign : Boolean = false;
     
     var TooltipName : String = "";
     var TooltipLore : String = "";
@@ -60,12 +61,9 @@ class Tooltip : ZilchComponent {
     **/
     function DisplayTooltip_() {
         
-        if(this.UseMousePosition) {
-            var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 15.0);
-            this.Owner.Transform.WorldTranslation = mousePos;
-        } else {
-            this.Owner.Transform.WorldTranslation = Real3(this.TooltipPosition, 15.0);
-        }
+        var screen = this.Space.FindObjectByName("LevelSettings");
+        var screenRes = screen.CameraViewport.ViewportResolutionWithMargin;
+        var mousePos = screen.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 15.0);
         
         var tooltipName = this.Owner.FindChildByName("TooltipName");
         var tooltipLore = this.Owner.FindChildByName("TooltipLore");
@@ -78,12 +76,13 @@ class Tooltip : ZilchComponent {
         tooltipLore.SpriteText.Color = this.TooltipLoreColor;
         
         // TOOLTIP BACKGROUND
+        var txtWH = tooltipName.SpriteText.MeasureText();
+        var loreTxtWH = tooltipLore.SpriteText.MeasureText();
+        
+        var cardWH = Real2(txtWH.X, txtWH.Y);
+        
+        // TOOLTIP BACKGROUND
         if(tooltipBG != null) {
-            
-            var txtWH = tooltipName.SpriteText.MeasureText();
-            var loreTxtWH = tooltipLore.SpriteText.MeasureText();
-            
-            var cardWH = Real2(txtWH.X, txtWH.Y);
             
             if(txtWH.X < loreTxtWH.X) {
                 cardWH = Real2(loreTxtWH.X, cardWH.Y);
@@ -99,6 +98,24 @@ class Tooltip : ZilchComponent {
             
             tooltipBG.Transform.Scale = Real3(cardWH.X + 0.5, cardWH.Y + 0.2, 1);
             
+        }
+        
+        var offset = 0.0;
+        
+        // TOOLTIP ALIGN
+        if(mousePos.X > screen.CameraViewport.ScreenToWorldZPlane(Real2(screenRes.X, 0.0), 0.0).X - ((cardWH.X + 0.5) * 1.5)) {
+            this.TooltipLeftAlign = true;
+            offset = -((cardWH.X + 0.5) * 1.5);
+        } else {
+            this.TooltipLeftAlign = false;
+            offset = 0.0;
+        }
+        
+        // SET POSITION
+        if(this.UseMousePosition) {
+            this.Owner.Transform.WorldTranslation = Real3(mousePos.X + offset, mousePos.Y, mousePos.Z);
+        } else {
+            this.Owner.Transform.WorldTranslation = Real3(this.TooltipPosition, 15.0);
         }
         
     }
