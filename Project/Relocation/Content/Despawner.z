@@ -18,11 +18,14 @@ class Despawner : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.TimeLive += event.Dt;
+        
+        var left = this.Owner.Transform.Translation.X < this.Player.Transform.Translation.X - this.Distance;
+        var right = this.Owner.Transform.Translation.X > this.Player.Transform.Translation.X + this.Distance;
+        var below = this.Owner.Transform.Translation.Y < this.Player.Transform.Translation.Y - this.Distance;
+        var above = this.Owner.Transform.Translation.Y > this.Player.Transform.Translation.Y + this.Distance;
+        
         //collision for .21 seconds and distance
-        if(this.Owner.Transform.Translation.X < this.Player.Transform.Translation.X - this.Distance ||
-            this.Owner.Transform.Translation.X < this.Player.Transform.Translation X + this.Distance ||
-            this.Owner.Transform.Translation.Y < this.Player.Transform.Translation.Y - this.Distance ||
-            this.Owner.Transform.Translation.Y < this.Player.Transform.Translation.Y + this.Distance)
+        if(left || right || below || above)
         {
             this.Owner.Destroy();
         }
