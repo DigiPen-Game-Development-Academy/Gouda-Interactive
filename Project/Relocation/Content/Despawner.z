@@ -1,0 +1,28 @@
+//AUTHOR: Kevin P
+//CONTIBUTORS:
+class Despawner : ZilchComponent
+{
+    [Property]
+    var WhatToDespawn : Archetype;
+    var Distance : Real =  5;
+    var Player : Cog;
+    var Enemy : Cog;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.Player = this.Space.FindObjectByName("EntityPlayer");
+        this.Enemy = this.Space.FindObjectByName("EntityEnemy");
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        
+        //collision for .21 seconds and distance
+        if(CollisionEvent.WhatToDespawn.Player)
+        {
+            this.Space.WhatToDespawn.delete;
+        }
+    }
+}
