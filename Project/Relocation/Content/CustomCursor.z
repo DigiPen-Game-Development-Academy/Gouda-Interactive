@@ -8,6 +8,8 @@ class CustomCursor : ZilchComponent {
     [Property] var HoverItemCursor : SpriteSource = SpriteSource.Cursor;
     [Property] var ClickCursor : SpriteSource = SpriteSource.Cursor;
     
+    [Property] var ShowCustomCursor : Boolean = true;
+    
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Space, Events.MouseMove, this.OnMouseMove);
     }
@@ -16,18 +18,28 @@ class CustomCursor : ZilchComponent {
         
         var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 30.0);
         
-        event.Mouse.Cursor = Cursor.Invisible;
-        
         this.Owner.Transform.WorldTranslation = mousePos;
         
-        if(Relocation.CursorType == "Hover") {
-            this.Owner.Sprite.SpriteSource = this.HoverCursor;
-        } else if(Relocation.CursorType == "ItemHover") {
-            this.Owner.Sprite.SpriteSource = this.HoverItemCursor;
-        } else if(Relocation.CursorType == "Click") {
-            this.Owner.Sprite.SpriteSource = this.ClickCursor;
+        if(this.ShowCustomCursor) {
+            
+            event.Mouse.Cursor = Cursor.Invisible;
+            this.Owner.Sprite.Visible = true;
+            
+            if(Relocation.CursorType == "Hover") {
+                this.Owner.Sprite.SpriteSource = this.HoverCursor;
+            } else if(Relocation.CursorType == "ItemHover") {
+                this.Owner.Sprite.SpriteSource = this.HoverItemCursor;
+            } else if(Relocation.CursorType == "Click") {
+                this.Owner.Sprite.SpriteSource = this.ClickCursor;
+            } else {
+                this.Owner.Sprite.SpriteSource = this.DefaultCursor;
+            }
+            
         } else {
-            this.Owner.Sprite.SpriteSource = this.DefaultCursor;
+            
+            event.Mouse.Cursor = Cursor.Cross;
+            this.Owner.Sprite.Visible = false;
+            
         }
         
     }

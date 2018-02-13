@@ -2280,6 +2280,11 @@ Level =
 		},
 		CustomCursor = 
 		{
+			string DefaultCursor = "5a3bd208fba8aefb:Cursor",
+			string HoverCursor = "5a3bd208fba8aefb:Cursor",
+			string HoverItemCursor = "5a3bd208fba8aefb:Cursor",
+			string ClickCursor = "5a3bd208fba8aefb:Cursor",
+			bool ShowCustomCursor = true,
 		},
 	},
 },
