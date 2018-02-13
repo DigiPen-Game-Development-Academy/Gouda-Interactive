@@ -20,7 +20,7 @@ class Despawner : ZilchComponent
         this.TimeLive += event.Dt;
         //collision for .21 seconds and distance
         if(this.Owner.Transform.Translation.X < this.Player.Transform.Translation.X - this.Distance ||
-            this.Owner.Transform.Translation.X < this.Player.Transform.Translation X + this.Distance) &&
+            this.Owner.Transform.Translation.X < this.Player.Transform.Translation X + this.Distance ||
             this.Owner.Transform.Translation.Y < this.Player.Transform.Translation.Y - this.Distance ||
             this.Owner.Transform.Translation.Y < this.Player.Transform.Translation.Y + this.Distance)
         {
