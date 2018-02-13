@@ -2,27 +2,37 @@
 //CONTIBUTORS:
 class Despawner : ZilchComponent
 {
-    [Property]
-    var WhatToDespawn : Archetype;
-    var Distance : Real =  5;
+    var Distance : Real = 50;
     var Player : Cog;
-    var Enemy : Cog;
+    var TimeLive : Real = 0;
     
     function Initialize(init : CogInitializer)
     {
         this.Player = this.Space.FindObjectByName("EntityPlayer");
-        this.Enemy = this.Space.FindObjectByName("EntityEnemy");
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        
+        this.TimeLive += event.Dt;
         //collision for .21 seconds and distance
-        if(CollisionEvent.WhatToDespawn.Player)
+        if(this.Owner.Transform.Translation.X < this.Player.Transform.Translation.X - this.Distance ||
+            this.Owner.Transform.Translation.X < this.Player.Transform.Translation X + this.Distance) &&
+            this.Owner.Transform.Translation.Y < this.Player.Transform.Translation.Y - this.Distance ||
+            this.Owner.Transform.Translation.Y < this.Player.Transform.Translation.Y + this.Distance)
         {
-            this.Space.WhatToDespawn.delete;
+            this.Owner.Destroy();
+        }
+    }
+    
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        if(this.TimeLive <= 0.1)
+        {
+            this.Owner.Destroy();
         }
     }
 }
