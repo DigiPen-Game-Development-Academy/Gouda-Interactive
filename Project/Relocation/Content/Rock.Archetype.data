@@ -15,7 +15,7 @@ Cog =
 	Breakable = 
 	{
 		float BreakTime = 5,
-		string ToolType = "None",
+		string ToolType = "Drill",
 		int Loot1ID = 3,
 		int Loot1MaxAmount = 3,
 		int Loot2ID = 0,
