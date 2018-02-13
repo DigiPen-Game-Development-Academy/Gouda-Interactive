@@ -28,7 +28,7 @@ class SkinButton : ZilchComponent {
                 ++playerSkinID;
             }
             
-            this.Owner.Parent.FindChildByName("SkinNumber").SpriteText.Text = "`playerSkinID`";
+            this.Owner.Parent.FindChildByName("SkinNumber").SpriteText.Text = "`playerSkinID + 1`";
             
             playerProp.SetSkin(playerSkinID);
             
