@@ -20,7 +20,9 @@ class Tooltip : ZilchComponent {
         
         if(this.TooltipActive && this.TooltipName != "" && this.TooltipName != "State.False") {
             this.DisplayTooltip_();
-            Relocation.CursorType = "TooltipHover";
+            if(Relocation.CursorType != "TooltipHover") {
+                Relocation.CursorType = "TooltipHover";
+            }
         } else {
             this.ResetTooltip();
             if(Relocation.CursorType == "TooltipHover") {
