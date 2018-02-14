@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [10.2230339, -7.10317373, 21.1258602],
+			Vec3 Translation = [-12.1671047, 9.65381718, 21.1258602],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 6.72057152,
+			float Size = 24.6598129,
 		},
 		EditorCameraController = 
 		{
@@ -119,7 +119,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [10.2230339, -7.10317373, 7.49924994],
+			Vec3 LookTarget = [-12.1671047, 9.65381718, 7.49924994],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2863,6 +2863,46 @@ Level =
 			string HoverItemCursor = "5a3bd208fba8aefb:Cursor",
 			string ClickCursor = "5a3bd208fba8aefb:Cursor",
 			bool ShowCustomCursor = true,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 92,
+		},
+		Named = 
+		{
+			string Name = "SpriteText",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-19.5, 10, 20],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		SpriteText = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string FontName = "4e7bac697bec55c5:Verdana",
+			uint FontSize = 24,
+			string Text = "Relocation Alpha [Prototype] (Posession by non DigiPen personel is illegal)",
+			TextAlign Align = Left,
+			float PixelsPerUnit = 64,
+			bool Smoothing = true,
+		},
+		ScreenAlignment = 
+		{
+			string PositionX = "Left",
+			string PositionY = "Top",
+			Vec2 PositionOffset = [0, 0],
 		},
 	},
 },
