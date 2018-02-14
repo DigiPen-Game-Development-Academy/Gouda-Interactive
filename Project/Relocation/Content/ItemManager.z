@@ -30,7 +30,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemAmmoMinigun",               true));
         Relocation.Items.Push(new Item("ItemAmmoAssault",               false));
         Relocation.Items.Push(new Item("ItemAmmoSniper",                true));
-        Relocation.Items.Push(new HPack("ItemHealthPack",               false, 10));
+        Relocation.Items.Push(new HPack("ItemHealthPack",               true, 10));
         Relocation.Items.Push(new Item("ItemCopperOre",                 true));
         Relocation.Items.Push(new Item("ItemCopper",                    true));
         Relocation.Items.Push(new Item("ItemIronOre",                   true));
