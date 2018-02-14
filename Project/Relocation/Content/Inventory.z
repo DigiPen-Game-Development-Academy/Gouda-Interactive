@@ -92,6 +92,8 @@ class Inventory : ZilchComponent {
             
             inventory.Transform.WorldTranslation = Real3(0, 0, 50000);
             
+            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(false);
+            
         }
         
     }
@@ -106,6 +108,7 @@ class Inventory : ZilchComponent {
         } else if(event.Key == Keys.Escape && !commandScreenCapture && !playerNameScreenCapture && this.InventoryOpen) {
             this.Space.TimeSpace.Paused = false;
             this.InventoryOpen = false;
+            
         }
         
     }

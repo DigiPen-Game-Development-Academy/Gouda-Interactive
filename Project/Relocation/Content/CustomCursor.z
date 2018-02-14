@@ -5,13 +5,27 @@ class CustomCursor : ZilchComponent {
     
     [Property] var DefaultCursor : SpriteSource = SpriteSource.Cursor;
     [Property] var HoverCursor : SpriteSource = SpriteSource.Cursor;
+    [Property] var HoverTooltipCursor : SpriteSource = SpriteSource.Cursor;
     [Property] var HoverItemCursor : SpriteSource = SpriteSource.Cursor;
     [Property] var ClickCursor : SpriteSource = SpriteSource.Cursor;
     
     [Property] var ShowCustomCursor : Boolean = true;
     
+    var TmpCursorType : String = "null";
+    
     function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Space, Events.MouseMove, this.OnMouseMove);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(Relocation.CursorType != this.TmpCursorType) {
+            var viewportMouseEvent : ViewportMouseEvent = null;
+            this.OnMouseMove(viewportMouseEvent);
+            this.TmpCursorType = Relocation.CursorType;
+        }
+        
     }
     
     function OnMouseMove(event : ViewportMouseEvent) {
@@ -22,11 +36,13 @@ class CustomCursor : ZilchComponent {
         
         if(this.ShowCustomCursor) {
             
-            event.Mouse.Cursor = Cursor.Invisible;
+            Zero.Mouse.Cursor = Cursor.Invisible;
             this.Owner.Sprite.Visible = true;
             
             if(Relocation.CursorType == "Hover") {
                 this.Owner.Sprite.SpriteSource = this.HoverCursor;
+            } else if(Relocation.CursorType == "TooltipHover") {
+                this.Owner.Sprite.SpriteSource = this.HoverTooltipCursor;
             } else if(Relocation.CursorType == "ItemHover") {
                 this.Owner.Sprite.SpriteSource = this.HoverItemCursor;
             } else if(Relocation.CursorType == "Click") {
@@ -37,7 +53,7 @@ class CustomCursor : ZilchComponent {
             
         } else {
             
-            event.Mouse.Cursor = Cursor.Cross;
+            Zero.Mouse.Cursor = Cursor.Cross;
             this.Owner.Sprite.Visible = false;
             
         }
