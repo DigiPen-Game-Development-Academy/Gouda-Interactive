@@ -27,8 +27,8 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.Commands.Push("give");
         this.Owner.TextEntry.CommandsAll.Push("god");
         this.Owner.TextEntry.Commands.Push("god");
-        this.Owner.TextEntry.Commands.Push("help");
         this.Owner.TextEntry.CommandsAll.Push("help");
+        this.Owner.TextEntry.Commands.Push("help");
         this.Owner.TextEntry.CommandsAll.Push("playsound");
         this.Owner.TextEntry.Commands.Push("playsound");
         this.Owner.TextEntry.CommandsAll.Push("spawn");
