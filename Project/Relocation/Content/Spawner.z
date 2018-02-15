@@ -8,8 +8,11 @@ class Spawner : ZilchComponent
     var Player : Cog;
     
     
-    //[Property]
-    //var SpawnTime
+    [Property]
+    var SpawnTime : Real = 1.0;
+    
+    var TimeSinceLastSpawn : Real = 0.0;
+    
     
     function Initialize(init : CogInitializer)
     {
@@ -20,6 +23,17 @@ class Spawner : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        
+        this.TimeSinceLastSpawn += event.Dt;
+        
+        if (this.TimeSinceLastSpawn > this.SpawnTime)
+        {
+            var spawnPosition = this.Owner.Transform.Translation;
+            
+            this.TimeSinceLastSpawn = 0.0;
+        }
+        
+        
         if (this.Player == null)
             return;
         

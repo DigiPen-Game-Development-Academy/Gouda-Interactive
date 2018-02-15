@@ -1,5 +1,5 @@
 //AUTHOR: Kevin P
-//CONTIBUTORS:
+//CONTIBUTORS: N/A
 class Despawner : ZilchComponent
 {
     var Distance : Real = 50;
