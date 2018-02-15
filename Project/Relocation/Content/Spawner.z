@@ -27,29 +27,30 @@ class Spawner : ZilchComponent
         this.TimeSinceLastSpawn += event.Dt;
         
         if (this.TimeSinceLastSpawn > this.SpawnTime)
-        {
-            var spawnPosition = this.Owner.Transform.Translation;
+        {            
+            if (this.Player == null)
+            {
+                return;
+            }
+        
+            var camera = this.Player.FindChildByName("Camera");
+            var randomGeneratorX = new Random();
+            var randomGeneratorY = new Random();
+    
+            var spawnPosition =  Real3(randomGeneratorX.Range(-this.Radius, this.Radius),
+                randomGeneratorY.Range(-this.Radius, this.Radius), 0);
+        
+            if ((this.Player.Transform.Translation.X >= spawnPosition.X - camera.Camera.Size && 
+                this.Player.Transform.Translation.X <= spawnPosition.X + camera.Camera.Size) &&
+                (this.Player.Transform.Translation.Y >= spawnPosition.Y - camera.Camera.Size && 
+                this.Player.Transform.Translation.Y <= spawnPosition.Y + camera.Camera.Size))
+            {
+                return;
+            }
+            
+            this.Space.CreateAtPosition(this.WhatToSpawn, spawnPosition);
             
             this.TimeSinceLastSpawn = 0.0;
         }
-        
-        
-        if (this.Player == null)
-            return;
-        
-        var camera = this.Player.FindChildByName("Camera");
-        var randomGeneratorX = new Random();
-        var randomGeneratorY = new Random();
-    
-        var spawnPosition =  Real3(randomGeneratorX.Range(-this.Radius, this.Radius),
-            randomGeneratorY.Range(-this.Radius, this.Radius), 0);
-        
-        if ((this.Player.Transform.Translation.X >= spawnPosition.X - camera.Camera.Size && 
-            this.Player.Transform.Translation.X <= spawnPosition.X + camera.Camera.Size) &&
-            (this.Player.Transform.Translation.Y >= spawnPosition.Y - camera.Camera.Size && 
-            this.Player.Transform.Translation.Y <= spawnPosition.Y + camera.Camera.Size))
-            return;
-        
-        this.Space.CreateAtPosition(this.WhatToSpawn, spawnPosition);
     }
 }
