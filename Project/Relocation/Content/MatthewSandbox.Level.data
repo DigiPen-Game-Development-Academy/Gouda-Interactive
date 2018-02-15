@@ -83,9 +83,14 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
-		Spawner = 
+		UICreator = 
 		{
-			string WhatToSpawn = "5a380a0164d081c9:EntityEnemy",
+			string UILevel = "5a0b73429c761ee6:UILevel",
+			string UIArchetype = "554cea0f94af6dc4:Space",
+			bool ReloadIfSameLevel = true,
+		},
+		ItemManager = 
+		{
 		},
 	},
 	Cog = 
@@ -100,9 +105,9 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.0204041712, -0.122430444, 90],
+			Vec3 Translation = [-3.33543038, -11.1743555, 49.9421806],
 			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
+			Quat Rotation = [0.00261800829, 5.84418103e-07, -1.5032362e-09, 0.999996603],
 		},
 		Camera = 
 		{
@@ -112,15 +117,15 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 32.974411,
+			float Size = 10.9479132,
 		},
 		EditorCameraController = 
 		{
 			ControlMode ControlMode = ZPlane,
 			float LookDistance = 50,
-			float VerticalAngle = 0,
-			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.0204041712, -0.122430444, 40],
+			float VerticalAngle = -0.00523602217,
+			float HorizontalAngle = -1.18929893e-06,
+			Vec3 LookTarget = [-3.33548975, -10.9125557, -0.0571326166],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -203,6 +208,13 @@ Level =
 		Health = 
 		{
 			float MaxHealth = 10,
+			bool IsInvincible = false,
+		},
+		Crafting = 
+		{
+		},
+		Inventory = 
+		{
 		},
 		Hierarchy = 
 		{
@@ -236,7 +248,7 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5a11cdcf81512c7f:WeaponPistol",
+					string SpriteSource = "5a0b7dbbcd090dba:WeaponPistol",
 					bool RenderMask = false,
 					bool FlipX = false,
 					bool FlipY = false,
@@ -320,7 +332,8 @@ Level =
 		EntityEnemy = 
 		{
 			float AttackCooldown = 1,
-			bool AttackForward = false,
+			bool CanShoot = true,
+			bool CanAttackForward = true,
 			float AttackDamage = 2,
 			float AttackWithinRadiusOf = 3,
 			float HitboxSize = 1.75,
@@ -350,6 +363,7 @@ Level =
 		Health = 
 		{
 			float MaxHealth = 10,
+			bool IsInvincible = false,
 		},
 		BoxCollider = 
 		{
@@ -360,6 +374,28 @@ Level =
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		PathFinding = 
+		{
+			float SightRadius = 8,
+			float Speed = 75,
+			int ChanceOfMoving = 25,
+			float UpdateMemoriesCooldown = 0.5,
+			float CreateNewMemoryCooldown = 0.5,
+			float TimeTillUpdateMemories = 0,
+			float TimeTillMoveToNextMemory = 0,
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = false,
+			bool RotationLocked = false,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
 		},
 		Hierarchy = 
 		{
@@ -405,6 +441,76 @@ Level =
 					OrientationBases DefaultBases = ForwardYUpZ,
 				},
 			},
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Named = 
+		{
+			string Name = "TileMap",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		MultiSprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		},
+		TileMap = 
+		{
+			string SourceName = "5a39e557dea82f7b:MatthewSandbox_TileMap00",
+			string PaletteName = "5a39edc69c28e80d:Ground",
+			float UnitsPerTile = 1,
+			float MeshThickness = 1.20000005,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Named = 
+		{
+			string Name = "TileMap",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		MultiSprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		},
+		TileMap = 
+		{
+			string SourceName = "",
+			string PaletteName = "5a39edc69c28e80d:Ground",
+			float UnitsPerTile = 1,
+			float MeshThickness = 1.20000005,
 		},
 	},
 },
