@@ -105,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-3.33543038, -11.1743555, 49.9421806],
+			Vec3 Translation = [5.53334951, -10.0510817, 49.9480171],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0.00261800829, 5.84418103e-07, -1.5032362e-09, 0.999996603],
 		},
@@ -117,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 10.9479132,
+			float Size = 14.9569645,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +125,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = -0.00523602217,
 			float HorizontalAngle = -1.18929893e-06,
-			Vec3 LookTarget = [-3.33548975, -10.9125557, -0.0571326166],
+			Vec3 LookTarget = [5.53328991, -9.78928185, -0.0512949079],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -473,41 +473,6 @@ Level =
 		TileMap = 
 		{
 			string SourceName = "5a39e557dea82f7b:MatthewSandbox_TileMap00",
-			string PaletteName = "5a39edc69c28e80d:Ground",
-			float UnitsPerTile = 1,
-			float MeshThickness = 1.20000005,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 9,
-		},
-		Named = 
-		{
-			string Name = "TileMap",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 0, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		MultiSprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		},
-		TileMap = 
-		{
-			string SourceName = "",
 			string PaletteName = "5a39edc69c28e80d:Ground",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
