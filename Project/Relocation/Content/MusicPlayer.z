@@ -1,0 +1,24 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class MusicPlayer : ZilchComponent {
+    
+    [Property] var Song : SoundCue = null;
+    
+    function Initialize(init : CogInitializer) {
+        
+        if(this.Song != null) {
+            this.Space.SoundSpace.PlayCue(this.Song);
+        } else {
+            Console.WriteLine("[Sound Manager] Warning: Song specified does not exist (null). Cannot play song.");
+        }
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+    }
+    
+}

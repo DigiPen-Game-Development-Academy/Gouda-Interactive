@@ -19,6 +19,8 @@ class ScreenAlignment : ZilchComponent {
             this.Pos = Real2(0, 0);
         } else if(this.PositionX == "Right") {
             this.Pos = Real2(screenRes.X, 0);
+        } else if(this.PositionX == "Center") {
+            this.Pos = Real2(screenRes.X / 2, 0);
         }
         
         if(this.PositionY == "Top") {
