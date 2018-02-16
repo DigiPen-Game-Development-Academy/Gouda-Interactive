@@ -17,7 +17,7 @@ class ItemManager : ZilchComponent {
         
         Relocation.Items.Push(new Item("Circle",                        true));
         Relocation.Items.Push(new Item("ItemPistol",                    true));
-        Relocation.Items.Push(new Item("ItemRevolver",                  false));
+        Relocation.Items.Push(new Item("ItemRevolver",                  true));
         Relocation.Items.Push(new Item("ItemRock",                      true));
         Relocation.Items.Push(new Item("ItemShotgun",                   true));
         Relocation.Items.Push(new Item("ItemBoulder",                   true));
@@ -42,15 +42,15 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemPlatinumOre",               true));
         Relocation.Items.Push(new Item("ItemPlatinum",                  true));
         this.AddSpacerItems(6);
-        Relocation.Items.Push(new Item("ItemGunTrigger",                false));
-        Relocation.Items.Push(new Item("ItemGunHandle",                 false));
-        Relocation.Items.Push(new Item("ItemGunBase",                   false));
-        Relocation.Items.Push(new Item("ItemGunBaseMinigun",            false));
+        Relocation.Items.Push(new Item("ItemGunTrigger",                true));
+        Relocation.Items.Push(new Item("ItemGunHandle",                 true));
+        Relocation.Items.Push(new Item("ItemGunBase",                   true));
+        Relocation.Items.Push(new Item("ItemGunBaseMinigun",            true));
         Relocation.Items.Push(new Item("ItemGunPartialAssembled",       false));
-        Relocation.Items.Push(new Item("ItemGunPartialAssembledMG",     false));
-        Relocation.Items.Push(new Item("ItemGunBarrel",                 false));
-        Relocation.Items.Push(new Item("ItemGunBarrelLong",             false));
-        Relocation.Items.Push(new Item("ItemGunStock",                  false));
+        Relocation.Items.Push(new Item("ItemGunPartialAssembledMG",     true));
+        Relocation.Items.Push(new Item("ItemGunBarrel",                 true));
+        Relocation.Items.Push(new Item("ItemGunBarrelLong",             true));
+        Relocation.Items.Push(new Item("ItemGunStock",                  true));
         this.AddSpacerItems(15);
         Relocation.Items.Push(new HPack("ItemGreenBean",                true, 1));
         
@@ -58,7 +58,7 @@ class ItemManager : ZilchComponent {
         
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "The \"Laser\" (Pistol)",               "Starter weapon. Not very\npowerful, but has unlimited\nammo.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Time Space Warper (Revolver)",         "It is said that it will break\neverything just by holding\nit...");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "[TODO: REVOLVER NAME] (Revolver)",     "Along time ago in the far west of the\nold world, people used to carry an\nolder version of this. It fired metal\nthings that they called \"bullets.\"\nThanks to newer tech, this one fires\nlasers.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Rock",                                 "You should have crafted more\nammo before you went out on\nyour journey. At least you have\nthese...");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "\"Get Off My Lawn\" (Shotgun)",        "Deters intruders. Good at keeping\nthem off your lawn.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Boulder",                              "More effective than a rock, but you\nstill should have made ammo for\nyour weapons.");

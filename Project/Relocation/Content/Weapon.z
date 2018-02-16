@@ -128,7 +128,10 @@ class Weapon {
                 this.UseWeapon();
             } else if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.CurrentAmmo <= 0 && this.CurrentAmmo != -1) {
                 
+                this.CurrCooldown = this.Cooldown;
+                
                 // PLAY OUT OF AMMO SOUND
+                this.Space.SoundSpace.PlayCue(SoundCue.Find("WeaponNoAmmo"));
                 
                 if(this.Space.FindObjectByName("EntityPlayer").Inventory != null) {
                     

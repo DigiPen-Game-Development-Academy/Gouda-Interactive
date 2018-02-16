@@ -117,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 6.08101225,
+			float Size = 12.2456503,
 		},
 		EditorCameraController = 
 		{
