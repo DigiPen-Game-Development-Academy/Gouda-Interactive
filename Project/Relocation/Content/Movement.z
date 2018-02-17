@@ -275,7 +275,7 @@ class Movement : ZilchComponent {
             
             this.Owner.Sprite.StartFrame = this.StartFrame;
             
-            // CAMERA MOVEMENT
+            /* CAMERA MOVEMENT */
             
             var cam = this.Space.FindObjectByName("Camera");
             
