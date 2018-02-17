@@ -290,7 +290,7 @@ class Movement : ZilchComponent {
                 
                 this.OldCamPos = cam.Transform.Translation;
                 
-                cam.Transform.Translation = Math.Lerp(this.OldCamPos, Real3(dif.X / 20, dif.Y / 20, 40), event.Dt * 4);
+                cam.Transform.Translation = Math.Lerp(this.OldCamPos, Real3(dif.X / 10, dif.Y / 10, 40), event.Dt * 4);
                 
             }
             
