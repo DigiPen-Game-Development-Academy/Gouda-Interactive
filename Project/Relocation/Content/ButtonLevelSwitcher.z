@@ -5,6 +5,8 @@ class ButtonLevelSwitcher : ZilchComponent {
     
     [Property] var Level : Level = null;
     [Property] var Delay : Real = 0.0;
+    [Property] var DefaultColor : Real3 = Real3(1.0);
+    [Property] var HoverColor : Real3 = Real3(1.0);
     
     var CurrDelay : Real = 0.0;
     
@@ -12,16 +14,28 @@ class ButtonLevelSwitcher : ZilchComponent {
     
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+        Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
+        Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
-        
         if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
             this.ButtonClicked = true;
             Relocation.ButtonFadeout = true;
         }
-        
+    }
+    
+    function OnMouseEnter(event : ViewportMouseEvent) {
+        if(!Relocation.ButtonFadeout) {
+            this.Owner.SpriteText.Color = Real4(this.HoverColor, this.Owner.SpriteText.Color.W);
+        }
+    }
+    
+    function OnMouseExit(event : ViewportMouseEvent) {
+        if(!Relocation.ButtonFadeout) {
+            this.Owner.SpriteText.Color = Real4(this.DefaultColor, this.Owner.SpriteText.Color.W);
+        }
     }
     
     function OnLogicUpdate(event : UpdateEvent) {

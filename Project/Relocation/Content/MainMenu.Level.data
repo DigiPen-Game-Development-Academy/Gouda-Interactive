@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.3130379,
+			float Size = 18.0500717,
 		},
 		EditorCameraController = 
 		{
@@ -225,189 +225,232 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "ButtonLoadGame",
+			string Name = "MenuButtonGroup",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 2.5, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		SpriteText = 
+		Hierarchy = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.564999998, 0.564999998, 0.564999998, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "4e7bac697bec55c5:Verdana",
-			uint FontSize = 60,
-			string Text = "Load Save (Unavailable)",
-			TextAlign Align = Center,
-			float PixelsPerUnit = 64,
-			bool Smoothing = true,
-		},
-		UIAnimate = 
-		{
-			bool AnimationEnabled = true,
-			string AnimationType = "FadeIn",
-			float AnimationSpeed = 1.5,
-			float AnimationDelay = 2,
-			float MultiAnimationDelay = 0.5,
-		},
-		ButtonLevelSwitcher = 
-		{
-			string Level = "",
-			float Delay = 2,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 6,
-		},
-		Named = 
-		{
-			string Name = "ButtonNewGame",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 1, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		SpriteText = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "4e7bac697bec55c5:Verdana",
-			uint FontSize = 60,
-			string Text = "New Game",
-			TextAlign Align = Center,
-			float PixelsPerUnit = 64,
-			bool Smoothing = true,
-		},
-		UIAnimate = 
-		{
-			bool AnimationEnabled = true,
-			string AnimationType = "FadeIn",
-			float AnimationSpeed = 1.5,
-			float AnimationDelay = 2.5,
-			float MultiAnimationDelay = 0.5,
-		},
-		ButtonLevelSwitcher = 
-		{
-			string Level = "5a3bc4c73a7e1106:SurfaceWorld",
-			float Delay = 2,
-		},
-		Reactive = 
-		{
-			bool Active = true,
-			bool CaptureMouse = false,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 7,
-		},
-		Named = 
-		{
-			string Name = "ButtonOptions",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, -0.5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		SpriteText = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "4e7bac697bec55c5:Verdana",
-			uint FontSize = 60,
-			string Text = "Options",
-			TextAlign Align = Center,
-			float PixelsPerUnit = 64,
-			bool Smoothing = true,
-		},
-		UIAnimate = 
-		{
-			bool AnimationEnabled = true,
-			string AnimationType = "FadeIn",
-			float AnimationSpeed = 1.5,
-			float AnimationDelay = 3,
-			float MultiAnimationDelay = 0.5,
-		},
-		ButtonLevelSwitcher = 
-		{
-			string Level = "",
-			float Delay = 2,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 8,
-		},
-		Named = 
-		{
-			string Name = "ButtonQuit",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, -2, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		SpriteText = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "4e7bac697bec55c5:Verdana",
-			uint FontSize = 60,
-			string Text = "Quit",
-			TextAlign Align = Center,
-			float PixelsPerUnit = 64,
-			bool Smoothing = true,
-		},
-		UIAnimate = 
-		{
-			bool AnimationEnabled = true,
-			string AnimationType = "FadeIn",
-			float AnimationSpeed = 1.5,
-			float AnimationDelay = 3.5,
-			float MultiAnimationDelay = 0.5,
-		},
-		ButtonLevelSwitcher = 
-		{
-			string Level = "",
-			float Delay = 2,
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 6,
+				},
+				Named = 
+				{
+					string Name = "ButtonLoadGame",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, 0.75, 0],
+					Vec3 Scale = [0.5, 0.5, 0.5],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [0.564999998, 0.564999998, 0.564999998, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "4e7bac697bec55c5:Verdana",
+					uint FontSize = 60,
+					string Text = "Load Save (Unavailable)",
+					TextAlign Align = Center,
+					float PixelsPerUnit = 64,
+					bool Smoothing = true,
+				},
+				UIAnimate = 
+				{
+					bool AnimationEnabled = true,
+					string AnimationType = "FadeIn",
+					float AnimationSpeed = 1.5,
+					float AnimationDelay = 2,
+					float MultiAnimationDelay = 0.5,
+				},
+				ButtonLevelSwitcher = 
+				{
+					string Level = "",
+					float Delay = 2,
+					Vec3 DefaultColor = [0.75, 0.75, 0.75],
+					Vec3 HoverColor = [0.5, 0.5, 0.5],
+				},
+				Reactive = 
+				{
+					bool Active = true,
+					bool CaptureMouse = false,
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 7,
+				},
+				Named = 
+				{
+					string Name = "ButtonNewGame",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, 0, 0],
+					Vec3 Scale = [0.5, 0.5, 0.5],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "4e7bac697bec55c5:Verdana",
+					uint FontSize = 60,
+					string Text = "New Game",
+					TextAlign Align = Center,
+					float PixelsPerUnit = 64,
+					bool Smoothing = true,
+				},
+				UIAnimate = 
+				{
+					bool AnimationEnabled = true,
+					string AnimationType = "FadeIn",
+					float AnimationSpeed = 1.5,
+					float AnimationDelay = 2.5,
+					float MultiAnimationDelay = 0.5,
+				},
+				ButtonLevelSwitcher = 
+				{
+					string Level = "5a3bc4c73a7e1106:SurfaceWorld",
+					float Delay = 2,
+					Vec3 DefaultColor = [1, 1, 1],
+					Vec3 HoverColor = [0.5, 0.5, 0.5],
+				},
+				Reactive = 
+				{
+					bool Active = true,
+					bool CaptureMouse = false,
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 8,
+				},
+				Named = 
+				{
+					string Name = "ButtonOptions",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, -0.75, 0],
+					Vec3 Scale = [0.5, 0.5, 0.5],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "4e7bac697bec55c5:Verdana",
+					uint FontSize = 60,
+					string Text = "Options",
+					TextAlign Align = Center,
+					float PixelsPerUnit = 64,
+					bool Smoothing = true,
+				},
+				UIAnimate = 
+				{
+					bool AnimationEnabled = true,
+					string AnimationType = "FadeIn",
+					float AnimationSpeed = 1.5,
+					float AnimationDelay = 3,
+					float MultiAnimationDelay = 0.5,
+				},
+				ButtonLevelSwitcher = 
+				{
+					string Level = "",
+					float Delay = 2,
+					Vec3 DefaultColor = [1, 1, 1],
+					Vec3 HoverColor = [0.5, 0.5, 0.5],
+				},
+				Reactive = 
+				{
+					bool Active = true,
+					bool CaptureMouse = false,
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 9,
+				},
+				Named = 
+				{
+					string Name = "ButtonQuit",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, -1.5, 0],
+					Vec3 Scale = [0.5, 0.5, 0.5],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "4e7bac697bec55c5:Verdana",
+					uint FontSize = 60,
+					string Text = "Quit",
+					TextAlign Align = Center,
+					float PixelsPerUnit = 64,
+					bool Smoothing = true,
+				},
+				UIAnimate = 
+				{
+					bool AnimationEnabled = true,
+					string AnimationType = "FadeIn",
+					float AnimationSpeed = 1.5,
+					float AnimationDelay = 3.5,
+					float MultiAnimationDelay = 0.5,
+				},
+				ButtonLevelSwitcher = 
+				{
+					string Level = "",
+					float Delay = 2,
+					Vec3 DefaultColor = [1, 1, 1],
+					Vec3 HoverColor = [0.5, 0.5, 0.5],
+				},
+				Reactive = 
+				{
+					bool Active = true,
+					bool CaptureMouse = false,
+				},
+			},
 		},
 	},
 },
