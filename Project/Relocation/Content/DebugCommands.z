@@ -159,10 +159,14 @@ class TextEntry : ZilchComponent {
         
         if(this.CaptureKeys) {
             this.Owner.Parent.FindChildByName(this.TextBoxBackground).Sprite.Visible = true;
+            if(this.Owner.Parent.SpriteText != null)
+                this.Owner.Parent.SpriteText.Visible = true;
             if(this.IsCommandTextBox)
                 this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = true;
         } else {
             this.Owner.Parent.FindChildByName(this.TextBoxBackground).Sprite.Visible = false;
+            if(this.Owner.Parent.SpriteText != null)
+                this.Owner.Parent.SpriteText.Visible = false;
             if(this.IsCommandTextBox)
                 this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = false;
             this.IsTextSelected = false;
