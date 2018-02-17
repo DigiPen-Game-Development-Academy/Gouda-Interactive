@@ -3,21 +3,66 @@
 
 class MusicPlayer : ZilchComponent {
     
-    [Property] var Song : SoundCue = null;
+    [Property] var MainMenuSong : SoundCue = null;
+    [Property] var InGameSong : SoundCue = null;
+    
+    [Property] var MusicSpace : Archetype = null;
+    [Property] var MusicLevel : Level = null;
+    
+    //[Property] var MusicFadeoutTime : Real = 1.0;
+    
+    var MainMenuMusicSpace : Space = null;
+    var GameLevelMusicSpace : Space = null;
+    //var CurrSpace : Space = null;
+    
+    //var LevelTransition : Boolean = false;
+    
+    //var CurrMusicFadeoutTime : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
-        
-        if(this.Song != null) {
-            this.Space.SoundSpace.PlayCue(this.Song);
-        } else {
-            Console.WriteLine("[Sound Manager] Warning: Song specified does not exist (null). Cannot play song.");
-        }
-        
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        
+        //Zero.Connect(this.Owner, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LevelStarted, this.OnLevelStarted);
     }
     
-    function OnLogicUpdate(event : UpdateEvent) {
+    /*function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(this.LevelTransition) {
+            if(this.CurrMusicFadeoutTime > this.MusicFadeoutTime) {
+                
+                this.LevelTransition = false;
+                this.CurrMusicFadeoutTime = 0.0;
+                
+                this.CurrSpace.Destroy();
+                
+            } else {
+                this.CurrMusicFadeoutTime += event.Dt;
+            }
+        }
+        
+    }*/
+    
+    function OnLevelStarted(event : GameEvent) {
+        
+        if(event.LevelName == "MainMenu") {
+            
+            if(this.GameLevelMusicSpace != null) {
+                this.GameLevelMusicSpace.Destroy();
+            }
+            
+            //this.CurrSpace = this.MainMenuMusicSpace;
+            
+            this.MainMenuMusicSpace = this.GameSession.CreateSpace(this.MusicSpace);
+            
+            this.MainMenuMusicSpace.LoadLevel(this.MusicLevel);
+            this.MainMenuMusicSpace.SoundSpace.PlayCue(this.MainMenuSong);
+            
+        } else if(event.LevelName != "MainMenu") {
+            
+            if(this.MainMenuMusicSpace != null) {
+                this.MainMenuMusicSpace.Destroy();
+            }
+            
+        }
         
     }
     

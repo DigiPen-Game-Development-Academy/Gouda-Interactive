@@ -46,10 +46,4 @@ Space =
 	LastUsedEnterancePosition = 
 	{
 	},
-	MusicPlayer = 
-	{
-		string MainMenuSong = "5aca326c7fbc7342:SongRelocationMain",
-		string MusicSpace = "5aca222067bdfb93:MusicSpace",
-		string MusicLevel = "554cea0f94af672f:MusicLevel",
-	},
 },

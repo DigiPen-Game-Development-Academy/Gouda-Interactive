@@ -91,10 +91,6 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
-		MusicPlayer = 
-		{
-			string Song = "5aca326c7fbc7342:SongRelocationMain",
-		},
 	},
 	Cog = 
 	{
@@ -120,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 36.7879639,
+			float Size = 22.3130379,
 		},
 		EditorCameraController = 
 		{
@@ -262,6 +258,11 @@ Level =
 			float AnimationDelay = 2,
 			float MultiAnimationDelay = 0.5,
 		},
+		ButtonLevelSwitcher = 
+		{
+			string Level = "",
+			float Delay = 2,
+		},
 	},
 	Cog = 
 	{
@@ -303,6 +304,16 @@ Level =
 			float AnimationSpeed = 1.5,
 			float AnimationDelay = 2.5,
 			float MultiAnimationDelay = 0.5,
+		},
+		ButtonLevelSwitcher = 
+		{
+			string Level = "5a3bc4c73a7e1106:SurfaceWorld",
+			float Delay = 2,
+		},
+		Reactive = 
+		{
+			bool Active = true,
+			bool CaptureMouse = false,
 		},
 	},
 	Cog = 
@@ -346,6 +357,11 @@ Level =
 			float AnimationDelay = 3,
 			float MultiAnimationDelay = 0.5,
 		},
+		ButtonLevelSwitcher = 
+		{
+			string Level = "",
+			float Delay = 2,
+		},
 	},
 	Cog = 
 	{
@@ -387,6 +403,11 @@ Level =
 			float AnimationSpeed = 1.5,
 			float AnimationDelay = 3.5,
 			float MultiAnimationDelay = 0.5,
+		},
+		ButtonLevelSwitcher = 
+		{
+			string Level = "",
+			float Delay = 2,
 		},
 	},
 },

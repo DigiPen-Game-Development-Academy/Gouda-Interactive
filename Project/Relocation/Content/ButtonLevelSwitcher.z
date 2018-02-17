@@ -1,0 +1,52 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class ButtonLevelSwitcher : ZilchComponent {
+    
+    [Property] var Level : Level = null;
+    [Property] var Delay : Real = 0.0;
+    
+    var CurrDelay : Real = 0.0;
+    
+    var ButtonClicked : Boolean = false;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnMouseUpdate(event : ViewportMouseEvent) {
+        
+        if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
+            this.ButtonClicked = true;
+            Relocation.ButtonFadeout = true;
+        }
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(Relocation.ButtonFadeout && !this.ButtonClicked) {
+            this.Owner.UIAnimate.FadeOut(event.Dt, 1.0);
+        } else if(Relocation.ButtonFadeout && this.CurrDelay > this.Delay / 2) {
+            this.Owner.UIAnimate.FadeOut(event.Dt, 1.0);
+        }
+        
+        if(this.ButtonClicked) {
+            
+            if(this.CurrDelay > this.Delay) {
+                
+                if(this.Level != null) {
+                    Relocation.ButtonFadeout = false;
+                    this.Space.LoadLevel(this.Level);
+                }
+                
+            } else {
+                this.CurrDelay += event.Dt;
+            }
+            
+        }
+        
+    }
+    
+}
