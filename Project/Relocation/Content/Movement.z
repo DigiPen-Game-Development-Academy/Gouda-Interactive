@@ -12,6 +12,8 @@ class Movement : ZilchComponent {
     var EndFrame : Real = 5;
     var MouseDir : Real2 = Real2(0.0, 0.0);
     
+    var OldCamPos : Real3 = Real3(0.0);
+    
     function Initialize(init : CogInitializer) {
         
         this.UISpace = this.LevelSettings.UICreator.UISpace;
@@ -286,7 +288,9 @@ class Movement : ZilchComponent {
                 
                 var dif = Real2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
                 
-                cam.Transform.Translation = Real3(dif.X / 20, dif.Y / 20, 40);
+                this.OldCamPos = cam.Transform.Translation;
+                
+                cam.Transform.Translation = Math.Lerp(this.OldCamPos, Real3(dif.X / 20, dif.Y / 20, 40), event.Dt * 4);
                 
             }
             
