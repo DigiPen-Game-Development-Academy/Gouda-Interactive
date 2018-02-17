@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [2.79090905, -29.8890152, 13.6266108],
+			Vec3 Translation = [0.283985049, -29.6006069, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.3130436,
+			float Size = 18.2683659,
 		},
 		EditorCameraController = 
 		{
@@ -119,7 +119,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [2.79090905, -29.8890152, 1.21994503e-07],
+			Vec3 LookTarget = [0.283985049, -29.6006069, 1.24133752e-08],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2960,6 +2960,7 @@ Level =
 					float Delay = 0,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 1, 0.5],
+					bool UIAnimateEnabled = false,
 					bool QuitButton = false,
 				},
 				Reactive = 
@@ -3007,6 +3008,7 @@ Level =
 					float Delay = 0,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 0.5, 1],
+					bool UIAnimateEnabled = false,
 					bool QuitButton = false,
 				},
 				Reactive = 
@@ -3054,6 +3056,7 @@ Level =
 					float Delay = 0,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [1, 0.5, 0.5],
+					bool UIAnimateEnabled = false,
 					bool QuitButton = true,
 				},
 				Reactive = 
