@@ -55,7 +55,7 @@ class TextEntry : ZilchComponent {
         
         if(this.CaptureKeys) {
             
-            if(Zero.Keyboard.KeyIsPressed(Keys.Escape)) {
+            if(Zero.Keyboard.KeyIsReleased(Keys.Escape)) {
                 
                 this.CommandString = "";
                 this.TempCommandStr = "";

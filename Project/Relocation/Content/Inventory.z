@@ -43,7 +43,7 @@ class Inventory : ZilchComponent {
         this.GiveItemInSlot(1, this.SLOT_HAND);
         
         Zero.Connect(this.UISpace, Events.LogicUpdate, this.OnLogicUpdate);
-        Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OpenCloseInventory);
+        Zero.Connect(Zero.Keyboard, Events.KeyUp, this.OpenCloseInventory);
         
     }
     

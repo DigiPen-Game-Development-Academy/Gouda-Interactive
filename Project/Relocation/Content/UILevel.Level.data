@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-19.2590141, -9.91984367, 13.6266098],
+			Vec3 Translation = [2.79090905, -29.8890152, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 4.97871971,
+			float Size = 22.3130436,
 		},
 		EditorCameraController = 
 		{
@@ -119,7 +119,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-19.2590141, -9.91984367, -8.41837959e-07],
+			Vec3 LookTarget = [2.79090905, -29.8890152, 1.21994503e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2864,6 +2864,204 @@ Level =
 			Vec2 PositionOffset = [0, 0],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 93,
+		},
+		Named = 
+		{
+			string Name = "PauseMenu",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, -30, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		PauseMenu = 
+		{
+		},
+		Hierarchy = 
+		{
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 94,
+				},
+				Named = 
+				{
+					string Name = "PausedText",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, 6, 0],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [0.75, 0.75, 0.75, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "57343753bb4eaaec:NotoSans-Regular",
+					uint FontSize = 150,
+					string Text = "Paused",
+					TextAlign Align = Center,
+					float PixelsPerUnit = 64,
+					bool Smoothing = true,
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 95,
+				},
+				Named = 
+				{
+					string Name = "ButtonResume",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, 1.75, 0],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "57343753bb4eaaec:NotoSans-Regular",
+					uint FontSize = 75,
+					string Text = "Resume",
+					TextAlign Align = Center,
+					float PixelsPerUnit = 64,
+					bool Smoothing = true,
+				},
+				ButtonLevelSwitcher = 
+				{
+					string Level = "",
+					float Delay = 0,
+					Vec3 DefaultColor = [1, 1, 1],
+					Vec3 HoverColor = [0.5, 1, 0.5],
+					bool QuitButton = false,
+				},
+				Reactive = 
+				{
+					bool Active = true,
+					bool CaptureMouse = false,
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 96,
+				},
+				Named = 
+				{
+					string Name = "ButtonMainMenu",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, 0.25, 0],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "57343753bb4eaaec:NotoSans-Regular",
+					uint FontSize = 75,
+					string Text = "Main Menu",
+					TextAlign Align = Center,
+					float PixelsPerUnit = 64,
+					bool Smoothing = true,
+				},
+				ButtonLevelSwitcher = 
+				{
+					string Level = "5acef7f30877b413:MainMenu",
+					float Delay = 0,
+					Vec3 DefaultColor = [1, 1, 1],
+					Vec3 HoverColor = [0.5, 0.5, 1],
+					bool QuitButton = false,
+				},
+				Reactive = 
+				{
+					bool Active = true,
+					bool CaptureMouse = false,
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 97,
+				},
+				Named = 
+				{
+					string Name = "ButtonQuit",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, -1.5, 0],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "57343753bb4eaaec:NotoSans-Regular",
+					uint FontSize = 75,
+					string Text = "Quit To Desktop",
+					TextAlign Align = Center,
+					float PixelsPerUnit = 64,
+					bool Smoothing = true,
+				},
+				ButtonLevelSwitcher = 
+				{
+					string Level = "",
+					float Delay = 0,
+					Vec3 DefaultColor = [1, 1, 1],
+					Vec3 HoverColor = [1, 0.5, 0.5],
+					bool QuitButton = true,
+				},
+				Reactive = 
+				{
+					bool Active = true,
+					bool CaptureMouse = false,
+				},
+			},
 		},
 	},
 },
