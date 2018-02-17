@@ -94,7 +94,7 @@ Level =
 		LevelSwitcher = 
 		{
 			string Level = "5acef7f30877b413:MainMenu",
-			float Delay = 6.75,
+			float Delay = 8.25,
 		},
 	},
 	Cog = 
@@ -121,7 +121,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 27.2531948,
+			float Size = 16.5299072,
 		},
 		EditorCameraController = 
 		{
@@ -211,7 +211,7 @@ Level =
 		{
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeInOut",
-			float AnimationSpeed = 1.25,
+			float AnimationSpeed = 0.75,
 			float AnimationDelay = 0.25,
 			float MultiAnimationDelay = 1.5,
 		},
@@ -242,7 +242,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5a3849374ee23b35:MissingTexture",
+			string SpriteSource = "5acadf437b75410c:LogoGoudaInteractive",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
@@ -254,9 +254,9 @@ Level =
 		{
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeInOut",
-			float AnimationSpeed = 1.25,
-			float AnimationDelay = 3.25,
-			float MultiAnimationDelay = 2,
+			float AnimationSpeed = 0.75,
+			float AnimationDelay = 4.25,
+			float MultiAnimationDelay = 2.25,
 		},
 	},
 },
