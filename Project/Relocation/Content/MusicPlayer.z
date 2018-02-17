@@ -9,7 +9,11 @@ class MusicPlayer : ZilchComponent {
     [Property] var MusicSpace : Archetype = null;
     [Property] var MusicLevel : Level = null;
     
+    [Property] var MusicVolume : Real = 1.0;
+    
     //[Property] var MusicFadeoutTime : Real = 1.0;
+    
+    var CurrMusicVolume : Real = 1.0;
     
     var MainMenuMusicSpace : Space = null;
     var GameLevelMusicSpace : Space = null;
@@ -20,13 +24,13 @@ class MusicPlayer : ZilchComponent {
     //var CurrMusicFadeoutTime : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
-        //Zero.Connect(this.Owner, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Space, Events.LevelStarted, this.OnLevelStarted);
     }
     
-    /*function OnLogicUpdate(event : UpdateEvent) {
+    function OnLogicUpdate(event : UpdateEvent) {
         
-        if(this.LevelTransition) {
+        /*if(this.LevelTransition) {
             if(this.CurrMusicFadeoutTime > this.MusicFadeoutTime) {
                 
                 this.LevelTransition = false;
@@ -37,9 +41,27 @@ class MusicPlayer : ZilchComponent {
             } else {
                 this.CurrMusicFadeoutTime += event.Dt;
             }
+        }*/
+        
+        // VOLUME CONTROLS (TEMPERARY)
+        if(Zero.Keyboard.KeyIsPressed(Keys.F2) && this.MusicVolume >= 0.0 + 0.05) {
+            this.MusicVolume -= 0.05;
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.F3) && this.MusicVolume <= 1.0 - 0.05) {
+            this.MusicVolume += 0.05;
         }
         
-    }*/
+        // UPDATE VOLUME ON CHANGE
+        if(this.CurrMusicVolume != this.MusicVolume) {
+            if(this.MainMenuMusicSpace != null) {
+                this.CurrMusicVolume = this.MusicVolume;
+                this.MainMenuMusicSpace.SoundSpace.Volume = this.MusicVolume;
+            } else if(this.GameLevelMusicSpace != null) {
+                this.CurrMusicVolume = this.MusicVolume;
+                this.GameLevelMusicSpace.SoundSpace.Volume = this.MusicVolume;
+            }
+        }
+        
+    }
     
     function OnLevelStarted(event : GameEvent) {
         
@@ -54,6 +76,7 @@ class MusicPlayer : ZilchComponent {
             this.MainMenuMusicSpace = this.GameSession.CreateSpace(this.MusicSpace);
             
             this.MainMenuMusicSpace.LoadLevel(this.MusicLevel);
+            this.MainMenuMusicSpace.SoundSpace.Volume = this.MusicVolume;
             this.MainMenuMusicSpace.SoundSpace.PlayCue(this.MainMenuSong);
             
         } else if(event.LevelName != "MainMenu" && event.LevelName != "SplashScreen") {
