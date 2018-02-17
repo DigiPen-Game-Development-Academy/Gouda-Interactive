@@ -2785,6 +2785,9 @@ Level =
 					float AnimationSpeed = 1,
 					uint StartFrame = 0,
 				},
+				HealthBar = 
+				{
+				},
 			},
 			Cog = 
 			{

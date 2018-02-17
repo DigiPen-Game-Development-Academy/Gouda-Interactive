@@ -1,0 +1,26 @@
+// HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class HealthBar : ZilchComponent {
+    
+    var MaxScaleHP : Real = 3.5;
+    var CurrHP : Real = 3.5;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        if(Relocation.Space != null) {
+            if(Relocation.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
+                
+                var hp = 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).Health.CurrentHealth / 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).Health.MaxHealth;
+                
+                this.Owner.Transform.Scale = Real3(hp * 3.5, 0.25, 1);
+            }
+        }
+    }
+    
+}

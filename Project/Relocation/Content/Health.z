@@ -22,9 +22,14 @@ class Health : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.Minus) && this.Owner.Name == Relocation.EntityPlayer) {
+            this.CurrentHealth -= 1;
+        }
+        
         if(this.CurrentHealth <= 0.0 && !this.IsInvincible)
         {
-            if(this.Owner.Name != "EntityPlayer")
+            if(this.Owner.Name != Relocation.EntityPlayer)
             {
                 this.Owner.Destroy();
             }
@@ -33,6 +38,9 @@ class Health : ZilchComponent
                 this.Owner.RemoveComponentByName("Movement");
                 this.Owner.RemoveComponentByName("WeaponManager");
                 this.Owner.Sprite.AnimationActive = false;
+                this.Owner.Sprite.Visible = false;
+                this.Owner.FindChildByName("EntityGun").Sprite.Visible = false;
+                //this.Owner.FindChildByName("ParticleWater").SpriteParticleSystem.Visible = true;
             }
         }
         
@@ -42,7 +50,7 @@ class Health : ZilchComponent
         if(Zero.Keyboard.KeyIsPressed(Keys.Tilde))
             Console.WriteLine("`this.Owner`: `this.CurrentHealth`");
         
-        if(this.Owner.Name == "EntityPlayer")
+        if(this.Owner.Name == Relocation.EntityPlayer)
         {
             if(!this.IsInvincible)
                 this.UISpace.FindObjectByName("Health").SpriteText.Text = "HP: `this.CurrentHealth`";
