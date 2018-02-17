@@ -7,6 +7,7 @@ class ButtonLevelSwitcher : ZilchComponent {
     [Property] var Delay : Real = 0.0;
     [Property] var DefaultColor : Real3 = Real3(1.0);
     [Property] var HoverColor : Real3 = Real3(1.0);
+    [Property] var QuitButton : Boolean = false;
     
     var CurrDelay : Real = 0.0;
     
@@ -30,12 +31,14 @@ class ButtonLevelSwitcher : ZilchComponent {
         if(!Relocation.ButtonFadeout) {
             this.Owner.SpriteText.Color = Real4(this.HoverColor, this.Owner.SpriteText.Color.W);
         }
+        Relocation.CursorType = "Hover";
     }
     
     function OnMouseExit(event : ViewportMouseEvent) {
         if(!Relocation.ButtonFadeout) {
             this.Owner.SpriteText.Color = Real4(this.DefaultColor, this.Owner.SpriteText.Color.W);
         }
+        Relocation.CursorType = "Default";
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
@@ -54,9 +57,15 @@ class ButtonLevelSwitcher : ZilchComponent {
             
             if(this.CurrDelay > this.Delay) {
                 
-                if(this.Level != null) {
-                    Relocation.ButtonFadeout = false;
-                    this.Space.LoadLevel(this.Level);
+                Relocation.ButtonFadeout = false;
+                Relocation.CursorType = "Default";
+                if(!this.QuitButton) {
+                    if(this.Level != null) {
+                        this.Space.LoadLevel(this.Level);
+                    }
+                } else {
+                    Console.WriteLine("[Game Session] Quitting game...");
+                    this.Space.GameSession.Quit();
                 }
                 
             } else {

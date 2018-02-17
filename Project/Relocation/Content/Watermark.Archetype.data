@@ -20,7 +20,7 @@ Cog =
 	},
 	SpriteText = 
 	{
-		bool Visible = true,
+		bool Visible = false,
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
@@ -40,5 +40,6 @@ Cog =
 		string PositionX = "Left",
 		string PositionY = "Top",
 		Vec2 PositionOffset = [0, 0],
+		bool HideUntilPositioned = true,
 	},
 },
