@@ -3,8 +3,8 @@
 
 class HealthBar : ZilchComponent {
     
-    var MaxScaleHP : Real = 3.5;
-    var CurrHP : Real = 3.5;
+    var MaxScaleHP : Real = 5.0;
+    var CurrHP : Real = 5.0;
     
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -18,7 +18,7 @@ class HealthBar : ZilchComponent {
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).Health.CurrentHealth / 
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).Health.MaxHealth;
                 
-                this.Owner.Transform.Scale = Real3(hp * 3.5, 0.25, 1);
+                this.Owner.Transform.Scale = Real3(hp * this.MaxScaleHP, 0.5, 1);
             }
         }
     }
