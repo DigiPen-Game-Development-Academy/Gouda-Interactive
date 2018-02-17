@@ -1,0 +1,22 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class GameSettingValue {
+    
+    /* AUDIO OPTIONS */
+    [Static] var MasterVolume : Real = 1.0;
+    [Static] var MusicVolume : Real = 1.0;
+    [Static] var SoundEffectsVolume : Real = 1.0;
+    
+    /* GRAPHICS OPTIONS */
+    [Static] var Vignette : Boolean = true;
+    [Static] var WorldGenerationRadius : Integer = 25;
+    
+    /* GAME OPTIONS */
+    [Static] var Difficulty : Integer = 2;
+    //[Static] var . . .
+    
+    /* MISC OPTIONS */
+    //[Static] var . . .
+    
+}
