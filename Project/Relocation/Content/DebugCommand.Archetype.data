@@ -40,6 +40,8 @@ Cog =
 		string PositionX = "Left",
 		string PositionY = "Bottom",
 		Vec2 PositionOffset = [0, 0.75],
+		float ZIndex = 5,
+		bool HideUntilPositioned = false,
 	},
 	Hierarchy = 
 	{
@@ -99,7 +101,7 @@ Cog =
 				bool VisibilityCulling = true,
 				bool VisibilityEvents = true,
 				bool CastShadows = false,
-				Vec4 Color = [0, 0, 0, 0.5],
+				Vec4 Color = [0, 0, 0, 0.75],
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
