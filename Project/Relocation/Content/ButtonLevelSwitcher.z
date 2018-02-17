@@ -41,8 +41,12 @@ class ButtonLevelSwitcher : ZilchComponent {
     function OnLogicUpdate(event : UpdateEvent) {
         
         if(Relocation.ButtonFadeout && !this.ButtonClicked) {
+            this.Owner.RemoveComponentByName("UIAnimate");
+            this.Owner.AddComponentByName("UIAnimate");
             this.Owner.UIAnimate.FadeOut(event.Dt, 1.0);
         } else if(Relocation.ButtonFadeout && this.CurrDelay > this.Delay / 2) {
+            this.Owner.RemoveComponentByName("UIAnimate");
+            this.Owner.AddComponentByName("UIAnimate");
             this.Owner.UIAnimate.FadeOut(event.Dt, 1.0);
         }
         
