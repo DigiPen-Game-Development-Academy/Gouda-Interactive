@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 32.8892937,
+			float Size = 49.0650864,
 		},
 		EditorCameraController = 
 		{
@@ -2861,7 +2861,7 @@ Level =
 		{
 			string DefaultCursor = "5a3bd208fba8aefb:Cursor",
 			string HoverCursor = "5a3bd208fba8aefb:Cursor",
-			string HoverTooltipCursor = "5acaf7b50bbabd5d:CursorDot",
+			string HoverTooltipCursor = "5acaf71e6daf6949:CursorDotHover",
 			string HoverItemCursor = "5a3bd208fba8aefb:Cursor",
 			string ClickCursor = "5a3bd208fba8aefb:Cursor",
 			bool ShowCustomCursor = true,
