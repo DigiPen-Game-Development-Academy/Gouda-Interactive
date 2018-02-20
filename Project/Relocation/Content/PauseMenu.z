@@ -29,9 +29,7 @@ class PauseMenu : ZilchComponent {
         }
         
         if(this.PauseMenuEnabled) {
-            
             this.Owner.Transform.WorldTranslation = Real3(0.0);
-            
         } else {
             this.Owner.Transform.WorldTranslation = Real3(0.0, 25, 500);
         }

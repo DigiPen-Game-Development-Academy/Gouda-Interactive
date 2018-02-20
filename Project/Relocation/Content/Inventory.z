@@ -58,7 +58,11 @@ class Inventory : ZilchComponent {
             this.RefreshInventoryIcons();
             this.MouseSlot();
             
-            if(Zero.Keyboard.KeyIsPressed(Keys.C)) {
+            var commandScreenCapture = this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys;
+            var playerNameScreenCapture = this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("TextEntry").TextEntry.CaptureKeys;
+            var isPaused = this.UISpace.FindObjectByName("PauseMenu").PauseMenu.PauseMenuEnabled;
+            
+            if(Zero.Keyboard.KeyIsPressed(Keys.C) && !commandScreenCapture && !playerNameScreenCapture && !isPaused) {
                 this.CraftingOpen = !this.CraftingOpen;
             }
             
@@ -102,10 +106,11 @@ class Inventory : ZilchComponent {
         
         var commandScreenCapture = this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys;
         var playerNameScreenCapture = this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("TextEntry").TextEntry.CaptureKeys;
+        var isPaused = this.UISpace.FindObjectByName("PauseMenu").PauseMenu.PauseMenuEnabled;
         
-        if(event.Key == Keys.E && !commandScreenCapture && !playerNameScreenCapture) {
+        if(event.Key == Keys.E && !commandScreenCapture && !playerNameScreenCapture && !isPaused) {
             this.ToggleInventory();
-        } else if(event.Key == Keys.Escape && !commandScreenCapture && !playerNameScreenCapture && this.InventoryOpen) {
+        } else if(event.Key == Keys.Escape && !commandScreenCapture && !playerNameScreenCapture && !isPaused && this.InventoryOpen) {
             this.Space.TimeSpace.Paused = false;
             this.InventoryOpen = false;
             

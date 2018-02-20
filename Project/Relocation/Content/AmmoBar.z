@@ -1,0 +1,26 @@
+// HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class AmmoBar : ZilchComponent {
+    
+    var MaxScaleAmmo : Real = 5.0;
+    var CurrAmmo : Real = 5.0;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        if(Relocation.Space != null) {
+            if(Relocation.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
+                
+                var ammo : Real = 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrentAmmo as Real / 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.MaxAmmo;
+                
+                this.Owner.Transform.Scale = Real3(ammo * this.MaxScaleAmmo, 0.5, 1);
+            }
+        }
+    }
+    
+}
