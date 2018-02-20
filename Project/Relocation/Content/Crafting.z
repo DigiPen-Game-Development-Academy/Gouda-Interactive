@@ -306,10 +306,6 @@ class Crafting : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        /*if(Zero.Keyboard.KeyIsPressed(Keys.One)) {
-            this.UseRecipe(this.CraftingRecipes, 0, false);
-        }*/
-        
         if(this.SlotClicked != -1) {
             this.UseRecipe(this.CraftingRecipes, this.SlotClicked  + (this.MaxCraftingSlots * this.ScrollPosition), false);
             this.SlotClicked = -1;
