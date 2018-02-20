@@ -52,10 +52,10 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemGunBarrelLong",             true));
         Relocation.Items.Push(new Item("ItemGunStock",                  true));
         this.AddSpacerItems(15);
-        Relocation.Items.Push(new Item("ItemDrillCopper",               false));
-        Relocation.Items.Push(new Item("ItemDrillIron",                 false));
-        Relocation.Items.Push(new Item("ItemDrillTitanium",             false));
-        Relocation.Items.Push(new Item("ItemDrillPlatinum",             false));
+        Relocation.Items.Push(new Item("ItemDrillCopper",               true));
+        Relocation.Items.Push(new Item("ItemDrillIron",                 true));
+        Relocation.Items.Push(new Item("ItemDrillTitanium",             true));
+        Relocation.Items.Push(new Item("ItemDrillPlatinum",             true));
         this.AddSpacerItems(12);
         Relocation.Items.Push(new HPack("ItemGreenBean",                true, 1));
         
