@@ -12,7 +12,8 @@ class AmmoBar : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         if(Relocation.Space != null) {
-            if(Relocation.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
+            if(Relocation.Space.FindObjectByName(Relocation.EntityPlayer) != null &&
+                Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager != null) {
                 
                 var ammo : Real = 
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrentAmmo as Real / 
