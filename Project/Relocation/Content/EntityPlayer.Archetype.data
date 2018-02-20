@@ -83,7 +83,7 @@ Cog =
 		int PlayerSkin = 0,
 		Vec3 SpawnPosition = [0, 0, 0],
 		bool IsInWater = false,
-		float CurrencyCount = 0,
+		float Balance = 0,
 	},
 	Hierarchy = 
 	{
