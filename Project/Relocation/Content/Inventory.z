@@ -41,6 +41,17 @@ class Inventory : ZilchComponent {
         }
         
         this.GiveItemInSlot(1, this.SLOT_HAND);
+        this.GiveItem(2, false);
+        this.GiveItem(3, false);
+        this.GiveItem(4, false);
+        this.GiveItem(5, false);
+        this.GiveItem(6, false);
+        this.GiveItem(7, false);
+        this.GiveItem(8, false);
+        
+        this.GiveItemWithAmount(23, false, 500);
+        this.GiveItemWithAmount(25, false, 500);
+        this.GiveItemWithAmount(27, false, 500);
         
         Zero.Connect(this.UISpace, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(Zero.Keyboard, Events.KeyUp, this.OpenCloseInventory);
