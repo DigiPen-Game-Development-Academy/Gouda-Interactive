@@ -6,6 +6,8 @@ class WorldGeneration : ZilchComponent
     var Player : Cog = null;
     
     var TileLocations : Array[Real3] = Array[Real3]();
+    var TileTypes : Array[Integer] = Array[Integer]();
+    var TilesDestroyed : Array[Array[Boolean]] = Array[Array[Boolean]]();
     
     [Property] var MapRadius : Real = 240.0;
     [Property] var NumberOfTiles : Integer = 1;
@@ -61,9 +63,12 @@ class WorldGeneration : ZilchComponent
             
             this.TileToSpawn = Archetype.Find(this.Space.FindObjectByName("Tile`tileToSpawn`").ArchetypeName);
             
-            this.Space.CreateAtPosition(this.TileToSpawn, this.TileSpawnLocation);
+            var lastSpawnedTileMap = this.Space.CreateAtPosition(this.TileToSpawn, this.TileSpawnLocation);
             
             this.TileLocations.Add(this.TileSpawnLocation);
+            this.TileTypes.Add(tileToSpawn as Integer);
+            this.TilesDestroyed.Add(Array[Boolean]());
+            
             
             this.MoveToNextTile();
         }
@@ -89,6 +94,23 @@ class WorldGeneration : ZilchComponent
         }
         
         return false;
+    }
+    
+    function CheckForDestroyedTiles(lastSpawnedTileMap : Cog)
+    {
+        var currentPositionToCheck = Real3(-15.5, 15.5, 0.0);
+        var currentTile = lastSpawnedTileMap.Children.Current;
+        
+        for (var i = 0; i < 256; ++i)
+        {
+            for (var j = 0; j < 256; ++j)
+            {
+                if (currentPositionToCheck == currentTile.Transform.Translation)
+                {
+                    this.TilesDestroyed[this.TilesDestroyed.Count - 1].Add(true);
+                }
+            }
+        }
     }
     
     function MoveToNextTile()
