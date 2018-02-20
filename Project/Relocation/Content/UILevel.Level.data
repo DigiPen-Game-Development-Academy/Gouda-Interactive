@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.16630745, -8.0084486, 13.6266108],
+			Vec3 Translation = [-4.12238407, -8.05237198, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 40.6570053,
+			float Size = 14.9568825,
 		},
 		EditorCameraController = 
 		{
@@ -119,7 +119,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-4.16630745, -8.0084486, -1.82115087e-07],
+			Vec3 LookTarget = [-4.12238407, -8.05237198, -1.80195144e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2741,6 +2741,9 @@ Level =
 					bool AnimationActive = true,
 					float AnimationSpeed = 1,
 					uint StartFrame = 0,
+				},
+				AmmoBar = 
+				{
 				},
 			},
 		},
