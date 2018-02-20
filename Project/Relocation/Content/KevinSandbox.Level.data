@@ -112,7 +112,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [1.56035519, 6.7430501, 50],
+			Vec3 Translation = [2.00528002, 6.70859766, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -124,7 +124,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 12.2456684,
+			float Size = 11.0803394,
 		},
 		EditorCameraController = 
 		{
@@ -132,7 +132,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [1.56035519, 6.7430501, 2.43779059e-08],
+			Vec3 LookTarget = [2.00528002, 6.70859766, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -229,7 +229,7 @@ Level =
 			int PlayerSkin = 0,
 			Vec3 SpawnPosition = [0, 0, 0],
 			bool IsInWater = false,
-			float CurrencyCount = 0,
+			float Balance = 0,
 		},
 		Hierarchy = 
 		{
@@ -745,26 +745,43 @@ Level =
 		},
 		Spawner = 
 		{
-			string WhatToSpawn = "5a11d69cc4ba5a24:EntityGun",
+			string WhatToSpawn = "5af7fde237047217:ItemDrop",
 			float SpawnTime = 5,
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "5a11d69cc4ba5a24:EntityGun",
 		LinkId = 
 		{
 			uint Id = 20,
 		},
-		Transform = 
-		{
-			Vec3 Translation = [4.73952007, 7.24767971, 0],
-			Vec3 Scale = [0.349999994, 0.349999994, 0.349999994],
-			Quat Rotation = [0, 0, 0, 1],
-		},
 		Named = 
 		{
-			string Name = "EntityGun",
+			string Name = "ItemGold",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [7.4353714, 8.06721115, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5a072d6362a9ee3f:ItemGold",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
 		},
 	},
 },
