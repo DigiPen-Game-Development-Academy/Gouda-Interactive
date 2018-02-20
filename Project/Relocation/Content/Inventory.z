@@ -501,6 +501,10 @@ class Inventory : ZilchComponent {
         return this.InventoryContents[this.SLOT_HAND - 1];
     }
     
+    function GetItemInSlot(slot : Integer) : Integer {
+        return this.InventoryContents[slot - 1];
+    }
+    
     function MoveItem(slot : Integer, destSlot : Integer) {
         
         if(slot - 1 < this.MaxInventorySlots && destSlot - 1 < this.MaxInventorySlots) {
@@ -568,13 +572,23 @@ class Inventory : ZilchComponent {
         var itemID = -1;
         
         if(this.InventoryContents[slot - 1] != 0 && this.InventoryContentsCount[slot - 1] > 0) {
+            
             itemID = this.InventoryContents[slot - 1];
+            
+            // DROP ITEM
+            if(drop && itemID != -1) {
+                
+                var itemDrop = this.Space.CreateAtPosition(Archetype.ItemDrop, this.Owner.Transform.WorldTranslation + Real3(0.0, -1.0, 0.0));
+                
+                itemDrop.ItemDrop.ItemID = itemID;
+                itemDrop.ItemDrop.ItemAmount = amount;
+                itemDrop.Sprite.SpriteSource = Relocation.Items[itemID].Sprite;
+                
+            }
+            
             this.InventoryContentsCount[slot - 1] -= amount;
             this.RefreshInventoryIcons();
-        }
-        
-        if(drop && itemID != -1) {
-            Console.WriteLine("Implement drops. In the meantime, the item that was dropped will be deleted.");
+            
         }
         
     }

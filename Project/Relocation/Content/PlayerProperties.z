@@ -7,7 +7,7 @@ class PlayerProperties : ZilchComponent {
     [Property] var PlayerSkin : Integer = 0;
     [Property] var SpawnPosition : Real3 = Real3(0);
     [Property] var IsInWater : Boolean = false;
-    [Property] var CurrencyCount : Real = 0.00;
+    [Property] var Balance : Real = 0.00;
     
     var HasMadeWaterGhost : Boolean = false;
     
@@ -71,6 +71,14 @@ class PlayerProperties : ZilchComponent {
             waterSplash.SpriteParticleSystem.Visible = false;
         }*/
         
+    }
+    
+    function AddToBalance(amt : Real) {
+        this.Balance += amt;
+    }
+    
+    function SetBalance(bal : Real) {
+        this.Balance = bal;
     }
     
     function SetUsername(username : String) {
