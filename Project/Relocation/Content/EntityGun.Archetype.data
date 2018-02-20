@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [4.73952007, 7.24767971, 0],
+		Vec3 Translation = [0, -0.200000003, 0],
 		Vec3 Scale = [0.349999994, 0.349999994, 0.349999994],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -35,8 +35,5 @@ Cog =
 		bool AnimationActive = false,
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
-	},
-	Despawner = 
-	{
 	},
 },
