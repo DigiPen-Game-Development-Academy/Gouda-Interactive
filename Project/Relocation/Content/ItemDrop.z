@@ -5,6 +5,7 @@ class ItemDrop : ZilchComponent {
     
     [Property] var ItemID : Integer = 0;
     [Property] var ItemAmount : Integer = 0;
+    [Property] var ItemData : Integer = 0;
     [Property] var DespawnTime : Real = 5;
     
     var CurrLifetime : Real = 0.0;
@@ -21,7 +22,7 @@ class ItemDrop : ZilchComponent {
         if(event.OtherObject.Name == Relocation.EntityPlayer) {
             
             if(event.OtherObject.Inventory != null) {
-                event.OtherObject.Inventory.GiveItemWithAmount(this.ItemID, false, this.ItemAmount);
+                event.OtherObject.Inventory.GiveItemWithAmount(this.ItemID, false, this.ItemAmount, this.ItemData);
                 this.Owner.Destroy();
             }
             

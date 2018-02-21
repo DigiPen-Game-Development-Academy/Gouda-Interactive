@@ -74,7 +74,8 @@ class Commands : ZilchComponent {
                     this.MainSpace.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(
                         Integer.Parse(this.DebugCmd.GetArgument(1, this.DebugCmd.FinalCmd)),
                         true,
-                        Integer.Parse(quantity)
+                        Integer.Parse(quantity),
+                        0
                     );
                     
                 }
