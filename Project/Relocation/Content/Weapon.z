@@ -67,6 +67,10 @@ class Weapon {
         this.CurrentAmmo = amount;
     }
     
+    function SetCurrentAmmoAmount(amount : Integer) {
+        this.CurrentAmmo = amount;
+    }
+    
     function SetAmmoType(type : Integer) {
         this.AmmoTypeID = type;
     }
@@ -305,6 +309,9 @@ class WeaponManager : ZilchComponent {
                 this.IsHoldingWeapon = false;
             } else {
                 this.IsHoldingWeapon = true;
+                if(this.Owner.Inventory.InventoryContentsData[this.Owner.Inventory.SLOT_HAND - 1] != -1 &&
+                    this.Owner.Inventory.InventoryContentsData[this.Owner.Inventory.SLOT_HAND - 1] != 0)
+                    this.ActiveWeapon.SetCurrentAmmoAmount(this.Owner.Inventory.InventoryContentsData[this.Owner.Inventory.SLOT_HAND - 1]);
             }
             
             // UPDATE ACTIVE WEAPON
