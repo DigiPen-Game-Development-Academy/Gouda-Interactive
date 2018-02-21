@@ -136,6 +136,7 @@ class Inventory : ZilchComponent {
                 this.InventoryContents[i] = 0;
             } else if(this.InventoryContents[i] == 0 && this.InventoryContentsCount[i] > 0) {
                 this.InventoryContentsCount[i] = 0;
+                this.InventoryContentsData[i] = 0;
             }
             
             var slotObj = this.UISpace.FindObjectByName("Slot`i + 1`");
@@ -530,26 +531,31 @@ class Inventory : ZilchComponent {
             
             var tmpItem = this.InventoryContents[slot - 1];
             var tmpItemCt = this.InventoryContentsCount[slot - 1];
+            var tmpItemDat = this.InventoryContentsData[slot - 1];
             // TODO: ITEM DATA
             
             if(this.InventoryContents[slot - 1] == 0) {
                 return;
-            } else if(this.InventoryContents[destSlot - 1] != 0 && this.InventoryContents[destSlot - 1] != tmpItem) {
+            } else if(this.InventoryContents[destSlot - 1] != 0 && this.InventoryContents[destSlot - 1] != tmpItem && this.InventoryContentsData[destSlot - 1] != tmpItemDat) {
                 this.InventoryContents[slot - 1] = this.InventoryContents[destSlot - 1];
                 this.InventoryContentsCount[slot - 1] = this.InventoryContentsCount[destSlot - 1];
+                this.InventoryContentsData[slot - 1] = this.InventoryContentsData[destSlot - 1];
                 this.InventoryContents[destSlot - 1] = tmpItem;
                 this.InventoryContentsCount[destSlot - 1] = tmpItemCt;
+                this.InventoryContentsData[destSlot - 1] = tmpItemDat;
                 return;
-            } else {
+            } else if(this.InventoryContentsData[destSlot - 1] == tmpItemDat || this.InventoryContents[destSlot - 1] == 0) {
                 
                 this.InventoryContents[slot - 1] = 0;
                 this.InventoryContentsCount[slot - 1] = 0;
+                this.InventoryContentsData[slot - 1] = 0;
                 
                 if(this.InventoryContents[destSlot - 1] == tmpItem) {
                     this.InventoryContentsCount[destSlot - 1] += tmpItemCt;
                 } else {
                     this.InventoryContents[destSlot - 1] = tmpItem;
                     this.InventoryContentsCount[destSlot - 1] = tmpItemCt;
+                    this.InventoryContentsData[destSlot - 1] = tmpItemDat;
                 }
                 
             }
