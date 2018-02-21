@@ -130,6 +130,12 @@ class Weapon {
         //uiSpace.FindObjectByName("Slot20").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Item", this.ItemName));
         //uiSpace.FindObjectByName("Slot20").Sprite.StartFrame = 1;
         
+        var inv = this.Space.FindObjectByName("EntityPlayer").Inventory;
+        
+        if(inv != null && this.MaxAmmo != -1) {
+            this.CurrentAmmo = inv.InventoryContentsData[inv.SLOT_HAND - 1];
+        }
+        
         if(this.CurrCooldown <= 0.0) {
             if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && (this.CurrentAmmo > 0 || this.CurrentAmmo == -1)) {
                 this.CurrCooldown = this.Cooldown;
@@ -142,8 +148,6 @@ class Weapon {
                 this.Space.SoundSpace.PlayCue(SoundCue.Find("WeaponNoAmmo"));
                 
                 if(this.Space.FindObjectByName("EntityPlayer").Inventory != null) {
-                    
-                    var inv = this.Space.FindObjectByName("EntityPlayer").Inventory;
                     
                     if(inv.CheckForItem(this.AmmoTypeID, -1)) {
                         this.RefillAmmo();
