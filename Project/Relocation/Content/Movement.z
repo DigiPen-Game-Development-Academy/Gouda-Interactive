@@ -288,6 +288,12 @@ class Movement : ZilchComponent {
                 
                 cam.Transform.Translation = Math.Lerp(cam.Transform.Translation, Real3(dif.X / 10, dif.Y / 10, 40), event.Dt * 4);
                 
+                if(Relocation.DebugMode == true) {
+                    cam.Camera.Size = 50;
+                } else {
+                    cam.Camera.Size = 8;
+                }
+                
             }
             
         }

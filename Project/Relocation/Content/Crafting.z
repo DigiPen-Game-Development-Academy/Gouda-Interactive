@@ -538,9 +538,10 @@ class Crafting : ZilchComponent {
         
         var canCraft = false;
         
-        if(this.CheckForResources(recipe, recipeID)) {
+        if((this.CheckForResources(recipe, recipeID) && !Relocation.DebugMode) || (Relocation.DebugMode)) {
             canCraft = true;
         } else {
+            Relocation.UISpace.SoundSpace.PlayCue(SoundCue.Find("WeaponNoAmmo"));
             Console.WriteLine("You do not have enough resources to craft this item.");
             return;
         }
