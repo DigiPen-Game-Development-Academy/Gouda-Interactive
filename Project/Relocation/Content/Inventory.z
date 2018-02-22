@@ -67,18 +67,17 @@ class Inventory : ZilchComponent {
             }
             
             if(!this.InventoryOpenFirst) {
-                inventory.Transform.WorldTranslation = Real3(0, 0, 1);
-                inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(0, 0, 50000);
+                // FIRST RUN SCRIPTS
                 this.InventoryOpenFirst = true;
                 return;
+            }
+            
+            if(!this.CraftingOpen) {
+                inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(0, 0, 50000);
+                inventory.Transform.WorldTranslation = Real3(0, 0, 1);
             } else {
-                if(!this.CraftingOpen) {
-                    inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(0, 0, 50000);
-                    inventory.Transform.WorldTranslation = Real3(0, 0, 1);
-                } else {
-                    inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(10.75, 0, 0);
-                    inventory.Transform.WorldTranslation = Real3(-3.75, 0, 1);
-                }
+                inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(10.75, 0, 0);
+                inventory.Transform.WorldTranslation = Real3(-3.75, 0, 1);
             }
             
             this.Owner.Crafting.PausedLogicUpdateEnd();

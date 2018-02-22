@@ -44,16 +44,19 @@ class Commands : ZilchComponent {
             if(this.DebugCmd.FinalCmd.EndsWith("true")) {
                 
                 this.DebugCmd.DebugEnabled = true;
+                Relocation.DebugMode = this.DebugCmd.DebugEnabled;
                 this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
                 
             } else if(this.DebugCmd.FinalCmd.EndsWith("false")) {
                 
                 this.DebugCmd.DebugEnabled = false;
+                Relocation.DebugMode = this.DebugCmd.DebugEnabled;
                 this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
                 
             } else if(this.DebugCmd.FinalCmd == "debug" || this.DebugCmd.FinalCmd == "debug ") {
                 
                 this.DebugCmd.DebugEnabled = !this.DebugCmd.DebugEnabled;
+                Relocation.DebugMode = this.DebugCmd.DebugEnabled;
                 this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
                 
             } else {
