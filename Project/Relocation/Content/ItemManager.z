@@ -161,6 +161,12 @@ class ItemManager : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
+        if(Relocation.DebugMode) {
+            this.ShowItemIDs(true);
+        } else {
+            this.ShowItemIDs(false);
+        }
+        
     }
     
     function GiveItemsID() {

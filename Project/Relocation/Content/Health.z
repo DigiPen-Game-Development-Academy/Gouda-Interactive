@@ -3,6 +3,7 @@
 
 class Health : ZilchComponent
 {
+    
     [Property] var MaxHealth : Real = 10.0;
     [Property] var IsInvincible : Boolean = false;
     
@@ -31,11 +32,12 @@ class Health : ZilchComponent
         {
             if(this.Owner.Name != Relocation.EntityPlayer)
             {
-                this.Owner.EntityEnemy.SpawnedFrom.Spawner.EnemiesSpawned -= 1;
+                if(this.Owner.EntityEnemy.SpawnedFrom != null)
+                    this.Owner.EntityEnemy.SpawnedFrom.Spawner.EnemiesSpawned -= 1;
                 
                 this.Owner.Destroy();
             }
-            else
+            else if(this.Owner.Name == Relocation.EntityPlayer)
             {
                 this.Owner.RemoveComponentByName("Movement");
                 this.Owner.RemoveComponentByName("WeaponManager");
