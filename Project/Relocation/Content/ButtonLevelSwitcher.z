@@ -15,6 +15,7 @@ class ButtonLevelSwitcher : ZilchComponent {
     var ButtonClicked : Boolean = false;
     
     function Initialize(init : CogInitializer) {
+        Relocation.ButtonFadeout = false;
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
         Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
         Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
