@@ -99,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-15.224534, -6.18585777, 53.6266098],
+			Vec3 Translation = [-2.05936456, 0.419526339, 53.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 14.7781439,
+			float Size = 26.9274807,
 		},
 		EditorCameraController = 
 		{
@@ -119,7 +119,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-15.224534, -6.18585777, 40],
+			Vec3 LookTarget = [-2.05936456, 0.419526339, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -1395,26 +1395,27 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [3.25, 0, 0],
-							Vec3 Scale = [1, 1, 1],
+							Vec3 Translation = [3.5, -0.5, 0],
+							Vec3 Scale = [0.75, 0.75, 0.75],
 							Quat Rotation = [0, 0, 0, 1],
 						},
-						SpriteText = 
+						Sprite = 
 						{
 							bool Visible = true,
 							bool VisibilityCulling = true,
 							bool VisibilityEvents = true,
 							bool CastShadows = false,
-							Vec4 Color = [1, 0, 0, 1],
+							Vec4 Color = [1, 1, 1, 1],
 							BlendMode BlendMode = Alpha,
 							SpriteGeometryMode GeometryMode = ZPlane,
 							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string FontName = "57343753bb4eaaec:NotoSans-Regular",
-							uint FontSize = 32,
-							string Text = "+",
-							TextAlign Align = Left,
-							float PixelsPerUnit = 64,
-							bool Smoothing = true,
+							string SpriteSource = "5af4a5b04c45a056:IconEdit",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
 						},
 					},
 					Cog = 
