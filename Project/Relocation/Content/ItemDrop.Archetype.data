@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [5.33851528, 8.64156914, 0],
 		Vec3 Scale = [0.5, 0.5, 0.5],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -62,6 +62,10 @@ Cog =
 	{
 		int ItemID = 0,
 		int ItemAmount = 0,
+		int ItemData = 0,
 		float DespawnTime = 5,
+	},
+	Despawner = 
+	{
 	},
 },
