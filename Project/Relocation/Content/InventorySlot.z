@@ -8,7 +8,9 @@ class InventorySlot : ZilchComponent {
     function Initialize(init : CogInitializer) {
         
         Zero.Connect(this.Owner, Events.LogicUpdate, this.OnLogicUpdate);
-        Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseEnter);
+        Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+        Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
+        Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
         Zero.Connect(this.Owner, Events.MouseDown, this.OnMouseDown);
         
     }
@@ -21,13 +23,25 @@ class InventorySlot : ZilchComponent {
         }
     }
     
-    function OnMouseEnter(event : ViewportMouseEvent) {
+    function OnMouseUpdate(event : ViewportMouseEvent) {
         
         this.MainSpace = this.Space.FindObjectByName("DebugCommand").FindChildByName("TextEntry").Commands.MainSpace;
         
         if(this.MainSpace != null && this.MainSpace.FindObjectByName("EntityPlayer").Inventory.InventoryOpen) {
             this.MainSpace.FindObjectByName("EntityPlayer").Inventory.SlotHover = Integer.Parse(this.Owner.Name.SubStringFromRuneIndices(4, this.Owner.Name.Count));
         }
+        
+    }
+    
+    function OnMouseEnter(event : ViewportMouseEvent) {
+        
+        this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 1.0);
+        
+    }
+    
+    function OnMouseExit(event : ViewportMouseEvent) {
+        
+        this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.75);
         
     }
     

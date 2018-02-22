@@ -23,7 +23,7 @@ class Weapon {
     var ReloadTime : Real = 3.0;
     
     var BulletDamage : Real = 1.0;
-    var BulletSpeed : Real = 5.0;
+    var BulletSpeed : Real = 10.0;
     var Accuracy : Real = 0.0;
     
     var BulletSpawnLocation : Real3 = Real3(0.2, 0.0, 0.0);
