@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 100,
+			float Size = 14.9568863,
 		},
 		EditorCameraController = 
 		{
@@ -207,6 +207,7 @@ Level =
 			string PositionX = "Center",
 			string PositionY = "Top",
 			Vec2 PositionOffset = [0, -4],
+			float ZIndex = 0,
 			bool HideUntilPositioned = false,
 		},
 		UIAnimate = 
@@ -324,8 +325,9 @@ Level =
 				{
 					string Level = "",
 					float Delay = 2,
-					Vec3 DefaultColor = [0.5, 0.5, 0.5],
-					Vec3 HoverColor = [0.5, 0.5, 0.5],
+					Vec3 DefaultColor = [1, 1, 1],
+					Vec3 HoverColor = [0.5, 1, 0.5],
+					bool UIAnimateEnabled = true,
 					bool QuitButton = false,
 				},
 				Reactive = 
@@ -381,6 +383,7 @@ Level =
 					float Delay = 2,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 1, 0.5],
+					bool UIAnimateEnabled = true,
 					bool QuitButton = false,
 				},
 				Reactive = 
@@ -436,6 +439,7 @@ Level =
 					float Delay = 2,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 0.5, 0.5],
+					bool UIAnimateEnabled = true,
 					bool QuitButton = false,
 				},
 				Reactive = 
@@ -491,6 +495,7 @@ Level =
 					float Delay = 2,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [1, 0.5, 0.5],
+					bool UIAnimateEnabled = true,
 					bool QuitButton = true,
 				},
 				Reactive = 

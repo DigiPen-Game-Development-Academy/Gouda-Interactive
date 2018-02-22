@@ -15,6 +15,7 @@ class ButtonLevelSwitcher : ZilchComponent {
     var ButtonClicked : Boolean = false;
     
     function Initialize(init : CogInitializer) {
+        Relocation.ButtonFadeout = false;
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
         Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
         Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
@@ -62,9 +63,17 @@ class ButtonLevelSwitcher : ZilchComponent {
                 
                 Relocation.ButtonFadeout = false;
                 Relocation.CursorType = "Default";
+                
                 if(!this.QuitButton) {
                     if(this.Level != null) {
-                        this.Space.LoadLevel(this.Level);
+                        if(Relocation.UISpace != null) {
+                            Relocation.Space.TimeSpace.Paused = false;
+                            Relocation.Space.LoadLevel(this.Level);
+                            Relocation.UISpace.Destroy();
+                        } else {
+                            this.Space.TimeSpace.Paused = false;
+                            this.Space.LoadLevel(this.Level);
+                        }
                     }
                 } else {
                     Console.WriteLine("[Game Session] Quitting game...");
