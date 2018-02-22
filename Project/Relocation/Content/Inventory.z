@@ -77,7 +77,7 @@ class Inventory : ZilchComponent {
                     inventory.Transform.WorldTranslation = Real3(0, 0, 1);
                 } else {
                     inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(10.75, 0, 0);
-                    inventory.Transform.WorldTranslation = Real3(-4, 0, 1);
+                    inventory.Transform.WorldTranslation = Real3(-3.75, 0, 1);
                 }
             }
             
@@ -455,16 +455,6 @@ class Inventory : ZilchComponent {
     }
     
     function CheckForItem(itemID : Integer) : Boolean {
-        
-        /*itemID = Math.Abs(itemID);
-        
-        for(var i = 0; i < this.MaxInventorySlots; ++i) {
-            if(this.InventoryContents[i] == itemID) {
-                return true;
-            }
-        }
-        
-        return false;*/
         
         return this.CheckForItems(itemID, 1);
         
