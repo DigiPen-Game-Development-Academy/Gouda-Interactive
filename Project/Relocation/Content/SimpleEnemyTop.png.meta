@@ -2,12 +2,12 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "SimpleEnemyDamaged",
-		uint64 ResourceId = 5af4a7a137996a20,
+		string Name = "SimpleEnemyTop",
+		uint64 ResourceId = 5af4a7b332df1a45,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 64,
 		uint FrameSizeY = 64,
-		uint FrameCount = 1,
+		uint FrameCount = 2,
 		float FrameDelay = 0.0833333358,
 		float OriginX = 32,
 		float OriginY = 32,
