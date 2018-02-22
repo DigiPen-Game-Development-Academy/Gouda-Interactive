@@ -319,7 +319,6 @@ class Crafting : ZilchComponent {
         if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
             Console.WriteLine("Inv: `this.Owner.Inventory.InventoryContents`");
             Console.WriteLine("Cnt: `this.Owner.Inventory.InventoryContentsCount`");
-            Console.WriteLine("Dat: `this.Owner.Inventory.InventoryContentsData`");
         }
         
         this.CRSlotHover = -1;
@@ -338,7 +337,6 @@ class Crafting : ZilchComponent {
         if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
             Console.WriteLine("Inv: `this.Owner.Inventory.InventoryContents`");
             Console.WriteLine("Cnt: `this.Owner.Inventory.InventoryContentsCount`");
-            Console.WriteLine("Dat: `this.Owner.Inventory.InventoryContentsData`");
         }
     }
     
@@ -433,7 +431,7 @@ class Crafting : ZilchComponent {
     function CheckForResources(recipe : Array[Recipe], recipeID : Integer) : Boolean {
         
         for(var i = 0; i < this.MaxItemsInRecipe; ++i) {
-            if(this.Owner.Inventory.CheckForItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe], -1)) {
+            if(this.Owner.Inventory.CheckForItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe])) {
                 continue;
             } else {
                 return false;
@@ -456,10 +454,10 @@ class Crafting : ZilchComponent {
         }
         
         for(var i = 0; i < this.MaxItemsInRecipe - 1; ++i) {
-            this.Owner.Inventory.RemoveItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe], -1);
+            this.Owner.Inventory.RemoveItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe]);
         }
         
-        this.Owner.Inventory.GiveItem(recipe[recipeID - 1].Recipe[this.MaxItemsInRecipe * 2], 0, false);
+        this.Owner.Inventory.GiveItem(recipe[recipeID - 1].Recipe[this.MaxItemsInRecipe * 2], false);
         
     }
     

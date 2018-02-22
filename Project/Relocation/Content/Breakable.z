@@ -46,11 +46,11 @@ class Breakable : ZilchComponent
             
             // Add items to the players inventory
             if (this.Loot1ID != 0)
-                this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot1ID, false, this.DieRoll(this.Loot1MaxAmount), 0);
+                this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot1ID, false, this.DieRoll(this.Loot1MaxAmount));
             if (this.Loot2ID != 0)
-                this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot2ID, false, this.DieRoll(this.Loot2MaxAmount), 0);
+                this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot2ID, false, this.DieRoll(this.Loot2MaxAmount));
             if (this.Loot3ID != 0)
-                this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot3ID, false, this.DieRoll(this.Loot3MaxAmount), 0);
+                this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot3ID, false, this.DieRoll(this.Loot3MaxAmount));
             
             // Destroy the block
             this.Owner.Destroy();
@@ -69,11 +69,11 @@ class Breakable : ZilchComponent
         
         // Add items to the players inventory
         if (this.Loot1ID != 0)
-            this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot1ID, false, this.DieRoll(this.Loot1MaxAmount/3 as Integer), 0);
+            this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot1ID, false, this.DieRoll(this.Loot1MaxAmount/3 as Integer));
         if (this.Loot2ID != 0)
-            this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot2ID, false, this.DieRoll(this.Loot2MaxAmount/3 as Integer), 0);
+            this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot2ID, false, this.DieRoll(this.Loot2MaxAmount/3 as Integer));
         if (this.Loot3ID != 0)
-            this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot3ID, false, this.DieRoll(this.Loot3MaxAmount/3 as Integer), 0);
+            this.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(this.Loot3ID, false, this.DieRoll(this.Loot3MaxAmount/3 as Integer));
         
         // Destroy the block
         this.Owner.Destroy();
@@ -100,25 +100,25 @@ class Breakable : ZilchComponent
         // No drill/chainsaw items yet
         if (this.ToolType == "Drill" || this.ToolType == "drill")
         {
-            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(1, -1))
+            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(1))
                 return 3.0;
-            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(2, -1))
+            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(2))
                 return 9.0;
-            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(3, -1))
+            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(3))
                 return 18.0;
-            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(4, -1))
+            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(4))
                 return 36.0;
         }
         
         if (this.ToolType == "Chainsaw" || this.ToolType == "chainsaw")
         {
-            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(5, -1))
+            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(5))
                 return 0.5;
-            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(6, -1))
+            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(6))
                 return 0.3;
-            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(7, -1))
+            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(7))
                 return 0.1;
-            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(8, -1))
+            if (this.Space.FindObjectByName("EntityPlayer").Inventory.CheckForItemMainHand(8))
                 return 0.05;
         }
         

@@ -77,8 +77,6 @@ class Weapon {
     
     function RefillAmmo() {
         this.CurrentAmmo = this.MaxAmmo;
-        var inv = this.Space.FindObjectByName("EntityPlayer").Inventory;
-        inv.InventoryContentsData[inv.SLOT_HAND - 1] = this.CurrentAmmo;
     }
     
     function UseWeapon() {
@@ -114,8 +112,6 @@ class Weapon {
             
             if(this.MaxAmmo != -1) {
                 --this.CurrentAmmo;
-                var inv = this.Space.FindObjectByName("EntityPlayer").Inventory;
-                inv.InventoryContentsData[inv.SLOT_HAND - 1] = this.CurrentAmmo;
             }
             
         } else {
@@ -130,12 +126,6 @@ class Weapon {
         //uiSpace.FindObjectByName("Slot20").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Item", this.ItemName));
         //uiSpace.FindObjectByName("Slot20").Sprite.StartFrame = 1;
         
-        var inv = this.Space.FindObjectByName("EntityPlayer").Inventory;
-        
-        if(inv != null && this.MaxAmmo != -1) {
-            this.CurrentAmmo = inv.InventoryContentsData[inv.SLOT_HAND - 1];
-        }
-        
         if(this.CurrCooldown <= 0.0) {
             if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && (this.CurrentAmmo > 0 || this.CurrentAmmo == -1)) {
                 this.CurrCooldown = this.Cooldown;
@@ -149,9 +139,11 @@ class Weapon {
                 
                 if(this.Space.FindObjectByName("EntityPlayer").Inventory != null) {
                     
-                    if(inv.CheckForItem(this.AmmoTypeID, -1)) {
+                    var inv = this.Space.FindObjectByName("EntityPlayer").Inventory;
+                    
+                    if(inv.CheckForItem(this.AmmoTypeID)) {
                         this.RefillAmmo();
-                        inv.RemoveItem(this.AmmoTypeID, -1);
+                        inv.RemoveItem(this.AmmoTypeID);
                         this.CurrCooldown = this.ReloadTime;
                         
                         // PLAY 3 SECOND RELOADING SOUND
@@ -287,23 +279,23 @@ class WeaponManager : ZilchComponent {
         
         if(!this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
             
-            if(this.Owner.Inventory.CheckForItemMainHand(0, -1)) {
+            if(this.Owner.Inventory.CheckForItemMainHand(0)) {
                 this.ActiveWeapon = this.WeaponHand;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemPistol"), -1)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemPistol"))) {
                 this.ActiveWeapon = this.WeaponPistol;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemRevolver"), -1)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemRevolver"))) {
                 this.ActiveWeapon = this.WeaponRevolver;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemRock"), -1)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemRock"))) {
                 this.ActiveWeapon = this.WeaponRock;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemShotgun"), -1)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemShotgun"))) {
                 this.ActiveWeapon = this.WeaponShotgun;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemBoulder"), -1)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemBoulder"))) {
                 this.ActiveWeapon = this.WeaponBoulder;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemMinigun"), -1)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemMinigun"))) {
                 this.ActiveWeapon = this.WeaponMinigun;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemSniper"), -1)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemSniper"))) {
                 this.ActiveWeapon = this.WeaponSniper;
-            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemGouda"), -1)) {
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemGouda"))) {
                 this.ActiveWeapon = this.WeaponGouda;
             } else {
                 this.ActiveWeapon = this.WeaponHand;
@@ -313,9 +305,6 @@ class WeaponManager : ZilchComponent {
                 this.IsHoldingWeapon = false;
             } else {
                 this.IsHoldingWeapon = true;
-                if(this.Owner.Inventory.InventoryContentsData[this.Owner.Inventory.SLOT_HAND - 1] != -1 &&
-                    this.Owner.Inventory.InventoryContentsData[this.Owner.Inventory.SLOT_HAND - 1] != 0)
-                    this.ActiveWeapon.SetCurrentAmmoAmount(this.Owner.Inventory.InventoryContentsData[this.Owner.Inventory.SLOT_HAND - 1]);
             }
             
             // UPDATE ACTIVE WEAPON
