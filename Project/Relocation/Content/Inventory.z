@@ -9,7 +9,7 @@ class Inventory : ZilchComponent {
     
     var InventoryOpen : Boolean = false;
     var InventoryOpenFirst : Boolean = false;
-    var CraftingOpen : Boolean = false;
+    var CraftingOpen : Boolean = true;
     var RightButtonDown : Boolean = false;
     
     var InventoryContents : Array[Integer];

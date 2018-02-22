@@ -47,6 +47,8 @@ class UIAnimate : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
+        Console.WriteLine("Name: `this.Owner.Name`");
+        
         if(this.AnimationEnabled) {
             
             if(this.CurrDelayTime > this.AnimationDelay) {
