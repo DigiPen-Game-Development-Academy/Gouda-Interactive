@@ -24,7 +24,7 @@ class PlayerProperties : ZilchComponent {
         
         this.Owner.Transform.WorldTranslation = this.SpawnPosition;
         
-        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionStarted);
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -52,14 +52,6 @@ class PlayerProperties : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        /*if(this.Space.FindObjectByName("BiomeWater").FindChildByName("DefaultTile") != null && !this.HasMadeWaterGhost) {
-            this.HasMadeWaterGhost = true;
-        }
-        
-        if(this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("PlayerName").SpriteText.Text != this.PlayerName) {
-            this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("PlayerName").SpriteText.Text = this.PlayerName;
-        }
-        
         var waterPart = this.Owner.FindChildByName("ParticleWater");
         var waterSplash = this.Owner.FindChildByName("ParticleWater").FindChildByName("ParticleWaterSplash");
         
@@ -69,7 +61,7 @@ class PlayerProperties : ZilchComponent {
         } else {
             waterPart.SpriteParticleSystem.Visible = false;
             waterSplash.SpriteParticleSystem.Visible = false;
-        }*/
+        }
         
     }
     

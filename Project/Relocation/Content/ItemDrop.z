@@ -22,7 +22,7 @@ class ItemDrop : ZilchComponent {
         if(event.OtherObject.Name == Relocation.EntityPlayer) {
             
             if(event.OtherObject.Inventory != null) {
-                event.OtherObject.Inventory.GiveItemWithAmount(this.ItemID, false, this.ItemAmount, this.ItemData);
+                event.OtherObject.Inventory.GiveItemWithAmount(this.ItemID, false, this.ItemAmount);
                 this.Owner.Destroy();
             }
             
