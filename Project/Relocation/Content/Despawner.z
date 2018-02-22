@@ -1,40 +1,39 @@
 //AUTHOR: Kevin P
-//CONTIBUTORS: N/A
+//CONTIBUTORS: MYLES BUSIG
 class Despawner : ZilchComponent
 {
-    var Distance : Real = 50;
+    // Distance from the player that the enemy gets destroyed
+    [Property] var DistanceFromPlayer : Real = 75;
+    
+    // EntityPlayer
     var Player : Cog;
-    var TimeLive : Real = 0;
     
     function Initialize(init : CogInitializer)
     {
+        // Set the player variable
         this.Player = this.Space.FindObjectByName("EntityPlayer");
         
+        // Connect to OnLogicUpdate
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        
-        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.TimeLive += event.Dt;
-        //collision for .21 seconds and distance
-                
-        var left = this.Owner.Transform.Translation.X < this.Player.Transform.Translation.X - this.Distance;
-        var right = this.Owner.Transform.Translation.X > this.Player.Transform.Translation.X + this.Distance;
-        var below = this.Owner.Transform.Translation.Y < this.Player.Transform.Translation.Y - this.Distance;
-        var above = this.Owner.Transform.Translation.Y > this.Player.Transform.Translation.Y + this.Distance;
-                
+        // Create variables that check if the enemy is above, below,
+        // to the left, or to the right of the player
+        var left = this.Owner.Transform.Translation.X < this.Player.Transform.Translation.X - this.DistanceFromPlayer;
+        var right = this.Owner.Transform.Translation.X > this.Player.Transform.Translation.X + this.DistanceFromPlayer;
+        var below = this.Owner.Transform.Translation.Y < this.Player.Transform.Translation.Y - this.DistanceFromPlayer;
+        var above = this.Owner.Transform.Translation.Y > this.Player.Transform.Translation.Y + this.DistanceFromPlayer;
+        
+        // If the enemy is to far left, right, up, or down from the player
         if(left || right || below || above)
         {
-            this.Owner.Destroy();
-        }
-    }
-    
-    function OnCollisionStarted(event : CollisionEvent)
-    {
-        if(this.TimeLive <= 0.1)
-        {
+            // Decrease the number of enemies spawned
+            if (this.Owner.EntityEnemy.SpawnedFrom != null)
+                this.Owner.EntityEnemy.SpawnedFrom.Spawner.EnemiesSpawned -= 1;
+            
+            // Destroy the enemy
             this.Owner.Destroy();
         }
     }
