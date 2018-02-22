@@ -14,6 +14,7 @@ class Inventory : ZilchComponent {
     
     var InventoryContents : Array[Integer];
     var InventoryContentsCount : Array[Integer];
+    var InventoryContentsData : Array[Integer];
     
     var MaxInventorySlots : Integer = 21;
     var SlotClicked : Integer = -1;
@@ -33,14 +34,16 @@ class Inventory : ZilchComponent {
         
         this.InventoryContents = new Array[Integer]();
         this.InventoryContentsCount = new Array[Integer]();
+        this.InventoryContentsData = new Array[Integer]();
         
         // ZERO OUT INVENTORY
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
             this.InventoryContents.Push(0);
             this.InventoryContentsCount.Push(0);
+            this.InventoryContentsData.Push(0);
         }
         
-        this.GiveItemInSlot(1, this.SLOT_HAND);
+        this.GiveItemInSlot(1, this.SLOT_HAND, 0);
         
         Zero.Connect(this.UISpace, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(Zero.Keyboard, Events.KeyUp, this.OpenCloseInventory);
@@ -90,8 +93,9 @@ class Inventory : ZilchComponent {
             if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0) {
                 var tmpItem = this.InventoryContents[this.SLOT_MOUSE - 1];
                 var tmpItemCt = this.InventoryContentsCount[this.SLOT_MOUSE - 1];
+                var tmpItemDat = this.InventoryContentsData[this.SLOT_MOUSE - 1];
                 this.InventoryContents[this.SLOT_MOUSE - 1] = 0;
-                this.GiveItemWithAmount(tmpItem, false, tmpItemCt);
+                this.GiveItemWithAmount(tmpItem, false, tmpItemCt, tmpItemDat);
             }
             
             inventory.Transform.WorldTranslation = Real3(0, 0, 50000);
@@ -211,10 +215,10 @@ class Inventory : ZilchComponent {
                 var itemCtSecondHalf = itemCt - itemCtFirstHalf + itemCt % 2;
                 
                 this.RemoveItemsInSlot(this.SlotClicked, false, itemCtFirstHalf);
-                this.GiveItemsInSlot(itemInSlot, this.SLOT_MOUSE, itemCtSecondHalf, true);
+                this.GiveItemsInSlot(itemInSlot, this.SLOT_MOUSE, itemCtSecondHalf, this.InventoryContentsData[this.SlotClicked - 1], true);
                 
             } else if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0 && (this.InventoryContents[this.SlotClicked - 1] == 0 || this.InventoryContents[this.SlotClicked - 1] == this.InventoryContents[this.SLOT_MOUSE - 1])) {
-                this.GiveItemInSlot(this.InventoryContents[this.SLOT_MOUSE - 1], this.SlotClicked);
+                this.GiveItemInSlot(this.InventoryContents[this.SLOT_MOUSE - 1], this.SlotClicked, this.InventoryContentsData[this.SLOT_MOUSE - 1]);
                 this.RemoveItemInSlot(this.SLOT_MOUSE, false);
             }
             
@@ -286,7 +290,7 @@ class Inventory : ZilchComponent {
         
     }
     
-    function GiveItem(itemID : Integer, notifyUser : Boolean) {
+    function GiveItem(itemID : Integer, data : Integer, notifyUser : Boolean) {
         
         var firstAvailableSlot = -1;
         var cmd : TextEntry = null;
@@ -305,8 +309,9 @@ class Inventory : ZilchComponent {
                 if((i < this.MaxInventorySlots && !hasGoneThru) || (i < this.SLOT_OFFHAND && hasGoneThru)) {
                     if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                         firstAvailableSlot = i;
-                    } else if(this.InventoryContents[i] == itemID) {
+                    } else if(this.InventoryContents[i] == itemID && this.InventoryContentsData[i] == data) {
                         ++this.InventoryContentsCount[i];
+                        this.InventoryContentsData[i] = data;
                         this.RefreshInventoryIcons();
                         if(notifyUser)
                             cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
@@ -323,6 +328,7 @@ class Inventory : ZilchComponent {
             if(firstAvailableSlot != -1) {
                 this.InventoryContents[firstAvailableSlot] = itemID;
                 this.InventoryContentsCount[firstAvailableSlot] = 1;
+                this.InventoryContentsData[firstAvailableSlot] = data;
                 this.RefreshInventoryIcons();
                 if(notifyUser)
                     cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
@@ -338,7 +344,7 @@ class Inventory : ZilchComponent {
         
     }
     
-    function GiveItemWithAmount(itemID : Integer, notifyUser : Boolean, amount : Integer) {
+    function GiveItemWithAmount(itemID : Integer, notifyUser : Boolean, amount : Integer, data : Integer) {
         
         var firstAvailableSlot = -1;
         var cmd : TextEntry = null;
@@ -357,8 +363,9 @@ class Inventory : ZilchComponent {
                 if((i < this.MaxInventorySlots && !hasGoneThru) || (i < this.SLOT_OFFHAND && hasGoneThru)) {
                     if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                         firstAvailableSlot = i;
-                    } else if(this.InventoryContents[i] == itemID) {
+                    } else if(this.InventoryContents[i] == itemID && this.InventoryContentsData[i] == data) {
                         this.InventoryContentsCount[i] += amount;
+                        this.InventoryContentsData[i] = data;
                         this.RefreshInventoryIcons();
                         if(notifyUser)
                             cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
@@ -375,6 +382,7 @@ class Inventory : ZilchComponent {
             if(firstAvailableSlot != -1) {
                 this.InventoryContents[firstAvailableSlot] = itemID;
                 this.InventoryContentsCount[firstAvailableSlot] = amount;
+                this.InventoryContentsData[firstAvailableSlot] = data;
                 this.RefreshInventoryIcons();
                 if(notifyUser)
                     cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
@@ -390,7 +398,7 @@ class Inventory : ZilchComponent {
         
     }
     
-    function GiveItemInSlot(itemID : Integer, slot : Integer) {
+    function GiveItemInSlot(itemID : Integer, slot : Integer, data : Integer) {
         
         itemID = Math.Abs(itemID);
         
@@ -400,10 +408,12 @@ class Inventory : ZilchComponent {
                 if(this.InventoryContents[slot - 1] == 0) {
                     this.InventoryContents[slot - 1] = itemID;
                     this.InventoryContentsCount[slot - 1] = 1;
+                    this.InventoryContentsData[slot - 1] = data;
                     this.RefreshInventoryIcons();
                     return;
-                } else if(this.InventoryContents[slot - 1] == itemID) {
+                } else if(this.InventoryContents[slot - 1] == itemID && this.InventoryContentsData[slot - 1] == data) {
                     ++this.InventoryContentsCount[slot - 1];
+                    this.InventoryContentsData[slot - 1] = data;
                     this.RefreshInventoryIcons();
                     return;
                 }
@@ -416,7 +426,7 @@ class Inventory : ZilchComponent {
         
     }
     
-    function GiveItemsInSlot(itemID : Integer, slot : Integer, amount : Integer, allowInMouseSlot : Boolean) {
+    function GiveItemsInSlot(itemID : Integer, slot : Integer, amount : Integer, data : Integer, allowInMouseSlot : Boolean) {
         
         itemID = Math.Abs(itemID);
         
@@ -426,10 +436,12 @@ class Inventory : ZilchComponent {
                 if(this.InventoryContents[slot - 1] == 0) {
                     this.InventoryContents[slot - 1] = itemID;
                     this.InventoryContentsCount[slot - 1] = amount;
+                    this.InventoryContentsData[slot - 1] = data;
                     this.RefreshInventoryIcons();
                     return;
-                } else if(this.InventoryContents[slot - 1] == itemID) {
+                } else if(this.InventoryContents[slot - 1] == itemID && this.InventoryContentsData[slot - 1] == data) {
                     this.InventoryContentsCount[slot - 1] += amount;
+                    this.InventoryContentsData[slot - 1] = data;
                     this.RefreshInventoryIcons();
                     return;
                 }
@@ -439,10 +451,12 @@ class Inventory : ZilchComponent {
                 if(this.InventoryContents[slot - 1] == 0) {
                     this.InventoryContents[slot - 1] = itemID;
                     this.InventoryContentsCount[slot - 1] = amount;
+                    this.InventoryContentsData[slot - 1] = data;
                     this.RefreshInventoryIcons();
                     return;
-                } else if(this.InventoryContents[slot - 1] == itemID) {
+                } else if(this.InventoryContents[slot - 1] == itemID && this.InventoryContentsData[slot - 1] == data) {
                     this.InventoryContentsCount[slot - 1] += amount;
+                    this.InventoryContentsData[slot - 1] = data;
                     this.RefreshInventoryIcons();
                     return;
                 }
@@ -455,7 +469,7 @@ class Inventory : ZilchComponent {
         
     }
     
-    function CheckForItem(itemID : Integer) : Boolean {
+    function CheckForItem(itemID : Integer, data : Integer) : Boolean {
         
         /*itemID = Math.Abs(itemID);
         
@@ -467,18 +481,18 @@ class Inventory : ZilchComponent {
         
         return false;*/
         
-        return this.CheckForItems(itemID, 1);
+        return this.CheckForItems(itemID, 1, data);
         
     }
     
-    function CheckForItems(itemID : Integer, amount : Integer) : Boolean {
+    function CheckForItems(itemID : Integer, amount : Integer, data : Integer) : Boolean {
         
         itemID = Math.Abs(itemID);
         
         var itemCount = 0;
         
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
-            if(this.InventoryContents[i] == itemID) {
+            if(this.InventoryContents[i] == itemID && (this.InventoryContentsData[i] == data || data == -1)) {
                 itemCount += this.InventoryContentsCount[i];
             }
         }
@@ -491,11 +505,11 @@ class Inventory : ZilchComponent {
         
     }
     
-    function CheckForItemMainHand(itemID : Integer) : Boolean {
+    function CheckForItemMainHand(itemID : Integer, data : Integer) : Boolean {
         
         itemID = Math.Abs(itemID);
             
-        if(this.InventoryContents[this.SLOT_HAND - 1] == itemID) {
+        if(this.InventoryContents[this.SLOT_HAND - 1] == itemID && (this.InventoryContentsData[this.SLOT_HAND - 1] == data || data == -1)) {
             return true;
         } else {
             return false;
@@ -550,17 +564,17 @@ class Inventory : ZilchComponent {
         
     }
     
-    function RemoveItem(itemID : Integer) {
-        this.RemoveItems(itemID, 1);
+    function RemoveItem(itemID : Integer, data : Integer) {
+        this.RemoveItems(itemID, 1, data);
     }
     
-    function RemoveItems(itemID : Integer, amount : Integer) {
+    function RemoveItems(itemID : Integer, amount : Integer, data : Integer) {
         
         itemID = Math.Abs(itemID);
         
         if(itemID < Relocation.Items.Count) {
             for(var i = 0; i < this.MaxInventorySlots; ++i) {
-                if(this.InventoryContents[i] == itemID) {
+                if(this.InventoryContents[i] == itemID && (this.InventoryContentsData[i] == data || data == -1)) {
                     this.InventoryContentsCount[i] -= amount;
                     this.RefreshInventoryIcons();
                     return;
