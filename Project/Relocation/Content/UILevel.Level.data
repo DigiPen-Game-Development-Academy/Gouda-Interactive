@@ -86,6 +86,10 @@ Level =
 		MainLevelReferances = 
 		{
 		},
+		Settings = 
+		{
+			bool EnableVignette = true,
+		},
 	},
 	Cog = 
 	{
@@ -99,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.05936456, 0.419526339, 53.6266098],
+			Vec3 Translation = [-2.3830781, 0.419526339, 53.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -119,7 +123,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-2.05936456, 0.419526339, 40],
+			Vec3 LookTarget = [-2.3830781, 0.419526339, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 

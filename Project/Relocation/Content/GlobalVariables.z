@@ -19,4 +19,7 @@ class Relocation {
     /* MAIN MENU */
     [Static] var ButtonFadeout : Boolean = false;
     
+    /* SETTINGS */
+    [Static] var EnableVignette : Boolean = true;
+    
 }
