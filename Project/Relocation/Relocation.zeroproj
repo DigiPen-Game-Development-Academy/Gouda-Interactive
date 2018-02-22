@@ -8,7 +8,11 @@ Cog =
 		string ProjectSpace = "Space",
 		uint ProjectEngineRevision = 16386,
 		bool AutoTakeProjectScreenshot = false,
+<<<<<<< HEAD
 		uint64 Guid = 5ac19b036eb383d0,
+=======
+		uint64 Guid = 5af704b1d78b36bf,
+>>>>>>> parent of 73d27a0... started working on item data
 	},
 	EditorSettings = 
 	{
