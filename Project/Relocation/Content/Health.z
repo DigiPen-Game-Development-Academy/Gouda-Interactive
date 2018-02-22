@@ -31,6 +31,8 @@ class Health : ZilchComponent
         {
             if(this.Owner.Name != Relocation.EntityPlayer)
             {
+                this.Owner.EntityEnemy.SpawnedFrom.Spawner.EnemiesSpawned -= 1;
+                
                 this.Owner.Destroy();
             }
             else

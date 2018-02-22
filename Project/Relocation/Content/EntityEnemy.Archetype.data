@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [9.58366776, -0.947378755, 0],
+		Vec3 Translation = [1.56616676, 0.795729876, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -103,6 +103,10 @@ Cog =
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
+	},
+	Despawner = 
+	{
+		float DistanceFromPlayer = 75,
 	},
 	Hierarchy = 
 	{

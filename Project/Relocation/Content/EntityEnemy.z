@@ -23,6 +23,8 @@ class EntityEnemy : ZilchComponent
     [Property] var LookLeft : SpriteSource;
     [Property] var LookUpLeft : SpriteSource;
     
+    var SpawnedFrom : Cog = null;
+    
     function Initialize(init : CogInitializer)
     {
         // Find player
