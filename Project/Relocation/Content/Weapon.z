@@ -145,13 +145,7 @@ class Weapon {
                 
                 if(this.Space.FindObjectByName("EntityPlayer").Inventory != null) {
                     
-<<<<<<< HEAD
                     if(inv.CheckForItem(this.AmmoTypeID, -1)) {
-=======
-                    var inv = this.Space.FindObjectByName("EntityPlayer").Inventory;
-                    
-                    if(inv.CheckForItem(this.AmmoTypeID)) {
->>>>>>> parent of 73d27a0... started working on item data
                         this.RefillAmmo();
                         inv.RemoveItem(this.AmmoTypeID);
                         this.CurrCooldown = this.ReloadTime;

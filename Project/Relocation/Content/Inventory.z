@@ -517,11 +517,6 @@ class Inventory : ZilchComponent {
             
             var tmpItem = this.InventoryContents[slot - 1];
             var tmpItemCt = this.InventoryContentsCount[slot - 1];
-<<<<<<< HEAD
-            var tmpItemDat = this.InventoryContentsData[slot - 1];
-            // TODO: ITEM DATA
-=======
->>>>>>> parent of 73d27a0... started working on item data
             
             if(this.InventoryContents[slot - 1] == 0) {
                 return;
