@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [5.33851528, 8.64156914, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [0.5, 0.5, 0.5],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = false,
-		bool Mode2D = true,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -64,8 +64,5 @@ Cog =
 		int ItemAmount = 0,
 		int ItemData = 0,
 		float DespawnTime = 5,
-	},
-	Despawner = 
-	{
 	},
 },
