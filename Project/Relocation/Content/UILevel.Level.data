@@ -103,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.695989013, 3.25947642, 53.6266098],
+			Vec3 Translation = [-1.61310458, -29.6071434, 53.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -115,7 +115,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 19.9483738,
+			float Size = 24.3649998,
 		},
 		EditorCameraController = 
 		{
@@ -123,7 +123,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.695989013, 3.25947642, 40],
+			Vec3 LookTarget = [-1.61310458, -29.6071434, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2994,12 +2994,12 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "57343753bb4eaaec:NotoSans-Regular",
+					string FontName = "5ac2973527d023e1:FontDefault",
 					uint FontSize = 150,
 					string Text = "Paused",
 					TextAlign Align = Center,
 					float PixelsPerUnit = 64,
-					bool Smoothing = true,
+					bool Smoothing = false,
 				},
 			},
 			Cog = 
@@ -3028,12 +3028,12 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "57343753bb4eaaec:NotoSans-Regular",
+					string FontName = "5ac2973527d023e1:FontDefault",
 					uint FontSize = 75,
 					string Text = "Resume",
 					TextAlign Align = Center,
 					float PixelsPerUnit = 64,
-					bool Smoothing = true,
+					bool Smoothing = false,
 				},
 				ButtonLevelSwitcher = 
 				{
@@ -3077,12 +3077,12 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "57343753bb4eaaec:NotoSans-Regular",
+					string FontName = "5ac2973527d023e1:FontDefault",
 					uint FontSize = 75,
 					string Text = "Main Menu",
 					TextAlign Align = Center,
 					float PixelsPerUnit = 64,
-					bool Smoothing = true,
+					bool Smoothing = false,
 				},
 				ButtonLevelSwitcher = 
 				{
@@ -3126,12 +3126,12 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "57343753bb4eaaec:NotoSans-Regular",
+					string FontName = "5ac2973527d023e1:FontDefault",
 					uint FontSize = 75,
 					string Text = "Quit To Desktop",
 					TextAlign Align = Center,
 					float PixelsPerUnit = 64,
-					bool Smoothing = true,
+					bool Smoothing = false,
 				},
 				ButtonLevelSwitcher = 
 				{
