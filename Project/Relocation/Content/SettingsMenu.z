@@ -3,10 +3,17 @@
 
 class SettingsMenu : ZilchComponent {
     
+    [Property] var UIMenu : Boolean = false;
+    
     var UIAnimationButton : Cog = null;
     var VignetteButton : Cog = null;
+    var MenuOpen : Boolean = false;
     
     function Initialize(init : CogInitializer) {
+        
+        if(this.UIMenu) {
+            this.Owner.Transform.WorldTranslation = Real3(0.0, 0.0, 50000.0);
+        }
         
         this.UIAnimationButton = this.Space.FindObjectByName("CheckBoxAnimation");
         this.VignetteButton = this.Space.FindObjectByName("CheckBoxVignette");
@@ -24,6 +31,32 @@ class SettingsMenu : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(this.UIMenu) {
+            
+            if(!this.MenuOpen && this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.ButtonClicked) {
+                this.Owner.Transform.WorldTranslation = Real3(0.0, 0.0, 0.0);
+                this.Owner.Parent.FindChildByName("PauseButtons").Transform.WorldTranslation = Real3(0.0, 0.0, 50000.0);
+                this.MenuOpen = true;
+            } else if(this.MenuOpen && this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.ButtonClicked) {
+                this.Owner.Transform.WorldTranslation = Real3(0.0, 0.0, 50000.0);
+                this.Owner.Parent.FindChildByName("PauseButtons").Transform.WorldTranslation = Real3(0.0, 0.0, 0.0);
+                this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.ButtonClicked = false;
+                this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.CurrDelay = 0.0;
+                Relocation.ButtonFadeout = false;
+                this.MenuOpen = false;
+            }
+            
+            if(Zero.Keyboard.KeyIsPressed(Keys.Escape) && this.Owner.Parent.PauseMenu.PauseMenuEnabled) {
+                this.Owner.Transform.WorldTranslation = Real3(0.0, 0.0, 50000.0);
+                this.Owner.Parent.FindChildByName("PauseButtons").Transform.WorldTranslation = Real3(0.0, 0.0, 0.0);
+                this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.ButtonClicked = false;
+                this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.CurrDelay = 0.0;
+                Relocation.ButtonFadeout = false;
+                this.MenuOpen = false;
+            }
+            
+        }
         
         if(this.UIAnimationButton != null) {
             GameSetting.EnableUIAnimations = this.UIAnimationButton.CheckBox.IsChecked;
