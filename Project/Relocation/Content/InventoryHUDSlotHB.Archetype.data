@@ -6,7 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Slot19H",
+		string Name = "Slot2H",
 	},
 	Archetyped = 
 	{
@@ -93,7 +93,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [-0.600000024, 0.800000012, 1],
+				Vec3 Translation = [-0.600000024, 0.800000012, 1.5],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},

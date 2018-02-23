@@ -103,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-1.49846017, 1.38203204, 53.6266098],
+			Vec3 Translation = [8.61051464, -5.8694725, 53.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -115,7 +115,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 19.9483776,
+			float Size = 10.9479084,
 		},
 		EditorCameraController = 
 		{
@@ -123,7 +123,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-1.49846017, 1.38203204, 40],
+			Vec3 LookTarget = [8.61051464, -5.8694725, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2492,19 +2492,12 @@ Level =
 			},
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5a3b7b75ae7ed0a8:InventoryHUD",
 		LinkId = 
 		{
 			uint Id = 82,
-		},
-		Named = 
-		{
-			string Name = "InventoryHUD",
-		},
-		Archetyped = 
-		{
-			string Name = "5a3b7b75ae7ed0a8:InventoryHUD",
 		},
 		Transform = 
 		{
@@ -2512,59 +2505,16 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		ScreenAlignment = 
+		Named = 
 		{
-			string PositionX = "Right",
-			string PositionY = "Bottom",
-			Vec2 PositionOffset = [-2, 1],
-			float ZIndex = 0,
-			bool HideUntilPositioned = false,
-		},
-		Hierarchy = 
-		{
-			ArchetypeInstance = 
-			{
-				string Name = "5a3b64c28d512b65:InventoryHUDSlotHBOH",
-				LinkId = 
-				{
-					uint Id = 83,
-				},
-				Transform = 
-				{
-					Vec3 Translation = [-1, 0, 0],
-					Vec3 Scale = [1.5, 1.5, 1.5],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Named = 
-				{
-					string Name = "Slot3H",
-				},
-			},
-			ArchetypeInstance = 
-			{
-				string Name = "5a3b64dbb09a9787:InventoryHUDSlotHB",
-				LinkId = 
-				{
-					uint Id = 84,
-				},
-				Transform = 
-				{
-					Vec3 Translation = [1, 0, 0],
-					Vec3 Scale = [1.5, 1.5, 1.5],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Named = 
-				{
-					string Name = "Slot2H",
-				},
-			},
+			string Name = "InventoryHUD",
 		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 85,
+			uint Id = 83,
 		},
 		Named = 
 		{
@@ -2590,7 +2540,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 86,
+					uint Id = 84,
 				},
 				Named = 
 				{
@@ -2625,7 +2575,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 87,
+					uint Id = 85,
 				},
 				Named = 
 				{
@@ -2663,7 +2613,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 88,
+					uint Id = 86,
 				},
 				Named = 
 				{
@@ -2698,7 +2648,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 89,
+					uint Id = 87,
 				},
 				Named = 
 				{
@@ -2738,7 +2688,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 90,
+			uint Id = 88,
 		},
 		Named = 
 		{
@@ -2782,7 +2732,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 91,
+			uint Id = 89,
 		},
 		Named = 
 		{
@@ -2822,7 +2772,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 92,
+			uint Id = 90,
 		},
 		Named = 
 		{
@@ -2864,7 +2814,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 93,
+			uint Id = 91,
 		},
 		Named = 
 		{
@@ -2885,7 +2835,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 94,
+					uint Id = 92,
 				},
 				Named = 
 				{
@@ -2919,7 +2869,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 95,
+					uint Id = 93,
 				},
 				Named = 
 				{
@@ -2968,7 +2918,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 96,
+					uint Id = 94,
 				},
 				Named = 
 				{
@@ -3017,7 +2967,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 97,
+					uint Id = 95,
 				},
 				Named = 
 				{
