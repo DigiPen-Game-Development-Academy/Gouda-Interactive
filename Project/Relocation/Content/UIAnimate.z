@@ -17,37 +17,41 @@ class UIAnimate : ZilchComponent {
     
     function Initialize(init : CogInitializer) {
         
-        if(this.AnimationType.ToLower() == "fadein") {
-            if(this.Owner.Sprite != null) {
-                this.Owner.Sprite.Visible = false;
-                this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.0);
-            } else if(this.Owner.SpriteText != null) {
-                this.Owner.SpriteText.Visible = false;
-                this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, 0.0);
+        if(GameSetting.EnableUIAnimations) {
+            
+            if(this.AnimationType.ToLower() == "fadein") {
+                if(this.Owner.Sprite != null) {
+                    this.Owner.Sprite.Visible = false;
+                    this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.0);
+                } else if(this.Owner.SpriteText != null) {
+                    this.Owner.SpriteText.Visible = false;
+                    this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, 0.0);
+                }
+            } else if(this.AnimationType.ToLower() == "fadeout") {
+                if(this.Owner.Sprite != null) {
+                    this.Owner.Sprite.Visible = true;
+                } else if(this.Owner.SpriteText != null) {
+                    this.Owner.SpriteText.Visible = true;
+                }
+            } else if(this.AnimationType.ToLower() == "fadeinout") {
+                if(this.Owner.Sprite != null) {
+                    this.Owner.Sprite.Visible = false;
+                    this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.0);
+                } else if(this.Owner.SpriteText != null) {
+                    this.Owner.SpriteText.Visible = false;
+                    this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, 0.0);
+                }
             }
-        } else if(this.AnimationType.ToLower() == "fadeout") {
-            if(this.Owner.Sprite != null) {
-                this.Owner.Sprite.Visible = true;
-            } else if(this.Owner.SpriteText != null) {
-                this.Owner.SpriteText.Visible = true;
-            }
-        } else if(this.AnimationType.ToLower() == "fadeinout") {
-            if(this.Owner.Sprite != null) {
-                this.Owner.Sprite.Visible = false;
-                this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.0);
-            } else if(this.Owner.SpriteText != null) {
-                this.Owner.SpriteText.Visible = false;
-                this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, 0.0);
-            }
+            
+            Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+            
         }
-        
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(this.AnimationEnabled) {
+        if(this.AnimationEnabled && GameSetting.EnableUIAnimations) {
             
             if(this.CurrDelayTime > this.AnimationDelay) {
                 
@@ -82,21 +86,23 @@ class UIAnimate : ZilchComponent {
     
     function FadeIn(dt : Real, speedMultiplier : Real) {
         
-        if(this.Owner.Sprite != null) {
-            this.Owner.Sprite.Visible = true;
-            this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, this.Owner.Sprite.Color.W + dt * (this.AnimationSpeed * speedMultiplier));
-            if(this.Owner.Sprite.Color.W >= 1.0) {
-                this.AnimationFinished = true;
-                this.AnimationFunctionFinish = true;
-                this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 1.0);
-            }
-        } else if(this.Owner.SpriteText != null) {
-            this.Owner.SpriteText.Visible = true;
-            this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, this.Owner.SpriteText.Color.W + dt * (this.AnimationSpeed * speedMultiplier));
-            if(this.Owner.SpriteText.Color.W >= 1.0) {
-                this.AnimationFinished = true;
-                this.AnimationFunctionFinish = true;
-                this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, 1.0);
+        if(GameSetting.EnableUIAnimations) {
+            if(this.Owner.Sprite != null) {
+                this.Owner.Sprite.Visible = true;
+                this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, this.Owner.Sprite.Color.W + dt * (this.AnimationSpeed * speedMultiplier));
+                if(this.Owner.Sprite.Color.W >= 1.0) {
+                    this.AnimationFinished = true;
+                    this.AnimationFunctionFinish = true;
+                    this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 1.0);
+                }
+            } else if(this.Owner.SpriteText != null) {
+                this.Owner.SpriteText.Visible = true;
+                this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, this.Owner.SpriteText.Color.W + dt * (this.AnimationSpeed * speedMultiplier));
+                if(this.Owner.SpriteText.Color.W >= 1.0) {
+                    this.AnimationFinished = true;
+                    this.AnimationFunctionFinish = true;
+                    this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, 1.0);
+                }
             }
         }
         
@@ -104,23 +110,25 @@ class UIAnimate : ZilchComponent {
     
     function FadeOut(dt : Real, speedMultiplier : Real) {
         
-        if(this.Owner.Sprite != null) {
-            this.Owner.Sprite.Visible = true;
-            this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, this.Owner.Sprite.Color.W - dt * (this.AnimationSpeed * speedMultiplier));
-            if(this.Owner.Sprite.Color.W <= 0.0) {
-                this.AnimationFinished = true;
-                this.AnimationFunctionFinish = true;
-                this.Owner.Sprite.Visible = false;
-                this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.0);
-            }
-        } else if(this.Owner.SpriteText != null) {
-            this.Owner.SpriteText.Visible = true;
-            this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, this.Owner.SpriteText.Color.W - dt * (this.AnimationSpeed * speedMultiplier));
-            if(this.Owner.SpriteText.Color.W <= 0.0) {
-                this.AnimationFinished = true;
-                this.AnimationFunctionFinish = true;
-                this.Owner.SpriteText.Visible = false;
-                this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, 0.0);
+        if(GameSetting.EnableUIAnimations) {
+            if(this.Owner.Sprite != null) {
+                this.Owner.Sprite.Visible = true;
+                this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, this.Owner.Sprite.Color.W - dt * (this.AnimationSpeed * speedMultiplier));
+                if(this.Owner.Sprite.Color.W <= 0.0) {
+                    this.AnimationFinished = true;
+                    this.AnimationFunctionFinish = true;
+                    this.Owner.Sprite.Visible = false;
+                    this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.0);
+                }
+            } else if(this.Owner.SpriteText != null) {
+                this.Owner.SpriteText.Visible = true;
+                this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, this.Owner.SpriteText.Color.W - dt * (this.AnimationSpeed * speedMultiplier));
+                if(this.Owner.SpriteText.Color.W <= 0.0) {
+                    this.AnimationFinished = true;
+                    this.AnimationFunctionFinish = true;
+                    this.Owner.SpriteText.Visible = false;
+                    this.Owner.SpriteText.Color = Real4(this.Owner.SpriteText.Color.XYZ, 0.0);
+                }
             }
         }
         

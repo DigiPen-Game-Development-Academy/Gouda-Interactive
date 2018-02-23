@@ -16,11 +16,14 @@ class ButtonLevelSwitcher : ZilchComponent {
     var ButtonClicked : Boolean = false;
     
     function Initialize(init : CogInitializer) {
+        
         Relocation.ButtonFadeout = false;
+        
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
         Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
         Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
     }
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
@@ -60,7 +63,7 @@ class ButtonLevelSwitcher : ZilchComponent {
         
         if(this.ButtonClicked) {
             
-            if(this.CurrDelay > this.Delay) {
+            if((GameSetting.EnableUIAnimations && this.CurrDelay > this.Delay) || (!GameSetting.EnableUIAnimations && this.CurrDelay > 0.25)) {
                 
                 Relocation.ButtonFadeout = false;
                 Relocation.CursorType = "Default";
