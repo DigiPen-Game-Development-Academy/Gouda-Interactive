@@ -105,27 +105,27 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-14.6017952, -2.53253245, 166.810654],
+			Vec3 Translation = [-13.0740862, -3.72746253, 303.640503],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
 		Camera = 
 		{
-			ProjectionMode ProjectionMode = Orthographic,
+			ProjectionMode ProjectionMode = Perspective,
 			Facing Facing = NegativeZ,
 			CameraTransparentSort TransparentSort = ZDepth,
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 40.1710548,
+			float Size = 100,
 		},
 		EditorCameraController = 
 		{
 			ControlMode ControlMode = ZPlane,
-			float LookDistance = 166.435654,
+			float LookDistance = 303.265503,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-14.6017952, -2.53253245, 0.375000328],
+			Vec3 LookTarget = [-13.0740862, -3.72746253, 0.375000447],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
