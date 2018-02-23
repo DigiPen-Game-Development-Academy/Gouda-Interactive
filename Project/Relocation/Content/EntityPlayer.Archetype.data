@@ -89,7 +89,7 @@ Cog =
 	{
 		ArchetypeInstance = 
 		{
-			string Name = "5a11d69cc4ba5a24:EntityGun",
+			string Name = "5ac2f42e2dbfb0ab:EntityHand",
 			LinkId = 
 			{
 				uint Id = 2,
@@ -102,7 +102,7 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "EntityGun",
+				string Name = "EntityHand",
 			},
 		},
 		Cog = 
