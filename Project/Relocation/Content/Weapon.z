@@ -95,10 +95,10 @@ class Weapon {
                 
                 var accuracy = rand.Range(-this.Accuracy / 2, this.Accuracy / 2);
                 
-                var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, Real3(this.Space.FindObjectByName("EntityGun").Transform.WorldTranslation.XY, 0) + this.BulletSpawnLocation);
+                var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, Real3(this.Space.FindObjectByName("EntityHand").Transform.WorldTranslation.XY, 0) + this.BulletSpawnLocation);
                 
                 var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-                var gunPos = this.Space.FindObjectByName("EntityGun").Transform.WorldTranslation;
+                var gunPos = this.Space.FindObjectByName("EntityHand").Transform.WorldTranslation;
                 
                 var dif = Real2(mousePos.X - gunPos.X, mousePos.Y - gunPos.Y);
                 var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
@@ -126,7 +126,7 @@ class Weapon {
         //uiSpace.FindObjectByName("Slot20").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Item", this.ItemName));
         //uiSpace.FindObjectByName("Slot20").Sprite.StartFrame = 1;
         
-        if(this.CurrCooldown <= 0.0) {
+        if(this.CurrCooldown <= 0.0 && !Relocation.InventoryOpen) {
             if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && (this.CurrentAmmo > 0 || this.CurrentAmmo == -1)) {
                 this.CurrCooldown = this.Cooldown;
                 this.UseWeapon();
@@ -260,7 +260,7 @@ class WeaponManager : ZilchComponent {
         //this.WeaponShotgun.SetBulletSpawnPosition(0.6);
         //this.WeaponBoulder.SetBulletSpawnPosition(0.75);
         
-        this.WeaponMinigun.SetBulletSpawnPosition(this.Owner.FindChildByName("EntityGun").Transform.Translation.XY + Real2(0.0, 0.1));
+        this.WeaponMinigun.SetBulletSpawnPosition(this.Owner.FindChildByName("EntityHand").Transform.Translation.XY + Real2(0.0, 0.1));
         //this.WeaponSniper.SetBulletSpawnPosition(0.05);
         //this.WeaponGouda.SetBulletSpawnPosition(0.25);
         
@@ -310,15 +310,15 @@ class WeaponManager : ZilchComponent {
             // UPDATE ACTIVE WEAPON
             this.ActiveWeapon.UpdateWeapon(event.Dt);
             
-            if(!this.Owner.Inventory.InventoryOpen) {
+            if(!Relocation.InventoryOpen) {
                 if(this.ActiveWeapon.ItemName != "Hand" && this.IsHoldingWeapon) {
-                    this.Owner.FindChildByName("EntityGun").Sprite.Visible = true;
-                    this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Weapon", this.ActiveWeapon.ItemName));
+                    this.Owner.FindChildByName("EntityHand").Sprite.Visible = true;
+                    this.Owner.FindChildByName("EntityHand").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Weapon", this.ActiveWeapon.ItemName));
                 } else {
                     var currID = this.Owner.Inventory.GetItemInMainHand();
                     if(this.Owner.Inventory.GetItemInMainHand() != 0) {
-                        this.Owner.FindChildByName("EntityGun").Sprite.Visible = true;
-                        this.Owner.FindChildByName("EntityGun").Sprite.SpriteSource = Relocation.Items[currID].Sprite;
+                        this.Owner.FindChildByName("EntityHand").Sprite.Visible = true;
+                        this.Owner.FindChildByName("EntityHand").Sprite.SpriteSource = Relocation.Items[currID].Sprite;
                         if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && !this.MouseClick) {
                             Relocation.Items[currID].Update(event.Dt);
                             this.MouseClick = true;
@@ -326,7 +326,7 @@ class WeaponManager : ZilchComponent {
                             this.MouseClick = false;
                         }
                     } else {
-                        this.Owner.FindChildByName("EntityGun").Sprite.Visible = false;
+                        this.Owner.FindChildByName("EntityHand").Sprite.Visible = false;
                     }
                 }
             }

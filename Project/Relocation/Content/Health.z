@@ -43,7 +43,7 @@ class Health : ZilchComponent
                 this.Owner.RemoveComponentByName("WeaponManager");
                 this.Owner.Sprite.AnimationActive = false;
                 this.Owner.Sprite.Visible = false;
-                this.Owner.FindChildByName("EntityGun").Sprite.Visible = false;
+                this.Owner.FindChildByName("EntityHand").Sprite.Visible = false;
                 //this.Owner.FindChildByName("ParticleWater").SpriteParticleSystem.Visible = true;
             }
         }

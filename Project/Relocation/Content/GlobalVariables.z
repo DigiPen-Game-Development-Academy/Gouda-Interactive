@@ -13,6 +13,7 @@ class Relocation {
     [Static] var ItemManager : ItemManager = null;
     
     [Static] var DebugMode : Boolean = false;
+    [Static] var InventoryOpen : Boolean = false;
     
     [Static] var CursorType : String = "Default";
     

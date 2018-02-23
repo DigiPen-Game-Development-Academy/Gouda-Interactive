@@ -41,6 +41,7 @@ class Inventory : ZilchComponent {
         }
         
         this.GiveItemInSlot(1, this.SLOT_HAND);
+        this.GiveItemWithAmount(21, false, 999);
         this.GiveItemWithAmount(23, false, 999);
         this.GiveItemWithAmount(25, false, 999);
         this.GiveItemWithAmount(27, false, 999);
@@ -117,6 +118,7 @@ class Inventory : ZilchComponent {
             this.ToggleInventory();
         } else if(event.Key == Keys.Escape && !commandScreenCapture && !playerNameScreenCapture && !isPaused && this.InventoryOpen) {
             this.Space.TimeSpace.Paused = false;
+            Relocation.InventoryOpen = false;
             this.InventoryOpen = false;
             
         }
@@ -126,6 +128,7 @@ class Inventory : ZilchComponent {
     // TOGGLE INVENTORY AND TIMESPACE PAUSE
     function ToggleInventory() {
         this.Space.TimeSpace.Paused = !this.Space.TimeSpace.Paused;
+        Relocation.InventoryOpen = !Relocation.InventoryOpen;
         this.InventoryOpen = !this.InventoryOpen;
     }
     

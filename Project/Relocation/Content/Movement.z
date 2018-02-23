@@ -25,7 +25,7 @@ class Movement : ZilchComponent {
         // VELOCITY
         var r3Speed = Real3(0.0, 0.0, 0.0);
         
-        if(!this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
+        if(!this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys && !Relocation.InventoryOpen) {
             
             // CHECK IF SPRINTING
             if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
@@ -72,7 +72,7 @@ class Movement : ZilchComponent {
             }
             
             // WEAPON SPRITE
-            var weapon = this.Owner.FindChildByName("EntityGun");
+            var weapon = this.Owner.FindChildByName("EntityHand");
             
             // MOVEMENT
             if((Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.S))) {
