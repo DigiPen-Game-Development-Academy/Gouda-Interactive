@@ -1,9 +1,9 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: N/A
+// CONTRIBUTORS: HUDSON GREEN
 
 class CaveEnteranceExit : ZilchComponent
 {
-    var LevelToLoad : Level = Level.Find("CaveLevel");
+    [Property] var LevelToLoad : Level = Level.Find("CaveLevel");
     
     function Initialize(init : CogInitializer)
     {

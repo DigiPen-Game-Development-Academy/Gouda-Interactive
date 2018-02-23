@@ -2,7 +2,7 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "ProofOfConcept",
+		string Name = "CaveWorldTemp",
 		uint64 ResourceId = 5a01955c7fa1e073,
 		string LoaderType = "Level",
 		uint Version = 0,

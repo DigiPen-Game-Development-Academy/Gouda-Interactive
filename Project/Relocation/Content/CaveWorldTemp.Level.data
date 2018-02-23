@@ -55,13 +55,13 @@ Level =
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
 			},
-			ViewportScaling Scaling = Letterbox,
+			ViewportScaling Scaling = Fill,
 			Vec2 Resolution = [1280, 720],
 			Vec4 MarginColor = [0, 0, 0, 1],
 		},
 		ForwardRenderer = 
 		{
-			Vec4 ClearColor = [0.155000001, 0.155000001, 0.155000001, 1],
+			Vec4 ClearColor = [0, 0.7900002, 1, 1],
 			bool DrawNonVisible = false,
 			bool DrawDebugObjects = true,
 			bool DrawEditorIcons = true,
@@ -112,7 +112,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [4.99794579, 304.828491, 50],
+			Vec3 Translation = [0, -0.112500012, 50.375],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -124,7 +124,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 100,
+			float Size = 2.02419209,
 		},
 		EditorCameraController = 
 		{
@@ -132,7 +132,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [4.99794579, 304.828491, 8.79116328e-07],
+			Vec3 LookTarget = [0, -0.112500012, 0.375],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
