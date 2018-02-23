@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [-20.5, 4.5, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -53,7 +53,7 @@ Cog =
 		bool Ghost = false,
 		bool SendsMessages = true,
 		bool Seamless = true,
-		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+		string MaterialName = "5ac291505ccfd608:PlayerPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.400000006, 0.5, 0.5],
@@ -81,8 +81,10 @@ Cog =
 	{
 		string PlayerName = "Astronaut Zero",
 		int PlayerSkin = 0,
-		Vec3 SpawnPosition = [0, 0, 0],
+		Vec3 SpawnPosition = [-20.5, 4.5, 0],
 		bool IsInWater = false,
+		bool IsInUnauthorizedZone = false,
+		bool IsDead = false,
 		float Balance = 0,
 	},
 	Hierarchy = 
