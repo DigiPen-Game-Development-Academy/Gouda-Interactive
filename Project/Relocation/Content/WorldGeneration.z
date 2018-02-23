@@ -1,5 +1,5 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: N/A
+// CONTRIBUTORS: HUDSON GREEN
 
 class WorldGeneration : ZilchComponent
 {
@@ -98,7 +98,7 @@ class WorldGeneration : ZilchComponent
     
     function CheckForDestroyedTiles(lastSpawnedTileMap : Cog)
     {
-        var currentPositionToCheck = Real3(-15.5, 15.5, 0.0);
+        var currentPositionToCheck = Real3(-15.5, 15.5, -0.5);
         var currentTile = lastSpawnedTileMap.Children.Current;
         
         for (var i = 0; i < 256; ++i)
@@ -118,6 +118,6 @@ class WorldGeneration : ZilchComponent
         this.TileSpawnLocation += Real3(this.TileDiameter, 0.0, 0.0);
         
         if (this.TileSpawnLocation.X > this.MapRadius)
-            this.TileSpawnLocation = Real3(-this.MapRadius, this.TileSpawnLocation.Y - this.TileDiameter, 0.0);
+            this.TileSpawnLocation = Real3(-this.MapRadius, this.TileSpawnLocation.Y - this.TileDiameter, -0.5);
     }
 }

@@ -105,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-10.0116606, -1.14349079, 188.696548],
+			Vec3 Translation = [4.04231215, 6.10868549, 188.696548],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 36.7879562,
+			float Size = 9.07181931,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +125,7 @@ Level =
 			float LookDistance = 183.939819,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-10.0116606, -1.14349079, 4.7567234],
+			Vec3 LookTarget = [4.04231215, 6.10868549, 4.7567234],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -593,10 +593,28 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "5a3bcb07ddecc85a:BuildingHut",
+		string Name = "5ac2f985abfc1c64:BuildingShop",
 		LinkId = 
 		{
 			uint Id = 13,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [5, 6, 1],
+			Vec3 Scale = [1.5, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BuildingShop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a3bcb07ddecc85a:BuildingHut",
+		LinkId = 
+		{
+			uint Id = 14,
 		},
 		Transform = 
 		{
@@ -614,7 +632,7 @@ Level =
 		string Name = "5a3bcb07ddecc85a:BuildingHut",
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 15,
 		},
 		Transform = 
 		{
@@ -627,19 +645,12 @@ Level =
 			string Name = "BuildingHut",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5a3bcb07ddecc85a:BuildingHut",
 		LinkId = 
 		{
-			uint Id = 15,
-		},
-		Named = 
-		{
-			string Name = "BuildingHut",
-		},
-		Archetyped = 
-		{
-			string Name = "5a3bcb07ddecc85a:BuildingHut",
+			uint Id = 16,
 		},
 		Transform = 
 		{
@@ -647,48 +658,17 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, -1, 0],
-			Vec3 Size = [1.60000002, 0.625, 1.375],
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 16,
-		},
 		Named = 
 		{
 			string Name = "BuildingHut",
 		},
-		Archetyped = 
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a3bcb07ddecc85a:BuildingHut",
+		LinkId = 
 		{
-			string Name = "5a3bcb07ddecc85a:BuildingHut",
+			uint Id = 17,
 		},
 		Transform = 
 		{
@@ -696,48 +676,17 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [1.375, 1.375, 1.375],
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 17,
-		},
 		Named = 
 		{
 			string Name = "BuildingHut",
 		},
-		Archetyped = 
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a3bcb07ddecc85a:BuildingHut",
+		LinkId = 
 		{
-			string Name = "5a3bcb07ddecc85a:BuildingHut",
+			uint Id = 18,
 		},
 		Transform = 
 		{
@@ -745,33 +694,9 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [1.375, 1.375, 1.375],
+			string Name = "BuildingHut",
 		},
 	},
 },
