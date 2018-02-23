@@ -17,7 +17,7 @@ class SkinButton : ZilchComponent {
         
         this.MainSpace = this.Space.FindObjectByName("DebugCommand").FindChildByName("TextEntry").Commands.MainSpace;
         
-        if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && !this.ButtonActivated && this.MainSpace != null) {
+        if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && !this.ButtonActivated && this.MainSpace != null && this.MainSpace.FindObjectByName("EntityPlayer") != null) {
             
             var playerProp = this.MainSpace.FindObjectByName("EntityPlayer").PlayerProperties;
             var playerSkinID = playerProp.PlayerSkin;

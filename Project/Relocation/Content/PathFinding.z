@@ -39,27 +39,34 @@ class PathFinding : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.TimeTillUpdateMemories -= event.Dt;
-        this.TimeTillNewMemory -= event.Dt;
         
-        Console.WriteLine("`this.Memories`");
-        
-        if (this.TimeTillUpdateMemories <= 0.0)
+        if(this.Player != null)
         {
-            this.UpdateMemories();
-            this.TimeTillUpdateMemories = this.UpdateMemoriesCooldown;
+            
+            this.TimeTillUpdateMemories -= event.Dt;
+            this.TimeTillNewMemory -= event.Dt;
+            
+            Console.WriteLine("`this.Memories`");
+            
+            if (this.TimeTillUpdateMemories <= 0.0)
+            {
+                this.UpdateMemories();
+                this.TimeTillUpdateMemories = this.UpdateMemoriesCooldown;
+            }
+            
+            if (this.TimeTillNewMemory <= 0.0)
+            {
+                this.CreateNewMemory();
+                this.TimeTillNewMemory = this.CreateNewMemoryCooldown;
+            }
+            
+            if (this.Player == null)
+                return;
+            
+            this.Move();
+            
         }
         
-        if (this.TimeTillNewMemory <= 0.0)
-        {
-            this.CreateNewMemory();
-            this.TimeTillNewMemory = this.CreateNewMemoryCooldown;
-        }
-        
-        if (this.Player == null)
-            return;
-        
-        this.Move();
     }
     
     function Move()
@@ -120,7 +127,7 @@ class PathFinding : ZilchComponent
     
     function CreateNewMemory()
     {
-        this.Memories.Add(this.Space.FindObjectByName("EntityPlayer").Transform.Translation);
+        this.Memories.Add(this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.Translation);
     }
     
     function TestForApproxamentlyEqual(position1 : Real3, position2 : Real3, amount : Real) : Boolean

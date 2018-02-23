@@ -5,6 +5,8 @@ class Relocation {
     
     [Static] var EntityPlayer : String = "EntityPlayer";
     
+    [Static] var Player : Cog = null;
+    
     [Static] var Space : Space = null;
     [Static] var UISpace : Space = null;
     
