@@ -1,0 +1,38 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class SettingsMenu : ZilchComponent {
+    
+    var UIAnimationButton : Cog = null;
+    var VignetteButton : Cog = null;
+    
+    function Initialize(init : CogInitializer) {
+        
+        this.UIAnimationButton = this.Space.FindObjectByName("CheckBoxAnimation");
+        this.VignetteButton = this.Space.FindObjectByName("CheckBoxVignette");
+        
+        if(this.UIAnimationButton != null) {
+            this.UIAnimationButton.CheckBox.IsChecked = GameSetting.EnableUIAnimations;
+        }
+        
+        if(this.VignetteButton != null) {
+            this.VignetteButton.CheckBox.IsChecked = GameSetting.EnableVignette;
+        }
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(this.UIAnimationButton != null) {
+            GameSetting.EnableUIAnimations = this.UIAnimationButton.CheckBox.IsChecked;
+        }
+        
+        if(this.VignetteButton != null) {
+            GameSetting.EnableVignette = this.VignetteButton.CheckBox.IsChecked;
+        }
+        
+    }
+    
+}

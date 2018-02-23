@@ -3,11 +3,7 @@
 
 class Settings : ZilchComponent {
     
-    [Property] var EnableVignette : Boolean = true;
-    
     function Initialize(init : CogInitializer) {
-        
-        Relocation.EnableVignette = this.EnableVignette;
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -15,7 +11,7 @@ class Settings : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(Relocation.EnableVignette) {
+        if(GameSetting.EnableVignette) {
             this.Space.FindObjectByName("OverlayVignette").Sprite.Visible = true;
         } else {
             this.Space.FindObjectByName("OverlayVignette").Sprite.Visible = false;

@@ -1,7 +1,7 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
-class GameSettingValue {
+class GameSetting {
     
     /* AUDIO OPTIONS */
     [Static] var MasterVolume : Real = 1.0;
@@ -9,7 +9,8 @@ class GameSettingValue {
     [Static] var SoundEffectsVolume : Real = 1.0;
     
     /* GRAPHICS OPTIONS */
-    [Static] var Vignette : Boolean = true;
+    [Static] var EnableUIAnimations : Boolean = true;
+    [Static] var EnableVignette : Boolean = true;
     [Static] var WorldGenerationRadius : Integer = 25;
     
     /* GAME OPTIONS */

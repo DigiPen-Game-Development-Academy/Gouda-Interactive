@@ -105,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-13.0740862, -3.72746253, 303.640503],
+			Vec3 Translation = [-24.095047, -23.6346169, 409.740295],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -122,10 +122,10 @@ Level =
 		EditorCameraController = 
 		{
 			ControlMode ControlMode = ZPlane,
-			float LookDistance = 303.265503,
+			float LookDistance = 409.365295,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-13.0740862, -3.72746253, 0.375000447],
+			Vec3 LookTarget = [-24.095047, -23.6346169, 0.374999911],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 

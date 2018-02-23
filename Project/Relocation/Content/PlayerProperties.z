@@ -92,7 +92,7 @@ class PlayerProperties : ZilchComponent {
         } else {
             this.CurrUnauthKillTime = 0.0;
             if(Relocation.UISpace != null) {
-                Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Visible = Relocation.EnableVignette;
+                Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Visible = GameSetting.EnableVignette;
                 Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Color = Real4(1.0);
             }
         }

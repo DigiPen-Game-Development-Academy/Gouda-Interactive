@@ -103,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-16.1595707, 0.863241911, 53.6266098],
+			Vec3 Translation = [-10.0378084, -23.8424397, 53.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -115,7 +115,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 13.3718061,
+			float Size = 18.0500622,
 		},
 		EditorCameraController = 
 		{
@@ -123,7 +123,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-16.1595707, 0.863241911, 40],
+			Vec3 LookTarget = [-10.0378084, -23.8424397, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2901,7 +2901,7 @@ Level =
 				ButtonLevelSwitcher = 
 				{
 					string Level = "",
-					float Delay = 0,
+					float Delay = 0.0500000007,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 1, 0.5],
 					bool UIAnimateEnabled = false,
