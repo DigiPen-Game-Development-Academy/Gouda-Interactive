@@ -105,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-50.7333336, 5.63029432, 188.696548],
+			Vec3 Translation = [-43.1677017, 2.92267895, 171.192383],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,15 +117,15 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 6.64023495,
+			float Size = 18.2683754,
 		},
 		EditorCameraController = 
 		{
 			ControlMode ControlMode = ZPlane,
-			float LookDistance = 183.939819,
+			float LookDistance = 166.435654,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-50.7333336, 5.63029432, 4.7567234],
+			Vec3 LookTarget = [-43.1677017, 2.92267895, 4.75672579],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -222,6 +222,8 @@ Level =
 			int PlayerSkin = 0,
 			Vec3 SpawnPosition = [-20.5, 4.5, 0],
 			bool IsInWater = false,
+			bool IsInUnauthorizedZone = false,
+			bool IsDead = false,
 			float Balance = 0,
 		},
 		Hierarchy = 
@@ -715,7 +717,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-51, 6, 0],
+			Vec3 Translation = [-50, 6, 0],
 			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -750,6 +752,78 @@ Level =
 		CaveEnteranceExit = 
 		{
 			string LevelToLoad = "5a01955c7fa1e073:CaveWorldTemp",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ac2e17cbc76d5e3:WorldBorder",
+		LinkId = 
+		{
+			uint Id = 20,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [139.5, 0, 0],
+			Vec3 Scale = [75, 200, 5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "WorldBorder",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ac2e17cbc76d5e3:WorldBorder",
+		LinkId = 
+		{
+			uint Id = 21,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-109.5, 0, 0],
+			Vec3 Scale = [75, 200, 5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "WorldBorder",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ac2e17cbc76d5e3:WorldBorder",
+		LinkId = 
+		{
+			uint Id = 22,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [15, 115.5, 0],
+			Vec3 Scale = [75, 325, 5],
+			Quat Rotation = [0, 0, 0.707106829, 0.707106829],
+		},
+		Named = 
+		{
+			string Name = "WorldBorder",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ac2e17cbc76d5e3:WorldBorder",
+		LinkId = 
+		{
+			uint Id = 23,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [15, -129.5, 0],
+			Vec3 Scale = [75, 325, 5],
+			Quat Rotation = [0, 0, 0.707106829, 0.707106829],
+		},
+		Named = 
+		{
+			string Name = "WorldBorder",
 		},
 	},
 },

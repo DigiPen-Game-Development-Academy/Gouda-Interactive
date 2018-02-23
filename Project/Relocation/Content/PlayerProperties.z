@@ -7,6 +7,8 @@ class PlayerProperties : ZilchComponent {
     [Property] var PlayerSkin : Integer = 0;
     [Property] var SpawnPosition : Real3 = Real3(0);
     [Property] var IsInWater : Boolean = false;
+    [Property] var IsInUnauthorizedZone : Boolean = false;
+    [Property] var IsDead : Boolean = false;
     [Property] var Balance : Real = 0.00;
     
     var HasMadeWaterGhost : Boolean = false;
@@ -14,6 +16,9 @@ class PlayerProperties : ZilchComponent {
     var SkinCount : Integer = 5;
     
     var UISpace : Space = null;
+    
+    var UnauthorizedKillTime : Real = 15.0;
+    var CurrUnauthKillTime : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
         
@@ -35,6 +40,12 @@ class PlayerProperties : ZilchComponent {
         if(event.OtherObject.Parent != null && event.OtherObject.Parent.Name == "BiomeWater") {
             this.IsInWater = true;
             Console.WriteLine("In Water!");
+        } else if(event.OtherObject.Name == "WorldBorder") {
+            this.IsInUnauthorizedZone = true;
+            if(this.GameSession.FindSpaceByName("MusicSpace") != null) {
+                this.GameSession.FindSpaceByName("MusicSpace").SoundSpace.PlayCue(SoundCue.WorldBorder);
+                
+            }
         }
         
         Console.WriteLine("OtherObject: `event.OtherObject.Name`");
@@ -46,6 +57,12 @@ class PlayerProperties : ZilchComponent {
         if(event.OtherObject.Parent != null && event.OtherObject.Parent.Name == "BiomeWater") {
             this.IsInWater = false;
             Console.WriteLine("Not In Water!");
+        } else if(event.OtherObject.Name == "WorldBorder") {
+            this.IsInUnauthorizedZone = false;
+            if(this.GameSession.FindSpaceByName("MusicSpace") != null) {
+                this.GameSession.FindSpaceByName("MusicSpace").SoundSpace.StopAllSounds();
+                
+            }
         }
         
     }
@@ -61,6 +78,25 @@ class PlayerProperties : ZilchComponent {
         } else {
             waterPart.SpriteParticleSystem.Visible = false;
             waterSplash.SpriteParticleSystem.Visible = false;
+        }
+        
+        if(this.IsInUnauthorizedZone) {
+            this.CurrUnauthKillTime += event.Dt;
+            if(Relocation.UISpace != null) {
+                Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Visible = true;
+                Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Color = 
+                    Real4(1.0, Real2(1.0 - this.CurrUnauthKillTime / this.UnauthorizedKillTime), 1.0);
+            }
+        } else {
+            this.CurrUnauthKillTime = 0.0;
+            if(Relocation.UISpace != null) {
+                Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Visible = Relocation.EnableVignette;
+                Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Color = Real4(1.0);
+            }
+        }
+        
+        if(this.CurrUnauthKillTime > this.UnauthorizedKillTime) {
+            this.Owner.Health.CurrentHealth = 0.0;
         }
         
     }

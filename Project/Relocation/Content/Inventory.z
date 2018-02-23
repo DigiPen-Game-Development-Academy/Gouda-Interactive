@@ -523,7 +523,7 @@ class Inventory : ZilchComponent {
                 this.InventoryContents[destSlot - 1] = tmpItem;
                 this.InventoryContentsCount[destSlot - 1] = tmpItemCt;
                 return;
-            } else if(this.InventoryContents[destSlot - 1] == 0) {
+            } else {
                 
                 this.InventoryContents[slot - 1] = 0;
                 this.InventoryContentsCount[slot - 1] = 0;
