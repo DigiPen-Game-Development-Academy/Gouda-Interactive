@@ -6,7 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "CraftingItem1",
+		string Name = "CraftingItem3",
 	},
 	Archetyped = 
 	{
@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-2, 1.70000005, 0],
+		Vec3 Translation = [2, 1.70000005, 0],
 		Vec3 Scale = [1.5, 1.5, 1.5],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -108,12 +108,12 @@ Cog =
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string FontName = "5a399d8894a1af95:consola",
+				string FontName = "5ac2973527d023e1:FontDefault",
 				uint FontSize = 60,
 				string Text = "0",
 				TextAlign Align = Left,
 				float PixelsPerUnit = 128,
-				bool Smoothing = true,
+				bool Smoothing = false,
 			},
 		},
 		Cog = 
