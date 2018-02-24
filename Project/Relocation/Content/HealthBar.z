@@ -18,12 +18,21 @@ class HealthBar : ZilchComponent {
     function OnMouseUpdate(event : ViewportMouseEvent) {
         
         this.Space.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
-        this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
-            "HP: `this.CurrentHealth` / `this.MaxHealth`",
-            "You can regain health by eating/using medkits.",
-            Real4(1.0, 0.0, 0.0, 1.0),
-            Real4(1.0)
-        );
+        if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                "HP: `this.CurrentHealth` / `this.MaxHealth`",
+                "You can regain health by eating/using medkits.",
+                Real4(1.0, 0.0, 0.0, 1.0),
+                Real4(1.0)
+            );
+        } else {
+            this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                "HP: `this.CurrentHealth` / `this.MaxHealth` (Shift)",
+                "",
+                Real4(1.0, 0.0, 0.0, 1.0),
+                Real4(1.0)
+            );
+        }
         
     }
     

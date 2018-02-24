@@ -103,7 +103,7 @@ class Tooltip : ZilchComponent {
             tooltipLore.SpriteText.Visible = true;
             tooltipBG.Sprite.Visible = true;
             
-            tooltipBG.Transform.Scale = Real3(cardWH.X + 0.5, cardWH.Y + 0.5, 1);
+            tooltipBG.Transform.Scale = Real3(cardWH.X + 0.5, cardWH.Y + 0.35, 1);
             
         }
         
@@ -121,7 +121,7 @@ class Tooltip : ZilchComponent {
         
         if(mousePos.Y < screen.CameraViewport.ScreenToWorldZPlane(Real2(0.0, screenRes.Y), 0.0).Y - ((mousePos.Y + 0.5) * 1.5)) {
             this.TooltipBottomAlign = true;
-            offsetY = (cardWH.Y + 0.5) * 1.5;
+            offsetY = (cardWH.Y + 0.35) * 1.5;
         } else {
             this.TooltipBottomAlign = false;
             offsetY = 0.0;

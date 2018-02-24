@@ -39,7 +39,7 @@ Cog =
 	{
 		string PositionX = "Left",
 		string PositionY = "Bottom",
-		Vec2 PositionOffset = [0, 0.75],
+		Vec2 PositionOffset = [0.25, 0.75],
 		float ZIndex = 5,
 		bool HideUntilPositioned = false,
 	},
@@ -72,10 +72,10 @@ Cog =
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 				string FontName = "5addaa209e091e3e:FontDefaultMonospace",
-				uint FontSize = 60,
+				uint FontSize = 128,
 				string Text = "",
 				TextAlign Align = Left,
-				float PixelsPerUnit = 128,
+				float PixelsPerUnit = 256,
 				bool Smoothing = false,
 			},
 		},
@@ -91,8 +91,8 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [9.80000019, -0.300000012, -0.0500000007],
-				Vec3 Scale = [20, 0.800000012, 1],
+				Vec3 Translation = [9.94999981, -0.300000012, -0.0500000007],
+				Vec3 Scale = [21, 0.800000012, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
