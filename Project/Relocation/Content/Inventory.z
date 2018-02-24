@@ -59,7 +59,7 @@ class Inventory : ZilchComponent {
         var inventory = this.UISpace.FindObjectByName("Inventory");
         
         // CHECK IF INVENTORY IS OPEN
-        if(this.InventoryOpen) {
+        if(this.InventoryOpen && this.Owner.Health.CurrentHealth > 0.0) {
             
             this.Owner.Crafting.OnPausedLogicUpdate(event);
             this.RefreshInventoryIcons();

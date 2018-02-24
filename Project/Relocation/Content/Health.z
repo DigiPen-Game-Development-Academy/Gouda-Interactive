@@ -59,12 +59,16 @@ class Health : ZilchComponent
             }
             else if(this.Owner.Name == Relocation.EntityPlayer)
             {
+                
                 this.Owner.RemoveComponentByName("Movement");
                 this.Owner.RemoveComponentByName("WeaponManager");
                 this.Owner.Sprite.AnimationActive = false;
                 this.Owner.Sprite.Visible = false;
                 this.Owner.FindChildByName("EntityHand").Sprite.Visible = false;
                 //this.Owner.FindChildByName("ParticleWater").SpriteParticleSystem.Visible = true;
+                
+                Relocation.UISpace.FindObjectByName("DeathScreenMenu").DeathScreenMenu.ShowMenu = true;
+                
             }
         }
         

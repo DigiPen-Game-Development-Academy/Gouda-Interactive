@@ -17,7 +17,7 @@ class PauseMenu : ZilchComponent {
             var cmd = this.Space.FindObjectByName("DebugCommand").FindChildByName("TextEntry");
             
             if(player != null) {
-                if(player.Inventory != null && !player.Inventory.InventoryOpen) {
+                if(player.Inventory != null && !player.Inventory.InventoryOpen && player.Health.CurrentHealth > 0.0) {
                     if(cmd != null && !cmd.TextEntry.CaptureKeys) {
                         this.TogglePauseMenu();
                     }

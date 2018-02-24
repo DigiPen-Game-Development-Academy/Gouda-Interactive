@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.328618348, -39.125843, 53.6266098],
+			Vec3 Translation = [-4.22356176, -25.7009163, 53.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 12.0993032,
+			float Size = 40.1711426,
 		},
 		EditorCameraController = 
 		{
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.328618348, -39.125843, 40],
+			Vec3 LookTarget = [-4.22356176, -25.7009163, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -3043,6 +3043,233 @@ Level =
 				Named = 
 				{
 					string Name = "MenuOptionsUI",
+				},
+			},
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 98,
+		},
+		Named = 
+		{
+			string Name = "DeathScreenMenu",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-28, -30, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		DeathScreenMenu = 
+		{
+		},
+		Hierarchy = 
+		{
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 99,
+				},
+				Named = 
+				{
+					string Name = "DeathMenuButtons",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, -2, 1],
+					Vec3 Scale = [2, 2, 2],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Hierarchy = 
+				{
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 100,
+						},
+						Named = 
+						{
+							string Name = "DeathText",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [0, 4, -0.5],
+							Vec3 Scale = [0.5, 0.5, 0.5],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						SpriteText = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [0.574999988, 0, 0, 1],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string FontName = "5addaa7b8f441196:FontBold",
+							uint FontSize = 150,
+							string Text = "You Died!",
+							TextAlign Align = Center,
+							float PixelsPerUnit = 64,
+							bool Smoothing = false,
+						},
+					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 101,
+						},
+						Named = 
+						{
+							string Name = "ButtonRespawn",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [0, 1.875, -0.5],
+							Vec3 Scale = [0.5, 0.5, 0.5],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						SpriteText = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 1],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string FontName = "5addaa7b8f441196:FontBold",
+							uint FontSize = 150,
+							string Text = "Respawn",
+							TextAlign Align = Center,
+							float PixelsPerUnit = 128,
+							bool Smoothing = false,
+						},
+						ButtonLevelSwitcher = 
+						{
+							string Level = "5a3bc4c73a7e1106:SurfaceWorld",
+							float Delay = 0.0500000007,
+							Vec3 DefaultColor = [1, 1, 1],
+							Vec3 HoverColor = [0.5, 1, 0.5],
+							bool UIAnimateEnabled = false,
+							bool ResumeButton = true,
+							bool ForceAnimation = false,
+							bool QuitButton = false,
+						},
+						Reactive = 
+						{
+							bool Active = true,
+							bool CaptureMouse = false,
+						},
+					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 102,
+						},
+						Named = 
+						{
+							string Name = "ButtonMainMenu",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [0, 1.125, -0.5],
+							Vec3 Scale = [0.5, 0.5, 0.5],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						SpriteText = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 1],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string FontName = "5addaa7b8f441196:FontBold",
+							uint FontSize = 150,
+							string Text = "Main Menu",
+							TextAlign Align = Center,
+							float PixelsPerUnit = 128,
+							bool Smoothing = false,
+						},
+						ButtonLevelSwitcher = 
+						{
+							string Level = "5acef7f30877b413:MainMenu",
+							float Delay = 0,
+							Vec3 DefaultColor = [1, 1, 1],
+							Vec3 HoverColor = [0.5, 0.5, 1],
+							bool UIAnimateEnabled = false,
+							bool ResumeButton = false,
+							bool ForceAnimation = false,
+							bool QuitButton = false,
+						},
+						Reactive = 
+						{
+							bool Active = true,
+							bool CaptureMouse = false,
+						},
+					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 103,
+						},
+						Named = 
+						{
+							string Name = "ButtonQuit",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [0, 0.375, -0.5],
+							Vec3 Scale = [0.5, 0.5, 0.5],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						SpriteText = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 1],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string FontName = "5addaa7b8f441196:FontBold",
+							uint FontSize = 150,
+							string Text = "Quit To Desktop",
+							TextAlign Align = Center,
+							float PixelsPerUnit = 128,
+							bool Smoothing = false,
+						},
+						ButtonLevelSwitcher = 
+						{
+							string Level = "",
+							float Delay = 0,
+							Vec3 DefaultColor = [1, 1, 1],
+							Vec3 HoverColor = [1, 0.5, 0.5],
+							bool UIAnimateEnabled = false,
+							bool ResumeButton = false,
+							bool ForceAnimation = false,
+							bool QuitButton = true,
+						},
+						Reactive = 
+						{
+							bool Active = true,
+							bool CaptureMouse = false,
+						},
+					},
 				},
 			},
 		},

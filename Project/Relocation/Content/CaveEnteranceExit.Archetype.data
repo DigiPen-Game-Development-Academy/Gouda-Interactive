@@ -14,8 +14,8 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-1.83644462, 7.97061491, 5.05497333e-08],
-		Vec3 Scale = [1, 1, 1],
+		Vec3 Translation = [-50, 6, 0],
+		Vec3 Scale = [2, 2, 2],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 1, 1, 1],
+		Vec4 Color = [0.230000019, 0.147475988, 0.0506000072, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -48,5 +48,6 @@ Cog =
 	},
 	CaveEnteranceExit = 
 	{
+		string LevelToLoad = "5a01955c7fa1e073:CaveWorldTemp",
 	},
 },

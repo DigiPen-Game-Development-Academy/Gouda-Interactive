@@ -12,10 +12,16 @@ class CaveEnteranceExit : ZilchComponent
 
     function GoToFromCave(event : CollisionEvent)
     {
-        this.Space.LastUsedEnterancePosition.LastUsedPosition = this.Owner.Transform.Translation;
         
-        this.LevelSettings.UICreator.UISpace.Destroy();
+        if(event.OtherObject.Name == Relocation.EntityPlayer) {
+            
+            this.Space.LastUsedEnterancePosition.LastUsedPosition = this.Owner.Transform.Translation;
+            
+            this.LevelSettings.UICreator.UISpace.Destroy();
+            
+            this.Space.LoadLevel(this.LevelToLoad);
+            
+        }
         
-        this.Space.LoadLevel(this.LevelToLoad);
     }
 }
