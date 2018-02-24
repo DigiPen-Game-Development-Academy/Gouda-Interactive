@@ -76,9 +76,13 @@ class AmmoBar : ZilchComponent {
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrentAmmo as Real / 
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.MaxAmmo;
                 
-                var cooldown : Real = 
+                var cooldown : Real = 0.0;
+                
+                if(this.MaxCooldown != 0.0) {
+                cooldown = 
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrCooldown as Real / 
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.Cooldown;
+                }
                 
                 var cooldownBar : Real = this.MaxScaleCooldown - (cooldown * this.MaxScaleCooldown);
                 
