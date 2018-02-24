@@ -592,15 +592,31 @@ class Inventory : ZilchComponent {
             // DROP ITEM
             if(drop && itemID != -1) {
                 
-                if(Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName) == null) {
+                if(
+                    Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName) != null && (
+                        Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).ItemDrop.ItemID == this.InventoryContents[slot - 1] && 
+                        Math.Sqrt(
+                            Math.Pow(
+                                Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).Transform.WorldTranslation.X - 
+                                this.Owner.Transform.WorldTranslation.X, 
+                                2
+                            ) + 
+                            Math.Pow(
+                                Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).Transform.WorldTranslation.Y - 
+                                this.Owner.Transform.WorldTranslation.Y,
+                                2
+                            )
+                        ) < 1.5
+                    )
+                ) {
+                    Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).ItemDrop.ItemAmount += amount;
+                } else {
                     var itemDrop = this.Space.CreateAtPosition(Archetype.ItemDrop, this.Owner.Transform.WorldTranslation + Real3(0.0, -1.0, 0.0));
                     
                     itemDrop.Name = Relocation.Items[this.InventoryContents[slot - 1]].ItemName;
                     itemDrop.ItemDrop.ItemID = itemID;
                     itemDrop.ItemDrop.ItemAmount = amount;
                     itemDrop.Sprite.SpriteSource = Relocation.Items[itemID].Sprite;
-                } else if(Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).ItemDrop.ItemID == this.InventoryContents[slot - 1]) {
-                    Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).ItemDrop.ItemAmount += amount;
                 }
                 
             }
