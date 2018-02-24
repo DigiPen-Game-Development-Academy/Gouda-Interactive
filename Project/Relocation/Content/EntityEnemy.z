@@ -1,5 +1,5 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: Kevin Panasyuk
+// CONTRIBUTORS: Kevin Panasyuk, HUDSON GREEN
 
 class EntityEnemy : ZilchComponent
 {
@@ -22,6 +22,8 @@ class EntityEnemy : ZilchComponent
     [Property] var LookDownLeft : SpriteSource;
     [Property] var LookLeft : SpriteSource;
     [Property] var LookUpLeft : SpriteSource;
+    
+    [Property] var BulletSpeed : Real = 10.0;
     
     var SpawnedFrom : Cog = null;
     
@@ -60,16 +62,23 @@ class EntityEnemy : ZilchComponent
             if (this.Owner.PathFinding.LookAtPlayer().ObjectHit.Name != "EntityPlayer")
                 return;
         
-        var lazer = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.X, this.Owner.Transform.Translation.Y, 0.1));
+        var bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.X, this.Owner.Transform.Translation.Y, 0.1));
         
-        lazer.RigidBody.Velocity = this.Owner.Orientation.WorldForward * 2;
+        var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
+        var enemyPos = this.Owner.Transform.WorldTranslation;
         
-        lazer.EntityBullet.FromPlayer = false;
-        lazer.EntityBullet.Damage = 3;
+        var dif = Real2(playerPos.X - enemyPos.X, playerPos.Y - enemyPos.Y);
+        var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
+        var velocity = Real3(dif.X / magnitude * this.BulletSpeed, dif.Y / magnitude * this.BulletSpeed, 0.0);
+        
+        bullet.RigidBody.Velocity = velocity;
+        bullet.EntityBullet.FromPlayer = false;
+        bullet.EntityBullet.Damage = 3;
+        bullet.FindChildByName("ParticleLaser").SpriteParticleSystem.Tint = Real4(1.0, 0.25, 0.25, 1.0);
         
         this.TimeTillAttack = this.AttackCooldown;
         
-        Console.WriteLine("Shoot");
+        //Console.WriteLine("Shoot");
     }
     
     function LookAtPlayer()

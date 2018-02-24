@@ -46,7 +46,7 @@ class PathFinding : ZilchComponent
             this.TimeTillUpdateMemories -= event.Dt;
             this.TimeTillNewMemory -= event.Dt;
             
-            Console.WriteLine("`this.Memories`");
+            //Console.WriteLine("`this.Memories`");
             
             if (this.TimeTillUpdateMemories <= 0.0)
             {
