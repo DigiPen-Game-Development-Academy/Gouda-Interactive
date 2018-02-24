@@ -11,6 +11,11 @@ class Health : ZilchComponent
     
     var CurrentHealth : Real;
     
+    var IsTakingDamage : Boolean = false;
+    
+    var DamageSoundCooldown : Real = 1.0;
+    var CurrDamageSoundCooldown : Real = 0.0;
+    
     function Initialize(init : CogInitializer)
     {
         if(this.LevelSettings.GetComponentByName("UICreator") != null)
@@ -24,8 +29,23 @@ class Health : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         
-        if(Zero.Keyboard.KeyIsPressed(Keys.Minus) && this.Owner.Name == Relocation.EntityPlayer) {
-            this.CurrentHealth -= 1;
+        if(this.IsTakingDamage) {
+            this.CurrDamageSoundCooldown += event.Dt;
+        } else {
+            this.CurrDamageSoundCooldown = 0.0;
+        }
+        
+        if(this.CurrDamageSoundCooldown > this.DamageSoundCooldown) {
+            this.CurrDamageSoundCooldown = 0.0;
+            this.IsTakingDamage = false;
+        }
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.LeftBracket) && this.Owner.Name == Relocation.EntityPlayer) {
+            this.DecreaseHealth(1.0);
+        }
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.RightBracket) && this.Owner.Name == Relocation.EntityPlayer && this.CurrentHealth < this.MaxHealth) {
+            this.CurrentHealth += 1.0;
         }
         
         if(this.CurrentHealth <= 0.0 && !this.IsInvincible)
@@ -66,7 +86,14 @@ class Health : ZilchComponent
     
     function DecreaseHealth(amount : Real)
     {
-        if(!this.IsInvincible)
+        if(!this.IsInvincible) {
+            if(this.CurrDamageSoundCooldown == 0.0 && this.CurrentHealth > 0) {
+                // PLAY DAMAGE SOUND
+                this.Space.SoundSpace.PlayCueAt(SoundCue.Damage, this.Owner.Transform.WorldTranslation);
+            }
+            this.IsTakingDamage = true;
+            this.CurrDamageSoundCooldown -= 0.00066;
             this.CurrentHealth -= amount;
+        }
     }
 }
