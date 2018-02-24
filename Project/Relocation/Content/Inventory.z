@@ -115,6 +115,11 @@ class Inventory : ZilchComponent {
             
             Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(false);
             
+            if(Zero.Keyboard.KeyIsPressed(Keys.F)) {
+                this.RefreshInventoryIcons();
+                this.MoveItem(this.SLOT_OFFHAND, this.SLOT_HAND);
+            }
+            
         }
         
     }

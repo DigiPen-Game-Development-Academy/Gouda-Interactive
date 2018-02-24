@@ -48,6 +48,7 @@ class PlayerProperties : ZilchComponent {
             if(this.Space.MusicPlayer.GameLevelMusicSpace != null && !this.HasPlayedBorderSong) {
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.StopAllSounds();
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.PlayCue(SoundCue.WorldBorder);
+                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch = 1.0;
                 this.HasPlayedBorderSong = true;
                 
             }
@@ -66,8 +67,8 @@ class PlayerProperties : ZilchComponent {
             this.IsInUnauthorizedZone = false;
             if(this.Space.MusicPlayer.GameLevelMusicSpace != null) {
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.StopAllSounds();
-                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch = 1.0;
-                this.Space.SoundSpace.Pitch = 1.0;
+                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch = 0.0;
+                this.Space.SoundSpace.Pitch = 0.0;
                 this.HasPlayedBorderSong = false;
                 
             }
