@@ -103,7 +103,7 @@ class Tooltip : ZilchComponent {
             tooltipLore.SpriteText.Visible = true;
             tooltipBG.Sprite.Visible = true;
             
-            tooltipBG.Transform.Scale = Real3(cardWH.X + 0.5, cardWH.Y + 0.2, 1);
+            tooltipBG.Transform.Scale = Real3(cardWH.X + 0.5, cardWH.Y + 0.5, 1);
             
         }
         
