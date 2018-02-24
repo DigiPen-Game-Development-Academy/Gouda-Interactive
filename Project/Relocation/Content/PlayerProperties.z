@@ -9,6 +9,7 @@ class PlayerProperties : ZilchComponent {
     [Property] var IsInWater : Boolean = false;
     [Property] var IsInUnauthorizedZone : Boolean = false;
     [Property] var IsDead : Boolean = false;
+    [Property] var ShowPlayerInfoTooltip : Boolean = true;
     [Property] var Balance : Real = 0.00;
     
     var HasMadeWaterGhost : Boolean = false;
@@ -42,21 +43,26 @@ class PlayerProperties : ZilchComponent {
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
         
-        Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
-        if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                "`this.PlayerName`",
-                "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
-                Real4(0.0, 1.0, 0.0, 1.0),
-                Real4(1.0)
-            );
-        } else {
-            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                "`this.PlayerName` (Shift)",
-                "",
-                Real4(0.0, 1.0, 0.0, 1.0),
-                Real4(1.0)
-            );
+        if(this.ShowPlayerInfoTooltip) {
+            
+            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
+            
+            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                    "`this.PlayerName`",
+                    "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
+                    Real4(0.0, 1.0, 0.0, 1.0),
+                    Real4(1.0)
+                );
+            } else {
+                Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                    "`this.PlayerName` (Shift)",
+                    "",
+                    Real4(0.0, 1.0, 0.0, 1.0),
+                    Real4(1.0)
+                );
+            }
+            
         }
         
     }
