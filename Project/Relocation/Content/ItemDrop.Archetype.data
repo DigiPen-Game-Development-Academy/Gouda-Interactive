@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = false,
-		bool Mode2D = false,
+		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -64,5 +64,10 @@ Cog =
 		int ItemAmount = 0,
 		int ItemData = 0,
 		float DespawnTime = 5,
+	},
+	Reactive = 
+	{
+		bool Active = true,
+		bool CaptureMouse = false,
 	},
 },
