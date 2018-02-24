@@ -42,7 +42,7 @@ class HealthBar : ZilchComponent {
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).Health.CurrentHealth / 
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).Health.MaxHealth;
                 
-                this.Owner.Transform.Scale = Real3(hp * this.MaxScaleHP, 0.5, 1);
+                this.Owner.Transform.Scale = Math.Lerp(Real3(this.Owner.Transform.Scale.X, 0.5, 1), Real3(hp * this.MaxScaleHP, 0.5, 1), event.Dt * 10);
             }
         }
     }

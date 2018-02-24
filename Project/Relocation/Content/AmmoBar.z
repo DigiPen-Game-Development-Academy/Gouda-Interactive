@@ -90,7 +90,7 @@ class AmmoBar : ZilchComponent {
                     cooldownBar = this.MaxScaleCooldown;
                 }
                 
-                this.Owner.Transform.Scale = Real3(ammo * this.MaxScaleAmmo, 0.25, 1);
+                this.Owner.Transform.Scale = Math.Lerp(Real3(this.Owner.Transform.Scale.X, 0.25, 1), Real3(ammo * this.MaxScaleAmmo, 0.25, 1), event.Dt * 10);
                 this.Owner.Parent.FindChildByName("CooldownBar").Transform.Scale = Real3(cooldownBar, 0.25, 1.25);
                 
             }
