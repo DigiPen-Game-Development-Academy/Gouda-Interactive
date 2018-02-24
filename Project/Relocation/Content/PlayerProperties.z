@@ -46,7 +46,7 @@ class PlayerProperties : ZilchComponent {
         } else if(event.OtherObject.Name == "WorldBorder") {
             this.IsInUnauthorizedZone = true;
             if(this.Space.MusicPlayer.GameLevelMusicSpace != null && !this.HasPlayedBorderSong) {
-                //this.GameSession.FindSpaceByName("MusicSpace").SoundSpace.PlayCue(SoundCue.WorldBorder);
+                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.StopAllSounds();
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.PlayCue(SoundCue.WorldBorder);
                 this.HasPlayedBorderSong = true;
                 
@@ -93,7 +93,7 @@ class PlayerProperties : ZilchComponent {
             if(this.CurrUnauthKillTime < this.UnauthorizedKillTime) {
                 this.CurrUnauthKillTime += event.Dt;
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch -= event.Dt / this.UnauthorizedKillTime;
-                this.Space.SoundSpace.Pitch -= event.Dt / (this.UnauthorizedKillTime / 2);
+                this.Space.SoundSpace.Pitch -= event.Dt / (this.UnauthorizedKillTime / 3);
             } else {
                 this.CurrUnauthKillTime = this.UnauthorizedKillTime;
             }
