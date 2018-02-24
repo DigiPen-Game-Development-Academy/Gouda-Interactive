@@ -47,8 +47,8 @@ class ItemDrop : ZilchComponent {
         } else if(event.OtherObject.Name == this.Owner.Name) {
             
             if(this.CurrLifetime > event.OtherObject.ItemDrop.CurrLifetime && event.OtherObject.ItemDrop.ItemID == this.ItemID) {
-                event.OtherObject.ItemDrop.ItemAmount += this.ItemAmount;
-                this.Owner.Destroy();
+                //event.OtherObject.ItemDrop.ItemAmount += this.ItemAmount;
+                //this.Owner.Destroy();
             } else if(this.CurrLifetime >= event.OtherObject.ItemDrop.CurrLifetime) {
                 var rand = Random();
                 this.Owner.Transform.Translation += Real3(rand.Range(-0.25, 0.25), 0.0, 0.0);

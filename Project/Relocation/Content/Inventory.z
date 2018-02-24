@@ -592,11 +592,16 @@ class Inventory : ZilchComponent {
             // DROP ITEM
             if(drop && itemID != -1) {
                 
-                var itemDrop = this.Space.CreateAtPosition(Archetype.ItemDrop, this.Owner.Transform.WorldTranslation + Real3(0.0, -1.0, 0.0));
-                
-                itemDrop.ItemDrop.ItemID = itemID;
-                itemDrop.ItemDrop.ItemAmount = amount;
-                itemDrop.Sprite.SpriteSource = Relocation.Items[itemID].Sprite;
+                if(Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName) == null) {
+                    var itemDrop = this.Space.CreateAtPosition(Archetype.ItemDrop, this.Owner.Transform.WorldTranslation + Real3(0.0, -1.0, 0.0));
+                    
+                    itemDrop.Name = Relocation.Items[this.InventoryContents[slot - 1]].ItemName;
+                    itemDrop.ItemDrop.ItemID = itemID;
+                    itemDrop.ItemDrop.ItemAmount = amount;
+                    itemDrop.Sprite.SpriteSource = Relocation.Items[itemID].Sprite;
+                } else if(Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).ItemDrop.ItemID == this.InventoryContents[slot - 1]) {
+                    Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).ItemDrop.ItemAmount += amount;
+                }
                 
             }
             
