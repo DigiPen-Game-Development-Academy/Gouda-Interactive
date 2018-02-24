@@ -105,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.41896296, 5.89127254, 248.667725],
+			Vec3 Translation = [-30.0749569, 18.2306671, 248.667725],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 7.42738199,
+			float Size = 49.6586037,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +125,7 @@ Level =
 			float LookDistance = 248.292725,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-2.41896296, 5.89127254, 0.375000387],
+			Vec3 LookTarget = [-30.0749569, 18.2306671, 0.374999225],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -579,48 +579,21 @@ Level =
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
 		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a3bcb07ddecc85a:BuildingHut",
-		LinkId = 
+		SoundEmitter = 
 		{
-			uint Id = 12,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-9.5, 7, 1],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "BuildingHut",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5ac2f985abfc1c64:BuildingShop",
-		LinkId = 
-		{
-			uint Id = 13,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [5, 6, 1],
-			Vec3 Scale = [1.5, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "BuildingShop",
+			float Volume = 1,
+			float Pitch = 0,
+			float PitchSemitones = 0,
+			bool UsePitchSemitones = false,
+			bool Positional = false,
+			int Version = 1,
 		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 12,
 		},
 		Named = 
 		{
@@ -660,17 +633,26 @@ Level =
 			Vec3 Offset = [0, -1, 0],
 			Vec3 Size = [1.375, 0.550000012, 1.375],
 		},
+		SoundEmitter = 
+		{
+			float Volume = 1,
+			float Pitch = 0,
+			float PitchSemitones = 0,
+			bool UsePitchSemitones = false,
+			bool Positional = true,
+			int Version = 1,
+		},
 		Hierarchy = 
 		{
 			Cog = 
 			{
 				LinkId = 
 				{
-					uint Id = 15,
+					uint Id = 13,
 				},
 				Named = 
 				{
-					string Name = "BuildingSiren",
+					string Name = "BuildingSirenHorn",
 				},
 				Transform = 
 				{
@@ -701,11 +683,11 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 16,
+					uint Id = 14,
 				},
 				Named = 
 				{
-					string Name = "BuildingSiren",
+					string Name = "BuildingSirenHorn",
 				},
 				Transform = 
 				{
@@ -732,6 +714,42 @@ Level =
 					uint StartFrame = 0,
 				},
 			},
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a3bcb07ddecc85a:BuildingHut",
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-9.5, 7, 1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BuildingHut",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ac2f985abfc1c64:BuildingShop",
+		LinkId = 
+		{
+			uint Id = 16,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [5, 6, 1],
+			Vec3 Scale = [1.5, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BuildingShop",
 		},
 	},
 	ArchetypeInstance = 

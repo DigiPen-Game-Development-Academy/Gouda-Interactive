@@ -113,6 +113,7 @@ class PlayerProperties : ZilchComponent {
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.StopAllSounds();
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch = 0.0;
                 this.Space.SoundSpace.Pitch = 0.0;
+                this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Pitch = 0.0;
                 this.HasPlayedBorderSong = false;
                 
             }
@@ -131,7 +132,7 @@ class PlayerProperties : ZilchComponent {
             waterSplash.SpriteParticleSystem.Visible = true;
             waterSplash.SphericalParticleEmitter.Active = true;
             if(!this.StopBiomeSoundCue) {
-                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.PlayCue(SoundCue.LakeDay);
+                this.Space.FindObjectByName("BiomeWater").SoundEmitter.PlayCue(SoundCue.LakeDay);
                 this.StopBiomeSoundCue = true;
             }
             this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Volume = GameSetting.SoundEffectsVolume;
@@ -141,12 +142,12 @@ class PlayerProperties : ZilchComponent {
             waterSplash.SpriteParticleSystem.Visible = true;
             waterSplash.SphericalParticleEmitter.Active = false;
             if(this.StopBiomeSoundCue && this.CurrBiomeChangeTime > this.BiomeChangeTime) {
-                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.StopAllSounds();
-                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Volume = GameSetting.SoundEffectsVolume;
+                this.Space.FindObjectByName("BiomeWater").SoundEmitter.Stop();
+                this.Space.FindObjectByName("BiomeWater").SoundEmitter.Volume = GameSetting.SoundEffectsVolume;
                 this.StopBiomeSoundCue = false;
                 this.CurrBiomeChangeTime = 0.0;
             } else if(this.CurrBiomeChangeTime <= 1.0 && this.StopBiomeSoundCue && this.CurrBiomeChangeTime > this.BiomeChangeTime / 2) {
-                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Volume -= event.Dt * 2;
+                this.Space.FindObjectByName("BiomeWater").SoundEmitter.Volume -= event.Dt * 2;
             }
             
             this.CurrBiomeChangeTime += event.Dt;
@@ -161,6 +162,7 @@ class PlayerProperties : ZilchComponent {
                 this.CurrUnauthKillTime += event.Dt;
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch -= event.Dt / this.UnauthorizedKillTime;
                 this.Space.SoundSpace.Pitch -= event.Dt / (this.UnauthorizedKillTime / 3);
+                this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Pitch = this.Space.SoundSpace.Pitch;
             } else {
                 this.CurrUnauthKillTime = this.UnauthorizedKillTime;
             }
@@ -189,9 +191,10 @@ class PlayerProperties : ZilchComponent {
         // STORM SOUNDS
         if(this.StormSoundsActive && !this.StormSoundsPlayed) {
             this.StormSoundsPlayed = true;
-            this.Space.SoundSpace.PlayCueAt(SoundCue.StormSiren, Real3(-3.5, 6, 0));
+            this.Space.FindObjectByName("BuildingSiren").SoundEmitter.PlayCue(SoundCue.StormSiren);
+            this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Volume = GameSetting.SoundEffectsVolume;
         } else if(!this.StormSoundsActive) {
-            this.Space.SoundSpace.StopAllSounds();
+            this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Stop();
             this.StormSoundsPlayed = false;
         }
         
