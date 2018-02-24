@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-20.5, 4.5, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -86,6 +86,11 @@ Cog =
 		bool IsInUnauthorizedZone = false,
 		bool IsDead = false,
 		float Balance = 0,
+	},
+	Reactive = 
+	{
+		bool Active = true,
+		bool CaptureMouse = false,
 	},
 	Hierarchy = 
 	{

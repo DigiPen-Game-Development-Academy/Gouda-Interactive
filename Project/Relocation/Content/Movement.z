@@ -189,8 +189,9 @@ class Movement : ZilchComponent {
                 var playerPos = this.Owner.Transform.WorldTranslation;
                 var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
                 var dif = Real2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
+                var lookAmount = 8;
                 
-                cam.Transform.Translation = Math.Lerp(cam.Transform.Translation, Real3(dif.X / 10, dif.Y / 10, 40), event.Dt * 4);
+                cam.Transform.Translation = Math.Lerp(cam.Transform.Translation, Real3(dif.X / lookAmount, dif.Y / lookAmount, 40), event.Dt * 4);
                 
                 if(Relocation.DebugMode == true) {
                     cam.Camera.Size = 50;
