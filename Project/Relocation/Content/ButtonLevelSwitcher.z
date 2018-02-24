@@ -9,6 +9,7 @@ class ButtonLevelSwitcher : ZilchComponent {
     [Property] var HoverColor : Real3 = Real3(1.0);
     [Property] var UIAnimateEnabled : Boolean = true;
     [Property] var ResumeButton : Boolean = false;
+    [Property] var ForceAnimation : Boolean = false;
     [Property] var QuitButton : Boolean = false;
     
     var CurrDelay : Real = 0.0;
@@ -63,7 +64,7 @@ class ButtonLevelSwitcher : ZilchComponent {
         
         if(this.ButtonClicked) {
             
-            if((GameSetting.EnableUIAnimations && this.CurrDelay > this.Delay) || (!GameSetting.EnableUIAnimations && this.CurrDelay > 0.25)) {
+            if(((GameSetting.EnableUIAnimations || this.ForceAnimation) && this.CurrDelay > this.Delay) || (!GameSetting.EnableUIAnimations && this.CurrDelay > 0.25)) {
                 
                 Relocation.ButtonFadeout = false;
                 Relocation.CursorType = "Default";
@@ -90,6 +91,7 @@ class ButtonLevelSwitcher : ZilchComponent {
                 }
                 
                 this.ButtonClicked = false;
+                this.Owner.SpriteText.Color = Real4(this.DefaultColor, this.Owner.SpriteText.Color.W);
                 
             } else {
                 this.CurrDelay += event.Dt;

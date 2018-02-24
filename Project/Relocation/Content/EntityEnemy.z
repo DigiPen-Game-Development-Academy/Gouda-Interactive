@@ -83,7 +83,7 @@ class EntityEnemy : ZilchComponent
     
     function LookAtPlayer()
     {
-        // Look at playerw
+        // Look at player
         this.Owner.Orientation.LookAtPoint(this.Player.Transform.Translation);
         
         // Make enemy sprite face up
