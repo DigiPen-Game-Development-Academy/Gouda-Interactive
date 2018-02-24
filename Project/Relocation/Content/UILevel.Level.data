@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-7.26796341, -0.565351605, 53.6266098],
+			Vec3 Translation = [-7.20878553, 1.55025852, 53.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 19.9483929,
+			float Size = 6.64024687,
 		},
 		EditorCameraController = 
 		{
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-7.26796341, -0.565351605, 40],
+			Vec3 LookTarget = [-7.20878553, 1.55025852, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -1532,7 +1532,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-3.29999995, 1.89999998, 0],
+					Vec3 Translation = [-3.31500006, 1.89999998, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -1565,7 +1565,7 @@ Level =
 							SpriteGeometryMode GeometryMode = ZPlane,
 							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 							string FontName = "5ac2973527d023e1:FontDefault",
-							uint FontSize = 128,
+							uint FontSize = 126,
 							string Text = "Astronaut Zero ¡",
 							TextAlign Align = Center,
 							float PixelsPerUnit = 128,
@@ -1585,7 +1585,7 @@ Level =
 						Transform = 
 						{
 							Vec3 Translation = [0, -0.600000024, 1],
-							Vec3 Scale = [7, 1.10000002, 1],
+							Vec3 Scale = [7.5999999, 1.10000002, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
 						Sprite = 
