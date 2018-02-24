@@ -3,6 +3,7 @@ class Tooltip : ZilchComponent {
     var TooltipActive : Boolean = false;
     var UseMousePosition : Boolean = true;
     var TooltipLeftAlign : Boolean = false;
+    var TooltipBottomAlign : Boolean = false;
     
     var TooltipName : String = "";
     var TooltipLore : String = "";
@@ -106,20 +107,29 @@ class Tooltip : ZilchComponent {
             
         }
         
-        var offset = 0.0;
+        var offsetX = 0.0;
+        var offsetY = 0.0;
         
         // TOOLTIP ALIGN
-        if(mousePos.X > screen.CameraViewport.ScreenToWorldZPlane(Real2(screenRes.X, 0.0), 0.0).X - ((cardWH.X + 0.5) * 1.5)) {
+        if(mousePos.X > screen.CameraViewport.ScreenToWorldZPlane(Real2(screenRes.X, 0.0), 0.0).X - ((mousePos.X + 0.5) * 1.5)) {
             this.TooltipLeftAlign = true;
-            offset = -((cardWH.X + 0.5) * 1.5);
+            offsetX = -((cardWH.X + 0.5) * 1.5);
         } else {
             this.TooltipLeftAlign = false;
-            offset = 0.0;
+            offsetX = 0.0;
+        }
+        
+        if(mousePos.Y < screen.CameraViewport.ScreenToWorldZPlane(Real2(0.0, screenRes.Y), 0.0).Y - ((mousePos.Y + 0.5) * 1.5)) {
+            this.TooltipBottomAlign = true;
+            offsetY = (cardWH.Y + 0.2) * 1.5;
+        } else {
+            this.TooltipBottomAlign = false;
+            offsetY = 0.0;
         }
         
         // SET POSITION
         if(this.UseMousePosition) {
-            this.Owner.Transform.WorldTranslation = Real3(mousePos.X + offset, mousePos.Y, mousePos.Z);
+            this.Owner.Transform.WorldTranslation = Real3(mousePos.X + offsetX, mousePos.Y + offsetY, mousePos.Z);
         } else {
             this.Owner.Transform.WorldTranslation = Real3(this.TooltipPosition, 15.0);
         }
