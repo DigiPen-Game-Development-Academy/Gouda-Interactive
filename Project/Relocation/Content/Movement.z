@@ -14,6 +14,12 @@ class Movement : ZilchComponent {
     
     function Initialize(init : CogInitializer) {
         
+        var weapon = this.Owner.FindChildByName("EntityHand");
+        
+        weapon.Transform.Translation = Real3(-0.3, -0.15, 0.05);
+        weapon.Sprite.StartFrame = 2;
+        weapon.Sprite.FlipX = false;
+        
         this.UISpace = this.LevelSettings.UICreator.UISpace;
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);

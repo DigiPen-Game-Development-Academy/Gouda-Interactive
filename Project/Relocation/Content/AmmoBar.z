@@ -12,7 +12,7 @@ class AmmoBar : ZilchComponent {
     var CurrentCooldown : Real = 0.0;
     var MaxCooldown : Real = 0.0;
     
-    var CurrCooldownStr : String = "N/A";
+    var CurrCooldownStr : String = "N/A!";
     
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
@@ -30,10 +30,17 @@ class AmmoBar : ZilchComponent {
                 Real4(1.0, 0.75, 0.0, 1.0),
                 Real4(0.0, 0.0, 1.0, 1.0)
             );
-        } else {
+        } else if(this.CurrCooldownStr != "`0`   ") {
             this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
                 "Ammo: N/A",
                 "Cooldown: `this.CurrCooldownStr.SubStringFromRuneIndices(0, 4)` / `this.MaxCooldown`",
+                Real4(1.0, 0.75, 0.0, 1.0),
+                Real4(0.0, 0.0, 1.0, 1.0)
+            );
+        } else {
+            this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                "Ammo: N/A",
+                "Cooldown: N/A",
                 Real4(1.0, 0.75, 0.0, 1.0),
                 Real4(0.0, 0.0, 1.0, 1.0)
             );
@@ -58,7 +65,7 @@ class AmmoBar : ZilchComponent {
                 this.CurrentCooldown = Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrCooldown;
                 this.MaxCooldown = Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.Cooldown;
                 
-                this.CurrCooldownStr = "`this.MaxCooldown as Real - this.CurrentCooldown`   ";
+                this.CurrCooldownStr = "`this.MaxCooldown as Real - this.CurrentCooldown as Real`   ";
                 
                 var ammo : Real = 
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrentAmmo as Real / 
