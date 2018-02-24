@@ -24,6 +24,9 @@ class PlayerProperties : ZilchComponent {
     var StopBiomeSoundCue : Boolean = false;
     var QueueBiomeChange : Boolean = false;
     
+    var StormSoundsActive : Boolean = false;
+    var StormSoundsPlayed : Boolean = false;
+    
     var BiomeChangeTime : Real = 1.5;
     var CurrBiomeChangeTime : Real = 0.0;
     
@@ -151,6 +154,7 @@ class PlayerProperties : ZilchComponent {
             
         }
         
+        // CHECK IF GOING INTO UNCHARTED TERRRITORY (PAST WORLD BORDER)
         if(this.IsInUnauthorizedZone) {
             
             if(this.CurrUnauthKillTime < this.UnauthorizedKillTime) {
@@ -175,6 +179,20 @@ class PlayerProperties : ZilchComponent {
                 Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Visible = GameSetting.EnableVignette;
                 Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Color = Real4(1.0);
             }
+        }
+        
+        // TRIGGER STORM
+        if(Zero.Keyboard.KeyIsPressed(Keys.Four)) {
+            this.StormSoundsActive = !this.StormSoundsActive;
+        }
+        
+        // STORM SOUNDS
+        if(this.StormSoundsActive && !this.StormSoundsPlayed) {
+            this.StormSoundsPlayed = true;
+            this.Space.SoundSpace.PlayCueAt(SoundCue.StormSiren, Real3(-3.5, 6, 0));
+        } else if(!this.StormSoundsActive) {
+            this.Space.SoundSpace.StopAllSounds();
+            this.StormSoundsPlayed = false;
         }
         
         if(this.CurrUnauthKillTime > this.UnauthorizedKillTime) {

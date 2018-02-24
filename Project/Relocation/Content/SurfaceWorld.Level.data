@@ -105,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-20.4535713, 4.91395473, 248.667725],
+			Vec3 Translation = [-2.41896296, 5.89127254, 248.667725],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 4.45108271,
+			float Size = 7.42738199,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +125,7 @@ Level =
 			float LookDistance = 248.292725,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-20.4535713, 4.91395473, 0.374999821],
+			Vec3 LookTarget = [-2.41896296, 5.89127254, 0.375000387],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -616,12 +616,130 @@ Level =
 			string Name = "BuildingShop",
 		},
 	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 14,
+		},
+		Named = 
+		{
+			string Name = "BuildingSiren",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-3.5, 6, 1],
+			Vec3 Scale = [0.0500000007, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.404999971, 0.404999971, 0.404999971, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, -1, 0],
+			Vec3 Size = [1.375, 0.550000012, 1.375],
+		},
+		Hierarchy = 
+		{
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 15,
+				},
+				Named = 
+				{
+					string Name = "BuildingSiren",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [5, 1.25, 3],
+					Vec3 Scale = [0.100000016, 4.00000048, 0.25],
+					Quat Rotation = [0, 0, -0.707107604, 0.707105935],
+				},
+				Sprite = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [0.610000014, 0.610000014, 0.610000014, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
+					bool RenderMask = false,
+					bool FlipX = false,
+					bool FlipY = false,
+					bool AnimationActive = true,
+					float AnimationSpeed = 1,
+					uint StartFrame = 0,
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 16,
+				},
+				Named = 
+				{
+					string Name = "BuildingSiren",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [-5, 1.25, 4],
+					Vec3 Scale = [0.100000001, 4, 0.25],
+					Quat Rotation = [0, 0, 0.707107604, 0.707105935],
+				},
+				Sprite = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [0.404999971, 0.404999971, 0.404999971, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string SpriteSource = "5a3bcb5cf3a2d198:BuildingHut",
+					bool RenderMask = false,
+					bool FlipX = false,
+					bool FlipY = false,
+					bool AnimationActive = true,
+					float AnimationSpeed = 1,
+					uint StartFrame = 0,
+				},
+			},
+		},
+	},
 	ArchetypeInstance = 
 	{
 		string Name = "5a3bcb07ddecc85a:BuildingHut",
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 17,
 		},
 		Transform = 
 		{
@@ -639,7 +757,7 @@ Level =
 		string Name = "5a3bcb07ddecc85a:BuildingHut",
 		LinkId = 
 		{
-			uint Id = 15,
+			uint Id = 18,
 		},
 		Transform = 
 		{
@@ -657,7 +775,7 @@ Level =
 		string Name = "5a3bcb07ddecc85a:BuildingHut",
 		LinkId = 
 		{
-			uint Id = 16,
+			uint Id = 19,
 		},
 		Transform = 
 		{
@@ -675,7 +793,7 @@ Level =
 		string Name = "5a3bcb07ddecc85a:BuildingHut",
 		LinkId = 
 		{
-			uint Id = 17,
+			uint Id = 20,
 		},
 		Transform = 
 		{
@@ -693,7 +811,7 @@ Level =
 		string Name = "5a3bcb07ddecc85a:BuildingHut",
 		LinkId = 
 		{
-			uint Id = 18,
+			uint Id = 21,
 		},
 		Transform = 
 		{
@@ -710,7 +828,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 19,
+			uint Id = 22,
 		},
 		Named = 
 		{
@@ -764,7 +882,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 20,
+			uint Id = 23,
 		},
 		Transform = 
 		{
@@ -782,7 +900,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 21,
+			uint Id = 24,
 		},
 		Transform = 
 		{
@@ -800,7 +918,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 22,
+			uint Id = 25,
 		},
 		Transform = 
 		{
@@ -818,7 +936,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 23,
+			uint Id = 26,
 		},
 		Transform = 
 		{
@@ -836,7 +954,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 24,
+			uint Id = 27,
 		},
 		Transform = 
 		{
