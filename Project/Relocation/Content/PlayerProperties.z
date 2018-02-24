@@ -9,7 +9,6 @@ class PlayerProperties : ZilchComponent {
     [Property] var IsInWater : Boolean = false;
     [Property] var IsInUnauthorizedZone : Boolean = false;
     [Property] var IsDead : Boolean = false;
-    [Property] var ShowPlayerInfoTooltip : Boolean = true;
     [Property] var Balance : Real = 0.00;
     
     var HasMadeWaterGhost : Boolean = false;
@@ -43,7 +42,7 @@ class PlayerProperties : ZilchComponent {
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
         
-        if(this.ShowPlayerInfoTooltip) {
+        if(GameSetting.PlayerTooltip) {
             
             Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
             

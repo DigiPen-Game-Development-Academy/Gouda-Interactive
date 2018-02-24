@@ -14,6 +14,10 @@ class GameSetting {
     [Static] var WorldGenerationRadius : Integer = 25;
     
     /* GAME OPTIONS */
+    [Static] var PlayerTooltip : Boolean = true;
+    [Static] var EnemyTooltip : Boolean = true;
+    
+    /* GAME OPTIONS */
     [Static] var Difficulty : Integer = 2;
     //[Static] var . . .
     

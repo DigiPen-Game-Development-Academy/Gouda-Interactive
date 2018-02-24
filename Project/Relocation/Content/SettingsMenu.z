@@ -7,6 +7,13 @@ class SettingsMenu : ZilchComponent {
     
     var UIAnimationButton : Cog = null;
     var VignetteButton : Cog = null;
+    
+    var PlayerTooltipButton : Cog = null;
+    var EnemyTooltipButton : Cog = null;
+    
+    var MusicVolumeSlider : Cog = null;
+    var SoundVolumeSlider : Cog = null;
+    
     var MenuOpen : Boolean = false;
     
     function Initialize(init : CogInitializer) {
@@ -18,12 +25,34 @@ class SettingsMenu : ZilchComponent {
         this.UIAnimationButton = this.Space.FindObjectByName("CheckBoxAnimation");
         this.VignetteButton = this.Space.FindObjectByName("CheckBoxVignette");
         
+        this.PlayerTooltipButton = this.Space.FindObjectByName("CheckBoxPlayerTooltip");
+        this.EnemyTooltipButton = this.Space.FindObjectByName("CheckBoxEnemyTooltip");
+        
+        this.MusicVolumeSlider = this.Space.FindObjectByName("ButtonMusicVolume");
+        this.SoundVolumeSlider = this.Space.FindObjectByName("ButtonSoundVolume");
+        
         if(this.UIAnimationButton != null) {
             this.UIAnimationButton.CheckBox.IsChecked = GameSetting.EnableUIAnimations;
         }
         
         if(this.VignetteButton != null) {
             this.VignetteButton.CheckBox.IsChecked = GameSetting.EnableVignette;
+        }
+        
+        if(this.PlayerTooltipButton != null) {
+            this.PlayerTooltipButton.CheckBox.IsChecked = GameSetting.PlayerTooltip;
+        }
+        
+        if(this.EnemyTooltipButton != null) {
+            this.EnemyTooltipButton.CheckBox.IsChecked = GameSetting.EnemyTooltip;
+        }
+        
+        if(this.MusicVolumeSlider != null) {
+            this.MusicVolumeSlider.Slider.CurrentAmount = GameSetting.MusicVolume * 100;
+        }
+        
+        if(this.SoundVolumeSlider != null) {
+            this.SoundVolumeSlider.Slider.CurrentAmount = GameSetting.SoundEffectsVolume * 100;
         }
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -64,6 +93,22 @@ class SettingsMenu : ZilchComponent {
         
         if(this.VignetteButton != null) {
             GameSetting.EnableVignette = this.VignetteButton.CheckBox.IsChecked;
+        }
+        
+        if(this.PlayerTooltipButton != null) {
+            GameSetting.PlayerTooltip = this.PlayerTooltipButton.CheckBox.IsChecked;
+        }
+        
+        if(this.EnemyTooltipButton != null) {
+            GameSetting.EnemyTooltip = this.EnemyTooltipButton.CheckBox.IsChecked;
+        }
+        
+        if(this.MusicVolumeSlider != null) {
+            GameSetting.MusicVolume = this.MusicVolumeSlider.Slider.CurrentAmount / 100.0;
+        }
+        
+        if(this.SoundVolumeSlider != null) {
+            GameSetting.SoundEffectsVolume = this.SoundVolumeSlider.Slider.CurrentAmount / 100.0;
         }
         
     }
