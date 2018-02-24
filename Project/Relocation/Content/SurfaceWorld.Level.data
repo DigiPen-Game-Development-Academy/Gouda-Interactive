@@ -105,13 +105,13 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-24.095047, -23.6346169, 409.740295],
+			Vec3 Translation = [-56.6627426, -43.6346321, 248.667725],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
 		Camera = 
 		{
-			ProjectionMode ProjectionMode = Perspective,
+			ProjectionMode ProjectionMode = Orthographic,
 			Facing Facing = NegativeZ,
 			CameraTransparentSort TransparentSort = ZDepth,
 			float FieldOfView = 45,
@@ -122,10 +122,10 @@ Level =
 		EditorCameraController = 
 		{
 			ControlMode ControlMode = ZPlane,
-			float LookDistance = 409.365295,
+			float LookDistance = 248.292725,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-24.095047, -23.6346169, 0.374999911],
+			Vec3 LookTarget = [-56.6627426, -43.6346321, 0.374998033],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -519,6 +519,24 @@ Level =
 		},
 		Transform = 
 		{
+			Vec3 Translation = [-74.4000015, 72.25, 0],
+			Vec3 Scale = [75, 100, 5],
+			Quat Rotation = [0, 0, -0.382683456, 0.923879504],
+		},
+		Named = 
+		{
+			string Name = "WorldBorder",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ac2e17cbc76d5e3:WorldBorder",
+		LinkId = 
+		{
+			uint Id = 20,
+		},
+		Transform = 
+		{
 			Vec3 Translation = [15, 115.5, 0],
 			Vec3 Scale = [75, 325, 5],
 			Quat Rotation = [0, 0, 0.707106829, 0.707106829],
@@ -533,7 +551,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 20,
+			uint Id = 21,
 		},
 		Transform = 
 		{

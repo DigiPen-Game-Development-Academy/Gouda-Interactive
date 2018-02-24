@@ -12,12 +12,13 @@ class PlayerProperties : ZilchComponent {
     [Property] var Balance : Real = 0.00;
     
     var HasMadeWaterGhost : Boolean = false;
+    var HasPlayedBorderSong : Boolean = false;
     
     var SkinCount : Integer = 5;
     
     var UISpace : Space = null;
     
-    var UnauthorizedKillTime : Real = 15.0;
+    var UnauthorizedKillTime : Real = 18.0;
     var CurrUnauthKillTime : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
@@ -44,8 +45,10 @@ class PlayerProperties : ZilchComponent {
             Console.WriteLine("In Water!");
         } else if(event.OtherObject.Name == "WorldBorder") {
             this.IsInUnauthorizedZone = true;
-            if(this.GameSession.FindSpaceByName("MusicSpace") != null) {
-                this.GameSession.FindSpaceByName("MusicSpace").SoundSpace.PlayCue(SoundCue.WorldBorder);
+            if(this.Space.MusicPlayer.GameLevelMusicSpace != null && !this.HasPlayedBorderSong) {
+                //this.GameSession.FindSpaceByName("MusicSpace").SoundSpace.PlayCue(SoundCue.WorldBorder);
+                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.PlayCue(SoundCue.WorldBorder);
+                this.HasPlayedBorderSong = true;
                 
             }
         }
@@ -61,8 +64,9 @@ class PlayerProperties : ZilchComponent {
             Console.WriteLine("Not In Water!");
         } else if(event.OtherObject.Name == "WorldBorder") {
             this.IsInUnauthorizedZone = false;
-            if(this.GameSession.FindSpaceByName("MusicSpace") != null) {
-                this.GameSession.FindSpaceByName("MusicSpace").SoundSpace.StopAllSounds();
+            if(this.Space.MusicPlayer.GameLevelMusicSpace != null) {
+                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.PlayCue(SoundCue.WorldBorder);
+                this.HasPlayedBorderSong = false;
                 
             }
         }
@@ -84,6 +88,7 @@ class PlayerProperties : ZilchComponent {
         
         if(this.IsInUnauthorizedZone) {
             this.CurrUnauthKillTime += event.Dt;
+            this.Owner.Health.CurrentHealth -= event.Dt * 1.5;
             if(Relocation.UISpace != null) {
                 Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Visible = true;
                 Relocation.UISpace.FindObjectByName("OverlayVignette").Sprite.Color = 
