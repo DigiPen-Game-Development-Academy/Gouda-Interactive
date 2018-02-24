@@ -75,16 +75,27 @@ class Inventory : ZilchComponent {
             
             if(!this.InventoryOpenFirst) {
                 // FIRST RUN SCRIPTS
+                if(!this.CraftingOpen) {
+                    inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(35, 0, 50000);
+                    inventory.Transform.WorldTranslation = Real3(0, 0, 1);
+                } else {
+                    inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(14.5, 0, 1);
+                    inventory.Transform.WorldTranslation = Real3(-3.75, 0, 1);
+                }
                 this.InventoryOpenFirst = true;
                 return;
             }
             
             if(!this.CraftingOpen) {
-                inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(0, 0, 50000);
-                inventory.Transform.WorldTranslation = Real3(0, 0, 1);
+                var craftTrans = Real3(inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation.XY, 0.0);
+                var invTrans = inventory.Transform.WorldTranslation;
+                inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Math.Lerp(craftTrans, Real3(35, 0, 1), event.Dt * 12.0);
+                inventory.Transform.WorldTranslation = Math.Lerp(invTrans, Real3(0, 0, 1), event.Dt * 12.0);
             } else {
-                inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Real3(10.75, 0, 0);
-                inventory.Transform.WorldTranslation = Real3(-3.75, 0, 1);
+                var craftTrans = Real3(inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation.XY, 0.0);
+                var invTrans = inventory.Transform.WorldTranslation;
+                inventory.FindChildByName("CraftingMenu").Transform.WorldTranslation = Math.Lerp(craftTrans, Real3(10.75, 0, 1), event.Dt * 12.0);
+                inventory.Transform.WorldTranslation = Math.Lerp(invTrans, Real3(-3.75, 0, 1), event.Dt * 12.0);
             }
             
             this.Owner.Crafting.PausedLogicUpdateEnd();
