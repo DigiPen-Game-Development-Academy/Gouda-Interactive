@@ -3,8 +3,13 @@
 
 class AmmoBar : ZilchComponent {
     
+    [Property] var CooldownBar : Boolean = false;
+    
     var MaxScaleAmmo : Real = 5.0;
     var CurrAmmo : Real = 5.0;
+    
+    var MaxScaleCooldown : Real = 5.0;
+    var CurrCooldown : Real = 5.0;
     
     var CurrentAmmo : Real = -1.0;
     var MaxAmmo : Real = -1.0;
@@ -53,7 +58,7 @@ class AmmoBar : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
-        if(Relocation.Space != null) {
+        if(Relocation.Space != null && !this.CooldownBar) {
             if(
                 Relocation.Space.FindObjectByName(Relocation.EntityPlayer) != null &&
                 Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager != null
@@ -71,7 +76,19 @@ class AmmoBar : ZilchComponent {
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrentAmmo as Real / 
                     Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.MaxAmmo;
                 
-                this.Owner.Transform.Scale = Real3(ammo * this.MaxScaleAmmo, 0.5, 1);
+                var cooldown : Real = 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrCooldown as Real / 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.Cooldown;
+                
+                var cooldownBar : Real = this.MaxScaleCooldown - (cooldown * this.MaxScaleCooldown);
+                
+                if(cooldownBar > this.MaxScaleCooldown) {
+                    cooldownBar = this.MaxScaleCooldown;
+                }
+                
+                this.Owner.Transform.Scale = Real3(ammo * this.MaxScaleAmmo, 0.25, 1);
+                this.Owner.Parent.FindChildByName("CooldownBar").Transform.Scale = Real3(cooldownBar, 0.25, 1.25);
+                
             }
         }
     }
