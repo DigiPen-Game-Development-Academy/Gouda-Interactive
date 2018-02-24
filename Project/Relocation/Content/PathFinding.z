@@ -1,5 +1,5 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: N/A
+// CONTRIBUTORS: HUDSON GREEN
 
 class PathFinding : ZilchComponent
 {

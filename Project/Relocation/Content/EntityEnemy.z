@@ -107,21 +107,21 @@ class EntityEnemy : ZilchComponent
             degrees *= -1;
         
         // Change sprite (up, upright, right, downrirght, down, downleft, left, upleft)
-        if (degrees > -26.5651 && degrees < 26.5651)
+        if (degrees > -26.5651 && degrees < 26.5651 && sprite.Sprite.SpriteSource != this.LookUp)
             sprite.Sprite.SpriteSource = this.LookUp;
-        else if (degrees > 26.5651 && degrees < 63.4349)
+        else if (degrees > 26.5651 && degrees < 63.4349 && sprite.Sprite.SpriteSource != this.LookUpRight)
             sprite.Sprite.SpriteSource = this.LookUpRight;
-        else if (degrees > 63.4349 && degrees < 116.565)
+        else if (degrees > 63.4349 && degrees < 116.565 && sprite.Sprite.SpriteSource != this.LookRight)
             sprite.Sprite.SpriteSource = this.LookRight;
-        else if (degrees > 116.565 && degrees < 153.435)
+        else if (degrees > 116.565 && degrees < 153.435 && sprite.Sprite.SpriteSource != this.LookDownRight)
             sprite.Sprite.SpriteSource = this.LookDownRight;
-        else if (degrees > 153.435 || degrees < -153.435)
+        else if (degrees > 153.435 || degrees < -153.435 && sprite.Sprite.SpriteSource != this.LookDown)
             sprite.Sprite.SpriteSource = this.LookDown;
-        else if (degrees > -153.435 && degrees < -116.565)
+        else if (degrees > -153.435 && degrees < -116.565 && sprite.Sprite.SpriteSource != this.LookDownLeft)
             sprite.Sprite.SpriteSource = this.LookDownLeft;
-        else if (degrees > -116.565 && degrees < -63.4349)
+        else if (degrees > -116.565 && degrees < -63.4349 && sprite.Sprite.SpriteSource != this.LookLeft)
             sprite.Sprite.SpriteSource = this.LookLeft;
-        else if (degrees > -63.4349 && degrees < -26.5651)
+        else if (degrees > -63.4349 && degrees < -26.5651 && sprite.Sprite.SpriteSource != this.LookUpLeft)
             sprite.Sprite.SpriteSource = this.LookUpLeft;
     }
     
