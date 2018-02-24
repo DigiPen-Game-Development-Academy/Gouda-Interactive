@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.978207588, -1.98087049, 50],
+			Vec3 Translation = [-1.46502328, -0.188503489, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 16.374712,
+			float Size = 24.4281902,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.978207588, -1.98087049, -4.27588169e-08],
+			Vec3 LookTarget = [-1.46502328, -0.188503489, -6.40382183e-08],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -264,6 +264,7 @@ Level =
 		},
 		SettingsMenu = 
 		{
+			bool UIMenu = false,
 		},
 		Hierarchy = 
 		{
@@ -293,11 +294,11 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "5ac2973527d023e1:FontDefault",
-					uint FontSize = 60,
+					string FontName = "5addaa7b8f441196:FontBold",
+					uint FontSize = 128,
 					string Text = "Graphics",
 					TextAlign Align = Right,
-					float PixelsPerUnit = 64,
+					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
 				Hierarchy = 
@@ -329,10 +330,10 @@ Level =
 							SpriteGeometryMode GeometryMode = ZPlane,
 							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 							string FontName = "5ac2973527d023e1:FontDefault",
-							uint FontSize = 60,
+							uint FontSize = 128,
 							string Text = "Menu Animations",
 							TextAlign Align = Right,
-							float PixelsPerUnit = 64,
+							float PixelsPerUnit = 128,
 							bool Smoothing = false,
 						},
 						Hierarchy = 
@@ -448,10 +449,10 @@ Level =
 							SpriteGeometryMode GeometryMode = ZPlane,
 							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 							string FontName = "5ac2973527d023e1:FontDefault",
-							uint FontSize = 60,
+							uint FontSize = 128,
 							string Text = "Vignette",
 							TextAlign Align = Right,
-							float PixelsPerUnit = 64,
+							float PixelsPerUnit = 128,
 							bool Smoothing = false,
 						},
 						Hierarchy = 
@@ -568,11 +569,11 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "5ac2973527d023e1:FontDefault",
-					uint FontSize = 60,
+					string FontName = "5addaa7b8f441196:FontBold",
+					uint FontSize = 128,
 					string Text = "Back",
 					TextAlign Align = Right,
-					float PixelsPerUnit = 64,
+					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
 				ButtonLevelSwitcher = 
@@ -583,6 +584,7 @@ Level =
 					Vec3 HoverColor = [0.5, 0.5, 0.5],
 					bool UIAnimateEnabled = false,
 					bool ResumeButton = false,
+					bool ForceAnimation = false,
 					bool QuitButton = false,
 				},
 				Reactive = 
@@ -617,11 +619,11 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "5ac2973527d023e1:FontDefault",
-					uint FontSize = 60,
+					string FontName = "5addaa7b8f441196:FontBold",
+					uint FontSize = 128,
 					string Text = "Quit",
 					TextAlign Align = Left,
-					float PixelsPerUnit = 64,
+					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
 				ButtonLevelSwitcher = 
@@ -632,6 +634,7 @@ Level =
 					Vec3 HoverColor = [1, 0.5, 0.5],
 					bool UIAnimateEnabled = false,
 					bool ResumeButton = false,
+					bool ForceAnimation = false,
 					bool QuitButton = true,
 				},
 				Reactive = 

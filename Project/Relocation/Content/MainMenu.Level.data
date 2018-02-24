@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.27670005, -0.209594607, 50],
+			Vec3 Translation = [0.0371311679, -0.757761002, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.0463924,
+			float Size = 44.3958893,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.27670005, -0.209594607, -1.20943007e-08],
+			Vec3 LookTarget = [0.0371311679, -0.757761002, 1.62369518e-09],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -306,11 +306,11 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "5ac2973527d023e1:FontDefault",
-					uint FontSize = 60,
+					string FontName = "5addaa7b8f441196:FontBold",
+					uint FontSize = 120,
 					string Text = "Load Save (Unavailable)",
 					TextAlign Align = Center,
-					float PixelsPerUnit = 64,
+					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
 				UIAnimate = 
@@ -329,6 +329,7 @@ Level =
 					Vec3 HoverColor = [0.5, 1, 0.5],
 					bool UIAnimateEnabled = true,
 					bool ResumeButton = false,
+					bool ForceAnimation = false,
 					bool QuitButton = false,
 				},
 				Reactive = 
@@ -363,11 +364,11 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "5ac2973527d023e1:FontDefault",
-					uint FontSize = 60,
+					string FontName = "5addaa7b8f441196:FontBold",
+					uint FontSize = 120,
 					string Text = "New Game",
 					TextAlign Align = Center,
-					float PixelsPerUnit = 64,
+					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
 				UIAnimate = 
@@ -386,6 +387,7 @@ Level =
 					Vec3 HoverColor = [0.5, 1, 0.5],
 					bool UIAnimateEnabled = true,
 					bool ResumeButton = false,
+					bool ForceAnimation = false,
 					bool QuitButton = false,
 				},
 				Reactive = 
@@ -420,11 +422,11 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "5ac2973527d023e1:FontDefault",
-					uint FontSize = 60,
+					string FontName = "5addaa7b8f441196:FontBold",
+					uint FontSize = 120,
 					string Text = "Options",
 					TextAlign Align = Center,
-					float PixelsPerUnit = 64,
+					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
 				UIAnimate = 
@@ -443,6 +445,7 @@ Level =
 					Vec3 HoverColor = [0.5, 0.5, 0.5],
 					bool UIAnimateEnabled = true,
 					bool ResumeButton = false,
+					bool ForceAnimation = false,
 					bool QuitButton = false,
 				},
 				Reactive = 
@@ -477,11 +480,11 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "5ac2973527d023e1:FontDefault",
-					uint FontSize = 60,
+					string FontName = "5addaa7b8f441196:FontBold",
+					uint FontSize = 120,
 					string Text = "Quit",
 					TextAlign Align = Center,
-					float PixelsPerUnit = 64,
+					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
 				UIAnimate = 
@@ -500,6 +503,7 @@ Level =
 					Vec3 HoverColor = [1, 0.5, 0.5],
 					bool UIAnimateEnabled = true,
 					bool ResumeButton = false,
+					bool ForceAnimation = false,
 					bool QuitButton = true,
 				},
 				Reactive = 
@@ -510,19 +514,12 @@ Level =
 			},
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5acad920c7159677:Watermark",
 		LinkId = 
 		{
 			uint Id = 11,
-		},
-		Named = 
-		{
-			string Name = "Watermark",
-		},
-		Archetyped = 
-		{
-			string Name = "5acad920c7159677:Watermark",
 		},
 		Transform = 
 		{
@@ -530,30 +527,9 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		SpriteText = 
+		Named = 
 		{
-			bool Visible = false,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "4e7bac697bec55c5:Verdana",
-			uint FontSize = 24,
-			string Text = "Relocation Alpha 0.4.6 [Prototype] (Posession by non DigiPen personel is illegal)",
-			TextAlign Align = Left,
-			float PixelsPerUnit = 64,
-			bool Smoothing = true,
-		},
-		ScreenAlignment = 
-		{
-			string PositionX = "Left",
-			string PositionY = "Top",
-			Vec2 PositionOffset = [0, 0],
-			float ZIndex = 0,
-			bool HideUntilPositioned = true,
+			string Name = "Watermark",
 		},
 	},
 	ArchetypeInstance = 
