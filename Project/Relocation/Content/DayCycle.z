@@ -5,7 +5,7 @@ class DayCycle : ZilchComponent {
     
     var DayLength : Real = 24.0;
     
-    var LightAmount : Real = 0.75;
+    var LightAmount : Real = 0.25;
     
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -23,15 +23,18 @@ class DayCycle : ZilchComponent {
         if(this.Owner.AmbientLight != null) {
             if(Relocation.Time < this.DayLength * 0.25 || Relocation.Time > this.DayLength * 0.75) {
                 
-                if(Relocation.Time > this.DayLength * 0.125) {
+                if(Relocation.Time > this.DayLength * 0.125 && Relocation.Time < this.DayLength * 0.75) {
                     Console.WriteLine("sunrise");
+                    this.LightAmount += event.Dt * 0.175 * 1.5;
                     this.Owner.AmbientLight.Color = Real4(Real3(this.LightAmount), 1.0);
-                } else if(Relocation.Time > this.DayLength * 0.625) {
+                } else if(Relocation.Time > this.DayLength * 0.625 && this.LightAmount >= 0.25) {
                     Console.WriteLine("sunset");
+                    this.LightAmount -= event.Dt * 0.175 * 1.5;
                     this.Owner.AmbientLight.Color = Real4(Real3(this.LightAmount), 1.0);
                 } else if(Relocation.Time < this.DayLength * 0.25 || Relocation.Time > this.DayLength * 0.75) {
                     Console.WriteLine("night");
-                    this.Owner.AmbientLight.Color = Real4(Real3(0.5), 1.0);
+                    this.LightAmount = 0.25;
+                    this.Owner.AmbientLight.Color = Real4(Real3(0.25), 1.0);
                 }
                 
             } else {
