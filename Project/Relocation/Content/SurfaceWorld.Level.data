@@ -122,7 +122,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-18.3481483, 4.19608164, 249.292725],
+			Vec3 Translation = [-18.1582851, 4.23243952, 249.292725],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -134,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 5.43655825,
+			float Size = 8.11040115,
 		},
 		EditorCameraController = 
 		{
@@ -142,7 +142,7 @@ Level =
 			float LookDistance = 248.292725,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-18.3481483, 4.19608164, 1.00000095],
+			Vec3 LookTarget = [-18.1582851, 4.23243952, 1.00000167],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -380,8 +380,8 @@ Level =
 			bool Seamless = true,
 			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, -1, 0],
-			Vec3 Size = [1.375, 0.550000012, 1.375],
+			Vec3 Offset = [0, -1.5, 0],
+			Vec3 Size = [1.375, 0.125, 1.375],
 		},
 		SoundEmitter = 
 		{
