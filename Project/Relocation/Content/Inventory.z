@@ -5,6 +5,10 @@ class Inventory : ZilchComponent {
     
     [Dependency] var Crafting : Crafting = null;
     
+    [Property] var InventoryButton : Keys = Keys.E;
+    [Property] var CraftingButton : Keys = Keys.C;
+    [Property] var SwapOffHandButton : Keys = Keys.F;
+    
     var UISpace : Space = null;
     
     var InventoryOpen : Boolean = false;
@@ -69,7 +73,7 @@ class Inventory : ZilchComponent {
             var playerNameScreenCapture = this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("TextEntry").TextEntry.CaptureKeys;
             var isPaused = this.UISpace.FindObjectByName("PauseMenu").PauseMenu.PauseMenuEnabled;
             
-            if(Zero.Keyboard.KeyIsPressed(Keys.C) && !commandScreenCapture && !playerNameScreenCapture && !isPaused) {
+            if(Zero.Keyboard.KeyIsPressed(this.CraftingButton) && !commandScreenCapture && !playerNameScreenCapture && !isPaused) {
                 this.CraftingOpen = !this.CraftingOpen;
             }
             
@@ -115,7 +119,7 @@ class Inventory : ZilchComponent {
             
             Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(false);
             
-            if(Zero.Keyboard.KeyIsPressed(Keys.F)) {
+            if(Zero.Keyboard.KeyIsPressed(this.SwapOffHandButton)) {
                 this.RefreshInventoryIcons();
                 this.MoveItem(this.SLOT_OFFHAND, this.SLOT_HAND);
             }
@@ -130,7 +134,7 @@ class Inventory : ZilchComponent {
         var playerNameScreenCapture = this.UISpace.FindObjectByName("PlayerNameWrapper").FindChildByName("TextEntry").TextEntry.CaptureKeys;
         var isPaused = this.UISpace.FindObjectByName("PauseMenu").PauseMenu.PauseMenuEnabled;
         
-        if(event.Key == Keys.E && !commandScreenCapture && !playerNameScreenCapture && !isPaused) {
+        if(event.Key == this.InventoryButton && !commandScreenCapture && !playerNameScreenCapture && !isPaused) {
             this.ToggleInventory();
         } else if(event.Key == Keys.Escape && !commandScreenCapture && !playerNameScreenCapture && !isPaused && this.InventoryOpen) {
             this.Space.TimeSpace.Paused = false;

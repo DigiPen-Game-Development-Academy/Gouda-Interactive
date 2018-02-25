@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [14.75, 16.5, 0],
+		Vec3 Translation = [35.25, 16.5, 0],
 		Vec3 Scale = [2, 2, 1],
 		Quat Rotation = [0, 0, 0.707106829, 0.707106829],
 	},
@@ -42,7 +42,7 @@ Cog =
 	},
 	Health = 
 	{
-		float MaxHealth = 10,
+		float MaxHealth = 250,
 		bool IsInvincible = true,
 	},
 	EntityRocket = 
@@ -111,7 +111,7 @@ Cog =
 				bool Mode2D = true,
 				bool AllowSleep = true,
 				bool Inherit2DMode = true,
-				Vec3 Velocity = [0, 0, 0],
+				Vec3 Velocity = [2203.12476, 406.249908, 249.999985],
 				Vec3 AngularVelocity = [0, 0, 0],
 			},
 			MeshCollider = 
@@ -250,7 +250,7 @@ Cog =
 				bool Mode2D = true,
 				bool AllowSleep = true,
 				bool Inherit2DMode = true,
-				Vec3 Velocity = [0, 0, 0],
+				Vec3 Velocity = [2359.37476, 437.499908, 124.999992],
 				Vec3 AngularVelocity = [0, 0, 0],
 			},
 			MeshCollider = 
@@ -389,7 +389,7 @@ Cog =
 				bool Mode2D = true,
 				bool AllowSleep = true,
 				bool Inherit2DMode = true,
-				Vec3 Velocity = [0, 0, 0],
+				Vec3 Velocity = [2046.87488, 437.499908, 124.999992],
 				Vec3 AngularVelocity = [0, 0, 0],
 			},
 			MeshCollider = 

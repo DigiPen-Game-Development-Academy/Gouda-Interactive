@@ -5,6 +5,10 @@ class Movement : ZilchComponent {
     
     [Property] var Speed : Real = 100.0;
     [Property] var RunSpeed : Real = 150.0;
+    [Property] var Up : Keys = Keys.W;
+    [Property] var Left : Keys = Keys.A;
+    [Property] var Down : Keys = Keys.S;
+    [Property] var Right : Keys = Keys.D;
     
     var ItemHand : Cog = null;
     
@@ -77,56 +81,56 @@ class Movement : ZilchComponent {
             this.ItemHand = this.Owner.FindChildByName("EntityHand");
             
             // MOVEMENT
-            if((Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.S))) {
+            if((Zero.Keyboard.KeyIsDown(this.Left) && Zero.Keyboard.KeyIsDown(this.Down))) {
                 
                 this.Owner.RigidBody.Velocity = Real3(-0.8, -0.8, 0) * r3Speed;
                 this.Owner.Sprite.AnimationActive = true;
                 
                 this.DirectionSouthWest();
                 
-            } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.S)) {
+            } else if(Zero.Keyboard.KeyIsDown(this.Right) && Zero.Keyboard.KeyIsDown(this.Down)) {
                 
                 this.Owner.RigidBody.Velocity = Real3(0.8, -0.8, 0) * r3Speed;
                 this.Owner.Sprite.AnimationActive = true;
                 
                 this.DirectionSouthEast();
                 
-            } else if(Zero.Keyboard.KeyIsDown(Keys.A) && Zero.Keyboard.KeyIsDown(Keys.W)) {
+            } else if(Zero.Keyboard.KeyIsDown(this.Left) && Zero.Keyboard.KeyIsDown(this.Up)) {
                 
                 this.Owner.RigidBody.Velocity = Real3(-0.8, 0.8, 0) * r3Speed;
                 this.Owner.Sprite.AnimationActive = true;
                 
                 this.DirectionNorthWest();
                 
-            } else if(Zero.Keyboard.KeyIsDown(Keys.D) && Zero.Keyboard.KeyIsDown(Keys.W)) {
+            } else if(Zero.Keyboard.KeyIsDown(this.Right) && Zero.Keyboard.KeyIsDown(this.Up)) {
                 
                 this.Owner.RigidBody.Velocity = Real3(0.8, 0.8, 0) * r3Speed;
                 this.Owner.Sprite.AnimationActive = true;
                 
                 this.DirectionNorthEast();
                 
-            } else if(Zero.Keyboard.KeyIsDown(Keys.W)) {
+            } else if(Zero.Keyboard.KeyIsDown(this.Up)) {
                 
                 this.Owner.RigidBody.Velocity = Real3(0, 1, 0) * r3Speed;
                 this.Owner.Sprite.AnimationActive = true;
                 
                 this.DirectionNorth();
                 
-            } else if(Zero.Keyboard.KeyIsDown(Keys.S)) {
+            } else if(Zero.Keyboard.KeyIsDown(this.Down)) {
                 
                 this.Owner.RigidBody.Velocity = Real3(0, -1, 0) * r3Speed;
                 this.Owner.Sprite.AnimationActive = true;
                 
                 this.DirectionSouth();
                 
-            } else if(Zero.Keyboard.KeyIsDown(Keys.A)) {
+            } else if(Zero.Keyboard.KeyIsDown(this.Left)) {
                 
                 this.Owner.RigidBody.Velocity = Real3(-1, 0, 0) * r3Speed;
                 this.Owner.Sprite.AnimationActive = true;
                 
                 this.DirectionWest();
                 
-            } else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
+            } else if(Zero.Keyboard.KeyIsDown(this.Right)) {
                 
                 this.Owner.RigidBody.Velocity = Real3(1, 0, 0) * r3Speed;
                 this.Owner.Sprite.AnimationActive = true;
