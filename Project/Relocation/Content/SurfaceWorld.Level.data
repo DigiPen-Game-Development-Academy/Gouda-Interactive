@@ -59,14 +59,27 @@ Level =
 			Vec2 Resolution = [1280, 720],
 			Vec4 MarginColor = [0, 0, 0, 1],
 		},
-		ForwardRenderer = 
+		DeferredRenderer = 
 		{
-			Vec4 ClearColor = [0.574999988, 0.310499907, 0, 1],
+			Vec4 ClearColor = [0, 0.880000114, 1, 1],
 			bool DrawNonVisible = false,
 			bool DrawDebugObjects = true,
 			bool DrawEditorIcons = true,
 			bool EditorIconDepth = true,
-			bool Wireframe = false,
+			bool Hdr = true,
+			bool Shadows = true,
+			bool AntiAliasing = false,
+			bool Refraction = true,
+			bool Reflections = true,
+			string ReflectionEnvironmentName = "4fab71e8bcb7a8ce:DefaultTexture",
+			bool GodRays = true,
+			bool RenderMasks = true,
+			bool Glow = false,
+			float GlowThreshold = 1,
+		},
+		AmbientLight = 
+		{
+			Vec4 Color = [1, 1, 1, 1],
 		},
 		GridDraw = 
 		{
@@ -92,6 +105,9 @@ Level =
 		ItemManager = 
 		{
 		},
+		DayCycle = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -105,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-30.0749569, 18.2306671, 248.667725],
+			Vec3 Translation = [3.27583075, 4.31273842, 248.667725],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,7 +133,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 49.6586037,
+			float Size = 100,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +141,7 @@ Level =
 			float LookDistance = 248.292725,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-30.0749569, 18.2306671, 0.374999225],
+			Vec3 LookTarget = [3.27583075, 4.31273842, 0.375000507],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 

@@ -1,0 +1,47 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class DayCycle : ZilchComponent {
+    
+    var DayLength : Real = 24.0;
+    
+    var LightAmount : Real = 0.75;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        Relocation.Time += event.Dt;
+        
+        if(Relocation.Time > this.DayLength) {
+            Relocation.Time = 0.0;
+        }
+        
+        // RENDER DAY/NIGHT CYCLE
+        if(this.Owner.AmbientLight != null) {
+            if(Relocation.Time < this.DayLength * 0.25 || Relocation.Time > this.DayLength * 0.75) {
+                
+                if(Relocation.Time > this.DayLength * 0.125) {
+                    Console.WriteLine("sunrise");
+                    this.Owner.AmbientLight.Color = Real4(Real3(this.LightAmount), 1.0);
+                } else if(Relocation.Time > this.DayLength * 0.625) {
+                    Console.WriteLine("sunset");
+                    this.Owner.AmbientLight.Color = Real4(Real3(this.LightAmount), 1.0);
+                } else if(Relocation.Time < this.DayLength * 0.25 || Relocation.Time > this.DayLength * 0.75) {
+                    Console.WriteLine("night");
+                    this.Owner.AmbientLight.Color = Real4(Real3(0.5), 1.0);
+                }
+                
+            } else {
+                Console.WriteLine("day");
+                this.Owner.AmbientLight.Color = Real4(1.0, 1.0, 1.0, 1.0);
+            }
+        }
+        
+        Console.WriteLine("Time: `Relocation.Time`");
+        
+    }
+    
+}

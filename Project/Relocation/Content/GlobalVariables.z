@@ -19,6 +19,8 @@ class Relocation {
     
     [Static] var CursorType : String = "Default";
     
+    [Static] var Time : Real = 0.0;
+    
     /* MAIN MENU */
     [Static] var ButtonFadeout : Boolean = false;
     
