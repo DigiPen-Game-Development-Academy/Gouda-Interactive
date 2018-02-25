@@ -122,7 +122,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-18.4136429, 4.04215336, 248.28772],
+			Vec3 Translation = [-3.88652468, 6.54539919, 248.28772],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -134,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 4.45108223,
+			float Size = 7.42736435,
 		},
 		EditorCameraController = 
 		{
@@ -142,7 +142,7 @@ Level =
 			float LookDistance = 248.292725,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-18.4136429, 4.04215336, -0.0050008148],
+			Vec3 LookTarget = [-3.88652468, 6.54539919, -0.00500017637],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -174,10 +174,28 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "5adf1c031cc37887:EntityRocket",
+		string Name = "5adf488b7fc9b85f:EntityRover",
 		LinkId = 
 		{
 			uint Id = 5,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-18.5, 4, 0],
+			Vec3 Scale = [2, 2, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "EntityRover",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adf1c031cc37887:EntityRocket",
+		LinkId = 
+		{
+			uint Id = 6,
 		},
 		Transform = 
 		{
@@ -194,7 +212,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 6,
+			uint Id = 7,
 		},
 		Named = 
 		{
@@ -229,7 +247,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 7,
+			uint Id = 8,
 		},
 		Named = 
 		{
@@ -264,7 +282,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 8,
+			uint Id = 9,
 		},
 		Named = 
 		{
@@ -299,7 +317,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 10,
 		},
 		Named = 
 		{
@@ -343,7 +361,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 10,
+			uint Id = 11,
 		},
 		Named = 
 		{
@@ -361,7 +379,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [0.404999971, 0.404999971, 0.404999971, 1],
+			Vec4 Color = [0.11500001, 0.11500001, 0.11500001, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -398,7 +416,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 11,
+					uint Id = 12,
 				},
 				Named = 
 				{
@@ -416,7 +434,7 @@ Level =
 					bool VisibilityCulling = true,
 					bool VisibilityEvents = true,
 					bool CastShadows = false,
-					Vec4 Color = [0.610000014, 0.610000014, 0.610000014, 1],
+					Vec4 Color = [0.319999993, 0.319999993, 0.319999993, 1],
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -433,7 +451,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 12,
+					uint Id = 13,
 				},
 				Named = 
 				{
@@ -451,7 +469,7 @@ Level =
 					bool VisibilityCulling = true,
 					bool VisibilityEvents = true,
 					bool CastShadows = false,
-					Vec4 Color = [0.404999971, 0.404999971, 0.404999971, 1],
+					Vec4 Color = [0.185000002, 0.185000002, 0.185000002, 1],
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -471,7 +489,7 @@ Level =
 		string Name = "5ac2f985abfc1c64:BuildingShop",
 		LinkId = 
 		{
-			uint Id = 13,
+			uint Id = 14,
 		},
 		Transform = 
 		{
@@ -488,7 +506,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 15,
 		},
 		Named = 
 		{
@@ -507,7 +525,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 15,
+					uint Id = 16,
 				},
 				Transform = 
 				{
@@ -525,7 +543,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 16,
+					uint Id = 17,
 				},
 				Transform = 
 				{
@@ -543,7 +561,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 17,
+					uint Id = 18,
 				},
 				Transform = 
 				{
@@ -561,7 +579,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 18,
+					uint Id = 19,
 				},
 				Transform = 
 				{
@@ -579,7 +597,7 @@ Level =
 				string Name = "5adf4de3a07acbd6:BuildingHutPlayer",
 				LinkId = 
 				{
-					uint Id = 19,
+					uint Id = 20,
 				},
 				Transform = 
 				{
@@ -597,7 +615,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 20,
+					uint Id = 21,
 				},
 				Transform = 
 				{
@@ -615,7 +633,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 21,
+					uint Id = 22,
 				},
 				Transform = 
 				{
@@ -633,7 +651,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 22,
+					uint Id = 23,
 				},
 				Transform = 
 				{
@@ -651,7 +669,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 23,
+					uint Id = 24,
 				},
 				Transform = 
 				{
@@ -669,7 +687,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 24,
+					uint Id = 25,
 				},
 				Transform = 
 				{
@@ -687,7 +705,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 25,
+					uint Id = 26,
 				},
 				Transform = 
 				{
@@ -705,7 +723,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 26,
+					uint Id = 27,
 				},
 				Transform = 
 				{
@@ -725,7 +743,7 @@ Level =
 		string Name = "5a240449292b4c0b:CaveEnteranceExit",
 		LinkId = 
 		{
-			uint Id = 27,
+			uint Id = 28,
 		},
 		Transform = 
 		{
@@ -743,7 +761,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 28,
+			uint Id = 29,
 		},
 		Transform = 
 		{
@@ -761,7 +779,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 29,
+			uint Id = 30,
 		},
 		Transform = 
 		{
@@ -779,7 +797,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 30,
+			uint Id = 31,
 		},
 		Transform = 
 		{
@@ -797,7 +815,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 31,
+			uint Id = 32,
 		},
 		Transform = 
 		{
@@ -815,7 +833,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 32,
+			uint Id = 33,
 		},
 		Transform = 
 		{
@@ -826,299 +844,6 @@ Level =
 		Named = 
 		{
 			string Name = "WorldBorder",
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 33,
-		},
-		Named = 
-		{
-			string Name = "EntityRover",
-		},
-		Archetyped = 
-		{
-			string Name = "5adf488b7fc9b85f:EntityRover",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-18.5, 4, 0],
-			Vec3 Scale = [2, 2, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = false,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "5adf616aaa719908:MaterialRover",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, -0.125, 0],
-			Vec3 Size = [0.5, 0.375, 0.5],
-		},
-		Health = 
-		{
-			float MaxHealth = 10,
-			bool IsInvincible = true,
-		},
-		Reactive = 
-		{
-			bool Active = true,
-			bool CaptureMouse = false,
-		},
-		EntityRover = 
-		{
-			string Rider = "EntityPlayer",
-			float VehicleSpeed = 400,
-			float VehicleTurboSpeed = 1000,
-		},
-		SoundEmitter = 
-		{
-			float Volume = 1,
-			float Pitch = 0,
-			float PitchSemitones = 0,
-			bool UsePitchSemitones = false,
-			bool Positional = true,
-			int Version = 1,
-		},
-		Hierarchy = 
-		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 34,
-				},
-				Named = 
-				{
-					string Name = "InBack",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, -0.200000003],
-					Vec3 Scale = [1, 0.5, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5af7e73d4a529ae0:ItemDrillPlatinum",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 35,
-				},
-				Named = 
-				{
-					string Name = "InFront",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, -0.25, 3],
-					Vec3 Scale = [1, 0.5, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5af7e73d4a529ae0:ItemDrillPlatinum",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 36,
-				},
-				Named = 
-				{
-					string Name = "ParticleEngine",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, -0.25],
-					Vec3 Scale = [0.5, 0.5, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				SpriteParticleSystem = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					SystemChildMode ChildMode = Independent,
-					SystemSpace SystemSpace = WorldSpace,
-					uint DrawOrder = 0,
-					Vec4 Tint = [1, 1, 1, 1],
-					float WarmUpTime = 0,
-					ParticleGeometry GeometryMode = Billboarded,
-					ParticleRenderMode RenderMode = Blended,
-					ParticleSortMode SortMode = Youngest,
-					ParticleAnimation ParticleAnimation = Single,
-					string Texture = "5310e87946edb371:WhiteCloud",
-					float VelocityScale = 1,
-					float LengthScale = 1,
-					float MaxParticleSize = 100,
-					Vec3 SystemSize = [4, 4, 4],
-				},
-				SphericalParticleEmitter = 
-				{
-					bool Active = true,
-					uint EmitCount = 0,
-					float EmitRate = 15,
-					float EmitVariance = 0,
-					float Size = 1,
-					float SizeVariance = 0.5,
-					float Lifetime = 1,
-					float LifetimeVariance = 0.200000003,
-					float Spin = 0,
-					float SpinVariance = 50,
-					bool RandomSpin = true,
-					float Fill = 1,
-					float EmitterVelocityPercent = 0,
-					Vec3 StartVelocity = [0, 0, 0],
-					Vec3 RandomVelocity = [0, 0, 0],
-					Vec3 TangentVelocity = [0, 0, 0],
-					Vec3 EmitterSize = [0, 0, 0],
-					bool FastMovingEmitter = false,
-				},
-				LinearParticleAnimator = 
-				{
-					Vec3 Force = [0, 0, 0],
-					Vec3 RandomForce = [0, 0, 0],
-					float Torque = 0,
-					float Growth = 0,
-					float Dampening = 0,
-					Vec3 Twist = [0, 0, 0],
-				},
-				ParticleColorAnimator = 
-				{
-					Vec4 Color0 = [1, 1, 1, 0],
-					Vec4 Color1 = [1, 1, 1, 1],
-					Vec4 Color2 = [0.61500001, 0.61500001, 0.61500001, 1],
-					Vec4 Color3 = [0.399999976, 0.399999976, 0.399999976, 1],
-					Vec4 Color4 = [0.314999998, 0.314999998, 0.314999998, 0],
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 37,
-				},
-				Named = 
-				{
-					string Name = "ParticleEngine",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, -0.25, -0.25],
-					Vec3 Scale = [0.5, 0.5, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				SpriteParticleSystem = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					SystemChildMode ChildMode = Independent,
-					SystemSpace SystemSpace = WorldSpace,
-					uint DrawOrder = 0,
-					Vec4 Tint = [1, 1, 1, 1],
-					float WarmUpTime = 0,
-					ParticleGeometry GeometryMode = Billboarded,
-					ParticleRenderMode RenderMode = Blended,
-					ParticleSortMode SortMode = Youngest,
-					ParticleAnimation ParticleAnimation = Single,
-					string Texture = "5310e87946edb371:WhiteCloud",
-					float VelocityScale = 1,
-					float LengthScale = 1,
-					float MaxParticleSize = 100,
-					Vec3 SystemSize = [4, 4, 4],
-				},
-				SphericalParticleEmitter = 
-				{
-					bool Active = true,
-					uint EmitCount = 0,
-					float EmitRate = 15,
-					float EmitVariance = 0,
-					float Size = 1,
-					float SizeVariance = 0.5,
-					float Lifetime = 1,
-					float LifetimeVariance = 0.200000003,
-					float Spin = 0,
-					float SpinVariance = 50,
-					bool RandomSpin = true,
-					float Fill = 1,
-					float EmitterVelocityPercent = 0,
-					Vec3 StartVelocity = [0, 0, 0],
-					Vec3 RandomVelocity = [0, 0, 0],
-					Vec3 TangentVelocity = [0, 0, 0],
-					Vec3 EmitterSize = [0, 0, 0],
-					bool FastMovingEmitter = false,
-				},
-				LinearParticleAnimator = 
-				{
-					Vec3 Force = [0, 0, 0],
-					Vec3 RandomForce = [0, 0, 0],
-					float Torque = 0,
-					float Growth = 0,
-					float Dampening = 0,
-					Vec3 Twist = [0, 0, 0],
-				},
-				ParticleColorAnimator = 
-				{
-					Vec4 Color0 = [1, 1, 1, 0],
-					Vec4 Color1 = [1, 1, 1, 1],
-					Vec4 Color2 = [0.61500001, 0.61500001, 0.61500001, 1],
-					Vec4 Color3 = [0.399999976, 0.399999976, 0.399999976, 1],
-					Vec4 Color4 = [0.314999998, 0.314999998, 0.314999998, 0],
-				},
-			},
 		},
 	},
 },
