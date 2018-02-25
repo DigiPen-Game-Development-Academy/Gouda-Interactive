@@ -28,9 +28,6 @@ class DayCycle : ZilchComponent {
                     "Time: `Math.Floor(Relocation.Time / 2.0)` 0`minutesString.SubStringFromRuneIndices(0, 1)`";
             }
             
-            /*Relocation.UISpace.FindObjectByName("Time").SpriteText.Text = 
-                "Time: `Math.Floor(Relocation.Time / 2.0)` `minutesString.SubStringFromRuneIndices(0, 2)`";*/
-            
         }
         
         if(Relocation.Time > Relocation.DayLength) {
