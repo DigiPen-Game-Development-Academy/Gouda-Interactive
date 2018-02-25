@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-9.5, 0, 1],
+		Vec3 Translation = [-17, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -44,6 +44,6 @@ Cog =
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, -1, 0],
-		Vec3 Size = [1.375, 0.550000012, 1.375],
+		Vec3 Size = [1.60000002, 0.550000012, 1.375],
 	},
 },

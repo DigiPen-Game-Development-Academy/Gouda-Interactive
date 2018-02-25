@@ -1,0 +1,118 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class EntityRover : ZilchComponent {
+    
+    [Property] var Rider : String = "EntityPlayer";
+    [Property] var VehicleSpeed : Real = 400;
+    [Property] var VehicleTurboSpeed : Real = 1000;
+    
+    var RiderDefaultSpeed : Real = 150;
+    var RiderDefaultRunSpeed : Real = 250;
+    
+    var IsRidingRover : Boolean = false;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+        Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnMouseUpdate(event : ViewportMouseEvent) {
+        
+        if(GameSetting.EnemyTooltip) {
+            
+            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
+            
+            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                    "Rover",
+                    "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
+                    Real4(0.0, 1.0, 0.0, 1.0),
+                    Real4(1.0, 0.0, 0.0, 1.0)
+                );
+            } else {
+                Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                    "Rover (Shift)",
+                    "Right Click to Enter",
+                    Real4(0.0, 1.0, 0.0, 1.0),
+                    Real4(1.0)
+                );
+            }
+            
+        }
+        
+        if(Zero.Mouse.IsButtonDown(MouseButtons.Right) && !this.IsRidingRover) {
+            
+            var rider = this.Space.FindObjectByName(this.Rider);
+            
+            if(rider != null) {
+                
+                rider.Transform.WorldTranslation = Real3(this.Owner.Transform.WorldTranslation.XY, rider.Transform.WorldTranslation.Z);
+                
+                this.IsRidingRover = true;
+                
+                if(rider.Movement != null) {
+                    this.RiderDefaultSpeed = rider.Movement.Speed;
+                    this.RiderDefaultRunSpeed = rider.Movement.RunSpeed;
+                    rider.Movement.Speed = this.VehicleSpeed;
+                    rider.Movement.RunSpeed = this.VehicleTurboSpeed;
+                }
+                
+            }
+            
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.R)) {
+            
+            var rider = this.Space.FindObjectByName(this.Rider);
+            
+            if(rider != null && rider.Movement != null) {
+                rider.Movement.Speed = this.RiderDefaultSpeed;
+                rider.Movement.RunSpeed = this.RiderDefaultRunSpeed;
+            }
+            
+            this.IsRidingRover = false;
+            
+        }
+        
+    }
+    
+    function OnMouseExit(event : ViewportMouseEvent) {
+        Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(false);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(this.IsRidingRover) {
+            
+            this.Owner.Transform.WorldTranslation = Real3(this.Space.FindObjectByName(this.Rider).Transform.WorldTranslation.XY, 0);
+            
+            var rider = this.Space.FindObjectByName(this.Rider);
+            
+            if(rider != null) {
+                
+                if(rider.Sprite != null) {
+                    rider.Sprite.AnimationActive = false;
+                }
+                
+                if(rider.Movement != null) {
+                    
+                    var dir = rider.Movement.PlayerDirection;
+                    
+                    if(dir == "North")
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 1, 1);
+                    else if(dir == "East")
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
+                    else if(dir == "South")
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, -1, 1);
+                    else if(dir == "West")
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+}

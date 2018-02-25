@@ -11,6 +11,7 @@ class Movement : ZilchComponent {
     var StartFrame : Integer = 0;
     var EndFrame : Real = 5;
     var MouseDir : Real2 = Real2(0.0, 0.0);
+    var PlayerDirection : String = "South";
     
     function Initialize(init : CogInitializer) {
         
@@ -214,6 +215,8 @@ class Movement : ZilchComponent {
         this.ItemHand.Sprite.StartFrame = 4;
         this.ItemHand.Sprite.FlipX = false;
         
+        this.PlayerDirection = "North";
+        
     }
     
     function DirectionNorthEast() {
@@ -224,6 +227,8 @@ class Movement : ZilchComponent {
         this.ItemHand.Transform.Translation = Real3(0.15, -0.15, 0.05);
         this.ItemHand.Sprite.StartFrame = 3;
         this.ItemHand.Sprite.FlipX = false;
+        
+        this.PlayerDirection = "NorthEast";
         
     }
     
@@ -236,6 +241,8 @@ class Movement : ZilchComponent {
         this.ItemHand.Sprite.StartFrame = 3;
         this.ItemHand.Sprite.FlipX = true;
         
+        this.PlayerDirection = "NorthWest";
+        
     }
     
     function DirectionEast() {
@@ -246,6 +253,8 @@ class Movement : ZilchComponent {
         this.ItemHand.Transform.Translation = Real3(0.2, -0.15, 0.05);
         this.ItemHand.Sprite.StartFrame = 0;
         this.ItemHand.Sprite.FlipX = false;
+        
+        this.PlayerDirection = "East";
         
     }
     
@@ -258,6 +267,8 @@ class Movement : ZilchComponent {
         this.ItemHand.Sprite.StartFrame = 2;
         this.ItemHand.Sprite.FlipX = false;
         
+        this.PlayerDirection = "South";
+        
     }
     
     function DirectionSouthEast() {
@@ -268,6 +279,8 @@ class Movement : ZilchComponent {
         this.ItemHand.Transform.Translation = Real3(-0.15, -0.15, 0.05);
         this.ItemHand.Sprite.StartFrame = 1;
         this.ItemHand.Sprite.FlipX = false;
+        
+        this.PlayerDirection = "SouthEast";
         
     }
     
@@ -280,6 +293,8 @@ class Movement : ZilchComponent {
         this.ItemHand.Sprite.StartFrame = 1;
         this.ItemHand.Sprite.FlipX = true;
         
+        this.PlayerDirection = "SouthWest";
+        
     }
     
     function DirectionWest() {
@@ -290,6 +305,8 @@ class Movement : ZilchComponent {
         this.ItemHand.Transform.Translation = Real3(-0.3, -0.15, -0.05);
         this.ItemHand.Sprite.StartFrame = 0;
         this.ItemHand.Sprite.FlipX = true;
+        
+        this.PlayerDirection = "West";
         
     }
     
