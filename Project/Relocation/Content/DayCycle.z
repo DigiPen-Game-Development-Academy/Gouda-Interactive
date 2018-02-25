@@ -3,9 +3,7 @@
 
 class DayCycle : ZilchComponent {
     
-    var DayLength : Real = 24.0;
-    
-    var LightAmount : Real = 0.25;
+    var LightMultiplier : Real = 1.0;
     
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -15,25 +13,25 @@ class DayCycle : ZilchComponent {
         
         Relocation.Time += event.Dt;
         
-        if(Relocation.Time > this.DayLength) {
+        if(Relocation.Time > Relocation.DayLength) {
             Relocation.Time = 0.0;
         }
         
         // RENDER DAY/NIGHT CYCLE
         if(this.Owner.AmbientLight != null) {
-            if(Relocation.Time < this.DayLength * 0.25 || Relocation.Time > this.DayLength * 0.75) {
+            if(Relocation.Time < Relocation.DayLength * 0.25 || Relocation.Time > Relocation.DayLength * 0.75) {
                 
-                if(Relocation.Time > this.DayLength * 0.125 && Relocation.Time < this.DayLength * 0.75) {
+                if(Relocation.Time > Relocation.DayLength * 0.125 && Relocation.Time < Relocation.DayLength * 0.75) {
                     Console.WriteLine("sunrise");
-                    this.LightAmount += event.Dt * 0.175 * 1.5;
-                    this.Owner.AmbientLight.Color = Real4(Real3(this.LightAmount), 1.0);
-                } else if(Relocation.Time > this.DayLength * 0.625 && this.LightAmount >= 0.25) {
+                    Relocation.LightAmount += event.Dt * 0.175 * this.LightMultiplier;
+                    this.Owner.AmbientLight.Color = Real4(Real3(Relocation.LightAmount), 1.0);
+                } else if(Relocation.Time > Relocation.DayLength * 0.625 && Relocation.LightAmount >= 0.25) {
                     Console.WriteLine("sunset");
-                    this.LightAmount -= event.Dt * 0.175 * 1.5;
-                    this.Owner.AmbientLight.Color = Real4(Real3(this.LightAmount), 1.0);
-                } else if(Relocation.Time < this.DayLength * 0.25 || Relocation.Time > this.DayLength * 0.75) {
+                    Relocation.LightAmount -= event.Dt * 0.175 * this.LightMultiplier;
+                    this.Owner.AmbientLight.Color = Real4(Real3(Relocation.LightAmount), 1.0);
+                } else if(Relocation.Time < Relocation.DayLength * 0.25 || Relocation.Time > Relocation.DayLength * 0.75) {
                     Console.WriteLine("night");
-                    this.LightAmount = 0.25;
+                    Relocation.LightAmount = 0.25;
                     this.Owner.AmbientLight.Color = Real4(Real3(0.25), 1.0);
                 }
                 
