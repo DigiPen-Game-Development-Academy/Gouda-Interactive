@@ -94,7 +94,7 @@ Cog =
 			},
 			CaveEnteranceExit = 
 			{
-				string LevelToLoad = "5a1a8ca4ed778f89:HudsonSandbox",
+				string LevelToLoad = "5adf788b11535bd4:PlayerHouse",
 			},
 		},
 	},
