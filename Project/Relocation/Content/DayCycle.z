@@ -18,16 +18,18 @@ class DayCycle : ZilchComponent {
         if(Relocation.UISpace != null) {
             var hours = Math.Floor(Relocation.Time / 2.0);
             var minutes = Relocation.Time / 2.0 - hours;
-            var minutesString = "";
+            var minutesString = "`Math.Floor(minutes * 60)`0";
             
             if(minutes >= 0.1) {
-                minutesString = "`Math.Floor(minutes * 60)`0";
+                Relocation.UISpace.FindObjectByName("Time").SpriteText.Text = 
+                    "Time: `Math.Floor(Relocation.Time / 2.0)` `minutesString.SubStringFromRuneIndices(0, 2)`";
             } else {
-                minutesString = "0`Math.Floor(minutes * 60)`";
+                Relocation.UISpace.FindObjectByName("Time").SpriteText.Text = 
+                    "Time: `Math.Floor(Relocation.Time / 2.0)` 0`minutesString.SubStringFromRuneIndices(0, 1)`";
             }
             
-            Relocation.UISpace.FindObjectByName("Time").SpriteText.Text = 
-                "Time: `Math.Floor(Relocation.Time / 2.0)` `minutesString.SubStringFromRuneIndices(0, 2)`";
+            /*Relocation.UISpace.FindObjectByName("Time").SpriteText.Text = 
+                "Time: `Math.Floor(Relocation.Time / 2.0)` `minutesString.SubStringFromRuneIndices(0, 2)`";*/
             
         }
         
