@@ -93,7 +93,19 @@ class EntityRover : ZilchComponent {
                         speed = this.VehicleTurboSpeed;
                     }
                     
-                    if(Zero.Keyboard.KeyIsDown(Keys.W)) {
+                    if(Zero.Keyboard.KeyIsDown(Keys.W) && Zero.Keyboard.KeyIsDown(Keys.D)) {
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
+                        this.Velocity = Real3(1.0 * event.Dt * speed, 1.0 * event.Dt * speed, 0.0);
+                    } else if(Zero.Keyboard.KeyIsDown(Keys.W) && Zero.Keyboard.KeyIsDown(Keys.A)) {
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
+                        this.Velocity = Real3(-1.0 * event.Dt * speed, 1.0 * event.Dt * speed, 0.0);
+                    } else if(Zero.Keyboard.KeyIsDown(Keys.S) && Zero.Keyboard.KeyIsDown(Keys.D)) {
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
+                        this.Velocity = Real3(1.0 * event.Dt * speed, -1.0 * event.Dt * speed, 0.0);
+                    } else if(Zero.Keyboard.KeyIsDown(Keys.S) && Zero.Keyboard.KeyIsDown(Keys.A)) {
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
+                        this.Velocity = Real3(-1.0 * event.Dt * speed, -1.0 * event.Dt * speed, 0.0);
+                    } else if(Zero.Keyboard.KeyIsDown(Keys.W)) {
                         this.Owner.Transform.Rotation = Quaternion(0, 0, -1, 1);
                         this.Velocity = Real3(0.0, 1.0 * event.Dt * speed, 0.0);
                     } else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
@@ -105,15 +117,8 @@ class EntityRover : ZilchComponent {
                     } else if(Zero.Keyboard.KeyIsDown(Keys.A)) {
                         this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
                         this.Velocity = Real3(-1.0 * event.Dt * speed, 0.0, 0.0);
-                    } else if(this.Velocity.X > 0 || this.Velocity.X < 0 || this.Velocity.Y > 0 || this.Velocity.Y < 0) {
-                        if(this.Velocity.X > 0)
-                            this.Velocity -= Real3(event.Dt * this.VehicleSpeed / 2, 0.0, 0.0);
-                        else if(this.Velocity.Y > 0)
-                            this.Velocity -= Real3(0.0, 0.05 * this.VehicleSpeed / 2, 0.0);
-                        else if(this.Velocity.X < 0)
-                            this.Velocity += Real3(0.0, 0.05 * this.VehicleSpeed / 2, 0.0);
-                        else if(this.Velocity.Y < 0)
-                            this.Velocity += Real3(0.0, 0.05 * this.VehicleSpeed / 2, 0.0);
+                    } else {
+                        this.Velocity = Math.Lerp(this.Velocity, Real3(0.0, 0.0, 0.0), event.Dt * 2);
                     }
                     
                     this.Owner.RigidBody.Velocity = this.Velocity;
