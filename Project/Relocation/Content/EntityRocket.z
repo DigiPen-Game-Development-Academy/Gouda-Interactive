@@ -6,6 +6,7 @@ class EntityRocket : ZilchComponent {
     [Property] var Rider : String = "EntityPlayer";
     [Property] var VehicleSpeed : Real = 400;
     [Property] var VehicleTurboSpeed : Real = 1000;
+    [Property] var Enabled : Boolean = true;
     
     var RiderDefaultSpeed : Real = 150;
     var RiderDefaultRunSpeed : Real = 250;
@@ -28,45 +29,49 @@ class EntityRocket : ZilchComponent {
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
         
-        if(GameSetting.EnemyTooltip) {
+        if(this.Enabled) {
             
-            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
-            
-            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-                Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                    "Big \"Rover\"",
-                    "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
-                    Real4(0.0, 1.0, 0.0, 1.0),
-                    Real4(1.0, 0.0, 0.0, 1.0)
-                );
-            } else {
-                Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                    "Big \"Rover\" (Shift)",
-                    "R to Enter",
-                    Real4(0.0, 1.0, 0.0, 1.0),
-                    Real4(1.0)
-                );
+            if(GameSetting.EnemyTooltip) {
+                
+                Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
+                
+                if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                    Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                        "Big \"Rover\"",
+                        "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
+                        Real4(0.0, 1.0, 0.0, 1.0),
+                        Real4(1.0, 0.0, 0.0, 1.0)
+                    );
+                } else {
+                    Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                        "Big \"Rover\" (Shift)",
+                        "R to Enter",
+                        Real4(0.0, 1.0, 0.0, 1.0),
+                        Real4(1.0)
+                    );
+                }
+                
             }
             
-        }
-        
-        if(Zero.Keyboard.KeyIsReleased(Keys.R) && !this.IsRidingRover) {
-            
-            var rider = this.Space.FindObjectByName(this.Rider);
-            
-            if(rider != null) {
+            if(Zero.Keyboard.KeyIsReleased(Keys.R) && !this.IsRidingRover) {
                 
-                rider.Transform.WorldTranslation = Real3(this.Owner.Transform.WorldTranslation.XY, rider.Transform.WorldTranslation.Z);
+                var rider = this.Space.FindObjectByName(this.Rider);
                 
-                this.IsRidingRover = true;
-                this.Owner.SoundEmitter.PlayCue(SoundCue.Rocket);
-                
-                /*if(rider.Movement != null) {
-                    this.RiderDefaultSpeed = rider.Movement.Speed;
-                    this.RiderDefaultRunSpeed = rider.Movement.RunSpeed;
-                    rider.Movement.Speed = this.VehicleSpeed;
-                    rider.Movement.RunSpeed = this.VehicleTurboSpeed;
-                }*/
+                if(rider != null) {
+                    
+                    rider.Transform.WorldTranslation = Real3(this.Owner.Transform.WorldTranslation.XY, rider.Transform.WorldTranslation.Z);
+                    
+                    this.IsRidingRover = true;
+                    this.Owner.SoundEmitter.PlayCue(SoundCue.Rocket);
+                    
+                    /*if(rider.Movement != null) {
+                        this.RiderDefaultSpeed = rider.Movement.Speed;
+                        this.RiderDefaultRunSpeed = rider.Movement.RunSpeed;
+                        rider.Movement.Speed = this.VehicleSpeed;
+                        rider.Movement.RunSpeed = this.VehicleTurboSpeed;
+                    }*/
+                    
+                }
                 
             }
             
@@ -80,7 +85,7 @@ class EntityRocket : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(this.IsRidingRover) {
+        if(this.IsRidingRover && this.Enabled) {
             
             this.Space.FindObjectByName(this.Rider).Transform.WorldTranslation = Real3(this.Owner.Transform.WorldTranslation.XY, 2.0);
             
@@ -159,7 +164,7 @@ class EntityRocket : ZilchComponent {
                 
             }
             
-        } else {
+        } else if(this.Enabled) {
             
             this.Owner.SoundEmitter.Stop();
             

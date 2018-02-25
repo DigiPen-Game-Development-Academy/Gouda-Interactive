@@ -22,7 +22,7 @@ Cog =
 	{
 		bool Static = false,
 		bool Asleep = false,
-		bool Kinematic = false,
+		bool Kinematic = true,
 		bool RotationLocked = true,
 		bool Mode2D = true,
 		bool AllowSleep = true,
@@ -50,6 +50,7 @@ Cog =
 		string Rider = "EntityPlayer",
 		float VehicleSpeed = 400,
 		float VehicleTurboSpeed = 2000,
+		bool Enabled = false,
 	},
 	Reactive = 
 	{
@@ -75,12 +76,12 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "InBack",
+				string Name = "Engine",
 			},
 			Transform = 
 			{
-				Vec3 Translation = [-4.75, 1.5, 2],
-				Vec3 Scale = [2, 1, 1],
+				Vec3 Translation = [-5, 0, 4],
+				Vec3 Scale = [2, 1, 8],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -100,6 +101,31 @@ Cog =
 				bool AnimationActive = true,
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
+			},
+			RigidBody = 
+			{
+				bool Static = false,
+				bool Asleep = false,
+				bool Kinematic = true,
+				bool RotationLocked = true,
+				bool Mode2D = true,
+				bool AllowSleep = true,
+				bool Inherit2DMode = true,
+				Vec3 Velocity = [0, 0, 0],
+				Vec3 AngularVelocity = [0, 0, 0],
+			},
+			MeshCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "5adf616aaa719908:MaterialRover",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				string PhysicsMeshName = "4ee13192dc049505:Cube",
+				bool DrawEdges = true,
+				bool DrawFaces = false,
+				bool DrawFaceNormals = false,
 			},
 			Hierarchy = 
 			{
@@ -189,12 +215,12 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "InBack",
+				string Name = "Engine",
 			},
 			Transform = 
 			{
-				Vec3 Translation = [-5, 0, 4],
-				Vec3 Scale = [2, 1, 1],
+				Vec3 Translation = [-4.75, -1.25, 2],
+				Vec3 Scale = [2, 1, 8],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -214,6 +240,31 @@ Cog =
 				bool AnimationActive = true,
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
+			},
+			RigidBody = 
+			{
+				bool Static = false,
+				bool Asleep = false,
+				bool Kinematic = true,
+				bool RotationLocked = true,
+				bool Mode2D = true,
+				bool AllowSleep = true,
+				bool Inherit2DMode = true,
+				Vec3 Velocity = [0, 0, 0],
+				Vec3 AngularVelocity = [0, 0, 0],
+			},
+			MeshCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "5adf616aaa719908:MaterialRover",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				string PhysicsMeshName = "4ee13192dc049505:Cube",
+				bool DrawEdges = true,
+				bool DrawFaces = false,
+				bool DrawFaceNormals = false,
 			},
 			Hierarchy = 
 			{
@@ -303,50 +354,12 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "Top",
+				string Name = "Engine",
 			},
 			Transform = 
 			{
-				Vec3 Translation = [6.5, 0, 4],
-				Vec3 Scale = [4, 3, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			Sprite = 
-			{
-				bool Visible = true,
-				bool VisibilityCulling = true,
-				bool VisibilityEvents = true,
-				bool CastShadows = false,
-				Vec4 Color = [1, 1, 1, 1],
-				BlendMode BlendMode = Alpha,
-				SpriteGeometryMode GeometryMode = ZPlane,
-				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "5af7e73d4a526651:ItemDrillTitanium",
-				bool RenderMask = false,
-				bool FlipX = false,
-				bool FlipY = false,
-				bool AnimationActive = true,
-				float AnimationSpeed = 1,
-				uint StartFrame = 0,
-			},
-			Hierarchy = 
-			{
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 7,
-			},
-			Named = 
-			{
-				string Name = "InFront",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-4.75, -1.5, 2],
-				Vec3 Scale = [2, 1, 1],
+				Vec3 Translation = [-4.75, 1.25, 2],
+				Vec3 Scale = [2, 1, 8],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -367,13 +380,38 @@ Cog =
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
 			},
+			RigidBody = 
+			{
+				bool Static = false,
+				bool Asleep = false,
+				bool Kinematic = true,
+				bool RotationLocked = true,
+				bool Mode2D = true,
+				bool AllowSleep = true,
+				bool Inherit2DMode = true,
+				Vec3 Velocity = [0, 0, 0],
+				Vec3 AngularVelocity = [0, 0, 0],
+			},
+			MeshCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "5adf616aaa719908:MaterialRover",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				string PhysicsMeshName = "4ee13192dc049505:Cube",
+				bool DrawEdges = true,
+				bool DrawFaces = false,
+				bool DrawFaceNormals = false,
+			},
 			Hierarchy = 
 			{
 				Cog = 
 				{
 					LinkId = 
 					{
-						uint Id = 8,
+						uint Id = 7,
 					},
 					Named = 
 					{
@@ -445,6 +483,44 @@ Cog =
 						Vec4 Color4 = [1, 0.935649931, 0.504999995, 0],
 					},
 				},
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 8,
+			},
+			Named = 
+			{
+				string Name = "Top",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [6.5, 0, 4],
+				Vec3 Scale = [4, 3, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Sprite = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [1, 1, 1, 1],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string SpriteSource = "5af7e73d4a526651:ItemDrillTitanium",
+				bool RenderMask = false,
+				bool FlipX = false,
+				bool FlipY = false,
+				bool AnimationActive = true,
+				float AnimationSpeed = 1,
+				uint StartFrame = 0,
+			},
+			Hierarchy = 
+			{
 			},
 		},
 		Cog = 
