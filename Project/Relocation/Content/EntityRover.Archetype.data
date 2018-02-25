@@ -56,6 +56,15 @@ Cog =
 		float VehicleSpeed = 400,
 		float VehicleTurboSpeed = 1000,
 	},
+	SoundEmitter = 
+	{
+		float Volume = 1,
+		float Pitch = 0,
+		float PitchSemitones = 0,
+		bool UsePitchSemitones = false,
+		bool Positional = true,
+		int Version = 1,
+	},
 	Hierarchy = 
 	{
 		Cog = 
