@@ -18,6 +18,8 @@ class EntityRocket : ZilchComponent {
     var HoverGravSwitchTime : Real = 0.5;
     var CurrHoverGravSwitchTime : Real = 0.0;
     
+    var LockVelocity : Boolean = false;
+    
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
         Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
@@ -94,7 +96,8 @@ class EntityRocket : ZilchComponent {
                     
                     var speed = this.VehicleSpeed;
                     
-                    if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                    if(Zero.Keyboard.KeyIsDown(Keys.Shift) || this.LockVelocity) {
+                        this.LockVelocity = true;
                         speed = this.VehicleTurboSpeed;
                         this.Owner.SoundEmitter.PlayCue(SoundCue.Damage);
                         this.Owner.Transform.Rotation = Quaternion(0, 0, 1, 1);
@@ -106,53 +109,29 @@ class EntityRocket : ZilchComponent {
                     
                     if(Zero.Keyboard.KeyIsDown(Keys.W) && Zero.Keyboard.KeyIsDown(Keys.D)) {
                         
-                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0.25, 1);
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0.5, 1);
                         
                         this.Velocity = Real3(1.0 * event.Dt * speed, 1.0 * event.Dt * speed, 0.0);
                         
                     } else if(Zero.Keyboard.KeyIsDown(Keys.W) && Zero.Keyboard.KeyIsDown(Keys.A)) {
                         
-                        this.Owner.Transform.Rotation = Quaternion(0, 0, -6.25, -2);
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, -6.05, -3);
                         
                         this.Velocity = Real3(-1.0 * event.Dt * speed, 1.0 * event.Dt * speed, 0.0);
                         
-                    }/* else if(Zero.Keyboard.KeyIsDown(Keys.S) && Zero.Keyboard.KeyIsDown(Keys.D)) {
-                        
-                        this.Owner.Transform.Rotation = Quaternion(0, 0, -0.25, 1);
-                        
-                        this.Velocity = Real3(1.0 * event.Dt * speed, -1.0 * event.Dt * speed, 0.0);
-                        
-                    } else if(Zero.Keyboard.KeyIsDown(Keys.S) && Zero.Keyboard.KeyIsDown(Keys.A)) {
-                        
-                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0.25, 1);
-                        
-                        this.Velocity = Real3(-1.0 * event.Dt * speed, -1.0 * event.Dt * speed, 0.0);
-                        
-                    }*/ else if(Zero.Keyboard.KeyIsDown(Keys.W)) {
+                    } else if(Zero.Keyboard.KeyIsDown(Keys.W)) {
                         
                         this.Owner.Transform.Rotation = Quaternion(0, 0, 1, 1);
                         
                         this.Velocity = Real3(0.0, 1.0 * event.Dt * speed, 0.0);
                         
-                    }/* else if(Zero.Keyboard.KeyIsDown(Keys.D)) {
-                        
-                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
-                        
-                        this.Velocity = Real3(1.0 * event.Dt * speed, 0.0, 0.0);
-                        
                     } else if(Zero.Keyboard.KeyIsDown(Keys.S)) {
                         
-                        this.Owner.Transform.Rotation = Quaternion(0, 0, -1, 1);
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 1, 1);
                         
                         this.Velocity = Real3(0.0, -1.0 * event.Dt * speed, 0.0);
                         
-                    } else if(Zero.Keyboard.KeyIsDown(Keys.A)) {
-                        
-                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
-                        
-                        this.Velocity = Real3(-1.0 * event.Dt * speed, 0.0, 0.0);
-                        
-                    }*/ else if(!Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                    } else if(!Zero.Keyboard.KeyIsDown(Keys.Shift)) {
                         this.Velocity = Math.Lerp(this.Velocity, Real3(0.0, 0.0, 0.0), event.Dt * 2);
                     }
                     

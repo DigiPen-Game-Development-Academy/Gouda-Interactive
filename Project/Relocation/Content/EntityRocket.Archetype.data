@@ -23,7 +23,7 @@ Cog =
 		bool Static = false,
 		bool Asleep = false,
 		bool Kinematic = false,
-		bool RotationLocked = false,
+		bool RotationLocked = true,
 		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
@@ -49,7 +49,7 @@ Cog =
 	{
 		string Rider = "EntityPlayer",
 		float VehicleSpeed = 400,
-		float VehicleTurboSpeed = 1000,
+		float VehicleTurboSpeed = 2000,
 	},
 	Reactive = 
 	{
@@ -545,7 +545,7 @@ Cog =
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 				string FontName = "5addaa7b8f441196:FontBold",
 				uint FontSize = 75,
-				string Text = "RELOCATION-12",
+				string Text = "RELOCATION-07",
 				TextAlign Align = Right,
 				float PixelsPerUnit = 128,
 				bool Smoothing = false,
