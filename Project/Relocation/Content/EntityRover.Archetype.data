@@ -33,7 +33,7 @@ Cog =
 	Health = 
 	{
 		float MaxHealth = 10,
-		bool IsInvincible = false,
+		bool IsInvincible = true,
 	},
 	MeshCollider = 
 	{

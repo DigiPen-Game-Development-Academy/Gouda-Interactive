@@ -34,7 +34,7 @@ class EntityRover : ZilchComponent {
             } else {
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
                     "Rover (Shift)",
-                    "Right Click to Enter",
+                    "R to Enter",
                     Real4(0.0, 1.0, 0.0, 1.0),
                     Real4(1.0)
                 );
@@ -42,7 +42,7 @@ class EntityRover : ZilchComponent {
             
         }
         
-        if(Zero.Mouse.IsButtonDown(MouseButtons.Right) && !this.IsRidingRover) {
+        if(Zero.Keyboard.KeyIsReleased(Keys.R) && !this.IsRidingRover) {
             
             var rider = this.Space.FindObjectByName(this.Rider);
             
@@ -60,17 +60,6 @@ class EntityRover : ZilchComponent {
                 }
                 
             }
-            
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.R)) {
-            
-            var rider = this.Space.FindObjectByName(this.Rider);
-            
-            if(rider != null && rider.Movement != null) {
-                rider.Movement.Speed = this.RiderDefaultSpeed;
-                rider.Movement.RunSpeed = this.RiderDefaultRunSpeed;
-            }
-            
-            this.IsRidingRover = false;
             
         }
         
@@ -96,20 +85,36 @@ class EntityRover : ZilchComponent {
                 
                 if(rider.Movement != null) {
                     
-                    var dir = rider.Movement.PlayerDirection;
-                    
-                    if(dir == "North")
-                        this.Owner.Transform.Rotation = Quaternion(0, 0, 1, 1);
-                    else if(dir == "East")
-                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
-                    else if(dir == "South")
+                    if(Zero.Keyboard.KeyIsDown(Keys.W))
                         this.Owner.Transform.Rotation = Quaternion(0, 0, -1, 1);
-                    else if(dir == "West")
+                    else if(Zero.Keyboard.KeyIsDown(Keys.D))
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
+                    else if(Zero.Keyboard.KeyIsDown(Keys.S))
+                        this.Owner.Transform.Rotation = Quaternion(0, 0, 1, 1);
+                    else if(Zero.Keyboard.KeyIsDown(Keys.A))
                         this.Owner.Transform.Rotation = Quaternion(0, 0, 0, 1);
                     
                 }
                 
             }
+            
+            // GO TO DEFAULT SPEED
+            if(Zero.Keyboard.KeyIsPressed(Keys.R)) {
+                
+                if(rider != null && rider.Movement != null) {
+                    rider.Movement.Speed = this.RiderDefaultSpeed;
+                    rider.Movement.RunSpeed = this.RiderDefaultRunSpeed;
+                }
+                
+                this.IsRidingRover = false;
+                
+            }
+            
+        } else {
+            
+            // HOVER ANIMATION
+            
+            
             
         }
         
