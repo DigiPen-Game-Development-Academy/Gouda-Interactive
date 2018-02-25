@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.681398273, 3.31050229, 53.6266098],
+			Vec3 Translation = [9.98027039, 8.80027676, 53.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 32.8893929,
+			float Size = 13.3718348,
 		},
 		EditorCameraController = 
 		{
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0.681398273, 3.31050229, 40],
+			Vec3 LookTarget = [9.98027039, 8.80027676, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2760,6 +2760,48 @@ Level =
 		},
 		Named = 
 		{
+			string Name = "Time",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [15.75, 10, 20],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		SpriteText = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string FontName = "5addaa209e091e3e:FontDefaultMonospace",
+			uint FontSize = 150,
+			string Text = "Time: 0 00",
+			TextAlign Align = Right,
+			float PixelsPerUnit = 128,
+			bool Smoothing = false,
+		},
+		ScreenAlignment = 
+		{
+			string PositionX = "Right",
+			string PositionY = "Top",
+			Vec2 PositionOffset = [-0.25, 0],
+			float ZIndex = 0,
+			bool HideUntilPositioned = false,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 91,
+		},
+		Named = 
+		{
 			string Name = "PauseMenu",
 		},
 		Transform = 
@@ -2777,7 +2819,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 91,
+					uint Id = 92,
 				},
 				Named = 
 				{
@@ -2795,7 +2837,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 92,
+							uint Id = 93,
 						},
 						Named = 
 						{
@@ -2829,7 +2871,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 93,
+							uint Id = 94,
 						},
 						Named = 
 						{
@@ -2880,7 +2922,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 94,
+							uint Id = 95,
 						},
 						Named = 
 						{
@@ -2931,7 +2973,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 95,
+							uint Id = 96,
 						},
 						Named = 
 						{
@@ -2982,7 +3024,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 96,
+							uint Id = 97,
 						},
 						Named = 
 						{
@@ -3036,7 +3078,7 @@ Level =
 				string Name = "5addf7d9164ad77b:MenuOptionsUI",
 				LinkId = 
 				{
-					uint Id = 97,
+					uint Id = 98,
 				},
 				Transform = 
 				{
@@ -3055,7 +3097,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 98,
+			uint Id = 99,
 		},
 		Named = 
 		{
@@ -3076,7 +3118,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 99,
+					uint Id = 100,
 				},
 				Named = 
 				{
@@ -3094,7 +3136,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 100,
+							uint Id = 101,
 						},
 						Named = 
 						{
@@ -3128,7 +3170,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 101,
+							uint Id = 102,
 						},
 						Named = 
 						{
@@ -3179,7 +3221,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 102,
+							uint Id = 103,
 						},
 						Named = 
 						{
@@ -3230,7 +3272,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 103,
+							uint Id = 104,
 						},
 						Named = 
 						{
