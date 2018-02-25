@@ -3,6 +3,8 @@
 
 class DayCycle : ZilchComponent {
     
+    [Property] var RenderDayNightCycle : Boolean = true;
+    
     var LightMultiplier : Real = 1.0;
     
     function Initialize(init : CogInitializer) {
@@ -22,26 +24,24 @@ class DayCycle : ZilchComponent {
             if(Relocation.Time < Relocation.DayLength * 0.25 || Relocation.Time > Relocation.DayLength * 0.75) {
                 
                 if(Relocation.Time > Relocation.DayLength * 0.125 && Relocation.Time < Relocation.DayLength * 0.75) {
-                    Console.WriteLine("sunrise");
                     Relocation.LightAmount += event.Dt * 0.175 * this.LightMultiplier;
-                    this.Owner.AmbientLight.Color = Real4(Real3(Relocation.LightAmount), 1.0);
+                    if(this.RenderDayNightCycle)
+                        this.Owner.AmbientLight.Color = Real4(Real3(Relocation.LightAmount), 1.0);
                 } else if(Relocation.Time > Relocation.DayLength * 0.625 && Relocation.LightAmount >= 0.25) {
-                    Console.WriteLine("sunset");
                     Relocation.LightAmount -= event.Dt * 0.175 * this.LightMultiplier;
-                    this.Owner.AmbientLight.Color = Real4(Real3(Relocation.LightAmount), 1.0);
+                    if(this.RenderDayNightCycle)
+                        this.Owner.AmbientLight.Color = Real4(Real3(Relocation.LightAmount), 1.0);
                 } else if(Relocation.Time < Relocation.DayLength * 0.25 || Relocation.Time > Relocation.DayLength * 0.75) {
-                    Console.WriteLine("night");
                     Relocation.LightAmount = 0.25;
-                    this.Owner.AmbientLight.Color = Real4(Real3(0.25), 1.0);
+                    if(this.RenderDayNightCycle)
+                        this.Owner.AmbientLight.Color = Real4(Real3(0.25), 1.0);
                 }
                 
             } else {
-                Console.WriteLine("day");
-                this.Owner.AmbientLight.Color = Real4(1.0, 1.0, 1.0, 1.0);
+                if(this.RenderDayNightCycle)
+                    this.Owner.AmbientLight.Color = Real4(1.0, 1.0, 1.0, 1.0);
             }
         }
-        
-        Console.WriteLine("Time: `Relocation.Time`");
         
     }
     

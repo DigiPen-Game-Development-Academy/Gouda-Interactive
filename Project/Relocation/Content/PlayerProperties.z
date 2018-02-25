@@ -189,13 +189,15 @@ class PlayerProperties : ZilchComponent {
         }
         
         // STORM SOUNDS
-        if(this.StormSoundsActive && !this.StormSoundsPlayed) {
-            this.StormSoundsPlayed = true;
-            this.Space.FindObjectByName("BuildingSiren").SoundEmitter.PlayCue(SoundCue.StormSiren);
-            this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Volume = GameSetting.SoundEffectsVolume;
-        } else if(!this.StormSoundsActive) {
-            this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Stop();
-            this.StormSoundsPlayed = false;
+        if(this.Space.FindObjectByName("BuildingSiren") != null) {
+            if(this.StormSoundsActive && !this.StormSoundsPlayed) {
+                this.StormSoundsPlayed = true;
+                this.Space.FindObjectByName("BuildingSiren").SoundEmitter.PlayCue(SoundCue.StormSiren);
+                this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Volume = GameSetting.SoundEffectsVolume;
+            } else if(!this.StormSoundsActive) {
+                this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Stop();
+                this.StormSoundsPlayed = false;
+            }
         }
         
         if(this.CurrUnauthKillTime > this.UnauthorizedKillTime) {

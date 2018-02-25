@@ -59,14 +59,27 @@ Level =
 			Vec2 Resolution = [1280, 720],
 			Vec4 MarginColor = [0, 0, 0, 1],
 		},
-		ForwardRenderer = 
+		DeferredRenderer = 
 		{
-			Vec4 ClearColor = [0, 0.7900002, 1, 1],
+			Vec4 ClearColor = [0, 0.760000229, 1, 1],
 			bool DrawNonVisible = false,
 			bool DrawDebugObjects = true,
 			bool DrawEditorIcons = true,
 			bool EditorIconDepth = true,
-			bool Wireframe = false,
+			bool Hdr = true,
+			bool Shadows = true,
+			bool AntiAliasing = false,
+			bool Refraction = true,
+			bool Reflections = true,
+			string ReflectionEnvironmentName = "4fab71e8bcb7a8ce:DefaultTexture",
+			bool GodRays = true,
+			bool RenderMasks = true,
+			bool Glow = false,
+			float GlowThreshold = 1,
+		},
+		AmbientLight = 
+		{
+			Vec4 Color = [0.415000021, 0.415000021, 0.415000021, 1],
 		},
 		GridDraw = 
 		{
@@ -98,6 +111,10 @@ Level =
 			int NumberOfTiles = 9,
 			int TileDiameter = 32,
 			float MaxRadiusFromPlayer = 64,
+		},
+		DayCycle = 
+		{
+			bool RenderDayNightCycle = false,
 		},
 	},
 	Cog = 
@@ -380,6 +397,7 @@ Level =
 			string LookDownLeft = "5a38055fca8ce913:DownLeft",
 			string LookLeft = "5a38055fca8daf58:Left",
 			string LookUpLeft = "5a38055fca8e5568:UpLeft",
+			float BulletSpeed = 10,
 		},
 		Orientation = 
 		{
