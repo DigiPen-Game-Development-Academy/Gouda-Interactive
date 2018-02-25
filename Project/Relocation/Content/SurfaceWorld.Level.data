@@ -122,7 +122,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [4.54648352, 5.16276979, 248.28772],
+			Vec3 Translation = [-13.3951359, 1.66148221, 248.28772],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -134,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 13.3718061,
+			float Size = 44.9329338,
 		},
 		EditorCameraController = 
 		{
@@ -142,7 +142,7 @@ Level =
 			float LookDistance = 248.292725,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [4.54648352, 5.16276979, -0.00499980571],
+			Vec3 LookTarget = [-13.3951359, 1.66148221, -0.00500058895],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -365,6 +365,41 @@ Level =
 		},
 		Named = 
 		{
+			string Name = "Road",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, -0.5],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		MultiSprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		},
+		TileMap = 
+		{
+			string SourceName = "5ade65ea7f57d291:SurfaceWorld_TileMap04",
+			string PaletteName = "5ade647506204ce3:RoadTile",
+			float UnitsPerTile = 1,
+			float MeshThickness = 1.20000005,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Named = 
+		{
 			string Name = "BuildingSiren",
 		},
 		Transform = 
@@ -416,7 +451,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 12,
+					uint Id = 13,
 				},
 				Named = 
 				{
@@ -451,7 +486,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 13,
+					uint Id = 14,
 				},
 				Named = 
 				{
@@ -489,7 +524,7 @@ Level =
 		string Name = "5ac2f985abfc1c64:BuildingShop",
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 15,
 		},
 		Transform = 
 		{
@@ -506,7 +541,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 15,
+			uint Id = 16,
 		},
 		Named = 
 		{
@@ -525,7 +560,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 16,
+					uint Id = 17,
 				},
 				Transform = 
 				{
@@ -543,7 +578,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 17,
+					uint Id = 18,
 				},
 				Transform = 
 				{
@@ -561,7 +596,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 18,
+					uint Id = 19,
 				},
 				Transform = 
 				{
@@ -579,7 +614,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 19,
+					uint Id = 20,
 				},
 				Transform = 
 				{
@@ -597,7 +632,7 @@ Level =
 				string Name = "5adf4de3a07acbd6:BuildingHutPlayer",
 				LinkId = 
 				{
-					uint Id = 20,
+					uint Id = 21,
 				},
 				Transform = 
 				{
@@ -615,7 +650,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 21,
+					uint Id = 22,
 				},
 				Transform = 
 				{
@@ -633,7 +668,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 22,
+					uint Id = 23,
 				},
 				Transform = 
 				{
@@ -651,7 +686,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 23,
+					uint Id = 24,
 				},
 				Transform = 
 				{
@@ -669,7 +704,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 24,
+					uint Id = 25,
 				},
 				Transform = 
 				{
@@ -687,7 +722,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 25,
+					uint Id = 26,
 				},
 				Transform = 
 				{
@@ -705,7 +740,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 26,
+					uint Id = 27,
 				},
 				Transform = 
 				{
@@ -723,7 +758,7 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 27,
+					uint Id = 28,
 				},
 				Transform = 
 				{
@@ -743,7 +778,7 @@ Level =
 		string Name = "5a240449292b4c0b:CaveEnteranceExit",
 		LinkId = 
 		{
-			uint Id = 28,
+			uint Id = 29,
 		},
 		Transform = 
 		{
@@ -761,7 +796,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 29,
+			uint Id = 30,
 		},
 		Transform = 
 		{
@@ -779,7 +814,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 30,
+			uint Id = 31,
 		},
 		Transform = 
 		{
@@ -797,7 +832,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 31,
+			uint Id = 32,
 		},
 		Transform = 
 		{
@@ -815,7 +850,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 32,
+			uint Id = 33,
 		},
 		Transform = 
 		{
@@ -833,7 +868,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 33,
+			uint Id = 34,
 		},
 		Transform = 
 		{
