@@ -15,6 +15,6 @@ ImageContent =
 		bool Smoothing = false,
 		bool Looping = true,
 		Vec4 Slices = [0, 0, 0, 0],
-		SpriteFill Fill = Stretch,
+		SpriteFill Fill = Tiled,
 	},
 },

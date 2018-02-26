@@ -9,8 +9,6 @@ class MusicPlayer : ZilchComponent {
     [Property] var MusicSpace : Archetype = null;
     [Property] var MusicLevel : Level = null;
     
-    [Property] var MusicVolume : Real = 1.0;
-    
     //[Property] var MusicFadeoutTime : Real = 1.0;
     
     var CurrMusicVolume : Real = 1.0;
@@ -44,9 +42,9 @@ class MusicPlayer : ZilchComponent {
         }*/
         
         // VOLUME CONTROLS (TEMPERARY)
-        if(Zero.Keyboard.KeyIsPressed(Keys.F2) && this.MusicVolume >= 0.0 + 0.05) {
+        if(Zero.Keyboard.KeyIsPressed(Keys.F2) && GameSetting.MusicVolume >= 0.0 + 0.05) {
             GameSetting.MusicVolume -= 0.05;
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.F3) && this.MusicVolume <= 1.0 - 0.05) {
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.F3) && GameSetting.MusicVolume <= 1.0 - 0.05) {
             GameSetting.MusicVolume += 0.05;
         }
         
