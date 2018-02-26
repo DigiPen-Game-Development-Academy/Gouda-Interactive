@@ -241,7 +241,7 @@ class TextEntry : ZilchComponent {
                     
                     this.CycleThroughCmdsAll = true;
                     
-                    if(this.AutocompleteIndex > this.Commands.Count - 1) {
+                    if(this.AutocompleteIndex >= this.Commands.Count) {
                         this.AutocompleteIndex = 0;
                     }
                     
@@ -298,8 +298,8 @@ class TextEntry : ZilchComponent {
                     
                 }
                 
-                tmpTxt = text.SubStringFromRuneIndices(breakIndex, text.Count);
                 var tmpFrnt = text.SubStringFromRuneIndices(0, breakIndex);
+                tmpTxt = text.SubStringFromRuneIndices(breakIndex, text.Count);
                 tmpFrnt = String.Concatenate(tmpFrnt, "\n");
                 text = String.Concatenate(tmpFrnt, tmpTxt);
                 
@@ -318,9 +318,12 @@ class TextEntry : ZilchComponent {
     
     function SearchArray(array : Array[String], str : String, curIndex : Integer) : Integer {
         
+        Console.WriteLine("array: `array`");
+        
         var occurances = 0;
         var startIndex = 0;
         
+        // FIND NUMBER OF OCCURANCES
         for(var i = 0; i < array.Count; ++i) {
             
             if(array.Get(i).StartsWith(str) && occurances == 0) {
@@ -339,13 +342,15 @@ class TextEntry : ZilchComponent {
         
         for(var i = 0; i < occurances; ++i) {
             
-            if(array.Get(tmpOccur).Contains(str) && curIndex <= tmpOccur && tmpOccur <= occurances && tmpOccur < array.Count) {
+            if(array.Get(tmpOccur).StartsWith(str) && curIndex <= tmpOccur && tmpOccur < occurances && tmpOccur < array.Count) {
                 return tmpOccur;
             } else {
                 ++tmpOccur;
             }
             
         }
+        
+        Console.WriteLine("tmpOccur: `tmpOccur`, startIndex: `startIndex`");
         
         this.Occurances = occurances;
         
@@ -361,7 +366,6 @@ class TextEntry : ZilchComponent {
     function GetArgument(argNum : Integer, command : String) : String {
         
         var currArg = 0;
-        
         var tmpArg = "";
         
         for(var i = 0; i < command.Count; ++i) {
