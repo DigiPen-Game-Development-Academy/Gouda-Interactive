@@ -37,6 +37,8 @@ class EntityBullet : ZilchComponent {
             this.Owner.Destroy();
             
             Console.WriteLine("Laser hit: `event.OtherObject.Name`");
+        } else if(event.OtherObject.Name == this.Owner.Name) {
+            
         } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer) {
             
             if(event.OtherObject.Health != null) {

@@ -204,6 +204,18 @@ class PlayerProperties : ZilchComponent {
             this.Owner.Health.CurrentHealth = 0.0;
         }
         
+        // SET USERNAME
+        if(Relocation.UISpace != null && Relocation.UISpace.FindObjectByName("PlayerName") != null) {
+            
+            var playerNameField = Relocation.UISpace.FindObjectByName("PlayerName");
+            
+            if(this.PlayerName != playerNameField.SpriteText.Text && !playerNameField.SpriteText.Text.EndsWith("¡")) {
+                this.PlayerName = playerNameField.SpriteText.Text;
+                playerNameField.SpriteText.Text = String.Concatenate(this.PlayerName, " ¡");
+            }
+            
+        }
+        
     }
     
     function AddToBalance(amt : Real) {
