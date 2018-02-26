@@ -45,19 +45,19 @@ class MusicPlayer : ZilchComponent {
         
         // VOLUME CONTROLS (TEMPERARY)
         if(Zero.Keyboard.KeyIsPressed(Keys.F2) && this.MusicVolume >= 0.0 + 0.05) {
-            this.MusicVolume -= 0.05;
+            GameSetting.MusicVolume -= 0.05;
         } else if(Zero.Keyboard.KeyIsPressed(Keys.F3) && this.MusicVolume <= 1.0 - 0.05) {
-            this.MusicVolume += 0.05;
+            GameSetting.MusicVolume += 0.05;
         }
         
         // UPDATE VOLUME ON CHANGE
-        if(this.CurrMusicVolume != this.MusicVolume) {
+        if(this.CurrMusicVolume != GameSetting.MusicVolume) {
             if(this.MainMenuMusicSpace != null) {
-                this.CurrMusicVolume = this.MusicVolume;
-                this.MainMenuMusicSpace.SoundSpace.Volume = this.MusicVolume;
+                this.CurrMusicVolume = GameSetting.MusicVolume;
+                this.MainMenuMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
             } else if(this.GameLevelMusicSpace != null) {
-                this.CurrMusicVolume = this.MusicVolume;
-                this.GameLevelMusicSpace.SoundSpace.Volume = this.MusicVolume;
+                this.CurrMusicVolume = GameSetting.MusicVolume;
+                this.GameLevelMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
             }
         }
         
@@ -65,19 +65,7 @@ class MusicPlayer : ZilchComponent {
     
     function OnLevelStarted(event : GameEvent) {
         
-        if(!(event.LevelName == "SplashScreen" || ((event.LevelName == "MainMenu" || event.LevelName == "SettingsMenu") && this.MainMenuMusicSpace == null))) {
-            
-            if(this.MainMenuMusicSpace != null) {
-                this.MainMenuMusicSpace.Destroy();
-            }
-            
-            this.GameLevelMusicSpace = this.GameSession.CreateSpace(this.MusicSpace);
-            
-            this.GameLevelMusicSpace.LoadLevel(this.MusicLevel);
-            this.GameLevelMusicSpace.SoundSpace.Volume = this.MusicVolume;
-            this.GameLevelMusicSpace.SoundSpace.PlayCue(this.InGameSong);
-            
-        } else {
+        if((event.LevelName == "SplashScreen" || event.LevelName == "MainMenu" || event.LevelName == "SettingsMenu") && this.MainMenuMusicSpace == null) {
             
             if(this.GameLevelMusicSpace != null) {
                 this.GameLevelMusicSpace.Destroy();
@@ -88,8 +76,20 @@ class MusicPlayer : ZilchComponent {
             this.MainMenuMusicSpace = this.GameSession.CreateSpace(this.MusicSpace);
             
             this.MainMenuMusicSpace.LoadLevel(this.MusicLevel);
-            this.MainMenuMusicSpace.SoundSpace.Volume = this.MusicVolume;
+            this.MainMenuMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
             this.MainMenuMusicSpace.SoundSpace.PlayCue(this.MainMenuSong);
+            
+        } else if(!(event.LevelName == "SplashScreen") && !(event.LevelName == "MainMenu") && !(event.LevelName == "SettingsMenu")) {
+            
+            if(this.MainMenuMusicSpace != null) {
+                this.MainMenuMusicSpace.Destroy();
+            }
+            
+            this.GameLevelMusicSpace = this.GameSession.CreateSpace(this.MusicSpace);
+            
+            this.GameLevelMusicSpace.LoadLevel(this.MusicLevel);
+            this.GameLevelMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
+            this.GameLevelMusicSpace.SoundSpace.PlayCue(this.InGameSong);
             
         }
         
