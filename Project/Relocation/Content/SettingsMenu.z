@@ -65,11 +65,11 @@ class SettingsMenu : ZilchComponent {
             
             if(!this.MenuOpen && this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.ButtonClicked) {
                 this.Owner.Transform.WorldTranslation = Real3(0.0, 0.0, 0.0);
-                this.Owner.Parent.FindChildByName("PauseButtons").Transform.WorldTranslation = Real3(0.0, 0.0, 50000.0);
+                this.Owner.Parent.FindChildByName("PauseButtons").Transform.WorldTranslation = Real3(0.0, -2.0, 50000.0);
                 this.MenuOpen = true;
             } else if(this.MenuOpen && this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.ButtonClicked) {
                 this.Owner.Transform.WorldTranslation = Real3(0.0, 0.0, 50000.0);
-                this.Owner.Parent.FindChildByName("PauseButtons").Transform.WorldTranslation = Real3(0.0, 0.0, 0.0);
+                this.Owner.Parent.FindChildByName("PauseButtons").Transform.WorldTranslation = Real3(0.0, -2.0, 0.0);
                 this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.ButtonClicked = false;
                 this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.CurrDelay = 0.0;
                 Relocation.ButtonFadeout = false;
@@ -78,7 +78,7 @@ class SettingsMenu : ZilchComponent {
             
             if(Zero.Keyboard.KeyIsPressed(Keys.Escape) && this.Owner.Parent.PauseMenu.PauseMenuEnabled) {
                 this.Owner.Transform.WorldTranslation = Real3(0.0, 0.0, 50000.0);
-                this.Owner.Parent.FindChildByName("PauseButtons").Transform.WorldTranslation = Real3(0.0, 0.0, 0.0);
+                this.Owner.Parent.FindChildByName("PauseButtons").Transform.WorldTranslation = Real3(0.0, -2.0, 0.0);
                 this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.ButtonClicked = false;
                 this.Owner.Parent.FindChildByName("PauseButtons").FindChildByName("ButtonOptions").ButtonLevelSwitcher.CurrDelay = 0.0;
                 Relocation.ButtonFadeout = false;
