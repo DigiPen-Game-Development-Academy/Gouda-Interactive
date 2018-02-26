@@ -10,30 +10,18 @@ class Commands : ZilchComponent {
     function CreateCommands() {
         
         this.Owner.TextEntry.Commands = new Array[String]();
-        this.Owner.TextEntry.CommandsAll = new Array[String]();
         
         // PUSH COMMANDS
         this.Owner.TextEntry.Commands.Push("clear");
-        this.Owner.TextEntry.CommandsAll.Push("clear");
         this.Owner.TextEntry.Commands.Push("cls");
-        this.Owner.TextEntry.CommandsAll.Push("cls");
         this.Owner.TextEntry.Commands.Push("color");
-        this.Owner.TextEntry.CommandsAll.Push("color");
         this.Owner.TextEntry.Commands.Push("debug");
-        this.Owner.TextEntry.CommandsAll.Push("debug");
-        this.Owner.TextEntry.CommandsAll.Push("echo");
         this.Owner.TextEntry.Commands.Push("echo");
-        this.Owner.TextEntry.CommandsAll.Push("give");
         this.Owner.TextEntry.Commands.Push("give");
-        this.Owner.TextEntry.CommandsAll.Push("god");
         this.Owner.TextEntry.Commands.Push("god");
-        this.Owner.TextEntry.CommandsAll.Push("help");
         this.Owner.TextEntry.Commands.Push("help");
-        this.Owner.TextEntry.CommandsAll.Push("playsound");
         this.Owner.TextEntry.Commands.Push("playsound");
-        this.Owner.TextEntry.CommandsAll.Push("spawn");
         this.Owner.TextEntry.Commands.Push("spawn");
-        this.Owner.TextEntry.Commands.Push("");
         
     }
     

@@ -26,7 +26,6 @@ class TextEntry : ZilchComponent {
     
     var CommandHistory : Array[String];
     var Commands : Array[String];
-    var CommandsAll : Array[String];
     
     var CmdHistoryIndex : Integer = 0;
     var AutocompleteIndex : Integer = 0;
@@ -242,11 +241,11 @@ class TextEntry : ZilchComponent {
                     
                     this.CycleThroughCmdsAll = true;
                     
-                    if(this.AutocompleteIndex > this.CommandsAll.Count - 1) {
+                    if(this.AutocompleteIndex > this.Commands.Count - 1) {
                         this.AutocompleteIndex = 0;
                     }
                     
-                    this.CommandString = this.CommandsAll.Get(this.AutocompleteIndex);
+                    this.CommandString = this.Commands.Get(this.AutocompleteIndex);
                     
                 } else {
                     
@@ -263,7 +262,7 @@ class TextEntry : ZilchComponent {
                     
                 }
                 
-                if(this.AutocompleteIndex < this.Commands.Count - 1) {
+                if(this.AutocompleteIndex < this.Commands.Count) {
                     ++this.AutocompleteIndex;
                 } else {
                     this.AutocompleteIndex = 0;
@@ -322,7 +321,7 @@ class TextEntry : ZilchComponent {
         var occurances = 0;
         var startIndex = 0;
         
-        for(var i = 0; i < array.Count - 1; ++i) {
+        for(var i = 0; i < array.Count; ++i) {
             
             if(array.Get(i).StartsWith(str) && occurances == 0) {
                 startIndex = i;
@@ -334,11 +333,13 @@ class TextEntry : ZilchComponent {
             
         }
         
+        Console.WriteLine("occurances: `occurances`");
+        
         var tmpOccur = 0;
         
         for(var i = 0; i < occurances; ++i) {
             
-            if(array.Get(tmpOccur).Contains(str) && curIndex <= tmpOccur && tmpOccur < occurances && tmpOccur < array.Count - 1) {
+            if(array.Get(tmpOccur).Contains(str) && curIndex <= tmpOccur && tmpOccur <= occurances && tmpOccur < array.Count) {
                 return tmpOccur;
             } else {
                 ++tmpOccur;
@@ -346,13 +347,13 @@ class TextEntry : ZilchComponent {
             
         }
         
-        if(tmpOccur >= occurances - 1 || tmpOccur == 0) {
+        this.Occurances = occurances;
+        
+        if(tmpOccur >= occurances || tmpOccur == 0) {
             this.AutocompleteIndex = startIndex;
-            this.Occurances = occurances;
             return startIndex;
         }
         
-        this.Occurances = occurances;
         return -1;
         
     }
