@@ -313,7 +313,7 @@ class TextEntry : ZilchComponent {
         var console = this.Space.FindObjectByName(this.ConsoleTextboxName);
         
         console.SpriteText.Text = this.ConsoleLog;
-        console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y + 0.5, 5);
+        console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y + 1.75, 5);
         
     }
     
