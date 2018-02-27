@@ -32,7 +32,7 @@ class EntityBullet : ZilchComponent {
             this.Owner.Destroy();
             
         } else if(event.OtherObject.Breakable != null) {
-            event.OtherObject.Breakable.TimeTillBreak += this.Damage;
+            event.OtherObject.Breakable.TimeTillBreak += this.Damage * 4;
             
             this.Owner.Destroy();
             
