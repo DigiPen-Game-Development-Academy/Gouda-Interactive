@@ -19,7 +19,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-23, 5, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -51,13 +51,13 @@ Cog =
 	},
 	Breakable = 
 	{
-		float BreakTime = 1,
+		float BreakTime = 5,
 		string ToolType = "Drill",
-		int Loot1ID = 1,
+		int Loot1ID = 3,
 		int Loot1MaxAmount = 3,
-		int Loot2ID = 0,
+		int Loot2ID = 20,
 		int Loot2MaxAmount = 0,
-		int Loot3ID = 0,
+		int Loot3ID = 22,
 		int Loot3MaxAmount = 0,
 	},
 	BoxCollider = 
