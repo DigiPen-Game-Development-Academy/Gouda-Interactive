@@ -178,9 +178,7 @@ class TextEntry : ZilchComponent {
         
         // COMMANDS
         if(this.FinalCmd.Count > 0 && this.IsCommandTextBox) {
-            
             this.Owner.Commands.CommandFunctions();
-            
         }
         
     }
