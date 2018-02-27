@@ -122,7 +122,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-20.3951359, 5.84328699, 135.766266],
+			Vec3 Translation = [-20.479578, 4.71403027, 136.266266],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -134,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 10.0259047,
+			float Size = 9.07182503,
 		},
 		EditorCameraController = 
 		{
@@ -142,7 +142,7 @@ Level =
 			float LookDistance = 136.266266,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-20.3951359, 5.84328699, -0.500000715],
+			Vec3 LookTarget = [-20.479578, 4.71403027, -8.9519142e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -898,6 +898,11 @@ Level =
 		{
 			string Name = "WorldBorder",
 		},
+		EditorFlags = 
+		{
+			bool Locked = true,
+			bool Hidden = false,
+		},
 	},
 	ArchetypeInstance = 
 	{
@@ -915,6 +920,11 @@ Level =
 		Named = 
 		{
 			string Name = "WorldBorder",
+		},
+		EditorFlags = 
+		{
+			bool Locked = true,
+			bool Hidden = false,
 		},
 	},
 	ArchetypeInstance = 
@@ -934,6 +944,11 @@ Level =
 		{
 			string Name = "WorldBorder",
 		},
+		EditorFlags = 
+		{
+			bool Locked = true,
+			bool Hidden = false,
+		},
 	},
 	ArchetypeInstance = 
 	{
@@ -952,6 +967,11 @@ Level =
 		{
 			string Name = "WorldBorder",
 		},
+		EditorFlags = 
+		{
+			bool Locked = true,
+			bool Hidden = false,
+		},
 	},
 	ArchetypeInstance = 
 	{
@@ -969,6 +989,11 @@ Level =
 		Named = 
 		{
 			string Name = "WorldBorder",
+		},
+		EditorFlags = 
+		{
+			bool Locked = true,
+			bool Hidden = false,
 		},
 	},
 },
