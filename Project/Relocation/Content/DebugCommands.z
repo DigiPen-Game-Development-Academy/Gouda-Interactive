@@ -132,7 +132,6 @@ class TextEntry : ZilchComponent {
                 var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
                 
                 txtSelect.Sprite.Visible = true;
-                
                 txtSelect.Transform.Scale = Real3((this.Owner.SpriteText.Text.Count - 1) * this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
                 
             } else if(Zero.Keyboard.KeyIsDown(Keys.Right) || Zero.Keyboard.KeyIsDown(Keys.Left)) {
@@ -149,7 +148,10 @@ class TextEntry : ZilchComponent {
             if(this.CommandString.Count <= this.MaxCharsPerLine) {
                 this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|");
             } else {
-                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|").SubStringFromRuneIndices(this.CommandString.Count - (this.MaxCharsPerLine), this.CommandString.Count + 1);
+                this.Owner.SpriteText.Text = 
+                    String.Concatenate(this.CommandString, "|").SubStringFromRuneIndices(
+                        this.CommandString.Count - (this.MaxCharsPerLine), this.CommandString.Count + 1
+                    );
             }
             
         } else if(this.Owner.SpriteText.Text.Count > 0) {
@@ -184,11 +186,9 @@ class TextEntry : ZilchComponent {
     }
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
-        
         if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left)) {
             this.WasClicked = true;
         }
-        
     }
     
     function OnTextTyped(event : KeyboardTextEvent) {
