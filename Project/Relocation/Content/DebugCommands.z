@@ -336,12 +336,22 @@ class TextEntry : ZilchComponent {
         
         Console.WriteLine("occurances: `occurances`");
         
+        if(this.AutocompleteIndex < startIndex) {
+            this.AutocompleteIndex = startIndex;
+            return startIndex;
+        }
+        
+        this.Occurances = occurances;
+        
         var tmpOccur = 0;
+        var tmpIndex = 0;
         
         for(var i = 0; i < occurances; ++i) {
             
-            if(array.Get(tmpOccur).StartsWith(str) && curIndex <= tmpOccur && tmpOccur < occurances && tmpOccur < array.Count) {
-                return tmpOccur;
+            tmpIndex = startIndex + tmpOccur;
+            
+            if(array.Get(tmpIndex).StartsWith(str) && curIndex <= tmpIndex && tmpOccur < occurances && tmpIndex < array.Count) {
+                return tmpIndex;
             } else {
                 ++tmpOccur;
             }
@@ -349,8 +359,6 @@ class TextEntry : ZilchComponent {
         }
         
         Console.WriteLine("tmpOccur: `tmpOccur`, startIndex: `startIndex`");
-        
-        this.Occurances = occurances;
         
         if(tmpOccur >= occurances || tmpOccur == 0) {
             this.AutocompleteIndex = startIndex;
