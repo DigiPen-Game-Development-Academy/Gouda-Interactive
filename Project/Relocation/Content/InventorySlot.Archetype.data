@@ -6,7 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Slot4",
+		string Name = "Slot6",
 	},
 	Archetyped = 
 	{
@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-0.5, 0.400000006, 0],
+		Vec3 Translation = [1.5, 0.400000006, 0],
 		Vec3 Scale = [0.75, 0.75, 0.75],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -107,7 +107,7 @@ Cog =
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string FontName = "5ac2973527d023e1:FontDefault",
+				string FontName = "5ad9e7ff8459f32e:FontDefaultBold",
 				uint FontSize = 128,
 				string Text = "0",
 				TextAlign Align = Left,
