@@ -201,9 +201,6 @@ Level =
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
 		},
-		InitializeChildren = 
-		{
-		},
 	},
 	ArchetypeInstance = 
 	{
