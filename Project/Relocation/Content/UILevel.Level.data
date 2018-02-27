@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.0463715,
+			float Size = 22.0463753,
 		},
 		EditorCameraController = 
 		{
@@ -1920,7 +1920,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [2, 0, -0.75],
+					Vec3 Translation = [2, 0, -10],
 					Vec3 Scale = [25, 22, 0.49999997],
 					Quat Rotation = [0, 0, 0, 1],
 				},
