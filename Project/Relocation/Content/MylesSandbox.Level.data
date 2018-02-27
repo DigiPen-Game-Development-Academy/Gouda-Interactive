@@ -92,6 +92,18 @@ Level =
 		ItemManager = 
 		{
 		},
+		WorldGeneration = 
+		{
+			float MapRadius = 64,
+			int NumberOfTiles = 1,
+			int TileDiameter = 32,
+			float MaxRadiusFromPlayer = 64,
+		},
+		BlockGeneration = 
+		{
+			int NumberOfBlocks = 1,
+			int BlocksToSpawn = 100,
+		},
 	},
 	Cog = 
 	{
@@ -105,7 +117,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-5.53557777, 8.00934792, 50],
+			Vec3 Translation = [-22.7387543, 5.74023247, 50.375],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,7 +129,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 19.9483585,
+			float Size = 12.2456656,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +137,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-5.53557777, 8.00934792, 1.0155523e-07],
+			Vec3 LookTarget = [-22.7387543, 5.74023247, 0.374999285],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -155,239 +167,11 @@ Level =
 			string Name = "EntityPlayer",
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "5a240449292b4c0b:CaveEnteranceExit",
 		LinkId = 
 		{
 			uint Id = 5,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-1.37451363, 8.42387104, 5.05497333e-08],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "CaveEnteranceExit",
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 6,
-		},
-		Named = 
-		{
-			string Name = "Tile1",
-		},
-		Archetyped = 
-		{
-			string Name = "5a34f947635d7e99:Tile1",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 1000, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		MultiSprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		},
-		TileMap = 
-		{
-			string SourceName = "5a2a6ed45cc9a7a2:MylesSandbox_TileMap34",
-			string PaletteName = "5a2bd7a818a68182:Tiles",
-			float UnitsPerTile = 1,
-			float MeshThickness = 1.20000005,
-		},
-		InitializeChildren = 
-		{
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 7,
-		},
-		Named = 
-		{
-			string Name = "Tile2",
-		},
-		Archetyped = 
-		{
-			string Name = "5a34f95863ed00f4:Tile2",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [41, 1000, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		MultiSprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		},
-		TileMap = 
-		{
-			string SourceName = "5a2a88361ca85aad:MylesSandbox_TileMap36",
-			string PaletteName = "5a2bd7a818a68182:Tiles",
-			float UnitsPerTile = 1,
-			float MeshThickness = 1.20000005,
-		},
-		InitializeChildren = 
-		{
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34f95c7c1a591f:Tile3",
-		LinkId = 
-		{
-			uint Id = 8,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [82, 1000, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile3",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34f9517cbb3c0a:Tile4",
-		LinkId = 
-		{
-			uint Id = 9,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 961, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile4",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34faab7de10abc:Tile5",
-		LinkId = 
-		{
-			uint Id = 10,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [41, 961, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile5",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34faa17f701526:Tile6",
-		LinkId = 
-		{
-			uint Id = 11,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [82, 961, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile6",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34fabf7833191b:Tile7",
-		LinkId = 
-		{
-			uint Id = 12,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [41, 921, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile7",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34fab3795c76af:Tile8",
-		LinkId = 
-		{
-			uint Id = 13,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 921, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile8",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a34fab779d32384:Tile9",
-		LinkId = 
-		{
-			uint Id = 14,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [82, 921, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Tile9",
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 15,
 		},
 		Named = 
 		{
@@ -419,6 +203,186 @@ Level =
 		},
 		InitializeChildren = 
 		{
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f947635d7e99:Tile1",
+		LinkId = 
+		{
+			uint Id = 6,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 1000, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile1",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f95863ed00f4:Tile2",
+		LinkId = 
+		{
+			uint Id = 7,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [37, 1000, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile2",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f95c7c1a591f:Tile3",
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [74, 1000, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile3",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34faab7de10abc:Tile5",
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [37, 964, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile5",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34f9517cbb3c0a:Tile4",
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 964, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile4",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34faa17f701526:Tile6",
+		LinkId = 
+		{
+			uint Id = 11,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [74, 964, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile6",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34fab3795c76af:Tile8",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [37, 928, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile8",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34fabf7833191b:Tile7",
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 928, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile7",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a34fab779d32384:Tile9",
+		LinkId = 
+		{
+			uint Id = 14,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [74, 928, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Tile9",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a2b9a3928eefa34:Rock",
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-23, 5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Rock",
 		},
 	},
 },

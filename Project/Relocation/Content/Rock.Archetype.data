@@ -12,20 +12,62 @@ Cog =
 	{
 		string Name = "5a2b9a3928eefa34:Rock",
 	},
+	Reactive = 
+	{
+		bool Active = true,
+		bool CaptureMouse = false,
+	},
+	Transform = 
+	{
+		Vec3 Translation = [-23, 5, 0],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Sprite = 
+	{
+		bool Visible = true,
+		bool VisibilityCulling = true,
+		bool VisibilityEvents = true,
+		bool CastShadows = false,
+		Vec4 Color = [1, 1, 1, 1],
+		BlendMode BlendMode = Alpha,
+		SpriteGeometryMode GeometryMode = ZPlane,
+		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		string SpriteSource = "5ac7c75e1f37eb88:BlockRock000",
+		bool RenderMask = false,
+		bool FlipX = false,
+		bool FlipY = false,
+		bool AnimationActive = true,
+		float AnimationSpeed = 1,
+		uint StartFrame = 0,
+	},
+	Block = 
+	{
+		string BlockSprite = "5ac7c75e1f37eb88:BlockRock000",
+		string BlockSpriteVariant1 = "5ac7c75e1f2029be:BlockRock001",
+		string BlockSpriteVariant2 = "5ac7c75e1f27143f:BlockRock002",
+		string BlockSpriteVariant3 = "5ac7c75e1fdd3489:BlockRock003",
+		string BlockSpriteVariant4 = "",
+	},
 	Breakable = 
 	{
-		float BreakTime = 5,
+		float BreakTime = 1,
 		string ToolType = "Drill",
-		int Loot1ID = 3,
+		int Loot1ID = 1,
 		int Loot1MaxAmount = 3,
 		int Loot2ID = 0,
 		int Loot2MaxAmount = 0,
 		int Loot3ID = 0,
 		int Loot3MaxAmount = 0,
 	},
-	Reactive = 
+	BoxCollider = 
 	{
-		bool Active = true,
-		bool CaptureMouse = false,
+		bool Ghost = false,
+		bool SendsMessages = true,
+		bool Seamless = true,
+		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+		Vec3 Offset = [0, 0, 0],
+		Vec3 Size = [0.5, 0.5, 0.5],
 	},
 },

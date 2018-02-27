@@ -63,6 +63,7 @@ class Spawner : ZilchComponent
                 return;
             
             // Spawn the enemy and set a variable equal to it
+            // NOTE: this will later be changed to spawn a random enemy
             var enemySpawned = this.Space.CreateAtPosition(Archetype.Find("EntityEnemy"), spawnPosition);
             
             // Set the enemies SpawnedFrom variable

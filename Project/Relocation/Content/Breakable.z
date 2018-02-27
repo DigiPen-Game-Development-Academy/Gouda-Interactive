@@ -3,6 +3,9 @@
 
 class Breakable : ZilchComponent
 {
+    // Breakable objects must be blocks
+    [Dependency] var Block : Block = null;
+    
     /* Properties are set in a archetype (see archetype "Rock" for example).
        This archeype is then put on each tile that should act as that block
        (so you cannot have one rock that takes 1 second to break and another
@@ -23,6 +26,14 @@ class Breakable : ZilchComponent
     [Property] var Loot2MaxAmount : Integer = 0;
     [Property] var Loot3ID : Integer = 0;
     [Property] var Loot3MaxAmount : Integer = 0;
+    
+    function Initalize()
+    {
+        Zero.Connect(this.Space, Events.MouseUpdate, this.BreakOnMine);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.BreakOnCollision);
+        
+        Console.WriteLine("Block Initalized");
+    }
     
     function BreakOnMine(event : ViewportMouseEvent)
     {

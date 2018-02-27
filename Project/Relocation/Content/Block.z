@@ -1,0 +1,35 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
+class Block : ZilchComponent
+{
+    [Property] var BlockSprite : SpriteSource;
+    [Property] var BlockSpriteVariant1 : SpriteSource;
+    [Property] var BlockSpriteVariant2 : SpriteSource;
+    [Property] var BlockSpriteVariant3 : SpriteSource;
+    [Property] var BlockSpriteVariant4 : SpriteSource;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.Owner.Breakable.Initalize();
+        
+        this.ChangeBlockVariant();
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function ChangeBlockVariant()
+    {
+        var blockVariant = new Random().DieRoll(5);
+        
+        if (blockVariant == 1 && this.BlockSprite != null) this.Owner.Sprite.SpriteSource = this.BlockSprite;
+        else if (blockVariant == 2 && this.BlockSpriteVariant1 != null) this.Owner.Sprite.SpriteSource = this.BlockSpriteVariant1;
+        else if (blockVariant == 3 && this.BlockSpriteVariant2 != null) this.Owner.Sprite.SpriteSource = this.BlockSpriteVariant2;
+        else if (blockVariant == 4 && this.BlockSpriteVariant3 != null) this.Owner.Sprite.SpriteSource = this.BlockSpriteVariant3;
+        else if (blockVariant == 5 && this.BlockSpriteVariant4 != null) this.Owner.Sprite.SpriteSource = this.BlockSpriteVariant4;
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}
