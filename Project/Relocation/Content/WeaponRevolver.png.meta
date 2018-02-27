@@ -3,7 +3,7 @@ ImageContent =
 	SpriteSourceBuilder = 
 	{
 		string Name = "WeaponRevolver",
-		uint64 ResourceId = 5aca7de21b808678,
+		uint64 ResourceId = 5ad9eb047c5f60ec,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 16,
 		uint FrameSizeY = 16,

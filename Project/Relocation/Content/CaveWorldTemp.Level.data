@@ -129,7 +129,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [27.7533836, 300.823364, 50.375],
+			Vec3 Translation = [26.1317577, 289.06662, 50.375],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -149,7 +149,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [27.7533836, 300.823364, 0.375001609],
+			Vec3 LookTarget = [26.1317577, 289.06662, 0.37500155],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -179,19 +179,12 @@ Level =
 			string Name = "EntityPlayer",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5a34f947635d7e99:Tile1",
 		LinkId = 
 		{
 			uint Id = 5,
-		},
-		Named = 
-		{
-			string Name = "Tile1",
-		},
-		Archetyped = 
-		{
-			string Name = "5a34f947635d7e99:Tile1",
 		},
 		Transform = 
 		{
@@ -199,41 +192,17 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		MultiSprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		},
-		TileMap = 
-		{
-			string SourceName = "5adf4c897aa7cc8c:CaveWorldTemp_TileMap01",
-			string PaletteName = "5a2bd7a818a68182:Tiles",
-			float UnitsPerTile = 1,
-			float MeshThickness = 1.20000005,
-		},
-		InitializeChildren = 
-		{
+			string Name = "Tile1",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5a34f95863ed00f4:Tile2",
 		LinkId = 
 		{
 			uint Id = 6,
-		},
-		Named = 
-		{
-			string Name = "Tile2",
-		},
-		Archetyped = 
-		{
-			string Name = "5a34f95863ed00f4:Tile2",
 		},
 		Transform = 
 		{
@@ -241,41 +210,17 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		MultiSprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		},
-		TileMap = 
-		{
-			string SourceName = "5adf432113f255ae:CaveWorldTemp_TileMap00",
-			string PaletteName = "5a2bd7a818a68182:Tiles",
-			float UnitsPerTile = 1,
-			float MeshThickness = 1.20000005,
-		},
-		InitializeChildren = 
-		{
+			string Name = "Tile2",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5a34f95c7c1a591f:Tile3",
 		LinkId = 
 		{
 			uint Id = 7,
-		},
-		Named = 
-		{
-			string Name = "Tile3",
-		},
-		Archetyped = 
-		{
-			string Name = "5a34f95c7c1a591f:Tile3",
 		},
 		Transform = 
 		{
@@ -283,26 +228,9 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		MultiSprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		},
-		TileMap = 
-		{
-			string SourceName = "5adf4c897aa1db62:CaveWorldTemp_TileMap02",
-			string PaletteName = "5a2bd7a818a68182:Tiles",
-			float UnitsPerTile = 1,
-			float MeshThickness = 1.20000005,
-		},
-		InitializeChildren = 
-		{
+			string Name = "Tile3",
 		},
 	},
 	ArchetypeInstance = 
