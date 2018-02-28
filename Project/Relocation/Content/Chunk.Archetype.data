@@ -6,11 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "BlockRock",
+		string Name = "Chunk",
 	},
 	Archetyped = 
 	{
-		string Name = "5ad8a8322397fd87:BlockRock",
+		string Name = "5adb4022dda303b8:Chunk",
 	},
 	Transform = 
 	{
@@ -20,7 +20,7 @@ Cog =
 	},
 	Sprite = 
 	{
-		bool Visible = true,
+		bool Visible = false,
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
@@ -28,12 +28,40 @@ Cog =
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5a3bc6f6b53fa629:TileTerrain008",
+		string SpriteSource = "5275aa4d802dd6dc:Square",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
 		bool AnimationActive = true,
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
+	},
+	WorldGenerator = 
+	{
+		int Width = 50,
+		int Height = 50,
+		int NumberOfSteps = 4,
+		Vec2 Position = [0, 0],
+	},
+	Hierarchy = 
+	{
+		ArchetypeInstance = 
+		{
+			string Name = "5adb4c0ac833ba19:ChunkWrapper",
+			LinkId = 
+			{
+				uint Id = 2,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "ChunkWrapper",
+			},
+		},
 	},
 },

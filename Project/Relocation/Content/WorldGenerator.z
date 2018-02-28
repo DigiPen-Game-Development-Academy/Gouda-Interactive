@@ -6,6 +6,7 @@ class WorldGenerator : ZilchComponent {
     [Property] var Width : Integer = 50;
     [Property] var Height : Integer = 50;
     [Property] var NumberOfSteps : Integer = 2;
+    [Property] var Position : Real2 = Real2(0.0, 0.0);
     
     var DeathLimit : Integer = 3;
     var BirthLimit : Integer = 4;
@@ -18,13 +19,36 @@ class WorldGenerator : ZilchComponent {
     function Initialize(init : CogInitializer) {
         
         this.CreateMap();
-        this.GenerateMap();
+        this.GenerateMap(true);
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(this.Owner.FindChildByName("ChunkWrapper") == null) {
+            var wrapper = this.Space.CreateAtPosition(Archetype.ChunkWrapper, this.Owner.Transform.WorldTranslation);
+            wrapper.AttachToRelative(this.Owner);
+        }
+        
+        if(this.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
+            
+            var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
+            var chunkPos = this.Owner.Transform.WorldTranslation;
+            
+            if(Math.Sqrt(
+                Math.Pow(chunkPos.X - playerPos.X, 2) + 
+                Math.Pow(chunkPos.Y - playerPos.Y, 2)
+            ) > this.Width) {
+                
+                this.UnloadMap();
+                
+            } else if(this.Owner.FindChildByName("ChunkWrapper").FindChildByName("BlockRock") == null) {
+                this.GenerateMap(false);
+            }
+            
+        }
         
     }
     
@@ -46,22 +70,30 @@ class WorldGenerator : ZilchComponent {
         
     }
     
-    function GenerateMap() {
+    function GenerateMap(firstLoad : Boolean) {
         
-        for(var i = 0; i < this.NumberOfSteps; ++i) {
-            this.DoSimulationStep();
+        if(firstLoad) {
+            for(var i = 0; i < this.NumberOfSteps; ++i) {
+                this.DoSimulationStep();
+            }
         }
         
         for(var x = 0; x < this.Width; ++x) {
             for(var y = 0; y < this.Height; ++y) {
                 
                 if(this.WorldMap.Get(Real2(x, y))) {
-                    this.Space.CreateAtPosition(Archetype.BlockRock, Real3(x - this.Width / 2, y - this.Width / 2, 0.0));
+                    var obj = this.Space.CreateAtPosition(Archetype.BlockRock, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Position, 0.0));
+                    obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
                 }
                 
             }
         }
         
+    }
+    
+    function UnloadMap() {
+        if(this.Owner.FindChildByName("ChunkWrapper") != null)
+            this.Owner.FindChildByName("ChunkWrapper").Destroy();
     }
     
     function DoSimulationStep() {
