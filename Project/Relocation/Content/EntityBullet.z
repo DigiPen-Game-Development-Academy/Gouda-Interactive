@@ -39,6 +39,13 @@ class EntityBullet : ZilchComponent {
             Console.WriteLine("Laser hit: `event.OtherObject.Name`");
         } else if(event.OtherObject.Name == this.Owner.Name) {
             
+        } else if(event.OtherObject.Name == "BlockRock") {
+            
+            event.OtherObject.Parent.Parent.WorldGenerator.RemoveBlock(event.OtherObject.Transform.Translation.XY, true);
+            event.OtherObject.Destroy();
+            
+            this.Owner.Destroy();
+            
         } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer) {
             
             if(event.OtherObject.Health != null) {

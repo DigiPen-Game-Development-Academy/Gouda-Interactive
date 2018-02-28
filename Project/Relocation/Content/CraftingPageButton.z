@@ -8,7 +8,17 @@ class CraftingPageButton : ZilchComponent {
     var ButtonClicked : Boolean = false;
     
     function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
+        Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+    }
+    
+    function OnMouseEnter(event : ViewportMouseEvent) {
+        this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.75);
+    }
+    
+    function OnMouseExit(event : ViewportMouseEvent) {
+        this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.5);
     }
     
     function OnMouseUpdate(event : ViewportMouseEvent) {

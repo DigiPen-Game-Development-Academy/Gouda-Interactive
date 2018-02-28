@@ -175,11 +175,20 @@ class Commands : ZilchComponent {
             
             if(color == "red") {
                 finalColor = Real3(1.0, 0.0, 0.0);
+            } else if(color == "green") {
+                finalColor = Real3(0.0, 1.0, 0.0);
+            } else if(color == "blue") {
+                finalColor = Real3(0.0, 0.0, 1.0);
+            } else if(color == "white" || color == "default") {
+                finalColor = Real3(1.0, 1.0, 1.0);
+            } else {
+                this.DebugCmd.PrintToUIConsole("Error: The color `color` does not exist.");
+                return;
             }
             
             this.Owner.Parent.FindChildByName(this.DebugCmd.ConsoleTextboxName).SpriteText.Color = Real4(finalColor, 1.0);
             
-            this.DebugCmd.PrintToUIConsole("Changing color to `color`");
+            this.DebugCmd.PrintToUIConsole("Changing color to `color`.");
             
         }
         
