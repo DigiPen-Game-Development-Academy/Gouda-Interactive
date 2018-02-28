@@ -1,0 +1,128 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class WorldGenerator : ZilchComponent {
+    
+    [Property] var Width : Integer = 50;
+    [Property] var Height : Integer = 50;
+    [Property] var NumberOfSteps : Integer = 2;
+    
+    var DeathLimit : Integer = 3;
+    var BirthLimit : Integer = 4;
+    
+    var SpawnChance : Real = 45.0;
+    
+    //var WorldMap : Array[Array[Boolean]] = null;
+    var WorldMap : HashMap[Real2, Boolean] = null;
+    
+    function Initialize(init : CogInitializer) {
+        
+        this.CreateMap();
+        this.GenerateMap();
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+    }
+    
+    function CreateMap() {
+        
+        this.WorldMap = new HashMap[Real2, Boolean]();
+        
+        var rand = Random();
+        
+        for(var x = 0; x < this.Width; ++x) {
+            for(var y = 0; y < this.Height; ++y) {
+                if(rand.Range(0.0, 100.0) < this.SpawnChance) {
+                    this.WorldMap.Set(Real2(x, y), true);
+                } else {
+                    this.WorldMap.Set(Real2(x, y), false);
+                }
+            }
+        }
+        
+    }
+    
+    function GenerateMap() {
+        
+        for(var i = 0; i < this.NumberOfSteps; ++i) {
+            this.DoSimulationStep();
+        }
+        
+        for(var x = 0; x < this.Width; ++x) {
+            for(var y = 0; y < this.Height; ++y) {
+                
+                if(this.WorldMap.Get(Real2(x, y))) {
+                    this.Space.CreateAtPosition(Archetype.BlockRock, Real3(x - this.Width / 2, y - this.Width / 2, 0.0));
+                }
+                
+            }
+        }
+        
+    }
+    
+    function DoSimulationStep() {
+        
+        var newMap = new HashMap[Real2, Boolean]();
+        
+        for(var x = 0; x < this.Width; ++x) {
+            for(var y = 0; y < this.Height; ++y) {
+                
+                var nbs = this.CountValidNeighbours(Real2(x, y));
+                
+                if(this.WorldMap.Get(Real2(x, y))) {
+                    
+                    if(nbs < this.DeathLimit) {
+                        newMap.Set(Real2(x, y), false);
+                    } else {
+                        newMap.Set(Real2(x, y), true);
+                    }
+                    
+                } else {
+                    
+                    if(nbs > this.BirthLimit) {
+                        newMap.Set(Real2(x, y), true);
+                    } else {
+                        newMap.Set(Real2(x, y), false);
+                    }
+                    
+                }
+                
+            }
+        }
+        
+        this.WorldMap = newMap;
+        
+    }
+    
+    function CountValidNeighbours(coord : Real2) : Integer {
+        
+        var count = 0;
+        
+        for(var i = -1; i < 2; ++i) {
+            
+            for(var j = -1; j < 2; ++j) {
+                
+                var neighbourX = coord.X + i;
+                var neighbourY = coord.Y + j;
+                
+                if(i == 0 && j == 0) {
+                    // DO NOTHING
+                } else if(neighbourX < 0 || neighbourY < 0 || neighbourX >= this.Width || neighbourY >= this.Height) {
+                    count += 1;
+                } else if(this.WorldMap.Get(Real2(neighbourX, neighbourY))) {
+                    count += 1;
+                }
+                
+            }
+            
+        }
+        
+        return count;
+        
+    }
+    
+}
