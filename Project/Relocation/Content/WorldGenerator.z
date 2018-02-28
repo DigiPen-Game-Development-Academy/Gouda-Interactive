@@ -1,19 +1,18 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
+/* HANDLES WORLD GENERATION. AUTOMATICALLY LOADS/UNLOADS CHUNKS THAT ARE IN RANGE. */
 class WorldGenerator : ZilchComponent {
     
     [Property] var Width : Integer = 50;
     [Property] var Height : Integer = 50;
     [Property] var NumberOfSteps : Integer = 2;
-    [Property] var Position : Real2 = Real2(0.0, 0.0);
     
     var DeathLimit : Integer = 3;
     var BirthLimit : Integer = 4;
     
     var SpawnChance : Real = 45.0;
     
-    //var WorldMap : Array[Array[Boolean]] = null;
     var WorldMap : HashMap[Real2, Boolean] = null;
     
     function Initialize(init : CogInitializer) {
@@ -82,7 +81,7 @@ class WorldGenerator : ZilchComponent {
             for(var y = 0; y < this.Height; ++y) {
                 
                 if(this.WorldMap.Get(Real2(x, y))) {
-                    var obj = this.Space.CreateAtPosition(Archetype.BlockRock, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Position, 0.0));
+                    var obj = this.Space.CreateAtPosition(Archetype.BlockRock, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
                     obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
                 }
                 
@@ -155,6 +154,10 @@ class WorldGenerator : ZilchComponent {
         
         return count;
         
+    }
+    
+    function RemoveBlock(coords : Real2) {
+        this.WorldMap.Set(Real2(coords.X + this.Width / 2, coords.Y + this.Width / 2), false);
     }
     
 }

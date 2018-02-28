@@ -105,7 +105,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.0192919075, 0.498525113, 33.8910103],
+			Vec3 Translation = [-0.00848109648, -0.0879613385, 33.8910103],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -117,7 +117,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 40.6570053,
+			float Size = 90.483757,
 		},
 		EditorCameraController = 
 		{
@@ -125,7 +125,7 @@ Level =
 			float LookDistance = 33.5160103,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.0192919075, 0.498525113, 0.374999791],
+			Vec3 LookTarget = [-0.00848109648, -0.0879613385, 0.374999791],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -231,19 +231,30 @@ Level =
 			Vec4 Color4 = [1, 1, 1, 0],
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5adb4022dda303b8:Chunk",
 		LinkId = 
 		{
 			uint Id = 6,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-50, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
 		{
 			string Name = "Chunk",
 		},
-		Archetyped = 
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adb4022dda303b8:Chunk",
+		LinkId = 
 		{
-			string Name = "5adb4022dda303b8:Chunk",
+			uint Id = 7,
 		},
 		Transform = 
 		{
@@ -251,53 +262,27 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		Named = 
 		{
-			bool Visible = false,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
+			string Name = "Chunk",
 		},
-		WorldGenerator = 
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adb4022dda303b8:Chunk",
+		LinkId = 
 		{
-			int Width = 50,
-			int Height = 50,
-			int NumberOfSteps = 4,
-			Vec2 Position = [0, 0],
+			uint Id = 8,
 		},
-		Hierarchy = 
+		Transform = 
 		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 7,
-				},
-				Named = 
-				{
-					string Name = "ChunkWrapper",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Hierarchy = 
-				{
-				},
-			},
+			Vec3 Translation = [50, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Chunk",
 		},
 	},
 },
