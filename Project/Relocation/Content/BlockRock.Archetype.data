@@ -44,7 +44,7 @@ Cog =
 		bool RotationLocked = true,
 		bool Mode2D = true,
 		bool AllowSleep = true,
-		bool Inherit2DMode = true,
+		bool Inherit2DMode = false,
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
