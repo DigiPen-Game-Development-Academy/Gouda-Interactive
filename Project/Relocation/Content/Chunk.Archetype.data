@@ -40,7 +40,7 @@ Cog =
 	{
 		int Width = 32,
 		int Height = 32,
-		int NumberOfSteps = 4,
+		int NumberOfSteps = 2,
 	},
 	Hierarchy = 
 	{
