@@ -92,6 +92,10 @@ Level =
 		ItemManager = 
 		{
 		},
+		GenerateWorld = 
+		{
+			int WorldWidth = 200,
+		},
 	},
 	Cog = 
 	{
@@ -117,7 +121,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 7.42736959,
+			float Size = 100,
 		},
 		EditorCameraController = 
 		{
@@ -229,78 +233,6 @@ Level =
 			Vec4 Color2 = [1, 1, 1, 1],
 			Vec4 Color3 = [1, 1, 1, 1],
 			Vec4 Color4 = [1, 1, 1, 0],
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5adb4022dda303b8:Chunk",
-		LinkId = 
-		{
-			uint Id = 6,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-50, 0, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Chunk",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5adb4022dda303b8:Chunk",
-		LinkId = 
-		{
-			uint Id = 7,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 0, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Chunk",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5adb4022dda303b8:Chunk",
-		LinkId = 
-		{
-			uint Id = 8,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [50, 0, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Chunk",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5adb601a94d06693:BlockRockCopper",
-		LinkId = 
-		{
-			uint Id = 9,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [4, 1, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "BlockRock",
 		},
 	},
 },

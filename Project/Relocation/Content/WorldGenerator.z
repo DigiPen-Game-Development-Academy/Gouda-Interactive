@@ -9,6 +9,8 @@ class WorldGenerator : ZilchComponent {
     [Property] var NumberOfSteps : Integer = 2;
     var MaxPossibleID : Integer = 8;
     
+    var HasGenerated : Boolean = false;
+    
     var DeathLimit : Integer = 3;
     var BirthLimit : Integer = 4;
     
@@ -19,7 +21,6 @@ class WorldGenerator : ZilchComponent {
     function Initialize(init : CogInitializer) {
         
         this.CreateMap();
-        this.GenerateMap(true);
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -27,25 +28,48 @@ class WorldGenerator : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(this.Owner.FindChildByName("ChunkWrapper") == null) {
-            var wrapper = this.Space.CreateAtPosition(Archetype.ChunkWrapper, this.Owner.Transform.WorldTranslation);
-            wrapper.AttachToRelative(this.Owner);
-        }
-        
-        if(this.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
+        if(this.HasGenerated) {
             
-            var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
-            var chunkPos = this.Owner.Transform.WorldTranslation;
+            if(this.Owner.FindChildByName("ChunkWrapper") == null) {
+                var wrapper = this.Space.CreateAtPosition(Archetype.ChunkWrapper, this.Owner.Transform.WorldTranslation);
+                wrapper.AttachToRelative(this.Owner);
+            }
             
-            if(Math.Sqrt(
-                Math.Pow(chunkPos.X - playerPos.X, 2) + 
-                Math.Pow(chunkPos.Y - playerPos.Y, 2)
-            ) > this.Width) {
+            if(this.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
                 
-                this.UnloadMap();
+                var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
+                var chunkPos = this.Owner.Transform.WorldTranslation;
                 
-            } else if(this.Owner.FindChildByName("ChunkWrapper").FindChildByName("BlockRock") == null) {
-                this.GenerateMap(false);
+                if(Math.Sqrt(
+                    Math.Pow(chunkPos.X - playerPos.X, 2) + 
+                    Math.Pow(chunkPos.Y - playerPos.Y, 2)
+                ) > this.Width) {
+                    
+                    this.UnloadMap();
+                    
+                } else if(this.Owner.FindChildByName("ChunkWrapper").FindChildByName("BlockRock") == null) {
+                    this.GenerateMap(false);
+                }
+                
+            }
+            
+        } else if(!this.HasGenerated) {
+            
+            if(this.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
+                
+                var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
+                var chunkPos = this.Owner.Transform.WorldTranslation;
+                
+                if(Math.Sqrt(
+                    Math.Pow(chunkPos.X - playerPos.X, 2) + 
+                    Math.Pow(chunkPos.Y - playerPos.Y, 2)
+                ) <= this.Width) {
+                    
+                    this.GenerateMap(true);
+                    this.HasGenerated = true;
+                    
+                }
+                
             }
             
         }
