@@ -2,7 +2,7 @@ TextContent =
 {
 	ZilchScriptBuilder = 
 	{
-		string Name = "GenerateWorld",
+		string Name = "PlaceChunks",
 		uint64 ResourceId = 5ac437e52a64351b,
 	},
 },

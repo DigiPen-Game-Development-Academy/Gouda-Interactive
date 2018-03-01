@@ -3,7 +3,7 @@
 
 class CaveEnteranceExit : ZilchComponent
 {
-    [Property] var LevelToLoad : Level = Level.Find("CaveLevel");
+    [Property] var LevelToLoad : Level = Level.Find("CaveWorld");
     
     function Initialize(init : CogInitializer)
     {

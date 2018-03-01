@@ -2,7 +2,7 @@
 // CONTRIBUTORS: HUDSON GREEN
 
 /* PLACES CHUNK BLOCKS THAT GENERATE THE WORLD. THIS DOES NOT GENERATE THE ACTUAL TERRAIN. IT ONLY PLACES THE THINGS THAT GENERATE IT. */
-class GenerateWorld : ZilchComponent
+class PlaceChunks : ZilchComponent
 {
     
     [Property] var WorldWidth : Integer = 200;
