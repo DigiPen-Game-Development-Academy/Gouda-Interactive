@@ -127,7 +127,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 12.1306429,
+			float Size = 8.98660183,
 		},
 		EditorCameraController = 
 		{
@@ -197,7 +197,7 @@ Level =
 			Vec3 Velocity = [0, 0, 0],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
-		BoxCollider = 
+		CapsuleCollider = 
 		{
 			bool Ghost = false,
 			bool SendsMessages = true,
@@ -205,7 +205,10 @@ Level =
 			string MaterialName = "5ac291505ccfd608:PlayerPhysicsMaterial",
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.400000006, 0.5, 0.5],
+			float Radius = 0.400000006,
+			float Height = 0.150000006,
+			AxisDirection Direction = Y,
+			CapsuleScalingMode ScalingMode = PreserveScale,
 		},
 		Movement = 
 		{
@@ -272,7 +275,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 2,
+					uint Id = 6,
 				},
 				Named = 
 				{
@@ -304,7 +307,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 6,
+					uint Id = 7,
 				},
 				Named = 
 				{
@@ -381,7 +384,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 7,
+							uint Id = 8,
 						},
 						Named = 
 						{
@@ -461,7 +464,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 8,
+			uint Id = 9,
 		},
 		Named = 
 		{
@@ -496,7 +499,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 10,
 		},
 		Named = 
 		{
@@ -531,7 +534,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 10,
+			uint Id = 11,
 		},
 		Named = 
 		{
@@ -566,7 +569,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 11,
+			uint Id = 12,
 		},
 		Named = 
 		{

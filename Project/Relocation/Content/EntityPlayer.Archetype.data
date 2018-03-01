@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [-20.5, 4.5, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -48,7 +48,7 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	BoxCollider = 
+	CapsuleCollider = 
 	{
 		bool Ghost = false,
 		bool SendsMessages = true,
@@ -56,12 +56,19 @@ Cog =
 		string MaterialName = "5ac291505ccfd608:PlayerPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
-		Vec3 Size = [0.400000006, 0.5, 0.5],
+		float Radius = 0.400000006,
+		float Height = 0.150000006,
+		AxisDirection Direction = Y,
+		CapsuleScalingMode ScalingMode = PreserveScale,
 	},
 	Movement = 
 	{
 		float Speed = 150,
 		float RunSpeed = 250,
+		Enum Up = W,
+		Enum Left = A,
+		Enum Down = S,
+		Enum Right = D,
 	},
 	WeaponManager = 
 	{
@@ -73,6 +80,9 @@ Cog =
 	},
 	Inventory = 
 	{
+		Enum InventoryButton = E,
+		Enum CraftingButton = C,
+		Enum SwapOffHandButton = F,
 	},
 	Crafting = 
 	{
