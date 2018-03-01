@@ -195,7 +195,7 @@ class WorldGenerator : ZilchComponent {
     function GenerateID() : Integer {
         
         var rand = Random();
-        var randRangeID = rand.Range(1.0, 10.75);
+        var randRangeID = rand.Range(1.0, 10.81);
         
         if(randRangeID >= 1.0 && randRangeID <= 5.0) {
             return 1;
@@ -207,6 +207,10 @@ class WorldGenerator : ZilchComponent {
             return 4;
         } else if(randRangeID > 10.5 && randRangeID <= 10.75) {
             return 5;
+        } else if(randRangeID > 10.75 && randRangeID <= 10.8) {
+            return 6;
+        } else if(randRangeID > 10.8 && randRangeID <= 10.81) {
+            return 7;
         } else {
             return 1;
         }
@@ -216,9 +220,32 @@ class WorldGenerator : ZilchComponent {
     function RemoveBlock(coords : Real2, dropItem : Boolean) {
         
         var chunkCoords = Real2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
+        var blockID = this.WorldMap.GetOrError(chunkCoords);
         
         if(dropItem) {
+            
             Console.WriteLine("Block ID: `this.WorldMap.GetOrError(chunkCoords)`");
+            
+            var player = this.Space.FindObjectByName(Relocation.EntityPlayer);
+            
+            if(player != null) {
+                
+                if(blockID == 1 || blockID == 2) {
+                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemRock"), false, 1);
+                } else if(blockID == 3) {
+                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemCopperOre"), false, 1);
+                } else if(blockID == 4) {
+                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemIronOre"), false, 1);
+                } else if(blockID == 5) {
+                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemGoldOre"), false, 1);
+                } else if(blockID == 6) {
+                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemTitaniumOre"), false, 1);
+                } else if(blockID == 7) {
+                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemPlatinumOre"), false, 1);
+                }
+                
+            }
+            
         }
         
         this.WorldMap.Set(chunkCoords, 0);

@@ -546,7 +546,7 @@ class Crafting : ZilchComponent {
             return;
         }
         
-        for(var i = 0; i < this.MaxItemsInRecipe - 1; ++i) {
+        for(var i = 0; i < this.MaxItemsInRecipe; ++i) {
             this.Owner.Inventory.RemoveItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe]);
         }
         

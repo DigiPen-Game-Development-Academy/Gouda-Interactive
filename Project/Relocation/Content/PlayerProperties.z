@@ -97,8 +97,6 @@ class PlayerProperties : ZilchComponent {
             }
         }
         
-        Console.WriteLine("OtherObject: `event.OtherObject.Name`");
-        
     }
     
     function OnCollisionEnded(event : CollisionEvent) {
