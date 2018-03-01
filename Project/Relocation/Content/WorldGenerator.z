@@ -4,8 +4,8 @@
 /* HANDLES WORLD GENERATION. AUTOMATICALLY LOADS/UNLOADS CHUNKS THAT ARE IN RANGE. */
 class WorldGenerator : ZilchComponent {
     
-    [Property] var Width : Integer = 50;
-    [Property] var Height : Integer = 50;
+    [Property] var Width : Integer = 32;
+    [Property] var Height : Integer = 32;
     [Property] var NumberOfSteps : Integer = 2;
     var MaxPossibleID : Integer = 8;
     
@@ -19,8 +19,6 @@ class WorldGenerator : ZilchComponent {
     var WorldMap : HashMap[Real2, Integer] = null;
     
     function Initialize(init : CogInitializer) {
-        
-        this.CreateMap();
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -65,6 +63,7 @@ class WorldGenerator : ZilchComponent {
                     Math.Pow(chunkPos.Y - playerPos.Y, 2)
                 ) <= this.Width) {
                     
+                    this.CreateMap();
                     this.GenerateMap(true);
                     this.HasGenerated = true;
                     

@@ -38,10 +38,9 @@ Cog =
 	},
 	WorldGenerator = 
 	{
-		int Width = 50,
-		int Height = 50,
+		int Width = 32,
+		int Height = 32,
 		int NumberOfSteps = 4,
-		Vec2 Position = [0, 0],
 	},
 	Hierarchy = 
 	{

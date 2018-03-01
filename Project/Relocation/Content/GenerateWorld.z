@@ -1,6 +1,7 @@
 class GenerateWorld : ZilchComponent
 {
     [Property] var WorldWidth : Integer = 200;
+    [Property] var ChunkWidth : Integer = 32;
     
     var CurrentChunkPosition : Real3;
     
@@ -20,8 +21,8 @@ class GenerateWorld : ZilchComponent
         
         Console.WriteLine("Loaded Chunk At Position: `this.CurrentChunkPosition`");
         
-        this.CurrentChunkPosition += Real3(50.0, 0.0, 0.0);
+        this.CurrentChunkPosition += Real3(this.ChunkWidth, 0.0, 0.0);
         if (this.CurrentChunkPosition.X > this.WorldWidth)
-            this.CurrentChunkPosition = Real3(-this.WorldWidth, this.CurrentChunkPosition.Y - 50, this.CurrentChunkPosition.Z);
+            this.CurrentChunkPosition = Real3(-this.WorldWidth, this.CurrentChunkPosition.Y - this.ChunkWidth, this.CurrentChunkPosition.Z);
     }
 }
