@@ -92,17 +92,9 @@ Level =
 		ItemManager = 
 		{
 		},
-		WorldGeneration = 
+		GenerateWorld = 
 		{
-			float MapRadius = 64,
-			int NumberOfTiles = 1,
-			int TileDiameter = 32,
-			float MaxRadiusFromPlayer = 64,
-		},
-		BlockGeneration = 
-		{
-			int NumberOfBlocks = 1,
-			int BlocksToSpawn = 100,
+			int WorldWidth = 50,
 		},
 	},
 	Cog = 
@@ -362,24 +354,6 @@ Level =
 		Named = 
 		{
 			string Name = "Tile9",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a2b9a3928eefa34:Rock",
-		LinkId = 
-		{
-			uint Id = 15,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-23, 5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Rock",
 		},
 	},
 },

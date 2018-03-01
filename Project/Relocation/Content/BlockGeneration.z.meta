@@ -1,8 +1,0 @@
-TextContent = 
-{
-	ZilchScriptBuilder = 
-	{
-		string Name = "BlockGeneration",
-		uint64 ResourceId = 5ac7cb029ef02860,
-	},
-},
