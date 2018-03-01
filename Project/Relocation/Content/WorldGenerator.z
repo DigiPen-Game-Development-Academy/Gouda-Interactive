@@ -7,9 +7,10 @@ class WorldGenerator : ZilchComponent {
     [Property] var Width : Integer = 32;
     [Property] var Height : Integer = 32;
     [Property] var NumberOfSteps : Integer = 2;
-    var MaxPossibleID : Integer = 8;
     
     var HasGenerated : Boolean = false;
+    
+    var MaxPossibleID : Integer = 8;
     
     var DeathLimit : Integer = 3;
     var BirthLimit : Integer = 4;
@@ -19,9 +20,7 @@ class WorldGenerator : ZilchComponent {
     var WorldMap : HashMap[Real2, Integer] = null;
     
     function Initialize(init : CogInitializer) {
-        
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
@@ -104,20 +103,22 @@ class WorldGenerator : ZilchComponent {
         for(var x = 0; x < this.Width; ++x) {
             for(var y = 0; y < this.Height; ++y) {
                 
+                var arch : Archetype = null;
+                
                 if(this.WorldMap.Get(Real2(x, y)) == 1) {
-                    var obj = this.Space.CreateAtPosition(Archetype.BlockRock, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
-                    obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
+                    arch = Archetype.BlockRock;
                 } else if(this.WorldMap.Get(Real2(x, y)) == 2) {
-                    var obj = this.Space.CreateAtPosition(Archetype.BlockRock, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
-                    obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
+                    arch = Archetype.BlockRock;
                 } else if(this.WorldMap.Get(Real2(x, y)) == 3) {
-                    var obj = this.Space.CreateAtPosition(Archetype.BlockRockCopper, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
-                    obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
+                    arch = Archetype.BlockRockCopper;
                 } else if(this.WorldMap.Get(Real2(x, y)) == 4) {
-                    var obj = this.Space.CreateAtPosition(Archetype.BlockRockIron, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
-                    obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
+                    arch = Archetype.BlockRockIron;
                 } else if(this.WorldMap.Get(Real2(x, y)) != 0) {
-                    var obj = this.Space.CreateAtPosition(Archetype.BlockRockIron, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
+                    arch = Archetype.BlockRockIron;
+                }
+                
+                if(arch != null) {
+                    var obj = this.Space.CreateAtPosition(arch, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
                     obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
                 }
                 
@@ -171,7 +172,6 @@ class WorldGenerator : ZilchComponent {
         var count = 0;
         
         for(var i = -1; i < 2; ++i) {
-            
             for(var j = -1; j < 2; ++j) {
                 
                 var neighbourX = coord.X + i;
@@ -180,13 +180,12 @@ class WorldGenerator : ZilchComponent {
                 if(i == 0 && j == 0) {
                     // DO NOTHING
                 } else if(neighbourX < 0 || neighbourY < 0 || neighbourX >= this.Width || neighbourY >= this.Height) {
-                    count += 1;
+                    ++count;
                 } else if(this.WorldMap.Get(Real2(neighbourX, neighbourY)) != 0) {
-                    count += 1;
+                    ++count;
                 }
                 
             }
-            
         }
         
         return count;
