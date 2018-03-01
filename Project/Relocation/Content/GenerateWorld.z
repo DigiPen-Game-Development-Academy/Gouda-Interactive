@@ -1,28 +1,35 @@
+// AUTHOR: MYLES
+// CONTRIBUTORS: HUDSON GREEN
+
+/* PLACES CHUNK BLOCKS THAT GENERATE THE WORLD. THIS DOES NOT GENERATE THE ACTUAL TERRAIN. IT ONLY PLACES THE THINGS THAT GENERATE IT. */
 class GenerateWorld : ZilchComponent
 {
+    
     [Property] var WorldWidth : Integer = 200;
     [Property] var ChunkWidth : Integer = 32;
     
-    var CurrentChunkPosition : Real3;
+    var CurrentChunkPosition : Real3 = Real3(0.0);
     
     function Initialize(init : CogInitializer)
     {
+        
         this.CurrentChunkPosition = Real3(-this.WorldWidth, this.WorldWidth, 0.0);
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
     }
-
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if (this.CurrentChunkPosition.Y < -this.WorldWidth)
+        
+        if(this.CurrentChunkPosition.Y < -this.WorldWidth)
             Zero.Disconnect(this.Space, Events.LogicUpdate, this);
         
         this.Space.CreateAtPosition(Archetype.Chunk, this.CurrentChunkPosition);
-        
-        Console.WriteLine("Loaded Chunk At Position: `this.CurrentChunkPosition`");
-        
         this.CurrentChunkPosition += Real3(this.ChunkWidth, 0.0, 0.0);
-        if (this.CurrentChunkPosition.X > this.WorldWidth)
+        
+        if(this.CurrentChunkPosition.X > this.WorldWidth)
             this.CurrentChunkPosition = Real3(-this.WorldWidth, this.CurrentChunkPosition.Y - this.ChunkWidth, this.CurrentChunkPosition.Z);
+        
     }
 }
