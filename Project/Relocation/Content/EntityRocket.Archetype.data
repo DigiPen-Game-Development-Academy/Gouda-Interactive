@@ -22,7 +22,7 @@ Cog =
 	{
 		bool Static = false,
 		bool Asleep = false,
-		bool Kinematic = true,
+		bool Kinematic = false,
 		bool RotationLocked = true,
 		bool Mode2D = true,
 		bool AllowSleep = true,
@@ -50,7 +50,7 @@ Cog =
 		string Rider = "EntityPlayer",
 		float VehicleSpeed = 400,
 		float VehicleTurboSpeed = 2000,
-		bool Enabled = false,
+		bool Enabled = true,
 	},
 	Reactive = 
 	{
@@ -111,7 +111,7 @@ Cog =
 				bool Mode2D = true,
 				bool AllowSleep = true,
 				bool Inherit2DMode = true,
-				Vec3 Velocity = [2203.12476, 406.249908, 249.999985],
+				Vec3 Velocity = [0, 0, 0],
 				Vec3 AngularVelocity = [0, 0, 0],
 			},
 			MeshCollider = 
@@ -141,7 +141,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-0.5, 0, -1],
+						Vec3 Translation = [-0.5, 0, -0.25],
 						Vec3 Scale = [0.5, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -250,7 +250,7 @@ Cog =
 				bool Mode2D = true,
 				bool AllowSleep = true,
 				bool Inherit2DMode = true,
-				Vec3 Velocity = [2359.37476, 437.499908, 124.999992],
+				Vec3 Velocity = [0, 0, 0],
 				Vec3 AngularVelocity = [0, 0, 0],
 			},
 			MeshCollider = 
@@ -280,7 +280,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-0.5, 0, -1],
+						Vec3 Translation = [-0.5, 0, -0.25],
 						Vec3 Scale = [0.5, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -389,7 +389,7 @@ Cog =
 				bool Mode2D = true,
 				bool AllowSleep = true,
 				bool Inherit2DMode = true,
-				Vec3 Velocity = [2046.87488, 437.499908, 124.999992],
+				Vec3 Velocity = [0, 0, 0],
 				Vec3 AngularVelocity = [0, 0, 0],
 			},
 			MeshCollider = 
@@ -419,7 +419,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-0.5, 0, -1],
+						Vec3 Translation = [-0.5, 0, -0.25],
 						Vec3 Scale = [0.5, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},

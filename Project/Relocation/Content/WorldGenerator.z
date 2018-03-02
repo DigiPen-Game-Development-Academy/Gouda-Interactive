@@ -113,6 +113,12 @@ class WorldGenerator : ZilchComponent {
                     arch = Archetype.BlockRockCopper;
                 } else if(this.WorldMap.Get(Real2(x, y)) == 4) {
                     arch = Archetype.BlockRockIron;
+                } else if(
+                    this.WorldMap.Get(Real2(x, y)) == 5 || 
+                    this.WorldMap.Get(Real2(x, y)) == 6 || 
+                    this.WorldMap.Get(Real2(x, y)) == 7
+                ) {
+                    arch = Archetype.BlockRockRare;
                 } else if(this.WorldMap.Get(Real2(x, y)) != 0) {
                     arch = Archetype.BlockRockIron;
                 }
