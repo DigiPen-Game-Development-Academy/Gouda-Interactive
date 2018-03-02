@@ -58,7 +58,7 @@ class EntityEnemy : ZilchComponent
     
     function Shoot()
     {
-        if (this.Owner.PathFinding.LookAtPlayer().ObjectHit != null)
+        /*if (this.Owner.PathFinding.LookAtPlayer().ObjectHit != null)
             if (this.Owner.PathFinding.LookAtPlayer().ObjectHit.Name != "EntityPlayer")
                 return;
         
@@ -78,7 +78,7 @@ class EntityEnemy : ZilchComponent
         
         this.TimeTillAttack = this.AttackCooldown;
         
-        //Console.WriteLine("Shoot");
+        //Console.WriteLine("Shoot");*/
     }
     
     function LookAtPlayer()

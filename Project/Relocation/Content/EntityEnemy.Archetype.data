@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [4.5, 0.5, 0],
+		Vec3 Translation = [-2.5509541, -1.28453004, 0.375],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -89,16 +89,6 @@ Cog =
 		string LookLeft = "5af4a79e36e31215:SimpleEnemyLeft",
 		string LookUpLeft = "5af4a661c7e6f36c:SimpleEnemyTopLeft",
 		float BulletSpeed = 10,
-	},
-	PathFinding = 
-	{
-		float SightRadius = 8,
-		float Speed = 75,
-		int ChanceOfMoving = 25,
-		float UpdateMemoriesCooldown = 0.5,
-		float CreateNewMemoryCooldown = 0.5,
-		float TimeTillUpdateMemories = 0,
-		float TimeTillMoveToNextMemory = 0,
 	},
 	Health = 
 	{
