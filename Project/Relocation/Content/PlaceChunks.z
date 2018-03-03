@@ -1,35 +1,221 @@
-// AUTHOR: MYLES
+// AUTHOR: MYLES BUSIG
 // CONTRIBUTORS: HUDSON GREEN
 
 /* PLACES CHUNK BLOCKS THAT GENERATE THE WORLD. THIS DOES NOT GENERATE THE ACTUAL TERRAIN. IT ONLY PLACES THE THINGS THAT GENERATE IT. */
 class PlaceChunks : ZilchComponent
 {
-    
-    [Property] var WorldWidth : Integer = 200;
     [Property] var ChunkWidth : Integer = 32;
+    var Chunks : Array[Cog] = Array[Cog]();
     
-    var CurrentChunkPosition : Real3 = Real3(0.0);
+    var Player : Cog = null;
     
     function Initialize(init : CogInitializer)
     {
-        
-        this.CurrentChunkPosition = Real3(-this.WorldWidth, this.WorldWidth, 0.0);
+        this.Player = this.Space.FindObjectByName("EntityPlayer");
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        
     }
     
     function OnLogicUpdate(event : UpdateEvent)
     {
+        var playerPosition = this.Player.Transform.Translation;
         
-        if(this.CurrentChunkPosition.Y < -this.WorldWidth)
-            Zero.Disconnect(this.Space, Events.LogicUpdate, this);
+        //Console.WriteLine("Player Position: `playerPosition`");
+        //Console.WriteLine("Player Chunk Position: `this.Snap(playerPosition, this.ChunkWidth)`");
         
-        this.Space.CreateAtPosition(Archetype.Chunk, this.CurrentChunkPosition);
-        this.CurrentChunkPosition += Real3(this.ChunkWidth, 0.0, 0.0);
+        if (Math.Round(playerPosition.X) % this.ChunkWidth == 0 && this.Player.Movement.PlayerDirection == "West")
+            this.LoadChunkAtDirection("West", playerPosition);
+        if (Math.Round(playerPosition.X) % this.ChunkWidth == 0 && this.Player.Movement.PlayerDirection == "East")
+            this.LoadChunkAtDirection("East", playerPosition);
+        if (Math.Round(playerPosition.Y) % this.ChunkWidth == 0 && this.Player.Movement.PlayerDirection == "North")
+            this.LoadChunkAtDirection("North", playerPosition);
+        if (Math.Round(playerPosition.Y) % this.ChunkWidth == 0 && this.Player.Movement.PlayerDirection == "South")
+            this.LoadChunkAtDirection("South", playerPosition);
+        if (Math.Round(playerPosition.X) % this.ChunkWidth == 0 && Math.Round(playerPosition.Y) % this.ChunkWidth == 0 && this.Player.Movement.PlayerDirection == "NorthWest")
+            this.LoadChunkAtDirection("NorthWest", playerPosition);
+        if (Math.Round(playerPosition.X) % this.ChunkWidth == 0 && Math.Round(playerPosition.Y) % this.ChunkWidth == 0 && this.Player.Movement.PlayerDirection == "NorthEast")
+            this.LoadChunkAtDirection("NorthEast", playerPosition);
+        if (Math.Round(playerPosition.X) % this.ChunkWidth == 0 && Math.Round(playerPosition.Y) % this.ChunkWidth == 0 && this.Player.Movement.PlayerDirection == "SouthWest")
+            this.LoadChunkAtDirection("SouthWest", playerPosition);
+        if (Math.Round(playerPosition.X) % this.ChunkWidth == 0 && Math.Round(playerPosition.Y) % this.ChunkWidth == 0 && this.Player.Movement.PlayerDirection == "SouthEast")
+            this.LoadChunkAtDirection("SouthEast", playerPosition);
+    }
+    
+    function LoadChunkAtDirection(direction : String, playerPosition : Real3) : Boolean
+    {
+        if (direction == "West")
+        {
+            this.LoadChunkWest(playerPosition);
+        }
+        else if (direction == "East")
+        {
+            this.LoadChunkEast(playerPosition);
+        }
+        else if (direction == "North")
+        {
+            this.LoadChunkNorth(playerPosition);
+        }
+        else if (direction == "South")
+        {
+            this.LoadChunkSouth(playerPosition);
+        }
+        else if (direction == "NorthWest")
+        {
+            this.LoadChunkNorthWest(playerPosition);
+            this.LoadChunkNorth(playerPosition);
+            this.LoadChunkWest(playerPosition);
+        }
+        else if (direction == "NorthEast")
+        {
+            this.LoadChunkNorthEast(playerPosition);
+            this.LoadChunkEast(playerPosition);
+            this.LoadChunkNorth(playerPosition);
+        }
+        else if (direction == "SouthWest")
+        {
+            this.LoadChunkSouthWest(playerPosition);
+            this.LoadChunkWest(playerPosition);
+            this.LoadChunkSouth(playerPosition);
+        }
+        else if (direction == "SouthEast")
+        {
+            this.LoadChunkSouthEast(playerPosition);
+            this.LoadChunkEast(playerPosition);
+            this.LoadChunkSouth(playerPosition);
+        }
         
-        if(this.CurrentChunkPosition.X > this.WorldWidth)
-            this.CurrentChunkPosition = Real3(-this.WorldWidth, this.CurrentChunkPosition.Y - this.ChunkWidth, this.CurrentChunkPosition.Z);
+        Console.WriteLine("Failed to load chunk at direction \"`direction`\"");
+        Console.WriteLine("Direction \"`direction`\" does not exist.");
         
+        return false;
+    }
+    
+    function CheckForChunkAtPosition(position : Real3) : Boolean
+    {
+        foreach (var chunk in this.Chunks)
+            if (chunk.Transform.Translation == position)
+                return true;
+        
+        return false;
+    }
+    
+    function LoadChunkNorth(playerPosition : Real3)
+    {
+        if (this.CheckForChunkAtPosition(this.Snap(playerPosition, this.ChunkWidth) + Real3(0.0, this.ChunkWidth, 0.0)) == false)
+        {
+            this.Chunks.Add(this.Space.CreateAtPosition(Archetype.Chunk, this.Snap(playerPosition, this.ChunkWidth) + Real3(0.0, this.ChunkWidth, 0.0)));
+            Console.WriteLine("Loaded chunk at direction \"North\".");
+        }
+        else
+        {
+            Console.WriteLine("Failed to load chunk at direction \"North\"");
+            Console.WriteLine("Chunk already at direction");
+        }
+    }
+    
+    function LoadChunkSouth(playerPosition : Real3)
+    {
+        if (this.CheckForChunkAtPosition(this.Snap(playerPosition, this.ChunkWidth) + Real3(0.0, -this.ChunkWidth, 0.0)) == false)
+        {
+            this.Chunks.Add(this.Space.CreateAtPosition(Archetype.Chunk, this.Snap(playerPosition, this.ChunkWidth) + Real3(0.0, -this.ChunkWidth, 0.0)));
+            Console.WriteLine("Loaded chunk at direction \"South\".");
+        }
+        else
+        {
+            Console.WriteLine("Failed to load chunk at direction \"South\"");
+            Console.WriteLine("Chunk already at direction");
+        }
+    }
+    
+    function LoadChunkEast(playerPosition : Real3)
+    {
+        if (this.CheckForChunkAtPosition(this.Snap(playerPosition, this.ChunkWidth) + Real3(this.ChunkWidth, 0.0, 0.0)) == false)
+        {
+            this.Chunks.Add(this.Space.CreateAtPosition(Archetype.Chunk, this.Snap(playerPosition, this.ChunkWidth) + Real3(this.ChunkWidth, 0.0, 0.0)));
+            Console.WriteLine("Loaded chunk at direction \"East\".");
+        }
+        else
+        {
+            Console.WriteLine("Failed to load chunk at direction \"East\"");
+            Console.WriteLine("Chunk already at direction");
+        }
+    }
+    
+    function LoadChunkWest(playerPosition : Real3)
+    {
+        if (this.CheckForChunkAtPosition(this.Snap(playerPosition, this.ChunkWidth) + Real3(-this.ChunkWidth, 0.0, 0.0)) == false)
+        {
+            this.Chunks.Add(this.Space.CreateAtPosition(Archetype.Chunk, this.Snap(playerPosition, this.ChunkWidth) + Real3(-this.ChunkWidth, 0.0, 0.0)));
+            Console.WriteLine("Loaded chunk at direction \"West\".");
+        }
+        else
+        {
+            Console.WriteLine("Failed to load chunk at direction \"West\"");
+            Console.WriteLine("Chunk already at direction");
+        }
+    }
+    
+    function LoadChunkNorthWest(playerPosition : Real3)
+    {
+        if (this.CheckForChunkAtPosition(this.Snap(playerPosition, this.ChunkWidth) + Real3(-this.ChunkWidth, this.ChunkWidth, 0.0)) == false)
+        {
+            this.Chunks.Add(this.Space.CreateAtPosition(Archetype.Chunk, this.Snap(playerPosition, this.ChunkWidth) + Real3(-this.ChunkWidth, this.ChunkWidth, 0.0)));
+            Console.WriteLine("Loaded chunk at direction \"NorthWest\".");
+        }
+        else
+        {
+            Console.WriteLine("Failed to load chunk at direction \"NorthWest\"");
+            Console.WriteLine("Chunk already at direction");
+        }
+    }
+    
+    function LoadChunkNorthEast(playerPosition : Real3)
+    {
+        if (this.CheckForChunkAtPosition(this.Snap(playerPosition, this.ChunkWidth) + Real3(this.ChunkWidth, this.ChunkWidth, 0.0)) == false)
+        {
+            this.Chunks.Add(this.Space.CreateAtPosition(Archetype.Chunk, this.Snap(playerPosition, this.ChunkWidth) + Real3(this.ChunkWidth, this.ChunkWidth, 0.0)));
+            Console.WriteLine("Loaded chunk at direction \"NorthEast\".");
+        }
+        else
+        {
+            Console.WriteLine("Failed to load chunk at direction \"NorthEast\"");
+            Console.WriteLine("Chunk already at direction");
+        }
+    }
+    
+    function LoadChunkSouthWest(playerPosition : Real3)
+    {
+        if (this.CheckForChunkAtPosition(this.Snap(playerPosition, this.ChunkWidth) + Real3(-this.ChunkWidth, -this.ChunkWidth, 0.0)) == false)
+        {
+            this.Chunks.Add(this.Space.CreateAtPosition(Archetype.Chunk, this.Snap(playerPosition, this.ChunkWidth) + Real3(-this.ChunkWidth, -this.ChunkWidth, 0.0)));
+            Console.WriteLine("Loaded chunk at direction \"SouthWest\".");
+        }
+        else
+        {
+            Console.WriteLine("Failed to load chunk at direction \"SouthWest\"");
+            Console.WriteLine("Chunk already at direction");
+        }
+    }
+    
+    function LoadChunkSouthEast(playerPosition : Real3)
+    {
+        if (this.CheckForChunkAtPosition(this.Snap(playerPosition, this.ChunkWidth) + Real3(-this.ChunkWidth, this.ChunkWidth, 0.0)) == false)
+        {
+            this.Chunks.Add(this.Space.CreateAtPosition(Archetype.Chunk, this.Snap(playerPosition, this.ChunkWidth) + Real3(-this.ChunkWidth, this.ChunkWidth, 0.0)));
+            Console.WriteLine("Loaded chunk at direction \"SouthEast\".");
+        }
+        else
+        {
+            Console.WriteLine("Failed to load chunk at direction \"SouthEast\"");
+            Console.WriteLine("Chunk already at direction");
+        }
+    }
+    
+    function Snap(position : Real3, gridWidth : Real) : Real3
+    {
+        var x = Math.Floor(position.X / gridWidth) * gridWidth;
+        var y = Math.Floor(position.Y / gridWidth) * gridWidth;
+        
+        return Real3(x, y, position.Z);
     }
 }
