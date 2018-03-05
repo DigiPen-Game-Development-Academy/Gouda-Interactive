@@ -24,7 +24,7 @@ class ItemDrop : ZilchComponent {
         Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
             "`Relocation.Items[this.ItemID].ItemRecognizableName` (x`this.ItemAmount`)",
             "`Relocation.Items[this.ItemID].ItemLore`",
-            Real4(1.0),
+            Relocation.Items[this.ItemID].ItemColor,
             Real4(1.0)
         );
         
