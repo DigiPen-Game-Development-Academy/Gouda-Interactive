@@ -3,6 +3,7 @@ class HPack : Item {
     var HealAmount : Real = 25;
     
     constructor(itemName : String, useNameAsSpriteSource : Boolean, healAmt : Real) : base(itemName, useNameAsSpriteSource) {
+        this.ItemColor = Real4(1.0, 0.0, 0.0, 1.0);
         this.HealAmount = healAmt;
     }
     

@@ -111,34 +111,34 @@ class ItemManager : ZilchComponent {
         
         this.PropertySeperator();
         
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Air");                    // AIR
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponCommon");           // PISTOL
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponCommon");           // REVOLVER
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponCommon");           // ROCK
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponEpic");             // SHOTGUN
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponEpic");             // BOULDER
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponLegendary");        // MINIGUN
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponLegendary");        // SNIPER RIFLE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponLegendary");        // GOUDA CHEESE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Air");                                                // AIR
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponCommon",        Real4(0.1, 1.0, 0.1, 1.0));     // PISTOL
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponCommon",        Real4(0.1, 1.0, 0.1, 1.0));     // REVOLVER
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponCommon",        Real4(0.1, 1.0, 0.1, 1.0));     // ROCK
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponEpic",          Real4(0.7, 0.3, 0.9, 1.0));     // SHOTGUN
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponEpic",          Real4(0.7, 0.3, 0.9, 1.0));     // BOULDER
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponLegendary",     Real4(1.0, 0.7, 0.0, 1.0));     // MINIGUN
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponLegendary",     Real4(1.0, 0.7, 0.0, 1.0));     // SNIPER RIFLE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "WeaponLegendary",     Real4(1.0, 0.7, 0.0, 1.0));     // GOUDA CHEESE
         this.SkipSpacer();
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (PISTOL)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (SHOTGUN)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (MINIGUN)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (ASSAULT RIFLE)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                   // AMMO (SNIPER RIFLE)
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Health");                 // HEALTH PACK
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // COPPER ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // COPPER
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // IRON ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // IRON
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // GOLD ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // GOLD
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // TITANIUM ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // TITANIUM
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // PLATINUM ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource");               // PLATINUM
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "ResourceMystic");         // GOUDARIUM ORE
-        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "ResourceMystic");         // GOUDARIUM
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                                               // AMMO (PISTOL)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                                               // AMMO (SHOTGUN)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                                               // AMMO (MINIGUN)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                                               // AMMO (ASSAULT RIFLE)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Item");                                               // AMMO (SNIPER RIFLE)
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Health");                                             // HEALTH PACK
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // COPPER ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // COPPER
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // IRON ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // IRON
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // GOLD ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // GOLD
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // TITANIUM ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // TITANIUM
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // PLATINUM ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Resource",            Real4(0.6, 0.6, 0.6, 1.0));     // PLATINUM
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "ResourceMystic",      Real4(0.6, 0.6, 0.6, 1.0));     // GOUDARIUM ORE
+        this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "ResourceMystic",      Real4(0.6, 0.6, 0.6, 1.0));     // GOUDARIUM
         this.SkipSpacer();
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // TRIGGER (GUN PART)
         this.ID = Relocation.Items[this.ID].SetItemType(this.ID, "Part");                   // HANDLE (GUN PART)

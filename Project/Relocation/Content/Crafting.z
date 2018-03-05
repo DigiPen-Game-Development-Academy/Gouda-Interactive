@@ -482,27 +482,11 @@ class Crafting : ZilchComponent {
     
     function GetTooltipColor() : Real4 {
         
-        var id = -1;
-        
         if(this.SlotHover != -1 && this.CRSlotHover == -1) {
             this.LastSlotHover = this.SlotHover;
-            id = Relocation.Items[this.CraftingRecipes[this.SlotHover - 1 + (this.MaxCraftingSlots * this.ScrollPosition)].Recipe[6]].ItemID;
+            return Relocation.Items[this.CraftingRecipes[this.SlotHover - 1 + (this.MaxCraftingSlots * this.ScrollPosition)].Recipe[6]].ItemColor;
         } else if(this.SlotHover == -1 && this.LastSlotHover != -1 && this.CRSlotHover != -1) {
-            id = Relocation.Items[this.CraftingRecipes[this.LastSlotHover - 1 + (this.MaxCraftingSlots * this.ScrollPosition)].Recipe[this.CRSlotHover - 1]].ItemID;
-        } else {
-            return Real4(1.0);
-        }
-        
-        if(Relocation.Items[id].ItemType == "WeaponCommon") {
-            return Real4(0.1, 1.0, 0.1, 1.0);
-        } else if(Relocation.Items[id].ItemType == "WeaponEpic") {
-            return Real4(0.7, 0.3, 0.9, 1.0);
-        } else if(Relocation.Items[id].ItemType == "WeaponLegendary") {
-            return Real4(1.0, 0.7, 0.0, 1.0);
-        } else if(Relocation.Items[id].ItemType == "Resource") {
-            return Real4(0.6, 0.6, 0.6, 1.0);
-        } else if(Relocation.Items[id].ItemType == "Health") {
-            return Real4(1.0, 0.0, 0.0, 1.0);
+            return Relocation.Items[this.CraftingRecipes[this.LastSlotHover - 1 + (this.MaxCraftingSlots * this.ScrollPosition)].Recipe[this.CRSlotHover - 1]].ItemColor;
         } else {
             return Real4(1.0);
         }

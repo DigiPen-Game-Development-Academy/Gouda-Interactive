@@ -9,6 +9,8 @@ class Item {
     var ItemType : String = "Item";
     var ItemLore : String = "";
     
+    var ItemColor : Real4 = Real4(1.0);
+    
     var ItemID : Integer = 0;
     
     var ShowID : Boolean = false;
@@ -58,6 +60,13 @@ class Item {
     
     function SetItemType(id : Integer, type : String) : Integer {
         this.ItemType = type;
+        ++id;
+        return id;
+    }
+    
+    function SetItemType(id : Integer, type : String, color : Real4) : Integer {
+        this.ItemType = type;
+        this.ItemColor = color;
         ++id;
         return id;
     }

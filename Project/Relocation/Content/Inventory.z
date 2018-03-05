@@ -299,19 +299,7 @@ class Inventory : ZilchComponent {
     
     function GetTooltipColor(array : Array[Integer], slot : Integer) : Real4 {
         
-        if(Relocation.Items[array[slot - 1]].ItemType == "WeaponCommon") {
-            return Real4(0.1, 1.0, 0.1, 1.0);
-        } else if(Relocation.Items[array[slot - 1]].ItemType == "WeaponEpic") {
-            return Real4(0.7, 0.3, 0.9, 1.0);
-        } else if(Relocation.Items[array[slot - 1]].ItemType == "WeaponLegendary") {
-            return Real4(1.0, 0.7, 0.0, 1.0);
-        } else if(Relocation.Items[array[slot - 1]].ItemType == "Resource") {
-            return Real4(0.6, 0.6, 0.6, 1.0);
-        } else if(Relocation.Items[array[slot - 1]].ItemType == "Health") {
-            return Real4(1.0, 0.0, 0.0, 1.0);
-        } else {
-            return Real4(1.0);
-        }
+        return Relocation.Items[array[slot - 1]].ItemColor;
         
     }
     
