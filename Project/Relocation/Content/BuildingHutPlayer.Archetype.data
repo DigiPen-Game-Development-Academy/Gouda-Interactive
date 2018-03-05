@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.5, 0.985000014, 1, 1],
+		Vec4 Color = [0.628425002, 0.878519297, 0.944999993, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -60,13 +60,13 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [-0.5, -0.75, 0.25],
-				Vec3 Scale = [1, 1.75, 2],
+				Vec3 Translation = [-0.699999988, -0.75, 0.25],
+				Vec3 Scale = [1.14999998, 1.75, 2],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
 			{
-				bool Visible = true,
+				bool Visible = false,
 				bool VisibilityCulling = true,
 				bool VisibilityEvents = true,
 				bool CastShadows = false,
