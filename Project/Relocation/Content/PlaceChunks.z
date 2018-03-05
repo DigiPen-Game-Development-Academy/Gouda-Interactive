@@ -25,75 +25,75 @@ class PlaceChunks : ZilchComponent {
         var playerPos = Relocation.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
         
         if(Math.Round(playerPos.X) % this.ChunkWidth == 0 || Math.Round(playerPos.Y) % this.ChunkWidth == 0) {
-            this.LoadChunkNorthWest(playerPos);
-            this.LoadChunkNorth(playerPos);
-            this.LoadChunkNorthEast(playerPos);
-            this.LoadChunkEast(playerPos);
-            this.LoadChunkSouthWest(playerPos);
-            this.LoadChunkSouth(playerPos);
-            this.LoadChunkSouthEast(playerPos);
-            this.LoadChunkWest(playerPos);
+            this.LoadChunkNorthWest(playerPos.XY);
+            this.LoadChunkNorth(playerPos.XY);
+            this.LoadChunkNorthEast(playerPos.XY);
+            this.LoadChunkEast(playerPos.XY);
+            this.LoadChunkSouthWest(playerPos.XY);
+            this.LoadChunkSouth(playerPos.XY);
+            this.LoadChunkSouthEast(playerPos.XY);
+            this.LoadChunkWest(playerPos.XY);
         }
         
     }
     
-    function LoadChunkNorth(pos : Real3) {
+    function LoadChunkNorth(pos : Real2) {
         if(!this.CheckForChunkAtPosition(this.SnapToGrid(pos, this.ChunkWidth) + Real3(0.0, this.ChunkWidth, 0.0)))
             this.ChunkMap.Add(
                 this.Space.CreateAtPosition(Archetype.Chunk, this.SnapToGrid(pos, this.ChunkWidth) + Real3(0.0, this.ChunkWidth, 0.0))
             );
     }
     
-    function LoadChunkSouth(pos : Real3) {
+    function LoadChunkSouth(pos : Real2) {
         if(!this.CheckForChunkAtPosition(this.SnapToGrid(pos, this.ChunkWidth) + Real3(0.0, -this.ChunkWidth, 0.0)))
             this.ChunkMap.Add(
                 this.Space.CreateAtPosition(Archetype.Chunk, this.SnapToGrid(pos, this.ChunkWidth) + Real3(0.0, -this.ChunkWidth, 0.0))
             );
     }
     
-    function LoadChunkEast(pos : Real3) {
+    function LoadChunkEast(pos : Real2) {
         if(!this.CheckForChunkAtPosition(this.SnapToGrid(pos, this.ChunkWidth) + Real3(this.ChunkWidth, 0.0, 0.0)))
             this.ChunkMap.Add(
                 this.Space.CreateAtPosition(Archetype.Chunk, this.SnapToGrid(pos, this.ChunkWidth) + Real3(this.ChunkWidth, 0.0, 0.0))
             );
     }
     
-    function LoadChunkWest(pos : Real3) {
+    function LoadChunkWest(pos : Real2) {
         if(!this.CheckForChunkAtPosition(this.SnapToGrid(pos, this.ChunkWidth) + Real3(-this.ChunkWidth, 0.0, 0.0)))
             this.ChunkMap.Add(
                 this.Space.CreateAtPosition(Archetype.Chunk, this.SnapToGrid(pos, this.ChunkWidth) + Real3(-this.ChunkWidth, 0.0, 0.0))
             );
     }
     
-    function LoadChunkNorthWest(pos : Real3) {
+    function LoadChunkNorthWest(pos : Real2) {
         if(!this.CheckForChunkAtPosition(this.SnapToGrid(pos, this.ChunkWidth) + Real3(-this.ChunkWidth, this.ChunkWidth, 0.0)))
             this.ChunkMap.Add(
                 this.Space.CreateAtPosition(Archetype.Chunk, this.SnapToGrid(pos, this.ChunkWidth) + Real3(-this.ChunkWidth, this.ChunkWidth, 0.0))
             );
     }
     
-    function LoadChunkNorthEast(pos : Real3) {
+    function LoadChunkNorthEast(pos : Real2) {
         if(!this.CheckForChunkAtPosition(this.SnapToGrid(pos, this.ChunkWidth) + Real3(this.ChunkWidth, this.ChunkWidth, 0.0)))
             this.ChunkMap.Add(
                 this.Space.CreateAtPosition(Archetype.Chunk, this.SnapToGrid(pos, this.ChunkWidth) + Real3(this.ChunkWidth, this.ChunkWidth, 0.0))
             );
     }
     
-    function LoadChunkSouthWest(pos : Real3) {
+    function LoadChunkSouthWest(pos : Real2) {
         if(!this.CheckForChunkAtPosition(this.SnapToGrid(pos, this.ChunkWidth) + Real3(-this.ChunkWidth, -this.ChunkWidth, 0.0)))
             this.ChunkMap.Add(
                 this.Space.CreateAtPosition(Archetype.Chunk, this.SnapToGrid(pos, this.ChunkWidth) + Real3(-this.ChunkWidth, -this.ChunkWidth, 0.0))
             );
     }
     
-    function LoadChunkSouthEast(pos : Real3) {
+    function LoadChunkSouthEast(pos : Real2) {
         if(!this.CheckForChunkAtPosition(this.SnapToGrid(pos, this.ChunkWidth) + Real3(-this.ChunkWidth, this.ChunkWidth, 0.0)))
             this.ChunkMap.Add(
                 this.Space.CreateAtPosition(Archetype.Chunk, this.SnapToGrid(pos, this.ChunkWidth) + Real3(-this.ChunkWidth, this.ChunkWidth, 0.0))
             );
     }
     
-    function SnapToGrid(pos : Real3, gridWidth : Real) : Real3 {
+    function SnapToGrid(pos : Real2, gridWidth : Real) : Real3 {
         
         var x = Math.Floor(pos.X / gridWidth) * gridWidth;
         var y = Math.Floor(pos.Y / gridWidth) * gridWidth;
