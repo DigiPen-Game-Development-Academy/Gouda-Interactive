@@ -10,7 +10,7 @@ Cog =
 	},
 	Archetyped = 
 	{
-		string Name = "5acad920c7159677:Watermark",
+		string Name = "5ad1912746382d45:WatermarkMainMenu",
 	},
 	Transform = 
 	{
@@ -28,8 +28,8 @@ Cog =
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string FontName = "5ac2973527d023e1:FontDefault",
-		uint FontSize = 128,
+		string FontName = "5ad9e7ff8459f32e:FontDefaultBold",
+		uint FontSize = 150,
 		string Text = "Relocation Alpha v0.6.4.5",
 		TextAlign Align = Left,
 		float PixelsPerUnit = 256,
@@ -38,8 +38,8 @@ Cog =
 	ScreenAlignment = 
 	{
 		string PositionX = "Left",
-		string PositionY = "Top",
-		Vec2 PositionOffset = [0.25, 0],
+		string PositionY = "Bottom",
+		Vec2 PositionOffset = [0.5, 1],
 		float ZIndex = 0,
 		bool HideUntilPositioned = true,
 	},
