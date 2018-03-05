@@ -215,7 +215,7 @@ Level =
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeIn",
 			float AnimationSpeed = 0.5,
-			float AnimationDelay = 1,
+			float AnimationDelay = 0.75,
 			float MultiAnimationDelay = 0.5,
 		},
 	},
@@ -258,7 +258,7 @@ Level =
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeIn",
 			float AnimationSpeed = 0.5,
-			float AnimationDelay = 0.5,
+			float AnimationDelay = 0.25,
 			float MultiAnimationDelay = 0.5,
 		},
 	},
@@ -318,7 +318,7 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 1.5,
+					float AnimationDelay = 1.25,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
@@ -377,7 +377,7 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 1.75,
+					float AnimationDelay = 1.5,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
@@ -436,7 +436,7 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 2,
+					float AnimationDelay = 1.75,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
@@ -495,7 +495,7 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 2.25,
+					float AnimationDelay = 2,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
