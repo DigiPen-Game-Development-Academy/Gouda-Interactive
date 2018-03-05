@@ -92,10 +92,10 @@ Level =
 		ItemManager = 
 		{
 		},
-		GenerateWorld = 
+		PlaceChunks = 
 		{
-			int WorldWidth = 200,
 			int ChunkWidth = 32,
+			float ZIndex = 0,
 		},
 	},
 	Cog = 
