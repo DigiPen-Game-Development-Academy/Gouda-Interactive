@@ -261,20 +261,8 @@ class Inventory : ZilchComponent {
             if(this.TooltipName != "") {
                 
                 var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
-                var tooltipColor = Real4(1.0);
+                var tooltipColor = this.GetTooltipColor(this.InventoryContents, this.SlotHover);
                 var tooltipLoreColor = Real4(1.0, 1.0, 1.0, 0.9);
-                
-                if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "WeaponCommon") {
-                    tooltipColor = Real4(0.1, 1.0, 0.1, 1.0);
-                } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "WeaponEpic") {
-                    tooltipColor = Real4(0.7, 0.3, 0.9, 1.0);
-                } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "WeaponLegendary") {
-                    tooltipColor = Real4(1.0, 0.7, 0.0, 1.0);
-                } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Resource") {
-                    tooltipColor = Real4(0.6, 0.6, 0.6, 1.0);
-                } else if(Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemType == "Health") {
-                    tooltipColor = Real4(1.0, 0.0, 0.0, 1.0);
-                }
                 
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(this.TooltipName, this.TooltipLoreName, tooltipColor, tooltipLoreColor);
@@ -295,13 +283,34 @@ class Inventory : ZilchComponent {
         } else {
             
             this.TooltipName = this.Owner.Crafting.GetTooltipName();
-            this.TooltipLoreName = "";
+            this.TooltipLoreName = this.Owner.Crafting.GetTooltipLore();
+            
+            var crafting = this.Owner.Crafting;
+            var tooltipColor = crafting.GetTooltipColor();
             
             Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
-            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(this.TooltipName, this.TooltipLoreName, Real4(1.0), Real4(1.0));
+            Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(this.TooltipName, this.TooltipLoreName, tooltipColor, Real4(1.0));
             
             this.SlotHover = -1;
             
+        }
+        
+    }
+    
+    function GetTooltipColor(array : Array[Integer], slot : Integer) : Real4 {
+        
+        if(Relocation.Items[array[slot - 1]].ItemType == "WeaponCommon") {
+            return Real4(0.1, 1.0, 0.1, 1.0);
+        } else if(Relocation.Items[array[slot - 1]].ItemType == "WeaponEpic") {
+            return Real4(0.7, 0.3, 0.9, 1.0);
+        } else if(Relocation.Items[array[slot - 1]].ItemType == "WeaponLegendary") {
+            return Real4(1.0, 0.7, 0.0, 1.0);
+        } else if(Relocation.Items[array[slot - 1]].ItemType == "Resource") {
+            return Real4(0.6, 0.6, 0.6, 1.0);
+        } else if(Relocation.Items[array[slot - 1]].ItemType == "Health") {
+            return Real4(1.0, 0.0, 0.0, 1.0);
+        } else {
+            return Real4(1.0);
         }
         
     }
