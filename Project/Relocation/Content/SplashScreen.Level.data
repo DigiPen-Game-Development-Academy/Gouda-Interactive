@@ -94,7 +94,7 @@ Level =
 		LevelSwitcher = 
 		{
 			string Level = "5acef7f30877b413:MainMenu",
-			float Delay = 8.25,
+			float Delay = 7,
 		},
 	},
 	Cog = 
@@ -213,7 +213,7 @@ Level =
 			string AnimationType = "FadeInOut",
 			float AnimationSpeed = 0.75,
 			float AnimationDelay = 0.25,
-			float MultiAnimationDelay = 1.5,
+			float MultiAnimationDelay = 0.75,
 		},
 	},
 	Cog = 
@@ -255,7 +255,7 @@ Level =
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeInOut",
 			float AnimationSpeed = 0.75,
-			float AnimationDelay = 4.25,
+			float AnimationDelay = 3,
 			float MultiAnimationDelay = 2.25,
 		},
 	},
