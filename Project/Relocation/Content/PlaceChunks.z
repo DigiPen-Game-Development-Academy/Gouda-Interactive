@@ -105,7 +105,7 @@ class PlaceChunks : ZilchComponent {
     function CheckForChunkAtPosition(position : Real3) : Boolean {
         
         foreach(var chunk in this.ChunkMap)
-            if(chunk.Transform.WorldTranslation == position) return true;
+            if(chunk.Transform.WorldTranslation.XY == position.XY) return true;
         
         return false;
         
