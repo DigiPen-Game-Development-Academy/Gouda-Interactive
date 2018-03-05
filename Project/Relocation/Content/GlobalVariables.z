@@ -16,12 +16,15 @@ class Relocation {
     
     [Static] var DebugMode : Boolean = false;
     [Static] var InventoryOpen : Boolean = false;
+    [Static] var IsInOverworld : Boolean = true;
     
     [Static] var CursorType : String = "Default";
     
     [Static] var Time : Real = 12.0;
     [Static] var DayLength : Real = 48.0;
     [Static] var LightAmount : Real = 1.0;
+    
+    [Static] var SpawnPosition : Real3 = Real3(-20.5, 4.5, 0.0);
     
     /* MAIN MENU */
     [Static] var ButtonFadeout : Boolean = false;
