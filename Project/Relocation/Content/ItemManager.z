@@ -10,7 +10,7 @@ class ItemManager : ZilchComponent {
     function Initialize(init : CogInitializer) {
         
         Relocation.Space = this.Space;
-        Relocation.ItemManager = this.Owner.ItemManager;
+        Relocation.ItemManager = this;
         
         Relocation.Items = new Array[Item]();
         this.Spacers = new Array[Integer]();

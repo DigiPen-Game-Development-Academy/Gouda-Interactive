@@ -30,7 +30,7 @@ Cog =
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 		string FontName = "5addaa7b8f441196:FontBold",
 		uint FontSize = 30,
-		string Text = "",
+		string Text = "undefined",
 		TextAlign Align = Right,
 		float PixelsPerUnit = 64,
 		bool Smoothing = false,
@@ -38,5 +38,10 @@ Cog =
 	NotificationText = 
 	{
 		float Lifetime = 2.5,
+	},
+	Reactive = 
+	{
+		bool Active = true,
+		bool CaptureMouse = false,
 	},
 },

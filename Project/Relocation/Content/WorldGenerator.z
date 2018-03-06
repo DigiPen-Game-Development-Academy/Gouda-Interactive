@@ -251,11 +251,16 @@ class WorldGenerator : ZilchComponent {
                     itemName = "ItemPlatinumOre";
                 }
                 
-                var notification = Relocation.UISpace.FindObjectByName("Notification").Notification;
-                
                 if(itemName != "") {
                     player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName(itemName), false, 1);
-                    notification.GiveNotification("Picked up `Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemRecognizableName`", 0.5);
+                    Relocation.NotificationManager.GiveNotification(
+                        "Picked up `Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemRecognizableName`", 
+                        2.5,
+                        "`Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemRecognizableName`",
+                        "`Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemLore`",
+                        Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemColor,
+                        Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemLoreColor
+                    );
                 }
                 
             }

@@ -25,7 +25,7 @@ class ItemDrop : ZilchComponent {
             "`Relocation.Items[this.ItemID].ItemRecognizableName` (x`this.ItemAmount`)",
             "`Relocation.Items[this.ItemID].ItemLore`",
             Relocation.Items[this.ItemID].ItemColor,
-            Real4(1.0)
+            Relocation.Items[this.ItemID].ItemLoreColor
         );
         
     }
@@ -39,8 +39,20 @@ class ItemDrop : ZilchComponent {
         if(event.OtherObject.Name == Relocation.EntityPlayer) {
             
             if(event.OtherObject.Inventory != null) {
+                
                 event.OtherObject.Inventory.GiveItemWithAmount(this.ItemID, false, this.ItemAmount);
+                
+                Relocation.NotificationManager.GiveNotification(
+                    "Picked up `Relocation.Items[this.ItemID].ItemRecognizableName` (x`this.ItemAmount`)",
+                    2.5,
+                    "`Relocation.Items[this.ItemID].ItemRecognizableName` (x`this.ItemAmount`)",
+                    "`Relocation.Items[this.ItemID].ItemLore`",
+                    Relocation.Items[this.ItemID].ItemColor,
+                    Relocation.Items[this.ItemID].ItemLoreColor
+                );
+                
                 this.Owner.Destroy();
+                
             }
             
         } else if(event.OtherObject.ItemDrop != null) {

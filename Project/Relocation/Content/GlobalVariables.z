@@ -13,6 +13,7 @@ class Relocation {
     [Static] var Items : Array[Item] = null;
     
     [Static] var ItemManager : ItemManager = null;
+    [Static] var NotificationManager : Notification = null;
     
     [Static] var DebugMode : Boolean = false;
     [Static] var InventoryOpen : Boolean = false;
