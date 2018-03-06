@@ -18,6 +18,7 @@ class WorldGenerator : ZilchComponent {
     var SpawnChance : Real = 45.0;
     
     var WorldMap : HashMap[Real2, Integer] = null;
+    var WorldMapData : HashMap[Real2, Real2] = null;
     
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -77,16 +78,21 @@ class WorldGenerator : ZilchComponent {
     function CreateMap() {
         
         this.WorldMap = new HashMap[Real2, Integer]();
+        this.WorldMapData = new HashMap[Real2, Real2]();
         
         var rand = Random();
         
         for(var x = 0; x < this.Width; ++x) {
             for(var y = 0; y < this.Height; ++y) {
+                
                 if(rand.Range(0.0, 100.0) < this.SpawnChance) {
                     this.WorldMap.Set(Real2(x, y), this.GenerateID());
                 } else {
                     this.WorldMap.Set(Real2(x, y), 0);
                 }
+                
+                this.WorldMapData.Set(Real2(x, y), Real2(0.0, 5.0));
+                
             }
         }
         
@@ -126,6 +132,7 @@ class WorldGenerator : ZilchComponent {
                 if(arch != null) {
                     var obj = this.Space.CreateAtPosition(arch, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
                     obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
+                    obj.Transform.Scale = this.GetBlockScale(obj, Real2(x, y));
                 }
                 
             }
@@ -225,6 +232,15 @@ class WorldGenerator : ZilchComponent {
         
     }
     
+    function GetBlockScale(block : Cog, coords : Real2) : Real3 {
+        
+        var chunkCoords = Real2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
+        var blockData = this.WorldMapData.Get(coords);
+        
+        return Real3(Real2(1 - blockData.X / blockData.Y), 1.0);
+        
+    }
+    
     function RemoveBlock(coords : Real2, dropItem : Boolean) {
         
         var chunkCoords = Real2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
@@ -272,6 +288,27 @@ class WorldGenerator : ZilchComponent {
         }
         
         this.WorldMap.Set(chunkCoords, 0);
+        
+    }
+    
+    function DamageBlock(block : Cog, damageAmount : Real, dropItem : Boolean) {
+        
+        var coords = block.Transform.Translation.XY;
+        
+        var chunkCoords = Real2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
+        var blockID = this.WorldMap.GetOrError(chunkCoords);
+        var blockData = this.WorldMapData.Get(chunkCoords);
+        
+        this.WorldMapData.Set(chunkCoords, Real2(blockData.X + damageAmount, blockData.Y));
+        
+        blockData = this.WorldMapData.Get(chunkCoords);
+        
+        if(blockData.X >= blockData.Y) {
+            this.RemoveBlock(coords, dropItem);
+            block.Destroy();
+        } else {
+            block.Transform.Scale = this.GetBlockScale(block, chunkCoords);
+        }
         
     }
     

@@ -42,8 +42,7 @@ class EntityBullet : ZilchComponent {
         } else if(this.FromPlayer && event.OtherObject.Name == "BlockRock") {
             
             if(event.OtherObject.Parent != null)
-                event.OtherObject.Parent.Parent.WorldGenerator.RemoveBlock(event.OtherObject.Transform.Translation.XY, true);
-            event.OtherObject.Destroy();
+                event.OtherObject.Parent.Parent.WorldGenerator.DamageBlock(event.OtherObject, 1.0, true);
             
             this.Owner.Destroy();
             
