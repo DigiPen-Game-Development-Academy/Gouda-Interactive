@@ -16,17 +16,20 @@ class WeaponManager : ZilchComponent {
     var WeaponHand : Weapon = null;
     
     // WEAPONS (RANGED)
-    var WeaponPistol    : Weapon = null;
-    var WeaponRevolver  : Weapon = null;
-    var WeaponRock      : Weapon = null;
-    var WeaponShotgun   : Weapon = null;
-    var WeaponBoulder   : Weapon = null;
-    var WeaponMinigun   : Weapon = null;
-    var WeaponSniper    : Weapon = null;
-    var WeaponGouda     : Weapon = null;
+    var WeaponPistol        : Weapon = null;
+    var WeaponRevolver      : Weapon = null;
+    var WeaponRock          : Weapon = null;
+    var WeaponShotgun       : Weapon = null;
+    var WeaponBoulder       : Weapon = null;
+    var WeaponMinigun       : Weapon = null;
+    var WeaponSniper        : Weapon = null;
+    var WeaponGouda         : Weapon = null;
     
     // TOOLS
-    var ToolDrillCopper : Weapon = null;
+    var ToolDrillCopper     : Weapon = null;
+    var ToolDrillIron       : Weapon = null;
+    var ToolDrillTitanium   : Weapon = null;
+    var ToolDrillPlatinum   : Weapon = null;
     
     function Initialize(init : CogInitializer) {
         
@@ -50,9 +53,15 @@ class WeaponManager : ZilchComponent {
         
         // TOOLS
         this.ToolDrillCopper = new Weapon(this.Space, "Hand", 9, false, 1.0, 0.0);
+        this.ToolDrillIron = new Weapon(this.Space, "Hand", 10, false, 0.75, 0.0);
+        this.ToolDrillTitanium = new Weapon(this.Space, "Hand", 11, false, 0.5, 0.0);
+        this.ToolDrillPlatinum = new Weapon(this.Space, "Hand", 12, false, 0.25, 0.0);
         
         // SET AS DRILL
         this.ToolDrillCopper.IsDrill = true;
+        this.ToolDrillIron.IsDrill = true;
+        this.ToolDrillTitanium.IsDrill = true;
+        this.ToolDrillPlatinum.IsDrill = true;
         
         // SET WEAPON TIER
         this.WeaponShotgun.SetTier(2);
@@ -150,6 +159,12 @@ class WeaponManager : ZilchComponent {
                 this.ActiveWeapon = this.WeaponGouda;
             } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemDrillCopper"))) {
                 this.ActiveWeapon = this.ToolDrillCopper;
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemDrillIron"))) {
+                this.ActiveWeapon = this.ToolDrillIron;
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemDrillTitanium"))) {
+                this.ActiveWeapon = this.ToolDrillTitanium;
+            } else if(this.Owner.Inventory.CheckForItemMainHand(Relocation.ItemManager.GetIDByName("ItemDrillPlatinum"))) {
+                this.ActiveWeapon = this.ToolDrillPlatinum;
             } else {
                 this.ActiveWeapon = this.WeaponHand;
             }
