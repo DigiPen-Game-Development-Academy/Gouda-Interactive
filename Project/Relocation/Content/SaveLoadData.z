@@ -1,0 +1,51 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
+class SaveLoadData : ZilchComponent
+{
+    var Data : Cog = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.Data = Zero.ObjectStore.RestoreOrArchetype("Data", Archetype.SavedData, this.Space);
+        
+        Console.WriteLine("Data: `this.Data`");
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (Zero.Keyboard.KeyIsPressed(Keys.Zero))
+            this.Save();
+        if (Zero.Keyboard.KeyIsPressed(Keys.Nine))
+            this.Load();
+    }
+    
+    function Save()
+    {
+        this.Data.SavedData.CurrentWorld = this.Space.CurrentLevel.Name;
+        this.Data.SavedData.PlayerPosition = ToFromStrings.Real3ToString(this.Space.FindObjectByName("EntityPlayer").Transform.Translation);
+        this.Data.SavedData.PlayerName = this.Space.FindObjectByName("EntityPlayer").PlayerProperties.PlayerName;
+        
+        Zero.ObjectStore.Store("Data", this.Data);
+        
+        Console.WriteLine("Saved");
+    }
+    
+    function Load()
+    {
+        LoadDataIntoLevel.Space = this.Space;
+        LoadDataIntoLevel.CurrentWorld = this.Space.CurrentLevel.Name;
+        LoadDataIntoLevel.PlayerPosition = this.Data.SavedData.PlayerPosition;
+        LoadDataIntoLevel.PlayerName = this.Data.SavedData.PlayerName;
+        
+        LoadDataIntoLevel.LoadData();
+        
+        Console.WriteLine("Loaded");
+    }
+    
+    function Delete()
+    {
+    }
+}
