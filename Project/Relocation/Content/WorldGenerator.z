@@ -233,21 +233,29 @@ class WorldGenerator : ZilchComponent {
             Console.WriteLine("Block ID: `this.WorldMap.GetOrError(chunkCoords)`");
             
             var player = this.Space.FindObjectByName(Relocation.EntityPlayer);
+            var itemName = "";
             
             if(player != null) {
                 
                 if(blockID == 1 || blockID == 2) {
-                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemRock"), false, 1);
+                    itemName = "ItemRock";
                 } else if(blockID == 3) {
-                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemCopperOre"), false, 1);
+                    itemName = "ItemCopperOre";
                 } else if(blockID == 4) {
-                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemIronOre"), false, 1);
+                    itemName = "ItemIronOre";
                 } else if(blockID == 5) {
-                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemGoldOre"), false, 1);
+                    itemName = "ItemGoldOre";
                 } else if(blockID == 6) {
-                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemTitaniumOre"), false, 1);
+                    itemName = "ItemTitaniumOre";
                 } else if(blockID == 7) {
-                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName("ItemPlatinumOre"), false, 1);
+                    itemName = "ItemPlatinumOre";
+                }
+                
+                var notification = Relocation.UISpace.FindObjectByName("Notification").Notification;
+                
+                if(itemName != "") {
+                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName(itemName), false, 1);
+                    notification.GiveNotification("Picked up `Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemRecognizableName`", 0.5);
                 }
                 
             }

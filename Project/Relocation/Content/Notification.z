@@ -1,0 +1,111 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class Notification : ZilchComponent {
+    
+    [Property] var MaxNotificationCount : Integer = 5;
+    
+    var NotificationCount : Integer = 0;
+    
+    var NotificationLog : String = "";
+    
+    var NotificationCog : Array[Cog] = null;
+    
+    var TotalDisplayedNotifications : Integer = 1;
+    
+    var CurrDisplayTime : Real = 0.0;
+    
+    function Initialize(init : CogInitializer) {
+        
+        this.NotificationCog = new Array[Cog]();
+        this.NotificationCog.Add(this.Owner.FindChildByName("NotificationText"));
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.L))
+            this.GiveNotification("[`this.TotalDisplayedNotifications`] Picked up item.Null.name", 0.5);
+        else if(Zero.Keyboard.KeyIsPressed(Keys.K))
+            this.RemoveNotification(0);
+        
+        this.DisplayNotification();
+        
+        if(this.NotificationCount > 1) {
+            this.CurrDisplayTime += event.Dt;
+        } else {
+            this.CurrDisplayTime = 0.0;
+        }
+        
+        if(this.CurrDisplayTime > 2.5) {
+            this.RemoveNotification(0);
+            this.CurrDisplayTime = 0.0;
+        }
+        
+    }
+    
+    function DisplayNotification() {
+        
+        foreach(var notification in this.NotificationCog) {
+            notification.SpriteText.Text = this.NotificationLog;
+            notification.Transform.Translation = Real3(0, notification.SpriteText.MeasureText().Y - 0.5, -1);
+        }
+        
+    }
+    
+    function GiveNotification(text : String, displayTimeout : Real) {
+        
+        if(this.NotificationCog != null) {
+            
+            this.NotificationLog = "`this.NotificationLog`\n`text.Replace("\n", " ")`";
+            
+            ++this.NotificationCount;
+            ++this.TotalDisplayedNotifications;
+            
+            if(this.NotificationCount > this.MaxNotificationCount) {
+                this.RemoveNotification(0);
+            }
+            
+        }
+        
+    }
+    
+    function RemoveNotification(line : Integer) {
+        
+        var startLinePos = 0;
+        var endLinePos = 0;
+        
+        var currLine = 0;
+        
+        for(var i = 0; i < this.NotificationLog.Count; ++i) {
+            
+            if(String.FromChar(this.NotificationLog.Get(i)) == "\n" && endLinePos == 0) {
+                ++currLine;
+                if(currLine < line && line != 0)
+                    startLinePos = i;
+                if(startLinePos <= endLinePos)
+                    endLinePos = i;
+            }
+            
+        }
+        
+        //Console.WriteLine("StartLinePos: `startLinePos`, EndLinePos: `endLinePos`");
+        
+        var logStart = this.NotificationLog.SubStringFromRuneIndices(0, startLinePos);
+        var logEnd = this.NotificationLog.SubStringFromRuneIndices(endLinePos, this.NotificationLog.Count);
+        
+        this.NotificationLog = "`logStart``logEnd`";
+        
+        //Console.WriteLine("---CONTENT--- `this.NotificationLog` ---END CONTENT---");
+        
+        if(this.NotificationCount > this.MaxNotificationCount)
+            this.NotificationCount = this.MaxNotificationCount;
+        else if(this.NotificationCount <= this.MaxNotificationCount) {
+            this.NotificationCount -= 1;
+        }
+        
+    }
+    
+}
