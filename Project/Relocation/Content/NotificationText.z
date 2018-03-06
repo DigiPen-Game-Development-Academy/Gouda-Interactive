@@ -13,7 +13,10 @@ class NotificationText : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        this.CurrLifetime += event.Dt;
+        if(this.Owner.Parent.Notification.NotificationCount <= this.Owner.Parent.Notification.MaxNotificationCount)
+            this.CurrLifetime += event.Dt;
+        else
+            this.CurrLifetime += event.Dt * 4;
         
         if(this.CurrLifetime > this.Lifetime * 0.75) {
             this.Owner.RemoveComponentByName("UIAnimate");

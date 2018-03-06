@@ -34,8 +34,15 @@ class Notification : ZilchComponent {
         
         foreach(var notification in this.NotificationCog) {
             if(notification != null) {
-                notification.Transform.WorldTranslation = Math.Lerp(notification.Transform.WorldTranslation, Real3(pos.X, pos.Y + notificationIndex * 0.75, 0), 0.06);
+                
+                notification.Transform.WorldTranslation = Math.Lerp(
+                    notification.Transform.WorldTranslation, 
+                    Real3(pos.X, pos.Y + notificationIndex * 0.75, 0), 
+                    0.06
+                );
+                
                 ++notificationIndex;
+                
             }
         }
         
