@@ -399,8 +399,11 @@ class Crafting : ZilchComponent {
     function OnLogicUpdate(event : UpdateEvent) {
         
         if(this.SlotClicked != -1) {
-            this.UseRecipe(this.CraftingRecipes, this.SlotClicked  + (this.MaxCraftingSlots * this.ScrollPosition), false);
+            
+            this.UseRecipeAttempt();
+            
             this.SlotClicked = -1;
+            
         }
         
         if(this.SlotHover != -1) {
@@ -418,8 +421,9 @@ class Crafting : ZilchComponent {
     }
     
     function OnPausedLogicUpdate(event : UpdateEvent) {
+        
         if(this.SlotClicked != -1) {
-            this.UseRecipe(this.CraftingRecipes, this.SlotClicked + (this.MaxCraftingSlots * this.ScrollPosition), false);
+            this.UseRecipeAttempt();
         }
         
         if(this.SlotHover != -1) {
@@ -430,12 +434,28 @@ class Crafting : ZilchComponent {
             Console.WriteLine("Inv: `this.Owner.Inventory.InventoryContents`");
             Console.WriteLine("Cnt: `this.Owner.Inventory.InventoryContentsCount`");
         }
+        
     }
     
     function PausedLogicUpdateEnd() {
         this.SlotClicked = -1;
         this.SlotHover = -1;
         this.CRSlotHover = -1;
+    }
+    
+    function UseRecipeAttempt() {
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            var maxItemLimit = 64;
+            var currItemCount = 0;
+            while(this.CheckForResources(this.CraftingRecipes, this.SlotClicked  + (this.MaxCraftingSlots * this.ScrollPosition)) && currItemCount < maxItemLimit) {
+                this.UseRecipeForce(this.CraftingRecipes, this.SlotClicked  + (this.MaxCraftingSlots * this.ScrollPosition));
+                ++currItemCount;
+            }
+        } else {
+            this.UseRecipe(this.CraftingRecipes, this.SlotClicked  + (this.MaxCraftingSlots * this.ScrollPosition), false);
+        }
+        
     }
     
     function RefreshIcons(i : Integer) {
@@ -573,12 +593,16 @@ class Crafting : ZilchComponent {
             return;
         }
         
+        this.UseRecipeForce(recipe, recipeID);
+        
+    }
+    
+    function UseRecipeForce(recipe : Array[Recipe], recipeID : Integer) {
         for(var i = 0; i < this.MaxItemsInRecipe; ++i) {
             this.Owner.Inventory.RemoveItems(recipe[recipeID - 1].Recipe[i], recipe[recipeID - 1].Recipe[i + this.MaxItemsInRecipe]);
         }
         
         this.Owner.Inventory.GiveItem(recipe[recipeID - 1].Recipe[this.MaxItemsInRecipe * 2], false);
-        
     }
     
     function SetScrollPosition(pos : Integer) {
