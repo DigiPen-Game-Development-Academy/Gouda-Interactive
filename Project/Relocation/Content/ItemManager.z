@@ -179,7 +179,7 @@ class ItemManager : ZilchComponent {
         this.ID = 0;
         while(this.ID < Relocation.Items.Count)
             this.ID = Relocation.Items[this.ID].SetID(this.ID);
-        Console.WriteLine("`this.ID - 1` items successfully created");
+        Console.WriteLine("[Item Manager] `this.ID - 1` items successfully created");
         this.ID = 0;
     }
     
