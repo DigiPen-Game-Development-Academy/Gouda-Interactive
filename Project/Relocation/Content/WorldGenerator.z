@@ -8,6 +8,7 @@ class WorldGenerator : ZilchComponent {
     [Property] var Height : Integer = 32;
     [Property] var NumberOfSteps : Integer = 2;
     
+    var IsSpawnChunk : Boolean = false;
     var HasGenerated : Boolean = false;
     
     var MaxPossibleID : Integer = 8;
@@ -17,11 +18,21 @@ class WorldGenerator : ZilchComponent {
     
     var SpawnChance : Real = 45.0;
     
-    var WorldMap : HashMap[Real2, Integer] = null;
-    var WorldMapData : HashMap[Real2, Real2] = null;
+    var CenterCoords : Integer2 = Integer2(0);
+    
+    var WorldMap : HashMap[Integer2, Integer] = null;
+    var WorldMapData : HashMap[Integer2, Real2] = null;
     
     function Initialize(init : CogInitializer) {
+        
+        this.CenterCoords = Integer2(this.Width / 2, this.Height / 2);
+        
+        if(this.Owner.Transform.WorldTranslation.XY == Real2(0.0)) {
+            this.IsSpawnChunk = true;
+        }
+        
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
@@ -41,7 +52,7 @@ class WorldGenerator : ZilchComponent {
                 if(Math.Sqrt(
                     Math.Pow(chunkPos.X - playerPos.X, 2) + 
                     Math.Pow(chunkPos.Y - playerPos.Y, 2)
-                ) > this.Width) {
+                ) > this.Width - (this.Width / 16)) {
                     
                     this.UnloadMap();
                     
@@ -55,7 +66,7 @@ class WorldGenerator : ZilchComponent {
             
             if(this.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
                 
-                var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
+                var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation.XY;
                 var chunkPos = this.Owner.Transform.WorldTranslation;
                 
                 if(Math.Sqrt(
@@ -77,8 +88,8 @@ class WorldGenerator : ZilchComponent {
     
     function CreateMap() {
         
-        this.WorldMap = new HashMap[Real2, Integer]();
-        this.WorldMapData = new HashMap[Real2, Real2]();
+        this.WorldMap = new HashMap[Integer2, Integer]();
+        this.WorldMapData = new HashMap[Integer2, Real2]();
         
         var rand = Random();
         
@@ -86,12 +97,12 @@ class WorldGenerator : ZilchComponent {
             for(var y = 0; y < this.Height; ++y) {
                 
                 if(rand.Range(0.0, 100.0) < this.SpawnChance) {
-                    this.WorldMap.Set(Real2(x, y), this.GenerateID());
+                    this.WorldMap.Set(Integer2(x, y), this.GenerateID());
                 } else {
-                    this.WorldMap.Set(Real2(x, y), 0);
+                    this.WorldMap.Set(Integer2(x, y), 0);
                 }
                 
-                this.WorldMapData.Set(Real2(x, y), Real2(0.0, 5.0));
+                this.WorldMapData.Set(Integer2(x, y), Real2(0.0, 5.0));
                 
             }
         }
@@ -101,9 +112,14 @@ class WorldGenerator : ZilchComponent {
     function GenerateMap(firstLoad : Boolean) {
         
         if(firstLoad) {
+            
             for(var i = 0; i < this.NumberOfSteps; ++i) {
                 this.DoSimulationStep();
             }
+            
+            if(this.IsSpawnChunk)
+                this.GenerateStructure(0, this.CenterCoords);
+            
         }
         
         for(var x = 0; x < this.Width; ++x) {
@@ -111,28 +127,34 @@ class WorldGenerator : ZilchComponent {
                 
                 var arch : Archetype = null;
                 
-                if(this.WorldMap.Get(Real2(x, y)) == 1) {
+                if(this.WorldMap.Get(Integer2(x, y)) == 1) {
                     arch = Archetype.BlockRock;
-                } else if(this.WorldMap.Get(Real2(x, y)) == 2) {
+                } else if(this.WorldMap.Get(Integer2(x, y)) == 2) {
                     arch = Archetype.BlockRock;
-                } else if(this.WorldMap.Get(Real2(x, y)) == 3) {
+                } else if(this.WorldMap.Get(Integer2(x, y)) == 3) {
                     arch = Archetype.BlockRockCopper;
-                } else if(this.WorldMap.Get(Real2(x, y)) == 4) {
+                } else if(this.WorldMap.Get(Integer2(x, y)) == 4) {
                     arch = Archetype.BlockRockIron;
                 } else if(
-                    this.WorldMap.Get(Real2(x, y)) == 5 || 
-                    this.WorldMap.Get(Real2(x, y)) == 6 || 
-                    this.WorldMap.Get(Real2(x, y)) == 7
+                    this.WorldMap.Get(Integer2(x, y)) == 5 || 
+                    this.WorldMap.Get(Integer2(x, y)) == 6 || 
+                    this.WorldMap.Get(Integer2(x, y)) == 7
                 ) {
                     arch = Archetype.BlockRockRare;
-                } else if(this.WorldMap.Get(Real2(x, y)) != 0) {
+                } else if(this.WorldMap.Get(Integer2(x, y)) == 8) {
+                    arch = Archetype.BlockRockRare;
+                } else if(this.WorldMap.Get(Integer2(x, y)) == 20) {
+                    arch = Archetype.BlockMetal;
+                } else if(this.WorldMap.Get(Integer2(x, y)) == 21) {
+                    arch = Archetype.BlockFloor;
+                } else if(this.WorldMap.Get(Integer2(x, y)) != 0) {
                     arch = Archetype.BlockRockIron;
                 }
                 
                 if(arch != null) {
-                    var obj = this.Space.CreateAtPosition(arch, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
+                    var obj = this.Space.CreateAtPosition(arch, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + this.Owner.Transform.WorldTranslation);
                     obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
-                    obj.Transform.Scale = this.GetBlockScale(obj, Real2(x, y));
+                    obj.Transform.Scale = this.GetBlockScale(obj, Integer2(x, y));
                 }
                 
             }
@@ -147,28 +169,28 @@ class WorldGenerator : ZilchComponent {
     
     function DoSimulationStep() {
         
-        var newMap = new HashMap[Real2, Integer]();
+        var newMap = new HashMap[Integer2, Integer]();
         
         for(var x = 0; x < this.Width; ++x) {
             for(var y = 0; y < this.Height; ++y) {
                 
-                var nbs = this.CountValidNeighbours(Real2(x, y));
+                var nbs = this.CountValidNeighbours(Integer2(x, y));
                 var rand = Random();
                 
-                if(this.WorldMap.Get(Real2(x, y)) != 0) {
+                if(this.WorldMap.Get(Integer2(x, y)) != 0) {
                     
                     if(nbs < this.DeathLimit) {
-                        newMap.Set(Real2(x, y), 0);
+                        newMap.Set(Integer2(x, y), 0);
                     } else {
-                        newMap.Set(Real2(x, y), this.GenerateID());
+                        newMap.Set(Integer2(x, y), this.GenerateID());
                     }
                     
                 } else {
                     
                     if(nbs > this.BirthLimit) {
-                        newMap.Set(Real2(x, y), this.GenerateID());
+                        newMap.Set(Integer2(x, y), this.GenerateID());
                     } else {
-                        newMap.Set(Real2(x, y), 0);
+                        newMap.Set(Integer2(x, y), 0);
                     }
                     
                 }
@@ -180,7 +202,7 @@ class WorldGenerator : ZilchComponent {
         
     }
     
-    function CountValidNeighbours(coord : Real2) : Integer {
+    function CountValidNeighbours(coord : Integer2) : Integer {
         
         var count = 0;
         
@@ -194,7 +216,7 @@ class WorldGenerator : ZilchComponent {
                     // DO NOTHING
                 } else if(neighbourX < 0 || neighbourY < 0 || neighbourX >= this.Width || neighbourY >= this.Height) {
                     ++count;
-                } else if(this.WorldMap.Get(Real2(neighbourX, neighbourY)) != 0) {
+                } else if(this.WorldMap.Get(Integer2(neighbourX, neighbourY)) != 0) {
                     ++count;
                 }
                 
@@ -232,18 +254,79 @@ class WorldGenerator : ZilchComponent {
         
     }
     
-    function GetBlockScale(block : Cog, coords : Real2) : Real3 {
+    /*
+        STRUCTURE GENERATION
+    */
+    
+    function GenerateStructure(structureID : Integer, origin : Integer2) {
         
-        var chunkCoords = Real2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
+        if(structureID == 0) {
+            
+            var structWidth = this.Width / 4;
+            var structHeight = this.Height / 4;
+            
+            // STRUCTURE
+            this.GenerateSquare(Integer2(structWidth, structHeight), origin, 21, true);
+            this.GenerateSquare(Integer2(structWidth, structHeight), origin, 20, false);
+            
+            // DOOR OPENINGS
+            this.GenerateSquare(Integer2(2, structHeight), origin, 21, true);
+            this.GenerateSquare(Integer2(structWidth, 2), origin, 21, true);
+            
+        } else if(structureID == 1) {
+            
+            var structWidth = this.Width / 4;
+            var structHeight = this.Height / 4;
+            
+            // STRUCTURE
+            this.GenerateSquare(Integer2(structWidth, structHeight), origin, 21, true);
+            this.GenerateSquare(Integer2(structWidth, structHeight), origin, 20, false);
+            
+            // DOOR OPENINGS
+            this.GenerateSquare(Integer2(2, structHeight), origin, 21, true);
+            this.GenerateSquare(Integer2(structWidth, 2), origin, 21, true);
+            
+        }
+        
+    }
+    
+    function GenerateSquare(size : Integer2, position : Integer2, material : Integer, fill : Boolean) {
+        
+        for(var x = -(size.X / 2); x <= size.X / 2; ++x) {
+            for(var y = -(size.Y / 2); y <= size.Y / 2; ++y) {
+                
+                if(fill) {
+                    this.WorldMap.Set(Integer2(x + position.X, y + position.Y), material);
+                    continue;
+                } else {
+                    
+                    if(x <= -(size.X / 2) || x >= size.X / 2 || y <= -(size.Y / 2) || y >= size.Y / 2) {
+                        this.WorldMap.Set(Integer2(x + position.X, y + position.Y), material);
+                    }
+                    
+                }
+                
+            }
+        }
+        
+    }
+    
+    /*
+        BLOCK REMOVAL/BLOCK VISUAL CHANGES
+    */
+    
+    function GetBlockScale(block : Cog, coords : Integer2) : Real3 {
+        
+        var chunkCoords = Integer2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
         var blockData = this.WorldMapData.Get(coords);
         
         return Real3(Real2(1.0) - Real2(blockData.X / blockData.Y) / 2, 1.0);
         
     }
     
-    function RemoveBlock(coords : Real2, dropItem : Boolean) {
+    function RemoveBlock(coords : Integer2, dropItem : Boolean) {
         
-        var chunkCoords = Real2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
+        var chunkCoords = Integer2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
         var blockID = this.WorldMap.GetOrError(chunkCoords);
         
         if(dropItem) {
@@ -293,9 +376,9 @@ class WorldGenerator : ZilchComponent {
     
     function DamageBlock(block : Cog, damageAmount : Real, dropItem : Boolean) {
         
-        var coords = block.Transform.Translation.XY;
+        var coords = Math.Round(block.Transform.Translation.XY) as Integer2;
         
-        var chunkCoords = Real2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
+        var chunkCoords = Integer2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
         var blockID = this.WorldMap.GetOrError(chunkCoords);
         var blockData = this.WorldMapData.Get(chunkCoords);
         
