@@ -78,9 +78,9 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Minigun)",                 "Ammo");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Assault Rifle)",           "Ammo");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Sniper Rifle)",            "Ammo");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Health Pack",                          "Fully heals player when you screw\nup.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Health Pack",                          "Health Pack\n\nFully heals player when you use it.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Unprocessed)",                 "Resource");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Processed)",                   "Can be used to make electronics\nand other cool stuff.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Processed)",                   "Resource\n\nCan be used to make electronics\nand other cool stuff.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Unprocessed)",                   "Resource");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Processed)",                     "Resource");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gold (Unprocessed)",                   "Resource");
@@ -107,7 +107,7 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Drill (Titanium)",                     "Tool");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Drill (Platinum)",                     "Tool");
         this.SkipSpacer();
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Green Bean",                           "A bean from earth that happens to\nbe green.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Green Bean",                           "Food\n\nA bean from earth that happens to\nbe green.");
         
         this.PropertySeperator();
         
