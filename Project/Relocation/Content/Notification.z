@@ -7,18 +7,11 @@ class Notification : ZilchComponent {
     
     var NotificationCount : Integer = 0;
     
-    var NotificationLog : String = "";
-    
     var NotificationCog : Array[Cog] = null;
-    
-    var TotalDisplayedNotifications : Integer = 1;
-    
-    var CurrDisplayTime : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
         
         this.NotificationCog = new Array[Cog]();
-        this.NotificationCog.Add(this.Owner.FindChildByName("NotificationText"));
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -27,30 +20,23 @@ class Notification : ZilchComponent {
     function OnLogicUpdate(event : UpdateEvent) {
         
         if(Zero.Keyboard.KeyIsPressed(Keys.L))
-            this.GiveNotification("[`this.TotalDisplayedNotifications`] Picked up item.Null.name", 0.5);
-        else if(Zero.Keyboard.KeyIsPressed(Keys.K))
-            this.RemoveNotification(0);
+            this.GiveNotification("Picked up item.Null.name", 0.5);
         
         this.DisplayNotification();
-        
-        if(this.NotificationCount > 1) {
-            this.CurrDisplayTime += event.Dt;
-        } else {
-            this.CurrDisplayTime = 0.0;
-        }
-        
-        if(this.CurrDisplayTime > 2.5) {
-            this.RemoveNotification(0);
-            this.CurrDisplayTime = 0.0;
-        }
         
     }
     
     function DisplayNotification() {
         
+        var pos = this.Owner.Transform.WorldTranslation;
+        
+        var notificationIndex = 0;
+        
         foreach(var notification in this.NotificationCog) {
-            notification.SpriteText.Text = this.NotificationLog;
-            notification.Transform.Translation = Real3(0, notification.SpriteText.MeasureText().Y - 0.5, -1);
+            if(notification != null) {
+                notification.Transform.WorldTranslation = Math.Lerp(notification.Transform.WorldTranslation, Real3(pos.X, pos.Y + notificationIndex * 0.75, 0), 0.06);
+                ++notificationIndex;
+            }
         }
         
     }
@@ -59,53 +45,22 @@ class Notification : ZilchComponent {
         
         if(this.NotificationCog != null) {
             
-            this.NotificationLog = "`this.NotificationLog`\n`text.Replace("\n", " ")`";
+            var pos = this.Owner.Transform.WorldTranslation;
+            
+            var notification = this.Space.CreateAtPosition(Archetype.NotificationText, Real3(pos.X, pos.Y + this.NotificationCount * 0.75, pos.Z));
+            notification.AttachToRelative(this.Owner);
+            notification.SpriteText.Text = "`text.Replace("\n", " ")`";
+            
+            this.NotificationCog.Add(notification);
             
             ++this.NotificationCount;
-            ++this.TotalDisplayedNotifications;
-            
-            if(this.NotificationCount > this.MaxNotificationCount) {
-                this.RemoveNotification(0);
-            }
             
         }
         
     }
     
-    function RemoveNotification(line : Integer) {
-        
-        var startLinePos = 0;
-        var endLinePos = 0;
-        
-        var currLine = 0;
-        
-        for(var i = 0; i < this.NotificationLog.Count; ++i) {
-            
-            if(String.FromChar(this.NotificationLog.Get(i)) == "\n" && endLinePos == 0) {
-                ++currLine;
-                if(currLine < line && line != 0)
-                    startLinePos = i;
-                if(startLinePos <= endLinePos)
-                    endLinePos = i;
-            }
-            
-        }
-        
-        //Console.WriteLine("StartLinePos: `startLinePos`, EndLinePos: `endLinePos`");
-        
-        var logStart = this.NotificationLog.SubStringFromRuneIndices(0, startLinePos);
-        var logEnd = this.NotificationLog.SubStringFromRuneIndices(endLinePos, this.NotificationLog.Count);
-        
-        this.NotificationLog = "`logStart``logEnd`";
-        
-        //Console.WriteLine("---CONTENT--- `this.NotificationLog` ---END CONTENT---");
-        
-        if(this.NotificationCount > this.MaxNotificationCount)
-            this.NotificationCount = this.MaxNotificationCount;
-        else if(this.NotificationCount <= this.MaxNotificationCount) {
-            this.NotificationCount -= 1;
-        }
-        
+    function RemoveNotification() {
+        --this.NotificationCount;
     }
     
 }

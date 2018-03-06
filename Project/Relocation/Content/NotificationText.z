@@ -1,0 +1,31 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class NotificationText : ZilchComponent {
+    
+    [Property] var Lifetime : Real = 2.5;
+    
+    var CurrLifetime : Real = 0.0;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        this.CurrLifetime += event.Dt;
+        
+        if(this.CurrLifetime > this.Lifetime * 0.75) {
+            this.Owner.RemoveComponentByName("UIAnimate");
+            this.Owner.AddComponentByName("UIAnimate");
+            this.Owner.UIAnimate.FadeOut(event.Dt, this.Lifetime * 0.75);
+        }
+        
+        if(this.CurrLifetime > this.Lifetime) {
+            this.Owner.Parent.Notification.RemoveNotification();
+            this.Owner.Destroy();
+        }
+        
+    }
+    
+}

@@ -35,4 +35,8 @@ Cog =
 		float PixelsPerUnit = 64,
 		bool Smoothing = false,
 	},
+	NotificationText = 
+	{
+		float Lifetime = 2.5,
+	},
 },
