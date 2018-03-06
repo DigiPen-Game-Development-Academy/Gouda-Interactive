@@ -4,7 +4,12 @@
 class EntityBullet : ZilchComponent {
     
     [Property] var FromPlayer : Boolean = true;
-    [Property] var Damage : Real = 1;
+    [Property] var DrillBullet : Boolean = false;
+    [Property] var Lifetime : Real = 5.0;
+    [Property] var Damage : Real = 1.0;
+    [Property] var BlockDamageAmount : Real = 1.0;
+    
+    var CurrLifetime : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
         
@@ -14,16 +19,17 @@ class EntityBullet : ZilchComponent {
             this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
         }*/
         
-        this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
+        if(!this.DrillBullet)
+            this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
         
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
-        Zero.Connect(this.Owner, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
     }
     
     function OnCollisionStarted(event : CollisionEvent) {
         
-        if(event.OtherObject.Name == Relocation.EntityPlayer && !this.FromPlayer) {
+        if(event.OtherObject.Name == Relocation.EntityPlayer && !this.FromPlayer && !this.DrillBullet) {
             
             if(!event.OtherObject.Health.IsInvincible) {
                 event.OtherObject.Health.DecreaseHealth(this.Damage);
@@ -31,22 +37,16 @@ class EntityBullet : ZilchComponent {
             
             this.Owner.Destroy();
             
-        } else if(event.OtherObject.Breakable != null) {
-            event.OtherObject.Breakable.TimeTillBreak += this.Damage * 4;
-            
-            this.Owner.Destroy();
-            
-            Console.WriteLine("Laser hit: `event.OtherObject.Name`");
-        } else if(event.OtherObject.Name == this.Owner.Name) {
+        } else if(event.OtherObject.Name == this.Owner.Name && !this.DrillBullet) {
             
         } else if(this.FromPlayer && event.OtherObject.Name == "BlockRock") {
             
             if(event.OtherObject.Parent != null)
-                event.OtherObject.Parent.Parent.WorldGenerator.DamageBlock(event.OtherObject, 1.0, true);
+                event.OtherObject.Parent.Parent.WorldGenerator.DamageBlock(event.OtherObject, this.BlockDamageAmount, true);
             
             this.Owner.Destroy();
             
-        } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer) {
+        } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer && !this.DrillBullet) {
             
             if(event.OtherObject.Health != null) {
                 this.Knockback(event.OtherObject);
@@ -60,6 +60,12 @@ class EntityBullet : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(this.CurrLifetime > this.Lifetime) {
+            this.Owner.Destroy();
+        }
+        
+        this.CurrLifetime += event.Dt;
         
     }
     
