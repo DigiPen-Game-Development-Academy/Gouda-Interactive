@@ -237,7 +237,7 @@ class WorldGenerator : ZilchComponent {
         var chunkCoords = Real2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
         var blockData = this.WorldMapData.Get(coords);
         
-        return Real3(Real2(1 - blockData.X / blockData.Y), 1.0);
+        return Real3(Real2(1.0) - Real2(blockData.X / blockData.Y) / 2, 1.0);
         
     }
     
