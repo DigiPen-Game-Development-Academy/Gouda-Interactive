@@ -201,7 +201,7 @@ class WorldGenerator : ZilchComponent {
     function GenerateID() : Integer {
         
         var rand = Random();
-        var randRangeID = rand.Range(1.0, 10.81);
+        var randRangeID = rand.Range(1.0, 10.811);
         
         if(randRangeID >= 1.0 && randRangeID <= 5.0) {
             return 1;
@@ -217,6 +217,8 @@ class WorldGenerator : ZilchComponent {
             return 6;
         } else if(randRangeID > 10.8 && randRangeID <= 10.81) {
             return 7;
+        } else if(randRangeID > 10.81 && randRangeID <= 10.811) {
+            return 8;
         } else {
             return 1;
         }
@@ -249,6 +251,8 @@ class WorldGenerator : ZilchComponent {
                     itemName = "ItemTitaniumOre";
                 } else if(blockID == 7) {
                     itemName = "ItemPlatinumOre";
+                } else if(blockID == 8) {
+                    itemName = "ItemGoudariumOre";
                 }
                 
                 if(itemName != "") {

@@ -39,20 +39,17 @@ class EntityBullet : ZilchComponent {
             Console.WriteLine("Laser hit: `event.OtherObject.Name`");
         } else if(event.OtherObject.Name == this.Owner.Name) {
             
-        } else if(this.FromPlayer) {
+        } else if(this.FromPlayer && event.OtherObject.Name == "BlockRock") {
             
-            if(event.OtherObject.Name == "BlockRock") {
-                
-                event.OtherObject.Parent.Parent.WorldGenerator.RemoveBlock(event.OtherObject.Transform.Translation.XY, true);
-                event.OtherObject.Destroy();
-                
-                this.Owner.Destroy();
-                
-            }
+            event.OtherObject.Parent.Parent.WorldGenerator.RemoveBlock(event.OtherObject.Transform.Translation.XY, true);
+            event.OtherObject.Destroy();
+            
+            this.Owner.Destroy();
             
         } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer) {
             
             if(event.OtherObject.Health != null) {
+                this.Knockback(event.OtherObject);
                 event.OtherObject.Health.DecreaseHealth(this.Damage);
             }
             
@@ -63,6 +60,14 @@ class EntityBullet : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
+        
+    }
+    
+    function Knockback(otherObject : Cog) {
+        
+        if(otherObject.RigidBody != null) {
+            otherObject.RigidBody.ApplyLinearImpulse(this.Owner.RigidBody.Velocity / Real3(5, 5, 1));
+        }
         
     }
     
