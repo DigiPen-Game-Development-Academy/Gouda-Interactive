@@ -38,7 +38,7 @@ class ItemDrop : ZilchComponent {
         
         if(event.OtherObject.Name == Relocation.EntityPlayer) {
             
-            if(event.OtherObject.Inventory != null) {
+            if(event.OtherObject.Inventory != null && !event.OtherObject.Inventory.CheckIfFull()) {
                 
                 event.OtherObject.Inventory.GiveItemWithAmount(this.ItemID, false, this.ItemAmount);
                 

@@ -303,56 +303,20 @@ class Inventory : ZilchComponent {
         
     }
     
+    function CheckIfFull() : Boolean {
+        
+        for(var i = 0; i < this.InventoryContents.Count; ++i) {
+            if(this.InventoryContents[i] == 0) {
+                return false;
+            }
+        }
+        
+        return true;
+        
+    }
+    
     function GiveItem(itemID : Integer, notifyUser : Boolean) {
-        
-        var firstAvailableSlot = -1;
-        var cmd : TextEntry = null;
-        
-        itemID = Math.Abs(itemID);
-        
-        if(notifyUser) {
-            cmd = this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry;
-        }
-        
-        if(itemID < Relocation.Items.Count) {
-            
-            var hasGoneThru = false;
-            
-            for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots + this.SLOT_OFFHAND; ++i) {
-                if((i < this.MaxInventorySlots && !hasGoneThru) || (i < this.SLOT_OFFHAND && hasGoneThru)) {
-                    if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
-                        firstAvailableSlot = i;
-                    } else if(this.InventoryContents[i] == itemID) {
-                        ++this.InventoryContentsCount[i];
-                        this.RefreshInventoryIcons();
-                        if(notifyUser)
-                            cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
-                        return;
-                    }
-                } else if(i >= this.SLOT_OFFHAND && hasGoneThru) {
-                    break;
-                } else {
-                    i = 0;
-                    hasGoneThru = true;
-                }
-            }
-            
-            if(firstAvailableSlot != -1) {
-                this.InventoryContents[firstAvailableSlot] = itemID;
-                this.InventoryContentsCount[firstAvailableSlot] = 1;
-                this.RefreshInventoryIcons();
-                if(notifyUser)
-                    cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
-                return;
-            }
-            
-        } else {
-            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
-            return;
-        }
-        
-        Console.WriteLine("Warning: Inventory full. Item with the ID \"`itemID`\" was not added to the inventory.");
-        
+        this.GiveItemWithAmount(itemID, notifyUser, 1);
     }
     
     function GiveItemWithAmount(itemID : Integer, notifyUser : Boolean, amount : Integer) {
@@ -403,7 +367,9 @@ class Inventory : ZilchComponent {
             return;
         }
         
-        Console.WriteLine("Warning: Inventory full. Item with the ID \"`itemID`\" was not added to the inventory.");
+        Console.WriteLine("Warning: Inventory full. Item with the ID \"`itemID`\" was not added to the inventory. Dropping item...");
+        
+        Relocation.ItemManager.DropItems(itemID, amount, this.Owner.Transform.WorldTranslation + Real3(0.0, -0.75, 0.0));
         
     }
     
@@ -589,36 +555,7 @@ class Inventory : ZilchComponent {
             itemID = this.InventoryContents[slot - 1];
             
             // DROP ITEM
-            if(drop && itemID != -1) {
-                
-                if(
-                    Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName) != null && (
-                        Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).ItemDrop.ItemID == this.InventoryContents[slot - 1] && 
-                        Math.Sqrt(
-                            Math.Pow(
-                                Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).Transform.WorldTranslation.X - 
-                                this.Owner.Transform.WorldTranslation.X, 
-                                2
-                            ) + 
-                            Math.Pow(
-                                Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).Transform.WorldTranslation.Y - 
-                                this.Owner.Transform.WorldTranslation.Y,
-                                2
-                            )
-                        ) < 1.5
-                    )
-                ) {
-                    Relocation.Space.FindObjectByName(Relocation.Items[this.InventoryContents[slot - 1]].ItemName).ItemDrop.ItemAmount += amount;
-                } else {
-                    var itemDrop = this.Space.CreateAtPosition(Archetype.ItemDrop, this.Owner.Transform.WorldTranslation + Real3(0.0, -1.0, 0.0));
-                    
-                    itemDrop.Name = Relocation.Items[this.InventoryContents[slot - 1]].ItemName;
-                    itemDrop.ItemDrop.ItemID = itemID;
-                    itemDrop.ItemDrop.ItemAmount = amount;
-                    itemDrop.Sprite.SpriteSource = Relocation.Items[itemID].Sprite;
-                }
-                
-            }
+            Relocation.ItemManager.DropItems(itemID, amount, this.Owner.Transform.WorldTranslation + Real3(0.0, -0.75, 0.0));
             
             this.InventoryContentsCount[slot - 1] -= amount;
             this.RefreshInventoryIcons();

@@ -225,4 +225,39 @@ class ItemManager : ZilchComponent {
         
     }
     
+    function DropItems(itemID : Integer, amount : Integer, position : Real3) {
+        
+        if(itemID != -1) {
+            
+            if(
+                Relocation.Space.FindObjectByName(Relocation.Items[itemID].ItemName) != null && (
+                    Relocation.Space.FindObjectByName(Relocation.Items[itemID].ItemName).ItemDrop.ItemID == itemID && 
+                    Math.Sqrt(
+                        Math.Pow(
+                            Relocation.Space.FindObjectByName(Relocation.Items[itemID].ItemName).Transform.WorldTranslation.X - 
+                            position.X, 
+                            2
+                        ) + 
+                        Math.Pow(
+                            Relocation.Space.FindObjectByName(Relocation.Items[itemID].ItemName).Transform.WorldTranslation.Y - 
+                            position.Y,
+                            2
+                        )
+                    ) < 1.05
+                )
+            ) {
+                Relocation.Space.FindObjectByName(Relocation.Items[itemID].ItemName).ItemDrop.ItemAmount += amount;
+            } else {
+                var itemDrop = Relocation.Space.CreateAtPosition(Archetype.ItemDrop, position);
+                
+                itemDrop.Name = Relocation.Items[itemID].ItemName;
+                itemDrop.ItemDrop.ItemID = itemID;
+                itemDrop.ItemDrop.ItemAmount = amount;
+                itemDrop.Sprite.SpriteSource = Relocation.Items[itemID].Sprite;
+            }
+            
+        }
+        
+    }
+    
 }
