@@ -1,27 +1,28 @@
 // AUTHOR: MYLES BUSIG
 // CONTRIBUTORS: HUDSON GREEN
 
-class CaveEnteranceExit : ZilchComponent
-{
+class CaveEnteranceExit : ZilchComponent {
+    
     [Property] var LevelToLoad : Level = Level.Find("CaveWorld");
     
     function Initialize(init : CogInitializer)
     {
+        
         Zero.Connect(this.Owner, Events.CollisionStarted, this.GoToFromCave);
+        
     }
-
+    
     function GoToFromCave(event : CollisionEvent)
     {
         
         if(event.OtherObject.Name == Relocation.EntityPlayer) {
             
-            this.Space.LastUsedEnterancePosition.LastUsedPosition = this.Owner.Transform.Translation;
-            
+            //this.Space.LastUsedEnterancePosition.LastUsedPosition = this.Owner.Transform.Translation;
             this.LevelSettings.UICreator.UISpace.Destroy();
-            
             this.Space.LoadLevel(this.LevelToLoad);
             
         }
         
     }
+    
 }

@@ -170,7 +170,8 @@ class PlayerProperties : ZilchComponent {
                 this.CurrUnauthKillTime += event.Dt;
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch -= event.Dt / this.UnauthorizedKillTime;
                 this.Space.SoundSpace.Pitch -= event.Dt / (this.UnauthorizedKillTime / 3);
-                this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Pitch = this.Space.SoundSpace.Pitch;
+                if(this.Space.FindObjectByName("BuildingSiren") != null)
+                    this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Pitch = this.Space.SoundSpace.Pitch;
             } else {
                 this.CurrUnauthKillTime = this.UnauthorizedKillTime;
             }

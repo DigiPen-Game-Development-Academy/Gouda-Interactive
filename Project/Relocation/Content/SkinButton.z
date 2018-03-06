@@ -3,8 +3,6 @@
 
 class SkinButton : ZilchComponent {
     
-    var MainSpace : Space = null;
-    
     var ButtonActivated : Boolean = false;
     
     function Initialize(init : CogInitializer) {
@@ -15,11 +13,9 @@ class SkinButton : ZilchComponent {
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
         
-        this.MainSpace = this.Space.FindObjectByName("DebugCommand").FindChildByName("TextEntry").Commands.MainSpace;
-        
-        if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && !this.ButtonActivated && this.MainSpace != null && this.MainSpace.FindObjectByName("EntityPlayer") != null) {
+        if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && !this.ButtonActivated && Relocation.Space != null && Relocation.Space.FindObjectByName("EntityPlayer") != null) {
             
-            var playerProp = this.MainSpace.FindObjectByName("EntityPlayer").PlayerProperties;
+            var playerProp = Relocation.Space.FindObjectByName("EntityPlayer").PlayerProperties;
             var playerSkinID = playerProp.PlayerSkin;
             
             if(this.Owner.Name == "ArrowLeft" && playerSkinID > 0) {
@@ -28,7 +24,8 @@ class SkinButton : ZilchComponent {
                 ++playerSkinID;
             }
             
-            this.Owner.Parent.FindChildByName("SkinNumber").SpriteText.Text = "`playerSkinID + 1`";
+            if(this.Owner.Parent != null)
+                this.Owner.Parent.FindChildByName("SkinNumber").SpriteText.Text = "`playerSkinID + 1`";
             
             playerProp.SetSkin(playerSkinID);
             

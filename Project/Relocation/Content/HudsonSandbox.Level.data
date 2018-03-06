@@ -110,7 +110,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 33.5160103],
+			Vec3 Translation = [-20.867033, 7.82526016, 33.5160103],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -122,7 +122,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 7.42737484,
+			float Size = 81.873291,
 		},
 		EditorCameraController = 
 		{
@@ -130,7 +130,7 @@ Level =
 			float LookDistance = 33.5160103,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [-20.867033, 7.82526016, -9.12126268e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -234,6 +234,335 @@ Level =
 			Vec4 Color2 = [1, 1, 1, 1],
 			Vec4 Color3 = [1, 1, 1, 1],
 			Vec4 Color4 = [1, 1, 1, 0],
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a3b2bc8dcaa3ef9:ArrowButtonsSkin",
+		LinkId = 
+		{
+			uint Id = 6,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-25.25, 10, 0],
+			Vec3 Scale = [0.150000006, 0.150000006, 0.150000006],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ArrowLeft",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ad8a8322397fd87:BlockRock",
+		LinkId = 
+		{
+			uint Id = 7,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-23.75, 10, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BlockRock",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adb601a94d06693:BlockRockCopper",
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-22.25, 10, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BlockRock",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adb60a988f327d8:BlockRockIron",
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-20.75, 10, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BlockRock",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ae3e42370ab8979:BlockRockRare",
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-19.25, 10, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BlockRock",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a3bcb07ddecc85a:BuildingHut",
+		LinkId = 
+		{
+			uint Id = 11,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-16.5, 11, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BuildingHut",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adf4de3a07acbd6:BuildingHutPlayer",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-12.75, 11, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BuildingHutPlayer",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ac2f985abfc1c64:BuildingShop",
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-8.25, 11, 0],
+			Vec3 Scale = [1.5, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "BuildingShop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a240449292b4c0b:CaveEnteranceExit",
+		LinkId = 
+		{
+			uint Id = 14,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-4.25, 10.5, 0],
+			Vec3 Scale = [2, 2, 2],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "CaveEnteranceExit",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5addcf5e48095336:CheckBox",
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-2.25, 10, 0],
+			Vec3 Scale = [0.75, 0.75, 0.75],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "CheckBox",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adb4022dda303b8:Chunk",
+		LinkId = 
+		{
+			uint Id = 16,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-0.75, 10, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Chunk",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a3445fc761272c2:CraftingItem",
+		LinkId = 
+		{
+			uint Id = 17,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [1.25, 10.25, 0],
+			Vec3 Scale = [1.5, 1.5, 1.5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "CraftingItem1",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a2aaeb9ccb96785:EntityBullet",
+		LinkId = 
+		{
+			uint Id = 18,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [3.25, 10, 0],
+			Vec3 Scale = [0.100000001, 0.100000001, 0.100000001],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "EntityBullet",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5a380a0164d081c9:EntityEnemy",
+		LinkId = 
+		{
+			uint Id = 19,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [4.75, 10, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Area = 
+		{
+			Vec2 Size = [1, 1],
+			Location Origin = Center,
+		},
+		Named = 
+		{
+			string Name = "EntityEnemy",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adf1c031cc37887:EntityRocket",
+		LinkId = 
+		{
+			uint Id = 20,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [17.75, 12.5, 0],
+			Vec3 Scale = [2, 2, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "EntityRocket",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adf488b7fc9b85f:EntityRover",
+		LinkId = 
+		{
+			uint Id = 21,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-25, 5, 0],
+			Vec3 Scale = [2, 2, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "EntityRover",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5af7fde237047217:ItemDrop",
+		LinkId = 
+		{
+			uint Id = 22,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-23, 4.5, 0],
+			Vec3 Scale = [0.5, 0.5, 0.5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ItemDrop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adc87ce44c6d091:Slider",
+		LinkId = 
+		{
+			uint Id = 23,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-17, 5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Slider",
 		},
 	},
 },
