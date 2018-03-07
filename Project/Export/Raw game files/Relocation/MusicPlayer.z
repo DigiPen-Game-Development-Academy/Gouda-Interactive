@@ -1,0 +1,96 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class MusicPlayer : ZilchComponent {
+    
+    [Property] var MainMenuSong : SoundCue = null;
+    [Property] var InGameSong : SoundCue = null;
+    
+    [Property] var MusicSpace : Archetype = null;
+    [Property] var MusicLevel : Level = null;
+    
+    //[Property] var MusicFadeoutTime : Real = 1.0;
+    
+    var CurrMusicVolume : Real = 1.0;
+    
+    var MainMenuMusicSpace : Space = null;
+    var GameLevelMusicSpace : Space = null;
+    //var CurrSpace : Space = null;
+    
+    //var LevelTransition : Boolean = false;
+    
+    //var CurrMusicFadeoutTime : Real = 0.0;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Owner, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LevelStarted, this.OnLevelStarted);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        /*if(this.LevelTransition) {
+            if(this.CurrMusicFadeoutTime > this.MusicFadeoutTime) {
+                
+                this.LevelTransition = false;
+                this.CurrMusicFadeoutTime = 0.0;
+                
+                this.CurrSpace.Destroy();
+                
+            } else {
+                this.CurrMusicFadeoutTime += event.Dt;
+            }
+        }*/
+        
+        // VOLUME CONTROLS (TEMPERARY)
+        if(Zero.Keyboard.KeyIsPressed(Keys.F2) && GameSetting.MusicVolume >= 0.0 + 0.05) {
+            GameSetting.MusicVolume -= 0.05;
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.F3) && GameSetting.MusicVolume <= 1.0 - 0.05) {
+            GameSetting.MusicVolume += 0.05;
+        }
+        
+        // UPDATE VOLUME ON CHANGE
+        if(this.CurrMusicVolume != GameSetting.MusicVolume) {
+            if(this.MainMenuMusicSpace != null) {
+                this.CurrMusicVolume = GameSetting.MusicVolume;
+                this.MainMenuMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
+            } else if(this.GameLevelMusicSpace != null) {
+                this.CurrMusicVolume = GameSetting.MusicVolume;
+                this.GameLevelMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
+            }
+        }
+        
+    }
+    
+    function OnLevelStarted(event : GameEvent) {
+        
+        if((event.LevelName == "SplashScreen" || event.LevelName == "MainMenu" || event.LevelName == "SettingsMenu") && this.MainMenuMusicSpace == null) {
+            
+            if(this.GameLevelMusicSpace != null) {
+                this.GameLevelMusicSpace.Destroy();
+            }
+            
+            //this.CurrSpace = this.MainMenuMusicSpace;
+            
+            this.MainMenuMusicSpace = this.GameSession.CreateSpace(this.MusicSpace);
+            
+            this.MainMenuMusicSpace.LoadLevel(this.MusicLevel);
+            this.MainMenuMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
+            this.MainMenuMusicSpace.SoundSpace.PlayCue(this.MainMenuSong);
+            
+        } else if(!(event.LevelName == "SplashScreen") && !(event.LevelName == "MainMenu") && !(event.LevelName == "SettingsMenu")) {
+            
+            if(this.MainMenuMusicSpace != null) {
+                this.MainMenuMusicSpace.Destroy();
+            }
+            
+            this.GameLevelMusicSpace = this.GameSession.CreateSpace(this.MusicSpace);
+            
+            this.GameLevelMusicSpace.LoadLevel(this.MusicLevel);
+            this.GameLevelMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
+            this.GameLevelMusicSpace.SoundSpace.PlayCue(this.InGameSong);
+            
+        }
+        
+    }
+    
+}

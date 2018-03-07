@@ -1,0 +1,8 @@
+TextContent =
+{
+	FragmentBuilder =
+	{
+		string Name = "LightModels",
+		uint64 ResourceId = 4e0264b641d6a3a5,
+	},
+},

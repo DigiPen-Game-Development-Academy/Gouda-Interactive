@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "PostEdgeBlur",
+		uint64 ResourceId = 53cf2c0eb7ea5e53,
+	},
+},

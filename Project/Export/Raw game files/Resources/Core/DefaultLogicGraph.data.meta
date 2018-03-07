@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "DefaultLogicGraph",
+		uint64 ResourceId = 542ac342a362f2c6,
+		string LoaderType = "LogicGraph",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

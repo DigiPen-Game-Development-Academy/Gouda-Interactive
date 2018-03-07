@@ -1,0 +1,33 @@
+Material = 
+{
+	Phong = 
+	{
+		float SpecularExponent = 40,
+		float SpecularScalar = 1,
+	},
+	EmissiveMapping = 
+	{
+		float EmissiveScale = 0.8,
+		string EmissiveMapTexture = "5489c37c90b4e983:ViewCubeEmmissive",
+		Vec2 EmissiveScroll = [0, 0],
+		Vec2 EmissiveTiling = [1, 1],
+		Vec2 EmissiveOffset = [0, 0],
+	},
+	ModulateModelColor = 
+	{
+	},
+	SpecularMapping = 
+	{
+		string SpecularMapTexture = "5489f23f87cfd664:ViewCubeSpecular",
+		Vec2 SpecularTiling = [1, 1],
+		Vec2 SpecularOffset = [0, 0],
+		Vec2 SpecularScroll = [0, 0],
+	},
+	TextureDiffuse = 
+	{
+		string DiffuseTexture = "5489f343e9606e0d:ViewCubeDiffuse",
+		Vec2 DiffuseScroll = [0, 0],
+		Vec2 DiffuseTiling = [1, 1],
+		Vec2 DiffuseOffset = [0, 0],
+	},
+},

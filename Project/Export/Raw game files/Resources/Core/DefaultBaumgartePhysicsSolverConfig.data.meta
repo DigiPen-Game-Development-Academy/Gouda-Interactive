@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "Baumgarte",
+		uint64 ResourceId = 52a967fb4cda91cb,
+		string LoaderType = "PhysicsSolverConfig",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

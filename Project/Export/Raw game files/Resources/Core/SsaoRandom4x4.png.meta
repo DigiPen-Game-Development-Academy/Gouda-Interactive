@@ -1,0 +1,20 @@
+ImageContent =
+{
+	TextureBuilder =
+	{
+		string Name = "SsaoRandom4x4",
+		uint64 ResourceId = 5573a48b3504254e,
+		BuilderTextureType TextureType = Texture2D,
+		RgbUsage RgbUsage = Color,
+		AlphaUsage AlphaUsage = Transparency,
+		TextureCompression Compression = None,
+		TextureWrapping Wrapping = Repeat,
+		TextureFilter Filter = Point,
+		float Anisotropy = 1,
+		MipGeneration MipGeneration = None,
+		ImageFilter MipFilter = Box,
+		FixPowerOf2 FixPowerOf2 = Auto,
+		ImageFilter ResizeFilter = Box,
+		OutputTextureFormat Format = Updated,
+	},
+},

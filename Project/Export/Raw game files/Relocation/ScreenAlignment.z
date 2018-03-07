@@ -1,0 +1,57 @@
+class ScreenAlignment : ZilchComponent {
+    
+    [Property] var PositionX : String = "Left";
+    [Property] var PositionY : String = "Top";
+    [Property] var PositionOffset : Real2 = Real2(0);
+    [Property] var ZIndex : Real = 0.0;
+    [Property] var HideUntilPositioned : Boolean = false;
+    
+    var Pos : Real2 = Real2(0);
+    
+    function Initialize(init : CogInitializer) {
+        
+        if(this.HideUntilPositioned) {
+            if(this.Owner.Sprite != null) {
+                this.Owner.Sprite.Visible = false;
+            } else if(this.Owner.SpriteText != null) {
+                this.Owner.SpriteText.Visible = false;
+            }
+        }
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        var screen = this.Space.FindObjectByName("LevelSettings");
+        var screenRes = screen.CameraViewport.ViewportResolution;
+        
+        if(this.PositionX == "Left") {
+            this.Pos = Real2(0, 0);
+        } else if(this.PositionX == "Right") {
+            this.Pos = Real2(screenRes.X, 0);
+        } else if(this.PositionX == "Center") {
+            this.Pos = Real2(screenRes.X / 2, 0);
+        }
+        
+        if(this.PositionY == "Top") {
+            this.Pos = Real2(this.Pos.X, 0);
+        } else if(this.PositionY == "Bottom") {
+            this.Pos = Real2(this.Pos.X, screenRes.Y);
+        }
+        
+        this.Pos = screen.CameraViewport.ViewportToScreen(this.Pos);
+        this.Owner.Transform.WorldTranslation = screen.CameraViewport.ScreenToWorldZPlane(this.Pos, 0.0) + Real3(this.PositionOffset, this.ZIndex);
+        
+        if(this.HideUntilPositioned) {
+            if(this.Owner.Sprite != null) {
+                this.Owner.Sprite.Visible = true;
+            } else if(this.Owner.SpriteText != null) {
+                this.Owner.SpriteText.Visible = true;
+            }
+        }
+        
+    }
+    
+}

@@ -1,0 +1,10 @@
+AudioContent =
+{
+	SoundBuilder =
+	{
+		string Name = "DefaultSound",
+		uint64 ResourceId = 4e1bda59a3a9f650,
+		bool Compressed = false,
+		uint Quality = 100,
+	},
+},

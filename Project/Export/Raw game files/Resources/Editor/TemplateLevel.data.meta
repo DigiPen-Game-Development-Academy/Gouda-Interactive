@@ -1,0 +1,10 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "TemplateLevel",
+		uint64 ResourceId = 4e3aa3bb03b6c98d,
+		string LoaderType = "Level",
+		uint Version = 0,
+	},
+},

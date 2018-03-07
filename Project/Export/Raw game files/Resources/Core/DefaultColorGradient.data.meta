@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "DefaultColorGradient",
+		uint64 ResourceId = 50a5ee1707f0fb60,
+		string LoaderType = "ColorGradient",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

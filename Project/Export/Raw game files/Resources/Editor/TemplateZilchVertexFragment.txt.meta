@@ -1,0 +1,8 @@
+TextContent = 
+{
+	TextBuilder = 
+	{
+		string Name = "TemplateZilchVertexFragment",
+		uint64 ResourceId = 541dc94ecd3b326f,
+	},
+},

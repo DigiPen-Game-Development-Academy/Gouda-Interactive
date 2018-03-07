@@ -1,0 +1,11 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "EditorCamera",
+		uint64 ResourceId = 4de020863e840530,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = false,
+	},
+},

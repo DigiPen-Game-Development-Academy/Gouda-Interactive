@@ -1,0 +1,20 @@
+ImageContent = 
+{
+	TextureBuilder = 
+	{
+		string Name = "Spinner",
+		uint64 ResourceId = 4df5d3b6b733d73c,
+		BuilderTextureType TextureType = Texture2D,
+		RgbUsage RgbUsage = Color,
+		AlphaUsage AlphaUsage = Transparency,
+		TextureCompression Compression = None,
+		TextureWrapping Wrapping = Repeat,
+		TextureFilter Filter = Trilinear,
+		float Anisotropy = 1,
+		MipGeneration MipGeneration = None,
+		ImageFilter MipFilter = Box,
+		FixPowerOf2 FixPowerOf2 = Auto,
+		ImageFilter ResizeFilter = Box,
+		OutputTextureFormat Format = Updated,
+	},
+},

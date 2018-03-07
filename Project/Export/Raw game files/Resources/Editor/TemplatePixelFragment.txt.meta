@@ -1,0 +1,8 @@
+TextContent = 
+{
+	TextBuilder = 
+	{
+		string Name = "TemplatePixelFragment",
+		uint64 ResourceId = 54478fea1eb1cf3b,
+	},
+},

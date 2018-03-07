@@ -1,0 +1,105 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: HUDSON GREEN
+
+class Health : ZilchComponent
+{
+    
+    [Property] var MaxHealth : Real = 10.0;
+    [Property] var IsInvincible : Boolean = false;
+    
+    var UISpace : Space;
+    
+    var CurrentHealth : Real;
+    
+    var IsTakingDamage : Boolean = false;
+    
+    var DamageSoundCooldown : Real = 1.0;
+    var CurrDamageSoundCooldown : Real = 0.0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        if(this.LevelSettings.GetComponentByName("UICreator") != null)
+            this.UISpace = this.LevelSettings.UICreator.UISpace;
+        
+        this.CurrentHealth = this.MaxHealth;
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        
+        if(this.IsTakingDamage) {
+            this.CurrDamageSoundCooldown += event.Dt;
+        } else {
+            this.CurrDamageSoundCooldown = 0.0;
+        }
+        
+        if(this.CurrDamageSoundCooldown > this.DamageSoundCooldown) {
+            this.CurrDamageSoundCooldown = 0.0;
+            this.IsTakingDamage = false;
+        }
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.LeftBracket) && this.Owner.Name == Relocation.EntityPlayer) {
+            this.DecreaseHealth(1.0);
+        }
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.RightBracket) && this.Owner.Name == Relocation.EntityPlayer && this.CurrentHealth < this.MaxHealth) {
+            this.CurrentHealth += 1.0;
+        }
+        
+        if(this.CurrentHealth <= 0.0 && !this.IsInvincible)
+        {
+            if(this.Owner.Name != Relocation.EntityPlayer)
+            {
+                if(this.Owner.EntityEnemy != null && this.Owner.EntityEnemy.SpawnedFrom != null)
+                    this.Owner.EntityEnemy.SpawnedFrom.Spawner.EnemiesSpawned -= 1;
+                
+                this.Owner.Destroy();
+            }
+            else if(this.Owner.Name == Relocation.EntityPlayer)
+            {
+                
+                this.Owner.RemoveComponentByName("Movement");
+                this.Owner.RemoveComponentByName("WeaponManager");
+                this.Owner.Sprite.AnimationActive = false;
+                this.Owner.Sprite.Visible = false;
+                this.Owner.FindChildByName("EntityHand").Sprite.Visible = false;
+                //this.Owner.FindChildByName("ParticleWater").SpriteParticleSystem.Visible = true;
+                
+                Relocation.UISpace.FindObjectByName("DeathScreenMenu").DeathScreenMenu.ShowMenu = true;
+                
+            }
+        }
+        
+        if(this.UISpace.FindObjectByName("TextEntry") != null && this.UISpace.FindObjectByName("TextEntry").TextEntry.DebugEnabled)
+            this.Owner.Collider.DebugDraw();
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.Tilde))
+            Console.WriteLine("`this.Owner`: `this.CurrentHealth`");
+        
+        if(this.Owner.Name == Relocation.EntityPlayer)
+        {
+            if(!this.IsInvincible)
+                this.UISpace.FindObjectByName("Health").SpriteText.Text = "HP: `this.CurrentHealth`";
+            else
+                this.UISpace.FindObjectByName("Health").SpriteText.Text = "HP: `this.CurrentHealth`\n(God Mode)";
+        }
+        
+    }
+    
+    function DecreaseHealth(amount : Real)
+    {
+        if(!this.IsInvincible) {
+            if(this.CurrDamageSoundCooldown == 0.0 && this.CurrentHealth > 0) {
+                // PLAY DAMAGE SOUND
+                this.Space.SoundSpace.PlayCueAt(SoundCue.Damage, this.Owner.Transform.WorldTranslation);
+            }
+            this.IsTakingDamage = true;
+            this.CurrDamageSoundCooldown -= 0.00066;
+            this.CurrentHealth -= amount;
+            if (this.Owner.PassiveAI != null)
+                this.Owner.PassiveAI.Hurt();
+        }
+    }
+}

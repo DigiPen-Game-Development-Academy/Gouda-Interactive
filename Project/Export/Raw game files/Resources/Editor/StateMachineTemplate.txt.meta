@@ -1,0 +1,8 @@
+TextContent = 
+{
+	TextBuilder = 
+	{
+		string Name = "StateMachineTemplate",
+		uint64 ResourceId = 518bc387e2a48547,
+	},
+},

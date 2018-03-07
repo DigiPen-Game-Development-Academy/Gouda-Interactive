@@ -1,0 +1,10 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "Camera",
+		uint64 ResourceId = 4e2e392fc67b964a,
+		string LoaderType = "Cog",
+		uint Version = 0,
+	},
+},

@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "PostMotionBlur",
+		uint64 ResourceId = 53cef0a3dd219be6,
+	},
+},

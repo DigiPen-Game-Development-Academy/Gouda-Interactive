@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "Default",
+		uint64 ResourceId = 5274cf95e4a661fd,
+		string LoaderType = "Atlas",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

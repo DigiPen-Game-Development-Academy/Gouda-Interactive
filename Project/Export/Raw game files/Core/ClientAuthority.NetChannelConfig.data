@@ -1,0 +1,7 @@
+NetChannelConfig = 
+{
+	bool EventOnOutgoingPropertyChange = true,
+	bool EventOnIncomingPropertyChange = true,
+	AuthorityMode AuthorityMode = Fixed,
+	Authority Authority = Client,
+},

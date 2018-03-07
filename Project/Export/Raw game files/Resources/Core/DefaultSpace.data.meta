@@ -1,0 +1,11 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "DefaultSpace",
+		uint64 ResourceId = 4e39ae0ad564493d,
+		string LoaderType = "Space",
+		uint Version = 0,
+		bool ShowInEditor = false,
+	},
+},

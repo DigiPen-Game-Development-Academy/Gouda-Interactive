@@ -1,0 +1,101 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class Notification : ZilchComponent {
+    
+    [Property] var MaxNotificationCount : Integer = 5;
+    
+    var NotificationCount : Integer = 0;
+    
+    var NotificationCog : Array[Cog] = null;
+    
+    function Initialize(init : CogInitializer) {
+        
+        Relocation.NotificationManager = this;
+        
+        this.NotificationCog = new Array[Cog]();
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.L))
+            this.GiveNotification("Picked up item.Null.name", 2.5);
+        
+        this.DisplayNotification();
+        
+    }
+    
+    function DisplayNotification() {
+        
+        var pos = this.Owner.Transform.WorldTranslation;
+        
+        var notificationIndex = 0;
+        
+        foreach(var notification in this.NotificationCog) {
+            if(notification != null) {
+                
+                notification.Transform.WorldTranslation = Math.Lerp(
+                    notification.Transform.WorldTranslation,
+                    Real3(pos.X, pos.Y + notificationIndex * 0.75, 0),
+                    0.06
+                );
+                
+                ++notificationIndex;
+                
+            }
+        }
+        
+    }
+    
+    function GiveNotification(
+        text                : String,
+        displayTimeout      : Real,
+        tooltipText         : String,
+        tooltipLore         : String,
+        tooltipColor        : Real4,
+        tooltipLoreColor    : Real4
+    ) {
+        
+        if(this.NotificationCog != null) {
+            
+            var pos = this.Owner.Transform.WorldTranslation;
+            
+            var notification = this.Space.CreateAtPosition(Archetype.NotificationText, Real3(pos.X, pos.Y + this.NotificationCount * 0.75, pos.Z));
+            
+            notification.AttachToRelative(this.Owner);
+            notification.SpriteText.Text = "`text.Replace("\n", " ")`";
+            notification.NotificationText.TooltipText = tooltipText;
+            notification.NotificationText.TooltipLore = tooltipLore;
+            notification.NotificationText.TooltipColor = tooltipColor;
+            notification.NotificationText.TooltipLoreColor = tooltipLoreColor;
+            
+            this.NotificationCog.Add(notification);
+            
+            ++this.NotificationCount;
+            
+        }
+        
+    }
+    
+    function GiveNotification(
+        text                : String,
+        displayTimeout      : Real,
+        tooltipText         : String,
+        tooltipLore         : String,
+        tooltipColor        : Real4
+    ) {
+        this.GiveNotification(text, displayTimeout, tooltipText, tooltipLore, tooltipColor, Real4(1.0));
+    }
+    
+    function GiveNotification(text : String, displayTimeout : Real) {
+        this.GiveNotification(text, displayTimeout, "", "", Real4(1.0), Real4(1.0));
+    }
+    
+    function RemoveNotification() {
+        --this.NotificationCount;
+    }
+    
+}

@@ -1,0 +1,11 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "HelperLink",
+		uint64 ResourceId = 4e36d52ee12cff95,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = false,
+	},
+},

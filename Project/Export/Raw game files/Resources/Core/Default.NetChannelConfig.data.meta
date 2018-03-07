@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "Default",
+		uint64 ResourceId = 56f22bdc94800e65,
+		string LoaderType = "NetChannelConfig",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

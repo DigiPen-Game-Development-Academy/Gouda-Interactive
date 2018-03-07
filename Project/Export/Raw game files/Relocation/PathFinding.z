@@ -1,0 +1,257 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: HUDSON GREEN
+
+class PathFinding : ZilchComponent
+{
+    var RayWidth : Real = 0.25;
+    
+    [Property] var SightRadius : Real = 8.0;
+    
+    [Property] var Speed : Real = 75.0;
+    
+    [Property] var ChanceOfMoving : Integer = 25;
+    
+    var LastPlayerPosition : Real3;
+    
+    var Player : Cog;
+    
+    var CastResult : CastResult;
+    
+    var Memories : Array[Real3] = Array[Real3]();
+    
+    [Property] var UpdateMemoriesCooldown : Real = 0.5;
+    [Property] var CreateNewMemoryCooldown : Real = 0.5;
+    var TimeTillNewMemory : Real = 0.0;
+    [Property] var TimeTillUpdateMemories : Real = 0.0;
+    [Property] var TimeTillMoveToNextMemory : Real = 0.0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        for (var i = 0; i < 50; ++i)
+            this.Memories.Add(Real3(0.0, 0.0, 0.0));
+        
+        this.TimeTillUpdateMemories = this.UpdateMemoriesCooldown;
+        
+        this.Player = this.Space.FindObjectByName("EntityPlayer");
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        
+        if(this.Player != null)
+        {
+            
+            this.TimeTillUpdateMemories -= event.Dt;
+            this.TimeTillNewMemory -= event.Dt;
+            
+            //Console.WriteLine("`this.Memories`");
+            
+            if (this.TimeTillUpdateMemories <= 0.0)
+            {
+                this.UpdateMemories();
+                this.TimeTillUpdateMemories = this.UpdateMemoriesCooldown;
+            }
+            
+            if (this.TimeTillNewMemory <= 0.0)
+            {
+                this.CreateNewMemory();
+                this.TimeTillNewMemory = this.CreateNewMemoryCooldown;
+            }
+            
+            if (this.Player == null)
+                return;
+            
+            this.Move();
+            
+        }
+        
+    }
+    
+    function Move()
+    {
+        if (this.LookAtPlayer().ObjectHit != null)
+        if (this.LookAtPlayer().ObjectHit.Name == "EntityPlayer")
+            this.MoveTowardsPlayer();
+        else
+            this.MoveTowardsMemory(0);
+    }
+    
+    function LookAtPlayer() : CastResult
+    {
+        this.LookAtPoint(this.Space.FindObjectByName("EntityPlayer").Transform.Translation);
+        
+        var ray = Ray();
+        var thisPosition = this.Owner.Transform.WorldTranslation;
+        var rayDirection = this.Owner.Orientation.WorldForward;
+        
+        ray.Start = thisPosition;
+        ray.Direction = rayDirection;
+        
+        return this.Space.PhysicsSpace.CastRayFirst(ray);
+    }
+    
+    function MoveTowardsPlayer()
+    {
+        this.LookAtPoint(this.LookAtPlayer().ObjectHit.Transform.Translation);
+        
+        this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+        
+        this.TimeTillMoveToNextMemory = this.TimeTillUpdateMemories;
+    }
+    
+    function MoveTowardsMemory(memoryNumber : Integer)
+    {
+        Console.WriteLine("Moving towards memory: `memoryNumber`");
+        
+        this.LookAtPoint(this.Memories[memoryNumber]);
+        
+        this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+    }
+    
+    function LookAtPoint(point : Real3)
+    {
+        // Look at point
+        this.Owner.Orientation.LookAtPoint(point);
+        
+        // Make enemy sprite face up
+        this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
+    }
+    
+    function UpdateMemories()
+    {
+        for (var i = 0; i < 49; ++i)
+            this.Memories[i] = this.Memories[i + 1];
+    }
+    
+    function CreateNewMemory()
+    {
+        this.Memories.Add(this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.Translation);
+    }
+    
+    function TestForApproxamentlyEqual(position1 : Real3, position2 : Real3, amount : Real) : Boolean
+    {
+        if (Math.ApproximatelyEqual(position1.X, position2.X, amount) &&
+            Math.ApproximatelyEqual(position1.Y, position2.Y, amount))
+            return true;
+        else
+            return false;
+    }
+    
+    function CheckIfOutOfSight(from : Real3) : Boolean
+    {
+        var translation = this.Owner.Transform.Translation;
+        
+        if ((from.X >= translation.X + this.SightRadius ||
+            from.X <= translation.X - this.SightRadius) ||
+            (from.Y >= translation.Y + this.SightRadius ||
+            from.Y <= translation.Y - this.SightRadius))
+            return true;
+        else
+            return false;
+    }
+    
+    /*function MoveRandomly()
+    {
+        if (this.CastResult.ObjectHit != null)
+            if (this.CastResult.ObjectHit.Name == "EntityPlyaer")
+                return;
+        
+        if (Math.ApproximatelyEqual(this.Owner.Transform.Translation.X, this.Player.Transform.Translation.X, 1) &&
+            Math.ApproximatelyEqual(this.Owner.Transform.Translation.Y, this.Player.Transform.Translation.Y, 1))
+        {
+            if (this.Owner.RigidBody.Velocity != Real3(0.0, 0.0, 0.0))
+            {
+                this.Owner.Orientation.LookAtDirection(this.Owner.RigidBody.Velocity);
+                
+                this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
+            }
+            
+            var randomGen = new Random();
+            var random = randomGen.DieRoll(this.ChanceOfMoving);
+            
+            if (random == 1)
+            {
+                var randomDirectionGen = new Random();
+                var randomDirectionX = randomDirectionGen.Range(-1, 1);
+                randomDirectionGen = new Random();
+                var randomDirectionY = randomDirectionGen.Range(-1, 1);
+                var direction = Real3(randomDirectionX, randomDirectionY, 0.0);
+                
+                this.Owner.RigidBody.Velocity += direction / 5;
+            }
+        }
+        else
+        {
+            this.LookAtPoint(this.LastPlayerPosition);
+            
+            this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+        }
+    }
+    
+    function MoveTowardsPlayer()
+    {
+        if (this.CastResult.ObjectHit.Name == "EntityPlayer")
+        {
+            if (this.TimeTillUpdateMemories <= 0.0)
+            {
+                this.UpdateMemories();
+                this.TimeTillUpdateMemories = this.UpdateMemoriesCooldown;
+            }
+            
+            this.LastPlayerPosition = this.CastResult.ObjectHit.Transform.Translation;
+            
+            this.LookAtPoint(this.Player.Transform.Translation);
+            
+            this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+        }
+        else
+        {
+            //this.LookAtPoint(this.PlayerMemory1);
+            
+            this.Owner.RigidBody.Velocity = this.Owner.Orientation.WorldForward * this.Speed * 0.0166667;
+        }
+    }
+    
+    function UpdateMemories()
+    {
+        this.PlayerMemory6 = this.PlayerMemory5;
+        this.PlayerMemory5 = this.PlayerMemory4;
+        this.PlayerMemory4 = this.PlayerMemory3;
+        this.PlayerMemory3 = this.PlayerMemory2;
+        this.PlayerMemory2 = this.PlayerMemory1;
+        this.PlayerMemory1 = this.Player.Transform.Translation;
+        
+        var closest = 0;
+        
+        var memory1 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory1).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory1).Y);
+        var memory2 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory2).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory2).Y);
+        var memory3 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory3).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory3).Y);
+        var memory4 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory4).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory4).Y);
+        var memory5 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory5).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory5).Y);
+        var memory6 = Math.Abs((this.Player.Transform.Translation - this.PlayerMemory6).X + 
+            (this.Player.Transform.Translation - this.PlayerMemory6).Y);
+        
+        if (memory1 > closest) closest = 1;
+        if (memory2 > closest) closest = 2;
+        if (memory3 > closest) closest = 3;
+        if (memory4 > closest) closest = 4;
+        if (memory5 > closest) closest = 5;
+        if (memory6 > closest) closest = 6;
+        
+        if (closest == 1) this.ClosestMemory = this.PlayerMemory1;
+        if (closest == 2) this.ClosestMemory = this.PlayerMemory2;
+        if (closest == 3) this.ClosestMemory = this.PlayerMemory3;
+        if (closest == 4) this.ClosestMemory = this.PlayerMemory4;
+        if (closest == 5) this.ClosestMemory = this.PlayerMemory5;
+        if (closest == 6) this.ClosestMemory = this.PlayerMemory6;
+        
+        //Console.WriteLine("`this.ClosestMemory`");
+    }*/
+}

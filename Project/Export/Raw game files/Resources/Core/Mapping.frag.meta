@@ -1,0 +1,8 @@
+TextContent =
+{
+	FragmentBuilder =
+	{
+		string Name = "Mapping",
+		uint64 ResourceId = 4e0264b641d71c06,
+	},
+},

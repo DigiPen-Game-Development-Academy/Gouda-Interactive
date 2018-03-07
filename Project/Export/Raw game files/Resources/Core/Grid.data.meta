@@ -1,0 +1,10 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "Grid",
+		uint64 ResourceId = 4de020863e816dde,
+		string LoaderType = "Material",
+		uint Version = 0,
+	},
+},

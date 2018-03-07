@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "DefaultShaderGraph",
+		uint64 ResourceId = 53dd52e504f8a58e,
+		string LoaderType = "ShaderGraph",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

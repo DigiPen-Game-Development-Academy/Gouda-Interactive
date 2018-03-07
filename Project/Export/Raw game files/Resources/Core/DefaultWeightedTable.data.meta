@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "DefaultWeightedTable",
+		uint64 ResourceId = 5002fed7134a42c9,
+		string LoaderType = "WeightedTable",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

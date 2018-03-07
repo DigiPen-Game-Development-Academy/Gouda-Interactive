@@ -1,0 +1,53 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class CraftingScrollButton : ZilchComponent {
+    
+    var ButtonClicked : Boolean = false;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+    }
+    
+    function OnMouseUpdate(event : ViewportMouseEvent) {
+        
+        if(event.Mouse.IsButtonDown(MouseButtons.Left) && !this.ButtonClicked) {
+            
+            this.ButtonClicked = true;
+            
+            if(Relocation.Space != null && Relocation.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
+                
+                var player = Relocation.Space.FindObjectByName(Relocation.EntityPlayer);
+                
+                var scrollPos = player.Crafting.ScrollPosition;
+                var maxScrollPos = player.Crafting.MaxScroll;
+                
+                if(this.Owner.Name == "ArrowTop" && player != null) {
+                    
+                    if(scrollPos <= maxScrollPos && scrollPos > 0) {
+                        player.Crafting.SetScrollPosition(scrollPos - 1);
+                    }
+                    
+                } else if(this.Owner.Name == "ArrowBottom" && player != null) {
+                    
+                    if(scrollPos < maxScrollPos && scrollPos >= 0) {
+                        player.Crafting.SetScrollPosition(scrollPos + 1);
+                    }
+                    
+                }
+                
+                scrollPos = player.Crafting.ScrollPosition;
+                
+                if(this.Owner.Parent.FindChildByName("ScrollNumber") != null) {
+                    this.Owner.Parent.FindChildByName("ScrollNumber").SpriteText.Text = "`scrollPos + 1`";
+                }
+                
+            }
+            
+        } else if(!event.Mouse.IsButtonDown(MouseButtons.Left)) {
+            this.ButtonClicked = false;
+        }
+        
+    }
+    
+}

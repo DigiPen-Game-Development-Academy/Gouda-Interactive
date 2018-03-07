@@ -1,0 +1,18 @@
+DataContent = 
+{
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Tool",
+		],
+	},
+	DataBuilder = 
+	{
+		string Name = "SpringTools",
+		uint64 ResourceId = 55cdc4c811457112,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

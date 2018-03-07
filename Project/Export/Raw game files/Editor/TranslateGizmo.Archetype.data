@@ -1,0 +1,405 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "TranslateGizmo",
+	},
+	Archetyped = 
+	{
+		string Name = "55fd85d684a945c6:TranslateGizmo",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [0, 0, 0],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Gizmo = 
+	{
+		bool Active = true,
+		bool ForwardEventsToChildren = true,
+	},
+	TranslateGizmo = 
+	{
+		UpdateMode UpdateMode = TranslateSelf,
+		GizmoSnapMode SnapMode = None,
+		float SnapDistance = 1,
+	},
+	Hierarchy = 
+	{
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 2,
+			},
+			Named = 
+			{
+				string Name = "CenterSquare",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			MouseCapture = 
+			{
+			},
+			Gizmo = 
+			{
+				bool Active = true,
+				bool ForwardEventsToChildren = true,
+			},
+			GizmoDrag = 
+			{
+				GizmoDragMode DragMode = ViewPlane,
+				Vec3 LineDirection = [1, 0, 0],
+				Vec3 PlaneNormal = [0, 1, 0],
+				bool NormalInWorld = false,
+				GizmoGrabMode GrabMode = Hold,
+				bool AutoDrag = true,
+				float DragDistance = 0,
+			},
+			SquareGizmo = 
+			{
+				bool MouseInput = true,
+				int PickingPriority = 1,
+				Vec4 Color = [0.8, 0.8, 0.8, 0.9999],
+				Vec4 HoverColor = [1, 1, 0, 1],
+				bool ViewScaled = true,
+				bool DrawOnTop = true,
+				Vec3 Size = [0.5, 0.5, 0.5],
+				float SnapDistance = 0.25,
+				bool ViewAligned = true,
+				bool Filled = false,
+				bool UseParentAsPivot = true,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 3,
+			},
+			Named = 
+			{
+				string Name = "XY",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [1, 1, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			MouseCapture = 
+			{
+			},
+			Gizmo = 
+			{
+				bool Active = true,
+				bool ForwardEventsToChildren = true,
+			},
+			GizmoDrag = 
+			{
+				GizmoDragMode DragMode = Plane,
+				Vec3 LineDirection = [1, 0, 0],
+				Vec3 PlaneNormal = [0, 0, 1],
+				bool NormalInWorld = false,
+				GizmoGrabMode GrabMode = Hold,
+				bool AutoDrag = true,
+				float DragDistance = 0,
+			},
+			SquareGizmo = 
+			{
+				bool MouseInput = true,
+				int PickingPriority = 0,
+				Vec4 Color = [0, 0, 1, 0.4],
+				Vec4 HoverColor = [1, 1, 0, 0.4],
+				bool ViewScaled = true,
+				bool DrawOnTop = true,
+				Vec3 Size = [0.4, 0.4, 0],
+				float SnapDistance = 0.25,
+				bool ViewAligned = false,
+				bool Filled = true,
+				bool UseParentAsPivot = true,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 4,
+			},
+			Named = 
+			{
+				string Name = "YZ",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 1, 1],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			MouseCapture = 
+			{
+			},
+			Gizmo = 
+			{
+				bool Active = true,
+				bool ForwardEventsToChildren = true,
+			},
+			GizmoDrag = 
+			{
+				GizmoDragMode DragMode = Plane,
+				Vec3 LineDirection = [1, 0, 0],
+				Vec3 PlaneNormal = [1, 0, 0],
+				bool NormalInWorld = false,
+				GizmoGrabMode GrabMode = Hold,
+				bool AutoDrag = true,
+				float DragDistance = 0,
+			},
+			SquareGizmo = 
+			{
+				bool MouseInput = true,
+				int PickingPriority = 0,
+				Vec4 Color = [1, 0, 0, 0.4],
+				Vec4 HoverColor = [1, 1, 0, 0.4],
+				bool ViewScaled = true,
+				bool DrawOnTop = true,
+				Vec3 Size = [0, 0.4, 0.4],
+				float SnapDistance = 0.25,
+				bool ViewAligned = false,
+				bool Filled = true,
+				bool UseParentAsPivot = true,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 5,
+			},
+			Named = 
+			{
+				string Name = "XZ",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [1, 0, 1],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			MouseCapture = 
+			{
+			},
+			Gizmo = 
+			{
+				bool Active = true,
+				bool ForwardEventsToChildren = true,
+			},
+			GizmoDrag = 
+			{
+				GizmoDragMode DragMode = Plane,
+				Vec3 LineDirection = [1, 0, 0],
+				Vec3 PlaneNormal = [0, 1, 0],
+				bool NormalInWorld = false,
+				GizmoGrabMode GrabMode = Hold,
+				bool AutoDrag = true,
+				float DragDistance = 0,
+			},
+			SquareGizmo = 
+			{
+				bool MouseInput = true,
+				int PickingPriority = 0,
+				Vec4 Color = [0, 1, 0, 0.4],
+				Vec4 HoverColor = [1, 1, 0, 0.4],
+				bool ViewScaled = true,
+				bool DrawOnTop = true,
+				Vec3 Size = [0.4, 0, 0.4],
+				float SnapDistance = 0.25,
+				bool ViewAligned = false,
+				bool Filled = true,
+				bool UseParentAsPivot = true,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 6,
+			},
+			Named = 
+			{
+				string Name = "XAxis",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Orientation = 
+			{
+				Vec3 GlobalUp = [0, 1, 0],
+				Vec3 UpVector = [0, 1, 0],
+				Vec3 ForwardVector = [1, 0, 0],
+				OrientationBases DefaultBases = ForwardXUpY,
+			},
+			MouseCapture = 
+			{
+			},
+			Gizmo = 
+			{
+				bool Active = true,
+				bool ForwardEventsToChildren = true,
+			},
+			GizmoDrag = 
+			{
+				GizmoDragMode DragMode = Line,
+				Vec3 LineDirection = [0.624843, 0.516138, -0.58581],
+				Vec3 PlaneNormal = [0, 1, 0],
+				bool NormalInWorld = false,
+				GizmoGrabMode GrabMode = Hold,
+				bool AutoDrag = true,
+				float DragDistance = 0,
+			},
+			ArrowGizmo = 
+			{
+				bool MouseInput = true,
+				int PickingPriority = 0,
+				Vec4 Color = [1, 0, 0, 0.4],
+				Vec4 HoverColor = [1, 1, 0, 0.4],
+				bool ViewScaled = true,
+				bool DrawOnTop = true,
+				float HeadSize = 0.28,
+				float Length = 2.8,
+				float SelectRadius = 0.25,
+				ArrowHeadType HeadType = Arrow,
+				bool DualHeads = false,
+				bool FilledHeads = true,
+				float LineDrawWidth = 2,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 7,
+			},
+			Named = 
+			{
+				string Name = "YAxis",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Orientation = 
+			{
+				Vec3 GlobalUp = [0, 1, 0],
+				Vec3 UpVector = [0, 0, 1],
+				Vec3 ForwardVector = [0, 1, 0],
+				OrientationBases DefaultBases = ForwardYUpZ,
+			},
+			MouseCapture = 
+			{
+			},
+			Gizmo = 
+			{
+				bool Active = true,
+				bool ForwardEventsToChildren = true,
+			},
+			GizmoDrag = 
+			{
+				GizmoDragMode DragMode = Line,
+				Vec3 LineDirection = [0, 1, 0],
+				Vec3 PlaneNormal = [0, 1, 0],
+				bool NormalInWorld = false,
+				GizmoGrabMode GrabMode = Hold,
+				bool AutoDrag = true,
+				float DragDistance = 0,
+			},
+			ArrowGizmo = 
+			{
+				bool MouseInput = true,
+				int PickingPriority = 0,
+				Vec4 Color = [0, 1, 0, 0.4],
+				Vec4 HoverColor = [1, 1, 0, 0.4],
+				bool ViewScaled = true,
+				bool DrawOnTop = true,
+				float HeadSize = 0.28,
+				float Length = 2.8,
+				float SelectRadius = 0.25,
+				ArrowHeadType HeadType = Arrow,
+				bool DualHeads = false,
+				bool FilledHeads = true,
+				float LineDrawWidth = 2,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 8,
+			},
+			Named = 
+			{
+				string Name = "ZAxis",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Orientation = 
+			{
+				Vec3 GlobalUp = [0, 1, 0],
+				Vec3 UpVector = [0, 1, 0],
+				Vec3 ForwardVector = [0, 0, 1],
+				OrientationBases DefaultBases = ForwardZUpY,
+			},
+			MouseCapture = 
+			{
+			},
+			Gizmo = 
+			{
+				bool Active = true,
+				bool ForwardEventsToChildren = true,
+			},
+			GizmoDrag = 
+			{
+				GizmoDragMode DragMode = Line,
+				Vec3 LineDirection = [0, 0, 1],
+				Vec3 PlaneNormal = [0, 1, 0],
+				bool NormalInWorld = false,
+				GizmoGrabMode GrabMode = Hold,
+				bool AutoDrag = true,
+				float DragDistance = 0,
+			},
+			ArrowGizmo = 
+			{
+				bool MouseInput = true,
+				int PickingPriority = 0,
+				Vec4 Color = [0, 0, 1, 0.4],
+				Vec4 HoverColor = [1, 1, 0, 0.4],
+				bool ViewScaled = true,
+				bool DrawOnTop = true,
+				float HeadSize = 0.28,
+				float Length = 2.8,
+				float SelectRadius = 0.25,
+				ArrowHeadType HeadType = Arrow,
+				bool DualHeads = false,
+				bool FilledHeads = true,
+				float LineDrawWidth = 2,
+			},
+		},
+	},
+},

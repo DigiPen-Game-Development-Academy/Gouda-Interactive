@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "PostRefract",
+		uint64 ResourceId = 53c86c6a28ec42bd,
+	},
+},

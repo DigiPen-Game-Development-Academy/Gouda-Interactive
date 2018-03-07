@@ -1,0 +1,65 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "ArrowGizmo",
+	},
+	Archetyped = 
+	{
+		string Name = "55fd8460bf199d0e:ArrowGizmo",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [11.5488, 10, 4.84826],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Orientation = 
+	{
+		Vec3 GlobalUp = [0, 1, 0],
+		Vec3 UpVector = [0, 1, 0],
+		Vec3 ForwardVector = [1, 0, 0],
+		OrientationBases DefaultBases = ForwardXUpY,
+	},
+	MouseCapture = 
+	{
+	},
+	Gizmo = 
+	{
+		bool Active = true,
+		bool ForwardEventsToChildren = true,
+	},
+	GizmoDrag = 
+	{
+		GizmoDragMode DragMode = Line,
+		Vec3 LineDirection = [1, 0, 0],
+		Vec3 PlaneNormal = [0, 1, 0],
+		bool NormalInWorld = false,
+		GizmoGrabMode GrabMode = Hold,
+	},
+	ArrowGizmo = 
+	{
+		bool MouseInput = true,
+		int PickingPriority = 0,
+		Vec4 Color = [1, 0, 0, 0.4],
+		Vec4 HoverColor = [1, 1, 0, 0.4],
+		bool ViewScaled = true,
+		bool DrawOnTop = true,
+		float HeadSize = 0.28,
+		float Length = 2.8,
+		float SelectRadius = 0.25,
+		ArrowHeadType HeadType = Arrow,
+		bool DualHeads = false,
+		bool FilledHeads = true,
+	},
+	TranslateGizmo = 
+	{
+		UpdateMode UpdateMode = TranslateSelf,
+		SnapMode SnapMode = None,
+		float SnapDistance = 0.25,
+	},
+},
