@@ -112,7 +112,7 @@ Level =
 		PlaceChunks = 
 		{
 			int ChunkWidth = 32,
-			float ZIndex = 0,
+			float ZIndex = -0.5,
 		},
 	},
 	Cog = 
@@ -139,7 +139,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 10.0258904,
+			float Size = 13.5335197,
 		},
 		EditorCameraController = 
 		{
@@ -488,7 +488,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.5, 0.5, 0],
+			Vec3 Translation = [-2.5, 2.5, 0],
 			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -498,7 +498,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [0.230000019, 0.147475988, 0.0506000072, 1],
+			Vec4 Color = [0.180000007, 0.180000007, 0.180000007, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
