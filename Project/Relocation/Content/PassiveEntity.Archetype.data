@@ -8,6 +8,10 @@ Cog =
 	{
 		string Name = "PassiveEntity",
 	},
+	Archetyped = 
+	{
+		string Name = "5acc54a1ed491026:PassiveEntity",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [-8.66082191, 6.90759087, 0.375000119],
@@ -76,5 +80,9 @@ Cog =
 		string SpriteDownLeft = "5acc4d4e81bcec57:BearRabbitDown",
 		string SpriteLeft = "5acc4d559d255db5:BearRabbitLeft",
 		string SpriteUpLeft = "5acc4d5f9c6dff5c:BearRabbitUp",
+	},
+	Despawner = 
+	{
+		float DistanceFromPlayer = 75,
 	},
 },
