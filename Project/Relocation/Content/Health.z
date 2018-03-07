@@ -98,6 +98,8 @@ class Health : ZilchComponent
             this.IsTakingDamage = true;
             this.CurrDamageSoundCooldown -= 0.00066;
             this.CurrentHealth -= amount;
+            if (this.Owner.PassiveAI != null)
+                this.Owner.PassiveAI.Hurt();
         }
     }
 }
