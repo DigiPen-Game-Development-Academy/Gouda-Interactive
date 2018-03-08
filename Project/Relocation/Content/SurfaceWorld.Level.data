@@ -301,7 +301,7 @@ Level =
 					Vec2 Offset = [0, 0.0250000004],
 					Vec2 Size = [0.949999988, 0.949999988],
 					int Layer = 1,
-					bool Active = true,
+					bool Active = false,
 					bool Blocking = true,
 					CogPath Renderer = 
 					{

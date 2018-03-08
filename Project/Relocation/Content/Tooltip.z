@@ -111,7 +111,7 @@ class Tooltip : ZilchComponent {
         var offsetY = 0.0;
         
         // TOOLTIP ALIGN
-        if(mousePos.X > screen.CameraViewport.ScreenToWorldZPlane(Real2(screenRes.X, 0.0), 0.0).X - ((mousePos.X + 0.5) * 1.5)) {
+        if(mousePos.X > screen.CameraViewport.ScreenToWorldZPlane(Real2(screenRes.X, 0.0), 0.0).X - ((mousePos.X - 1.0) * cardWH.X)) {
             this.TooltipLeftAlign = true;
             offsetX = -((cardWH.X + 0.5) * 1.5);
         } else {
@@ -119,7 +119,7 @@ class Tooltip : ZilchComponent {
             offsetX = 0.0;
         }
         
-        if(mousePos.Y < screen.CameraViewport.ScreenToWorldZPlane(Real2(0.0, screenRes.Y), 0.0).Y - ((mousePos.Y + 0.5) * 1.5)) {
+        if(mousePos.Y < screen.CameraViewport.ScreenToWorldZPlane(Real2(0.0, screenRes.Y), 0.0).Y - ((mousePos.Y + 1.0) * cardWH.Y)) {
             this.TooltipBottomAlign = true;
             offsetY = (cardWH.Y + 0.35) * 1.5;
         } else {
