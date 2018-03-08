@@ -1,0 +1,140 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "EntityEnemy",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [-0.715138674, 7.418046, 0],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Sprite = 
+	{
+		bool Visible = false,
+		bool VisibilityCulling = true,
+		bool VisibilityEvents = true,
+		bool CastShadows = false,
+		Vec4 Color = [1, 1, 1, 1],
+		BlendMode BlendMode = Alpha,
+		SpriteGeometryMode GeometryMode = ZPlane,
+		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		string SpriteSource = "5af2c454139fcf42:ArmadilloDown",
+		bool RenderMask = false,
+		bool FlipX = false,
+		bool FlipY = false,
+		bool AnimationActive = false,
+		float AnimationSpeed = 1,
+		uint StartFrame = 0,
+	},
+	RigidBody = 
+	{
+		bool Static = false,
+		bool Asleep = false,
+		bool Kinematic = false,
+		bool RotationLocked = true,
+		bool Mode2D = true,
+		bool AllowSleep = true,
+		bool Inherit2DMode = true,
+		Vec3 Velocity = [0, 0, 0],
+		Vec3 AngularVelocity = [0, 0, 0],
+	},
+	BoxCollider = 
+	{
+		bool Ghost = false,
+		bool SendsMessages = true,
+		bool Seamless = true,
+		string MaterialName = "5ac291505ccfd608:PlayerPhysicsMaterial",
+		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+		Vec3 Offset = [0, 0, 0],
+		Vec3 Size = [0.5, 0.5, 0.5],
+	},
+	Area = 
+	{
+		Vec2 Size = [1, 1],
+		Location Origin = Center,
+	},
+	Orientation = 
+	{
+		Vec3 GlobalUp = [0, 0, 1],
+		Vec3 UpVector = [0, 0, 1],
+		Vec3 ForwardVector = [0, 1, 0],
+		OrientationBases DefaultBases = Custom,
+	},
+	EntityEnemy = 
+	{
+		float AttackCooldown = 2,
+		bool CanShoot = false,
+		bool CanAttackForward = true,
+		float AttackDamage = 2,
+		float AttackWithinRadiusOf = 3,
+		float HitboxSize = 1.75,
+		float HitboxLifetime = 0.100000001,
+		bool CanMove = false,
+		string LookUp = "5af2ca3d53b98b8d:FroggUp",
+		string LookUpRight = "5af2ca3d53b98b8d:FroggUp",
+		string LookRight = "5af2c5fa26e3ac59:FroggRight",
+		string LookDownRight = "5af2c5e8248ed1c5:FroggDown",
+		string LookDown = "5af2c5e8248ed1c5:FroggDown",
+		float BulletSpeed = 10,
+	},
+	Health = 
+	{
+		float MaxHealth = 10,
+		bool IsInvincible = false,
+	},
+	Despawner = 
+	{
+		float DistanceFromPlayer = 75,
+	},
+	Hierarchy = 
+	{
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 2,
+			},
+			Named = 
+			{
+				string Name = "EnemySprite",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Sprite = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [1, 1, 1, 1],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string SpriteSource = "5af2c454139fcf42:ArmadilloDown",
+				bool RenderMask = false,
+				bool FlipX = false,
+				bool FlipY = false,
+				bool AnimationActive = true,
+				float AnimationSpeed = 1,
+				uint StartFrame = 0,
+			},
+			Orientation = 
+			{
+				Vec3 GlobalUp = [0, 0, 1],
+				Vec3 UpVector = [0, 0, 1],
+				Vec3 ForwardVector = [0, 1, 0],
+				OrientationBases DefaultBases = ForwardYUpZ,
+			},
+		},
+	},
+},

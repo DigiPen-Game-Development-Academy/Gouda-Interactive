@@ -3,7 +3,7 @@ ImageContent =
 	SpriteSourceBuilder = 
 	{
 		string Name = "ArmadilloDeath",
-		uint64 ResourceId = 5a1da3f99220a296,
+		uint64 ResourceId = 5af2c5bb2e671b11,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 32,
 		uint FrameSizeY = 32,
@@ -11,7 +11,7 @@ ImageContent =
 		float FrameDelay = 0.0833333358,
 		float OriginX = 16,
 		float OriginY = 16,
-		float PixelsPerUnit = 64,
+		float PixelsPerUnit = 32,
 		bool Smoothing = false,
 		bool Looping = true,
 		Vec4 Slices = [0, 0, 0, 0],
