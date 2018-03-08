@@ -31,3 +31,10 @@ class Relocation {
     [Static] var ButtonFadeout : Boolean = false;
     
 }
+
+class PlayerData {
+    
+    [Static] var InventoryContents : Array[Integer] = null;
+    [Static] var InventoryContentsCount : Array[Integer] = null;
+    
+}
