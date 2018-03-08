@@ -41,28 +41,39 @@ class EntityEnemy : ZilchComponent
         if (this.CheckForPlayer() == false)
             return;
         
+        this.LookAtPlayer();
+        
         // Change "EnemySprite"
         this.ChangeSprite();
+        
+        // Move
+        this.Move();
         
         // Decrease "TimeTillAttack"
         this.TimeTillAttack -= event.Dt;
         
         // Look at the player
-        //this.LookAtPlayer();
+        this.LookAtPlayer();
         
         // Attack
-        
         if (this.TimeTillAttack <= 0.0)
             this.Shoot();
+    }
+    
+    function Move()
+    {
+        this.Owner.RigidBody.Velocity += this.Owner.Orientation.WorldForward * 3 * 0.0166667;
     }
     
     function Shoot()
     {
         /*if (this.Owner.PathFinding.LookAtPlayer().ObjectHit != null)
             if (this.Owner.PathFinding.LookAtPlayer().ObjectHit.Name != "EntityPlayer")
-                return;
+                return;*/
         
-        var bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.X, this.Owner.Transform.Translation.Y, 0.1));
+        var bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.XY, 0.0));
+        
+        bullet.EntityBullet.FromPlayer = false;
         
         var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
         var enemyPos = this.Owner.Transform.WorldTranslation;
@@ -78,7 +89,7 @@ class EntityEnemy : ZilchComponent
         
         this.TimeTillAttack = this.AttackCooldown;
         
-        //Console.WriteLine("Shoot");*/
+        //Console.WriteLine("Shoot");
     }
     
     function LookAtPlayer()
