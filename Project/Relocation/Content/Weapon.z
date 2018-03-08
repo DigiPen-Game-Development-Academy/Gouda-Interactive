@@ -20,7 +20,6 @@ class Weapon {
     
     var Cooldown : Real = 0.0;
     var CurrCooldown : Real = 0.0;
-    var BatteryLife : Real = 0.0;
     var ReloadTime : Real = 3.0;
     
     var BulletDamage : Real = 1.0;
@@ -37,18 +36,19 @@ class Weapon {
         Console.WriteLine("Weapon with name \"`this.ItemName`\" has been created.");
     }
     
-    constructor(space : Space, itemName : String, itemID : Integer, isRanged : Boolean, cooldown : Real, batteryLife : Real) {
+    constructor(space : Space, itemName : String, itemID : Integer, isRanged : Boolean, cooldown : Real, damage : Real) {
         this.Space = space;
         this.ItemName = itemName;
         this.ItemID = itemID;
         this.IsRanged = isRanged;
         this.Cooldown = cooldown;
-        this.BatteryLife = batteryLife;
+        this.BulletDamage = damage;
         Console.WriteLine("Weapon with name \"`this.ItemName`\" has been created.");
     }
     
     function SetTier(tier : Integer) {
         this.ItemTier = tier;
+        this.GiveStats();
     }
     
     function SetAccuracy(accuracy : Real) {
@@ -66,6 +66,7 @@ class Weapon {
     function SetMaxAmmoAmount(amount : Integer) {
         this.MaxAmmo = amount;
         this.CurrentAmmo = amount;
+        this.GiveStats();
     }
     
     function SetCurrentAmmoAmount(amount : Integer) {
@@ -74,6 +75,21 @@ class Weapon {
     
     function SetAmmoType(type : Integer) {
         this.AmmoTypeID = type;
+    }
+    
+    function GiveStats() {
+        
+        var tierTag = "Weapon";
+        
+        if(this.ItemTier == 1)
+            tierTag = "Basic Weapon";
+        else if(this.ItemTier == 2)
+            tierTag = "Medium Weapon";
+        else if(this.ItemTier == 3)
+            tierTag = "Legendary Weapon";
+        
+        (Relocation.Items[Relocation.ItemManager.GetIDByName("Item`this.ItemName`")] as ItemWeapon).GiveStats(this, tierTag);
+        
     }
     
     function RefillAmmo() {
@@ -143,6 +159,8 @@ class Weapon {
     }
     
     function UpdateWeapon(dt : Real) {
+        
+        this.GiveStats();
         
         //var uiSpace = this.Space.FindObjectByName("LevelSettings").UICreator.UISpace;
         //uiSpace.FindObjectByName("Slot20").Sprite.SpriteSource = SpriteSource.Find(String.Concatenate("Item", this.ItemName));
