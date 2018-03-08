@@ -88,7 +88,8 @@ class Weapon {
         else if(this.ItemTier == 3)
             tierTag = "Legendary Weapon";
         
-        (Relocation.Items[Relocation.ItemManager.GetIDByName("Item`this.ItemName`")] as ItemWeapon).GiveStats(this, tierTag);
+        if(Relocation.ItemManager.GetIDByName("Item`this.ItemName`") != -999)
+            (Relocation.Items[Relocation.ItemManager.GetIDByName("Item`this.ItemName`")] as ItemWeapon).GiveStats(this, tierTag);
         
     }
     
