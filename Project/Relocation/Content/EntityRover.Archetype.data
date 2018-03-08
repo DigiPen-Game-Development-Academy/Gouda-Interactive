@@ -55,6 +55,10 @@ Cog =
 		string Rider = "EntityPlayer",
 		float VehicleSpeed = 400,
 		float VehicleTurboSpeed = 1000,
+		string SpriteNorth = "5a1d85d977b7559a:rover003",
+		string SpriteSouth = "5a1d85d9774d5486:rover001",
+		string SpriteEast = "5a1d85d977471191:rover000",
+		string SpriteWest = "5a1d85d977b30775:rover002",
 	},
 	SoundEmitter = 
 	{
@@ -80,7 +84,7 @@ Cog =
 			Transform = 
 			{
 				Vec3 Translation = [0, 0, -0.200000003],
-				Vec3 Scale = [1, 0.5, 1],
+				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -93,7 +97,7 @@ Cog =
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "5af7e73d4a529ae0:ItemDrillPlatinum",
+				string SpriteSource = "5a1d85d977471191:rover000",
 				bool RenderMask = false,
 				bool FlipX = false,
 				bool FlipY = false,
@@ -114,8 +118,8 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [0, -0.25, 3],
-				Vec3 Scale = [1, 0.5, 1],
+				Vec3 Translation = [0, -0.100000001, 3],
+				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -128,7 +132,7 @@ Cog =
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "5af7e73d4a529ae0:ItemDrillPlatinum",
+				string SpriteSource = "5a1d85d977471191:rover000",
 				bool RenderMask = false,
 				bool FlipX = false,
 				bool FlipY = false,
