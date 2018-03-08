@@ -1,0 +1,80 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: MYLES BUSIG
+
+class EntityBullet : ZilchComponent {
+    
+    [Property] var FromPlayer : Boolean = true;
+    [Property] var DrillBullet : Boolean = false;
+    [Property] var Lifetime : Real = 5.0;
+    [Property] var Damage : Real = 1.0;
+    [Property] var BlockDamageAmount : Real = 1.0;
+    
+    var CurrLifetime : Real = 0.0;
+    
+    function Initialize(init : CogInitializer) {
+        
+        /*if(this.Space.FindObjectByName("EntityPlayer").WeaponManager.ActiveWeapon.ItemName == "WeaponGouda") {
+            this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawnDank"));
+        } else {
+            this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
+        }*/
+        
+        if(!this.DrillBullet)
+            this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
+        
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnCollisionStarted(event : CollisionEvent) {
+        
+        if(event.OtherObject.Name == Relocation.EntityPlayer && !this.FromPlayer && !this.DrillBullet) {
+            
+            if(!event.OtherObject.Health.IsInvincible) {
+                event.OtherObject.Health.DecreaseHealth(this.Damage);
+            }
+            
+            this.Owner.Destroy();
+            
+        } else if(event.OtherObject.Name == this.Owner.Name && !this.DrillBullet) {
+            
+        } else if(this.FromPlayer && event.OtherObject.Name == "BlockRock") {
+            
+            if(event.OtherObject.Parent != null)
+                event.OtherObject.Parent.Parent.WorldGenerator.DamageBlock(event.OtherObject, this.BlockDamageAmount, true);
+            
+            this.Owner.Destroy();
+            
+        } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer && !this.DrillBullet) {
+            
+            if(event.OtherObject.Health != null) {
+                this.Knockback(event.OtherObject);
+                event.OtherObject.Health.DecreaseHealth(this.Damage);
+            }
+            
+            this.Owner.Destroy();
+            
+        }
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(this.CurrLifetime > this.Lifetime) {
+            this.Owner.Destroy();
+        }
+        
+        this.CurrLifetime += event.Dt;
+        
+    }
+    
+    function Knockback(otherObject : Cog) {
+        
+        if(otherObject.RigidBody != null) {
+            otherObject.RigidBody.ApplyLinearImpulse(this.Owner.RigidBody.Velocity / Real3(5, 5, 1));
+        }
+        
+    }
+    
+}

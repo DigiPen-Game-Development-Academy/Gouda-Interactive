@@ -1,0 +1,20 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "CogTranslateGizmo",
+		uint64 ResourceId = 52fd859a84ab45c6,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Archetype",
+			"Cog",
+			"Gizmo",
+		],
+	},
+},

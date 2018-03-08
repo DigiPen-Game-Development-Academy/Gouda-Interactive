@@ -1,0 +1,10 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "LightShadow",
+		uint64 ResourceId = 4de020863e84321e,
+		string LoaderType = "Cog",
+		uint Version = 0,
+	},
+},

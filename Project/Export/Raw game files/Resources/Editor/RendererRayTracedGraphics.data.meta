@@ -1,0 +1,11 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "RendererRayTracedGraphics",
+		uint64 ResourceId = 4f61d3db32e9a93b,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "DefaultSoundTag",
+		uint64 ResourceId = 551c2d5a29ce571d,
+		string LoaderType = "SoundTag",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

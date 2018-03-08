@@ -1,0 +1,20 @@
+ImageContent = 
+{
+	TextureBuilder = 
+	{
+		string Name = "ViewCubeEmmissive",
+		uint64 ResourceId = 5489c37c90b4e983,
+		BuilderTextureType TextureType = Texture2D,
+		RgbUsage RgbUsage = Color,
+		AlphaUsage AlphaUsage = Transparency,
+		TextureCompression Compression = None,
+		TextureWrapping Wrapping = Repeat,
+		TextureFilter Filter = Trilinear,
+		float Anisotropy = 1,
+		MipGeneration MipGeneration = None,
+		ImageFilter MipFilter = Box,
+		FixPowerOf2 FixPowerOf2 = Auto,
+		ImageFilter ResizeFilter = Box,
+		OutputTextureFormat Format = Updated,
+	},
+},

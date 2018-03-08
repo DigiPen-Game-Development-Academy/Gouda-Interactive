@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "DefaultAnimation",
+		uint64 ResourceId = 4f8ebbde619389d0,
+		string LoaderType = "Animation",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

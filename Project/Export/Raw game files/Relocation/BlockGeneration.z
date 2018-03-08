@@ -1,0 +1,71 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
+class BlockGeneration : ZilchComponent
+{
+    [Dependency] var WorldGeneration : WorldGeneration = null;
+    
+    [Property] var NumberOfBlocks : Integer = 1;
+    [Property] var BlocksToSpawn : Integer = 100;
+    var BlocksSpawned : Integer = 0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        Console.WriteLine("Blocks Spawned: `this.BlocksSpawned`/`this.BlocksToSpawn`");
+        
+        if (this.BlocksSpawned >= this.BlocksToSpawn)
+            return;
+        
+        var spawnPosition = this.RandomReal3(this.WorldGeneration.MapRadius, this.WorldGeneration.MapRadius, 0.0);
+        
+        if (this.CheckToSeeIfSpawnIsOkay(spawnPosition.X, spawnPosition.Y, spawnPosition.Z))
+        {
+            var blockID = new Random().DieRoll(this.NumberOfBlocks);
+            var blockToSpawn = this.GetBlockByID(blockID);
+            
+            var block = this.Space.CreateAtPosition(blockToSpawn, spawnPosition);
+            
+            ++this.BlocksSpawned;
+            
+            Console.WriteLine("Creating Block With ID: `blockID` (`blockToSpawn.Name`) at position: `spawnPosition`");
+        }
+    }
+    
+    function RandomReal3(xRadius : Real, yRadius : Real, zPosition : Real) : Real3
+    {
+        var xPosition = new Random().Range(-xRadius, xRadius);
+        var yPosition = new Random().Range(-yRadius, yRadius);
+        
+        return Real3(xPosition, yPosition, zPosition);
+    }
+    
+    function CheckToSeeIfSpawnIsOkay(xPosition : Real, yPosition : Real, zPosition : Real) : Boolean
+    {
+        // Create sphere variables
+        var center = Real3(xPosition, yPosition, zPosition);
+        var radius = 0.65;
+        var count = 1;
+        var filter = CastFilter();
+        filter.IgnoreCog = this.Owner;
+        
+        // Cast the sphere
+        var castResults = this.Space.PhysicsSpace.CastSphereResults(center, radius, count, filter);
+        
+        Console.WriteLine("Okay to place block: `castResults.Empty()`");
+        
+        // Return the results
+        return castResults.Empty();
+    }
+    
+    function GetBlockByID(blockID : Integer) : Archetype
+    {
+        if (blockID == 1) return Archetype.Rock;
+        
+        return null;
+    }
+}

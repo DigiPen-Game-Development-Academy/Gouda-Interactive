@@ -1,0 +1,8 @@
+NetChannelConfig = 
+{
+  bool EventOnOutgoingPropertyChange = false,
+  bool EventOnIncomingPropertyChange = false,
+  SerializationMode SerializationMode = Full,
+	ReliabilityMode ReliabilityMode = Unreliable,
+  TransferMode TransferMode = Sequenced,
+},

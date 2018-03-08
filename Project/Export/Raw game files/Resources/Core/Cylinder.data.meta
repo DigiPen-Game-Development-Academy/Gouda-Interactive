@@ -1,0 +1,10 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "Cylinder",
+		uint64 ResourceId = 4de020863e85f0c7,
+		string LoaderType = "Cog",
+		uint Version = 0,
+	},
+},

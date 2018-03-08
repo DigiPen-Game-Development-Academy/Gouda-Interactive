@@ -1,0 +1,11 @@
+BinaryContent =
+{
+	BinaryBuilder =
+	{
+		string Name = "DoubleSlopeRight2",
+		uint64 ResourceId = 5198835bd86941a6,
+		string LoaderType = "PhysicsMesh",
+		uint Version = 0,
+		string FilterTag = "TileMesh",
+	},
+},

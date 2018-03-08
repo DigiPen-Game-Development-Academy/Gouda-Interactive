@@ -1,0 +1,246 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class Commands : ZilchComponent {
+    
+    [Dependency] var DebugCmd : TextEntry = null;
+    
+    var MainSpace : Space = null;
+    
+    function CreateCommands() {
+        
+        this.Owner.TextEntry.Commands = new Array[String]();
+        
+        // PUSH COMMANDS
+        this.Owner.TextEntry.Commands.Push("clear");
+        this.Owner.TextEntry.Commands.Push("cls");
+        this.Owner.TextEntry.Commands.Push("color");
+        this.Owner.TextEntry.Commands.Push("debug");
+        this.Owner.TextEntry.Commands.Push("echo");
+        this.Owner.TextEntry.Commands.Push("give");
+        this.Owner.TextEntry.Commands.Push("god");
+        this.Owner.TextEntry.Commands.Push("help");
+        this.Owner.TextEntry.Commands.Push("noclip");
+        this.Owner.TextEntry.Commands.Push("playsound");
+        this.Owner.TextEntry.Commands.Push("spawn");
+        
+    }
+    
+    function CommandFunctions() {
+        
+        if(this.CheckForCommand("debug", false, "", "") != -1) {
+            this.CommandDebug();
+        } else if(this.CheckForCommand("give", false, "", "") != -1) {
+            this.CommandGive();
+        } else if(this.CheckForCommand("god", false, "", "") != -1) {
+            this.CommandGod();
+        } else if(this.CheckForCommand("help", false, "", "?") != -1) {
+            this.CommandHelp();
+        } else if(this.CheckForCommand("clear", false, "", "cls") != -1) {
+            this.CommandClear();
+        } else if(this.CheckForCommand("color", false, "", "") != -1) {
+            this.CommandColor();
+        } else if(this.CheckForCommand("echo", false, "", "") != -1) {
+            this.CommandEcho();
+        } else if(this.CheckForCommand("playsound", false, "", "") != -1) {
+            this.CommandPlaySound();
+        } else if(this.CheckForCommand("spawn", false, "", "") != -1) {
+            this.CommandSpawn();
+        } else if(this.CheckForCommand("noclip", false, "", "") != -1) {
+            this.CommandNoclip();
+        } else {
+            this.DebugCmd.PrintToUIConsole("Error: The command \"`this.DebugCmd.FinalCmd`\" does not exist. Type help for a list of commands.");
+        }
+        
+        this.DebugCmd.FinalCmd = "";
+        
+    }
+    
+    function CheckForCommand(cmd : String, args : Boolean, usage : String, cmdAlias : String) : Integer {
+        
+        if(this.DebugCmd.FinalCmd == cmd || this.DebugCmd.FinalCmd.StartsWith(String.Concatenate(cmd, " ")) || (this.DebugCmd.FinalCmd == cmdAlias || this.DebugCmd.FinalCmd.StartsWith(String.Concatenate(cmdAlias, " ")) && cmdAlias != "")) {
+            
+            if(args && (this.DebugCmd.FinalCmd.EndsWith(cmd) || this.DebugCmd.FinalCmd.EndsWith(String.Concatenate(cmd, " ")))) {
+                this.DebugCmd.PrintToUIConsole(String.Concatenate("Error: Invalid arguments. Usage: ", usage));
+                return 0;
+            } else {
+                return 1;
+            }
+            
+        }
+        
+        return -1;
+        
+    }
+    
+    function CommandDebug() {
+        
+        if(this.DebugCmd.FinalCmd.EndsWith("true")) {
+            
+            this.DebugCmd.DebugEnabled = true;
+            Relocation.DebugMode = this.DebugCmd.DebugEnabled;
+            this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
+            
+        } else if(this.DebugCmd.FinalCmd.EndsWith("false")) {
+            
+            this.DebugCmd.DebugEnabled = false;
+            Relocation.DebugMode = this.DebugCmd.DebugEnabled;
+            this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
+            
+        } else if(this.DebugCmd.FinalCmd == "debug" || this.DebugCmd.FinalCmd == "debug ") {
+            
+            this.DebugCmd.DebugEnabled = !this.DebugCmd.DebugEnabled;
+            Relocation.DebugMode = this.DebugCmd.DebugEnabled;
+            this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
+            
+        } else {
+            this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
+        }
+        
+    }
+    
+    function CommandGive() {
+        
+        if(this.CheckForCommand("give", true, "give <itemID> [quantity]", "") != 0) {
+            if(this.MainSpace.FindObjectByName("EntityPlayer") != null) {
+                
+                var quantity = this.DebugCmd.GetArgument(2, this.DebugCmd.FinalCmd);
+                
+                if(quantity == "") {
+                    quantity = "1";
+                }
+                
+                this.MainSpace.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(
+                    Integer.Parse(this.DebugCmd.GetArgument(1, this.DebugCmd.FinalCmd)),
+                    true,
+                    Integer.Parse(quantity)
+                );
+                
+            }
+        }
+        
+    }
+    
+    function CommandGod() {
+        
+        if(this.DebugCmd.FinalCmd.EndsWith("true")) {
+            
+            this.DebugCmd.GodMode = true;
+            this.DebugCmd.PrintToUIConsole("God Mode: `this.DebugCmd.GodMode`");
+            
+        } else if(this.DebugCmd.FinalCmd.EndsWith("false")) {
+            
+            this.DebugCmd.GodMode = false;
+            this.DebugCmd.PrintToUIConsole("God Mode: `this.DebugCmd.GodMode`");
+            
+        } else if(this.DebugCmd.FinalCmd == "god" || this.DebugCmd.FinalCmd == "god ") {
+            
+            this.DebugCmd.GodMode = !this.DebugCmd.GodMode;
+            this.DebugCmd.PrintToUIConsole("God Mode: `this.DebugCmd.GodMode`");
+        } else {
+            this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: god [true/false]");
+        }
+        
+        if(this.MainSpace != null && this.MainSpace.FindObjectByName("EntityPlayer") != null) {
+            this.MainSpace.FindObjectByName("EntityPlayer").Health.IsInvincible = this.DebugCmd.GodMode;
+        }
+        
+    }
+    
+    function CommandHelp() {
+        
+        this.DebugCmd.PrintToUIConsole("---- Help ----");
+        this.DebugCmd.PrintToUIConsole("clear - (Alias: cls) - Clears the screen");
+        this.DebugCmd.PrintToUIConsole("color <color> - Changes console color");
+        this.DebugCmd.PrintToUIConsole("debug [true/false] - Enables/Disables debug mode");
+        this.DebugCmd.PrintToUIConsole("echo <string> - Prints to console screen");
+        this.DebugCmd.PrintToUIConsole("give <itemID> [quantity] - Gives player item");
+        this.DebugCmd.PrintToUIConsole("god [true/false] - Makes player invincible");
+        this.DebugCmd.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
+        this.DebugCmd.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (Will crash if sound does not exist)");
+        this.DebugCmd.PrintToUIConsole("spawn <entity> - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)");
+        
+    }
+    
+    function CommandClear() {
+        
+        this.DebugCmd.ConsoleLog = "";
+        this.DebugCmd.PrintToUIConsole("Console cleared.");
+        
+    }
+    
+    function CommandColor() {
+        
+        if(this.CheckForCommand("color", true, "color <color>", "") != 0) {
+            
+            var color = this.DebugCmd.FinalCmd.SubStringFromRuneIndices(6, this.DebugCmd.FinalCmd.Count);
+            var finalColor = Real3(1.0);
+            
+            if(color == "red") {
+                finalColor = Real3(1.0, 0.0, 0.0);
+            } else if(color == "green") {
+                finalColor = Real3(0.0, 1.0, 0.0);
+            } else if(color == "blue") {
+                finalColor = Real3(0.0, 0.0, 1.0);
+            } else if(color == "white" || color == "default") {
+                finalColor = Real3(1.0, 1.0, 1.0);
+            } else {
+                this.DebugCmd.PrintToUIConsole("Error: The color `color` does not exist.");
+                return;
+            }
+            
+            this.Owner.Parent.FindChildByName(this.DebugCmd.ConsoleTextboxName).SpriteText.Color = Real4(finalColor, 1.0);
+            
+            this.DebugCmd.PrintToUIConsole("Changing color to `color`.");
+            
+        }
+        
+    }
+    
+    function CommandEcho() {
+        
+        if(this.CheckForCommand("echo", true, "echo <string>", "") != 0) {
+            this.DebugCmd.PrintToUIConsole("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)`");
+        }
+        
+    }
+    
+    function CommandPlaySound() {
+        
+        if(this.CheckForCommand("playsound", true, "playsound <SoundCue>", "") != 0) {
+            this.DebugCmd.PrintToUIConsole("Playing sound \"`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(10, this.DebugCmd.FinalCmd.Count)`\"");
+            this.DebugCmd.Space.SoundSpace.PlayCue(SoundCue.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(10, this.DebugCmd.FinalCmd.Count)`"));
+        }
+        
+    }
+    
+    function CommandSpawn() {
+        
+        if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0 && this.MainSpace != null) {
+            var mousePos = this.MainSpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+            this.MainSpace.CreateAtPosition(Archetype.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(6, this.DebugCmd.FinalCmd.Count)`"), mousePos);
+        }
+        
+    }
+    
+    function CommandNoclip() {
+        
+        if(this.DebugCmd.FinalCmd.EndsWith("true")) {
+            
+            this.DebugCmd.PrintToUIConsole("Noclip: `true`");
+            
+        } else if(this.DebugCmd.FinalCmd.EndsWith("false")) {
+            
+            this.DebugCmd.PrintToUIConsole("Noclip: `false`");
+            
+        } else if(this.DebugCmd.FinalCmd == "noclip" || this.DebugCmd.FinalCmd == "noclip ") {
+            
+            this.DebugCmd.PrintToUIConsole("Noclip: toggled");
+            
+        } else {
+            this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: noclip [true/false]");
+        }
+        
+    }
+    
+}

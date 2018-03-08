@@ -1,0 +1,204 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "DebugCommand",
+	},
+	Archetyped = 
+	{
+		string Name = "5a3e9c27b1dd386f:DebugCommand",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [-19.5, -9.5, 5],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	SpriteText = 
+	{
+		bool Visible = true,
+		bool VisibilityCulling = true,
+		bool VisibilityEvents = true,
+		bool CastShadows = false,
+		Vec4 Color = [1, 1, 1, 1],
+		BlendMode BlendMode = Alpha,
+		SpriteGeometryMode GeometryMode = ZPlane,
+		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		string FontName = "5ad9e7ff8459f32e:FontDefaultBold",
+		uint FontSize = 128,
+		string Text = ">",
+		TextAlign Align = Left,
+		float PixelsPerUnit = 256,
+		bool Smoothing = false,
+	},
+	ScreenAlignment = 
+	{
+		string PositionX = "Left",
+		string PositionY = "Bottom",
+		Vec2 PositionOffset = [0.25, 0.75],
+		float ZIndex = 25,
+		bool HideUntilPositioned = false,
+	},
+	Hierarchy = 
+	{
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 2,
+			},
+			Named = 
+			{
+				string Name = "Console",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 1, 1],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteText = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [1, 1, 1, 1],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string FontName = "5addaa209e091e3e:FontDefaultMonospace",
+				uint FontSize = 128,
+				string Text = "",
+				TextAlign Align = Left,
+				float PixelsPerUnit = 256,
+				bool Smoothing = true,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 3,
+			},
+			Named = 
+			{
+				string Name = "TextBoxBG",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.25, 0, 0],
+				Vec3 Scale = [21.75, 0.800000012, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Sprite = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [0, 0, 0, 0.75],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string SpriteSource = "5a39bac998d784be:TextSelect",
+				bool RenderMask = false,
+				bool FlipX = false,
+				bool FlipY = false,
+				bool AnimationActive = true,
+				float AnimationSpeed = 1,
+				uint StartFrame = 0,
+			},
+			Reactive = 
+			{
+				bool Active = true,
+				bool CaptureMouse = false,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 4,
+			},
+			Named = 
+			{
+				string Name = "TextBoxSelection",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.460000008, -0.100000001, 1],
+				Vec3 Scale = [0.5, 0.5, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Sprite = 
+			{
+				bool Visible = false,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [0, 0.429999828, 1, 0.5],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string SpriteSource = "5a39bac998d784be:TextSelect",
+				bool RenderMask = false,
+				bool FlipX = false,
+				bool FlipY = false,
+				bool AnimationActive = true,
+				float AnimationSpeed = 1,
+				uint StartFrame = 0,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 5,
+			},
+			Named = 
+			{
+				string Name = "TextEntry",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.5, 0, 2],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteText = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [1, 1, 1, 1],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string FontName = "5addaa209e091e3e:FontDefaultMonospace",
+				uint FontSize = 128,
+				string Text = "",
+				TextAlign Align = Left,
+				float PixelsPerUnit = 256,
+				bool Smoothing = true,
+			},
+			TextEntry = 
+			{
+				bool IsCommandTextBox = true,
+				string ConsoleTextboxName = "Console",
+				string TextBoxBackground = "TextBoxBG",
+				Vec2 TextCharDimensions = [0.280999988, 0.5],
+				int MaxCharsPerLine = 74,
+				int MaxCharLimit = 50000,
+			},
+			Commands = 
+			{
+			},
+		},
+	},
+},

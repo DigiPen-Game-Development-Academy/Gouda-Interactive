@@ -1,0 +1,129 @@
+GeometryContent = 
+{
+	GeneratedArchetype = 
+	{
+		uint64 ResourceId = 54843c829cb4243c,
+	},
+	GeometryImport = 
+	{
+		bool ChangeWinding = false,
+		Vec3 Translation = [0, 0, 0],
+		Quat Rotation = [0, 0, 0, 1],
+		Vec3 Scale = [1, 1, 1],
+	},
+	MeshBuilder = 
+	{
+		Array Meshes = 
+		[
+			{
+				string Name = "ViewCube.RightMiddle",
+				uint64 ResourceId = 54843c829cb1be6c,
+			},
+			{
+				string Name = "ViewCube.FrontRightMiddle",
+				uint64 ResourceId = 54843c829cb1be71,
+			},
+			{
+				string Name = "ViewCube.TopRightMiddle",
+				uint64 ResourceId = 54843c829cb1be75,
+			},
+			{
+				string Name = "ViewCube.BottomRightMiddle",
+				uint64 ResourceId = 54843c829cb1be77,
+			},
+			{
+				string Name = "ViewCube.BackRightMiddle",
+				uint64 ResourceId = 54843c829cb1be79,
+			},
+			{
+				string Name = "ViewCube.TopFrontRightCorner",
+				uint64 ResourceId = 54843c829cb1be7b,
+			},
+			{
+				string Name = "ViewCube.BottomBackRightCorner",
+				uint64 ResourceId = 54843c829cb1be7d,
+			},
+			{
+				string Name = "ViewCube.TopBackRightCorner",
+				uint64 ResourceId = 54843c829cb1be7f,
+			},
+			{
+				string Name = "ViewCube.BottomFrontRightCorner",
+				uint64 ResourceId = 54843c829cb1be81,
+			},
+			{
+				string Name = "ViewCube.LeftMiddle",
+				uint64 ResourceId = 54843c829cb1be83,
+			},
+			{
+				string Name = "ViewCube.FrontLeftMiddle",
+				uint64 ResourceId = 54843c829cb1be85,
+			},
+			{
+				string Name = "ViewCube.TopLeftMiddle",
+				uint64 ResourceId = 54843c829cb1be87,
+			},
+			{
+				string Name = "ViewCube.BottomLeftMiddle",
+				uint64 ResourceId = 54843c829cb1be89,
+			},
+			{
+				string Name = "ViewCube.BackLeftMiddle",
+				uint64 ResourceId = 54843c829cb1be8a,
+			},
+			{
+				string Name = "ViewCube.TopFrontLeftCorner",
+				uint64 ResourceId = 54843c829cb1be8c,
+			},
+			{
+				string Name = "ViewCube.BottomBackLeftCorner",
+				uint64 ResourceId = 54843c829cb1be8e,
+			},
+			{
+				string Name = "ViewCube.TopBackLeftCorner",
+				uint64 ResourceId = 54843c829cb1be90,
+			},
+			{
+				string Name = "ViewCube.BottomFrontLeftCorner",
+				uint64 ResourceId = 54843c829cb1be92,
+			},
+			{
+				string Name = "ViewCube.TopFrontMiddle",
+				uint64 ResourceId = 54843c829cb1be94,
+			},
+			{
+				string Name = "ViewCube.FrontMiddle",
+				uint64 ResourceId = 54843c829cb1be96,
+			},
+			{
+				string Name = "ViewCube.BottomFrontMiddle",
+				uint64 ResourceId = 54843c829cb1be98,
+			},
+			{
+				string Name = "ViewCube.TopBackMiddle",
+				uint64 ResourceId = 54843c829cb1be9a,
+			},
+			{
+				string Name = "ViewCube.BackMiddle",
+				uint64 ResourceId = 54843c829cb1be9c,
+			},
+			{
+				string Name = "ViewCube.BottomBackMiddle",
+				uint64 ResourceId = 54843c829cb1be9e,
+			},
+			{
+				string Name = "ViewCube.BottomMiddle",
+				uint64 ResourceId = 54843c829cb1be9f,
+			},
+			{
+				string Name = "ViewCube.TopMiddle",
+				uint64 ResourceId = 54843c829cb1bea1,
+			},
+		],
+		MeshMode MeshMode = Multi,
+		ResourceCompression CompressMesh = None,
+		Generation Normals = Import,
+		Generation Tangents = Import,
+		float SmoothingAngle = 60,
+	},
+},

@@ -1,0 +1,40 @@
+class LoadDataIntoLevel : ZilchComponent
+{
+    [Static] var Space : Space;
+    
+    // Player data:
+    [Static] var PlayerName : String;
+    [Static] var PlayerPosition : String;
+    [Static] var PlayerHealth : Real;
+    [Static] var PlayerSkin : Integer;
+    [Static] var PlayerBalance : Real;
+    [Static] var PlayerInv : String;
+    [Static] var PlayerInvCount : String;
+    
+    // TO DO: World data:
+    [Static] var CurrentWorld : String;
+    
+    // Settings data:
+    [Static] var MenuAnimations : Boolean;
+    [Static] var Vignette : Boolean;
+    [Static] var PlayerTooltips : Boolean;
+    [Static] var EnemyTooltips : Boolean;
+    [Static] var MasterVolume : Real;
+    [Static] var MusicVolume : Real;
+    [Static] var SFXVolume : Real;
+    
+    [Static] function LoadData()
+    {
+        LoadDataIntoLevel.Space.LevelSettings.UICreator.UISpace.Destroy();
+        
+        LoadDataIntoLevel.Space.LoadLevel(Level.Find(LoadDataIntoLevel.CurrentWorld));
+        
+        LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.SpawnPosition = ToFromStrings.StringToReal3(LoadDataIntoLevel.PlayerPosition);
+        LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.PlayerName = LoadDataIntoLevel.PlayerName;
+        LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.SetUsername(LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.PlayerName);
+        Console.WriteLine("Player Name: `LoadDataIntoLevel.PlayerName`, \nPlayerName Variable: `LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.PlayerName`");
+        
+        
+        Console.WriteLine("Loaded Level: `LoadDataIntoLevel.CurrentWorld`");
+    }
+}

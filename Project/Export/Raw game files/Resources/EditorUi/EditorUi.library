@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "EditorUi",
+	uint64 LibraryId = 4e14429cee6745e7,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

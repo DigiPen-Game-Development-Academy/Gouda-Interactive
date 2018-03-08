@@ -1,0 +1,53 @@
+GeometryContent = 
+{
+	GeometryImport = 
+	{
+		bool ChangeWinding = false,
+		float[] Translation = [0, 0, 0],
+		float[] Rotation = [0, 0, 0, 1],
+		float[] Scale = [1, 1, 1],
+	},
+	PhysicsMeshBuilder = 
+	{
+		Array Meshes = 
+		[
+			{
+				string Name = "Cube",
+				uint64 ResourceId = 4ee13192dc049505,
+			},
+		],
+		bool MakeConvex = true,
+		bool OnlyUseMarkedCollision = false,
+		PhysicsMeshType MeshBuilt = GenericMesh,
+	},
+	NavMeshBuilder = 
+	{
+		Array Meshes = 
+		[
+			{
+				string Name = "Cube",
+				uint64 ResourceId = 51472a3dd2bd048c,
+			},
+		],
+		bool OnlyUseMarkedNavMeshes = false,
+		float NormalTolerance = 0.8,
+	},
+	MeshBuilder = 
+	{
+		Array Meshes = 
+		[
+			{
+				string Name = "Cube",
+				uint64 ResourceId = 4de0354322b345ae,
+			},
+		],
+		MeshMode MeshMode = Single,
+		ResourceCompression CompressMesh = None,
+		bool VertexWeights = false,
+		bool VertexColors = false,
+		bool GenerateSurfaceUvs = false,
+		Generation Normals = Import,
+		Generation Tangents = Import,
+		float SmoothingAngle = 60,
+	},
+},

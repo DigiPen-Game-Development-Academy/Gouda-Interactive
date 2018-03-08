@@ -1,0 +1,10 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "DefaultPhysicsMaterial",
+		uint64 ResourceId = 4de020863e872da8,
+		string LoaderType = "PhysicsMaterial",
+		uint Version = 0,
+	},
+},

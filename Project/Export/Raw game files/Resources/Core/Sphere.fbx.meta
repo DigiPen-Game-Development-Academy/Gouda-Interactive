@@ -1,0 +1,24 @@
+GeometryContent =
+{
+	GeometryImport =
+	{
+		bool ChangeWinding = false,
+		float[] Translation = [0, 0, 0],
+		float[] Rotation = [0, 0, 0, 1],
+		float[] Scale = [1, 1, 1],
+	},
+	MeshBuilder =
+	{
+		string Name = "Sphere",
+		uint64 ResourceId = 4de0354322b376ae,
+		string NodeName = "",
+		bool CombineMeshes = true,
+		ResourceCompression CompressMesh = None,
+		bool VertexWeights = false,
+		bool VertexColors = false,
+		bool GenerateSurfaceUvs = false,
+		Generation Normals = Import,
+		Generation Tangents = Import,
+		float SmoothingAngle = 60,
+	},
+},

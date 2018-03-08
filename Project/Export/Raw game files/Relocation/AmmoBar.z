@@ -1,0 +1,100 @@
+// HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class AmmoBar : ZilchComponent {
+    
+    [Property] var CooldownBar : Boolean = false;
+    
+    var MaxScaleAmmo : Real = 5.0;
+    var CurrAmmo : Real = 5.0;
+    
+    var MaxScaleCooldown : Real = 5.0;
+    var CurrCooldown : Real = 5.0;
+    
+    var CurrentAmmo : Real = -1.0;
+    var MaxAmmo : Real = -1.0;
+    
+    var CurrentCooldown : Real = 0.0;
+    var MaxCooldown : Real = 0.0;
+    
+    var CurrCooldownStr : String = "N/A!";
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+        Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnMouseUpdate(event : ViewportMouseEvent) {
+        
+        this.Space.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
+        if(this.MaxAmmo != -1) {
+            this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                "Ammo: `this.CurrentAmmo` / `this.MaxAmmo`",
+                "Cooldown: `this.CurrCooldownStr.SubStringFromRuneIndices(0, 4)` / `this.MaxCooldown`",
+                Real4(1.0, 0.75, 0.0, 1.0),
+                Real4(0.0, 0.0, 1.0, 1.0)
+            );
+        } else if(this.CurrCooldownStr != "`0`00 ") {
+            this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                "Ammo: N/A",
+                "Cooldown: `this.CurrCooldownStr.SubStringFromRuneIndices(0, 4)` / `this.MaxCooldown`",
+                Real4(1.0, 0.75, 0.0, 1.0),
+                Real4(0.0, 0.0, 1.0, 1.0)
+            );
+        } else {
+            this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                "Ammo: N/A",
+                "Cooldown: N/A",
+                Real4(1.0, 0.75, 0.0, 1.0),
+                Real4(0.0, 0.0, 1.0, 1.0)
+            );
+        }
+        
+    }
+    
+    function OnMouseExit(event : ViewportMouseEvent) {
+        this.Space.FindObjectByName("Tooltip").Tooltip.ShowTooltip(false);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        if(Relocation.Space != null && !this.CooldownBar) {
+            if(
+                Relocation.Space.FindObjectByName(Relocation.EntityPlayer) != null &&
+                Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager != null
+            ) {
+                
+                this.CurrentAmmo = Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrentAmmo;
+                this.MaxAmmo = Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.MaxAmmo;
+                
+                this.CurrentCooldown = Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrCooldown;
+                this.MaxCooldown = Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.Cooldown;
+                
+                this.CurrCooldownStr = "`this.MaxCooldown as Real - this.CurrentCooldown as Real`00 ";
+                
+                var ammo : Real = 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrentAmmo as Real / 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.MaxAmmo;
+                
+                var cooldown : Real = 0.0;
+                
+                if(this.MaxCooldown != 0.0) {
+                cooldown = 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.CurrCooldown as Real / 
+                    Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager.ActiveWeapon.Cooldown;
+                }
+                
+                var cooldownBar : Real = this.MaxScaleCooldown - (cooldown * this.MaxScaleCooldown);
+                
+                if(cooldownBar > this.MaxScaleCooldown) {
+                    cooldownBar = this.MaxScaleCooldown;
+                }
+                
+                this.Owner.Transform.Scale = Math.Lerp(Real3(this.Owner.Transform.Scale.X, 0.25, 1), Real3(ammo * this.MaxScaleAmmo, 0.25, 1), event.Dt * 10);
+                this.Owner.Parent.FindChildByName("CooldownBar").Transform.Scale = Real3(cooldownBar, 0.25, 1.25);
+                
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,11 @@
+BinaryContent =
+{
+	BinaryBuilder =
+	{
+		string Name = "SlopeLeft",
+		uint64 ResourceId = 5198bea43a47cbd7,
+		string LoaderType = "PhysicsMesh",
+		uint Version = 0,
+		string FilterTag = "TileMesh",
+	},
+},

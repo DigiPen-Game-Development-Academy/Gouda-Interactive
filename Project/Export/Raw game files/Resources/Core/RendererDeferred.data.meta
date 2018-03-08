@@ -1,0 +1,11 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "RendererDeferred",
+		uint64 ResourceId = 4de020863e844d0a,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = false,
+	},
+},

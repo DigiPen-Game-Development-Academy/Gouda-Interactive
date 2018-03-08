@@ -1,0 +1,11 @@
+BinaryContent =
+{
+	BinaryBuilder =
+	{
+		string Name = "HalfBoxRight",
+		uint64 ResourceId = 5198b0e40d5ebaeb,
+		string LoaderType = "PhysicsMesh",
+		uint Version = 0,
+		string FilterTag = "TileMesh",
+	},
+},

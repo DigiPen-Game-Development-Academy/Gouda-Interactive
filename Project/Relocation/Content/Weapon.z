@@ -132,7 +132,7 @@ class Weapon {
             bullet.EntityBullet.Damage = 0.0;
             bullet.EntityBullet.BlockDamageAmount = 5.0;
             bullet.EntityBullet.DrillBullet = true;
-            bullet.EntityBullet.Lifetime = 0.05;
+            bullet.EntityBullet.Lifetime = 0.1;
             
         } else {
             

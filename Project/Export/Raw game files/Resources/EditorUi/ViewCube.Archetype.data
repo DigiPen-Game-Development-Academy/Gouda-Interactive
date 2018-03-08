@@ -1,0 +1,986 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "ViewCube",
+	},
+	Archetyped = 
+	{
+		string Name = "54843c829cb4243c:ViewCube",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [0, 0, 0],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Hierarchy = 
+	{
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 2,
+			},
+			Named = 
+			{
+				string Name = "RightMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.4, 0, 0],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be6c:ViewCube.RightMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 30, 30],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 3,
+			},
+			Named = 
+			{
+				string Name = "FrontRightMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.4, 0, 0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be71:ViewCube.FrontRightMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 30, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 4,
+			},
+			Named = 
+			{
+				string Name = "TopRightMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.4, 0.4, 0],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be75:ViewCube.TopRightMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 30],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 5,
+			},
+			Named = 
+			{
+				string Name = "BottomRightMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.4, -0.4, 0],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be77:ViewCube.BottomRightMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 30],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 6,
+			},
+			Named = 
+			{
+				string Name = "BackRightMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.4, 0, -0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be79:ViewCube.BackRightMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 30, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 7,
+			},
+			Named = 
+			{
+				string Name = "TopFrontRightCorner",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.4, 0.4, 0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be7b:ViewCube.TopFrontRightCorner",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 8,
+			},
+			Named = 
+			{
+				string Name = "BottomBackRightCorner",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.4, -0.4, -0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be7d:ViewCube.BottomBackRightCorner",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 9,
+			},
+			Named = 
+			{
+				string Name = "TopBackRightCorner",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.4, 0.4, -0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be7f:ViewCube.TopBackRightCorner",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 10,
+			},
+			Named = 
+			{
+				string Name = "BottomFrontRightCorner",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.4, -0.4, 0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be81:ViewCube.BottomFrontRightCorner",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 11,
+			},
+			Named = 
+			{
+				string Name = "LeftMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.4, 0, 0],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be83:ViewCube.LeftMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 30, 30],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 12,
+			},
+			Named = 
+			{
+				string Name = "FrontLeftMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.4, 0, 0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be85:ViewCube.FrontLeftMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 30, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 13,
+			},
+			Named = 
+			{
+				string Name = "TopLeftMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.4, 0.4, 0],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be87:ViewCube.TopLeftMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 30],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 14,
+			},
+			Named = 
+			{
+				string Name = "BottomLeftMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.4, -0.4, 0],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be89:ViewCube.BottomLeftMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 30],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 15,
+			},
+			Named = 
+			{
+				string Name = "BackLeftMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.4, 0, -0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be8a:ViewCube.BackLeftMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 30, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 16,
+			},
+			Named = 
+			{
+				string Name = "TopFrontLeftCorner",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.4, 0.4, 0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be8c:ViewCube.TopFrontLeftCorner",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 17,
+			},
+			Named = 
+			{
+				string Name = "BottomBackLeftCorner",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.4, -0.4, -0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be8e:ViewCube.BottomBackLeftCorner",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 18,
+			},
+			Named = 
+			{
+				string Name = "TopBackLeftCorner",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.4, 0.4, -0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be90:ViewCube.TopBackLeftCorner",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 19,
+			},
+			Named = 
+			{
+				string Name = "BottomFrontLeftCorner",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-0.4, -0.4, 0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be92:ViewCube.BottomFrontLeftCorner",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [10, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 20,
+			},
+			Named = 
+			{
+				string Name = "TopFrontMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0.4, 0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be94:ViewCube.TopFrontMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [30, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 21,
+			},
+			Named = 
+			{
+				string Name = "FrontMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be96:ViewCube.FrontMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [30, 30, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 22,
+			},
+			Named = 
+			{
+				string Name = "BottomFrontMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, -0.4, 0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be98:ViewCube.BottomFrontMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [30, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 23,
+			},
+			Named = 
+			{
+				string Name = "TopBackMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0.4, -0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be9a:ViewCube.TopBackMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [30, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 24,
+			},
+			Named = 
+			{
+				string Name = "BackMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, -0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be9c:ViewCube.BackMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [30, 30, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 25,
+			},
+			Named = 
+			{
+				string Name = "BottomBackMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, -0.4, -0.4],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be9e:ViewCube.BottomBackMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [30, 10, 10],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 26,
+			},
+			Named = 
+			{
+				string Name = "BottomMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, -0.4, 0],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1be9f:ViewCube.BottomMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [30, 10, 30],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 27,
+			},
+			Named = 
+			{
+				string Name = "TopMiddle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0.4, 0],
+				Vec3 Scale = [0.01, 0.01, 0.01],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Model = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = true,
+				string MaterialName = "5485d230831177ea:ViewCubeMat",
+				string MeshName = "54843c829cb1bea1:ViewCube.TopMiddle",
+				Vec4 Color = [0.785, 0.785, 0.785, 1],
+			},
+			BoxCollider = 
+			{
+				bool Ghost = false,
+				bool SendsMessages = true,
+				bool Seamless = true,
+				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+				Vec3 Offset = [0, 0, 0],
+				Vec3 Size = [30, 10, 30],
+			},
+		},
+	},
+},

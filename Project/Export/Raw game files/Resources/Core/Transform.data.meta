@@ -1,0 +1,10 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "Transform",
+		uint64 ResourceId = 4de020863e84941e,
+		string LoaderType = "Cog",
+		uint Version = 0,
+	},
+},

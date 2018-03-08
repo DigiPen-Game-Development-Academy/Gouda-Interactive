@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "Core.HotKeys",
+		uint64 ResourceId = 564b3640b4d46c4b,
+		string LoaderType = "HotKeyDataSet",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

@@ -1,0 +1,8 @@
+FontContent = 
+{
+	FontBuilder = 
+	{
+		string Name = "NotoSans-Regular",
+		uint64 ResourceId = 57343753bb4eaaec,
+	},
+},

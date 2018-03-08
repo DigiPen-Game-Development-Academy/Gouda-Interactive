@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "InstanceVertex",
+		uint64 ResourceId = 50a8cca9f2c58d53,
+	},
+},

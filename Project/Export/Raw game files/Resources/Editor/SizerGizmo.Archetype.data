@@ -1,0 +1,40 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "SizerGizmo",
+	},
+	Archetyped = 
+	{
+		string Name = "55a9e08b55761938:SizerGizmo",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [19.6497, 0.487844, 3.34638],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Gizmo = 
+	{
+		bool Active = true,
+		bool ForwardEventsToChildren = true,
+	},
+	SizerGizmo = 
+	{
+		string AnchorGizmoName = "55af6ebaf92d5228:SizerGizmoAnchor",
+		SizerSnapMode SnapMode = None,
+		float SnapDistance = 1,
+		Vec3 ActiveExtents = [0.5, 0.5, 0.5],
+		Vec4 BoxColor = [0, 0.43, 1, 0.195],
+		Vec4 AnchorColor = [0, 0.64, 1, 0.55],
+		Vec4 AnchorHoverColor = [0.000100017, 0.969906, 0.9999, 0.4],
+		Vec4 ArrowColor = [0.191, 0.906874, 0.955, 0.31],
+	},
+	Hierarchy = 
+	{
+	},
+},

@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "PostStabilization",
+		uint64 ResourceId = 5391c496ad3459b8,
+		string LoaderType = "PhysicsSolverConfig",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

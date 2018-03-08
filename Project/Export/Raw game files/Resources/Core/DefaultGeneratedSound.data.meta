@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "DefaultGeneratedSound",
+		uint64 ResourceId = 55017c595ef88bf0,
+		string LoaderType = "GeneratedSound",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

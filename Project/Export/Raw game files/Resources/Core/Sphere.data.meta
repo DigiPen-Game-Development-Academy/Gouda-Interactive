@@ -1,0 +1,10 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "Sphere",
+		uint64 ResourceId = 4de020863e8476d9,
+		string LoaderType = "Cog",
+		uint Version = 0,
+	},
+},

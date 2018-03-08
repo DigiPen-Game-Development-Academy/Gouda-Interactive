@@ -1,0 +1,11 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "PathControlPoint",
+		uint64 ResourceId = 4eca51d5ebd185f4,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

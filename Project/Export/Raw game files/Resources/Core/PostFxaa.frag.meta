@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "PostFxaa",
+		uint64 ResourceId = 54e281d8c0035ce0,
+	},
+},

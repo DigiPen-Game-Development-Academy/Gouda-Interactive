@@ -1,0 +1,8 @@
+TextContent =
+{
+	FragmentBuilder =
+	{
+		string Name = "SkinVertex",
+		uint64 ResourceId = 4e0264b641d7281b,
+	},
+},

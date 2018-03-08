@@ -1,0 +1,11 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "SpriteText",
+		uint64 ResourceId = 1f33806740421259,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "Refraction",
+		uint64 ResourceId = 5404e4c257cd2315,
+	},
+},

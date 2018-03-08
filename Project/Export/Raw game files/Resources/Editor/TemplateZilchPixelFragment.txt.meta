@@ -1,0 +1,8 @@
+TextContent = 
+{
+	TextBuilder = 
+	{
+		string Name = "TemplateZilchPixelFragment",
+		uint64 ResourceId = 542333d166c2d28e,
+	},
+},

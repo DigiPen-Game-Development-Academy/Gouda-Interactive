@@ -1,0 +1,8 @@
+TextContent =
+{
+	FragmentBuilder =
+	{
+		string Name = "Deferred",
+		uint64 ResourceId = 4e0264b641d69ed4,
+	},
+},

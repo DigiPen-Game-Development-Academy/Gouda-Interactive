@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "PostScreenDrops",
+		uint64 ResourceId = 53ce95da5afbbbc2,
+	},
+},

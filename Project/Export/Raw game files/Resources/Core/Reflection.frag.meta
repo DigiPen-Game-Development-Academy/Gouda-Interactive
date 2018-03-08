@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "Reflection",
+		uint64 ResourceId = 54e051aeb49b8131,
+	},
+},

@@ -1,0 +1,63 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class DayCycle : ZilchComponent {
+    
+    [Property] var RenderDayNightCycle : Boolean = true;
+    
+    var LightMultiplier : Real = 1.0;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        Relocation.Time += event.Dt;
+        
+        if(Relocation.UISpace != null) {
+            var hours = Math.Floor(Relocation.Time / 2.0);
+            var minutes = Relocation.Time / 2.0 - hours;
+            var minutesString = "`Math.Floor(minutes * 60)`0";
+            
+            if(minutes >= 0.1) {
+                Relocation.UISpace.FindObjectByName("Time").SpriteText.Text = 
+                    "Time: `Math.Floor(Relocation.Time / 2.0)` `minutesString.SubStringFromRuneIndices(0, 2)`";
+            } else {
+                Relocation.UISpace.FindObjectByName("Time").SpriteText.Text = 
+                    "Time: `Math.Floor(Relocation.Time / 2.0)` 0`minutesString.SubStringFromRuneIndices(0, 1)`";
+            }
+            
+        }
+        
+        if(Relocation.Time > Relocation.DayLength) {
+            Relocation.Time = 0.0;
+        }
+        
+        // RENDER DAY/NIGHT CYCLE
+        if(this.Owner.AmbientLight != null) {
+            if(Relocation.Time < Relocation.DayLength * 0.25 || Relocation.Time > Relocation.DayLength * 0.75) {
+                
+                if(Relocation.Time > Relocation.DayLength * 0.125 && Relocation.Time < Relocation.DayLength * 0.75) {
+                    Relocation.LightAmount += event.Dt * 0.175 * this.LightMultiplier;
+                    if(this.RenderDayNightCycle)
+                        this.Owner.AmbientLight.Color = Real4(Real3(Relocation.LightAmount), 1.0);
+                } else if(Relocation.Time > Relocation.DayLength * 0.625 && Relocation.LightAmount >= 0.25) {
+                    Relocation.LightAmount -= event.Dt * 0.175 * this.LightMultiplier;
+                    if(this.RenderDayNightCycle)
+                        this.Owner.AmbientLight.Color = Real4(Real3(Relocation.LightAmount), 1.0);
+                } else if(Relocation.Time < Relocation.DayLength * 0.25 || Relocation.Time > Relocation.DayLength * 0.75) {
+                    Relocation.LightAmount = 0.25;
+                    if(this.RenderDayNightCycle)
+                        this.Owner.AmbientLight.Color = Real4(Real3(0.25), 1.0);
+                }
+                
+            } else {
+                if(this.RenderDayNightCycle)
+                    this.Owner.AmbientLight.Color = Real4(1.0, 1.0, 1.0, 1.0);
+            }
+        }
+        
+    }
+    
+}

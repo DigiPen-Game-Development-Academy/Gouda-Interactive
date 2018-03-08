@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "PostRingWarp",
+		uint64 ResourceId = 53c86a68f1a03cc1,
+	},
+},

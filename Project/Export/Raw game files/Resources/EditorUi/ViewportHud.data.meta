@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "ViewportHud",
+		uint64 ResourceId = 5442fd87a8a8afbc,
+		string LoaderType = "DefinitionSet",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

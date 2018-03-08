@@ -1,0 +1,8 @@
+TextContent = 
+{
+	TextBuilder = 
+	{
+		string Name = "PostProcessShared",
+		uint64 ResourceId = 513714da8004d28d,
+	},
+},

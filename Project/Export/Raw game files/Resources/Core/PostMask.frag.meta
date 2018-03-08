@@ -1,0 +1,8 @@
+TextContent = 
+{
+	FragmentBuilder = 
+	{
+		string Name = "PostMask",
+		uint64 ResourceId = 542bb72fb7636ec1,
+	},
+},

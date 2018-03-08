@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "DefaultPath",
+		uint64 ResourceId = 4efd704b9dc7c42d,
+		string LoaderType = "Path",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "Default",
+		uint64 ResourceId = 4fd669fea36c0021,
+		string LoaderType = "GeometryMaterial",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

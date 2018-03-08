@@ -1,0 +1,8 @@
+TextContent = 
+{
+	TextBuilder = 
+	{
+		string Name = "StateMachineEdgeTemplate",
+		uint64 ResourceId = 518bc387e2a584a6,
+	},
+},

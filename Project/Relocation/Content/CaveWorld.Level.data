@@ -139,7 +139,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 13.5335197,
+			float Size = 6.72055531,
 		},
 		EditorCameraController = 
 		{
@@ -535,6 +535,7 @@ Level =
 		CaveEnteranceExit = 
 		{
 			string LevelToLoad = "5a3bc4c73a7e1106:SurfaceWorld",
+			Vec3 SpawnPosition = [-48, 6, 0],
 		},
 	},
 },

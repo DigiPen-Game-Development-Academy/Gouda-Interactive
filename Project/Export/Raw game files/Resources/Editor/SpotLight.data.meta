@@ -1,0 +1,10 @@
+DataContent =
+{
+	DataBuilder =
+	{
+		string Name = "SpotLight",
+		uint64 ResourceId = 4d9dd7c816105b75,
+		string LoaderType = "Cog",
+		uint Version = 0,
+	},
+},

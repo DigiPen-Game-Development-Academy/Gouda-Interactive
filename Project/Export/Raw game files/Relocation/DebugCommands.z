@@ -1,0 +1,400 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class TextEntry : ZilchComponent {
+    
+    [Property] var IsCommandTextBox : Boolean = false;
+    [Property] var ConsoleTextboxName : String = "Console";
+    [Property] var TextBoxBackground : String = "TextBoxBG";
+    [Property] var TextCharDimensions : Real2 = Real2(0.26, 0.5);
+    [Property] var MaxCharsPerLine : Integer = 75;
+    [Property] var MaxCharLimit : Integer = 50000;
+    
+    var DebugEnabled : Boolean = false;
+    var GodMode : Boolean = false;
+    
+    var CaptureKeys : Boolean = false;
+    var CycleThroughCommands : Boolean = false;
+    var CycleThroughCmdsAll : Boolean = false;
+    var IsTextSelected : Boolean = false;
+    var WasClicked : Boolean = false;
+    
+    var CommandString : String = "";
+    var FinalCmd : String = "";
+    var ConsoleLog : String = "";
+    var TempCommandStr : String = "";
+    
+    var CommandHistory : Array[String];
+    var Commands : Array[String];
+    
+    var CmdHistoryIndex : Integer = 0;
+    var AutocompleteIndex : Integer = 0;
+    
+    var Occurances : Integer = 1;
+    
+    function Initialize(init : CogInitializer) {
+        
+        this.CommandHistory = new Array[String]();
+        
+        if(this.Owner.Commands != null)
+            this.Owner.Commands.CreateCommands();
+        
+        Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+        Zero.Connect(Zero.Keyboard, Events.TextTyped, this.OnTextTyped);
+        
+    }
+    
+    function OnGameRequestQuit(event : GameEvent) {
+        event.Handled = true;
+    }
+
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(this.CaptureKeys) {
+            
+            if(Zero.Keyboard.KeyIsReleased(Keys.Escape)) {
+                
+                this.CommandString = "";
+                this.TempCommandStr = "";
+                
+                this.CaptureKeys = false;
+                this.IsTextSelected = false;
+                this.CycleThroughCommands = false;
+                this.CycleThroughCmdsAll = false;
+                this.WasClicked = false;
+                
+                this.CmdHistoryIndex = this.CommandHistory.Count;
+                this.AutocompleteIndex = 0;
+                
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Enter)) {
+                
+                this.FinalCmd = this.CommandString;
+                
+                this.IsTextSelected = false;
+                this.CycleThroughCommands = false;
+                this.CycleThroughCmdsAll = false;
+                this.WasClicked = false;
+                
+                if(this.CommandString != "") {
+                    
+                    this.CmdHistoryIndex = this.CommandHistory.Count + 1;
+                    this.CommandHistory.Push(this.CommandString);
+                    
+                    if(!this.IsCommandTextBox) {
+                        this.CaptureKeys = false;
+                        this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Text = this.FinalCmd;
+                    }
+                    
+                }
+                
+                this.CommandString = "";
+                this.TempCommandStr = "";
+                
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Up) && this.IsCommandTextBox) {
+                
+                this.IsTextSelected = false;
+                
+                if(this.CommandHistory.Count > 0 && this.CmdHistoryIndex > 0) {
+                    
+                    --this.CmdHistoryIndex;
+                    
+                    this.CommandString = this.CommandHistory.Get(this.CmdHistoryIndex);
+                    this.TempCommandStr = this.CommandString;
+                    
+                }
+                
+            } else if(Zero.Keyboard.KeyIsPressed(Keys.Down) && this.IsCommandTextBox) {
+                
+                this.IsTextSelected = false;
+                
+                if(this.CommandHistory.Count > 0 && this.CmdHistoryIndex < this.CommandHistory.Count - 1) {
+                    
+                    ++this.CmdHistoryIndex;
+                    
+                    this.CommandString = this.CommandHistory.Get(this.CmdHistoryIndex);
+                    this.TempCommandStr = this.CommandString;
+                    
+                } else if(this.CmdHistoryIndex < this.CommandHistory.Count) {
+                    
+                    ++this.CmdHistoryIndex;
+                    
+                    this.CommandString = "";
+                    this.TempCommandStr = "";
+                    
+                }
+                
+            } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.A)) {
+                
+                this.IsTextSelected = true;
+                
+                var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
+                
+                txtSelect.Sprite.Visible = true;
+                txtSelect.Transform.Scale = Real3((this.Owner.SpriteText.Text.Count - 1) * this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
+                
+            } else if(Zero.Keyboard.KeyIsDown(Keys.Right) || Zero.Keyboard.KeyIsDown(Keys.Left)) {
+                this.IsTextSelected = false;
+            }
+            
+            if(!this.IsTextSelected) {
+                var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
+                
+                txtSelect.Sprite.Visible = false;
+                txtSelect.Transform.Scale = Real3(this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
+            }
+            
+            if(this.CommandString.Count <= this.MaxCharsPerLine) {
+                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|");
+            } else {
+                this.Owner.SpriteText.Text = 
+                    String.Concatenate(this.CommandString, "|").SubStringFromRuneIndices(
+                        this.CommandString.Count - (this.MaxCharsPerLine), this.CommandString.Count + 1
+                    );
+            }
+            
+        } else if(this.Owner.SpriteText.Text.Count > 0) {
+            this.Owner.SpriteText.Text = "";
+        }
+        
+        if(this.CaptureKeys) {
+            this.Owner.Parent.FindChildByName(this.TextBoxBackground).Sprite.Visible = true;
+            if(this.Owner.Parent.SpriteText != null)
+                this.Owner.Parent.SpriteText.Visible = true;
+            if(this.IsCommandTextBox)
+                this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = true;
+        } else {
+            this.Owner.Parent.FindChildByName(this.TextBoxBackground).Sprite.Visible = false;
+            if(this.Owner.Parent.SpriteText != null)
+                this.Owner.Parent.SpriteText.Visible = false;
+            if(this.IsCommandTextBox)
+                this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = false;
+            this.IsTextSelected = false;
+        }
+        
+        if(((Zero.Keyboard.KeyIsPressed(Keys.Tilde) && this.IsCommandTextBox) || (this.WasClicked && !this.IsCommandTextBox)) && !this.CaptureKeys) {
+            this.CaptureKeys = true;
+            this.WasClicked = false;
+        }
+        
+        // COMMANDS
+        if(this.FinalCmd.Count > 0 && this.IsCommandTextBox) {
+            this.Owner.Commands.CommandFunctions();
+        }
+        
+    }
+    
+    function OnMouseUpdate(event : ViewportMouseEvent) {
+        if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left)) {
+            this.WasClicked = true;
+        }
+    }
+    
+    function OnTextTyped(event : KeyboardTextEvent) {
+        
+        if(this.CaptureKeys) {
+            
+            // CHECK IF TEXT IS RENDERABLE (IS A LETTER/NUMBER/SYMBOL)
+            if(this.IsRenderable(event.Character) && this.CommandString.Count < this.MaxCharLimit) {
+                if(!this.IsTextSelected) {
+                    this.CycleThroughCommands = false;
+                    this.CycleThroughCmdsAll = false;
+                    var strBuilder = new StringBuilder();
+                    strBuilder.Write(this.CommandString);
+                    strBuilder.Write(String.FromChar(event.Character));
+                    this.CommandString = strBuilder.ToString();
+                    this.TempCommandStr = this.CommandString;
+                } else {
+                    this.CycleThroughCommands = false;
+                    this.CycleThroughCmdsAll = false;
+                    this.IsTextSelected = false;
+                    this.CommandString = String.FromChar(event.Character);
+                    this.TempCommandStr = this.CommandString;
+                }
+            }
+            
+            // CHECK FOR BACKSPACE
+            if(event.Character == 8 && this.CommandString.Count > 0) {
+                if(!this.IsTextSelected) {
+                    this.CycleThroughCommands = false;
+                    this.CycleThroughCmdsAll = false;
+                    this.CommandString = this.CommandString.SubStringFromRuneIndices(0, this.CommandString.Count - 1);
+                    this.TempCommandStr = this.CommandString;
+                } else {
+                    this.CycleThroughCommands = false;
+                    this.CycleThroughCmdsAll = false;
+                    this.IsTextSelected = false;
+                    this.CommandString = "";
+                    this.TempCommandStr = "";
+                }
+            }
+            
+            // CHECK FOR TAB
+            if(event.Character == 9 && this.IsCommandTextBox) {
+                
+                this.IsTextSelected = false;
+                
+                if(this.CommandString == "" || this.CycleThroughCmdsAll) {
+                    
+                    this.CycleThroughCmdsAll = true;
+                    
+                    if(this.AutocompleteIndex >= this.Commands.Count) {
+                        this.AutocompleteIndex = 0;
+                    }
+                    
+                    this.CommandString = this.Commands.Get(this.AutocompleteIndex);
+                    
+                } else {
+                    
+                    var cmdStr = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
+                    
+                    if(this.Occurances != 0) {
+                        this.CommandString = cmdStr;
+                    }
+                    
+                    this.CycleThroughCommands = true;
+                    this.CycleThroughCmdsAll = false;
+                    
+                    this.Occurances = 1;
+                    
+                }
+                
+                if(this.AutocompleteIndex < this.Commands.Count) {
+                    ++this.AutocompleteIndex;
+                } else {
+                    this.AutocompleteIndex = 0;
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    function PrintToUIConsole(text : String) {
+        
+        var maxLength = this.MaxCharsPerLine;
+        var tmpTxt = "";
+        
+        if(text.Count > maxLength) {
+            for(var i = (Math.Floor(text.Count / maxLength) * maxLength) as Integer; i > 5; i -= maxLength) {
+                
+                var breakIndex = i;
+                
+                for(var j = i; j > i - maxLength / 4; --j) {
+                    
+                    if(String.FromChar(text.Get(j)) == " ") {
+                        breakIndex = j + 1;
+                        break;
+                    }
+                    
+                    if(j + 1 == i - maxLength / 4) {
+                        breakIndex = i - 8;
+                        break;
+                    }
+                    
+                }
+                
+                var tmpFrnt = text.SubStringFromRuneIndices(0, breakIndex);
+                tmpTxt = text.SubStringFromRuneIndices(breakIndex, text.Count);
+                tmpFrnt = String.Concatenate(tmpFrnt, "\n");
+                text = String.Concatenate(tmpFrnt, tmpTxt);
+                
+            }
+        }
+        
+        text = String.Concatenate("\n", text);
+        this.ConsoleLog = String.Concatenate(this.ConsoleLog, text);
+        
+        var console = this.Space.FindObjectByName(this.ConsoleTextboxName);
+        
+        console.SpriteText.Text = this.ConsoleLog;
+        console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y + 1.75, console.Transform.Translation.Z);
+        
+    }
+    
+    function SearchArray(array : Array[String], str : String, curIndex : Integer) : Integer {
+        
+        Console.WriteLine("array: `array`");
+        
+        var occurances = 0;
+        var startIndex = 0;
+        
+        // FIND NUMBER OF OCCURANCES
+        for(var i = 0; i < array.Count; ++i) {
+            
+            if(array.Get(i).StartsWith(str) && occurances == 0) {
+                startIndex = i;
+            }
+            
+            if(array.Get(i).StartsWith(str)) {
+                ++occurances;
+            }
+            
+        }
+        
+        Console.WriteLine("occurances: `occurances`");
+        
+        if(this.AutocompleteIndex < startIndex) {
+            this.AutocompleteIndex = startIndex;
+            return startIndex;
+        }
+        
+        this.Occurances = occurances;
+        
+        var tmpOccur = 0;
+        var tmpIndex = 0;
+        
+        for(var i = 0; i < occurances; ++i) {
+            
+            tmpIndex = startIndex + tmpOccur;
+            
+            if(array.Get(tmpIndex).StartsWith(str) && curIndex <= tmpIndex && tmpOccur < occurances && tmpIndex < array.Count) {
+                return tmpIndex;
+            } else {
+                ++tmpOccur;
+            }
+            
+        }
+        
+        Console.WriteLine("tmpOccur: `tmpOccur`, startIndex: `startIndex`");
+        
+        if(tmpOccur >= occurances || tmpOccur == 0) {
+            this.AutocompleteIndex = startIndex;
+            return startIndex;
+        }
+        
+        return -1;
+        
+    }
+    
+    function GetArgument(argNum : Integer, command : String) : String {
+        
+        var currArg = 0;
+        var tmpArg = "";
+        
+        for(var i = 0; i < command.Count; ++i) {
+            
+            if(String.FromChar(command.Get(i)) == " ") {
+                ++currArg;
+                continue;
+            }
+            
+            if(currArg == argNum) {
+                tmpArg = String.Concatenate(tmpArg, String.FromChar(command.Get(i)));
+            } else if(currArg > argNum) {
+                break;
+            }
+            
+        }
+        
+        return tmpArg;
+        
+    }
+    
+    function IsRenderable(code : Integer) : Boolean {
+        return code >= " "[0] && code <= "~"[0];
+    }
+    
+}

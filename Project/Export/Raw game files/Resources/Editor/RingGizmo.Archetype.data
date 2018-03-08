@@ -1,0 +1,65 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "RingGizmo",
+	},
+	Archetyped = 
+	{
+		string Name = "55af6ec3903520ed:RingGizmo",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [17.6679, 4.21277, -2.69536],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Gizmo = 
+	{
+		bool Active = true,
+		bool ForwardEventsToChildren = true,
+	},
+	Orientation = 
+	{
+		Vec3 GlobalUp = [0, 1, 0],
+		Vec3 UpVector = [0, 1, 0],
+		Vec3 ForwardVector = [0, 0, 1],
+		OrientationBases DefaultBases = ForwardZUpY,
+	},
+	MouseCapture = 
+	{
+	},
+	GizmoDrag = 
+	{
+		GizmoDragMode DragMode = Plane,
+		Vec3 LineDirection = [-0.684548, 0.728968, 0],
+		Vec3 PlaneNormal = [1, 0, 0],
+		bool NormalInWorld = false,
+		GizmoGrabMode GrabMode = Hold,
+		bool AutoDrag = true,
+		float DragDistance = 0,
+	},
+	RingGizmo = 
+	{
+		bool MouseInput = true,
+		int PickingPriority = 0,
+		Vec4 Color = [1, 0, 0, 1],
+		Vec4 HoverColor = [0.92, 1, 0, 1],
+		bool ViewScaled = true,
+		bool DrawOnTop = true,
+		float Radius = 2,
+		float SelectRadius = 0.1,
+		float RadiansPerPixel = 0.01,
+		bool BackShade = false,
+		bool ViewAligned = false,
+		Vec4 GrabArrowColor = [1, 1, 0, 1],
+		float GrabArrowLength = 1.6,
+		float GrabArrowHeadSize = 0.12,
+		bool GrabArrowViewScaled = true,
+		bool GrabArrowOnTop = true,
+	},
+},
