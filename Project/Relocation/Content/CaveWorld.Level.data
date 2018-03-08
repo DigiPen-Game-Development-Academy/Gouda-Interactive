@@ -535,6 +535,7 @@ Level =
 		CaveEnteranceExit = 
 		{
 			string LevelToLoad = "5a3bc4c73a7e1106:SurfaceWorld",
+			Vec3 SpawnPosition = [-48, 6, 0],
 		},
 	},
 },

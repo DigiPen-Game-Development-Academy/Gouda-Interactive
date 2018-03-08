@@ -412,8 +412,8 @@ class Crafting : ZilchComponent {
         }
         
         if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
-            Console.WriteLine("Inv: `this.Owner.Inventory.InventoryContents`");
-            Console.WriteLine("Cnt: `this.Owner.Inventory.InventoryContentsCount`");
+            Console.WriteLine("Inv: `PlayerData.InventoryContents`");
+            Console.WriteLine("Cnt: `PlayerData.InventoryContentsCount`");
         }
         
         this.CRSlotHover = -1;
@@ -431,8 +431,8 @@ class Crafting : ZilchComponent {
         }
         
         if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
-            Console.WriteLine("Inv: `this.Owner.Inventory.InventoryContents`");
-            Console.WriteLine("Cnt: `this.Owner.Inventory.InventoryContentsCount`");
+            Console.WriteLine("Inv: `PlayerData.InventoryContents`");
+            Console.WriteLine("Cnt: `PlayerData.InventoryContentsCount`");
         }
         
     }

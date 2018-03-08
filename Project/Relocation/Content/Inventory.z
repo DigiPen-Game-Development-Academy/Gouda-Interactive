@@ -16,9 +16,6 @@ class Inventory : ZilchComponent {
     var CraftingOpen : Boolean = true;
     var RightButtonDown : Boolean = false;
     
-    var InventoryContents : Array[Integer];
-    var InventoryContentsCount : Array[Integer];
-    
     var MaxInventorySlots : Integer = 21;
     var SlotClicked : Integer = -1;
     var SlotHover : Integer = -1;
@@ -35,16 +32,22 @@ class Inventory : ZilchComponent {
         this.UISpace = this.LevelSettings.UICreator.UISpace;
         this.UISpace.LevelSettings.MainLevelReferances.Player = this.Owner;
         
-        this.InventoryContents = new Array[Integer]();
-        this.InventoryContentsCount = new Array[Integer]();
-        
-        // ZERO OUT INVENTORY
-        for(var i = 0; i < this.MaxInventorySlots; ++i) {
-            this.InventoryContents.Push(0);
-            this.InventoryContentsCount.Push(0);
+        if(PlayerData.InventoryContents == null || PlayerData.InventoryContentsCount == null) {
+            
+            PlayerData.InventoryContents = new Array[Integer]();
+            PlayerData.InventoryContentsCount = new Array[Integer]();
+            
+            // ZERO OUT INVENTORY
+            for(var i = 0; i < this.MaxInventorySlots; ++i) {
+                PlayerData.InventoryContents.Push(0);
+                PlayerData.InventoryContentsCount.Push(0);
+            }
+            
+            this.GiveItemInSlot(1, this.SLOT_HAND);
+            
+        } else {
+            this.RefreshInventoryIcons();
         }
-        
-        this.GiveItemInSlot(1, this.SLOT_HAND);
         
         Zero.Connect(this.UISpace, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(Zero.Keyboard, Events.KeyUp, this.OpenCloseInventory);
@@ -101,10 +104,10 @@ class Inventory : ZilchComponent {
             
             this.InventoryOpenFirst = false;
             
-            if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0) {
-                var tmpItem = this.InventoryContents[this.SLOT_MOUSE - 1];
-                var tmpItemCt = this.InventoryContentsCount[this.SLOT_MOUSE - 1];
-                this.InventoryContents[this.SLOT_MOUSE - 1] = 0;
+            if(PlayerData.InventoryContents[this.SLOT_MOUSE - 1] != 0) {
+                var tmpItem = PlayerData.InventoryContents[this.SLOT_MOUSE - 1];
+                var tmpItemCt = PlayerData.InventoryContentsCount[this.SLOT_MOUSE - 1];
+                PlayerData.InventoryContents[this.SLOT_MOUSE - 1] = 0;
                 this.GiveItemWithAmount(tmpItem, false, tmpItemCt);
             }
             
@@ -149,18 +152,18 @@ class Inventory : ZilchComponent {
         
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
             
-            if(this.InventoryContentsCount[i] == 0) {
-                this.InventoryContents[i] = 0;
-            } else if(this.InventoryContents[i] == 0 && this.InventoryContentsCount[i] > 0) {
-                this.InventoryContentsCount[i] = 0;
+            if(PlayerData.InventoryContentsCount[i] == 0) {
+                PlayerData.InventoryContents[i] = 0;
+            } else if(PlayerData.InventoryContents[i] == 0 && PlayerData.InventoryContentsCount[i] > 0) {
+                PlayerData.InventoryContentsCount[i] = 0;
             }
             
             var slotObj = this.UISpace.FindObjectByName("Slot`i + 1`");
             var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
             
-            slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[this.InventoryContents[i]].Sprite;
-            slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
-            slotObj.FindChildByName("ItemName").SpriteText.Text = Relocation.Items[this.InventoryContents[i]].ItemRecognizableName;
+            slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[PlayerData.InventoryContents[i]].Sprite;
+            slotObj.FindChildByName("ItemCount").SpriteText.Text = "`PlayerData.InventoryContentsCount[i]`";
+            slotObj.FindChildByName("ItemName").SpriteText.Text = Relocation.Items[PlayerData.InventoryContents[i]].ItemRecognizableName;
             
             if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = false;
@@ -177,8 +180,8 @@ class Inventory : ZilchComponent {
             if(i == this.SLOT_HAND - 1 || i == this.SLOT_OFFHAND - 1) {
                 
                 slotObj = this.UISpace.FindObjectByName("Slot`i + 1`H");
-                slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[this.InventoryContents[i]].Sprite;
-                slotObj.FindChildByName("ItemCount").SpriteText.Text = "`this.InventoryContentsCount[i]`";
+                slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource = Relocation.Items[PlayerData.InventoryContents[i]].Sprite;
+                slotObj.FindChildByName("ItemCount").SpriteText.Text = "`PlayerData.InventoryContentsCount[i]`";
                 
                 if(slotObj.FindChildByName("SlotIcon").Sprite.SpriteSource == SpriteSource.Circle) {
                     slotObj.FindChildByName("SlotIcon").Sprite.Visible = false;
@@ -205,13 +208,13 @@ class Inventory : ZilchComponent {
         // MOVING ITEMS
         if(this.SlotClicked != -1 && this.SlotClicked != this.SLOT_MOUSE && Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
             
-            if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0 && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            if(PlayerData.InventoryContents[this.SLOT_MOUSE - 1] == 0 && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
                 this.MoveItem(this.SlotClicked, this.SLOT_MOUSE);
             } else if(!Zero.Keyboard.KeyIsDown(Keys.Shift)) {
                 this.MoveItem(this.SLOT_MOUSE, this.SlotClicked);
             }
             
-            if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0 && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            if(PlayerData.InventoryContents[this.SLOT_MOUSE - 1] == 0 && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
                 this.MoveItem(this.SlotClicked, this.SLOT_HAND);
                 this.MoveItem(this.SlotClicked, this.SLOT_OFFHAND);
             }
@@ -222,28 +225,28 @@ class Inventory : ZilchComponent {
             
             this.RightButtonDown = true;
             
-            var itemInSlot = this.InventoryContents[this.SlotClicked - 1];
+            var itemInSlot = PlayerData.InventoryContents[this.SlotClicked - 1];
             
-            if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0) {
+            if(PlayerData.InventoryContents[this.SLOT_MOUSE - 1] == 0) {
                 
-                var itemCt = this.InventoryContentsCount[this.SlotClicked - 1];
+                var itemCt = PlayerData.InventoryContentsCount[this.SlotClicked - 1];
                 var itemCtFirstHalf = Math.Ceil(itemCt / 2.0) as Integer;
                 var itemCtSecondHalf = itemCt - itemCtFirstHalf + itemCt % 2;
                 
                 this.RemoveItemsInSlot(this.SlotClicked, false, itemCtFirstHalf);
                 this.GiveItemsInSlot(itemInSlot, this.SLOT_MOUSE, itemCtSecondHalf, true);
                 
-            } else if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0 && (this.InventoryContents[this.SlotClicked - 1] == 0 || this.InventoryContents[this.SlotClicked - 1] == this.InventoryContents[this.SLOT_MOUSE - 1])) {
-                this.GiveItemInSlot(this.InventoryContents[this.SLOT_MOUSE - 1], this.SlotClicked);
+            } else if(PlayerData.InventoryContents[this.SLOT_MOUSE - 1] != 0 && (PlayerData.InventoryContents[this.SlotClicked - 1] == 0 || PlayerData.InventoryContents[this.SlotClicked - 1] == PlayerData.InventoryContents[this.SLOT_MOUSE - 1])) {
+                this.GiveItemInSlot(PlayerData.InventoryContents[this.SLOT_MOUSE - 1], this.SlotClicked);
                 this.RemoveItemInSlot(this.SLOT_MOUSE, false);
             }
             
             this.SlotClicked = -1;
             
-        } else if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !this.RightButtonDown) {
+        } else if(PlayerData.InventoryContents[this.SLOT_MOUSE - 1] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && !this.RightButtonDown) {
             this.RightButtonDown = true;
             this.RemoveItemInSlot(this.SLOT_MOUSE, true);
-        } else if(this.InventoryContents[this.SLOT_MOUSE - 1] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+        } else if(PlayerData.InventoryContents[this.SLOT_MOUSE - 1] != 0 && this.SlotClicked == -1 && Zero.Mouse.IsButtonDown(MouseButtons.Right) && Zero.Keyboard.KeyIsDown(Keys.Shift)) {
             this.RightButtonDown = false;
             this.RemoveItemInSlot(this.SLOT_MOUSE, true);
         } else if(!Zero.Mouse.IsButtonDown(MouseButtons.Right) && !Zero.Keyboard.KeyIsDown(Keys.Shift)) {
@@ -251,17 +254,17 @@ class Inventory : ZilchComponent {
         }
         
         // TOOLTIPS AND LORE
-        if(this.InventoryContents[this.SLOT_MOUSE - 1] == 0 && this.SlotHover != -1 && this.SlotHover != this.SLOT_MOUSE) {
+        if(PlayerData.InventoryContents[this.SLOT_MOUSE - 1] == 0 && this.SlotHover != -1 && this.SlotHover != this.SLOT_MOUSE) {
             
             if(this.Owner.Crafting.GetTooltipName() == "State.False") {
-                this.TooltipName = Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemRecognizableName;
-                this.TooltipLoreName = Relocation.Items[this.InventoryContents[this.SlotHover - 1]].ItemLore;
+                this.TooltipName = Relocation.Items[PlayerData.InventoryContents[this.SlotHover - 1]].ItemRecognizableName;
+                this.TooltipLoreName = Relocation.Items[PlayerData.InventoryContents[this.SlotHover - 1]].ItemLore;
             }
             
             if(this.TooltipName != "") {
                 
                 var itemMgmt = this.Space.FindObjectByName("LevelSettings").ItemManager;
-                var tooltipColor = this.GetTooltipColor(this.InventoryContents, this.SlotHover);
+                var tooltipColor = this.GetTooltipColor(PlayerData.InventoryContents, this.SlotHover);
                 var tooltipLoreColor = Real4(1.0, 1.0, 1.0, 0.9);
                 
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
@@ -305,8 +308,8 @@ class Inventory : ZilchComponent {
     
     function CheckIfFull() : Boolean {
         
-        for(var i = 0; i < this.InventoryContents.Count; ++i) {
-            if(this.InventoryContents[i] == 0) {
+        for(var i = 0; i < PlayerData.InventoryContents.Count; ++i) {
+            if(PlayerData.InventoryContents[i] == 0) {
                 return false;
             }
         }
@@ -336,10 +339,10 @@ class Inventory : ZilchComponent {
             
             for(var i = this.SLOT_OFFHAND; i < this.MaxInventorySlots + this.SLOT_OFFHAND; ++i) {
                 if((i < this.MaxInventorySlots && !hasGoneThru) || (i < this.SLOT_OFFHAND && hasGoneThru)) {
-                    if(this.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
+                    if(PlayerData.InventoryContents[i] == 0 && firstAvailableSlot == -1) {
                         firstAvailableSlot = i;
-                    } else if(this.InventoryContents[i] == itemID) {
-                        this.InventoryContentsCount[i] += amount;
+                    } else if(PlayerData.InventoryContents[i] == itemID) {
+                        PlayerData.InventoryContentsCount[i] += amount;
                         this.RefreshInventoryIcons();
                         if(notifyUser)
                             cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
@@ -354,8 +357,8 @@ class Inventory : ZilchComponent {
             }
             
             if(firstAvailableSlot != -1) {
-                this.InventoryContents[firstAvailableSlot] = itemID;
-                this.InventoryContentsCount[firstAvailableSlot] = amount;
+                PlayerData.InventoryContents[firstAvailableSlot] = itemID;
+                PlayerData.InventoryContentsCount[firstAvailableSlot] = amount;
                 this.RefreshInventoryIcons();
                 if(notifyUser)
                     cmd.PrintToUIConsole("Item with the ID \"`itemID`\" has been added to your inventory.");
@@ -380,13 +383,13 @@ class Inventory : ZilchComponent {
         if(itemID < Relocation.Items.Count) {
             if(slot < this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
                 
-                if(this.InventoryContents[slot - 1] == 0) {
-                    this.InventoryContents[slot - 1] = itemID;
-                    this.InventoryContentsCount[slot - 1] = 1;
+                if(PlayerData.InventoryContents[slot - 1] == 0) {
+                    PlayerData.InventoryContents[slot - 1] = itemID;
+                    PlayerData.InventoryContentsCount[slot - 1] = 1;
                     this.RefreshInventoryIcons();
                     return;
-                } else if(this.InventoryContents[slot - 1] == itemID) {
-                    ++this.InventoryContentsCount[slot - 1];
+                } else if(PlayerData.InventoryContents[slot - 1] == itemID) {
+                    ++PlayerData.InventoryContentsCount[slot - 1];
                     this.RefreshInventoryIcons();
                     return;
                 }
@@ -406,26 +409,26 @@ class Inventory : ZilchComponent {
         if(itemID < Relocation.Items.Count) {
             if(slot < this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
                 
-                if(this.InventoryContents[slot - 1] == 0) {
-                    this.InventoryContents[slot - 1] = itemID;
-                    this.InventoryContentsCount[slot - 1] = amount;
+                if(PlayerData.InventoryContents[slot - 1] == 0) {
+                    PlayerData.InventoryContents[slot - 1] = itemID;
+                    PlayerData.InventoryContentsCount[slot - 1] = amount;
                     this.RefreshInventoryIcons();
                     return;
-                } else if(this.InventoryContents[slot - 1] == itemID) {
-                    this.InventoryContentsCount[slot - 1] += amount;
+                } else if(PlayerData.InventoryContents[slot - 1] == itemID) {
+                    PlayerData.InventoryContentsCount[slot - 1] += amount;
                     this.RefreshInventoryIcons();
                     return;
                 }
                 
             } else if(slot == this.SLOT_MOUSE && allowInMouseSlot) {
                 
-                if(this.InventoryContents[slot - 1] == 0) {
-                    this.InventoryContents[slot - 1] = itemID;
-                    this.InventoryContentsCount[slot - 1] = amount;
+                if(PlayerData.InventoryContents[slot - 1] == 0) {
+                    PlayerData.InventoryContents[slot - 1] = itemID;
+                    PlayerData.InventoryContentsCount[slot - 1] = amount;
                     this.RefreshInventoryIcons();
                     return;
-                } else if(this.InventoryContents[slot - 1] == itemID) {
-                    this.InventoryContentsCount[slot - 1] += amount;
+                } else if(PlayerData.InventoryContents[slot - 1] == itemID) {
+                    PlayerData.InventoryContentsCount[slot - 1] += amount;
                     this.RefreshInventoryIcons();
                     return;
                 }
@@ -451,8 +454,8 @@ class Inventory : ZilchComponent {
         var itemCount = 0;
         
         for(var i = 0; i < this.MaxInventorySlots; ++i) {
-            if(this.InventoryContents[i] == itemID) {
-                itemCount += this.InventoryContentsCount[i];
+            if(PlayerData.InventoryContents[i] == itemID) {
+                itemCount += PlayerData.InventoryContentsCount[i];
             }
         }
         
@@ -468,7 +471,7 @@ class Inventory : ZilchComponent {
         
         itemID = Math.Abs(itemID);
             
-        if(this.InventoryContents[this.SLOT_HAND - 1] == itemID) {
+        if(PlayerData.InventoryContents[this.SLOT_HAND - 1] == itemID) {
             return true;
         } else {
             return false;
@@ -477,38 +480,38 @@ class Inventory : ZilchComponent {
     }
     
     function GetItemInMainHand() : Integer {
-        return this.InventoryContents[this.SLOT_HAND - 1];
+        return PlayerData.InventoryContents[this.SLOT_HAND - 1];
     }
     
     function GetItemInSlot(slot : Integer) : Integer {
-        return this.InventoryContents[slot - 1];
+        return PlayerData.InventoryContents[slot - 1];
     }
     
     function MoveItem(slot : Integer, destSlot : Integer) {
         
         if(slot - 1 < this.MaxInventorySlots && destSlot - 1 < this.MaxInventorySlots) {
             
-            var tmpItem = this.InventoryContents[slot - 1];
-            var tmpItemCt = this.InventoryContentsCount[slot - 1];
+            var tmpItem = PlayerData.InventoryContents[slot - 1];
+            var tmpItemCt = PlayerData.InventoryContentsCount[slot - 1];
             
-            if(this.InventoryContents[slot - 1] == 0) {
+            if(PlayerData.InventoryContents[slot - 1] == 0) {
                 return;
-            } else if(this.InventoryContents[destSlot - 1] != 0 && this.InventoryContents[destSlot - 1] != tmpItem) {
-                this.InventoryContents[slot - 1] = this.InventoryContents[destSlot - 1];
-                this.InventoryContentsCount[slot - 1] = this.InventoryContentsCount[destSlot - 1];
-                this.InventoryContents[destSlot - 1] = tmpItem;
-                this.InventoryContentsCount[destSlot - 1] = tmpItemCt;
+            } else if(PlayerData.InventoryContents[destSlot - 1] != 0 && PlayerData.InventoryContents[destSlot - 1] != tmpItem) {
+                PlayerData.InventoryContents[slot - 1] = PlayerData.InventoryContents[destSlot - 1];
+                PlayerData.InventoryContentsCount[slot - 1] = PlayerData.InventoryContentsCount[destSlot - 1];
+                PlayerData.InventoryContents[destSlot - 1] = tmpItem;
+                PlayerData.InventoryContentsCount[destSlot - 1] = tmpItemCt;
                 return;
             } else {
                 
-                this.InventoryContents[slot - 1] = 0;
-                this.InventoryContentsCount[slot - 1] = 0;
+                PlayerData.InventoryContents[slot - 1] = 0;
+                PlayerData.InventoryContentsCount[slot - 1] = 0;
                 
-                if(this.InventoryContents[destSlot - 1] == tmpItem) {
-                    this.InventoryContentsCount[destSlot - 1] += tmpItemCt;
+                if(PlayerData.InventoryContents[destSlot - 1] == tmpItem) {
+                    PlayerData.InventoryContentsCount[destSlot - 1] += tmpItemCt;
                 } else {
-                    this.InventoryContents[destSlot - 1] = tmpItem;
-                    this.InventoryContentsCount[destSlot - 1] = tmpItemCt;
+                    PlayerData.InventoryContents[destSlot - 1] = tmpItem;
+                    PlayerData.InventoryContentsCount[destSlot - 1] = tmpItemCt;
                 }
                 
             }
@@ -529,8 +532,8 @@ class Inventory : ZilchComponent {
         
         if(itemID < Relocation.Items.Count) {
             for(var i = 0; i < this.MaxInventorySlots; ++i) {
-                if(this.InventoryContents[i] == itemID) {
-                    this.InventoryContentsCount[i] -= amount;
+                if(PlayerData.InventoryContents[i] == itemID) {
+                    PlayerData.InventoryContentsCount[i] -= amount;
                     this.RefreshInventoryIcons();
                     return;
                 }
@@ -550,14 +553,14 @@ class Inventory : ZilchComponent {
         
         var itemID = -1;
         
-        if(this.InventoryContents[slot - 1] != 0 && this.InventoryContentsCount[slot - 1] > 0) {
+        if(PlayerData.InventoryContents[slot - 1] != 0 && PlayerData.InventoryContentsCount[slot - 1] > 0) {
             
-            itemID = this.InventoryContents[slot - 1];
+            itemID = PlayerData.InventoryContents[slot - 1];
             
             // DROP ITEM
             Relocation.ItemManager.DropItems(itemID, amount, this.Owner.Transform.WorldTranslation + Real3(0.0, -0.75, 0.0));
             
-            this.InventoryContentsCount[slot - 1] -= amount;
+            PlayerData.InventoryContentsCount[slot - 1] -= amount;
             this.RefreshInventoryIcons();
             
         }
