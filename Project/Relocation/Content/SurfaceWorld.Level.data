@@ -134,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 7.33860445,
+			float Size = 8.11040878,
 		},
 		EditorCameraController = 
 		{
@@ -297,10 +297,10 @@ Level =
 				CameraViewport = 
 				{
 					bool Background = false,
-					Vec2 Offset = [0, 0],
-					Vec2 Size = [1, 1],
+					Vec2 Offset = [0, 0.0250000004],
+					Vec2 Size = [0.949999988, 0.949999988],
 					int Layer = 0,
-					bool Active = false,
+					bool Active = true,
 					bool Blocking = true,
 					CogPath Renderer = 
 					{
@@ -332,8 +332,8 @@ Level =
 						CogPathPreference PathPreference1 = SpaceRelative,
 						CogPathPreference PathPreference2 = Absolute,
 					},
-					ViewportScaling Scaling = Exact,
-					Vec2 Resolution = [250, 250],
+					ViewportScaling Scaling = Letterbox,
+					Vec2 Resolution = [500, 500],
 					Vec4 MarginColor = [0, 0, 0, 1],
 				},
 				DeferredRenderer = 
