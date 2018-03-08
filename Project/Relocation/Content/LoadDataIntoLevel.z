@@ -25,7 +25,7 @@ class LoadDataIntoLevel : ZilchComponent
     
     [Static] function LoadData()
     {
-        LoadDataIntoLevel.Space.LevelSettings.UICreator.UISpace.Destroy();
+        /*LoadDataIntoLevel.Space.LevelSettings.UICreator.UISpace.Destroy();
         
         LoadDataIntoLevel.Space.LoadLevel(Level.Find(LoadDataIntoLevel.CurrentWorld));
         
@@ -35,6 +35,6 @@ class LoadDataIntoLevel : ZilchComponent
         Console.WriteLine("Player Name: `LoadDataIntoLevel.PlayerName`, \nPlayerName Variable: `LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.PlayerName`");
         
         
-        Console.WriteLine("Loaded Level: `LoadDataIntoLevel.CurrentWorld`");
+        Console.WriteLine("Loaded Level: `LoadDataIntoLevel.CurrentWorld`");*/
     }
 }
