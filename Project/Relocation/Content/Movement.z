@@ -40,7 +40,7 @@ class Movement : ZilchComponent {
             // MAP
             if(Zero.Keyboard.KeyIsDown(this.OpenMap) && this.Owner.FindChildByName("Minimap") != null) {
                 this.Owner.FindChildByName("Minimap").CameraViewport.Active = true;
-            } else if(this.Owner.FindChildByName("Minimap") != null) {
+            } else if(this.Owner.FindChildByName("Minimap") != null && Relocation.Space.CurrentLevel.Name == "SurfaceWorld") {
                 this.Owner.FindChildByName("Minimap").CameraViewport.Active = false;
             }
             
