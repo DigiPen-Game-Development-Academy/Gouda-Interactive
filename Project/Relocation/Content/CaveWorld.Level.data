@@ -139,7 +139,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 12.2456474,
+			float Size = 11.0803213,
 		},
 		EditorCameraController = 
 		{
@@ -485,7 +485,7 @@ Level =
 		},
 		Archetyped = 
 		{
-			string Name = "5a240449292b4c0b:CaveEnteranceExit",
+			string Name = "5aef5aa4b89fa3d6:CaveEnteranceExitLadder",
 		},
 		Transform = 
 		{
@@ -531,7 +531,7 @@ Level =
 			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
+			Vec3 Size = [0.125, 0.5, 0.5],
 		},
 		CaveEnteranceExit = 
 		{

@@ -3,11 +3,11 @@ ImageContent =
 	SpriteSourceBuilder = 
 	{
 		string Name = "ItemDrillCopper",
-		uint64 ResourceId = 5af7e73d4a527a05,
+		uint64 ResourceId = 5aef44ced374240a,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 16,
 		uint FrameSizeY = 16,
-		uint FrameCount = 1,
+		uint FrameCount = 5,
 		float FrameDelay = 0.0833333358,
 		float OriginX = 8,
 		float OriginY = 8,
