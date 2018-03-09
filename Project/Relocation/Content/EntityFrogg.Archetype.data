@@ -8,6 +8,10 @@ Cog =
 	{
 		string Name = "EntityEnemy",
 	},
+	Archetyped = 
+	{
+		string Name = "5af2ca606a8a3ea0:EntityFrogg",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [-0.715138674, 7.418046, 0],
@@ -24,7 +28,7 @@ Cog =
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5af2c454139fcf42:ArmadilloDown",
+		string SpriteSource = "5af2c5e8248ed1c5:FroggDown",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
@@ -120,7 +124,7 @@ Cog =
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "5af2c454139fcf42:ArmadilloDown",
+				string SpriteSource = "5af2c5e8248ed1c5:FroggDown",
 				bool RenderMask = false,
 				bool FlipX = false,
 				bool FlipY = false,

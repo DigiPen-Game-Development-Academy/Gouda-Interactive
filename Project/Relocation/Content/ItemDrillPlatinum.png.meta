@@ -3,11 +3,11 @@ ImageContent =
 	SpriteSourceBuilder = 
 	{
 		string Name = "ItemDrillPlatinum",
-		uint64 ResourceId = 5af7e73d4a529ae0,
+		uint64 ResourceId = 5aef44201e14f9e1,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 16,
 		uint FrameSizeY = 16,
-		uint FrameCount = 1,
+		uint FrameCount = 5,
 		float FrameDelay = 0.0833333358,
 		float OriginX = 8,
 		float OriginY = 8,

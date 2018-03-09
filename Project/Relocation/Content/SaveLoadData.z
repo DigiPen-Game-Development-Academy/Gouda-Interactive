@@ -24,9 +24,28 @@ class SaveLoadData : ZilchComponent
     
     function Save()
     {
+        var player = this.Space.FindObjectByName("EntityPlayer");
+        
+        // Player Data
+        this.Data.SavedData.PlayerName = player.PlayerProperties.PlayerName;
+        this.Data.SavedData.PlayerPosition = ToFromStrings.Real3ToString(player.Transform.Translation);
+        this.Data.SavedData.PlayerHealth = player.Health.CurrentHealth;
+        this.Data.SavedData.PlayerSkin = player.PlayerProperties.PlayerSkin;
+        this.Data.SavedData.PlayerBalance = player.PlayerProperties.Balance;
+        this.Data.SavedData.PlayerInv = ToFromStrings.IntArrayToString(PlayerData.InventoryContents);
+        this.Data.SavedData.PlayerInvCount = ToFromStrings.IntArrayToString(PlayerData.InventoryContentsCount);
+        
+        // World Data:
         this.Data.SavedData.CurrentWorld = this.Space.CurrentLevel.Name;
-        this.Data.SavedData.PlayerPosition = ToFromStrings.Real3ToString(this.Space.FindObjectByName("EntityPlayer").Transform.Translation);
-        this.Data.SavedData.PlayerName = this.Space.FindObjectByName("EntityPlayer").PlayerProperties.PlayerName;
+        
+        // Settings Data:
+        this.Data.SavedData.MenuAnimations = GameSetting.EnableUIAnimations;
+        this.Data.SavedData.Vignette = GameSetting.EnableVignette;
+        this.Data.SavedData.PlayerTooltips = GameSetting.PlayerTooltip;
+        this.Data.SavedData.EnemyTooltips = GameSetting.EnemyTooltip;
+        this.Data.SavedData.MasterVolume = GameSetting.MasterVolume;
+        this.Data.SavedData.MusicVolume = GameSetting.MusicVolume;
+        this.Data.SavedData.SFXVolume = GameSetting.SoundEffectsVolume;
         
         Zero.ObjectStore.Store("Data", this.Data);
         
@@ -36,9 +55,27 @@ class SaveLoadData : ZilchComponent
     function Load()
     {
         LoadDataIntoLevel.Space = this.Space;
-        LoadDataIntoLevel.CurrentWorld = this.Space.CurrentLevel.Name;
-        LoadDataIntoLevel.PlayerPosition = this.Data.SavedData.PlayerPosition;
+        
+        // Load Player Data:
         LoadDataIntoLevel.PlayerName = this.Data.SavedData.PlayerName;
+        LoadDataIntoLevel.PlayerPosition = this.Data.SavedData.PlayerPosition;
+        LoadDataIntoLevel.PlayerHealth = this.Data.SavedData.PlayerHealth;
+        LoadDataIntoLevel.PlayerSkin = this.Data.SavedData.PlayerSkin;
+        LoadDataIntoLevel.PlayerBalance = this.Data.SavedData.PlayerBalance;
+        LoadDataIntoLevel.PlayerInv = this.Data.SavedData.PlayerInv;
+        LoadDataIntoLevel.PlayerInvCount = this.Data.SavedData.PlayerInvCount;
+        
+        // Load World Data:
+        LoadDataIntoLevel.CurrentWorld = this.Space.CurrentLevel.Name;
+        
+        // Load Settings Data:
+        LoadDataIntoLevel.MenuAnimations = this.Data.SavedData.MenuAnimations;
+        LoadDataIntoLevel.Vignette = this.Data.SavedData.Vignette;
+        LoadDataIntoLevel.PlayerTooltips = this.Data.SavedData.PlayerTooltips;
+        LoadDataIntoLevel.EnemyTooltips = this.Data.SavedData.EnemyTooltips;
+        LoadDataIntoLevel.MasterVolume = this.Data.SavedData.MasterVolume;
+        LoadDataIntoLevel.MusicVolume = this.Data.SavedData.MusicVolume;
+        LoadDataIntoLevel.SFXVolume = this.Data.SavedData.SFXVolume;
         
         LoadDataIntoLevel.LoadData();
         
