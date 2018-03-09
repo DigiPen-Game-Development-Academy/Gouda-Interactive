@@ -5,6 +5,9 @@ class CraftingSlot : ZilchComponent {
     
     [Property] var IsCraftingSlot : Boolean = true;
     
+    [Property] var InventorySlot : SpriteSource = SpriteSource.InventorySlot;
+    [Property] var InventorySlotHover : SpriteSource = SpriteSource.InventorySlotHover;
+    
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
         Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
@@ -13,15 +16,13 @@ class CraftingSlot : ZilchComponent {
     }
     
     function OnMouseEnter(event : ViewportMouseEvent) {
-        
+        this.Owner.Sprite.SpriteSource = this.InventorySlotHover;
         this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 1.0);
-        
     }
     
     function OnMouseExit(event : ViewportMouseEvent) {
-        
+        this.Owner.Sprite.SpriteSource = this.InventorySlot;
         this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.75);
-        
     }
     
     function OnMouseUpdate(event : ViewportMouseEvent) {

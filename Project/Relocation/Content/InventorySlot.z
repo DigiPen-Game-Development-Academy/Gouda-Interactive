@@ -3,6 +3,9 @@
 
 class InventorySlot : ZilchComponent {
     
+    [Property] var InventorySlot : SpriteSource = SpriteSource.InventorySlot;
+    [Property] var InventorySlotHover : SpriteSource = SpriteSource.InventorySlotHover;
+    
     function Initialize(init : CogInitializer) {
         
         Zero.Connect(this.Owner, Events.LogicUpdate, this.OnLogicUpdate);
@@ -34,15 +37,13 @@ class InventorySlot : ZilchComponent {
     }
     
     function OnMouseEnter(event : ViewportMouseEvent) {
-        
+        this.Owner.Sprite.SpriteSource = this.InventorySlotHover;
         this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 1.0);
-        
     }
     
     function OnMouseExit(event : ViewportMouseEvent) {
-        
+        this.Owner.Sprite.SpriteSource = this.InventorySlot;
         this.Owner.Sprite.Color = Real4(this.Owner.Sprite.Color.XYZ, 0.75);
-        
     }
     
     function OnMouseDown(event : ViewportMouseEvent) {
