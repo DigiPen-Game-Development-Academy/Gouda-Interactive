@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-1.89568567, 0.913382709, 13.6266108],
+			Vec3 Translation = [-0.834186733, 0.0595848113, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 16.3323421,
+			float Size = 22.0463753,
 		},
 		EditorCameraController = 
 		{
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-1.89568567, 0.913382709, -8.28628686e-08],
+			Vec3 LookTarget = [-0.834186733, 0.0595848113, -3.64634474e-08],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -412,7 +412,7 @@ Level =
 						},
 						Area = 
 						{
-							Vec2 Size = [2, 0.600000024],
+							Vec2 Size = [2.25, 0.699999988],
 							Location Origin = TopLeft,
 						},
 						Hierarchy = 
@@ -429,7 +429,7 @@ Level =
 								},
 								Transform = 
 								{
-									Vec3 Translation = [1, 0, 0],
+									Vec3 Translation = [1.125, -0.0500000007, 0],
 									Vec3 Scale = [0.449999988, 0.449999988, 1],
 									Quat Rotation = [0, 0, 1.18423795e-14, 1],
 								},
@@ -465,7 +465,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [3.75, 3.75, 4],
+							Vec3 Translation = [3.75000024, 3.60000014, 4.05000019],
 							Vec3 Scale = [1, 1, 0.600000024],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -498,7 +498,7 @@ Level =
 						},
 						Area = 
 						{
-							Vec2 Size = [2, 0.600000024],
+							Vec2 Size = [2.25, 0.699999988],
 							Location Origin = TopLeft,
 						},
 						Hierarchy = 
@@ -515,7 +515,7 @@ Level =
 								},
 								Transform = 
 								{
-									Vec3 Translation = [1, 0, 0],
+									Vec3 Translation = [1.125, -0.0500000007, 0],
 									Vec3 Scale = [0.449999988, 0.449999988, 1],
 									Quat Rotation = [0, 0, 1.18423795e-14, 1],
 								},
@@ -551,7 +551,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [3.75, 3, 4],
+							Vec3 Translation = [3.75000024, 2.70000005, 4.05000019],
 							Vec3 Scale = [1, 1, 0.600000024],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -584,7 +584,7 @@ Level =
 						},
 						Area = 
 						{
-							Vec2 Size = [2, 0.600000024],
+							Vec2 Size = [2.25, 0.699999988],
 							Location Origin = TopLeft,
 						},
 						Hierarchy = 
@@ -601,7 +601,7 @@ Level =
 								},
 								Transform = 
 								{
-									Vec3 Translation = [1, 0, 0],
+									Vec3 Translation = [1.125, -0.0500000007, 0],
 									Vec3 Scale = [0.449999988, 0.449999988, 1],
 									Quat Rotation = [0, 0, 1.18423795e-14, 1],
 								},
@@ -637,7 +637,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [3.75, 2.25, 4],
+							Vec3 Translation = [3.75000024, 1.80000007, 4.05000019],
 							Vec3 Scale = [1, 1, 0.600000024],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -670,7 +670,7 @@ Level =
 						},
 						Area = 
 						{
-							Vec2 Size = [2, 0.600000024],
+							Vec2 Size = [2.25, 0.699999988],
 							Location Origin = TopLeft,
 						},
 						Hierarchy = 
@@ -687,7 +687,7 @@ Level =
 								},
 								Transform = 
 								{
-									Vec3 Translation = [1, 0, 0],
+									Vec3 Translation = [1.125, -0.0500000007, 0],
 									Vec3 Scale = [0.449999988, 0.449999988, 1],
 									Quat Rotation = [0, 0, 1.18423795e-14, 1],
 								},
@@ -723,7 +723,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [3.75, 1.5, 4],
+							Vec3 Translation = [3.75000024, 0.900000036, 4.05000019],
 							Vec3 Scale = [1, 1, 0.600000024],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -756,7 +756,7 @@ Level =
 						},
 						Area = 
 						{
-							Vec2 Size = [2, 0.600000024],
+							Vec2 Size = [2.25, 0.699999988],
 							Location Origin = TopLeft,
 						},
 						Hierarchy = 
@@ -773,7 +773,7 @@ Level =
 								},
 								Transform = 
 								{
-									Vec3 Translation = [1, 0, 0],
+									Vec3 Translation = [1.125, -0.0500000007, 0],
 									Vec3 Scale = [0.449999988, 0.449999988, 1],
 									Quat Rotation = [0, 0, 1.18423795e-14, 1],
 								},
@@ -809,7 +809,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [3.75, 0.75, 4],
+							Vec3 Translation = [3.75000024, 0, 4.05000019],
 							Vec3 Scale = [1, 1, 0.600000024],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -842,7 +842,7 @@ Level =
 						},
 						Area = 
 						{
-							Vec2 Size = [2, 0.600000024],
+							Vec2 Size = [2.25, 0.699999988],
 							Location Origin = TopLeft,
 						},
 						Hierarchy = 
@@ -859,7 +859,7 @@ Level =
 								},
 								Transform = 
 								{
-									Vec3 Translation = [1, 0, 0],
+									Vec3 Translation = [1.125, -0.0500000007, 0],
 									Vec3 Scale = [0.449999988, 0.449999988, 1],
 									Quat Rotation = [0, 0, 1.18423795e-14, 1],
 								},
