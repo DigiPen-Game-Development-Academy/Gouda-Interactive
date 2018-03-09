@@ -32,11 +32,11 @@ class PlayerProperties : ZilchComponent {
     
     function Initialize(init : CogInitializer) {
         
-        /*Relocation.Player = this.Owner;
+        Relocation.Player = this.Owner;
         
         this.UISpace = this.Space.FindObjectByName("LevelSettings").UICreator.UISpace;
         
-        this.SetUsername(this.PlayerName);
+        /*this.SetUsername(this.PlayerName);
         this.SetSkin(this.PlayerSkin);
         
         if(Relocation.Space.CurrentLevel.Name == "SurfaceWorld") {
