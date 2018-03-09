@@ -69,15 +69,13 @@ class MusicPlayer : ZilchComponent {
                 this.GameLevelMusicSpace.Destroy();
             }
             
-            //this.CurrSpace = this.MainMenuMusicSpace;
-            
             this.MainMenuMusicSpace = this.GameSession.CreateSpace(this.MusicSpace);
             
             this.MainMenuMusicSpace.LoadLevel(this.MusicLevel);
             this.MainMenuMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
             this.MainMenuMusicSpace.SoundSpace.PlayCue(this.MainMenuSong);
             
-        } else if(event.LevelName != "SplashScreen" && event.LevelName != "MainMenu" && event.LevelName != "SettingsMenu" && event.LevelName != "UILevel") {
+        } else if(event.LevelName != "SplashScreen" && event.LevelName != "MainMenu" && event.LevelName != "SettingsMenu" && event.LevelName != "UILevel" && this.GameLevelMusicSpace == null) {
             
             if(this.MainMenuMusicSpace != null) {
                 this.MainMenuMusicSpace.Destroy();
