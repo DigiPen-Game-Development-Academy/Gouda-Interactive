@@ -148,7 +148,7 @@ class Commands : ZilchComponent {
     
     function CommandHelp() {
         
-        this.TextEntry.PrintToUIConsole("---- Help ----");
+        this.TextEntry.PrintToUIConsole("Help", true);
         this.TextEntry.PrintToUIConsole("clear - (Alias: cls) - Clears the screen");
         this.TextEntry.PrintToUIConsole("color <color> - Changes console color");
         this.TextEntry.PrintToUIConsole("debug [true/false] - Enables/Disables debug mode");

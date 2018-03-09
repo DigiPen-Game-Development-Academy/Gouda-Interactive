@@ -307,9 +307,29 @@ class TextEntry : ZilchComponent {
     }
     
     function PrintToUIConsole(text : String) {
+        this.PrintToUIConsole(text, false, "");
+    }
+    
+    function PrintToUIConsole(text : String, header : Boolean) {
+        this.PrintToUIConsole(" `text` ", header, "-");
+    }
+    
+    function PrintToUIConsole(text : String, centerText : Boolean, centerChar : String) {
         
         var maxLength = this.MaxCharsPerLine;
         var tmpTxt = "";
+        
+        if(centerText) {
+            
+            var centerTmpTxt = "";
+            
+            for(var i = 0; i < Math.Floor((maxLength - text.Count) / 2) as Integer; ++i) {
+                centerTmpTxt = "`centerTmpTxt``centerChar`";
+            }
+            
+            text = "`centerTmpTxt``text``centerTmpTxt`";
+            
+        }
         
         if(text.Count > maxLength) {
             for(var i = (Math.Floor(text.Count / maxLength) * maxLength) as Integer; i > 5; i -= maxLength) {
