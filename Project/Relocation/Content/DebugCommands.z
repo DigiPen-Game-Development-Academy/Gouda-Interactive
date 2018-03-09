@@ -18,11 +18,14 @@ class TextEntry : ZilchComponent {
     var CycleThroughCmdsAll : Boolean = false;
     var IsTextSelected : Boolean = false;
     var WasClicked : Boolean = false;
+    var BlinkTypingIndicator : Boolean = true;
     
     var CommandString : String = "";
     var FinalCmd : String = "";
     var ConsoleLog : String = "";
     var TempCommandStr : String = "";
+    var TypingIndicator : String = "|";
+    var CurrTypingIndicator : String = "|";
     
     var CommandHistory : Array[String];
     var Commands : Array[String];
@@ -31,6 +34,9 @@ class TextEntry : ZilchComponent {
     var AutocompleteIndex : Integer = 0;
     
     var Occurances : Integer = 1;
+    
+    var TypingIndicatorBlinkTime : Real = 1.0;
+    var CurrTypingIndicatorBlinkTime : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
         
@@ -54,6 +60,23 @@ class TextEntry : ZilchComponent {
         
         if(this.CaptureKeys) {
             
+            if(this.CurrTypingIndicatorBlinkTime > this.TypingIndicatorBlinkTime) {
+                this.CurrTypingIndicatorBlinkTime = 0.0;
+            } else {
+                
+                if(this.CurrTypingIndicatorBlinkTime < this.TypingIndicatorBlinkTime / 2 && this.BlinkTypingIndicator) {
+                    this.CurrTypingIndicator = this.TypingIndicator;
+                } else if(this.BlinkTypingIndicator || this.IsTextSelected) {
+                    this.CurrTypingIndicator = " ";
+                } else if(!this.BlinkTypingIndicator) {
+                    this.CurrTypingIndicatorBlinkTime = 0.0;
+                    this.CurrTypingIndicator = this.TypingIndicator;
+                }
+                
+                this.CurrTypingIndicatorBlinkTime += event.Dt;
+                
+            }
+            
             if(Zero.Keyboard.KeyIsReleased(Keys.Escape)) {
                 
                 this.CommandString = "";
@@ -67,6 +90,7 @@ class TextEntry : ZilchComponent {
                 
                 this.CmdHistoryIndex = this.CommandHistory.Count;
                 this.AutocompleteIndex = 0;
+                this.CurrTypingIndicatorBlinkTime = 0.0;
                 
             } else if(Zero.Keyboard.KeyIsPressed(Keys.Enter)) {
                 
@@ -128,6 +152,7 @@ class TextEntry : ZilchComponent {
             } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.A)) {
                 
                 this.IsTextSelected = true;
+                this.BlinkTypingIndicator = false;
                 
                 var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
                 
@@ -139,17 +164,21 @@ class TextEntry : ZilchComponent {
             }
             
             if(!this.IsTextSelected) {
+                
                 var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
                 
                 txtSelect.Sprite.Visible = false;
                 txtSelect.Transform.Scale = Real3(this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
+                
+                this.BlinkTypingIndicator = true;
+                
             }
             
             if(this.CommandString.Count <= this.MaxCharsPerLine) {
-                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "|");
+                this.Owner.SpriteText.Text = String.Concatenate(this.CommandString, "`this.CurrTypingIndicator`");
             } else {
                 this.Owner.SpriteText.Text = 
-                    String.Concatenate(this.CommandString, "|").SubStringFromRuneIndices(
+                    String.Concatenate(this.CommandString, "`this.CurrTypingIndicator`").SubStringFromRuneIndices(
                         this.CommandString.Count - (this.MaxCharsPerLine), this.CommandString.Count + 1
                     );
             }
@@ -197,6 +226,7 @@ class TextEntry : ZilchComponent {
             
             // CHECK IF TEXT IS RENDERABLE (IS A LETTER/NUMBER/SYMBOL)
             if(this.IsRenderable(event.Character) && this.CommandString.Count < this.MaxCharLimit) {
+                this.CurrTypingIndicatorBlinkTime = 0.0;
                 if(!this.IsTextSelected) {
                     this.CycleThroughCommands = false;
                     this.CycleThroughCmdsAll = false;
@@ -216,6 +246,7 @@ class TextEntry : ZilchComponent {
             
             // CHECK FOR BACKSPACE
             if(event.Character == 8 && this.CommandString.Count > 0) {
+                this.CurrTypingIndicatorBlinkTime = 0.0;
                 if(!this.IsTextSelected) {
                     this.CycleThroughCommands = false;
                     this.CycleThroughCmdsAll = false;
@@ -239,6 +270,8 @@ class TextEntry : ZilchComponent {
                     
                     this.CycleThroughCmdsAll = true;
                     
+                    this.CurrTypingIndicatorBlinkTime = 0.0;
+                    
                     if(this.AutocompleteIndex >= this.Commands.Count) {
                         this.AutocompleteIndex = 0;
                     }
@@ -250,6 +283,7 @@ class TextEntry : ZilchComponent {
                     var cmdStr = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
                     
                     if(this.Occurances != 0) {
+                        this.CurrTypingIndicatorBlinkTime = 0.0;
                         this.CommandString = cmdStr;
                     }
                     
