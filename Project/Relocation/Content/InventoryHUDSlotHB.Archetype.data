@@ -28,7 +28,7 @@ Cog =
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5a3802b8a850eeb2:InventorySlot",
+		string SpriteSource = "5aef777feb626ca2:InventorySlotHover",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
@@ -43,6 +43,9 @@ Cog =
 	},
 	InventorySlot = 
 	{
+		bool EnableHoverSprite = false,
+		string InventorySlot = "5aef777feb626ca2:InventorySlotHover",
+		string InventorySlotHover = "5aef777feb626ca2:InventorySlotHover",
 	},
 	Hierarchy = 
 	{
