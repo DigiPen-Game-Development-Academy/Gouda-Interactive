@@ -310,8 +310,20 @@ class TextEntry : ZilchComponent {
         this.PrintToUIConsole(text, false, "");
     }
     
+    function PrintToUIConsole(beginningText : String, endingText : String, beginningFixedTextWidth : Integer) {
+        
+        var spaceCount = beginningFixedTextWidth - beginningText.Count;
+        
+        for(var i = 0; i < spaceCount; ++i) {
+            beginningText = "`beginningText` ";
+        }
+        
+        this.PrintToUIConsole("`beginningText``endingText`", false, "");
+        
+    }
+    
     function PrintToUIConsole(text : String, header : Boolean) {
-        this.PrintToUIConsole(" `text` ", header, "-");
+        this.PrintToUIConsole(" `text` ", header, "_");
     }
     
     function PrintToUIConsole(text : String, centerText : Boolean, centerChar : String) {

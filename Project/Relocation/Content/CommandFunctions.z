@@ -148,16 +148,18 @@ class Commands : ZilchComponent {
     
     function CommandHelp() {
         
+        var width = 24;
+        
         this.TextEntry.PrintToUIConsole("Help", true);
-        this.TextEntry.PrintToUIConsole("clear - (Alias: cls) - Clears the screen");
-        this.TextEntry.PrintToUIConsole("color <color> - Changes console color");
-        this.TextEntry.PrintToUIConsole("debug [true/false] - Enables/Disables debug mode");
-        this.TextEntry.PrintToUIConsole("echo <string> - Prints to console screen");
-        this.TextEntry.PrintToUIConsole("give <itemID> [quantity] - Gives player item");
-        this.TextEntry.PrintToUIConsole("god [true/false] - Makes player invincible");
-        this.TextEntry.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
-        this.TextEntry.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (Will crash if sound does not exist)");
-        this.TextEntry.PrintToUIConsole("spawn <entity> - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)");
+        this.TextEntry.PrintToUIConsole("clear - (Alias: cls)", " - Clears the screen", width);
+        this.TextEntry.PrintToUIConsole("color <color>", " - Changes console color", width);
+        this.TextEntry.PrintToUIConsole("debug [true/false]", " - Enables/Disables debug mode", width);
+        this.TextEntry.PrintToUIConsole("echo <string>", " - Prints to console screen", width);
+        this.TextEntry.PrintToUIConsole("give <itemID> [quantity]", " - Gives player item", width);
+        this.TextEntry.PrintToUIConsole("god [true/false]", " - Makes player invincible", width);
+        this.TextEntry.PrintToUIConsole("help - (Alias: ?)", " - Shows this help screen", width);
+        this.TextEntry.PrintToUIConsole("playsound <SoundCue>", " - Plays sound cue (Will crash if sound does not exist)", width);
+        this.TextEntry.PrintToUIConsole("spawn <entity>", " - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)", width);
         
     }
     
