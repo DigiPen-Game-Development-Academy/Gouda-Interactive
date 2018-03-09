@@ -37,11 +37,11 @@ class PlayerProperties : ZilchComponent {
         this.UISpace = this.Space.FindObjectByName("LevelSettings").UICreator.UISpace;
         
         /*this.SetUsername(this.PlayerName);
-        this.SetSkin(this.PlayerSkin);
+        this.SetSkin(this.PlayerSkin);*/
         
         if(Relocation.Space.CurrentLevel.Name == "SurfaceWorld") {
             this.Owner.Transform.WorldTranslation = PlayerData.SpawnPosition;
-        }*/
+        }
         
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
         Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
