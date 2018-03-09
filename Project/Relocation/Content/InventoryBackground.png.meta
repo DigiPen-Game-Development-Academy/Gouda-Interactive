@@ -2,8 +2,8 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "InventorySlot",
-		uint64 ResourceId = 5a3802b8a850eeb2,
+		string Name = "InventoryBackground",
+		uint64 ResourceId = 5aef4f20ce911741,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 32,
 		uint FrameSizeY = 32,
@@ -11,10 +11,10 @@ ImageContent =
 		float FrameDelay = 0.0833333358,
 		float OriginX = 16,
 		float OriginY = 16,
-		float PixelsPerUnit = 32,
+		float PixelsPerUnit = 16,
 		bool Smoothing = false,
 		bool Looping = true,
-		Vec4 Slices = [6, 6, 6, 6],
+		Vec4 Slices = [2, 2, 2, 2],
 		SpriteFill Fill = NineSlice,
 	},
 },
