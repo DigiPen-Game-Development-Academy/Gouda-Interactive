@@ -20,12 +20,7 @@ class Notification : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
-        
-        if(Zero.Keyboard.KeyIsPressed(Keys.L))
-            this.GiveNotification("Picked up item.Null.name", 2.5);
-        
         this.DisplayNotification();
-        
     }
     
     function DisplayNotification() {

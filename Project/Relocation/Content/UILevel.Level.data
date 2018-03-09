@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.483226418, -0.27189976, 13.6266108],
+			Vec3 Translation = [6.51035118, -5.14618397, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.3130608,
+			float Size = 12.0993004,
 		},
 		EditorCameraController = 
 		{
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.483226418, -0.27189976, -2.11224975e-08],
+			Vec3 LookTarget = [6.51035118, -5.14618397, 2.84576799e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -989,7 +989,7 @@ Level =
 						Transform = 
 						{
 							Vec3 Translation = [0, 0, -0.5],
-							Vec3 Scale = [7, 9, 1],
+							Vec3 Scale = [1, 1, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
 						Sprite = 
@@ -1015,6 +1015,11 @@ Level =
 							bool Active = true,
 							bool CaptureMouse = false,
 						},
+						Area = 
+						{
+							Vec2 Size = [7, 9],
+							Location Origin = Center,
+						},
 						Hierarchy = 
 						{
 							Cog = 
@@ -1029,8 +1034,8 @@ Level =
 								},
 								Transform = 
 								{
-									Vec3 Translation = [0, -0.174999997, -3],
-									Vec3 Scale = [0.00787500013, 1, 1],
+									Vec3 Translation = [0, -1.5, -3],
+									Vec3 Scale = [0.100000001, 7, 1],
 									Quat Rotation = [0, 0, 0.707106829, 0.707106829],
 								},
 								Sprite = 
@@ -1064,8 +1069,8 @@ Level =
 								},
 								Transform = 
 								{
-									Vec3 Translation = [0, -0.550000012, -3],
-									Vec3 Scale = [0.0952380002, 0.150000006, 1],
+									Vec3 Translation = [0, -5, -3],
+									Vec3 Scale = [1, 1, 1],
 									Quat Rotation = [0, 0, 0, 1],
 								},
 								Sprite = 
@@ -1085,6 +1090,11 @@ Level =
 									bool AnimationActive = true,
 									float AnimationSpeed = 1,
 									uint StartFrame = 0,
+								},
+								Area = 
+								{
+									Vec2 Size = [7, 0.699999988],
+									Location Origin = Center,
 								},
 							},
 						},
@@ -1778,7 +1788,7 @@ Level =
 				Transform = 
 				{
 					Vec3 Translation = [0, 0, -0.5],
-					Vec3 Scale = [10.5, 4.5, 0.5],
+					Vec3 Scale = [1, 1, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
 				Sprite = 
@@ -1804,6 +1814,11 @@ Level =
 					bool Active = true,
 					bool CaptureMouse = false,
 				},
+				Area = 
+				{
+					Vec2 Size = [10.5, 4.5],
+					Location Origin = Center,
+				},
 				Hierarchy = 
 				{
 					Cog = 
@@ -1818,8 +1833,8 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [-0.129999995, 0, 0],
-							Vec3 Scale = [0.00300000003, 1, 1],
+							Vec3 Translation = [-1.25, 0, 0],
+							Vec3 Scale = [0.0500000007, 4.5, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
 						Sprite = 
@@ -1853,8 +1868,8 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [0, -0.550000012, 0],
-							Vec3 Scale = [0.0952380002, 0.150000006, 1],
+							Vec3 Translation = [0, -2.5, 0],
+							Vec3 Scale = [1, 1, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
 						Sprite = 
@@ -1874,6 +1889,11 @@ Level =
 							bool AnimationActive = true,
 							float AnimationSpeed = 1,
 							uint StartFrame = 0,
+						},
+						Area = 
+						{
+							Vec2 Size = [10.5, 0.349999994],
+							Location Origin = Center,
 						},
 					},
 				},
@@ -3622,19 +3642,12 @@ Level =
 			},
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5ad090a34f764fee:Notification",
 		LinkId = 
 		{
 			uint Id = 112,
-		},
-		Named = 
-		{
-			string Name = "Notification",
-		},
-		Archetyped = 
-		{
-			string Name = "5ad090a34f764fee:Notification",
 		},
 		Transform = 
 		{
@@ -3642,58 +3655,9 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Notification = 
+		Named = 
 		{
-			int MaxNotificationCount = 5,
-		},
-		ScreenAlignment = 
-		{
-			string PositionX = "Right",
-			string PositionY = "Bottom",
-			Vec2 PositionOffset = [-0.25, 3],
-			float ZIndex = 0,
-			bool HideUntilPositioned = true,
-		},
-		Hierarchy = 
-		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 113,
-				},
-				Named = 
-				{
-					string Name = "NotificationText",
-				},
-				Archetyped = 
-				{
-					string Name = "5ad09789307b9a24:NotificationText",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				SpriteText = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 0.929999828, 0, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "5addaa7b8f441196:FontBold",
-					uint FontSize = 30,
-					string Text = "",
-					TextAlign Align = Right,
-					float PixelsPerUnit = 64,
-					bool Smoothing = false,
-				},
-			},
+			string Name = "Notification",
 		},
 	},
 },
