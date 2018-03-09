@@ -172,7 +172,7 @@ class Commands : ZilchComponent {
     
     function CommandColor() {
         
-        if(this.CheckForCommand("color", true, "color <0-255> <0-255> <0-255>", "") != 0) {
+        if(this.CheckForCommand("color", true, "color <0-255> [0-255] [0-255]", "") != 0) {
             
             var colorR = this.TextEntry.GetArgument(1, this.TextEntry.FinalCmd);
             var colorG = this.TextEntry.GetArgument(2, this.TextEntry.FinalCmd);
