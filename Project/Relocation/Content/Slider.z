@@ -36,6 +36,7 @@ class Slider : ZilchComponent {
     
     function OnMouseDown(event : ViewportMouseEvent) {
         this.MouseDown = true;
+        this.SetSliderValue(event);
     }
     
     function OnMouseUp(event : ViewportMouseEvent) {
