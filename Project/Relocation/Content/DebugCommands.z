@@ -282,9 +282,11 @@ class TextEntry : ZilchComponent {
                     
                 } else {
                     
+                    var cmdStr = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
+                    
                     if(this.Occurances != 0) {
                         this.CurrTypingIndicatorBlinkTime = 0.0;
-                        this.CommandString = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
+                        this.CommandString = cmdStr;
                     }
                     
                     this.CycleThroughCmdsAll = false;
@@ -317,6 +319,12 @@ class TextEntry : ZilchComponent {
             this.IsTextSelected = false;
             this.CommandString = tmpClipboard;
         }
+        
+        this.CurrTypingIndicatorBlinkTime = 0.0;
+        this.CycleThroughCmdsAll = false;
+        
+        this.TempCommandStr = this.CommandString;
+        
         
     }
     
