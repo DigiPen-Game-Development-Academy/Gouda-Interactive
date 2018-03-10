@@ -97,29 +97,11 @@ Level =
 			float Delay = 7,
 		},
 	},
-	ArchetypeInstance = 
-	{
-		string Name = "5acc54a1ed491026:PassiveEntity",
-		LinkId = 
-		{
-			uint Id = 3,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 0, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "PassiveEntity",
-		},
-	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 4,
+			uint Id = 3,
 		},
 		Named = 
 		{
@@ -139,7 +121,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 24.6597252,
+			float Size = 13.5335522,
 		},
 		EditorCameraController = 
 		{
@@ -195,7 +177,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 5,
+			uint Id = 4,
 		},
 		Named = 
 		{
@@ -238,7 +220,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 6,
+			uint Id = 5,
 		},
 		Named = 
 		{

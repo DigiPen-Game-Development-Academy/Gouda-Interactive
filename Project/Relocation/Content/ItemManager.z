@@ -48,7 +48,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemGunHandle",                 true));
         Relocation.Items.Push(new Item("ItemGunBase",                   true));
         Relocation.Items.Push(new Item("ItemGunBaseMinigun",            true));
-        Relocation.Items.Push(new Item("ItemGunPartialAssembled",       false));
+        Relocation.Items.Push(new Item("ItemGunPartialAssembled",       true));
         Relocation.Items.Push(new Item("ItemGunPartialAssembledMG",     true));
         Relocation.Items.Push(new Item("ItemGunBarrel",                 true));
         Relocation.Items.Push(new Item("ItemGunBarrelLong",             true));
