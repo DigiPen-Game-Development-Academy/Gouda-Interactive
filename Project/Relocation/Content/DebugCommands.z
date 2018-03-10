@@ -156,6 +156,15 @@ class TextEntry : ZilchComponent {
                 txtSelect.Sprite.Visible = true;
                 txtSelect.Transform.Scale = Real3((this.Owner.SpriteText.Text.Count - 1) * this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
                 
+            } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.C) && this.IsTextSelected) {
+                Zero.Shell.ClipboardText = this.CommandString;
+            } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.X) && this.IsTextSelected) {
+                Zero.Shell.ClipboardText = this.CommandString;
+                this.CommandString = "";
+                this.TempCommandStr = "";
+                this.IsTextSelected = false;
+            } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.V)) {
+                this.PasteText();
             } else if(Zero.Keyboard.KeyIsDown(Keys.Right) || Zero.Keyboard.KeyIsDown(Keys.Left)) {
                 this.IsTextSelected = false;
             }
@@ -232,7 +241,6 @@ class TextEntry : ZilchComponent {
                 } else {
                     this.IsTextSelected = false;
                     this.CommandString = String.FromChar(event.Character);
-                    
                 }
                 
                 this.TempCommandStr = this.CommandString;
@@ -288,6 +296,17 @@ class TextEntry : ZilchComponent {
                 
             }
             
+        }
+        
+    }
+    
+    function PasteText() {
+        
+        if(!this.IsTextSelected) {
+            this.CommandString = "`this.CommandString``Zero.Shell.ClipboardText`";
+        } else {
+            this.IsTextSelected = false;
+            this.CommandString = Zero.Shell.ClipboardText;
         }
         
     }
@@ -368,8 +387,6 @@ class TextEntry : ZilchComponent {
     
     function SearchArray(array : Array[String], str : String, curIndex : Integer) : Integer {
         
-        Console.WriteLine("array: `array`");
-        
         var occurances = 0;
         var startIndex = 0;
         
@@ -385,8 +402,6 @@ class TextEntry : ZilchComponent {
             }
             
         }
-        
-        Console.WriteLine("occurances: `occurances`");
         
         if(this.AutocompleteIndex < startIndex) {
             this.AutocompleteIndex = startIndex;
