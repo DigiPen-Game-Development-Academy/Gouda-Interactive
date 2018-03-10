@@ -302,11 +302,20 @@ class TextEntry : ZilchComponent {
     
     function PasteText() {
         
+        var tmpClipboard = "";
+        
+        // STRIP INVALID CHARACTERS
+        for(var i = 0; i < Zero.Shell.ClipboardText.Count; ++i) {
+            if(this.IsRenderable(Zero.Shell.ClipboardText[i])) {
+                tmpClipboard = "`tmpClipboard``String.FromChar(Zero.Shell.ClipboardText[i])`";
+            }
+        }
+        
         if(!this.IsTextSelected) {
-            this.CommandString = "`this.CommandString``Zero.Shell.ClipboardText`";
+            this.CommandString = "`this.CommandString``tmpClipboard`";
         } else {
             this.IsTextSelected = false;
-            this.CommandString = Zero.Shell.ClipboardText;
+            this.CommandString = tmpClipboard;
         }
         
     }

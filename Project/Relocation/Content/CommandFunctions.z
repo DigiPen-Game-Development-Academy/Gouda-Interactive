@@ -18,9 +18,9 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.Commands.Push("give");
         this.Owner.TextEntry.Commands.Push("god");
         this.Owner.TextEntry.Commands.Push("help");
-        this.Owner.TextEntry.Commands.Push("noclip");
         this.Owner.TextEntry.Commands.Push("playsound");
         this.Owner.TextEntry.Commands.Push("spawn");
+        this.Owner.TextEntry.Commands.Push("togglecheat");
         
     }
     
@@ -44,8 +44,8 @@ class Commands : ZilchComponent {
             this.CommandPlaySound();
         } else if(this.CheckForCommand("spawn", false, "", "") != -1) {
             this.CommandSpawn();
-        } else if(this.CheckForCommand("noclip", false, "", "") != -1) {
-            this.CommandNoclip();
+        } else if(this.CheckForCommand("togglecheat", false, "", "?") != -1) {
+            this.CommandCheat();
         } else {
             var baseCommand = this.TextEntry.GetArgument(0, this.TextEntry.FinalCmd);
             this.TextEntry.PrintToUIConsole("Error: The command \"`baseCommand`\" does not exist. Type help for a list of commands.");
@@ -160,6 +160,27 @@ class Commands : ZilchComponent {
         this.TextEntry.PrintToUIConsole("help - (Alias: ?)", " - Shows this help screen", width);
         this.TextEntry.PrintToUIConsole("playsound <SoundCue>", " - Plays sound cue (Will crash if sound does not exist)", width);
         this.TextEntry.PrintToUIConsole("spawn <entity>", " - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)", width);
+        this.TextEntry.PrintToUIConsole("togglecheat <cheat>", " - Enables specified cheat", width);
+        
+    }
+    
+    function CommandCheat() {
+        
+        if(this.CheckForCommand("togglecheat", true, "togglecheat <cheat>", "") != 0) {
+            
+            var cheatArg = this.TextEntry.GetArgument(1, this.TextEntry.FinalCmd);
+            
+            if(cheatArg.ToLower() == "noclip") {
+                //TODO: NOCLIP CHEAT
+            } else if(cheatArg.ToLower() == "camera" || cheatArg.ToLower() == "cam") {
+                //TODO: CAMERA CHEAT
+            } else if(cheatArg.ToLower() == "crafting") {
+                //TODO: CRAFTING CHEAT
+            } else {
+                this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: togglecheat <cheat>");
+            }
+            
+        }
         
     }
     
@@ -212,26 +233,6 @@ class Commands : ZilchComponent {
         if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0 && Relocation.Space != null) {
             var mousePos = Relocation.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
             Relocation.Space.CreateAtPosition(Archetype.Find("`this.TextEntry.FinalCmd.SubStringFromRuneIndices(6, this.TextEntry.FinalCmd.Count)`"), mousePos);
-        }
-        
-    }
-    
-    function CommandNoclip() {
-        
-        if(this.TextEntry.FinalCmd.EndsWith("true")) {
-            
-            this.TextEntry.PrintToUIConsole("Noclip: `true`");
-            
-        } else if(this.TextEntry.FinalCmd.EndsWith("false")) {
-            
-            this.TextEntry.PrintToUIConsole("Noclip: `false`");
-            
-        } else if(this.TextEntry.FinalCmd == "noclip" || this.TextEntry.FinalCmd == "noclip ") {
-            
-            this.TextEntry.PrintToUIConsole("Noclip: toggled");
-            
-        } else {
-            this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: noclip [true/false]");
         }
         
     }
