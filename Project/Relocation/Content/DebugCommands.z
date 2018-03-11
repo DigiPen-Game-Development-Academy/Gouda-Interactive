@@ -269,7 +269,7 @@ class TextEntry : ZilchComponent {
                 } else {
                     this.IsTextSelected = false;
                     this.CommandString = String.FromChar(event.Character);
-                    this.CursorIndex = this.CommandString.Count;
+                    this.CursorIndex = 1;
                 }
                 
                 this.TempCommandStr = this.CommandString;
