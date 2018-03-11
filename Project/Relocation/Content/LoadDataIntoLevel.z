@@ -42,8 +42,13 @@ class LoadDataIntoLevel : ZilchComponent
         PlayerData.InventoryContents = ToFromStrings.StringToIntArray(LoadDataIntoLevel.PlayerInv);
         PlayerData.InventoryContentsCount = ToFromStrings.StringToIntArray(LoadDataIntoLevel.PlayerInvCount);
         
-        Console.WriteLine("Saved Player Health: `LoadDataIntoLevel.PlayerHealth`");
-        
-        Console.WriteLine("Saved Player Name: `LoadDataIntoLevel.PlayerName`");
+        // Load Settings Data:
+        GameSetting.EnableUIAnimations = LoadDataIntoLevel.MenuAnimations;
+        GameSetting.EnableVignette = LoadDataIntoLevel.Vignette;
+        GameSetting.PlayerTooltip = LoadDataIntoLevel.PlayerTooltips;
+        GameSetting.EnemyTooltip = LoadDataIntoLevel.EnemyTooltips;
+        GameSetting.MasterVolume = LoadDataIntoLevel.MasterVolume;
+        GameSetting.MusicVolume = LoadDataIntoLevel.MusicVolume;
+        GameSetting.SoundEffectsVolume = LoadDataIntoLevel.SFXVolume;
     }
 }
