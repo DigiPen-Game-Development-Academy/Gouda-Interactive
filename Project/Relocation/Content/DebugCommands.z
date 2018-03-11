@@ -32,6 +32,7 @@ class TextEntry : ZilchComponent {
     var CmdHistoryIndex : Integer = 0;
     var AutocompleteIndex : Integer = 0;
     var CursorIndex : Integer = 0;
+    var OverflowOffset : Integer = 0;
     
     var Occurances : Integer = 1;
     
@@ -43,6 +44,8 @@ class TextEntry : ZilchComponent {
     var CurrHeldKeyRepeatSpeed : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
+        
+        this.TextCharDimensions = Real2(this.Owner.SpriteText.MeasureGivenText("G").X, this.TextCharDimensions.Y);
         
         this.CommandHistory = new Array[String]();
         
@@ -98,14 +101,16 @@ class TextEntry : ZilchComponent {
             
             if(this.CommandString.Count <= this.MaxCharsPerLine) {
                 this.Owner.SpriteText.Text = this.CommandString;
-                this.UpdateCursorPosition(true);
+                this.OverflowOffset = 0;
             } else {
                 this.Owner.SpriteText.Text = 
                     this.CommandString.SubStringFromRuneIndices(
                         this.CommandString.Count - (this.MaxCharsPerLine), this.CommandString.Count
                     );
-                this.UpdateCursorPosition(true);
+                this.OverflowOffset = this.CommandString.Count - this.Owner.SpriteText.Text.Count;
             }
+            
+            this.UpdateCursorPosition(true);
             
         } else if(this.Owner.SpriteText.Text.Count > 0) {
             this.Owner.SpriteText.Text = "";
@@ -382,7 +387,8 @@ class TextEntry : ZilchComponent {
         
         if(updatePos)
             txtCursor.Transform.WorldTranslation = Real3(
-                this.Owner.Transform.WorldTranslation.X + this.Owner.SpriteText.MeasureGivenText(cmdStrFront).X - (this.TextCharDimensions.X * 0.5),
+                this.Owner.Transform.WorldTranslation.X + this.Owner.SpriteText.MeasureGivenText(cmdStrFront).X - (this.TextCharDimensions.X * 0.5) - 
+                    this.OverflowOffset * this.TextCharDimensions.X,
                 txtCursor.Transform.WorldTranslation.YZ
             );
         
