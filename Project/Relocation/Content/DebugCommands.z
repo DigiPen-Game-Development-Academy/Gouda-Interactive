@@ -238,10 +238,10 @@ class TextEntry : ZilchComponent {
             this.IsTextSelected = false;
         } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.V)) {
             this.PasteText();
-        } else if(Zero.Keyboard.KeyIsDown(Keys.Left) && !Zero.Keyboard.KeyIsDown(Keys.Right)) {
+        } else if(Zero.Keyboard.KeyIsDown(Keys.Left)) {
             this.MoveCursor(event.Dt, -1);
             return;
-        } else if(Zero.Keyboard.KeyIsDown(Keys.Right) && !Zero.Keyboard.KeyIsDown(Keys.Left)) {
+        } else if(Zero.Keyboard.KeyIsDown(Keys.Right)) {
             this.MoveCursor(event.Dt, 1);
             return;
         } else {
