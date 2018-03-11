@@ -64,6 +64,7 @@ class TextEntry : ZilchComponent {
         
         if(this.CaptureKeys) {
             
+            // CURSOR BLINKING
             if(this.CurrTypingIndicatorBlinkTime > this.TypingIndicatorBlinkTime) {
                 this.CurrTypingIndicatorBlinkTime = 0.0;
             } else {
@@ -81,6 +82,7 @@ class TextEntry : ZilchComponent {
                 
             }
             
+            // CONTROLS
             this.Controls(event);
             
             if(!this.IsTextSelected) {
@@ -109,6 +111,7 @@ class TextEntry : ZilchComponent {
             this.Owner.SpriteText.Text = "";
         }
         
+        // SHOW/HIDE THINGS WHEN TEXT BOX IS TOGGLED
         if(this.CaptureKeys) {
             this.Owner.Parent.FindChildByName(this.TextBoxBackground).Sprite.Visible = true;
             this.Owner.Parent.FindChildByName("TextCursor").SpriteText.Visible = true;
@@ -267,7 +270,6 @@ class TextEntry : ZilchComponent {
         }
         
         this.CurrTypingIndicatorBlinkTime = 0.0;
-        
         this.CatchInvalidCursorPos();
         
     }
@@ -488,7 +490,6 @@ class TextEntry : ZilchComponent {
         this.ConsoleLog = String.Concatenate(this.ConsoleLog, text);
         
         var console = this.Space.FindObjectByName(this.ConsoleTextboxName);
-        
         console.SpriteText.Text = this.ConsoleLog;
         console.Transform.Translation = Real3(0, console.SpriteText.MeasureText().Y + 1.75, console.Transform.Translation.Z);
         
@@ -501,13 +502,10 @@ class TextEntry : ZilchComponent {
         
         // FIND NUMBER OF OCCURANCES
         for(var i = 0; i < array.Count; ++i) {
-            
             if(array.Get(i).StartsWith(str) && occurances == 0)
                 startIndex = i;
-            
             if(array.Get(i).StartsWith(str))
                 ++occurances;
-            
         }
         
         if(this.AutocompleteIndex < startIndex) {
@@ -521,14 +519,11 @@ class TextEntry : ZilchComponent {
         var tmpIndex = 0;
         
         for(var i = 0; i < occurances; ++i) {
-            
             tmpIndex = startIndex + tmpOccur;
-            
             if(array.Get(tmpIndex).StartsWith(str) && curIndex <= tmpIndex && tmpOccur < occurances && tmpIndex < array.Count)
                 return tmpIndex;
             else
                 ++tmpOccur;
-            
         }
         
         if(tmpOccur >= occurances || tmpOccur == 0) {
@@ -573,9 +568,9 @@ class TextEntry : ZilchComponent {
     }
     
     function RemoveAt(offset : Integer) : String {
+        this.CatchInvalidCursorPos();
         if(this.CursorIndex - 1 + offset < 0 || this.CursorIndex + offset > this.CommandString.Count)
             offset = 0;
-        this.CatchInvalidCursorPos();
         return "`this.CommandString.SubStringFromRuneIndices(0, this.CursorIndex - 1 + offset)``this.CommandString.SubStringFromRuneIndices(this.CursorIndex + offset, this.CommandString.Count)`";
     }
     
