@@ -258,5 +258,8 @@ Level =
 			float AnimationDelay = 3,
 			float MultiAnimationDelay = 2.25,
 		},
+		SkipToSplash = 
+		{
+		},
 	},
 },
