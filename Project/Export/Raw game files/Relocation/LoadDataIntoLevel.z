@@ -23,18 +23,27 @@ class LoadDataIntoLevel : ZilchComponent
     [Static] var MusicVolume : Real;
     [Static] var SFXVolume : Real;
     
+    [Static] var Player : Cog;
+    
     [Static] function LoadData()
     {
-        LoadDataIntoLevel.Space.LevelSettings.UICreator.UISpace.Destroy();
+        LoadDataIntoLevel.Player = LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer");
         
-        LoadDataIntoLevel.Space.LoadLevel(Level.Find(LoadDataIntoLevel.CurrentWorld));
+        // Load World Data:
+        //LoadDataIntoLevel.Space.LoadLevel(Level.Find(LoadDataIntoLevel.CurrentWorld));
         
-        LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.SpawnPosition = ToFromStrings.StringToReal3(LoadDataIntoLevel.PlayerPosition);
-        LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.PlayerName = LoadDataIntoLevel.PlayerName;
-        LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.SetUsername(LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.PlayerName);
-        Console.WriteLine("Player Name: `LoadDataIntoLevel.PlayerName`, \nPlayerName Variable: `LoadDataIntoLevel.Space.FindObjectByName("EntityPlayer").PlayerProperties.PlayerName`");
+        // Load Player Data:
+        LoadDataIntoLevel.Player.PlayerProperties.PlayerName = LoadDataIntoLevel.PlayerName;
+        LoadDataIntoLevel.Player.PlayerProperties.SetUsername(LoadDataIntoLevel.PlayerName);
+        LoadDataIntoLevel.Player.Transform.Translation = ToFromStrings.StringToReal3(LoadDataIntoLevel.PlayerPosition);
+        LoadDataIntoLevel.Player.Health.CurrentHealth = LoadDataIntoLevel.PlayerHealth;
+        //LoadDataIntoLevel.Player.PlayerProperties.PlayerSkin = LoadDataIntoLevel.PlayerSkin;
+        LoadDataIntoLevel.Player.PlayerProperties.Balance = LoadDataIntoLevel.PlayerBalance;
+        PlayerData.InventoryContents = ToFromStrings.StringToIntArray(LoadDataIntoLevel.PlayerInv);
+        PlayerData.InventoryContentsCount = ToFromStrings.StringToIntArray(LoadDataIntoLevel.PlayerInvCount);
         
+        Console.WriteLine("Saved Player Health: `LoadDataIntoLevel.PlayerHealth`");
         
-        Console.WriteLine("Loaded Level: `LoadDataIntoLevel.CurrentWorld`");
+        Console.WriteLine("Saved Player Name: `LoadDataIntoLevel.PlayerName`");
     }
 }

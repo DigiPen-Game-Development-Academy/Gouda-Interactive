@@ -8,6 +8,8 @@ class Slider : ZilchComponent {
     [Property] var MaxAmount : Real = 100.0;
     [Property] var SliderColor : Real4 = Real4(0.05, 0.75, 0.05, 1.0);
     
+    var MouseDown : Boolean = false;
+    
     var CurrScaleAmount : Real = 5.0;
     var MaxScaleAmount : Real3 = Real3(10.0, 0.75, 1.0);
     
@@ -21,27 +23,48 @@ class Slider : ZilchComponent {
         this.Owner.FindChildByName("Slider").Transform.Scale = Real3(this.CurrScaleAmount, this.MaxScaleAmount.YZ);
         this.Owner.SpriteText.Text = "`this.Label`: `this.CurrentAmount`/`this.MaxAmount`";
         
-        Zero.Connect(this.Owner.FindChildByName("SliderBG"), Events.MouseUpdate, this.OnMouseUpdate);
+        Zero.Connect(this.Space, Events.MouseMove, this.OnMouseMove);
+        Zero.Connect(this.Owner.FindChildByName("SliderBG"), Events.MouseDown, this.OnMouseDown);
+        Zero.Connect(this.Space, Events.MouseUp, this.OnMouseUp);
         
     }
     
-    function OnMouseUpdate(event : ViewportMouseEvent) {
+    function OnMouseMove(event : ViewportMouseEvent) {
+        if(this.MouseDown)
+            this.SetSliderValue(event);
+    }
+    
+    function OnMouseDown(event : ViewportMouseEvent) {
+        this.MouseDown = true;
+        this.SetSliderValue(event);
+    }
+    
+    function OnMouseUp(event : ViewportMouseEvent) {
+        this.MouseDown = false;
+    }
+    
+    function SetSliderValue(event : ViewportMouseEvent) {
+        
+        var pos = event.CameraViewport.ScreenToWorldZPlane(event.Position, 0);
+        pos = Real3(pos.XY, 0.0);
         
         this.Owner.FindChildByName("Slider").Sprite.Color = this.SliderColor;
         
-        this.CurrScaleAmount = event.HitPosition.X + this.MaxScaleAmount.X / 2;
+        this.CurrScaleAmount = pos.X + this.MaxScaleAmount.X / 2;
+        this.MaxScaleAmount = this.Owner.FindChildByName("SliderBG").Transform.Scale;
         
-        if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
-            
-            var slider = this.Owner.FindChildByName("Slider");
-            
-            this.MaxScaleAmount = this.Owner.FindChildByName("SliderBG").Transform.Scale;
-            this.CurrentAmount = Math.Round(this.CurrScaleAmount.X * this.MaxAmount / 10);
-            
-            slider.Transform.Scale = Real3((this.CurrentAmount / this.MaxAmount) * this.MaxScaleAmount.X, this.MaxScaleAmount.YZ);
-            this.Owner.SpriteText.Text = "`this.Label`: `this.CurrentAmount`/`this.MaxAmount`";
-            
+        if(this.CurrScaleAmount < 0.0) {
+            this.CurrScaleAmount = 0.0;
+        } else if(this.CurrScaleAmount > this.MaxScaleAmount.X) {
+            this.CurrScaleAmount = this.MaxScaleAmount.X;
         }
+        
+        this.CurrentAmount = Math.Round(this.CurrScaleAmount.X * this.MaxAmount / 10);
+        
+        var slider = this.Owner.FindChildByName("Slider");
+        slider.Transform.Scale = Real3((this.CurrentAmount / this.MaxAmount) * this.MaxScaleAmount.X, this.MaxScaleAmount.YZ);
+        
+        this.Owner.SpriteText.Text = "`this.Label`: `this.CurrentAmount`/`this.MaxAmount`";
         
     }
     

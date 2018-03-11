@@ -9,6 +9,7 @@ class Movement : ZilchComponent {
     [Property] var Left : Keys = Keys.A;
     [Property] var Down : Keys = Keys.S;
     [Property] var Right : Keys = Keys.D;
+    [Property] var OpenMap : Keys = Keys.Tab;
     
     var ItemHand : Cog = null;
     
@@ -35,6 +36,13 @@ class Movement : ZilchComponent {
         var r3Speed = Real3(0.0, 0.0, 0.0);
         
         if(!Relocation.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys && !Relocation.InventoryOpen) {
+            
+            // MAP
+            if(Zero.Keyboard.KeyIsDown(this.OpenMap) && this.Owner.FindChildByName("Minimap") != null) {
+                this.Owner.FindChildByName("Minimap").CameraViewport.Active = true;
+            } else if(this.Owner.FindChildByName("Minimap") != null && Relocation.Space.CurrentLevel.Name == "SurfaceWorld") {
+                this.Owner.FindChildByName("Minimap").CameraViewport.Active = false;
+            }
             
             // CHECK IF SPRINTING
             if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {

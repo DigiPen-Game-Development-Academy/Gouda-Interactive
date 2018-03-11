@@ -4,6 +4,7 @@
 class CaveEnteranceExit : ZilchComponent {
     
     [Property] var LevelToLoad : Level = Level.Find("CaveWorld");
+    [Property] var SpawnPosition : Real3 = Real3(0.0);
     
     function Initialize(init : CogInitializer)
     {
@@ -19,6 +20,12 @@ class CaveEnteranceExit : ZilchComponent {
             
             //this.Space.LastUsedEnterancePosition.LastUsedPosition = this.Owner.Transform.Translation;
             this.LevelSettings.UICreator.UISpace.Destroy();
+            
+            if(this.SpawnPosition != Real3(0.0))
+                PlayerData.SpawnPosition = this.SpawnPosition;
+            
+            Console.WriteLine("`PlayerData.SpawnPosition`");
+            
             this.Space.LoadLevel(this.LevelToLoad);
             
         }

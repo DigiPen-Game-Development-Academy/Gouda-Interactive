@@ -49,9 +49,8 @@ Space =
 	MusicPlayer = 
 	{
 		string MainMenuSong = "5aca326c7fbc7342:SongRelocationMain",
-		string InGameSong = "",
+		string InGameSong = "5aefa4eb202aa39a:RelocationCityDay",
 		string MusicSpace = "5aca222067bdfb93:MusicSpace",
 		string MusicLevel = "554cea0f94af672f:MusicLevel",
-		float MusicVolume = 1,
 	},
 },

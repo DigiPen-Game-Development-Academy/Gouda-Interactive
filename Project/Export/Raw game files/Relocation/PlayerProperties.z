@@ -32,23 +32,15 @@ class PlayerProperties : ZilchComponent {
     
     function Initialize(init : CogInitializer) {
         
-        if(this.Space.CurrentLevel.Name == "SurfaceWorld") {
-            Relocation.IsInOverworld = true;
-        } else {
-            Relocation.IsInOverworld = false;
-        }
-        
         Relocation.Player = this.Owner;
         
         this.UISpace = this.Space.FindObjectByName("LevelSettings").UICreator.UISpace;
         
-        this.SetUsername(this.PlayerName);
-        this.SetSkin(this.PlayerSkin);
+        /*this.SetUsername(this.PlayerName);
+        this.SetSkin(this.PlayerSkin);*/
         
-        if(Relocation.IsInOverworld) {
-            this.Owner.Transform.WorldTranslation = Relocation.SpawnPosition;
-        } else {
-            this.Owner.Transform.WorldTranslation = this.SpawnPosition;
+        if(Relocation.Space.CurrentLevel.Name == "SurfaceWorld") {
+            this.Owner.Transform.WorldTranslation = PlayerData.SpawnPosition;
         }
         
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
@@ -226,8 +218,8 @@ class PlayerProperties : ZilchComponent {
         }
         
         // SET SPAWN POSITION
-        if(Relocation.IsInOverworld) {
-            Relocation.SpawnPosition = this.Owner.Transform.WorldTranslation;
+        if(Relocation.Space.CurrentLevel.Name == "SurfaceWorld") {
+            PlayerData.SpawnPosition = this.Owner.Transform.WorldTranslation;
         }
         
     }

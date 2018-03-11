@@ -16,14 +16,14 @@ class ItemManager : ZilchComponent {
         this.Spacers = new Array[Integer]();
         
         Relocation.Items.Push(new Item("Circle",                        true));
-        Relocation.Items.Push(new Item("ItemPistol",                    true));
-        Relocation.Items.Push(new Item("ItemRevolver",                  true));
-        Relocation.Items.Push(new Item("ItemRock",                      true));
-        Relocation.Items.Push(new Item("ItemShotgun",                   true));
-        Relocation.Items.Push(new Item("ItemBoulder",                   true));
-        Relocation.Items.Push(new Item("ItemMinigun",                   true));
-        Relocation.Items.Push(new Item("ItemSniper",                    true));
-        Relocation.Items.Push(new Item("ItemGouda",                     true));
+        Relocation.Items.Push(new ItemWeapon("ItemPistol",              true));
+        Relocation.Items.Push(new ItemWeapon("ItemRevolver",            true));
+        Relocation.Items.Push(new ItemWeapon("ItemRock",                true));
+        Relocation.Items.Push(new ItemWeapon("ItemShotgun",             true));
+        Relocation.Items.Push(new ItemWeapon("ItemBoulder",             true));
+        Relocation.Items.Push(new ItemWeapon("ItemMinigun",             true));
+        Relocation.Items.Push(new ItemWeapon("ItemSniper",              true));
+        Relocation.Items.Push(new ItemWeapon("ItemGouda",               true));
         this.AddSpacerItems(5);
         Relocation.Items.Push(new Item("ItemAmmoPistol",                true));
         Relocation.Items.Push(new Item("ItemAmmoShotgun",               true));
@@ -48,7 +48,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemGunHandle",                 true));
         Relocation.Items.Push(new Item("ItemGunBase",                   true));
         Relocation.Items.Push(new Item("ItemGunBaseMinigun",            true));
-        Relocation.Items.Push(new Item("ItemGunPartialAssembled",       false));
+        Relocation.Items.Push(new Item("ItemGunPartialAssembled",       true));
         Relocation.Items.Push(new Item("ItemGunPartialAssembledMG",     true));
         Relocation.Items.Push(new Item("ItemGunBarrel",                 true));
         Relocation.Items.Push(new Item("ItemGunBarrelLong",             true));
@@ -64,14 +64,14 @@ class ItemManager : ZilchComponent {
         this.GiveItemsID();
         
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "The \"Laser\" (Pistol)",               "Basic Weapon\n\nStarter weapon. Not very\npowerful, but has unlimited\nammo.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "[TODO: REVOLVER NAME] (Revolver)",     "Basic Weapon\n\nAlong time ago in the far west of the\nold world, people used to carry an\nolder version of this. It fired metal\nthings that they called \"bullets.\"\nThanks to newer tech, this one fires\nlasers.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Rock",                                 "Basic Weapon\n\nYou should have crafted more\nammo before you went out on\nyour journey. At least you have\nthese...");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "\"Get Off My Lawn\" (Shotgun)",        "Medium Weapon\n\nDeters intruders. Good at keeping\nthem off your lawn.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Boulder",                              "Medium Weapon\n\nMore effective than a rock, but you\nstill should have made ammo for\nyour weapons.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "L134 Devastator (Minigun)",            "Legendary Weapon\n\nThere's nothing more satisfying\nthan hearing those barrels spin\nup as your enemies realize what\nthey have gotten into...");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Photon Sniper (Sniper Rifle)",         "Legendary Weapon\n\nFor all your trickshot needs...");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gouda Cheese",                         "Legendary Weapon\n\nWhile the previous throwables did\nthe job when you ran out of ammo\nthis one is a whole different story...");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "The \"Laser\" (Pistol)",               "Starter weapon. Not very\npowerful, but has unlimited\nammo.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "[TODO: REVOLVER NAME] (Revolver)",     "Along time ago in the far west of the\nold world, people used to carry an\nolder version of this. It fired metal\nthings that they called \"bullets.\"\nThanks to newer tech, this one fires\nlasers.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Rock",                                 "You should have crafted more\nammo before you went out on\nyour journey. At least you have\nthese...");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "\"Get Off My Lawn\" (Shotgun)",        "Deters intruders. Good at keeping\nthem off your lawn.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Boulder",                              "More effective than a rock, but you\nstill should have made ammo for\nyour weapons.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "L134 Devastator (Minigun)",            "There's nothing more satisfying\nthan hearing those barrels spin\nup as your enemies realize what\nthey have gotten into...");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Photon Sniper (Sniper Rifle)",         "For all your trickshot needs...");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gouda Cheese",                         "While the previous throwables did\nthe job when you ran out of ammo\nthis one is a whole different story...");
         this.SkipSpacer();
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Pistol)",                  "Ammo");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Shotgun)",                 "Ammo");
