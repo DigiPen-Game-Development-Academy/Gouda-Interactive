@@ -318,9 +318,8 @@ class TextEntry : ZilchComponent {
                 
                 this.IsTextSelected = false;
                 
-                if(this.AutocompleteIndex >= this.Commands.Count) {
+                if(this.AutocompleteIndex >= this.Commands.Count)
                     this.AutocompleteIndex = 0;
-                }
                 
                 if(this.CommandString == "" || this.CycleThroughCmdsAll) {
                     
@@ -361,9 +360,8 @@ class TextEntry : ZilchComponent {
         
         // STRIP INVALID CHARACTERS
         for(var i = 0; i < Zero.Shell.ClipboardText.Count; ++i) {
-            if(this.IsRenderable(Zero.Shell.ClipboardText[i])) {
+            if(this.IsRenderable(Zero.Shell.ClipboardText[i]))
                 tmpClipboard = "`tmpClipboard``String.FromChar(Zero.Shell.ClipboardText[i])`";
-            }
         }
         
         if(!this.IsTextSelected) {
@@ -381,7 +379,6 @@ class TextEntry : ZilchComponent {
         
         this.TempCommandStr = this.CommandString;
         
-        
     }
     
     function PrintToUIConsole(text : String) {
@@ -392,9 +389,8 @@ class TextEntry : ZilchComponent {
         
         var spaceCount = beginningFixedTextWidth - beginningText.Count;
         
-        for(var i = 0; i < spaceCount; ++i) {
+        for(var i = 0; i < spaceCount; ++i)
             beginningText = "`beginningText` ";
-        }
         
         this.PrintToUIConsole("`beginningText``endingText`", false, "");
         
@@ -413,9 +409,8 @@ class TextEntry : ZilchComponent {
             
             var centerTmpTxt = "";
             
-            for(var i = 0; i < Math.Floor((maxLength - text.Count) / 2) as Integer; ++i) {
+            for(var i = 0; i < Math.Floor((maxLength - text.Count) / 2) as Integer; ++i)
                 centerTmpTxt = "`centerTmpTxt``centerChar`";
-            }
             
             text = "`centerTmpTxt``text``centerTmpTxt`";
             
@@ -466,13 +461,11 @@ class TextEntry : ZilchComponent {
         // FIND NUMBER OF OCCURANCES
         for(var i = 0; i < array.Count; ++i) {
             
-            if(array.Get(i).StartsWith(str) && occurances == 0) {
+            if(array.Get(i).StartsWith(str) && occurances == 0)
                 startIndex = i;
-            }
             
-            if(array.Get(i).StartsWith(str)) {
+            if(array.Get(i).StartsWith(str))
                 ++occurances;
-            }
             
         }
         
@@ -490,11 +483,10 @@ class TextEntry : ZilchComponent {
             
             tmpIndex = startIndex + tmpOccur;
             
-            if(array.Get(tmpIndex).StartsWith(str) && curIndex <= tmpIndex && tmpOccur < occurances && tmpIndex < array.Count) {
+            if(array.Get(tmpIndex).StartsWith(str) && curIndex <= tmpIndex && tmpOccur < occurances && tmpIndex < array.Count)
                 return tmpIndex;
-            } else {
+            else
                 ++tmpOccur;
-            }
             
         }
         
@@ -519,11 +511,10 @@ class TextEntry : ZilchComponent {
                 continue;
             }
             
-            if(currArg == argNum) {
+            if(currArg == argNum)
                 tmpArg = String.Concatenate(tmpArg, String.FromChar(command.Get(i)));
-            } else if(currArg > argNum) {
+            else if(currArg > argNum)
                 break;
-            }
             
         }
         
@@ -541,9 +532,8 @@ class TextEntry : ZilchComponent {
     }
     
     function RemoveAt(offset : Integer) : String {
-        if(this.CursorIndex - 1 + offset < 0 || this.CursorIndex + offset > this.CommandString.Count) {
+        if(this.CursorIndex - 1 + offset < 0 || this.CursorIndex + offset > this.CommandString.Count)
             offset = 0;
-        }
         this.CatchInvalidCursorPos();
         return "`this.CommandString.SubStringFromRuneIndices(0, this.CursorIndex - 1 + offset)``this.CommandString.SubStringFromRuneIndices(this.CursorIndex + offset, this.CommandString.Count)`";
     }

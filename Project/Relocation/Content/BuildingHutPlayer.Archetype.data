@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-10.5, 0, 0],
+		Vec3 Translation = [-10.25, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -60,7 +60,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [-0.699999988, -0.75, 0.25],
+				Vec3 Translation = [-0.699999988, -0.800000012, 0.25],
 				Vec3 Scale = [1.14999998, 1.75, 2],
 				Quat Rotation = [0, 0, 0, 1],
 			},
@@ -95,6 +95,7 @@ Cog =
 			CaveEnteranceExit = 
 			{
 				string LevelToLoad = "5adf788b11535bd4:PlayerHouse",
+				Vec3 SpawnPosition = [0, 0, 0],
 			},
 		},
 	},
