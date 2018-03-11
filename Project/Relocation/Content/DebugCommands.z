@@ -268,9 +268,27 @@ class TextEntry : ZilchComponent {
         
     }
     
+    function CalcTextPosition(posX : Real) : Integer {
+        
+        var startPos = this.Owner.Transform.WorldTranslation.X;
+        var charWidth = this.TextCharDimensions.X;
+        
+        var charPos = Math.Floor((posX - startPos) / (charWidth * 0.9)) as Integer;
+        
+        return charPos;
+        
+    }
+    
     function OnMouseUpdate(event : ViewportMouseEvent) {
+        
         if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left))
             this.WasClicked = true;
+        
+        if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
+            this.CursorIndex = this.CalcTextPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X);
+            this.CatchInvalidCursorPos();
+        }
+        
     }
     
     function OnTextTyped(event : KeyboardTextEvent) {

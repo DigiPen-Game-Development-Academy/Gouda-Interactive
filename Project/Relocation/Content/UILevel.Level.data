@@ -367,6 +367,11 @@ Level =
 				Commands = 
 				{
 				},
+				Reactive = 
+				{
+					bool Active = true,
+					bool CaptureMouse = false,
+				},
 			},
 		},
 	},
