@@ -104,7 +104,7 @@ class TextEntry : ZilchComponent {
                     this.CommandString.SubStringFromRuneIndices(
                         this.CommandString.Count - (this.MaxCharsPerLine), this.CommandString.Count
                     );
-                this.UpdateCursorPosition(false);
+                this.UpdateCursorPosition(true);
             }
             
         } else if(this.Owner.SpriteText.Text.Count > 0) {
@@ -137,6 +137,101 @@ class TextEntry : ZilchComponent {
         // COMMANDS
         if(this.FinalCmd.Count > 0 && this.IsCommandTextBox)
             this.Owner.Commands.CommandFunctions();
+        
+    }
+    
+    function OnMouseUpdate(event : ViewportMouseEvent) {
+        
+        if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left))
+            this.WasClicked = true;
+        
+        if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
+            this.CursorIndex = this.CalcTextPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X);
+            this.CatchInvalidCursorPos();
+        }
+        
+    }
+    
+    function OnTextTyped(event : KeyboardTextEvent) {
+        
+        if(this.CaptureKeys) {
+            
+            this.CatchInvalidCursorPos();
+            
+            // CHECK IF TEXT IS RENDERABLE (IS A LETTER/NUMBER/SYMBOL)
+            if(this.IsRenderable(event.Character) && this.CommandString.Count < this.MaxCharLimit) {
+                
+                this.CurrTypingIndicatorBlinkTime = 0.0;
+                this.CycleThroughCmdsAll = false;
+                
+                if(!this.IsTextSelected) {
+                    this.CommandString = this.InsertAt(String.FromChar(event.Character));
+                    ++this.CursorIndex;
+                } else {
+                    this.IsTextSelected = false;
+                    this.CommandString = String.FromChar(event.Character);
+                    this.CursorIndex = 1;
+                }
+                
+                this.TempCommandStr = this.CommandString;
+                
+            }
+            
+            // CHECK FOR BACKSPACE
+            if(event.Character == 8 && this.CommandString.Count > 0) {
+                
+                this.CurrTypingIndicatorBlinkTime = 0.0;
+                this.CycleThroughCmdsAll = false;
+                
+                if(!this.IsTextSelected && this.CursorIndex > 0) {
+                    this.CommandString = this.RemoveAt(0);
+                    --this.CursorIndex;
+                } else if(this.IsTextSelected) {
+                    this.IsTextSelected = false;
+                    this.CommandString = "";
+                    this.CursorIndex = 0;
+                }
+                
+                this.TempCommandStr = this.CommandString;
+                
+            }
+            
+            // CHECK FOR TAB
+            if(event.Character == 9 && this.IsCommandTextBox) {
+                
+                this.IsTextSelected = false;
+                
+                if(this.AutocompleteIndex >= this.Commands.Count)
+                    this.AutocompleteIndex = 0;
+                
+                if(this.CommandString == "" || this.CycleThroughCmdsAll) {
+                    
+                    this.CurrTypingIndicatorBlinkTime = 0.0;
+                    this.CycleThroughCmdsAll = true;
+                    
+                    this.CommandString = this.Commands.Get(this.AutocompleteIndex);
+                    this.CursorIndex = this.CommandString.Count;
+                    
+                } else {
+                    
+                    var cmdStr = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
+                    
+                    if(this.Occurances != 0) {
+                        this.CurrTypingIndicatorBlinkTime = 0.0;
+                        this.CommandString = cmdStr;
+                        this.CursorIndex = this.CommandString.Count;
+                    }
+                    
+                    this.CycleThroughCmdsAll = false;
+                    this.Occurances = 1;
+                    
+                }
+                
+                ++this.AutocompleteIndex;
+                
+            }
+            
+        }
         
     }
     
@@ -304,101 +399,6 @@ class TextEntry : ZilchComponent {
         
     }
     
-    function OnMouseUpdate(event : ViewportMouseEvent) {
-        
-        if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left))
-            this.WasClicked = true;
-        
-        if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
-            this.CursorIndex = this.CalcTextPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X);
-            this.CatchInvalidCursorPos();
-        }
-        
-    }
-    
-    function OnTextTyped(event : KeyboardTextEvent) {
-        
-        if(this.CaptureKeys) {
-            
-            this.CatchInvalidCursorPos();
-            
-            // CHECK IF TEXT IS RENDERABLE (IS A LETTER/NUMBER/SYMBOL)
-            if(this.IsRenderable(event.Character) && this.CommandString.Count < this.MaxCharLimit) {
-                
-                this.CurrTypingIndicatorBlinkTime = 0.0;
-                this.CycleThroughCmdsAll = false;
-                
-                if(!this.IsTextSelected) {
-                    this.CommandString = this.InsertAt(String.FromChar(event.Character));
-                    ++this.CursorIndex;
-                } else {
-                    this.IsTextSelected = false;
-                    this.CommandString = String.FromChar(event.Character);
-                    this.CursorIndex = 1;
-                }
-                
-                this.TempCommandStr = this.CommandString;
-                
-            }
-            
-            // CHECK FOR BACKSPACE
-            if(event.Character == 8 && this.CommandString.Count > 0) {
-                
-                this.CurrTypingIndicatorBlinkTime = 0.0;
-                this.CycleThroughCmdsAll = false;
-                
-                if(!this.IsTextSelected && this.CursorIndex > 0) {
-                    this.CommandString = this.RemoveAt(0);
-                    --this.CursorIndex;
-                } else if(this.IsTextSelected) {
-                    this.IsTextSelected = false;
-                    this.CommandString = "";
-                    this.CursorIndex = 0;
-                }
-                
-                this.TempCommandStr = this.CommandString;
-                
-            }
-            
-            // CHECK FOR TAB
-            if(event.Character == 9 && this.IsCommandTextBox) {
-                
-                this.IsTextSelected = false;
-                
-                if(this.AutocompleteIndex >= this.Commands.Count)
-                    this.AutocompleteIndex = 0;
-                
-                if(this.CommandString == "" || this.CycleThroughCmdsAll) {
-                    
-                    this.CurrTypingIndicatorBlinkTime = 0.0;
-                    this.CycleThroughCmdsAll = true;
-                    
-                    this.CommandString = this.Commands.Get(this.AutocompleteIndex);
-                    this.CursorIndex = this.CommandString.Count;
-                    
-                } else {
-                    
-                    var cmdStr = this.Commands.Get(this.SearchArray(this.Commands, this.TempCommandStr, this.AutocompleteIndex));
-                    
-                    if(this.Occurances != 0) {
-                        this.CurrTypingIndicatorBlinkTime = 0.0;
-                        this.CommandString = cmdStr;
-                        this.CursorIndex = this.CommandString.Count;
-                    }
-                    
-                    this.CycleThroughCmdsAll = false;
-                    this.Occurances = 1;
-                    
-                }
-                
-                ++this.AutocompleteIndex;
-                
-            }
-            
-        }
-        
-    }
-    
     function PasteText() {
         
         var tmpClipboard = "";
@@ -417,12 +417,12 @@ class TextEntry : ZilchComponent {
         }
         
         this.CursorIndex += tmpClipboard.Count;
-        this.CatchInvalidCursorPos();
         
         this.CurrTypingIndicatorBlinkTime = 0.0;
         this.CycleThroughCmdsAll = false;
         
         this.TempCommandStr = this.CommandString;
+        this.CatchInvalidCursorPos();
         
     }
     
