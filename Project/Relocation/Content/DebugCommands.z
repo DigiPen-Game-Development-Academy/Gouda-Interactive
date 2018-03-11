@@ -59,7 +59,7 @@ class TextEntry : ZilchComponent {
     function OnGameRequestQuit(event : GameEvent) {
         event.Handled = true;
     }
-
+    
     function OnLogicUpdate(event : UpdateEvent) {
         
         if(this.CaptureKeys) {
@@ -128,9 +128,8 @@ class TextEntry : ZilchComponent {
         }
         
         // COMMANDS
-        if(this.FinalCmd.Count > 0 && this.IsCommandTextBox) {
+        if(this.FinalCmd.Count > 0 && this.IsCommandTextBox)
             this.Owner.Commands.CommandFunctions();
-        }
         
     }
     
@@ -252,7 +251,9 @@ class TextEntry : ZilchComponent {
     }
     
     function MoveCursor(dt : Real, amount : Integer) {
+        
         this.IsTextSelected = false;
+        
         if(this.CurrRepeatDelay > this.RepeatDelay && this.CurrHeldKeyRepeatSpeed > this.HeldKeyRepeatSpeed || dt < 0) {
             this.CursorIndex += amount;
             this.CurrHeldKeyRepeatSpeed = 0.0;
@@ -260,13 +261,14 @@ class TextEntry : ZilchComponent {
             this.CurrRepeatDelay += dt;
             this.CurrHeldKeyRepeatSpeed += dt;
         }
+        
         this.CatchInvalidCursorPos();
+        
     }
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
-        if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left)) {
+        if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left))
             this.WasClicked = true;
-        }
     }
     
     function OnTextTyped(event : KeyboardTextEvent) {
