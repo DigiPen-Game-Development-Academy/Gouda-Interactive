@@ -399,7 +399,7 @@ class TextEntry : ZilchComponent {
         var startPos = this.Owner.Transform.WorldTranslation.X;
         var charWidth = this.TextCharDimensions.X;
         
-        var charPos = Math.Floor((posX - startPos) / (charWidth * 0.9)) as Integer;
+        var charPos = Math.Floor((posX - startPos) / charWidth + 0.25) as Integer;
         
         return charPos;
         
