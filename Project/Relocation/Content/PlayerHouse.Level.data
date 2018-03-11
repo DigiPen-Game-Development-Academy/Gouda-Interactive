@@ -218,6 +218,7 @@ Level =
 			Enum Left = A,
 			Enum Down = S,
 			Enum Right = D,
+			Enum OpenMap = Tab,
 		},
 		WeaponManager = 
 		{
@@ -275,7 +276,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 6,
+					uint Id = 2,
 				},
 				Named = 
 				{
@@ -307,7 +308,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 7,
+					uint Id = 6,
 				},
 				Named = 
 				{
@@ -384,7 +385,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 8,
+							uint Id = 7,
 						},
 						Named = 
 						{
@@ -464,7 +465,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 8,
 		},
 		Named = 
 		{
@@ -499,7 +500,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 10,
+			uint Id = 9,
 		},
 		Named = 
 		{
@@ -534,7 +535,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 11,
+			uint Id = 10,
 		},
 		Named = 
 		{
@@ -569,7 +570,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 12,
+			uint Id = 11,
 		},
 		Named = 
 		{
@@ -612,6 +613,7 @@ Level =
 		CaveEnteranceExit = 
 		{
 			string LevelToLoad = "5a3bc4c73a7e1106:SurfaceWorld",
+			Vec3 SpawnPosition = [-20.5, 4.5, 0],
 		},
 	},
 },

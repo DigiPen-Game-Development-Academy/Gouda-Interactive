@@ -1,5 +1,5 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: Kevin Panasyuk, HUDSON GREEN
+// CONTRIBUTORS: KEVIN PANASYUK, HUDSON GREEN
 
 class EntityEnemy : ZilchComponent
 {

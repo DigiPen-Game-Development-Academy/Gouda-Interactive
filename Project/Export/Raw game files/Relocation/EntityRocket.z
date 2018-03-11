@@ -62,7 +62,7 @@ class EntityRocket : ZilchComponent {
                     rider.Transform.WorldTranslation = Real3(this.Owner.Transform.WorldTranslation.XY, rider.Transform.WorldTranslation.Z);
                     
                     this.IsRidingRover = true;
-                    this.Owner.SoundEmitter.PlayCue(SoundCue.Rocket);
+                    this.Owner.SoundEmitter.PlayCue(SoundCue.DefaultCue);
                     
                     /*if(rider.Movement != null) {
                         this.RiderDefaultSpeed = rider.Movement.Speed;

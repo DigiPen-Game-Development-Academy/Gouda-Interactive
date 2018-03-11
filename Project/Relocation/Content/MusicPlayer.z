@@ -63,13 +63,11 @@ class MusicPlayer : ZilchComponent {
     
     function OnLevelStarted(event : GameEvent) {
         
-        if((event.LevelName == "SplashScreen" || event.LevelName == "MainMenu" || event.LevelName == "SettingsMenu") && this.MainMenuMusicSpace == null) {
+        if((event.LevelName == "SplashScreen" || event.LevelName == "MainMenu" || event.LevelName == "SettingsMenu") && this.MainMenuMusicSpace == null && event.LevelName != "UILevel") {
             
             if(this.GameLevelMusicSpace != null) {
                 this.GameLevelMusicSpace.Destroy();
             }
-            
-            //this.CurrSpace = this.MainMenuMusicSpace;
             
             this.MainMenuMusicSpace = this.GameSession.CreateSpace(this.MusicSpace);
             
@@ -77,7 +75,7 @@ class MusicPlayer : ZilchComponent {
             this.MainMenuMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
             this.MainMenuMusicSpace.SoundSpace.PlayCue(this.MainMenuSong);
             
-        } else if(!(event.LevelName == "SplashScreen") && !(event.LevelName == "MainMenu") && !(event.LevelName == "SettingsMenu")) {
+        } else if(event.LevelName != "SplashScreen" && event.LevelName != "MainMenu" && event.LevelName != "SettingsMenu" && event.LevelName != "UILevel" && this.GameLevelMusicSpace == null) {
             
             if(this.MainMenuMusicSpace != null) {
                 this.MainMenuMusicSpace.Destroy();

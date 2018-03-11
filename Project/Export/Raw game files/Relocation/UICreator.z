@@ -14,12 +14,7 @@ class UICreator : ZilchComponent {
         Relocation.Space = this.Space;
         
         this.UISpace = this.GameSession.CreateNamedSpace("UISpace", this.UIArchetype);
-        
         this.UISpace.LoadLevel(this.UILevel);
-        
-        if(this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry") != null) {
-            this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").Commands.MainSpace = this.Space;
-        }
         
         Relocation.UISpace = this.UISpace;
         

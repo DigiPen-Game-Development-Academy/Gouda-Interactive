@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-2, 1.70000005, 0],
+		Vec3 Translation = [-2, 0.950000048, 0],
 		Vec3 Scale = [1.5, 1.5, 1.5],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -44,6 +44,12 @@ Cog =
 	CraftingSlot = 
 	{
 		bool IsCraftingSlot = true,
+		string InventorySlot = "5a3802b8a850eeb2:InventorySlot",
+		string InventorySlotHover = "5aef777feb626ca2:InventorySlotHover",
+	},
+	CraftingScrollButton = 
+	{
+		bool ScrollWheelArea = true,
 	},
 	Hierarchy = 
 	{

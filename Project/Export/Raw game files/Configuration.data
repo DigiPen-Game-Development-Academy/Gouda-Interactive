@@ -26,7 +26,7 @@ Cog  =
 		bool FullScreen = false,
 		bool VerticalSync = true,
 		int MultiSample = 0,
-		GraphicsQuality Quality = High,
+		GraphicsQuality Quality = Low,
 		int FullscreenWidth = 0,
 		int FullscreenHeight = 0,
 	},

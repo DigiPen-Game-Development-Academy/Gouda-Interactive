@@ -1,5 +1,5 @@
 // AUTHOR: HUDSON GREEN
-// CONTRIBUTORS: MYLES BUSIG
+// CONTRIBUTORS: N/A
 
 class EntityBullet : ZilchComponent {
     
@@ -55,6 +55,8 @@ class EntityBullet : ZilchComponent {
             
             this.Owner.Destroy();
             
+        } else if(event.OtherObject.Collider != null && !this.FromPlayer && event.OtherObject.Name != "EntityEnemy") {
+            this.Owner.Destroy();
         }
         
     }

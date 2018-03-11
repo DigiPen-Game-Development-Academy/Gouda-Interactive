@@ -1,5 +1,5 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: Kevin Panasyuk, HUDSON GREEN
+// CONTRIBUTORS: KEVIN PANASYUK, HUDSON GREEN
 
 class EntityEnemy : ZilchComponent
 {
@@ -19,9 +19,6 @@ class EntityEnemy : ZilchComponent
     [Property] var LookRight : SpriteSource;
     [Property] var LookDownRight : SpriteSource;
     [Property] var LookDown : SpriteSource;
-    [Property] var LookDownLeft : SpriteSource;
-    [Property] var LookLeft : SpriteSource;
-    [Property] var LookUpLeft : SpriteSource;
     
     [Property] var BulletSpeed : Real = 10.0;
     
@@ -41,28 +38,39 @@ class EntityEnemy : ZilchComponent
         if (this.CheckForPlayer() == false)
             return;
         
+        this.LookAtPlayer();
+        
         // Change "EnemySprite"
         this.ChangeSprite();
+        
+        // Move
+        this.Move();
         
         // Decrease "TimeTillAttack"
         this.TimeTillAttack -= event.Dt;
         
         // Look at the player
-        //this.LookAtPlayer();
+        this.LookAtPlayer();
         
         // Attack
-        
         if (this.TimeTillAttack <= 0.0)
             this.Shoot();
+    }
+    
+    function Move()
+    {
+        this.Owner.RigidBody.Velocity += this.Owner.Orientation.WorldForward * 3 * 0.0166667;
     }
     
     function Shoot()
     {
         /*if (this.Owner.PathFinding.LookAtPlayer().ObjectHit != null)
             if (this.Owner.PathFinding.LookAtPlayer().ObjectHit.Name != "EntityPlayer")
-                return;
+                return;*/
         
-        var bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.X, this.Owner.Transform.Translation.Y, 0.1));
+        var bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.XY, 0.0));
+        
+        bullet.EntityBullet.FromPlayer = false;
         
         var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
         var enemyPos = this.Owner.Transform.WorldTranslation;
@@ -78,7 +86,7 @@ class EntityEnemy : ZilchComponent
         
         this.TimeTillAttack = this.AttackCooldown;
         
-        //Console.WriteLine("Shoot");*/
+        //Console.WriteLine("Shoot");
     }
     
     function LookAtPlayer()
@@ -108,21 +116,48 @@ class EntityEnemy : ZilchComponent
         
         // Change sprite (up, upright, right, downrirght, down, downleft, left, upleft)
         if (degrees > -26.5651 && degrees < 26.5651 && sprite.Sprite.SpriteSource != this.LookUp)
+        {
             sprite.Sprite.SpriteSource = this.LookUp;
+            sprite.Sprite.FlipX = false;
+        }
         else if (degrees > 26.5651 && degrees < 63.4349 && sprite.Sprite.SpriteSource != this.LookUpRight)
+        {
             sprite.Sprite.SpriteSource = this.LookUpRight;
+            sprite.Sprite.FlipX = false;
+        }
         else if (degrees > 63.4349 && degrees < 116.565 && sprite.Sprite.SpriteSource != this.LookRight)
+        {
             sprite.Sprite.SpriteSource = this.LookRight;
+            sprite.Sprite.FlipX = false;
+        }
         else if (degrees > 116.565 && degrees < 153.435 && sprite.Sprite.SpriteSource != this.LookDownRight)
+        {
             sprite.Sprite.SpriteSource = this.LookDownRight;
+            sprite.Sprite.FlipX = false;
+        }
         else if (degrees > 153.435 || degrees < -153.435 && sprite.Sprite.SpriteSource != this.LookDown)
+        {
             sprite.Sprite.SpriteSource = this.LookDown;
-        else if (degrees > -153.435 && degrees < -116.565 && sprite.Sprite.SpriteSource != this.LookDownLeft)
-            sprite.Sprite.SpriteSource = this.LookDownLeft;
-        else if (degrees > -116.565 && degrees < -63.4349 && sprite.Sprite.SpriteSource != this.LookLeft)
-            sprite.Sprite.SpriteSource = this.LookLeft;
-        else if (degrees > -63.4349 && degrees < -26.5651 && sprite.Sprite.SpriteSource != this.LookUpLeft)
-            sprite.Sprite.SpriteSource = this.LookUpLeft;
+            sprite.Sprite.FlipX = false;
+        }
+        else if (degrees > -153.435 && degrees < -116.565)
+        {
+            if (sprite.Sprite.SpriteSource != this.LookDownRight)
+                sprite.Sprite.SpriteSource = this.LookDownRight;
+            sprite.Sprite.FlipX = true;
+        }
+        else if (degrees > -116.565 && degrees < -63.4349)
+        {
+            if (sprite.Sprite.SpriteSource != this.LookRight)
+                sprite.Sprite.SpriteSource = this.LookRight;
+            sprite.Sprite.FlipX = true;
+        }
+        else if (degrees > -63.4349 && degrees < -26.5651)
+        {
+            if (sprite.Sprite.SpriteSource != this.LookUpRight)
+                sprite.Sprite.SpriteSource = this.LookUpRight;
+            sprite.Sprite.FlipX = true;
+        }
     }
     
     function CheckForPlayer() : Boolean

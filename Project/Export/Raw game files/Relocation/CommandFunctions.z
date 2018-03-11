@@ -3,9 +3,7 @@
 
 class Commands : ZilchComponent {
     
-    [Dependency] var DebugCmd : TextEntry = null;
-    
-    var MainSpace : Space = null;
+    [Dependency] var TextEntry : TextEntry = null;
     
     function CreateCommands() {
         
@@ -20,9 +18,9 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.Commands.Push("give");
         this.Owner.TextEntry.Commands.Push("god");
         this.Owner.TextEntry.Commands.Push("help");
-        this.Owner.TextEntry.Commands.Push("noclip");
         this.Owner.TextEntry.Commands.Push("playsound");
         this.Owner.TextEntry.Commands.Push("spawn");
+        this.Owner.TextEntry.Commands.Push("togglecheat");
         
     }
     
@@ -46,22 +44,23 @@ class Commands : ZilchComponent {
             this.CommandPlaySound();
         } else if(this.CheckForCommand("spawn", false, "", "") != -1) {
             this.CommandSpawn();
-        } else if(this.CheckForCommand("noclip", false, "", "") != -1) {
-            this.CommandNoclip();
+        } else if(this.CheckForCommand("togglecheat", false, "", "?") != -1) {
+            this.CommandCheat();
         } else {
-            this.DebugCmd.PrintToUIConsole("Error: The command \"`this.DebugCmd.FinalCmd`\" does not exist. Type help for a list of commands.");
+            var baseCommand = this.TextEntry.GetArgument(0, this.TextEntry.FinalCmd);
+            this.TextEntry.PrintToUIConsole("Error: The command \"`baseCommand`\" does not exist. Type help for a list of commands.");
         }
         
-        this.DebugCmd.FinalCmd = "";
+        this.TextEntry.FinalCmd = "";
         
     }
     
     function CheckForCommand(cmd : String, args : Boolean, usage : String, cmdAlias : String) : Integer {
         
-        if(this.DebugCmd.FinalCmd == cmd || this.DebugCmd.FinalCmd.StartsWith(String.Concatenate(cmd, " ")) || (this.DebugCmd.FinalCmd == cmdAlias || this.DebugCmd.FinalCmd.StartsWith(String.Concatenate(cmdAlias, " ")) && cmdAlias != "")) {
+        if(this.TextEntry.FinalCmd == cmd || this.TextEntry.FinalCmd.StartsWith(String.Concatenate(cmd, " ")) || (this.TextEntry.FinalCmd == cmdAlias || this.TextEntry.FinalCmd.StartsWith(String.Concatenate(cmdAlias, " ")) && cmdAlias != "")) {
             
-            if(args && (this.DebugCmd.FinalCmd.EndsWith(cmd) || this.DebugCmd.FinalCmd.EndsWith(String.Concatenate(cmd, " ")))) {
-                this.DebugCmd.PrintToUIConsole(String.Concatenate("Error: Invalid arguments. Usage: ", usage));
+            if(args && (this.TextEntry.FinalCmd.EndsWith(cmd) || this.TextEntry.FinalCmd.EndsWith(String.Concatenate(cmd, " ")))) {
+                this.TextEntry.PrintToUIConsole(String.Concatenate("Error: Invalid arguments. Usage: ", usage));
                 return 0;
             } else {
                 return 1;
@@ -75,26 +74,26 @@ class Commands : ZilchComponent {
     
     function CommandDebug() {
         
-        if(this.DebugCmd.FinalCmd.EndsWith("true")) {
+        if(this.TextEntry.FinalCmd.EndsWith("true")) {
             
-            this.DebugCmd.DebugEnabled = true;
-            Relocation.DebugMode = this.DebugCmd.DebugEnabled;
-            this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
+            this.TextEntry.DebugEnabled = true;
+            Relocation.DebugMode = this.TextEntry.DebugEnabled;
+            this.TextEntry.PrintToUIConsole("Debug: `this.TextEntry.DebugEnabled`");
             
-        } else if(this.DebugCmd.FinalCmd.EndsWith("false")) {
+        } else if(this.TextEntry.FinalCmd.EndsWith("false")) {
             
-            this.DebugCmd.DebugEnabled = false;
-            Relocation.DebugMode = this.DebugCmd.DebugEnabled;
-            this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
+            this.TextEntry.DebugEnabled = false;
+            Relocation.DebugMode = this.TextEntry.DebugEnabled;
+            this.TextEntry.PrintToUIConsole("Debug: `this.TextEntry.DebugEnabled`");
             
-        } else if(this.DebugCmd.FinalCmd == "debug" || this.DebugCmd.FinalCmd == "debug ") {
+        } else if(this.TextEntry.FinalCmd == "debug" || this.TextEntry.FinalCmd == "debug ") {
             
-            this.DebugCmd.DebugEnabled = !this.DebugCmd.DebugEnabled;
-            Relocation.DebugMode = this.DebugCmd.DebugEnabled;
-            this.DebugCmd.PrintToUIConsole("Debug: `this.DebugCmd.DebugEnabled`");
+            this.TextEntry.DebugEnabled = !this.TextEntry.DebugEnabled;
+            Relocation.DebugMode = this.TextEntry.DebugEnabled;
+            this.TextEntry.PrintToUIConsole("Debug: `this.TextEntry.DebugEnabled`");
             
         } else {
-            this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
+            this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
         }
         
     }
@@ -102,16 +101,16 @@ class Commands : ZilchComponent {
     function CommandGive() {
         
         if(this.CheckForCommand("give", true, "give <itemID> [quantity]", "") != 0) {
-            if(this.MainSpace.FindObjectByName("EntityPlayer") != null) {
+            if(Relocation.Space.FindObjectByName("EntityPlayer") != null) {
                 
-                var quantity = this.DebugCmd.GetArgument(2, this.DebugCmd.FinalCmd);
+                var quantity = this.TextEntry.GetArgument(2, this.TextEntry.FinalCmd);
                 
                 if(quantity == "") {
                     quantity = "1";
                 }
                 
-                this.MainSpace.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(
-                    Integer.Parse(this.DebugCmd.GetArgument(1, this.DebugCmd.FinalCmd)),
+                Relocation.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(
+                    Integer.Parse(this.TextEntry.GetArgument(1, this.TextEntry.FinalCmd)),
                     true,
                     Integer.Parse(quantity)
                 );
@@ -123,75 +122,90 @@ class Commands : ZilchComponent {
     
     function CommandGod() {
         
-        if(this.DebugCmd.FinalCmd.EndsWith("true")) {
+        if(this.TextEntry.FinalCmd.EndsWith("true")) {
             
-            this.DebugCmd.GodMode = true;
-            this.DebugCmd.PrintToUIConsole("God Mode: `this.DebugCmd.GodMode`");
+            this.TextEntry.GodMode = true;
+            this.TextEntry.PrintToUIConsole("God Mode: `this.TextEntry.GodMode`");
             
-        } else if(this.DebugCmd.FinalCmd.EndsWith("false")) {
+        } else if(this.TextEntry.FinalCmd.EndsWith("false")) {
             
-            this.DebugCmd.GodMode = false;
-            this.DebugCmd.PrintToUIConsole("God Mode: `this.DebugCmd.GodMode`");
+            this.TextEntry.GodMode = false;
+            this.TextEntry.PrintToUIConsole("God Mode: `this.TextEntry.GodMode`");
             
-        } else if(this.DebugCmd.FinalCmd == "god" || this.DebugCmd.FinalCmd == "god ") {
+        } else if(this.TextEntry.FinalCmd == "god" || this.TextEntry.FinalCmd == "god ") {
             
-            this.DebugCmd.GodMode = !this.DebugCmd.GodMode;
-            this.DebugCmd.PrintToUIConsole("God Mode: `this.DebugCmd.GodMode`");
+            this.TextEntry.GodMode = !this.TextEntry.GodMode;
+            this.TextEntry.PrintToUIConsole("God Mode: `this.TextEntry.GodMode`");
         } else {
-            this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: god [true/false]");
+            this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: god [true/false]");
         }
         
-        if(this.MainSpace != null && this.MainSpace.FindObjectByName("EntityPlayer") != null) {
-            this.MainSpace.FindObjectByName("EntityPlayer").Health.IsInvincible = this.DebugCmd.GodMode;
+        if(Relocation.Space != null && Relocation.Space.FindObjectByName("EntityPlayer") != null) {
+            Relocation.Space.FindObjectByName("EntityPlayer").Health.IsInvincible = this.TextEntry.GodMode;
         }
         
     }
     
     function CommandHelp() {
         
-        this.DebugCmd.PrintToUIConsole("---- Help ----");
-        this.DebugCmd.PrintToUIConsole("clear - (Alias: cls) - Clears the screen");
-        this.DebugCmd.PrintToUIConsole("color <color> - Changes console color");
-        this.DebugCmd.PrintToUIConsole("debug [true/false] - Enables/Disables debug mode");
-        this.DebugCmd.PrintToUIConsole("echo <string> - Prints to console screen");
-        this.DebugCmd.PrintToUIConsole("give <itemID> [quantity] - Gives player item");
-        this.DebugCmd.PrintToUIConsole("god [true/false] - Makes player invincible");
-        this.DebugCmd.PrintToUIConsole("help - (Alias: ?) - Shows this help screen");
-        this.DebugCmd.PrintToUIConsole("playsound <SoundCue> - Plays sound cue (Will crash if sound does not exist)");
-        this.DebugCmd.PrintToUIConsole("spawn <entity> - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)");
+        var width = 24;
+        
+        this.TextEntry.PrintToUIConsole("Help", true);
+        this.TextEntry.PrintToUIConsole("clear - (Alias: cls)", " - Clears the screen", width);
+        this.TextEntry.PrintToUIConsole("color <color>", " - Changes console color", width);
+        this.TextEntry.PrintToUIConsole("debug [true/false]", " - Enables/Disables debug mode", width);
+        this.TextEntry.PrintToUIConsole("echo <string>", " - Prints to console screen", width);
+        this.TextEntry.PrintToUIConsole("give <itemID> [quantity]", " - Gives player item", width);
+        this.TextEntry.PrintToUIConsole("god [true/false]", " - Makes player invincible", width);
+        this.TextEntry.PrintToUIConsole("help - (Alias: ?)", " - Shows this help screen", width);
+        this.TextEntry.PrintToUIConsole("playsound <SoundCue>", " - Plays sound cue (Will crash if sound does not exist)", width);
+        this.TextEntry.PrintToUIConsole("spawn <entity>", " - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)", width);
+        this.TextEntry.PrintToUIConsole("togglecheat <cheat>", " - Enables specified cheat", width);
+        
+    }
+    
+    function CommandCheat() {
+        
+        if(this.CheckForCommand("togglecheat", true, "togglecheat <cheat>", "") != 0) {
+            
+            var cheatArg = this.TextEntry.GetArgument(1, this.TextEntry.FinalCmd);
+            
+            if(cheatArg.ToLower() == "noclip") {
+                //TODO: NOCLIP CHEAT
+            } else if(cheatArg.ToLower() == "camera" || cheatArg.ToLower() == "cam") {
+                //TODO: CAMERA CHEAT
+            } else if(cheatArg.ToLower() == "crafting") {
+                //TODO: CRAFTING CHEAT
+            } else {
+                this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: togglecheat <cheat>");
+            }
+            
+        }
         
     }
     
     function CommandClear() {
         
-        this.DebugCmd.ConsoleLog = "";
-        this.DebugCmd.PrintToUIConsole("Console cleared.");
+        this.TextEntry.ConsoleLog = "";
+        this.TextEntry.PrintToUIConsole("Console cleared.");
         
     }
     
     function CommandColor() {
         
-        if(this.CheckForCommand("color", true, "color <color>", "") != 0) {
+        if(this.CheckForCommand("color", true, "color <0-255> [0-255] [0-255]", "") != 0) {
             
-            var color = this.DebugCmd.FinalCmd.SubStringFromRuneIndices(6, this.DebugCmd.FinalCmd.Count);
-            var finalColor = Real3(1.0);
+            var colorR = this.TextEntry.GetArgument(1, this.TextEntry.FinalCmd);
+            var colorG = this.TextEntry.GetArgument(2, this.TextEntry.FinalCmd);
+            var colorB = this.TextEntry.GetArgument(3, this.TextEntry.FinalCmd);
+            var finalColor = Real3(Real.Parse(colorR) / 255, Real.Parse(colorG) / 255, Real.Parse(colorB) / 255);
             
-            if(color == "red") {
-                finalColor = Real3(1.0, 0.0, 0.0);
-            } else if(color == "green") {
-                finalColor = Real3(0.0, 1.0, 0.0);
-            } else if(color == "blue") {
-                finalColor = Real3(0.0, 0.0, 1.0);
-            } else if(color == "white" || color == "default") {
-                finalColor = Real3(1.0, 1.0, 1.0);
-            } else {
-                this.DebugCmd.PrintToUIConsole("Error: The color `color` does not exist.");
-                return;
-            }
+            if(colorR.ToLower() == "off")
+                finalColor = Real3(1.0);
             
-            this.Owner.Parent.FindChildByName(this.DebugCmd.ConsoleTextboxName).SpriteText.Color = Real4(finalColor, 1.0);
+            this.Owner.Parent.FindChildByName(this.TextEntry.ConsoleTextboxName).SpriteText.Color = Real4(finalColor, 1.0);
             
-            this.DebugCmd.PrintToUIConsole("Changing color to `color`.");
+            this.TextEntry.PrintToUIConsole("Changing color to `finalColor`.");
             
         }
         
@@ -200,7 +214,7 @@ class Commands : ZilchComponent {
     function CommandEcho() {
         
         if(this.CheckForCommand("echo", true, "echo <string>", "") != 0) {
-            this.DebugCmd.PrintToUIConsole("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(5, this.DebugCmd.FinalCmd.Count)`");
+            this.TextEntry.PrintToUIConsole("`this.TextEntry.FinalCmd.SubStringFromRuneIndices(5, this.TextEntry.FinalCmd.Count)`");
         }
         
     }
@@ -208,37 +222,17 @@ class Commands : ZilchComponent {
     function CommandPlaySound() {
         
         if(this.CheckForCommand("playsound", true, "playsound <SoundCue>", "") != 0) {
-            this.DebugCmd.PrintToUIConsole("Playing sound \"`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(10, this.DebugCmd.FinalCmd.Count)`\"");
-            this.DebugCmd.Space.SoundSpace.PlayCue(SoundCue.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(10, this.DebugCmd.FinalCmd.Count)`"));
+            this.TextEntry.PrintToUIConsole("Playing sound \"`this.TextEntry.FinalCmd.SubStringFromRuneIndices(10, this.TextEntry.FinalCmd.Count)`\"");
+            this.TextEntry.Space.SoundSpace.PlayCue(SoundCue.Find("`this.TextEntry.FinalCmd.SubStringFromRuneIndices(10, this.TextEntry.FinalCmd.Count)`"));
         }
         
     }
     
     function CommandSpawn() {
         
-        if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0 && this.MainSpace != null) {
-            var mousePos = this.MainSpace.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-            this.MainSpace.CreateAtPosition(Archetype.Find("`this.DebugCmd.FinalCmd.SubStringFromRuneIndices(6, this.DebugCmd.FinalCmd.Count)`"), mousePos);
-        }
-        
-    }
-    
-    function CommandNoclip() {
-        
-        if(this.DebugCmd.FinalCmd.EndsWith("true")) {
-            
-            this.DebugCmd.PrintToUIConsole("Noclip: `true`");
-            
-        } else if(this.DebugCmd.FinalCmd.EndsWith("false")) {
-            
-            this.DebugCmd.PrintToUIConsole("Noclip: `false`");
-            
-        } else if(this.DebugCmd.FinalCmd == "noclip" || this.DebugCmd.FinalCmd == "noclip ") {
-            
-            this.DebugCmd.PrintToUIConsole("Noclip: toggled");
-            
-        } else {
-            this.DebugCmd.PrintToUIConsole("Error: Invalid arguments. Usage: noclip [true/false]");
+        if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0 && Relocation.Space != null) {
+            var mousePos = Relocation.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
+            Relocation.Space.CreateAtPosition(Archetype.Find("`this.TextEntry.FinalCmd.SubStringFromRuneIndices(6, this.TextEntry.FinalCmd.Count)`"), mousePos);
         }
         
     }
