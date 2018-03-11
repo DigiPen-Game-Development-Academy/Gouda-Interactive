@@ -201,6 +201,7 @@ class TextEntry : ZilchComponent {
                 
                 this.CommandString = this.CommandHistory.Get(this.CmdHistoryIndex);
                 this.TempCommandStr = this.CommandString;
+                this.CursorIndex = this.CommandString.Count;
                 
             }
             
@@ -214,6 +215,7 @@ class TextEntry : ZilchComponent {
                 
                 this.CommandString = this.CommandHistory.Get(this.CmdHistoryIndex);
                 this.TempCommandStr = this.CommandString;
+                this.CursorIndex = this.CommandString.Count;
                 
             } else if(this.CmdHistoryIndex < this.CommandHistory.Count) {
                 
@@ -275,6 +277,8 @@ class TextEntry : ZilchComponent {
     }
     
     function UpdateCursorPosition(updatePos : Boolean) {
+        
+        this.CatchInvalidCursorPos();
         
         var txtCursor = this.Owner.Parent.FindChildByName("TextCursor");
         var cmdStrFront = this.CommandString.SubStringFromRuneIndices(0, this.CursorIndex);
@@ -393,8 +397,6 @@ class TextEntry : ZilchComponent {
             
         }
         
-        this.CatchInvalidCursorPos();
-        
     }
     
     function PasteText() {
@@ -480,8 +482,8 @@ class TextEntry : ZilchComponent {
                 
                 var tmpFrnt = text.SubStringFromRuneIndices(0, breakIndex);
                 tmpTxt = text.SubStringFromRuneIndices(breakIndex, text.Count);
-                tmpFrnt = String.Concatenate(tmpFrnt, "\n");
-                text = String.Concatenate(tmpFrnt, tmpTxt);
+                tmpFrnt = "`tmpFrnt`\n";
+                text = "`tmpFrnt``tmpTxt`";
                 
             }
         }
@@ -499,6 +501,8 @@ class TextEntry : ZilchComponent {
         
         var occurances = 0;
         var startIndex = 0;
+        var tmpOccur = 0;
+        var tmpIndex = 0;
         
         // FIND NUMBER OF OCCURANCES
         for(var i = 0; i < array.Count; ++i) {
@@ -514,9 +518,6 @@ class TextEntry : ZilchComponent {
         }
         
         this.Occurances = occurances;
-        
-        var tmpOccur = 0;
-        var tmpIndex = 0;
         
         for(var i = 0; i < occurances; ++i) {
             tmpIndex = startIndex + tmpOccur;
