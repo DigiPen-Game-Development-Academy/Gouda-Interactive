@@ -262,6 +262,8 @@ class TextEntry : ZilchComponent {
             this.CurrHeldKeyRepeatSpeed += dt;
         }
         
+        this.CurrTypingIndicatorBlinkTime = 0.0;
+        
         this.CatchInvalidCursorPos();
         
     }
