@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = false,
+		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -77,7 +77,10 @@ Cog =
 	EntityBullet = 
 	{
 		bool FromPlayer = false,
+		bool DrillBullet = false,
+		float Lifetime = 5,
 		float Damage = 1,
+		float BlockDamageAmount = 1,
 	},
 	Hierarchy = 
 	{
@@ -112,7 +115,7 @@ Cog =
 				ParticleRenderMode RenderMode = Additive,
 				ParticleSortMode SortMode = Youngest,
 				ParticleAnimation ParticleAnimation = Looping,
-				string Texture = "5310e87946e28fac:Smoke0",
+				string Texture = "5af6a019ea0abcf5:Particle_Laser",
 				float VelocityScale = 1,
 				float LengthScale = 1,
 				float MaxParticleSize = 100,
@@ -124,7 +127,7 @@ Cog =
 				uint EmitCount = 0,
 				float EmitRate = 200,
 				float EmitVariance = 0,
-				float Size = 0.25,
+				float Size = 0.150000006,
 				float SizeVariance = 0,
 				float Lifetime = 0.100000001,
 				float LifetimeVariance = 0,
