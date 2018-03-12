@@ -136,7 +136,7 @@ class TextEntry : ZilchComponent {
                 this.Owner.Parent.SpriteText.Visible = false;
             if(this.IsCommandTextBox)
                 this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = false;
-            this.IsTextSelected = false;
+            this.DeselectText();
         }
         
         if(((Zero.Keyboard.KeyIsPressed(Keys.Tilde) && this.IsCommandTextBox) || (this.WasClicked && !this.IsCommandTextBox)) && !this.CaptureKeys) {
@@ -168,8 +168,6 @@ class TextEntry : ZilchComponent {
         
         this.SelectText(this.SelectedTextIndex, false);
         
-        Console.WriteLine("Selected Index: `this.SelectedTextIndex`");
-        
     }
     
     function OnTextTyped(event : KeyboardTextEvent) {
@@ -188,8 +186,8 @@ class TextEntry : ZilchComponent {
                     this.CommandString = this.InsertAt(String.FromChar(event.Character));
                     ++this.CursorIndex;
                 } else {
-                    this.IsTextSelected = false;
                     this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true), "`String.FromChar(event.Character)`", true);
+                    this.DeselectText();
                     this.CursorIndex += 1;
                     this.CatchInvalidCursorPos();
                 }
@@ -208,8 +206,9 @@ class TextEntry : ZilchComponent {
                     this.CommandString = this.RemoveAt(0);
                     --this.CursorIndex;
                 } else if(this.IsTextSelected) {
-                    this.IsTextSelected = false;
+                    // THROWS ERROR SOMETIMES!!!
                     this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true), "", true);
+                    this.DeselectText();
                 }
                 
                 this.TempCommandStr = this.CommandString;
@@ -219,7 +218,7 @@ class TextEntry : ZilchComponent {
             // CHECK FOR TAB
             if(event.Character == 9 && this.IsCommandTextBox) {
                 
-                this.IsTextSelected = false;
+                this.DeselectText();
                 
                 if(this.AutocompleteIndex >= this.Commands.Count)
                     this.AutocompleteIndex = 0;
@@ -433,9 +432,9 @@ class TextEntry : ZilchComponent {
             selectedIndex = selectedIndex.YX;
         
         if(selectedIndex.X < 0)
-            selectedIndex.X = 0;
+            selectedIndex = Integer2(0, selectedIndex.Y);
         if(selectedIndex.Y > this.CommandString.Count)
-            selectedIndex.Y = this.CommandString.Count;
+            selectedIndex = Integer2(selectedIndex.X, this.CommandString.Count);
         
         if(returnOrderedSelection) {
             return selectedIndex;
@@ -459,6 +458,14 @@ class TextEntry : ZilchComponent {
         txtSelect.Transform.Scale = Real3((selectDiff) * this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
         
         return selectedIndex;
+        
+    }
+    
+    function DeselectText() {
+        
+        this.CatchInvalidCursorPos();
+        this.IsTextSelected = false;
+        this.SelectedTextIndex = Integer2(this.CursorIndex);
         
     }
     
@@ -490,6 +497,10 @@ class TextEntry : ZilchComponent {
     }
     
     function ReplaceInRange(range : Integer2, newTxt : String, moveCursor : Boolean) : String {
+        if(range.X > this.CommandString.Count) {
+            Console.WriteLine("Caught error!");
+            range = Integer2(this.CommandString.Count, range.Y);
+        }
         var start = this.CommandString.SubStringFromRuneIndices(0, range.X);
         var end = this.CommandString.SubStringFromRuneIndices(range.Y, this.CommandString.Count);
         if(moveCursor)
