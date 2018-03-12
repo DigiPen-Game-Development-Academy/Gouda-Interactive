@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.452291191, 0, 13.6266108],
+			Vec3 Translation = [-0.655432463, 0.119169548, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.3130379,
+			float Size = 22.0463657,
 		},
 		EditorCameraController = 
 		{
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.452291191, 0, -1.97702832e-08],
+			Vec3 LookTarget = [-0.655432463, 0.119169548, -2.86498665e-08],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2121,7 +2121,7 @@ Level =
 							BlendMode BlendMode = Alpha,
 							SpriteGeometryMode GeometryMode = ZPlane,
 							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "5586f579ca73ecc2:SquareBordered",
+							string SpriteSource = "5aef4ac44a9354a8:Bar",
 							bool RenderMask = false,
 							bool FlipX = false,
 							bool FlipY = false,
@@ -2131,7 +2131,7 @@ Level =
 						},
 						Area = 
 						{
-							Vec2 Size = [7.5999999, 1.10000002],
+							Vec2 Size = [7.69999981, 1.10000002],
 							Location Origin = Center,
 						},
 					},
@@ -3212,6 +3212,7 @@ Level =
 			string HoverTooltipCursor = "5acaf71e6daf6949:CursorDotHover",
 			string HoverItemCursor = "5a3bd208fba8aefb:Cursor",
 			string ClickCursor = "5a3bd208fba8aefb:Cursor",
+			string TextCursor = "5aeba223f7830399:CursorText",
 			bool ShowCustomCursor = true,
 		},
 	},

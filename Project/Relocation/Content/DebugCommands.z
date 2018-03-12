@@ -52,6 +52,7 @@ class TextEntry : ZilchComponent {
         Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+        Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
         Zero.Connect(Zero.Keyboard, Events.TextTyped, this.OnTextTyped);
         
     }
@@ -61,7 +62,7 @@ class TextEntry : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
-        
+            
         if(this.CaptureKeys) {
             
             // CURSOR BLINKING
@@ -129,10 +130,12 @@ class TextEntry : ZilchComponent {
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
         
-        Relocation.CursorType = "TooltipHover";
-        this.Space.FindObjectByName("Cursor").CustomCursor.ForceSetCursor();
+        if(this.CaptureKeys)
+            Relocation.CursorType = "Text";
+        else
+            Relocation.CursorType = "Default";
         
-        if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left))
+        if(event.Mouse.IsButtonDown(MouseButtons.Left) && !this.WasClicked)
             this.WasClicked = true;
         if(event.Mouse.IsButtonDown(MouseButtons.Left) && !this.CursorMoveClick) {
             this.DeselectText();
@@ -146,8 +149,17 @@ class TextEntry : ZilchComponent {
             this.SelectedTextIndex = Integer2(this.SelectedTextIndex.X, this.CalcTextIndexFromPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X));
         }
         
+        if(event.Mouse.IsButtonDown(MouseButtons.Right) && this.IsTextSelected) {
+            this.Space.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
+        }
+        
         this.SelectText(this.SelectedTextIndex, false);
         
+    }
+    
+    function OnMouseExit(event : ViewportMouseEvent) {
+        if(Relocation.CursorType == "Text")
+            Relocation.CursorType = "Default";
     }
     
     function OnTextTyped(event : KeyboardTextEvent) {
@@ -352,6 +364,7 @@ class TextEntry : ZilchComponent {
         this.CatchInvalidCursorPos();
     }
     
+    // VISUAL UPDATE (DOES NOT HANDLE CURSOR INPUT. ONLY MOVES IT TO SPECIFIED POSITION)
     function UpdateCursorPosition() {
         
         this.CatchInvalidCursorPos();
@@ -369,7 +382,7 @@ class TextEntry : ZilchComponent {
     }
     
     function CalcTextIndexFromPosition(posX : Real) : Integer {
-        return Math.Floor((posX - this.Owner.Transform.WorldTranslation.X) / this.TextCharDimensions.X + 0.25) as Integer;
+        return Math.Round((posX - this.Owner.Transform.WorldTranslation.X) / this.TextCharDimensions.X) as Integer;
     }
     
     function CalcTextPositionFromIndex(index : Integer) : Real {

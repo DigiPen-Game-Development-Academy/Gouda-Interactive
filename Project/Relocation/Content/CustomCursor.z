@@ -8,6 +8,7 @@ class CustomCursor : ZilchComponent {
     [Property] var HoverTooltipCursor : SpriteSource = SpriteSource.Cursor;
     [Property] var HoverItemCursor : SpriteSource = SpriteSource.Cursor;
     [Property] var ClickCursor : SpriteSource = SpriteSource.Cursor;
+    [Property] var TextCursor : SpriteSource = SpriteSource.CursorText;
     
     [Property] var ShowCustomCursor : Boolean = true;
     
@@ -35,14 +36,10 @@ class CustomCursor : ZilchComponent {
         this.Owner.Transform.WorldTranslation = mousePos;
         
         if(this.ShowCustomCursor) {
-            
             this.ForceSetCursor();
-            
         } else {
-            
             Zero.Mouse.Cursor = Cursor.Cross;
             this.Owner.Sprite.Visible = false;
-            
         }
         
     }
@@ -60,6 +57,8 @@ class CustomCursor : ZilchComponent {
             this.Owner.Sprite.SpriteSource = this.HoverItemCursor;
         } else if(Relocation.CursorType == "Click") {
             this.Owner.Sprite.SpriteSource = this.ClickCursor;
+        } else if(Relocation.CursorType == "Text") {
+            this.Owner.Sprite.SpriteSource = this.TextCursor;
         } else {
             this.Owner.Sprite.SpriteSource = this.DefaultCursor;
         }
