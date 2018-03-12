@@ -406,6 +406,11 @@ Level =
 					bool Active = true,
 					bool CaptureMouse = false,
 				},
+				Area = 
+				{
+					Vec2 Size = [21, 0.75],
+					Location Origin = TopLeft,
+				},
 			},
 		},
 	},
