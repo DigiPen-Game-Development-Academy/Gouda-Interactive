@@ -47,19 +47,19 @@ class Commands : ZilchComponent {
         } else if(this.CheckForCommand("togglecheat", false, "", "?") != -1) {
             this.CommandCheat();
         } else {
-            var baseCommand = this.GetArgument(0, this.TextEntry.FinalCmd);
+            var baseCommand = this.GetArgument(0, this.TextEntry.SubmittedText);
             this.TextEntry.PrintToUIConsole("Error: The command \"`baseCommand`\" does not exist. Type help for a list of commands.");
         }
         
-        this.TextEntry.FinalCmd = "";
+        this.TextEntry.SubmittedText = "";
         
     }
     
     function CheckForCommand(cmd : String, args : Boolean, usage : String, cmdAlias : String) : Integer {
         
-        if(this.TextEntry.FinalCmd == cmd || this.TextEntry.FinalCmd.StartsWith(String.Concatenate(cmd, " ")) || (this.TextEntry.FinalCmd == cmdAlias || this.TextEntry.FinalCmd.StartsWith(String.Concatenate(cmdAlias, " ")) && cmdAlias != "")) {
+        if(this.TextEntry.SubmittedText == cmd || this.TextEntry.SubmittedText.StartsWith(String.Concatenate(cmd, " ")) || (this.TextEntry.SubmittedText == cmdAlias || this.TextEntry.SubmittedText.StartsWith(String.Concatenate(cmdAlias, " ")) && cmdAlias != "")) {
             
-            if(args && (this.TextEntry.FinalCmd.EndsWith(cmd) || this.TextEntry.FinalCmd.EndsWith(String.Concatenate(cmd, " ")))) {
+            if(args && (this.TextEntry.SubmittedText.EndsWith(cmd) || this.TextEntry.SubmittedText.EndsWith(String.Concatenate(cmd, " ")))) {
                 this.TextEntry.PrintToUIConsole(String.Concatenate("Error: Invalid arguments. Usage: ", usage));
                 return 0;
             } else {
@@ -96,77 +96,59 @@ class Commands : ZilchComponent {
     }
     
     function CommandDebug() {
-        
-        if(this.TextEntry.FinalCmd.EndsWith("true")) {
+        if(this.TextEntry.SubmittedText.EndsWith("true")) {
             
-            this.TextEntry.DebugEnabled = true;
-            Relocation.DebugMode = this.TextEntry.DebugEnabled;
-            this.TextEntry.PrintToUIConsole("Debug: `this.TextEntry.DebugEnabled`");
+            Relocation.DebugMode = true;
+            this.TextEntry.PrintToUIConsole("Debug: `Relocation.DebugMode`");
             
-        } else if(this.TextEntry.FinalCmd.EndsWith("false")) {
+        } else if(this.TextEntry.SubmittedText.EndsWith("false")) {
             
-            this.TextEntry.DebugEnabled = false;
-            Relocation.DebugMode = this.TextEntry.DebugEnabled;
-            this.TextEntry.PrintToUIConsole("Debug: `this.TextEntry.DebugEnabled`");
+            Relocation.DebugMode = false;
+            this.TextEntry.PrintToUIConsole("Debug: `Relocation.DebugMode`");
             
-        } else if(this.TextEntry.FinalCmd == "debug" || this.TextEntry.FinalCmd == "debug ") {
+        } else if(this.TextEntry.SubmittedText == "debug" || this.TextEntry.SubmittedText == "debug ") {
             
-            this.TextEntry.DebugEnabled = !this.TextEntry.DebugEnabled;
-            Relocation.DebugMode = this.TextEntry.DebugEnabled;
-            this.TextEntry.PrintToUIConsole("Debug: `this.TextEntry.DebugEnabled`");
+            Relocation.DebugMode = !Relocation.DebugMode;
+            this.TextEntry.PrintToUIConsole("Debug: `Relocation.DebugMode`");
             
         } else {
             this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
         }
-        
     }
     
     function CommandGive() {
-        
         if(this.CheckForCommand("give", true, "give <itemID> [quantity]", "") != 0) {
             if(Relocation.Space.FindObjectByName("EntityPlayer") != null) {
                 
-                var quantity = this.GetArgument(2, this.TextEntry.FinalCmd);
+                var quantity = this.GetArgument(2, this.TextEntry.SubmittedText);
                 
                 if(quantity == "") {
                     quantity = "1";
                 }
                 
                 Relocation.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(
-                    Integer.Parse(this.GetArgument(1, this.TextEntry.FinalCmd)),
+                    Integer.Parse(this.GetArgument(1, this.TextEntry.SubmittedText)),
                     true,
                     Integer.Parse(quantity)
                 );
                 
             }
         }
-        
     }
     
     function CommandGod() {
-        
-        if(this.TextEntry.FinalCmd.EndsWith("true")) {
-            
-            this.TextEntry.GodMode = true;
-            this.TextEntry.PrintToUIConsole("God Mode: `this.TextEntry.GodMode`");
-            
-        } else if(this.TextEntry.FinalCmd.EndsWith("false")) {
-            
-            this.TextEntry.GodMode = false;
-            this.TextEntry.PrintToUIConsole("God Mode: `this.TextEntry.GodMode`");
-            
-        } else if(this.TextEntry.FinalCmd == "god" || this.TextEntry.FinalCmd == "god ") {
-            
-            this.TextEntry.GodMode = !this.TextEntry.GodMode;
-            this.TextEntry.PrintToUIConsole("God Mode: `this.TextEntry.GodMode`");
+        if(this.TextEntry.SubmittedText.EndsWith("true")) {
+            PlayerData.GodMode = true;
+            this.TextEntry.PrintToUIConsole("God Mode: `PlayerData.GodMode`");
+        } else if(this.TextEntry.SubmittedText.EndsWith("false")) {
+            PlayerData.GodMode = false;
+            this.TextEntry.PrintToUIConsole("God Mode: `PlayerData.GodMode`");
+        } else if(this.TextEntry.SubmittedText == "god" || this.TextEntry.SubmittedText == "god ") {
+            PlayerData.GodMode = !PlayerData.GodMode;
+            this.TextEntry.PrintToUIConsole("God Mode: `PlayerData.GodMode`");
         } else {
             this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: god [true/false]");
         }
-        
-        if(Relocation.Space != null && Relocation.Space.FindObjectByName("EntityPlayer") != null) {
-            Relocation.Space.FindObjectByName("EntityPlayer").Health.IsInvincible = this.TextEntry.GodMode;
-        }
-        
     }
     
     function CommandHelp() {
@@ -188,10 +170,9 @@ class Commands : ZilchComponent {
     }
     
     function CommandCheat() {
-        
         if(this.CheckForCommand("togglecheat", true, "togglecheat <cheat>", "") != 0) {
             
-            var cheatArg = this.GetArgument(1, this.TextEntry.FinalCmd);
+            var cheatArg = this.GetArgument(1, this.TextEntry.SubmittedText);
             
             if(cheatArg.ToLower() == "noclip") {
                 //TODO: NOCLIP CHEAT
@@ -204,60 +185,47 @@ class Commands : ZilchComponent {
             }
             
         }
-        
     }
     
     function CommandClear() {
-        
         this.TextEntry.ConsoleLog = "";
         this.TextEntry.PrintToUIConsole("Console cleared.");
-        
     }
     
     function CommandColor() {
-        
         if(this.CheckForCommand("color", true, "color <0-255> [0-255] [0-255]", "") != 0) {
             
-            var colorR = this.GetArgument(1, this.TextEntry.FinalCmd);
-            var colorG = this.GetArgument(2, this.TextEntry.FinalCmd);
-            var colorB = this.GetArgument(3, this.TextEntry.FinalCmd);
+            var colorR = this.GetArgument(1, this.TextEntry.SubmittedText);
+            var colorG = this.GetArgument(2, this.TextEntry.SubmittedText);
+            var colorB = this.GetArgument(3, this.TextEntry.SubmittedText);
             var finalColor = Real3(Real.Parse(colorR) / 255, Real.Parse(colorG) / 255, Real.Parse(colorB) / 255);
             
             if(colorR.ToLower() == "off")
                 finalColor = Real3(1.0);
             
             this.Owner.Parent.FindChildByName(this.TextEntry.ConsoleTextboxName).SpriteText.Color = Real4(finalColor, 1.0);
-            
             this.TextEntry.PrintToUIConsole("Changing color to `finalColor`.");
             
         }
-        
     }
     
     function CommandEcho() {
-        
-        if(this.CheckForCommand("echo", true, "echo <string>", "") != 0) {
-            this.TextEntry.PrintToUIConsole("`this.TextEntry.FinalCmd.SubStringFromRuneIndices(5, this.TextEntry.FinalCmd.Count)`");
-        }
-        
+        if(this.CheckForCommand("echo", true, "echo <string>", "") != 0)
+            this.TextEntry.PrintToUIConsole("`this.TextEntry.SubmittedText.SubStringFromRuneIndices(5, this.TextEntry.SubmittedText.Count)`");
     }
     
     function CommandPlaySound() {
-        
         if(this.CheckForCommand("playsound", true, "playsound <SoundCue>", "") != 0) {
-            this.TextEntry.PrintToUIConsole("Playing sound \"`this.TextEntry.FinalCmd.SubStringFromRuneIndices(10, this.TextEntry.FinalCmd.Count)`\"");
-            this.TextEntry.Space.SoundSpace.PlayCue(SoundCue.Find("`this.TextEntry.FinalCmd.SubStringFromRuneIndices(10, this.TextEntry.FinalCmd.Count)`"));
+            this.TextEntry.PrintToUIConsole("Playing sound \"`this.TextEntry.SubmittedText.SubStringFromRuneIndices(10, this.TextEntry.SubmittedText.Count)`\"");
+            this.TextEntry.Space.SoundSpace.PlayCue(SoundCue.Find("`this.TextEntry.SubmittedText.SubStringFromRuneIndices(10, this.TextEntry.SubmittedText.Count)`"));
         }
-        
     }
     
     function CommandSpawn() {
-        
         if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0 && Relocation.Space != null) {
             var mousePos = Relocation.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-            Relocation.Space.CreateAtPosition(Archetype.Find("`this.TextEntry.FinalCmd.SubStringFromRuneIndices(6, this.TextEntry.FinalCmd.Count)`"), mousePos);
+            Relocation.Space.CreateAtPosition(Archetype.Find("`this.TextEntry.SubmittedText.SubStringFromRuneIndices(6, this.TextEntry.SubmittedText.Count)`"), mousePos);
         }
-        
     }
     
 }

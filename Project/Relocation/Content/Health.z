@@ -8,11 +8,10 @@ class Health : ZilchComponent
     [Property] var IsInvincible : Boolean = false;
     
     var CurrentHealth : Real = 10.0;
-    
-    var IsTakingDamage : Boolean = false;
-    
     var DamageSoundCooldown : Real = 1.0;
     var CurrDamageSoundCooldown : Real = 0.0;
+    
+    var IsTakingDamage : Boolean = false;
     
     function Initialize(init : CogInitializer)
     {
@@ -20,9 +19,11 @@ class Health : ZilchComponent
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
-
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
+        
+        this.IsInvincible = PlayerData.GodMode;
         
         if(this.IsTakingDamage) {
             this.CurrDamageSoundCooldown += event.Dt;
@@ -60,18 +61,14 @@ class Health : ZilchComponent
                 this.Owner.Sprite.AnimationActive = false;
                 this.Owner.Sprite.Visible = false;
                 this.Owner.FindChildByName("EntityHand").Sprite.Visible = false;
-                //this.Owner.FindChildByName("ParticleWater").SpriteParticleSystem.Visible = true;
                 
                 Relocation.UISpace.FindObjectByName("DeathScreenMenu").DeathScreenMenu.ShowMenu = true;
                 
             }
         }
         
-        if(Relocation.UISpace.FindObjectByName("TextEntry") != null && Relocation.UISpace.FindObjectByName("TextEntry").TextEntry.DebugEnabled)
+        if(Relocation.DebugMode)
             this.Owner.Collider.DebugDraw();
-        
-        if(Zero.Keyboard.KeyIsPressed(Keys.Tilde))
-            Console.WriteLine("`this.Owner`: `this.CurrentHealth`");
         
         if(this.Owner.Name == Relocation.EntityPlayer)
         {

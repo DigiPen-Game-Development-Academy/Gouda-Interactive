@@ -10,9 +10,6 @@ class TextEntry : ZilchComponent {
     [Property] var MaxCharsPerLine : Integer = 75;
     [Property] var MaxCharLimit : Integer = 50000;
     
-    var DebugEnabled : Boolean = false;
-    var GodMode : Boolean = false;
-    
     var CaptureKeys : Boolean = false;
     var CycleThroughCmdsAll : Boolean = false;
     var IsTextSelected : Boolean = false;
@@ -21,7 +18,7 @@ class TextEntry : ZilchComponent {
     var BlinkTypingIndicator : Boolean = true;
     
     var CommandString : String = "";
-    var FinalCmd : String = "";
+    var SubmittedText : String = "";
     var ConsoleLog : String = "";
     var TempCommandStr : String = "";
     var TypingIndicator : String = "|";
@@ -34,7 +31,6 @@ class TextEntry : ZilchComponent {
     var AutocompleteIndex : Integer = 0;
     var CursorIndex : Integer = 0;
     var OverflowOffset : Integer = 0;
-    
     var Occurances : Integer = 1;
     
     var TypingIndicatorBlinkTime : Real = 1.0;
@@ -72,7 +68,6 @@ class TextEntry : ZilchComponent {
             if(this.CurrTypingIndicatorBlinkTime > this.TypingIndicatorBlinkTime) {
                 this.CurrTypingIndicatorBlinkTime = 0.0;
             } else {
-                
                 if(this.CurrTypingIndicatorBlinkTime < this.TypingIndicatorBlinkTime / 2 && this.BlinkTypingIndicator) {
                     this.CurrTypingIndicator = this.TypingIndicator;
                 } else if(this.BlinkTypingIndicator || this.IsTextSelected) {
@@ -83,7 +78,6 @@ class TextEntry : ZilchComponent {
                 }
                 
                 this.CurrTypingIndicatorBlinkTime += event.Dt;
-                
             }
             
             // CONTROLS
@@ -119,9 +113,8 @@ class TextEntry : ZilchComponent {
             this.Owner.Parent.SpriteText.Visible = this.CaptureKeys;
         if(this.IsCommandTextBox)
             this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = this.CaptureKeys;
-        if(!this.CaptureKeys) {
+        if(!this.CaptureKeys)
             this.DeselectText();
-        }
         
         if(((Zero.Keyboard.KeyIsPressed(Keys.Tilde) && this.IsCommandTextBox) || (this.WasClicked && !this.IsCommandTextBox)) && !this.CaptureKeys) {
             this.CaptureKeys = true;
@@ -129,7 +122,7 @@ class TextEntry : ZilchComponent {
         }
         
         // COMMANDS
-        if(this.FinalCmd.Count > 0 && this.IsCommandTextBox)
+        if(this.SubmittedText.Count > 0 && this.IsCommandTextBox)
             this.Owner.Commands.CommandFunctions();
         
     }
@@ -138,7 +131,6 @@ class TextEntry : ZilchComponent {
         
         if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left))
             this.WasClicked = true;
-        
         if(event.Mouse.IsButtonDown(MouseButtons.Left) && !this.CursorMoveClick) {
             this.CursorIndex = this.CalcTextIndexFromPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X);
             this.CatchInvalidCursorPos();
@@ -155,7 +147,6 @@ class TextEntry : ZilchComponent {
     }
     
     function OnTextTyped(event : KeyboardTextEvent) {
-        
         if(this.CaptureKeys) {
             
             this.CatchInvalidCursorPos();
@@ -233,7 +224,6 @@ class TextEntry : ZilchComponent {
             }
             
         }
-        
     }
     
     function Controls(event : UpdateEvent) {
@@ -262,7 +252,7 @@ class TextEntry : ZilchComponent {
             
         } else if(Zero.Keyboard.KeyIsPressed(Keys.Enter)) {
             
-            this.FinalCmd = this.CommandString;
+            this.SubmittedText = this.CommandString;
             
             this.IsTextSelected = false;
             this.CycleThroughCmdsAll = false;
@@ -275,7 +265,7 @@ class TextEntry : ZilchComponent {
                 
                 if(!this.IsCommandTextBox) {
                     this.CaptureKeys = false;
-                    this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Text = this.FinalCmd;
+                    this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Text = this.SubmittedText;
                 }
                 
             }
@@ -344,10 +334,8 @@ class TextEntry : ZilchComponent {
     
     // FOR ARROW KEYS
     function MoveCursor(dt : Real, amount : Integer) {
-        
         if(!Zero.Keyboard.KeyIsDown(Keys.Shift))
             this.IsTextSelected = false;
-        
         if(this.CurrRepeatDelay > this.RepeatDelay && this.CurrHeldKeyRepeatSpeed > this.HeldKeyRepeatSpeed || dt < 0) {
             this.CursorIndex += amount;
             this.CurrHeldKeyRepeatSpeed = 0.0;
@@ -358,7 +346,6 @@ class TextEntry : ZilchComponent {
         
         this.CurrTypingIndicatorBlinkTime = 0.0;
         this.CatchInvalidCursorPos();
-        
     }
     
     function UpdateCursorPosition() {
@@ -420,10 +407,9 @@ class TextEntry : ZilchComponent {
         var tmpClipboard = "";
         
         // STRIP INVALID CHARACTERS
-        for(var i = 0; i < Zero.Shell.ClipboardText.Count; ++i) {
+        for(var i = 0; i < Zero.Shell.ClipboardText.Count; ++i)
             if(this.IsRenderable(Zero.Shell.ClipboardText[i]))
                 tmpClipboard = "`tmpClipboard``String.FromChar(Zero.Shell.ClipboardText[i])`";
-        }
         
         this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true), "`tmpClipboard`", true);
         this.TempCommandStr = this.CommandString;
@@ -447,35 +433,25 @@ class TextEntry : ZilchComponent {
         this.PrintToUIConsole(text, false, "");
     }
     
-    function PrintToUIConsole(beginningText : String, endingText : String, beginningFixedTextWidth : Integer) {
-        
-        var spaceCount = beginningFixedTextWidth - beginningText.Count;
-        
-        for(var i = 0; i < spaceCount; ++i)
-            beginningText = "`beginningText` ";
-        
-        this.PrintToUIConsole("`beginningText``endingText`", false, "");
-        
-    }
-    
     function PrintToUIConsole(text : String, header : Boolean) {
         this.PrintToUIConsole(" `text` ", header, "_");
+    }
+    
+    function PrintToUIConsole(beginningText : String, endingText : String, beginningFixedTextWidth : Integer) {
+        for(var i = 0; i < beginningFixedTextWidth - beginningText.Count; ++i)
+            beginningText = "`beginningText` ";
+        this.PrintToUIConsole("`beginningText``endingText`", false, "");
     }
     
     function PrintToUIConsole(text : String, centerText : Boolean, centerChar : String) {
         
         var maxLength = this.MaxCharsPerLine;
-        var tmpTxt = "";
+        var centerTmpTxt = "";
         
         if(centerText) {
-            
-            var centerTmpTxt = "";
-            
             for(var i = 0; i < Math.Floor((maxLength - text.Count) / 2) as Integer; ++i)
                 centerTmpTxt = "`centerTmpTxt``centerChar`";
-            
             text = "`centerTmpTxt``text``centerTmpTxt`";
-            
         }
         
         if(text.Count > maxLength) {
@@ -484,29 +460,22 @@ class TextEntry : ZilchComponent {
                 var breakIndex = i;
                 
                 for(var j = i; j > i - maxLength / 4; --j) {
-                    
                     if(String.FromChar(text.Get(j)) == " ") {
                         breakIndex = j + 1;
                         break;
                     }
-                    
                     if(j + 1 == i - maxLength / 4) {
                         breakIndex = i - 8;
                         break;
                     }
-                    
                 }
                 
-                var tmpFrnt = text.SubStringFromRuneIndices(0, breakIndex);
-                tmpTxt = text.SubStringFromRuneIndices(breakIndex, text.Count);
-                tmpFrnt = "`tmpFrnt`\n";
-                text = "`tmpFrnt``tmpTxt`";
+                text = "`text.SubStringFromRuneIndices(0, breakIndex)`\n`text.SubStringFromRuneIndices(breakIndex, text.Count)`";
                 
             }
         }
         
-        text = String.Concatenate("\n", text);
-        this.ConsoleLog = String.Concatenate(this.ConsoleLog, text);
+        this.ConsoleLog = "`this.ConsoleLog`\n`text`";
         
         var console = this.Space.FindObjectByName(this.ConsoleTextboxName);
         console.SpriteText.Text = this.ConsoleLog;
@@ -547,9 +516,7 @@ class TextEntry : ZilchComponent {
         if(tmpOccur >= occurances || tmpOccur == 0) {
             this.AutocompleteIndex = startIndex;
             return startIndex;
-        }
-        
-        return -1;
+        } else return -1;
         
     }
     
@@ -564,7 +531,8 @@ class TextEntry : ZilchComponent {
     
     function RemoveAt(offset : Integer) : String {
         this.CatchInvalidCursorPos();
-        if(this.CursorIndex - 1 + offset < 0 || this.CursorIndex + offset > this.CommandString.Count) offset = 0;
+        if(this.CursorIndex - 1 + offset < 0 || this.CursorIndex + offset > this.CommandString.Count)
+            offset = 0;
         return "`this.CommandString.SubStringFromRuneIndices(0, this.CursorIndex - 1 + offset)``this.CommandString.SubStringFromRuneIndices(this.CursorIndex + offset, this.CommandString.Count)`";
     }
     
