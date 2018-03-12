@@ -43,6 +43,8 @@ class TextEntry : ZilchComponent {
     var HeldKeyRepeatSpeed : Real = 0.005;
     var CurrHeldKeyRepeatSpeed : Real = 0.0;
     
+    var SelectedTextIndex : Integer2 = Integer2(0, 0);
+    
     function Initialize(init : CogInitializer) {
         
         this.TextCharDimensions = Real2(this.Owner.SpriteText.MeasureGivenText("G").X, this.TextCharDimensions.Y);
@@ -151,7 +153,7 @@ class TextEntry : ZilchComponent {
             this.WasClicked = true;
         
         if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
-            this.CursorIndex = this.CalcTextPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X);
+            this.CursorIndex = this.CalcTextIndexFromPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X);
             this.CatchInvalidCursorPos();
         }
         
@@ -327,16 +329,8 @@ class TextEntry : ZilchComponent {
             }
             
         } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.A)) {
-            
-            this.IsTextSelected = true;
-            this.BlinkTypingIndicator = false;
-            this.CursorIndex = this.CommandString.Count;
-            
-            var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
-            
-            txtSelect.Sprite.Visible = true;
-            txtSelect.Transform.Scale = Real3((this.Owner.SpriteText.Text.Count) * this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
-            
+            this.SelectedTextIndex = Integer2(0, this.CommandString.Count);
+            this.SelectText(this.SelectedTextIndex);
         } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.C) && this.IsTextSelected) {
             Zero.Shell.ClipboardText = this.CommandString;
         } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.X) && this.IsTextSelected) {
@@ -394,7 +388,7 @@ class TextEntry : ZilchComponent {
         
     }
     
-    function CalcTextPosition(posX : Real) : Integer {
+    function CalcTextIndexFromPosition(posX : Real) : Integer {
         
         var startPos = this.Owner.Transform.WorldTranslation.X;
         var charWidth = this.TextCharDimensions.X;
@@ -402,6 +396,36 @@ class TextEntry : ZilchComponent {
         var charPos = Math.Floor((posX - startPos) / charWidth + 0.25) as Integer;
         
         return charPos;
+        
+    }
+    
+    function CalcTextPositionFromIndex(index : Integer) : Real {
+        
+        var startPos = this.Owner.Transform.WorldTranslation.X;
+        var charWidth = this.TextCharDimensions.X;
+        
+        var charPos = this.Owner.Transform.WorldTranslation.X + index * charWidth;
+        
+        return charPos;
+        
+    }
+    
+    function SelectText(selectedIndex : Integer2) {
+        
+        if(selectedIndex.X == selectedIndex.Y)
+            return;
+        
+        var selectDiff = selectedIndex.Y - selectedIndex.X;
+        
+        this.IsTextSelected = true;
+        this.BlinkTypingIndicator = false;
+        this.CursorIndex = selectedIndex.Y;
+        
+        var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
+        
+        txtSelect.Sprite.Visible = true;
+        txtSelect.Transform.WorldTranslation = Real3(this.CalcTextPositionFromIndex(selectedIndex.X), txtSelect.Transform.WorldTranslation.YZ);
+        txtSelect.Transform.Scale = Real3((selectDiff) * this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
         
     }
     
