@@ -53,4 +53,7 @@ Space =
 		string MusicSpace = "5aca222067bdfb93:MusicSpace",
 		string MusicLevel = "554cea0f94af672f:MusicLevel",
 	},
+	HandleQuit = 
+	{
+	},
 },

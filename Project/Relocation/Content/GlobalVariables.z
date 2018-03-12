@@ -39,3 +39,9 @@ class PlayerData {
     [Static] var InventoryContentsCount : Array[Integer] = null;
     
 }
+
+class Keybinds {
+    
+    [Static] var Console : Keys = Keys.Tilde;
+    
+}

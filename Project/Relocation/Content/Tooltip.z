@@ -131,7 +131,7 @@ class Tooltip : ZilchComponent {
         if(this.UseMousePosition) {
             this.Owner.Transform.WorldTranslation = Real3(mousePos.X + offsetX, mousePos.Y + offsetY, mousePos.Z);
         } else {
-            this.Owner.Transform.WorldTranslation = Real3(this.TooltipPosition, 15.0);
+            this.Owner.Transform.WorldTranslation = Real3(this.TooltipPosition + Real2(offsetX, offsetY), 15.0);
         }
         
     }

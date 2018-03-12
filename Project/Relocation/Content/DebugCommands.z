@@ -49,16 +49,11 @@ class TextEntry : ZilchComponent {
         
         if(this.Owner.Commands != null) this.Owner.Commands.CreateCommands();
         
-        Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
         Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
         Zero.Connect(Zero.Keyboard, Events.TextTyped, this.OnTextTyped);
         
-    }
-    
-    function OnGameRequestQuit(event : GameEvent) {
-        event.Handled = true;
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
@@ -116,8 +111,7 @@ class TextEntry : ZilchComponent {
             this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = this.CaptureKeys;
         if(!this.CaptureKeys)
             this.DeselectText();
-        
-        if(((Zero.Keyboard.KeyIsPressed(Keys.Tilde) && this.IsCommandTextBox) || (this.WasClicked && !this.IsCommandTextBox)) && !this.CaptureKeys) {
+        if(((Zero.Keyboard.KeyIsPressed(Keybinds.Console) && this.IsCommandTextBox) || (this.WasClicked && !this.IsCommandTextBox)) && !this.CaptureKeys) {
             this.CaptureKeys = true;
             this.WasClicked = false;
         }
@@ -147,10 +141,6 @@ class TextEntry : ZilchComponent {
             this.CursorMoveClick = false;
         } else if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
             this.SelectedTextIndex = Integer2(this.SelectedTextIndex.X, this.CalcTextIndexFromPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X));
-        }
-        
-        if(event.Mouse.IsButtonDown(MouseButtons.Right) && this.IsTextSelected) {
-            this.Space.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
         }
         
         this.SelectText(this.SelectedTextIndex, false);
@@ -395,7 +385,11 @@ class TextEntry : ZilchComponent {
             selectedIndex = selectedIndex.YX;
         if(selectedIndex.X < 0)
             selectedIndex = Integer2(0, selectedIndex.Y);
-        if(selectedIndex.Y > this.CommandString.Count)
+        else if(selectedIndex.X > this.CommandString.Count)
+            selectedIndex = Integer2(this.CommandString.Count, selectedIndex.Y);
+        if(selectedIndex.Y < 0)
+            selectedIndex = Integer2(selectedIndex.X, 0);
+        else if(selectedIndex.Y > this.CommandString.Count)
             selectedIndex = Integer2(selectedIndex.X, this.CommandString.Count);
         if(returnOrderedSelection || selectedIndex.X == selectedIndex.Y)
             return selectedIndex;
