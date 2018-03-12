@@ -23,8 +23,6 @@ class Health : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         
-        this.IsInvincible = PlayerData.GodMode;
-        
         if(this.IsTakingDamage) {
             this.CurrDamageSoundCooldown += event.Dt;
         } else {
@@ -72,6 +70,7 @@ class Health : ZilchComponent
         
         if(this.Owner.Name == Relocation.EntityPlayer)
         {
+            this.IsInvincible = PlayerData.GodMode;
             if(!this.IsInvincible)
                 Relocation.UISpace.FindObjectByName("Health").SpriteText.Text = "HP: `this.CurrentHealth`";
             else
