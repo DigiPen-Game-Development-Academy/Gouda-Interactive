@@ -119,15 +119,12 @@ Cog =
 				bool CaptureMouse = false,
 			},
 		},
-		Cog = 
+		ArchetypeInstance = 
 		{
+			string Name = "5aea5df963fae645:TextBoxSelection",
 			LinkId = 
 			{
 				uint Id = 4,
-			},
-			Named = 
-			{
-				string Name = "TextBoxSelection",
 			},
 			Transform = 
 			{
@@ -135,23 +132,9 @@ Cog =
 				Vec3 Scale = [0.5, 0.5, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
-			Sprite = 
+			Named = 
 			{
-				bool Visible = false,
-				bool VisibilityCulling = true,
-				bool VisibilityEvents = true,
-				bool CastShadows = false,
-				Vec4 Color = [0, 0.429999828, 1, 0.5],
-				BlendMode BlendMode = Alpha,
-				SpriteGeometryMode GeometryMode = ZPlane,
-				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "5a39bac998d784be:TextSelect",
-				bool RenderMask = false,
-				bool FlipX = false,
-				bool FlipY = false,
-				bool AnimationActive = true,
-				float AnimationSpeed = 1,
-				uint StartFrame = 0,
+				string Name = "TextBoxSelection",
 			},
 		},
 		Cog = 
