@@ -47,7 +47,7 @@ class Commands : ZilchComponent {
         } else if(this.CheckForCommand("togglecheat", false, "", "?") != -1) {
             this.CommandCheat();
         } else {
-            var baseCommand = this.TextEntry.GetArgument(0, this.TextEntry.FinalCmd);
+            var baseCommand = this.GetArgument(0, this.TextEntry.FinalCmd);
             this.TextEntry.PrintToUIConsole("Error: The command \"`baseCommand`\" does not exist. Type help for a list of commands.");
         }
         
@@ -69,6 +69,29 @@ class Commands : ZilchComponent {
         }
         
         return -1;
+        
+    }
+    
+    function GetArgument(argNum : Integer, command : String) : String {
+        
+        var currArg = 0;
+        var tmpArg = "";
+        
+        for(var i = 0; i < command.Count; ++i) {
+            
+            if(String.FromChar(command.Get(i)) == " ") {
+                ++currArg;
+                continue;
+            }
+            
+            if(currArg == argNum)
+                tmpArg = String.Concatenate(tmpArg, String.FromChar(command.Get(i)));
+            else if(currArg > argNum)
+                break;
+            
+        }
+        
+        return tmpArg;
         
     }
     
@@ -103,14 +126,14 @@ class Commands : ZilchComponent {
         if(this.CheckForCommand("give", true, "give <itemID> [quantity]", "") != 0) {
             if(Relocation.Space.FindObjectByName("EntityPlayer") != null) {
                 
-                var quantity = this.TextEntry.GetArgument(2, this.TextEntry.FinalCmd);
+                var quantity = this.GetArgument(2, this.TextEntry.FinalCmd);
                 
                 if(quantity == "") {
                     quantity = "1";
                 }
                 
                 Relocation.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(
-                    Integer.Parse(this.TextEntry.GetArgument(1, this.TextEntry.FinalCmd)),
+                    Integer.Parse(this.GetArgument(1, this.TextEntry.FinalCmd)),
                     true,
                     Integer.Parse(quantity)
                 );
@@ -168,7 +191,7 @@ class Commands : ZilchComponent {
         
         if(this.CheckForCommand("togglecheat", true, "togglecheat <cheat>", "") != 0) {
             
-            var cheatArg = this.TextEntry.GetArgument(1, this.TextEntry.FinalCmd);
+            var cheatArg = this.GetArgument(1, this.TextEntry.FinalCmd);
             
             if(cheatArg.ToLower() == "noclip") {
                 //TODO: NOCLIP CHEAT
@@ -195,9 +218,9 @@ class Commands : ZilchComponent {
         
         if(this.CheckForCommand("color", true, "color <0-255> [0-255] [0-255]", "") != 0) {
             
-            var colorR = this.TextEntry.GetArgument(1, this.TextEntry.FinalCmd);
-            var colorG = this.TextEntry.GetArgument(2, this.TextEntry.FinalCmd);
-            var colorB = this.TextEntry.GetArgument(3, this.TextEntry.FinalCmd);
+            var colorR = this.GetArgument(1, this.TextEntry.FinalCmd);
+            var colorG = this.GetArgument(2, this.TextEntry.FinalCmd);
+            var colorB = this.GetArgument(3, this.TextEntry.FinalCmd);
             var finalColor = Real3(Real.Parse(colorR) / 255, Real.Parse(colorG) / 255, Real.Parse(colorB) / 255);
             
             if(colorR.ToLower() == "off")
