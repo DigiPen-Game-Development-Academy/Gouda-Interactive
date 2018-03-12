@@ -36,26 +36,32 @@ class CustomCursor : ZilchComponent {
         
         if(this.ShowCustomCursor) {
             
-            Zero.Mouse.Cursor = Cursor.Invisible;
-            this.Owner.Sprite.Visible = true;
-            
-            if(Relocation.CursorType == "Hover") {
-                this.Owner.Sprite.SpriteSource = this.HoverCursor;
-            } else if(Relocation.CursorType == "TooltipHover") {
-                this.Owner.Sprite.SpriteSource = this.HoverTooltipCursor;
-            } else if(Relocation.CursorType == "ItemHover") {
-                this.Owner.Sprite.SpriteSource = this.HoverItemCursor;
-            } else if(Relocation.CursorType == "Click") {
-                this.Owner.Sprite.SpriteSource = this.ClickCursor;
-            } else {
-                this.Owner.Sprite.SpriteSource = this.DefaultCursor;
-            }
+            this.ForceSetCursor();
             
         } else {
             
             Zero.Mouse.Cursor = Cursor.Cross;
             this.Owner.Sprite.Visible = false;
             
+        }
+        
+    }
+    
+    function ForceSetCursor() {
+        
+        Zero.Mouse.Cursor = Cursor.Invisible;
+        this.Owner.Sprite.Visible = true;
+        
+        if(Relocation.CursorType == "Hover") {
+            this.Owner.Sprite.SpriteSource = this.HoverCursor;
+        } else if(Relocation.CursorType == "TooltipHover") {
+            this.Owner.Sprite.SpriteSource = this.HoverTooltipCursor;
+        } else if(Relocation.CursorType == "ItemHover") {
+            this.Owner.Sprite.SpriteSource = this.HoverItemCursor;
+        } else if(Relocation.CursorType == "Click") {
+            this.Owner.Sprite.SpriteSource = this.ClickCursor;
+        } else {
+            this.Owner.Sprite.SpriteSource = this.DefaultCursor;
         }
         
     }

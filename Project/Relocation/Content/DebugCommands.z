@@ -129,9 +129,13 @@ class TextEntry : ZilchComponent {
     
     function OnMouseUpdate(event : ViewportMouseEvent) {
         
+        Relocation.CursorType = "TooltipHover";
+        this.Space.FindObjectByName("Cursor").CustomCursor.ForceSetCursor();
+        
         if(!this.WasClicked && event.Mouse.IsButtonDown(MouseButtons.Left))
             this.WasClicked = true;
         if(event.Mouse.IsButtonDown(MouseButtons.Left) && !this.CursorMoveClick) {
+            this.DeselectText();
             this.CursorIndex = this.CalcTextIndexFromPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X);
             this.CatchInvalidCursorPos();
             this.SelectedTextIndex = Integer2(this.CursorIndex);
