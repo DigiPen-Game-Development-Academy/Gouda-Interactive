@@ -47,7 +47,7 @@ class Commands : ZilchComponent {
         } else if(this.CheckForCommand("togglecheat", false, "", "?") != -1) {
             this.CommandCheat();
         } else {
-            var baseCommand = this.GetArgument(0, this.TextEntry.SubmittedText);
+            var baseCommand = this.GetArgument(0, this.TextEntry.SubmittedText, false);
             this.TextEntry.PrintToUIConsole("Error: The command \"`baseCommand`\" does not exist. Type help for a list of commands.");
         }
         
@@ -72,7 +72,7 @@ class Commands : ZilchComponent {
         
     }
     
-    function GetArgument(argNum : Integer, command : String) : String {
+    function GetArgument(argNum : Integer, command : String, spaces : Boolean) : String {
         
         var currArg = 0;
         var tmpArg = "";
@@ -80,13 +80,15 @@ class Commands : ZilchComponent {
         for(var i = 0; i < command.Count; ++i) {
             
             if(String.FromChar(command.Get(i)) == " ") {
+                if(spaces && currArg != 0)
+                    tmpArg = "`tmpArg``String.FromChar(command.Get(i))`";
                 ++currArg;
                 continue;
             }
             
-            if(currArg == argNum)
-                tmpArg = String.Concatenate(tmpArg, String.FromChar(command.Get(i)));
-            else if(currArg > argNum)
+            if(currArg == argNum || (currArg >= argNum && spaces))
+                tmpArg = "`tmpArg``String.FromChar(command.Get(i))`";
+            else if(currArg > argNum && !spaces)
                 break;
             
         }
@@ -120,14 +122,14 @@ class Commands : ZilchComponent {
         if(this.CheckForCommand("give", true, "give <itemID> [quantity]", "") != 0) {
             if(Relocation.Space.FindObjectByName("EntityPlayer") != null) {
                 
-                var quantity = this.GetArgument(2, this.TextEntry.SubmittedText);
+                var quantity = this.GetArgument(2, this.TextEntry.SubmittedText, false);
                 
                 if(quantity == "") {
                     quantity = "1";
                 }
                 
                 Relocation.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(
-                    Integer.Parse(this.GetArgument(1, this.TextEntry.SubmittedText)),
+                    Integer.Parse(this.GetArgument(1, this.TextEntry.SubmittedText, false)),
                     true,
                     Integer.Parse(quantity)
                 );
@@ -163,8 +165,8 @@ class Commands : ZilchComponent {
         this.TextEntry.PrintToUIConsole("give <itemID> [quantity]", " - Gives player item", width);
         this.TextEntry.PrintToUIConsole("god [true/false]", " - Makes player invincible", width);
         this.TextEntry.PrintToUIConsole("help - (Alias: ?)", " - Shows this help screen", width);
-        this.TextEntry.PrintToUIConsole("playsound <SoundCue>", " - Plays sound cue (Will crash if sound does not exist)", width);
-        this.TextEntry.PrintToUIConsole("spawn <entity>", " - Spawns entity (Spawning certain entities may crash the game. Will also crash if entity does not exist)", width);
+        this.TextEntry.PrintToUIConsole("playsound <SoundCue>", " - Plays sound cue", width);
+        this.TextEntry.PrintToUIConsole("spawn <entity>", " - Spawns entity", width);
         this.TextEntry.PrintToUIConsole("togglecheat <cheat>", " - Enables specified cheat", width);
         
     }
@@ -172,7 +174,7 @@ class Commands : ZilchComponent {
     function CommandCheat() {
         if(this.CheckForCommand("togglecheat", true, "togglecheat <cheat>", "") != 0) {
             
-            var cheatArg = this.GetArgument(1, this.TextEntry.SubmittedText);
+            var cheatArg = this.GetArgument(1, this.TextEntry.SubmittedText, false);
             
             if(cheatArg.ToLower() == "noclip") {
                 //TODO: NOCLIP CHEAT
@@ -195,9 +197,9 @@ class Commands : ZilchComponent {
     function CommandColor() {
         if(this.CheckForCommand("color", true, "color <0-255> [0-255] [0-255]", "") != 0) {
             
-            var colorR = this.GetArgument(1, this.TextEntry.SubmittedText);
-            var colorG = this.GetArgument(2, this.TextEntry.SubmittedText);
-            var colorB = this.GetArgument(3, this.TextEntry.SubmittedText);
+            var colorR = this.GetArgument(1, this.TextEntry.SubmittedText, false);
+            var colorG = this.GetArgument(2, this.TextEntry.SubmittedText, false);
+            var colorB = this.GetArgument(3, this.TextEntry.SubmittedText, false);
             var finalColor = Real3(Real.Parse(colorR) / 255, Real.Parse(colorG) / 255, Real.Parse(colorB) / 255);
             
             if(colorR.ToLower() == "off")
@@ -211,20 +213,31 @@ class Commands : ZilchComponent {
     
     function CommandEcho() {
         if(this.CheckForCommand("echo", true, "echo <string>", "") != 0)
-            this.TextEntry.PrintToUIConsole("`this.TextEntry.SubmittedText.SubStringFromRuneIndices(5, this.TextEntry.SubmittedText.Count)`");
+            this.TextEntry.PrintToUIConsole("`this.GetArgument(1, this.TextEntry.SubmittedText, true)`");
     }
     
     function CommandPlaySound() {
         if(this.CheckForCommand("playsound", true, "playsound <SoundCue>", "") != 0) {
-            this.TextEntry.PrintToUIConsole("Playing sound \"`this.TextEntry.SubmittedText.SubStringFromRuneIndices(10, this.TextEntry.SubmittedText.Count)`\"");
-            this.TextEntry.Space.SoundSpace.PlayCue(SoundCue.Find("`this.TextEntry.SubmittedText.SubStringFromRuneIndices(10, this.TextEntry.SubmittedText.Count)`"));
+            
+            var sound = this.GetArgument(1, this.TextEntry.SubmittedText, false);
+            
+            if(Zero.ResourceSystem.GetResourceByTypeAndName("SoundCue", sound) != null) {
+                this.TextEntry.PrintToUIConsole("Playing sound \"`sound`\"");
+                this.TextEntry.Space.SoundSpace.PlayCue(SoundCue.Find("`sound`"));
+            }
+            
         }
     }
     
     function CommandSpawn() {
         if(this.CheckForCommand("spawn", true, "spawn <entity>", "") != 0 && Relocation.Space != null) {
+            
+            var entity = this.GetArgument(1, this.TextEntry.SubmittedText, false);
             var mousePos = Relocation.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-            Relocation.Space.CreateAtPosition(Archetype.Find("`this.TextEntry.SubmittedText.SubStringFromRuneIndices(6, this.TextEntry.SubmittedText.Count)`"), mousePos);
+            
+            if(Zero.ResourceSystem.GetResourceByTypeAndName("Archetype", entity) != null)
+                Relocation.Space.CreateAtPosition(Archetype.Find("`entity`"), mousePos);
+            
         }
     }
     
