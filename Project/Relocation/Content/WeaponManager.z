@@ -120,7 +120,7 @@ class WeaponManager : ZilchComponent {
         //this.WeaponShotgun.SetBulletSpawnPosition(0.6);
         //this.WeaponBoulder.SetBulletSpawnPosition(0.75);
         
-        this.WeaponMinigun.SetBulletSpawnPosition(this.Owner.FindChildByName("EntityHand").Transform.Translation.XY + Real2(0.0, 0.1));
+        //this.WeaponMinigun.SetBulletSpawnPosition(Real2(0.0, -0.2));
         //this.WeaponSniper.SetBulletSpawnPosition(0.05);
         //this.WeaponGouda.SetBulletSpawnPosition(0.25);
         

@@ -26,7 +26,7 @@ class Weapon {
     var BulletSpeed : Real = 10.0;
     var Accuracy : Real = 0.0;
     
-    var BulletSpawnLocation : Real3 = Real3(0.2, 0.0, 0.0);
+    var BulletSpawnLocation : Real3 = Real3(0.0, -0.2, 0.0);
     
     constructor(space : Space, itemName : String, itemID : Integer, isRanged : Boolean) {
         this.Space = space;
@@ -113,10 +113,10 @@ class Weapon {
                 
                 var accuracy = rand.Range(-this.Accuracy / 2, this.Accuracy / 2);
                 
-                var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, Real3(this.Space.FindObjectByName("EntityHand").Transform.WorldTranslation.XY, 0) + this.BulletSpawnLocation);
+                var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, Real3(this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation.XY, 0) + this.BulletSpawnLocation);
                 
                 var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-                var gunPos = this.Space.FindObjectByName("EntityHand").Transform.WorldTranslation;
+                var gunPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
                 
                 var dif = Real2(mousePos.X - gunPos.X, mousePos.Y - gunPos.Y);
                 var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
@@ -125,6 +125,9 @@ class Weapon {
                 bullet.RigidBody.Velocity = velocity;
                 bullet.EntityBullet.FromPlayer = true;
                 bullet.EntityBullet.Damage = this.BulletDamage;
+                
+                var cam = this.Space.FindObjectByName("Camera");
+                cam.Transform.Translation += Real3(Real2(rand.Range(0.05, -0.05)) + -(velocity.XY / 500), 0);
                 
             }
             

@@ -301,7 +301,7 @@ class Movement : ZilchComponent {
         this.StartFrame = 42;
         this.EndFrame = 47;
         
-        this.ItemHand.Transform.Translation = Real3(-0.35, -0.1, 0.05);
+        this.ItemHand.Transform.Translation = Real3(-0.4, -0.1, -0.05);
         this.ItemHand.Sprite.StartFrame = 1;
         this.ItemHand.Sprite.FlipX = true;
         
