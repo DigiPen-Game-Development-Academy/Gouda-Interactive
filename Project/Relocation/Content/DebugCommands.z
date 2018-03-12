@@ -503,9 +503,9 @@ class TextEntry : ZilchComponent {
         
         // FIND NUMBER OF OCCURANCES
         for(var i = 0; i < array.Count; ++i) {
-            if(array.Get(i).StartsWith(str) && occurances == 0)
+            if(array.Get(i).ToLower().StartsWith(str.ToLower()) && occurances == 0)
                 startIndex = i;
-            if(array.Get(i).StartsWith(str))
+            if(array.Get(i).ToLower().StartsWith(str.ToLower()))
                 ++occurances;
         }
         
@@ -518,7 +518,7 @@ class TextEntry : ZilchComponent {
         
         for(var i = 0; i < occurances; ++i) {
             tmpIndex = startIndex + tmpOccur;
-            if(array.Get(tmpIndex).StartsWith(str) && curIndex <= tmpIndex && tmpOccur < occurances && tmpIndex < array.Count)
+            if(array.Get(tmpIndex).ToLower().StartsWith(str.ToLower()) && curIndex <= tmpIndex && tmpOccur < occurances && tmpIndex < array.Count)
                 return tmpIndex;
             else
                 ++tmpOccur;
