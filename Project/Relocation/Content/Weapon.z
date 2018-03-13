@@ -103,9 +103,8 @@ class Weapon {
             
             var spawnAmt = 1;
             
-            if(this.IsShotgun) {
+            if(this.IsShotgun)
                 spawnAmt = 5;
-            }
             
             for(var i = 0; i < spawnAmt; ++i) {
                 
@@ -126,8 +125,8 @@ class Weapon {
                 bullet.EntityBullet.FromPlayer = true;
                 bullet.EntityBullet.Damage = this.BulletDamage;
                 
-                var cam = this.Space.FindObjectByName("Camera");
-                cam.Transform.Translation += Real3(Real2(rand.Range(0.05, -0.05)) + -(velocity.XY / 500), 0);
+                //var cam = this.Space.FindObjectByName("Camera");
+                //cam.Transform.Translation = Real3(Math.Lerp(cam.Transform.Translation.XY, -(velocity.XY / 500), 0.066), cam.Transform.Translation.Z);
                 
             }
             

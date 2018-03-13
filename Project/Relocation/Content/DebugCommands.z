@@ -41,6 +41,7 @@ class TextEntry : ZilchComponent {
     var CurrHeldKeyRepeatSpeed : Real = 0.0;
     
     var SelectedTextIndex : Integer2 = Integer2(0, 0);
+    var StartSelectionArea : Integer = 0;
     
     function Initialize(init : CogInitializer) {
         
@@ -143,7 +144,7 @@ class TextEntry : ZilchComponent {
             this.SelectedTextIndex = Integer2(this.SelectedTextIndex.X, this.CalcTextIndexFromPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X));
         }
         
-        this.SelectText(this.SelectedTextIndex, false);
+        this.SelectText(this.SelectedTextIndex, false, true);
         
     }
     
@@ -166,7 +167,7 @@ class TextEntry : ZilchComponent {
                 if(!this.IsTextSelected) {
                     this.CommandString = this.InsertAt(String.FromChar(event.Character));
                 } else {
-                    this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true), "`String.FromChar(event.Character)`", true);
+                    this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true, true), "`String.FromChar(event.Character)`", true);
                     this.DeselectText();
                 }
                 
@@ -186,7 +187,7 @@ class TextEntry : ZilchComponent {
                     this.CommandString = this.RemoveAt(0);
                     --this.CursorIndex;
                 } else if(this.IsTextSelected) {
-                    this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true), "", true);
+                    this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true, true), "", true);
                     this.DeselectText();
                 }
                 
@@ -310,18 +311,18 @@ class TextEntry : ZilchComponent {
             
         } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.A)) {
             this.SelectedTextIndex = Integer2(0, this.CommandString.Count);
-            this.SelectText(this.SelectedTextIndex, false);
+            this.SelectText(this.SelectedTextIndex, false, true);
         } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.C) && this.IsTextSelected) {
             
-            var selection = this.SelectText(this.SelectedTextIndex, true);
+            var selection = this.SelectText(this.SelectedTextIndex, true, true);
             Zero.Shell.ClipboardText = this.CommandString.SubStringFromRuneIndices(selection.X, selection.Y);
             
         } else if(Zero.Keyboard.KeyIsDown(Keys.Control) && Zero.Keyboard.KeyIsPressed(Keys.X) && this.IsTextSelected) {
             
-            var selection = this.SelectText(this.SelectedTextIndex, true);
+            var selection = this.SelectText(this.SelectedTextIndex, true, true);
             Zero.Shell.ClipboardText = this.CommandString.SubStringFromRuneIndices(selection.X, selection.Y);
             
-            this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true), "", true);
+            this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true, true), "", true);
             this.TempCommandStr = this.CommandString;
             this.IsTextSelected = false;
             
@@ -336,15 +337,37 @@ class TextEntry : ZilchComponent {
             this.CurrHeldKeyRepeatSpeed = 0.0;
         }
         
+        Console.WriteLine("SelectionIndex: `this.SelectedTextIndex`");
+        
     }
     
     // FOR ARROW KEYS
     function MoveCursor(dt : Real, amount : Integer) {
+        
+        if(dt < 0)
+            this.CurrRepeatDelay = 0.0;
+        
         if(!Zero.Keyboard.KeyIsDown(Keys.Shift))
             this.IsTextSelected = false;
         if(this.CurrRepeatDelay > this.RepeatDelay && this.CurrHeldKeyRepeatSpeed > this.HeldKeyRepeatSpeed || dt < 0) {
+            
             this.CursorIndex += amount;
             this.CurrHeldKeyRepeatSpeed = 0.0;
+            
+            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                if(!this.IsTextSelected) {
+                    this.StartSelectionArea = this.CursorIndex;
+                    this.SelectText(Integer2(this.CursorIndex), false, true);
+                    this.IsTextSelected = true;
+                }
+                if(this.CursorIndex < this.StartSelectionArea)
+                    this.SelectedTextIndex = this.SelectText(Integer2(this.CursorIndex, this.StartSelectionArea), false, false);
+                else if(this.CursorIndex > this.StartSelectionArea)
+                    this.SelectedTextIndex = this.SelectText(Integer2(this.StartSelectionArea, this.CursorIndex), false, false);
+                //else
+                    //this.DeselectText();
+            }
+            
         } else {
             this.CurrRepeatDelay += dt;
             this.CurrHeldKeyRepeatSpeed += dt;
@@ -352,6 +375,7 @@ class TextEntry : ZilchComponent {
         
         this.CurrTypingIndicatorBlinkTime = 0.0;
         this.CatchInvalidCursorPos();
+        
     }
     
     // VISUAL UPDATE (DOES NOT HANDLE CURSOR INPUT. ONLY MOVES IT TO SPECIFIED POSITION)
@@ -372,14 +396,14 @@ class TextEntry : ZilchComponent {
     }
     
     function CalcTextIndexFromPosition(posX : Real) : Integer {
-        return Math.Round((posX - this.Owner.Transform.WorldTranslation.X) / this.TextCharDimensions.X) as Integer;
+        return Math.Round((posX - this.Owner.Transform.WorldTranslation.X) / this.TextCharDimensions.X) as Integer + this.OverflowOffset;
     }
     
     function CalcTextPositionFromIndex(index : Integer) : Real {
-        return this.Owner.Transform.WorldTranslation.X + index * this.TextCharDimensions.X;
+        return this.Owner.Transform.WorldTranslation.X + (index - this.OverflowOffset) * this.TextCharDimensions.X;
     }
     
-    function SelectText(selectedIndex : Integer2, returnOrderedSelection : Boolean) : Integer2 {
+    function SelectText(selectedIndex : Integer2, returnOrderedSelection : Boolean, putCursorAtEnd : Boolean) : Integer2 {
         
         if(selectedIndex.X > selectedIndex.Y)
             selectedIndex = selectedIndex.YX;
@@ -396,10 +420,11 @@ class TextEntry : ZilchComponent {
         
         this.IsTextSelected = true;
         this.BlinkTypingIndicator = false;
-        this.CursorIndex = selectedIndex.Y;
+        
+        if(putCursorAtEnd) this.CursorIndex = selectedIndex.Y;
         
         var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
-        txtSelect.Sprite.Visible = true;
+        txtSelect.Sprite.Visible = selectedIndex.X != selectedIndex.Y;
         txtSelect.Transform.WorldTranslation = Real3(this.CalcTextPositionFromIndex(selectedIndex.X), txtSelect.Transform.WorldTranslation.YZ);
         txtSelect.Transform.Scale = Real3((selectedIndex.Y - selectedIndex.X) * this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
         
@@ -422,7 +447,7 @@ class TextEntry : ZilchComponent {
             if(this.IsRenderable(Zero.Shell.ClipboardText[i]))
                 tmpClipboard = "`tmpClipboard``String.FromChar(Zero.Shell.ClipboardText[i])`";
         
-        this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true), "`tmpClipboard`", true);
+        this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true, true), "`tmpClipboard`", true);
         this.TempCommandStr = this.CommandString;
         
         this.CursorIndex += tmpClipboard.Count;
@@ -449,7 +474,8 @@ class TextEntry : ZilchComponent {
     }
     
     function PrintToUIConsole(beginningText : String, endingText : String, beginningFixedTextWidth : Integer) {
-        for(var i = 0; i < beginningFixedTextWidth - beginningText.Count; ++i)
+        var spaceCt = beginningFixedTextWidth - beginningText.Count;
+        for(var i = 0; i < spaceCt; ++i)
             beginningText = "`beginningText` ";
         this.PrintToUIConsole("`beginningText``endingText`", false, "");
     }

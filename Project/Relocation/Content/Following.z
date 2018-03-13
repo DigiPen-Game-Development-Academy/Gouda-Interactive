@@ -147,31 +147,33 @@ class Follower : ZilchComponent
     // If we have reached the time we need to search, then get a target
     // Otherwise, continue to count down till we need to search
     
-    if (this.MemoryTimer <= 0.0)
+    if (this.SearchTimer <= 0.0)
         this.TargetClosest();
     else
-        this.MemoryTimer -= event.Dt;
+        this.SearchTimer -= event.Dt;
     
     // If we see a target or remember a target or we still have old memories recorded of a target, follow the target
     
-    if (this.Target != null || this.Memories.Count != 0 || this.PreviousTarget != null)
+    if (this.Target != null || this.PreviousTarget != null || this.PreviousTarget != null)
     {
         this.Follow();
     }
   }
   function TargetClosest()
   {
+      Console.WriteLine("`this.Target`");
+      
     // Reset the search timer to the frequency plus a random range from -variance to +variance
     // Use a static function in FollowTarget to find a target in the desired method
     
-    FollowTarget.GetClosestSeenTarget(this.Owner.Transform.Translation);
+    this.Target = FollowTarget.GetClosestSeenTarget(this.Owner.Transform.Translation);
     
-    this.MemoryTimer = this.MemoryFrequency;
+    this.SearchTimer = this.SearchFrequency;
   }
   function Follow()
   {
     // Remember where to go
-    var location = this.Memories[0];
+    var location = this.Remember();
     // Get the square distance to where we need to go
     var distanceSq = Math.DistanceSq(this.Owner.Transform.Translation, location);
     // If we have arrived at where we need to go
@@ -246,8 +248,10 @@ class Follower : ZilchComponent
   function AddMemory()
   {
     // If we have at least one memory and the memory is equal to the current position, don't do anything
-    //if (this.Memories.Count >= 1 && ) return ;
+    if (this.Memories.Count >= 1 && this.Memories[0] == this.Target.Position) return;
     // Add the memory
+    this.Memories.Add(this.PreviousTarget.Position);
     // Reset the memory timer
+    this.MemoryTimer = this.MemoryFrequency;
   }
 }

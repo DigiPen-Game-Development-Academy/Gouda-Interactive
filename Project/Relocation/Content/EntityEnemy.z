@@ -11,6 +11,7 @@ class EntityEnemy : ZilchComponent
     [Property] var HitboxSize : Real = 1.0;
     [Property] var HitboxLifetime : Real = 3.0;
     [Property] var CanMove : Boolean = true;
+    [Property] var SightRadius : Real = 5.0;
     var TimeTillAttack : Real = 0.0;
     var Player : Cog = null;
     

@@ -5,7 +5,9 @@ class Spawner : ZilchComponent
     /* [Property] var WhatToSpawn : Archetype; Is not needed
        Because it should be randomly picking different types of enemies to spawn */
     
-    // Radius from 0, 0 that enemies will spawn in
+    [Property] var NumberOfEnemyTypes : Integer = 2;
+    
+    // Radius from player that enemies will spawn in
     [Property] var Radius : Real = 100.0;
     
     // EntityPlayer
@@ -38,16 +40,17 @@ class Spawner : ZilchComponent
                 return;
             }
             
-            // Set the camera object
+            // Set the camera object and player translation variables
             var camera = this.Player.FindChildByName("Camera");
+            var playerTranslation = this.Player.Transform.Translation;
             
             // Create the spawn position generators
             var randomGeneratorX = new Random();
             var randomGeneratorY = new Random();
             
             // Create the spawn position
-            var spawnPosition =  Real3(randomGeneratorX.Range(-this.Radius, this.Radius),
-            randomGeneratorY.Range(-this.Radius, this.Radius), 0);
+            var spawnPosition =  Real3(randomGeneratorX.Range(playerTranslation.X - this.Radius, playerTranslation.X + this.Radius),
+            randomGeneratorY.Range(playerTranslation.Y - this.Radius, playerTranslation.Y + this.Radius), 0);
             
             // If the spawn position is visible within the camera return and don't spawn anything
             if ((this.Player.Transform.Translation.X >= spawnPosition.X - camera.Camera.Size && 
@@ -62,11 +65,17 @@ class Spawner : ZilchComponent
             if (this.CheckToSeeIfSpawnIsOkay(spawnPosition.X, spawnPosition.Y) == false)
                 return;
             
+            var enemyType = new Random().DieRoll(this.NumberOfEnemyTypes);
+            var enemyArchetype : Archetype = null;
+            
+            if (enemyType == 1) enemyArchetype = Archetype.EntityFrogg;
+            else if (enemyType == 2) enemyArchetype = Archetype.EntityArmadilo;
+            
             // Spawn the enemy and set a variable equal to it
             // NOTE: this will later be changed to spawn a random enemy
-            var enemySpawned = this.Space.CreateAtPosition(Archetype.Find("EntityEnemy"), spawnPosition);
+            var enemySpawned = this.Space.CreateAtPosition(enemyArchetype, spawnPosition);
             
-            // Set the enemies SpawnedFrom variable
+            // Set the enemy's SpawnedFrom variable
             enemySpawned.EntityEnemy.SpawnedFrom = this.Owner;
             
             // Increase the current number of enemies
@@ -88,7 +97,7 @@ class Spawner : ZilchComponent
         
         Console.WriteLine("`castResults.Empty()`");
         
-        // Retur the results
+        // Return the results
         return castResults.Empty();
     }
 }
