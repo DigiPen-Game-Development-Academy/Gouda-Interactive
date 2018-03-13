@@ -337,6 +337,8 @@ class TextEntry : ZilchComponent {
             this.CurrHeldKeyRepeatSpeed = 0.0;
         }
         
+        Console.WriteLine("SelectionIndex: `this.SelectedTextIndex`");
+        
     }
     
     // FOR ARROW KEYS
@@ -352,7 +354,7 @@ class TextEntry : ZilchComponent {
             this.CursorIndex += amount;
             this.CurrHeldKeyRepeatSpeed = 0.0;
             
-            /*if(Zero.Keyboard.KeyIsDown(Keys.Shift) && true == false) {
+            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
                 if(!this.IsTextSelected) {
                     this.StartSelectionArea = this.CursorIndex;
                     this.SelectText(Integer2(this.CursorIndex), false, true);
@@ -362,9 +364,9 @@ class TextEntry : ZilchComponent {
                     this.SelectedTextIndex = this.SelectText(Integer2(this.CursorIndex, this.StartSelectionArea), false, false);
                 else if(this.CursorIndex > this.StartSelectionArea)
                     this.SelectedTextIndex = this.SelectText(Integer2(this.StartSelectionArea, this.CursorIndex), false, false);
-                else
-                    this.DeselectText();
-            }*/
+                //else
+                    //this.DeselectText();
+            }
             
         } else {
             this.CurrRepeatDelay += dt;
@@ -422,7 +424,7 @@ class TextEntry : ZilchComponent {
         if(putCursorAtEnd) this.CursorIndex = selectedIndex.Y;
         
         var txtSelect = this.Owner.Parent.FindChildByName("TextBoxSelection");
-        txtSelect.Sprite.Visible = true;
+        txtSelect.Sprite.Visible = selectedIndex.X != selectedIndex.Y;
         txtSelect.Transform.WorldTranslation = Real3(this.CalcTextPositionFromIndex(selectedIndex.X), txtSelect.Transform.WorldTranslation.YZ);
         txtSelect.Transform.Scale = Real3((selectedIndex.Y - selectedIndex.X) * this.TextCharDimensions.X, this.TextCharDimensions.Y, 1);
         
@@ -472,7 +474,8 @@ class TextEntry : ZilchComponent {
     }
     
     function PrintToUIConsole(beginningText : String, endingText : String, beginningFixedTextWidth : Integer) {
-        for(var i = 0; i < beginningFixedTextWidth - beginningText.Count; ++i)
+        var spaceCt = beginningFixedTextWidth - beginningText.Count;
+        for(var i = 0; i < spaceCt; ++i)
             beginningText = "`beginningText` ";
         this.PrintToUIConsole("`beginningText``endingText`", false, "");
     }
