@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-20.5, 4.5, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -92,7 +92,7 @@ Cog =
 	{
 		string PlayerName = "Astronaut Zero",
 		int PlayerSkin = 0,
-		Vec3 SpawnPosition = [-20.5, 4.5, 0],
+		Vec3 SpawnPosition = [0, 0, 0],
 		bool IsInWater = false,
 		bool IsInUnauthorizedZone = false,
 		bool IsDead = false,
@@ -102,6 +102,9 @@ Cog =
 	{
 		bool Active = true,
 		bool CaptureMouse = false,
+	},
+	FollowTarget = 
+	{
 	},
 	Hierarchy = 
 	{
@@ -128,113 +131,6 @@ Cog =
 			LinkId = 
 			{
 				uint Id = 3,
-			},
-			Named = 
-			{
-				string Name = "Minimap",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [0, -0.200000003, 0],
-				Vec3 Scale = [0.349999994, 0.349999994, 0.349999994],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			CameraViewport = 
-			{
-				bool Background = false,
-				Vec2 Offset = [0, 0.0250000004],
-				Vec2 Size = [0.949999988, 0.949999988],
-				int Layer = 1,
-				bool Active = false,
-				bool Blocking = true,
-				CogPath Renderer = 
-				{
-					string Path = ".",
-					bool ErrorOnResolveToNull = false,
-					bool ErrorOnPathCantCompute = false,
-					bool ErrorOnDirectLinkFail = false,
-					bool UpdateCogOnPathChange = true,
-					bool UpdatePathOnCogChange = true,
-					bool UpdateCogOnInitialize = true,
-					bool ResolvedNullErrorOccurred = false,
-					uint ResolvedCog = 3,
-					CogPathPreference PathPreference0 = CogRelative,
-					CogPathPreference PathPreference1 = SpaceRelative,
-					CogPathPreference PathPreference2 = Absolute,
-				},
-				CogPath Camera = 
-				{
-					string Path = "MinimapCamera",
-					bool ErrorOnResolveToNull = false,
-					bool ErrorOnPathCantCompute = false,
-					bool ErrorOnDirectLinkFail = false,
-					bool UpdateCogOnPathChange = true,
-					bool UpdatePathOnCogChange = true,
-					bool UpdateCogOnInitialize = true,
-					bool ResolvedNullErrorOccurred = false,
-					uint ResolvedCog = 4,
-					CogPathPreference PathPreference0 = CogRelative,
-					CogPathPreference PathPreference1 = SpaceRelative,
-					CogPathPreference PathPreference2 = Absolute,
-				},
-				ViewportScaling Scaling = Letterbox,
-				Vec2 Resolution = [500, 500],
-				Vec4 MarginColor = [0, 0, 0, 1],
-			},
-			DeferredRenderer = 
-			{
-				Vec4 ClearColor = [0, 0, 0, 1],
-				bool DrawNonVisible = false,
-				bool DrawDebugObjects = true,
-				bool DrawEditorIcons = true,
-				bool EditorIconDepth = true,
-				bool Hdr = false,
-				bool Shadows = false,
-				bool AntiAliasing = false,
-				bool Refraction = false,
-				bool Reflections = false,
-				string ReflectionEnvironmentName = "4fab71e8bcb7a8ce:DefaultTexture",
-				bool GodRays = false,
-				bool RenderMasks = false,
-				bool Glow = false,
-				float GlowThreshold = 1,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 4,
-					},
-					Named = 
-					{
-						string Name = "MinimapCamera",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-3.81469727e-06, 0.571429253, 114.285721],
-						Vec3 Scale = [2.85714293, 2.85714293, 2.85714293],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Camera = 
-					{
-						ProjectionMode ProjectionMode = Orthographic,
-						Facing Facing = NegativeZ,
-						CameraTransparentSort TransparentSort = InheritFromSpace,
-						float FieldOfView = 45,
-						float NearPlane = 0.5,
-						float FarPlane = 200,
-						float Size = 64,
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 5,
 			},
 			Named = 
 			{
@@ -266,7 +162,7 @@ Cog =
 		{
 			LinkId = 
 			{
-				uint Id = 6,
+				uint Id = 4,
 			},
 			Named = 
 			{
@@ -343,7 +239,7 @@ Cog =
 				{
 					LinkId = 
 					{
-						uint Id = 7,
+						uint Id = 5,
 					},
 					Named = 
 					{
