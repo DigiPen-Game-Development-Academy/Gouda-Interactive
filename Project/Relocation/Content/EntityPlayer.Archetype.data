@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [-20.5, 4.5, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -92,7 +92,7 @@ Cog =
 	{
 		string PlayerName = "Astronaut Zero",
 		int PlayerSkin = 0,
-		Vec3 SpawnPosition = [0, 0, 0],
+		Vec3 SpawnPosition = [-20.5, 4.5, 0],
 		bool IsInWater = false,
 		bool IsInUnauthorizedZone = false,
 		bool IsDead = false,
