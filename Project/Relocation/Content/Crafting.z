@@ -49,6 +49,8 @@ class Crafting : ZilchComponent {
     var ItemGunBarrelLong           : Array[Integer] = null;
     var ItemGunStock                : Array[Integer] = null;
     
+    var ItemHealthPack              : Array[Integer] = null;
+    
     var CraftingRecipes : Array[Recipe] = null;
     var CraftableItems : Array[Integer] = null;
     
@@ -59,7 +61,7 @@ class Crafting : ZilchComponent {
     var CRSlotHover : Integer = -1;
     
     var ScrollPosition : Integer = 0;
-    var MaxScroll : Integer = 5;
+    var MaxScroll : Integer = 6;
     
     var MaxItemsInRecipe : Integer = 3;
     var MaxCraftingSlots : Integer = 6;
@@ -304,6 +306,17 @@ class Crafting : ZilchComponent {
             Relocation.ItemManager.GetIDByName("ItemGunStock")
         );
         
+        /*
+            CONSUMABLES
+        */
+        this.ItemHealthPack = this.CreateRecipe(
+            Relocation.ItemManager.GetIDByName("ItemGold"),
+            0,
+            0,
+            4, 0, 0,
+            Relocation.ItemManager.GetIDByName("ItemHealthPack")
+        );
+        
         this.CraftingRecipes.Push(new Recipe(this.ItemCopper));
         this.CraftingRecipes.Push(new Recipe(this.ItemIron));
         this.CraftingRecipes.Push(new Recipe(this.ItemGold));
@@ -342,6 +355,13 @@ class Crafting : ZilchComponent {
         this.CraftingRecipes.Push(new Recipe(this.ItemGunBarrel));
         this.CraftingRecipes.Push(new Recipe(this.ItemGunBarrelLong));
         this.CraftingRecipes.Push(new Recipe(this.ItemGunStock));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        
+        this.CraftingRecipes.Push(new Recipe(this.ItemHealthPack));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
+        this.CraftingRecipes.Push(new Recipe(this.ItemAir));
         this.CraftingRecipes.Push(new Recipe(this.ItemAir));
         this.CraftingRecipes.Push(new Recipe(this.ItemAir));
         this.CraftingRecipes.Push(new Recipe(this.ItemAir));
@@ -385,6 +405,13 @@ class Crafting : ZilchComponent {
         this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemGunBarrel"));
         this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemGunBarrelLong"));
         this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemGunStock"));
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
+        
+        this.CraftableItems.Push(Relocation.ItemManager.GetIDByName("ItemHealthPack"));
+        this.CraftableItems.Push(0);
+        this.CraftableItems.Push(0);
         this.CraftableItems.Push(0);
         this.CraftableItems.Push(0);
         this.CraftableItems.Push(0);
