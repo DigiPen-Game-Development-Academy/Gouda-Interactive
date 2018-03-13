@@ -342,6 +342,9 @@ class TextEntry : ZilchComponent {
     // FOR ARROW KEYS
     function MoveCursor(dt : Real, amount : Integer) {
         
+        if(dt < 0)
+            this.CurrRepeatDelay = 0.0;
+        
         if(!Zero.Keyboard.KeyIsDown(Keys.Shift))
             this.IsTextSelected = false;
         if(this.CurrRepeatDelay > this.RepeatDelay && this.CurrHeldKeyRepeatSpeed > this.HeldKeyRepeatSpeed || dt < 0) {
@@ -349,7 +352,7 @@ class TextEntry : ZilchComponent {
             this.CursorIndex += amount;
             this.CurrHeldKeyRepeatSpeed = 0.0;
             
-            if(Zero.Keyboard.KeyIsDown(Keys.Shift) && true == false) {
+            /*if(Zero.Keyboard.KeyIsDown(Keys.Shift) && true == false) {
                 if(!this.IsTextSelected) {
                     this.StartSelectionArea = this.CursorIndex;
                     this.SelectText(Integer2(this.CursorIndex), false, true);
@@ -361,7 +364,7 @@ class TextEntry : ZilchComponent {
                     this.SelectedTextIndex = this.SelectText(Integer2(this.StartSelectionArea, this.CursorIndex), false, false);
                 else
                     this.DeselectText();
-            }
+            }*/
             
         } else {
             this.CurrRepeatDelay += dt;
@@ -391,11 +394,11 @@ class TextEntry : ZilchComponent {
     }
     
     function CalcTextIndexFromPosition(posX : Real) : Integer {
-        return Math.Round((posX - this.Owner.Transform.WorldTranslation.X) / this.TextCharDimensions.X) as Integer;
+        return Math.Round((posX - this.Owner.Transform.WorldTranslation.X) / this.TextCharDimensions.X) as Integer + this.OverflowOffset;
     }
     
     function CalcTextPositionFromIndex(index : Integer) : Real {
-        return this.Owner.Transform.WorldTranslation.X + index * this.TextCharDimensions.X;
+        return this.Owner.Transform.WorldTranslation.X + (index - this.OverflowOffset) * this.TextCharDimensions.X;
     }
     
     function SelectText(selectedIndex : Integer2, returnOrderedSelection : Boolean, putCursorAtEnd : Boolean) : Integer2 {
