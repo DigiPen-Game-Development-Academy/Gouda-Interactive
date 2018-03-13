@@ -44,14 +44,8 @@ class EntityEnemy : ZilchComponent
         // Change "EnemySprite"
         this.ChangeSprite();
         
-        // Move
-        this.Move();
-        
         // Decrease "TimeTillAttack"
         this.TimeTillAttack -= event.Dt;
-        
-        // Look at the player
-        this.LookAtPlayer();
         
         // Attack
         if (this.TimeTillAttack <= 0.0)
@@ -60,7 +54,7 @@ class EntityEnemy : ZilchComponent
     
     function Move()
     {
-        this.Owner.RigidBody.Velocity += this.Owner.Orientation.WorldForward * 3 * 0.0166667;
+        //this.Owner.RigidBody.Velocity += this.Owner.Orientation.WorldForward * 3 * 0.0166667;
     }
     
     function Shoot()
@@ -68,6 +62,9 @@ class EntityEnemy : ZilchComponent
         /*if (this.Owner.PathFinding.LookAtPlayer().ObjectHit != null)
             if (this.Owner.PathFinding.LookAtPlayer().ObjectHit.Name != "EntityPlayer")
                 return;*/
+        
+        if (this.Owner.Follower.LostSight == true)
+            return;
         
         var bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.XY, 0.0));
         
@@ -93,10 +90,10 @@ class EntityEnemy : ZilchComponent
     function LookAtPlayer()
     {
         // Look at player
-        this.Owner.Orientation.LookAtPoint(this.Player.Transform.Translation);
+        //this.Owner.Orientation.LookAtPoint(this.Player.Transform.Translation);
         
         // Make enemy sprite face up
-        this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
+        //this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
     }
     
     function ChangeSprite()
@@ -105,7 +102,7 @@ class EntityEnemy : ZilchComponent
         var sprite = this.Owner.Children.Current;
         
         // Get the enemy's direction
-        var worldForward = this.Owner.Orientation.WorldForward;
+        var worldForward = this.Owner.RigidBody.Velocity;
         // Calculate enemy's direction in radians
         var radians = Math.AngleBetween(worldForward, Real3.YAxis);
         // Convert radians to degrees

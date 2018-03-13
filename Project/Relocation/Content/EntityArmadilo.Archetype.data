@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-2.77812314, 6.88618231, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = true,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -80,6 +80,7 @@ Cog =
 		float HitboxSize = 1.75,
 		float HitboxLifetime = 0.100000001,
 		bool CanMove = false,
+		float SightRadius = 5,
 		string LookUp = "5af2c5ad2cac9a6e:ArmadilloUp",
 		string LookUpRight = "5af2c5ad2cac9a6e:ArmadilloUp",
 		string LookRight = "5af2c9d4b663b7ae:ArmadilloRight",
@@ -95,6 +96,17 @@ Cog =
 	Despawner = 
 	{
 		float DistanceFromPlayer = 75,
+	},
+	Follower = 
+	{
+		float SearchRange = 5,
+		float SearchFrequency = 0.25,
+		float SearchFrequencyVariance = 0.100000001,
+		float MemoryFrequency = 0.200000003,
+		float PredictionTime = 0.200000003,
+		float Straightness = 0.5,
+		float Speed = 4,
+		float Acceleration = 2,
 	},
 	Hierarchy = 
 	{
