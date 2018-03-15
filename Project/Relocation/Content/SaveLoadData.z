@@ -132,10 +132,10 @@ class SaveLoadData : ZilchComponent
             this.LevelSettings.PlaceChunks.ChunkMap.Add(Zero.ObjectStore.Restore("Chunk`chunkNumToLoad`", this.Space));
             var chunk = this.LevelSettings.PlaceChunks.ChunkMap[this.LevelSettings.PlaceChunks.ChunkMap.Count - 1];
             
-            chunk.WorldGenerator.HasGenerated = true;
-            chunk.Transform.Translation = ToFromStrings.StringToReal3(chunk.WorldGenerator.ChunkPositionString);
-            chunk.WorldGenerator.WorldMap.Clear();
-            chunk.WorldGenerator.WorldMapData.Clear();
+            Console.WriteLine("worldmap: `chunk.WorldGenerator.WorldMap`");
+            
+            //chunk.WorldGenerator.HasGenerated = true;
+            //chunk.Transform.Translation = ToFromStrings.StringToReal3(chunk.WorldGenerator.ChunkPositionString);
             chunk.WorldGenerator.WorldMap = ToFromStrings.StringToHashMapInt2Int(chunk.WorldGenerator.WorldMapString);
             chunk.WorldGenerator.WorldMapData = ToFromStrings.StringToHashMapInt2Real2(chunk.WorldGenerator.WorldMapDataString);
             
