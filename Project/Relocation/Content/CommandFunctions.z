@@ -177,7 +177,7 @@ class Commands : ZilchComponent {
             var cheatArg = this.GetArgument(1, this.TextEntry.SubmittedText, false);
             
             if(cheatArg.ToLower() == "noclip") {
-                //TODO: NOCLIP CHEAT
+                if(Relocation.Space != null && Relocation.Player != null) Relocation.Player.CapsuleCollider.Ghost = !Relocation.Player.CapsuleCollider.Ghost;
             } else if(cheatArg.ToLower() == "camera" || cheatArg.ToLower() == "cam") {
                 //TODO: CAMERA CHEAT
             } else if(cheatArg.ToLower() == "crafting") {

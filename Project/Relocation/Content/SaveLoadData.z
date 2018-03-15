@@ -49,13 +49,24 @@ class SaveLoadData : ZilchComponent
         
         Zero.ObjectStore.Store("Data", this.Data);
         
-        /*var chunkNumToSave = 0;
+        Console.WriteLine("`this.LevelSettings.PlaceChunks.ChunkMap`");
+        
+        var chunkNumToSave = 0;
         
         foreach (var chunk in this.LevelSettings.PlaceChunks.ChunkMap)
         {
-            Zero.ObjectStore.Store("Chunk`chunkNumToSave`", this.LevelSettings.PlaceChunks.ChunkMap[chunkNumToSave]);
-            ++chunkNumToSave;
-        }*/
+            if (chunk.WorldGenerator.WorldMap != null)
+            {
+                chunk.WorldGenerator.WorldMapString = ToFromStrings.HashMapInt2IntToString(chunk.WorldGenerator.WorldMap);
+                chunk.WorldGenerator.WorldMapDataString = ToFromStrings.HashMapInt2Real2ToString(chunk.WorldGenerator.WorldMapData);
+                chunk.WorldGenerator.ChunkPositionString = ToFromStrings.Real3ToString(chunk.Transform.Translation);
+                Zero.ObjectStore.Store("Chunk`chunkNumToSave`", this.LevelSettings.PlaceChunks.ChunkMap[chunkNumToSave]);
+                ++chunkNumToSave;
+                
+                //Console.WriteLine("Chunk WorldMap: `chunk.WorldGenerator.WorldMapString`");
+                //Console.WriteLine("Chunk WorldMapData: `chunk.WorldGenerator.WorldMapDataString`");
+            }
+        }
         
         var hashMap1 = HashMap[Integer2, Integer]();
         
@@ -109,16 +120,29 @@ class SaveLoadData : ZilchComponent
         
         LoadDataIntoLevel.LoadData();
         
-        /*foreach (var chunk in this.Space.FindAllObjectsByName("Chunk"))
+        foreach (var chunk in this.Space.FindAllObjectsByName("Chunk"))
             chunk.Destroy();
+        
+        this.LevelSettings.PlaceChunks.ChunkMap.Clear();
         
         var chunkNumToLoad = 0;
         
         while (Zero.ObjectStore.IsStored("Chunk`chunkNumToLoad`") == true)
         {
             this.LevelSettings.PlaceChunks.ChunkMap.Add(Zero.ObjectStore.Restore("Chunk`chunkNumToLoad`", this.Space));
+            var chunk = this.LevelSettings.PlaceChunks.ChunkMap[this.LevelSettings.PlaceChunks.ChunkMap.Count - 1];
+            
+            Console.WriteLine("worldmap: `chunk.WorldGenerator.WorldMap`");
+            
+            //chunk.WorldGenerator.HasGenerated = true;
+            //chunk.Transform.Translation = ToFromStrings.StringToReal3(chunk.WorldGenerator.ChunkPositionString);
+            chunk.WorldGenerator.WorldMap = ToFromStrings.StringToHashMapInt2Int(chunk.WorldGenerator.WorldMapString);
+            chunk.WorldGenerator.WorldMapData = ToFromStrings.StringToHashMapInt2Real2(chunk.WorldGenerator.WorldMapDataString);
+            
             ++chunkNumToLoad;
-        }*/
+            
+            Console.WriteLine("Chunk Translation: `chunk.Transform.Translation`");
+        }
         
         Console.WriteLine("Loaded");
     }

@@ -8,8 +8,12 @@ class WorldGenerator : ZilchComponent {
     [Property] var Height : Integer = 32;
     [Property] var NumberOfSteps : Integer = 2;
     
-    var IsSpawnChunk : Boolean = false;
-    var HasGenerated : Boolean = false;
+    [Serialized] var IsSpawnChunk : Boolean = false;
+    [Serialized] var HasGenerated : Boolean = false;
+    
+    [Serialized] var ChunkPositionString : String = "";
+    [Serialized] var WorldMapString : String = "";
+    [Serialized] var WorldMapDataString : String = "";
     
     var MaxPossibleID : Integer = 8;
     
@@ -23,9 +27,6 @@ class WorldGenerator : ZilchComponent {
     var WorldMap : HashMap[Integer2, Integer] = null;
     var WorldMapData : HashMap[Integer2, Real2] = null;
     
-    var WorldMapString : String = "";
-    var WorldMapDataString : String = "";
-    
     function Initialize(init : CogInitializer) {
         
         this.CenterCoords = Integer2(this.Width / 2, this.Height / 2);
@@ -33,6 +34,8 @@ class WorldGenerator : ZilchComponent {
         if(this.Owner.Transform.WorldTranslation.XY == Real2(0.0)) {
             this.IsSpawnChunk = true;
         }
+        
+        this.GiveUniqueName();
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -228,6 +231,12 @@ class WorldGenerator : ZilchComponent {
         
         return count;
         
+    }
+    
+    function GiveUniqueName() {
+        var pos = this.Owner.Transform.WorldTranslation;
+        
+        this.Owner.Name = "Chunk_`pos.X`_`pos.Y`_`pos.Z`";
     }
     
     function GenerateID() : Integer {
