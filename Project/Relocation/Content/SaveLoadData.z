@@ -49,6 +49,36 @@ class SaveLoadData : ZilchComponent
         
         Zero.ObjectStore.Store("Data", this.Data);
         
+        /*var chunkNumToSave = 0;
+        
+        foreach (var chunk in this.LevelSettings.PlaceChunks.ChunkMap)
+        {
+            Zero.ObjectStore.Store("Chunk`chunkNumToSave`", this.LevelSettings.PlaceChunks.ChunkMap[chunkNumToSave]);
+            ++chunkNumToSave;
+        }*/
+        
+        var hashMap1 = HashMap[Integer2, Integer]();
+        
+        hashMap1.Add(Integer2(0, 0), 1);
+        hashMap1.Add(Integer2(1, 0), 2);
+        hashMap1.Add(Integer2(0, 1), 3);
+        
+        var string1 = "0,0,1,0,1,2,1,0,3";
+        
+        Console.WriteLine("Hashmap 1 as string 1: `ToFromStrings.HashMapInt2IntToString(hashMap1)`");
+        Console.WriteLine("String 1 As HashMap 1: `ToFromStrings.StringToHashMapInt2Int(string1)`");
+        
+        var hashMap2 = HashMap[Integer2, Real2]();
+        
+        hashMap2.Add(Integer2(0, 0), Real2(1.0, 2.0));
+        hashMap2.Add(Integer2(1, 0), Real2(3.0, 4.0));
+        hashMap2.Add(Integer2(0, 1), Real2(5.0, 6.0));
+        
+        var string2 = "0,0,1,2,1,0,3,4,0,1,5,6";
+        
+        Console.WriteLine("Hashmap 2 as string: `ToFromStrings.HashMapInt2Real2ToString(hashMap2)`");
+        Console.WriteLine("String as Hashmap 2: `ToFromStrings.StringToHashMapInt2Real2(string2)`");
+        
         Console.WriteLine("Saved");
     }
     
@@ -78,6 +108,17 @@ class SaveLoadData : ZilchComponent
         LoadDataIntoLevel.SFXVolume = this.Data.SavedData.SFXVolume;
         
         LoadDataIntoLevel.LoadData();
+        
+        /*foreach (var chunk in this.Space.FindAllObjectsByName("Chunk"))
+            chunk.Destroy();
+        
+        var chunkNumToLoad = 0;
+        
+        while (Zero.ObjectStore.IsStored("Chunk`chunkNumToLoad`") == true)
+        {
+            this.LevelSettings.PlaceChunks.ChunkMap.Add(Zero.ObjectStore.Restore("Chunk`chunkNumToLoad`", this.Space));
+            ++chunkNumToLoad;
+        }*/
         
         Console.WriteLine("Loaded");
     }
