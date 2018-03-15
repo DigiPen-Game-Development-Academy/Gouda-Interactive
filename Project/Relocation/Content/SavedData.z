@@ -5,7 +5,7 @@
 class SavedData : ZilchComponent
 {
     // All saved variables MUST BE SERIALIZED
-    // e.g:
+    // Example:
     // [Serialized] var Score : Integer;
     
     // Player data:
