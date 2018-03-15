@@ -1,0 +1,20 @@
+//AUTHOR: MATTHEW ZEARING
+//CONTRIBUTERS: N/A
+
+class FootstepScript : ZilchComponent {
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(Relocation.Player.RigidBody.Velocity != Real3(0.0)) {
+            this.Owner.SphericalParticleEmitter.Active = true;
+        } else {
+            this.Owner.SphericalParticleEmitter.Active = false;
+        }
+        
+    }
+    
+}
