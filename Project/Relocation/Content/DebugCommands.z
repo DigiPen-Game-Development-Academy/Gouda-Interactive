@@ -337,8 +337,6 @@ class TextEntry : ZilchComponent {
             this.CurrHeldKeyRepeatSpeed = 0.0;
         }
         
-        Console.WriteLine("SelectionIndex: `this.SelectedTextIndex`");
-        
     }
     
     // FOR ARROW KEYS
