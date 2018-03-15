@@ -23,6 +23,9 @@ class WorldGenerator : ZilchComponent {
     var WorldMap : HashMap[Integer2, Integer] = null;
     var WorldMapData : HashMap[Integer2, Real2] = null;
     
+    var WorldMapString : String = "";
+    var WorldMapDataString : String = "";
+    
     function Initialize(init : CogInitializer) {
         
         this.CenterCoords = Integer2(this.Width / 2, this.Height / 2);
