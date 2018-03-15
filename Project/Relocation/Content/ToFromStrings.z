@@ -142,7 +142,7 @@ class ToFromStrings : ZilchComponent
         var hashMap = HashMap[Integer2, Integer]();
         var array = ToFromStrings.StringToIntArray(string);
         
-        Console.WriteLine("array: `array`");
+        //Console.WriteLine("array: `array`");
         
         for (var index = 0; index < array.Count; index += 3)
             hashMap.Add(Integer2(array[index], array[index + 1]), array[index + 2]);
