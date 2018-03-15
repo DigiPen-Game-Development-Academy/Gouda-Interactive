@@ -23,9 +23,9 @@ class WorldGenerator : ZilchComponent {
     var WorldMap : HashMap[Integer2, Integer] = null;
     var WorldMapData : HashMap[Integer2, Real2] = null;
     
-    var ChunkPositionString : String = "";
-    var WorldMapString : String = "";
-    var WorldMapDataString : String = "";
+    [Serialized] var ChunkPositionString : String = "";
+    [Serialized] var WorldMapString : String = "";
+    [Serialized] var WorldMapDataString : String = "";
     
     function Initialize(init : CogInitializer) {
         
