@@ -179,6 +179,7 @@ class TextEntry : ZilchComponent {
                 ++this.CursorIndex;
                 this.CatchInvalidCursorPos();
                 this.TempCommandStr = this.CommandString;
+                this.AutocompleteIndex = 0;
                 
             }
             
@@ -197,6 +198,7 @@ class TextEntry : ZilchComponent {
                 }
                 
                 this.TempCommandStr = this.CommandString;
+                this.AutocompleteIndex = 0;
                 
             }
             

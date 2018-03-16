@@ -156,7 +156,7 @@ class Commands : ZilchComponent {
     
     function CommandHelp() {
         
-        var width = 24;
+        var width = 25;
         
         this.TextEntry.PrintToUIConsole("Help", true);
         this.TextEntry.PrintToUIConsole("clear - (Alias: cls)", " - Clears the screen", width);
