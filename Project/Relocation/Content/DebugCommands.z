@@ -66,8 +66,6 @@ class TextEntry : ZilchComponent {
             
         if(this.CaptureKeys) {
             
-            this.Owner.Reactive.Active = true;
-            
             // CURSOR BLINKING
             if(this.CurrTypingIndicatorBlinkTime > this.TypingIndicatorBlinkTime) {
                 this.CurrTypingIndicatorBlinkTime = 0.0;
@@ -115,12 +113,12 @@ class TextEntry : ZilchComponent {
         this.Owner.Parent.FindChildByName("TextCursor").SpriteText.Visible = this.CaptureKeys;
         if(this.Owner.Parent.SpriteText != null)
             this.Owner.Parent.SpriteText.Visible = this.CaptureKeys;
-        if(this.TextBoxType == TextBoxType.Console)
-            this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = this.CaptureKeys;
         if(!this.CaptureKeys)
             this.DeselectText();
-        if(!this.CaptureKeys && this.TextBoxType == TextBoxType.Console)
-            this.Owner.Reactive.Active = false;
+        if(this.TextBoxType == TextBoxType.Console) {
+            this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = this.CaptureKeys;
+            this.Owner.Reactive.Active = this.CaptureKeys;
+        }
         if(((Zero.Keyboard.KeyIsPressed(Keybinds.Console) && this.TextBoxType == TextBoxType.Console) || (this.WasClicked && this.TextBoxType != TextBoxType.Console)) && !this.CaptureKeys) {
             this.CaptureKeys = true;
             this.WasClicked = false;
