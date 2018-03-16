@@ -1,9 +1,14 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
+enum TextBoxType {
+    TextBox,
+    Console
+}
+
 class TextEntry : ZilchComponent {
     
-    [Property] var IsCommandTextBox : Boolean = false;
+    [Property] var TextBoxType : TextBoxType = TextBoxType.TextBox;
     [Property] var ConsoleTextboxName : String = "Console";
     [Property] var TextBoxBackground : String = "TextBoxBG";
     [Property] var TextCharDimensions : Real2 = Real2(0.26, 0.5);
@@ -108,17 +113,17 @@ class TextEntry : ZilchComponent {
         this.Owner.Parent.FindChildByName("TextCursor").SpriteText.Visible = this.CaptureKeys;
         if(this.Owner.Parent.SpriteText != null)
             this.Owner.Parent.SpriteText.Visible = this.CaptureKeys;
-        if(this.IsCommandTextBox)
+        if(this.TextBoxType == TextBoxType.Console)
             this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Visible = this.CaptureKeys;
         if(!this.CaptureKeys)
             this.DeselectText();
-        if(((Zero.Keyboard.KeyIsPressed(Keybinds.Console) && this.IsCommandTextBox) || (this.WasClicked && !this.IsCommandTextBox)) && !this.CaptureKeys) {
+        if(((Zero.Keyboard.KeyIsPressed(Keybinds.Console) && this.TextBoxType == TextBoxType.Console) || (this.WasClicked && this.TextBoxType != TextBoxType.Console)) && !this.CaptureKeys) {
             this.CaptureKeys = true;
             this.WasClicked = false;
         }
         
         // COMMANDS
-        if(this.SubmittedText.Count > 0 && this.IsCommandTextBox)
+        if(this.SubmittedText.Count > 0 && this.TextBoxType == TextBoxType.Console)
             this.Owner.Commands.CommandFunctions();
         
     }
@@ -196,7 +201,7 @@ class TextEntry : ZilchComponent {
             }
             
             // CHECK FOR TAB
-            if(event.Character == 9 && this.IsCommandTextBox) {
+            if(event.Character == 9 && this.TextBoxType == TextBoxType.Console) {
                 
                 this.DeselectText();
                 
@@ -270,7 +275,7 @@ class TextEntry : ZilchComponent {
                 this.CmdHistoryIndex = this.CommandHistory.Count + 1;
                 this.CommandHistory.Push(this.CommandString);
                 
-                if(!this.IsCommandTextBox) {
+                if(this.TextBoxType != TextBoxType.Console) {
                     this.CaptureKeys = false;
                     this.Owner.Parent.FindChildByName(this.ConsoleTextboxName).SpriteText.Text = this.SubmittedText;
                 }
@@ -280,7 +285,7 @@ class TextEntry : ZilchComponent {
             this.CommandString = "";
             this.TempCommandStr = "";
             
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.Up) && this.IsCommandTextBox) {
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.Up) && this.TextBoxType == TextBoxType.Console) {
             
             this.IsTextSelected = false;
             
@@ -292,7 +297,7 @@ class TextEntry : ZilchComponent {
                 this.CursorIndex = this.CommandString.Count;
             }
             
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.Down) && this.IsCommandTextBox) {
+        } else if(Zero.Keyboard.KeyIsPressed(Keys.Down) && this.TextBoxType == TextBoxType.Console) {
             
             this.IsTextSelected = false;
             

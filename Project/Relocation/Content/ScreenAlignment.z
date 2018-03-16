@@ -1,10 +1,21 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
+enum AlignmentPositionX {
+    Left,
+    Center,
+    Right
+}
+
+enum AlignmentPositionY {
+    Top,
+    Bottom
+}
+
 class ScreenAlignment : ZilchComponent {
     
-    [Property] var PositionX : String = "Left";
-    [Property] var PositionY : String = "Top";
+    [Property] var PositionX : AlignmentPositionX = AlignmentPositionX.Left;
+    [Property] var PositionY : AlignmentPositionY = AlignmentPositionY.Top;
     [Property] var PositionOffset : Real2 = Real2(0);
     [Property] var ZIndex : Real = 0.0;
     [Property] var HideUntilPositioned : Boolean = false;
@@ -32,17 +43,17 @@ class ScreenAlignment : ZilchComponent {
         var screen = this.Space.FindObjectByName("LevelSettings");
         var screenRes = screen.CameraViewport.ViewportResolution;
         
-        if(this.PositionX == "Left") {
+        if(this.PositionX == AlignmentPositionX.Left) {
             this.Pos = Real2(0, 0);
-        } else if(this.PositionX == "Right") {
+        } else if(this.PositionX == AlignmentPositionX.Right) {
             this.Pos = Real2(screenRes.X, 0);
-        } else if(this.PositionX == "Center") {
+        } else if(this.PositionX == AlignmentPositionX.Center) {
             this.Pos = Real2(screenRes.X / 2, 0);
         }
         
-        if(this.PositionY == "Top") {
+        if(this.PositionY == AlignmentPositionY.Top) {
             this.Pos = Real2(this.Pos.X, 0);
-        } else if(this.PositionY == "Bottom") {
+        } else if(this.PositionY == AlignmentPositionY.Bottom) {
             this.Pos = Real2(this.Pos.X, screenRes.Y);
         }
         
