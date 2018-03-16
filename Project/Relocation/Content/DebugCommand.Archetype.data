@@ -37,8 +37,8 @@ Cog =
 	},
 	ScreenAlignment = 
 	{
-		string PositionX = "Left",
-		string PositionY = "Bottom",
+		Enum PositionX = Left,
+		Enum PositionY = Bottom,
 		Vec2 PositionOffset = [0.25, 0.75],
 		float ZIndex = 25,
 		bool HideUntilPositioned = false,
@@ -206,7 +206,7 @@ Cog =
 			},
 			TextEntry = 
 			{
-				bool IsCommandTextBox = true,
+				Enum TextBoxType = Console,
 				string ConsoleTextboxName = "Console",
 				string TextBoxBackground = "TextBoxBG",
 				Vec2 TextCharDimensions = [0.280999988, 0.5],
