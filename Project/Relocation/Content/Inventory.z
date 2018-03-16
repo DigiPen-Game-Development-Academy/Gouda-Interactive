@@ -558,7 +558,7 @@ class Inventory : ZilchComponent {
             itemID = PlayerData.InventoryContents[slot - 1];
             
             // DROP ITEM
-            Relocation.ItemManager.DropItems(itemID, amount, this.Owner.Transform.WorldTranslation + Real3(0.0, -0.75, 0.0));
+            if(drop) Relocation.ItemManager.DropItems(itemID, amount, this.Owner.Transform.WorldTranslation + Real3(0.0, -0.75, 0.0));
             
             PlayerData.InventoryContentsCount[slot - 1] -= amount;
             this.RefreshInventoryIcons();
