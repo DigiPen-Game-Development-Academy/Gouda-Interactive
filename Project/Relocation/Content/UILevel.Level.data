@@ -205,8 +205,8 @@ Level =
 		},
 		ScreenAlignment = 
 		{
-			string PositionX = "Left",
-			string PositionY = "Bottom",
+			Enum PositionX = Left,
+			Enum PositionY = Bottom,
 			Vec2 PositionOffset = [0.25, 0.75],
 			float ZIndex = 25,
 			bool HideUntilPositioned = false,
@@ -3216,8 +3216,8 @@ Level =
 		},
 		ScreenAlignment = 
 		{
-			string PositionX = "Left",
-			string PositionY = "Bottom",
+			Enum PositionX = Left,
+			Enum PositionY = Bottom,
 			Vec2 PositionOffset = [0.5, 0.5],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,
@@ -3591,8 +3591,8 @@ Level =
 		},
 		ScreenAlignment = 
 		{
-			string PositionX = "Right",
-			string PositionY = "Top",
+			Enum PositionX = Right,
+			Enum PositionY = Top,
 			Vec2 PositionOffset = [-0.25, 0],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,
