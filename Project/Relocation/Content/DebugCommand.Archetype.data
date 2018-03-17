@@ -29,7 +29,7 @@ Cog =
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 		string FontName = "5ad9e7ff8459f32e:FontDefaultBold",
-		uint FontSize = 128,
+		uint FontSize = 118,
 		string Text = ">",
 		TextAlign Align = Left,
 		float PixelsPerUnit = 256,
@@ -39,7 +39,7 @@ Cog =
 	{
 		Enum PositionX = Left,
 		Enum PositionY = Bottom,
-		Vec2 PositionOffset = [0.25, 0.75],
+		Vec2 PositionOffset = [0.300000012, 0.75],
 		float ZIndex = 25,
 		bool HideUntilPositioned = false,
 	},
@@ -92,7 +92,7 @@ Cog =
 			Transform = 
 			{
 				Vec3 Translation = [-0.25, 0, 0],
-				Vec3 Scale = [21.75, 0.800000012, 1],
+				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -112,6 +112,11 @@ Cog =
 				bool AnimationActive = true,
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
+			},
+			Area = 
+			{
+				Vec2 Size = [21.75, 0.699999988],
+				Location Origin = TopLeft,
 			},
 			Reactive = 
 			{
@@ -210,6 +215,7 @@ Cog =
 				string ConsoleTextboxName = "Console",
 				string TextBoxBackground = "TextBoxBG",
 				Vec2 TextCharDimensions = [0.280999988, 0.5],
+				Vec4 HighlightColor = [0.199999988, 0.599999785, 1, 0.5],
 				int MaxCharsPerLine = 74,
 				int MaxCharLimit = 50000,
 			},
@@ -223,7 +229,7 @@ Cog =
 			},
 			Area = 
 			{
-				Vec2 Size = [21, 0.75],
+				Vec2 Size = [21, 0.699999988],
 				Location Origin = TopLeft,
 			},
 		},

@@ -2,8 +2,7 @@
 // CONTRIBUTORS: N/A
 
 enum TextBoxType {
-    TextBox,
-    Console
+    TextBox, Console
 }
 
 class TextEntry : ZilchComponent {
@@ -12,6 +11,7 @@ class TextEntry : ZilchComponent {
     [Property] var ConsoleTextboxName : String = "Console";
     [Property] var TextBoxBackground : String = "TextBoxBG";
     [Property] var TextCharDimensions : Real2 = Real2(0.26, 0.5);
+    [Property] var HighlightColor : Real4 = Real4(0.2, 0.6, 1.0, 0.5);
     [Property] var MaxCharsPerLine : Integer = 75;
     [Property] var MaxCharLimit : Integer = 50000;
     
@@ -27,7 +27,7 @@ class TextEntry : ZilchComponent {
     var ConsoleLog : String = "";
     var TempCommandStr : String = "";
     var TypingIndicator : String = "|";
-    var CurrTypingIndicator : String = "|";
+    var CurrTypingIndicator : String = null;
     
     var CommandHistory : Array[String] = null;
     var Commands : Array[String] = null;
@@ -52,6 +52,7 @@ class TextEntry : ZilchComponent {
         
         this.TextCharDimensions = Real2(this.Owner.SpriteText.MeasureGivenText("G").X, this.TextCharDimensions.Y);
         this.CommandHistory = new Array[String]();
+        this.Owner.Parent.FindChildByName("TextBoxSelection").Sprite.Color = this.HighlightColor;
         
         if(this.Owner.Commands != null) this.Owner.Commands.CreateCommands();
         

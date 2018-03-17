@@ -204,8 +204,8 @@ Level =
 		},
 		ScreenAlignment = 
 		{
-			string PositionX = "Center",
-			string PositionY = "Top",
+			Enum PositionX = Center,
+			Enum PositionY = Top,
 			Vec2 PositionOffset = [0, -4],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,

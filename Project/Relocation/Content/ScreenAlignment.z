@@ -41,7 +41,7 @@ class ScreenAlignment : ZilchComponent {
     function OnLogicUpdate(event : UpdateEvent) {
         
         var screen = this.Space.FindObjectByName("LevelSettings");
-        var screenRes = screen.CameraViewport.ViewportResolution;
+        var screenRes = screen.CameraViewport.ViewportResolutionWithMargin;
         
         if(this.PositionX == AlignmentPositionX.Left) {
             this.Pos = Real2(0, 0);

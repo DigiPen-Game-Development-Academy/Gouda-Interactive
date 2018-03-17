@@ -8,6 +8,10 @@ Cog =
 	{
 		string Name = "TextBoxSelection",
 	},
+	Archetyped = 
+	{
+		string Name = "5aea5df963fae645:TextBoxSelection",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [0.460000008, -0.100000001, 1],

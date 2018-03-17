@@ -30,15 +30,15 @@ Cog =
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 		string FontName = "5ad9e7ff8459f32e:FontDefaultBold",
 		uint FontSize = 150,
-		string Text = "Relocation Beta v0.8.2.8",
+		string Text = "Relocation Beta v0.8.6.9",
 		TextAlign Align = Left,
 		float PixelsPerUnit = 256,
 		bool Smoothing = false,
 	},
 	ScreenAlignment = 
 	{
-		string PositionX = "Left",
-		string PositionY = "Bottom",
+		Enum PositionX = Left,
+		Enum PositionY = Bottom,
 		Vec2 PositionOffset = [0.5, 1],
 		float ZIndex = 0,
 		bool HideUntilPositioned = true,
