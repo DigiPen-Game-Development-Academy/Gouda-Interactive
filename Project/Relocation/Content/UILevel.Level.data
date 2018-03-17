@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.387300909, 0.35750863, 12.6266108],
+			Vec3 Translation = [-17.9107075, -8.79574871, 13.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.0463657,
+			float Size = 4.4510808,
 		},
 		EditorCameraController = 
 		{
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.387300909, 0.35750863, -1],
+			Vec3 LookTarget = [-17.9107075, -8.79574871, -7.82901452e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -3006,7 +3006,7 @@ Level =
 		{
 			Enum PositionX = Left,
 			Enum PositionY = Bottom,
-			Vec2 PositionOffset = [0.5, 0.5],
+			Vec2 PositionOffset = [0.75, 0.75],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,
 		},
@@ -3101,13 +3101,56 @@ Level =
 				},
 				Hierarchy = 
 				{
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 97,
+						},
+						Named = 
+						{
+							string Name = "HealthBarBG",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [-0.100000381, 0.100000001, 0],
+							Vec3 Scale = [1, 1, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Sprite = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 0.764999986, 0.764999986, 0.75],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string SpriteSource = "5ae0d2ace0c2a671:BarBackground",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
+						},
+						Area = 
+						{
+							Vec2 Size = [5.19999981, 0.699999988],
+							Location Origin = TopLeft,
+						},
+						Hierarchy = 
+						{
+						},
+					},
 				},
 			},
 			Cog = 
 			{
 				LinkId = 
 				{
-					uint Id = 97,
+					uint Id = 98,
 				},
 				Named = 
 				{
@@ -3142,7 +3185,50 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 98,
+					uint Id = 99,
+				},
+				Named = 
+				{
+					string Name = "AmmoBarBG",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0.899999619, 0.600000381, 0],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Sprite = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [0.952400029, 1, 0.720000029, 0.75],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string SpriteSource = "5ae0d2ace0c2a671:BarBackground",
+					bool RenderMask = false,
+					bool FlipX = false,
+					bool FlipY = false,
+					bool AnimationActive = true,
+					float AnimationSpeed = 1,
+					uint StartFrame = 0,
+				},
+				Area = 
+				{
+					Vec2 Size = [5.19999981, 0.699999988],
+					Location Origin = TopLeft,
+				},
+				Hierarchy = 
+				{
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 100,
 				},
 				Named = 
 				{
@@ -3194,7 +3280,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 99,
+					uint Id = 101,
 				},
 				Named = 
 				{
@@ -3226,7 +3312,7 @@ Level =
 				},
 				Area = 
 				{
-					Vec2 Size = [5, 0.25],
+					Vec2 Size = [5, 0.219999999],
 					Location Origin = TopLeft,
 				},
 				AmmoBar = 
@@ -3245,7 +3331,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 100,
+			uint Id = 102,
 		},
 		Named = 
 		{
@@ -3290,7 +3376,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 101,
+			uint Id = 103,
 		},
 		Named = 
 		{
@@ -3340,7 +3426,7 @@ Level =
 		string Name = "5acad920c7159677:Watermark",
 		LinkId = 
 		{
-			uint Id = 102,
+			uint Id = 104,
 		},
 		Transform = 
 		{
@@ -3357,7 +3443,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 103,
+			uint Id = 105,
 		},
 		Named = 
 		{
@@ -3399,7 +3485,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 104,
+			uint Id = 106,
 		},
 		Named = 
 		{
@@ -3425,7 +3511,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 105,
+					uint Id = 107,
 				},
 				Named = 
 				{
@@ -3443,7 +3529,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 106,
+							uint Id = 108,
 						},
 						Named = 
 						{
@@ -3477,7 +3563,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 107,
+							uint Id = 109,
 						},
 						Named = 
 						{
@@ -3528,7 +3614,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 108,
+							uint Id = 110,
 						},
 						Named = 
 						{
@@ -3579,7 +3665,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 109,
+							uint Id = 111,
 						},
 						Named = 
 						{
@@ -3630,7 +3716,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 110,
+							uint Id = 112,
 						},
 						Named = 
 						{
@@ -3684,7 +3770,7 @@ Level =
 				string Name = "5addf7d9164ad77b:MenuOptionsUI",
 				LinkId = 
 				{
-					uint Id = 111,
+					uint Id = 113,
 				},
 				Transform = 
 				{
@@ -3703,7 +3789,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 112,
+			uint Id = 114,
 		},
 		Named = 
 		{
@@ -3729,7 +3815,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 113,
+					uint Id = 115,
 				},
 				Named = 
 				{
@@ -3747,7 +3833,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 114,
+							uint Id = 116,
 						},
 						Named = 
 						{
@@ -3781,7 +3867,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 115,
+							uint Id = 117,
 						},
 						Named = 
 						{
@@ -3832,7 +3918,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 116,
+							uint Id = 118,
 						},
 						Named = 
 						{
@@ -3883,7 +3969,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 117,
+							uint Id = 119,
 						},
 						Named = 
 						{
@@ -3939,7 +4025,7 @@ Level =
 		string Name = "5ad090a34f764fee:Notification",
 		LinkId = 
 		{
-			uint Id = 118,
+			uint Id = 120,
 		},
 		Transform = 
 		{
