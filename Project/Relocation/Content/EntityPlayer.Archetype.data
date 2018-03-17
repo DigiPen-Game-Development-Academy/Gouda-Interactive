@@ -388,6 +388,9 @@ Cog =
 				Vec4 Color3 = [1, 1, 1, 1],
 				Vec4 Color4 = [1, 1, 1, 0],
 			},
+			FootstepScript = 
+			{
+			},
 		},
 	},
 },
