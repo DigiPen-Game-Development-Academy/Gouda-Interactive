@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.1035328,
+			float Size = 22.1035442,
 		},
 		EditorCameraController = 
 		{
@@ -204,8 +204,8 @@ Level =
 		},
 		ScreenAlignment = 
 		{
-			string PositionX = "Center",
-			string PositionY = "Top",
+			Enum PositionX = Center,
+			Enum PositionY = Top,
 			Vec2 PositionOffset = [0, -4],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,
@@ -405,7 +405,7 @@ Level =
 											bool VisibilityCulling = true,
 											bool VisibilityEvents = true,
 											bool CastShadows = false,
-											Vec4 Color = [1, 1, 1, 0.75],
+											Vec4 Color = [1, 0.809999943, 0, 0.75],
 											BlendMode BlendMode = Alpha,
 											SpriteGeometryMode GeometryMode = ZPlane,
 											string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -524,7 +524,7 @@ Level =
 											bool VisibilityCulling = true,
 											bool VisibilityEvents = true,
 											bool CastShadows = false,
-											Vec4 Color = [1, 1, 1, 0.75],
+											Vec4 Color = [1, 0.809999943, 0, 0.75],
 											BlendMode BlendMode = Alpha,
 											SpriteGeometryMode GeometryMode = ZPlane,
 											string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -680,7 +680,7 @@ Level =
 											bool VisibilityCulling = true,
 											bool VisibilityEvents = true,
 											bool CastShadows = false,
-											Vec4 Color = [1, 1, 1, 0.75],
+											Vec4 Color = [1, 0.811764836, 0, 0.75],
 											BlendMode BlendMode = Alpha,
 											SpriteGeometryMode GeometryMode = ZPlane,
 											string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -799,7 +799,7 @@ Level =
 											bool VisibilityCulling = true,
 											bool VisibilityEvents = true,
 											bool CastShadows = false,
-											Vec4 Color = [1, 1, 1, 0.75],
+											Vec4 Color = [1, 0.809999943, 0, 0.75],
 											BlendMode BlendMode = Alpha,
 											SpriteGeometryMode GeometryMode = ZPlane,
 											string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -865,7 +865,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [0, -1.5, 1],
+							Vec3 Translation = [1, -1.5, 1],
 							Vec3 Scale = [1, 1, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -891,7 +891,8 @@ Level =
 							string Label = "Music",
 							float CurrentAmount = 50,
 							float MaxAmount = 100,
-							Vec4 SliderColor = [0.0500000007, 0.75, 0.0500000007, 1],
+							Vec4 SliderColor = [1, 0.811764836, 0, 1],
+							Enum SliderType = Grabber,
 						},
 						Hierarchy = 
 						{
@@ -934,6 +935,11 @@ Level =
 									bool Active = true,
 									bool CaptureMouse = false,
 								},
+								Area = 
+								{
+									Vec2 Size = [1, 1],
+									Location Origin = TopLeft,
+								},
 								Hierarchy = 
 								{
 								},
@@ -972,6 +978,45 @@ Level =
 									float AnimationSpeed = 1,
 									uint StartFrame = 0,
 								},
+								Reactive = 
+								{
+									bool Active = true,
+									bool CaptureMouse = false,
+								},
+							},
+							Cog = 
+							{
+								LinkId = 
+								{
+									uint Id = 25,
+								},
+								Named = 
+								{
+									string Name = "TitleMusic",
+								},
+								Transform = 
+								{
+									Vec3 Translation = [-5.20000029, 0.399999976, -1],
+									Vec3 Scale = [1, 1, 1],
+									Quat Rotation = [0, 0, 0, 1],
+								},
+								SpriteText = 
+								{
+									bool Visible = true,
+									bool VisibilityCulling = true,
+									bool VisibilityEvents = true,
+									bool CastShadows = false,
+									Vec4 Color = [1, 1, 1, 1],
+									BlendMode BlendMode = Alpha,
+									SpriteGeometryMode GeometryMode = ZPlane,
+									string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+									string FontName = "5ac2973527d023e1:FontDefault",
+									uint FontSize = 128,
+									string Text = "Music",
+									TextAlign Align = Right,
+									float PixelsPerUnit = 128,
+									bool Smoothing = false,
+								},
 							},
 						},
 					},
@@ -979,7 +1024,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 25,
+							uint Id = 26,
 						},
 						Named = 
 						{
@@ -987,7 +1032,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [0, -2.5, 1],
+							Vec3 Translation = [1, -2.5, 1],
 							Vec3 Scale = [1, 1, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -1013,7 +1058,8 @@ Level =
 							string Label = "Sound",
 							float CurrentAmount = 50,
 							float MaxAmount = 100,
-							Vec4 SliderColor = [0.0500000007, 0.75, 0.0500000007, 1],
+							Vec4 SliderColor = [1, 0.811764836, 0, 1],
+							Enum SliderType = Grabber,
 						},
 						Hierarchy = 
 						{
@@ -1021,7 +1067,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 26,
+									uint Id = 27,
 								},
 								Named = 
 								{
@@ -1064,7 +1110,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 27,
+									uint Id = 28,
 								},
 								Named = 
 								{
@@ -1094,6 +1140,45 @@ Level =
 									float AnimationSpeed = 1,
 									uint StartFrame = 0,
 								},
+								Reactive = 
+								{
+									bool Active = true,
+									bool CaptureMouse = false,
+								},
+							},
+							Cog = 
+							{
+								LinkId = 
+								{
+									uint Id = 29,
+								},
+								Named = 
+								{
+									string Name = "TitleSound",
+								},
+								Transform = 
+								{
+									Vec3 Translation = [-5.20000029, 0.299999952, -1],
+									Vec3 Scale = [1, 1, 1],
+									Quat Rotation = [0, 0, 0, 1],
+								},
+								SpriteText = 
+								{
+									bool Visible = true,
+									bool VisibilityCulling = true,
+									bool VisibilityEvents = true,
+									bool CastShadows = false,
+									Vec4 Color = [1, 1, 1, 1],
+									BlendMode BlendMode = Alpha,
+									SpriteGeometryMode GeometryMode = ZPlane,
+									string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+									string FontName = "5ac2973527d023e1:FontDefault",
+									uint FontSize = 128,
+									string Text = "Sound",
+									TextAlign Align = Right,
+									float PixelsPerUnit = 128,
+									bool Smoothing = false,
+								},
 							},
 						},
 					},
@@ -1103,7 +1188,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 28,
+					uint Id = 30,
 				},
 				Named = 
 				{
@@ -1154,7 +1239,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 29,
+					uint Id = 31,
 				},
 				Named = 
 				{
@@ -1208,7 +1293,7 @@ Level =
 		string Name = "5ad1912746382d45:WatermarkMainMenu",
 		LinkId = 
 		{
-			uint Id = 30,
+			uint Id = 32,
 		},
 		Transform = 
 		{
@@ -1226,7 +1311,7 @@ Level =
 		string Name = "5acaf72266c512aa:CursorMenu",
 		LinkId = 
 		{
-			uint Id = 31,
+			uint Id = 33,
 		},
 		Transform = 
 		{
