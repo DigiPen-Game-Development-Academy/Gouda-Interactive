@@ -7,11 +7,11 @@ enum SliderType {
 
 class Slider : ZilchComponent {
     
+    [Property] var SliderType : SliderType = SliderType.Fill;
     [Property] var Label : String = "Slider";
     [Property] var CurrentAmount : Real = 50.0;
     [Property] var MaxAmount : Real = 100.0;
     [Property] var SliderColor : Real4 = Real4(0.05, 0.75, 0.05, 1.0);
-    [Property] var SliderType : SliderType = SliderType.Fill;
     
     var MouseDown : Boolean = false;
     
@@ -27,10 +27,10 @@ class Slider : ZilchComponent {
         this.MaxScaleAmount = this.Owner.FindChildByName("SliderBG").Transform.Scale;
         this.CurrScaleAmount = (this.CurrentAmount / this.MaxAmount) * this.MaxScaleAmount.X;
         
-        this.Owner.FindChildByName("Slider").Transform.Scale = Real3(this.CurrScaleAmount, this.MaxScaleAmount.YZ);
-        this.Owner.SpriteText.Text = "`this.Label`: `this.CurrentAmount`/`this.MaxAmount`";
-        
-        this.UpdateSliderValue(Real3(0.0));
+        if(this.SliderType == SliderType.Fill) {
+            this.Owner.FindChildByName("Slider").Transform.Scale = Real3(this.CurrScaleAmount, this.MaxScaleAmount.YZ);
+            this.Owner.SpriteText.Text = "`this.Label`: `this.CurrentAmount`/`this.MaxAmount`";
+        }
         
         Zero.Connect(this.Space, Events.MouseMove, this.OnMouseMove);
         Zero.Connect(this.Owner.FindChildByName("SliderBG"), Events.MouseDown, this.OnMouseDown);
@@ -56,11 +56,16 @@ class Slider : ZilchComponent {
     function SetSliderValue(event : ViewportMouseEvent) {
         
         var pos = event.CameraViewport.ScreenToWorldZPlane(event.Position, 0);
-        this.UpdateSliderValue(pos);
+        this.UpdateSliderValue(pos, true);
         
     }
     
-    function UpdateSliderValue(pos : Real3) {
+    function InitializeSlider(type : SliderType) {
+        this.SliderType = type;
+        this.UpdateSliderValue(Real3(this.CurrentAmount / this.MaxAmount, this.Owner.Transform.WorldTranslation.Y, 0), false);
+    }
+    
+    function UpdateSliderValue(pos : Real3, changeCurrentAmt : Boolean) {
         
         pos = Real3(pos.XY - this.Owner.Transform.WorldTranslation.XY, 0.0);
         
@@ -74,7 +79,8 @@ class Slider : ZilchComponent {
             this.CurrScaleAmount = this.MaxScaleAmount.X;
         }
         
-        this.CurrentAmount = Math.Round(this.CurrScaleAmount.X * this.MaxAmount / 10);
+        if(changeCurrentAmt)
+            this.CurrentAmount = Math.Round(this.CurrScaleAmount.X * this.MaxAmount / 10);
         
         var slider = this.Owner.FindChildByName("Slider");
         var sliderBG = this.Owner.FindChildByName("SliderBG");
@@ -89,7 +95,7 @@ class Slider : ZilchComponent {
             slider.Transform.Scale = Real3(0.5);
             slider.Transform.Translation = Real3(
                 ((this.CurrentAmount / this.MaxAmount) * this.MaxScaleAmount.X) - this.MaxScaleAmount.X / 2,
-                Real2(-this.MaxScaleAmount.Y / 2, 0.0)
+                Real2(-0.375, 0.0)
             );
             this.Owner.SpriteText.Text = "";
         }

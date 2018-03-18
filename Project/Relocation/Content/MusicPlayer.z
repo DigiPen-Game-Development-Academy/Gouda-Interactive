@@ -41,13 +41,6 @@ class MusicPlayer : ZilchComponent {
             }
         }*/
         
-        // VOLUME CONTROLS (TEMPERARY)
-        if(Zero.Keyboard.KeyIsPressed(Keys.F2) && GameSetting.MusicVolume >= 0.0 + 0.05) {
-            GameSetting.MusicVolume -= 0.05;
-        } else if(Zero.Keyboard.KeyIsPressed(Keys.F3) && GameSetting.MusicVolume <= 1.0 - 0.05) {
-            GameSetting.MusicVolume += 0.05;
-        }
-        
         // UPDATE VOLUME ON CHANGE
         if(this.CurrMusicVolume != GameSetting.MusicVolume) {
             if(this.MainMenuMusicSpace != null) {
@@ -58,6 +51,11 @@ class MusicPlayer : ZilchComponent {
                 this.GameLevelMusicSpace.SoundSpace.Volume = GameSetting.MusicVolume;
             }
         }
+        
+        if(this.MainMenuMusicSpace != null)
+            this.MainMenuMusicSpace.SoundSpace.Pitch = GameSetting.PitchValue;
+        else if(this.GameLevelMusicSpace != null)
+            this.GameLevelMusicSpace.SoundSpace.Pitch = GameSetting.PitchValue;
         
     }
     

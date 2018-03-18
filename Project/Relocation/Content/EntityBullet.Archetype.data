@@ -82,6 +82,19 @@ Cog =
 		float Damage = 1,
 		float BlockDamageAmount = 1,
 	},
+	SoundEmitter = 
+	{
+		float Volume = 1.99526238,
+		float Pitch = 0,
+		float PitchSemitones = 0,
+		bool UsePitchSemitones = false,
+		bool Positional = true,
+		int Version = 1,
+	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
+	},
 	Hierarchy = 
 	{
 		Cog = 

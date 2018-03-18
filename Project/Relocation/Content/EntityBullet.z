@@ -20,7 +20,7 @@ class EntityBullet : ZilchComponent {
         }*/
         
         if(!this.DrillBullet)
-            this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
+            this.Owner.SoundObject.PlayCue(SoundCue.Find("BulletSpawn"));
         
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -46,7 +46,7 @@ class EntityBullet : ZilchComponent {
             
             this.Owner.Destroy();
             
-        } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer && !this.DrillBullet) {
+        } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer && !this.DrillBullet && event.OtherObject.Name != "TileWater") {
             
             if(event.OtherObject.Health != null) {
                 this.Knockback(event.OtherObject);
@@ -55,7 +55,7 @@ class EntityBullet : ZilchComponent {
             
             this.Owner.Destroy();
             
-        } else if(event.OtherObject.Collider != null && !this.FromPlayer && event.OtherObject.Name != "EntityEnemy") {
+        } else if(event.OtherObject.Collider != null && !this.FromPlayer && event.OtherObject.Name != "EntityEnemy" && event.OtherObject.Name != "TileWater") {
             this.Owner.Destroy();
         }
         
