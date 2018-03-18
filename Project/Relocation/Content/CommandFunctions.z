@@ -21,6 +21,7 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.Commands.Push("help");
         this.Owner.TextEntry.Commands.Push("playsound");
         this.Owner.TextEntry.Commands.Push("spawn");
+        this.Owner.TextEntry.Commands.Push("time");
         this.Owner.TextEntry.Commands.Push("togglecheat");
         
     }
@@ -45,6 +46,8 @@ class Commands : ZilchComponent {
             this.CommandPlaySound();
         } else if(this.CheckForCommand("spawn", false, "", "") != -1) {
             this.CommandSpawn();
+        } else if(this.CheckForCommand("time", false, "", "") != -1) {
+            this.CommandTime();
         } else if(this.CheckForCommand("togglecheat", false, "", "?") != -1) {
             this.CommandCheat();
         } else {
@@ -98,6 +101,13 @@ class Commands : ZilchComponent {
         
     }
     
+    function PrintInvalidArgumentError(usage : String, invalidCmdArg : Integer) {
+        if(invalidCmdArg > 0)
+            this.TextEntry.PrintToUIConsole("Error: Invalid argument \"`this.GetArgument(invalidCmdArg, this.TextEntry.SubmittedText, false)`\". Usage:\n`usage`");
+        else
+            this.TextEntry.PrintToUIConsole("Error: Invalid argument(s). Usage: `usage`");
+    }
+    
     function CommandDebug() {
         if(this.TextEntry.SubmittedText.EndsWith("true")) {
             
@@ -115,7 +125,7 @@ class Commands : ZilchComponent {
             this.TextEntry.PrintToUIConsole("Debug: `Relocation.DebugMode`");
             
         } else {
-            this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: debug [true/false]");
+            this.PrintInvalidArgumentError("debug [true|false]", 1);
         }
     }
     
@@ -150,7 +160,7 @@ class Commands : ZilchComponent {
             PlayerData.GodMode = !PlayerData.GodMode;
             this.TextEntry.PrintToUIConsole("God Mode: `PlayerData.GodMode`");
         } else {
-            this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: god [true/false]");
+            this.PrintInvalidArgumentError("god [true|false]", 1);
         }
     }
     
@@ -184,7 +194,7 @@ class Commands : ZilchComponent {
             } else if(cheatArg.ToLower() == "crafting") {
                 //TODO: CRAFTING CHEAT
             } else {
-                this.TextEntry.PrintToUIConsole("Error: Invalid arguments. Usage: togglecheat <cheat>");
+                this.PrintInvalidArgumentError("togglecheat <cheat>", 1);
             }
             
         }
@@ -196,7 +206,7 @@ class Commands : ZilchComponent {
     }
     
     function CommandColor() {
-        if(this.CheckForCommand("color", true, "color <0-255> [0-255] [0-255]", "") != 0) {
+        if(this.CheckForCommand("color", true, "color (<0-255> [0-255] [0-255] | <off>)", "") != 0) {
             
             var colorR = this.GetArgument(1, this.TextEntry.SubmittedText, false);
             var colorG = this.GetArgument(2, this.TextEntry.SubmittedText, false);
@@ -238,6 +248,32 @@ class Commands : ZilchComponent {
             
             if(Zero.ResourceSystem.GetResourceByTypeAndName("Archetype", entity) != null)
                 Relocation.Space.CreateAtPosition(Archetype.Find("`entity`"), mousePos);
+            
+        }
+    }
+    
+    function CommandTime() {
+        var usage = "time [set | add] <amount>";
+        if(this.CheckForCommand("time", false, usage, "") != 0 && Relocation.Space != null) {
+            
+            var cLen = this.GetArgument(0, this.TextEntry.SubmittedText, false).Count;
+            var mode = this.GetArgument(1, this.TextEntry.SubmittedText, false);
+            var time = this.GetArgument(2, this.TextEntry.SubmittedText, false);
+            
+            if(Relocation.Space != null && Relocation.Space.FindObjectByName("LevelSettings").DayCycle != null) {
+                
+                var dayCycle = Relocation.Space.FindObjectByName("LevelSettings").DayCycle;
+                
+                if(mode.ToLower() == "set")
+                    dayCycle.SetTime(Real.Parse(time));
+                else if(mode.ToLower() == "add")
+                    dayCycle.AddTime(Real.Parse(time));
+                else if(cLen == this.TextEntry.SubmittedText.TrimEnd().ToString().Count)
+                    this.TextEntry.PrintToUIConsole("Time: `dayCycle.TimeToString()`");
+                else
+                    this.PrintInvalidArgumentError("`usage`", 1);
+                
+            }
             
         }
     }

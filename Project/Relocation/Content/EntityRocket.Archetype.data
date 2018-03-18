@@ -66,6 +66,10 @@ Cog =
 		bool Positional = true,
 		int Version = 1,
 	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
+	},
 	Hierarchy = 
 	{
 		Cog = 

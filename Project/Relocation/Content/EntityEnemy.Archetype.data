@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-3.5, -1.5, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = true,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -85,9 +85,6 @@ Cog =
 		string LookRight = "5af4a405398ac924:SimpleEnemyRight",
 		string LookDownRight = "5af4a7ee3ae1c1be:SimpleEnemyDownRight",
 		string LookDown = "5af4a7a8340cd486:SimpleEnemyBottom",
-		string LookDownLeft = "5af4a7772f20111b:SimpleEnemyDownLeft",
-		string LookLeft = "5af4a79e36e31215:SimpleEnemyLeft",
-		string LookUpLeft = "5af4a661c7e6f36c:SimpleEnemyTopLeft",
 		float BulletSpeed = 10,
 	},
 	Health = 
@@ -98,6 +95,19 @@ Cog =
 	Despawner = 
 	{
 		float DistanceFromPlayer = 75,
+	},
+	SoundEmitter = 
+	{
+		float Volume = 1.99526238,
+		float Pitch = 0,
+		float PitchSemitones = 0,
+		bool UsePitchSemitones = false,
+		bool Positional = true,
+		int Version = 1,
+	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
 	},
 	Hierarchy = 
 	{

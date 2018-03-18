@@ -3,7 +3,7 @@
 
 class Weapon {
     
-    var Space : Space;
+    var Space : Space = null;
     
     var ItemName : String = "WeaponUndefined";
     var AmmoTypeID : Integer = 0;
@@ -123,10 +123,12 @@ class Weapon {
                 
                 bullet.RigidBody.Velocity = velocity;
                 bullet.EntityBullet.FromPlayer = true;
+                bullet.EntityBullet.SpawnedBy = Relocation.Player;
                 bullet.EntityBullet.Damage = this.BulletDamage;
+                bullet.EntityBullet.PostInitialize(Relocation.Player);
                 
-                //var cam = this.Space.FindObjectByName("Camera");
-                //cam.Transform.Translation = Real3(Math.Lerp(cam.Transform.Translation.XY, -(velocity.XY / 500), 0.066), cam.Transform.Translation.Z);
+                var cam = this.Space.FindObjectByName("Camera");
+                cam.Transform.Translation = Real3(Math.Lerp(cam.Transform.Translation.XY, -(velocity.XY / 500), 0.066), cam.Transform.Translation.Z);
                 
             }
             

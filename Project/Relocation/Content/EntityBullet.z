@@ -9,18 +9,11 @@ class EntityBullet : ZilchComponent {
     [Property] var Damage : Real = 1.0;
     [Property] var BlockDamageAmount : Real = 1.0;
     
+    var SpawnedBy : Cog = null;
+    
     var CurrLifetime : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
-        
-        /*if(this.Space.FindObjectByName("EntityPlayer").WeaponManager.ActiveWeapon.ItemName == "WeaponGouda") {
-            this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawnDank"));
-        } else {
-            this.Space.SoundSpace.PlayCue(SoundCue.Find("BulletSpawn"));
-        }*/
-        
-        if(!this.DrillBullet)
-            this.Owner.SoundObject.PlayCue(SoundCue.Find("BulletSpawn"));
         
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -69,6 +62,16 @@ class EntityBullet : ZilchComponent {
         
         this.CurrLifetime += event.Dt;
         
+    }
+    
+    function PostInitialize(obj : Cog) {
+        
+        if(this.SpawnedBy == null)
+            this.SpawnedBy = this.Owner;
+        
+        if(!this.DrillBullet)
+            this.SpawnedBy.SoundObject.PlayCue(SoundCue.Find("BulletSpawn"));
+            
     }
     
     function Knockback(otherObject : Cog) {

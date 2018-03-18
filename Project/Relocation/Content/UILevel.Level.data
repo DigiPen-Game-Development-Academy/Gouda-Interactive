@@ -3451,7 +3451,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [15.75, 10, 0],
+			Vec3 Translation = [11.25, -8.25, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -3466,8 +3466,8 @@ Level =
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 			string FontName = "5addaa209e091e3e:FontDefaultMonospace",
-			uint FontSize = 150,
-			string Text = "Time: 0 00",
+			uint FontSize = 96,
+			string Text = "0:00",
 			TextAlign Align = Right,
 			float PixelsPerUnit = 128,
 			bool Smoothing = false,
@@ -3475,10 +3475,10 @@ Level =
 		ScreenAlignment = 
 		{
 			Enum PositionX = Right,
-			Enum PositionY = Top,
-			Vec2 PositionOffset = [-0.25, 0],
+			Enum PositionY = Bottom,
+			Vec2 PositionOffset = [-4.5, 2.0999999],
 			float ZIndex = 0,
-			bool HideUntilPositioned = false,
+			bool HideUntilPositioned = true,
 		},
 	},
 	Cog = 
@@ -4411,11 +4411,11 @@ Level =
 								},
 								Slider = 
 								{
+									Enum SliderType = Grabber,
 									string Label = "Music",
 									float CurrentAmount = 50,
 									float MaxAmount = 100,
 									Vec4 SliderColor = [1, 0.811764836, 0, 1],
-									Enum SliderType = Grabber,
 								},
 								Hierarchy = 
 								{
@@ -4568,11 +4568,11 @@ Level =
 								},
 								Slider = 
 								{
+									Enum SliderType = Grabber,
 									string Label = "Sound",
 									float CurrentAmount = 50,
 									float MaxAmount = 100,
 									Vec4 SliderColor = [1, 0.811764836, 0, 1],
-									Enum SliderType = Grabber,
 								},
 								Hierarchy = 
 								{

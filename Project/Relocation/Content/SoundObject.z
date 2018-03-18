@@ -28,8 +28,6 @@ class SoundObject : ZilchComponent {
         
         this.Owner.SoundEmitter.Pitch = GameSetting.PitchValue;
         
-        Console.WriteLine("Vol: `GameSetting.SoundEffectsVolume`");
-        
     }
     
     function PlayCue(cue : SoundCue) : SoundInstance {
