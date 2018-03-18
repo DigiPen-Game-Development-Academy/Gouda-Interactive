@@ -1,98 +1,62 @@
-class ToFromStrings : ZilchComponent
-{
+class ToFromStrings : ZilchComponent {
+    
     // Int array to/from strings:
-    [Static]
-    function IntArrayToString(array : Array[Integer]) : String
-    {
-        var stringBuilder = new StringBuilder();
+    [Static] function IntArrayToString(array : Array[Integer]) : String {
         
-        for (var slot = 0; slot < array.Count; ++slot)
-        {
-            stringBuilder.Write("`array[slot]`");
+        var str = "";
+        
+        for(var i = 0; i < array.Count; ++i)
+            str = "`str``String.FromChar(array[i])`";
             
-            if (slot < array.Count - 1)
-                stringBuilder.Write(",");
-        }
+        return str;
         
-        return stringBuilder.ToString();
     }
     
-    [Static]
-    function StringToIntArray(string : String) : Array[Integer]
-    {
+    [Static] function StringToIntArray(string : String) : Array[Integer] {
+        
+        string = ToFromStrings.StripCommas(string);
+        
         var array = Array[Integer]();
         
-        while (string.Count > 0)
-        {
-            var currentComma = string.FindFirstOf(",");
-            
-            if (currentComma.IsNotEmpty)
-            {
-                array.Add(Integer.Parse(string.SubStringFromRuneIndices(0, currentComma.Begin.ByteIndex)));
-                string = string.SubStringFromRuneIndices(currentComma.End.ByteIndex, string.End.ByteIndex);
-            }
-            else
-            {
-                array.Add(Integer.Parse(string));
-                
-                break;
-            }
-        }
+        for(var i = 0; i < string.Count; ++i)
+            array.Add(string[i]);
         
         return array;
+        
     }
     
     // Real array to/from strings:
-    [Static]
-    function RealArrayToString(array : Array[Real]) : String
-    {
-        var stringBuilder = new StringBuilder();
+    [Static] function RealArrayToString(array : Array[Real]) : String {
         
-        for (var slot = 0; slot < array.Count; ++slot)
-        {
-            stringBuilder.Write("`array[slot]`");
-            
-            if (slot < array.Count - 1)
-                stringBuilder.Write(",");
-        }
+        var str = "";
         
-        return stringBuilder.ToString();
+        for(var i = 0; i < array.Count; ++i)
+            str = "`str``String.FromChar(Math.Round(array[i]) as Integer)`";
+        
+        return str;
+        
     }
     
-    [Static]
-    function StringToRealArray(string : String) : Array[Real]
-    {
-        var array = Array[Real]();
+    [Static] function StringToRealArray(string : String) : Array[Real] {
         
-        while (string.Count > 0)
-        {
-            var currentComma = string.FindFirstOf(",");
-            
-            if (currentComma.IsNotEmpty)
-            {
-                array.Add(Real.Parse(string.SubStringFromRuneIndices(0, currentComma.Begin.ByteIndex)));
-                string = string.SubStringFromRuneIndices(currentComma.End.ByteIndex, string.End.ByteIndex);
-            }
-            else
-            {
-                array.Add(Real.Parse(string));
-                
-                break;
-            }
-        }
+        string = ToFromStrings.StripCommas(string);
+        
+        var array = new Array[Real]();
+        
+        for(var i = 0; i < string.Count; ++i)
+            array.Add(string[i]);
         
         return array;
+        
     }
     
     // Real3 to/from string
-    [Static]
-    function Real3ToString(r3 : Real3) : String
+    [Static] function Real3ToString(r3 : Real3) : String
     {
         return "`r3.X`,`r3.Y`,`r3.Z`";
     }
     
-    [Static]
-    function StringToReal3(string : String) : Real3
+    [Static] function StringToReal3(string : String) : Real3
     {
         var r3 = Real3(0.0, 0.0, 0.0);
         var timesRun = 0;
@@ -121,38 +85,36 @@ class ToFromStrings : ZilchComponent
     }
     
     // HashMap[Integer2, Integer] to/from string
-    [Static]
-    function HashMapInt2IntToString(hashmap : HashMap[Integer2, Integer]) : String
-    {
+    [Static] function HashMapInt2IntToString(hashmap : HashMap[Integer2, Integer]) : String {
+        
         var array = Array[Integer]();
         
-        foreach (var val in hashmap)
-        {
+        foreach (var val in hashmap) {
             array.Add(val.Key.X);
             array.Add(val.Key.Y);
             array.Add(val.Value);
         }
         
         return ToFromStrings.IntArrayToString(array);
+        
     }
     
-    [Static]
-    function StringToHashMapInt2Int(string : String) : HashMap[Integer2, Integer]
-    {
+    [Static] function StringToHashMapInt2Int(string : String) : HashMap[Integer2, Integer] {
+        
         var hashMap = HashMap[Integer2, Integer]();
         var array = ToFromStrings.StringToIntArray(string);
         
         //Console.WriteLine("array: `array`");
         
-        for (var index = 0; index < array.Count; index += 3)
+        for(var index = 0; index < array.Count; index += 3)
             hashMap.Add(Integer2(array[index], array[index + 1]), array[index + 2]);
         
         return hashMap;
+        
     }
     
     // HashMap[Integer2 Real2] to/from string
-    [Static]
-    function HashMapInt2Real2ToString(hashmap : HashMap[Integer2, Real2]) : String
+    [Static] function HashMapInt2Real2ToString(hashmap : HashMap[Integer2, Real2]) : String
     {
         var array = Array[Real]();
         
@@ -167,8 +129,7 @@ class ToFromStrings : ZilchComponent
         return ToFromStrings.RealArrayToString(array);
     }
     
-    [Static]
-    function StringToHashMapInt2Real2(string : String) : HashMap[Integer2, Real2]
+    [Static] function StringToHashMapInt2Real2(string : String) : HashMap[Integer2, Real2]
     {
         var hashMap = HashMap[Integer2, Real2]();
         var array = ToFromStrings.StringToRealArray(string);
@@ -180,4 +141,14 @@ class ToFromStrings : ZilchComponent
         
         return hashMap;
     }
+    
+    [Static] function StripCommas(str : String) : String {
+        
+        if(str.Contains(","))
+            str.Replace(",", "");
+        
+        return str;
+        
+    }
+    
 }

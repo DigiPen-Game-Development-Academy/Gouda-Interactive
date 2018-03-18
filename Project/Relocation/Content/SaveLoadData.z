@@ -1,8 +1,10 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: N/A
+// CONTRIBUTORS: HUDSON GREEN
 
-class SaveLoadData : ZilchComponent
-{
+class SaveLoadData : ZilchComponent {
+    
+    [Static] var ChunkPath : String = "";
+    
     var Data : Cog = null;
     
     function Initialize(init : CogInitializer)
@@ -55,20 +57,23 @@ class SaveLoadData : ZilchComponent
         
         foreach (var chunk in this.LevelSettings.PlaceChunks.ChunkMap)
         {
-            if (chunk.WorldGenerator.WorldMap != null)
+            if (chunk.WorldGenerator.WorldMap != null && chunk.WorldGenerator.WorldMapData != null)
             {
                 chunk.WorldGenerator.WorldMapString = ToFromStrings.HashMapInt2IntToString(chunk.WorldGenerator.WorldMap);
                 chunk.WorldGenerator.WorldMapDataString = ToFromStrings.HashMapInt2Real2ToString(chunk.WorldGenerator.WorldMapData);
-                chunk.WorldGenerator.ChunkPositionString = ToFromStrings.Real3ToString(chunk.Transform.Translation);
-                Zero.ObjectStore.Store("Chunk`chunkNumToSave`", this.LevelSettings.PlaceChunks.ChunkMap[chunkNumToSave]);
+                chunk.WorldGenerator.ChunkPositionString = ToFromStrings.Real3ToString(chunk.Transform.WorldTranslation);
+                if(chunk.WorldGenerator.WorldMapString.Count >= chunk.WorldGenerator.Width * chunk.WorldGenerator.Width)
+                    Zero.ObjectStore.Store("`SaveLoadData.ChunkPath``chunk.Name`", chunk);
                 ++chunkNumToSave;
                 
-                //Console.WriteLine("Chunk WorldMap: `chunk.WorldGenerator.WorldMapString`");
-                //Console.WriteLine("Chunk WorldMapData: `chunk.WorldGenerator.WorldMapDataString`");
+                Console.WriteLine("Chunk \"`chunk.WorldGenerator.WorldMapString.Count`\" WorldMap: `chunk.WorldGenerator.WorldMapString`");
+                Console.WriteLine("Chunk WorldMapData: `chunk.WorldGenerator.WorldMapDataString`");
+            } else {
+                continue;
             }
         }
         
-        var hashMap1 = HashMap[Integer2, Integer]();
+        /*var hashMap1 = HashMap[Integer2, Integer]();
         
         hashMap1.Add(Integer2(0, 0), 1);
         hashMap1.Add(Integer2(1, 0), 2);
@@ -88,7 +93,7 @@ class SaveLoadData : ZilchComponent
         var string2 = "0,0,1,2,1,0,3,4,0,1,5,6";
         
         Console.WriteLine("Hashmap 2 as string: `ToFromStrings.HashMapInt2Real2ToString(hashMap2)`");
-        Console.WriteLine("String as Hashmap 2: `ToFromStrings.StringToHashMapInt2Real2(string2)`");
+        Console.WriteLine("String as Hashmap 2: `ToFromStrings.StringToHashMapInt2Real2(string2)`");*/
         
         Console.WriteLine("Saved");
     }
@@ -120,7 +125,7 @@ class SaveLoadData : ZilchComponent
         
         LoadDataIntoLevel.LoadData();
         
-        if (this.LevelSettings.PlaceChunks.ChunkMap.Count > 0)
+        /*if (this.LevelSettings.PlaceChunks.ChunkMap.Count > 0)
             for (var index = 0; index < this.LevelSettings.PlaceChunks.ChunkMap.Count; ++index)
                 this.LevelSettings.PlaceChunks.ChunkMap[index].Destroy();
         this.LevelSettings.PlaceChunks.ChunkMap.Clear();
@@ -146,7 +151,7 @@ class SaveLoadData : ZilchComponent
             ++chunkNumToLoad;
             
             Console.WriteLine("Chunk Translation: `chunk.Transform.Translation`");
-        }
+        }*/
         
         Console.WriteLine("Loaded");
     }
