@@ -48,6 +48,19 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
+	SoundEmitter = 
+	{
+		float Volume = 1,
+		float Pitch = 0,
+		float PitchSemitones = 0,
+		bool UsePitchSemitones = false,
+		bool Positional = true,
+		int Version = 1,
+	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
+	},
 	CapsuleCollider = 
 	{
 		bool Ghost = false,
@@ -105,19 +118,6 @@ Cog =
 	},
 	FollowTarget = 
 	{
-	},
-	SoundEmitter = 
-	{
-		float Volume = 1,
-		float Pitch = 0,
-		float PitchSemitones = 0,
-		bool UsePitchSemitones = false,
-		bool Positional = true,
-		int Version = 1,
-	},
-	SoundObject = 
-	{
-		Enum SoundCategory = Sound,
 	},
 	Hierarchy = 
 	{

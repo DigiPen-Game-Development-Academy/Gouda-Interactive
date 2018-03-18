@@ -6,9 +6,6 @@ class WeaponManager : ZilchComponent {
     var IsHoldingWeapon : Boolean = false;
     var MouseClick : Boolean = false;
     
-    // UI SPACE
-    var UISpace : Space = null;
-    
     // ACTIVE WEAPON
     var ActiveWeapon : Weapon = null;
     
@@ -32,9 +29,6 @@ class WeaponManager : ZilchComponent {
     var ToolDrillPlatinum   : Weapon = null;
     
     function Initialize(init : CogInitializer) {
-        
-        // LINK UI SPACE
-        this.UISpace = this.LevelSettings.UICreator.UISpace;
         
         // HAND
         this.WeaponHand = new Weapon(this.Space, "Hand", 0, false);
@@ -137,7 +131,7 @@ class WeaponManager : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(!this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
+        if(!Relocation.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
             
             if(this.Owner.Inventory.CheckForItemMainHand(0)) {
                 this.ActiveWeapon = this.WeaponHand;

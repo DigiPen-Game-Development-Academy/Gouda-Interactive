@@ -20,7 +20,7 @@ class Relocation {
     
     [Static] var CursorType : String = "Default";
     
-    [Static] var Time : Real = 12.0;
+    [Static] var Time : Real = 24.0;
     [Static] var Day : Integer = 0;
     [Static] var DayLength : Real = 96.0;
     [Static] var LightAmount : Real = 1.0;
@@ -38,6 +38,8 @@ class PlayerData {
     
     [Static] var InventoryContents : Array[Integer] = null;
     [Static] var InventoryContentsCount : Array[Integer] = null;
+    
+    [Static] var WeaponData : Array[Real] = null;
     
 }
 

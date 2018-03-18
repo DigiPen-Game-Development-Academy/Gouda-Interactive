@@ -269,7 +269,7 @@ class Commands : ZilchComponent {
                 else if(mode.ToLower() == "add")
                     dayCycle.AddTime(Real.Parse(time));
                 else if(cLen == this.TextEntry.SubmittedText.TrimEnd().ToString().Count)
-                    this.TextEntry.PrintToUIConsole("Time: `dayCycle.TimeToString()`");
+                    this.TextEntry.PrintToUIConsole("Time: `dayCycle.TimeToString(false)`");
                 else
                     this.PrintInvalidArgumentError("`usage`", 1);
                 
