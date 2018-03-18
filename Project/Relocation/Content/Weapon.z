@@ -63,14 +63,21 @@ class Weapon {
         this.BulletSpawnLocation = Real3(pos.X, pos.Y, -0.05);
     }
     
-    function SetMaxAmmoAmount(amount : Integer) {
+    function SetMaxAmmoAmount(amount : Integer, refill : Boolean) {
         this.MaxAmmo = amount;
-        this.CurrentAmmo = amount;
+        if(refill) {
+            this.CurrentAmmo = amount;
+            PlayerData.WeaponData.Set(this.ItemID, this.CurrentAmmo);
+        } else {
+            this.CurrentAmmo = PlayerData.WeaponData[this.ItemID];
+        }
+        Console.WriteLine("Data: `PlayerData.WeaponData`");
         this.GiveStats();
     }
     
     function SetCurrentAmmoAmount(amount : Integer) {
         this.CurrentAmmo = amount;
+        PlayerData.WeaponData.Set(this.ItemID, this.CurrentAmmo);
     }
     
     function SetAmmoType(type : Integer) {
@@ -95,6 +102,7 @@ class Weapon {
     
     function RefillAmmo() {
         this.CurrentAmmo = this.MaxAmmo;
+        PlayerData.WeaponData.Set(this.ItemID, this.CurrentAmmo);
     }
     
     function UseWeapon() {
@@ -134,6 +142,7 @@ class Weapon {
             
             if(this.MaxAmmo != -1) {
                 --this.CurrentAmmo;
+                PlayerData.WeaponData.Set(this.ItemID, this.CurrentAmmo);
             }
             
         } else if(this.IsDrill) {

@@ -30,6 +30,9 @@ class WeaponManager : ZilchComponent {
     
     function Initialize(init : CogInitializer) {
         
+        // WEAPON DATA
+        if(Relocation.FillAmmoOnLoad) PlayerData.WeaponData = new Array[Integer](12);
+        
         // HAND
         this.WeaponHand = new Weapon(this.Space, "Hand", 0, false);
         
@@ -78,16 +81,18 @@ class WeaponManager : ZilchComponent {
         this.WeaponGouda.SetAccuracy(0.25);
         
         // SET AMMO AMOUNT
-        this.WeaponPistol.SetMaxAmmoAmount(-1);
-        this.WeaponRevolver.SetMaxAmmoAmount(6);
-        this.WeaponRock.SetMaxAmmoAmount(1);
+        this.WeaponPistol.SetMaxAmmoAmount(-1, Relocation.FillAmmoOnLoad);
+        this.WeaponRevolver.SetMaxAmmoAmount(6, Relocation.FillAmmoOnLoad);
+        this.WeaponRock.SetMaxAmmoAmount(1, Relocation.FillAmmoOnLoad);
         
-        this.WeaponShotgun.SetMaxAmmoAmount(12);
-        this.WeaponBoulder.SetMaxAmmoAmount(1);
+        this.WeaponShotgun.SetMaxAmmoAmount(12, Relocation.FillAmmoOnLoad);
+        this.WeaponBoulder.SetMaxAmmoAmount(1, Relocation.FillAmmoOnLoad);
         
-        this.WeaponMinigun.SetMaxAmmoAmount(350);
-        this.WeaponSniper.SetMaxAmmoAmount(4);
-        this.WeaponGouda.SetMaxAmmoAmount(1);
+        this.WeaponMinigun.SetMaxAmmoAmount(350, Relocation.FillAmmoOnLoad);
+        this.WeaponSniper.SetMaxAmmoAmount(4, Relocation.FillAmmoOnLoad);
+        this.WeaponGouda.SetMaxAmmoAmount(1, Relocation.FillAmmoOnLoad);
+        
+        Relocation.FillAmmoOnLoad = false;
         
         // SET AMMO TYPE
         this.WeaponPistol.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemAmmoPistol"));
