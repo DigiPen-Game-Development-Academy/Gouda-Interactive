@@ -7,6 +7,8 @@ class DayCycle : ZilchComponent {
     
     var LightMultiplier : Real = 1.0;
     
+    var DayMultiplier : Real = 4.0;
+    
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
@@ -53,7 +55,7 @@ class DayCycle : ZilchComponent {
     
     function SetTime(time : Real) {
         
-        time /= 250;
+        time = time * this.DayMultiplier / 1000;
         
         if(time > Relocation.DayLength) {
             Relocation.Day += (time / Relocation.DayLength) as Integer;
@@ -65,14 +67,14 @@ class DayCycle : ZilchComponent {
     }
     
     function AddTime(time : Real) {
-        time /= 250;
-        this.SetTime((Relocation.Time + time) * 250);
+        time = time * this.DayMultiplier / 1000;
+        this.SetTime((Relocation.Time + time) * 1000 / this.DayMultiplier);
     }
     
     function TimeToString(militaryTime : Boolean) : String {
         
-        var hours = Math.Floor(Relocation.Time / 4.0);
-        var minutes = Relocation.Time / 4.0 - hours;
+        var hours = Math.Floor(Relocation.Time / this.DayMultiplier);
+        var minutes = Relocation.Time / this.DayMultiplier - hours;
         var minutesString = "`Math.Floor(minutes * 60)`0";
         var suffix = "";
         
