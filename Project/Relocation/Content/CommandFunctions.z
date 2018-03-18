@@ -17,7 +17,6 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.Commands.Push("echo");
         this.Owner.TextEntry.Commands.Push("give");
         this.Owner.TextEntry.Commands.Push("god");
-        this.Owner.TextEntry.Commands.Push("heal");
         this.Owner.TextEntry.Commands.Push("help");
         this.Owner.TextEntry.Commands.Push("playsound");
         this.Owner.TextEntry.Commands.Push("spawn");
@@ -171,13 +170,14 @@ class Commands : ZilchComponent {
         this.TextEntry.PrintToUIConsole("Help", true);
         this.TextEntry.PrintToUIConsole("clear - (Alias: cls)", " - Clears the screen", width);
         this.TextEntry.PrintToUIConsole("color <color>", " - Changes console color", width);
-        this.TextEntry.PrintToUIConsole("debug [true/false]", " - Enables/Disables debug mode", width);
+        this.TextEntry.PrintToUIConsole("debug [true|false]", " - Enables/Disables debug mode", width);
         this.TextEntry.PrintToUIConsole("echo <string>", " - Prints to console screen", width);
         this.TextEntry.PrintToUIConsole("give <itemID> [quantity]", " - Gives player item", width);
-        this.TextEntry.PrintToUIConsole("god [true/false]", " - Makes player invincible", width);
+        this.TextEntry.PrintToUIConsole("god [true|false]", " - Makes player invincible", width);
         this.TextEntry.PrintToUIConsole("help - (Alias: ?)", " - Shows this help screen", width);
         this.TextEntry.PrintToUIConsole("playsound <SoundCue>", " - Plays sound cue", width);
         this.TextEntry.PrintToUIConsole("spawn <entity>", " - Spawns entity", width);
+        this.TextEntry.PrintToUIConsole("time [set|add] <time>", " - Sets or adds to time", width);
         this.TextEntry.PrintToUIConsole("togglecheat <cheat>", " - Enables specified cheat", width);
         
     }
