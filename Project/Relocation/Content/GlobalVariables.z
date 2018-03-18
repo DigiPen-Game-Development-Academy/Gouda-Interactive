@@ -29,7 +29,7 @@ class Relocation {
     
     [Static] var CursorType : String = "Default";
     
-    [Static] var Time : Real = 0.0;
+    [Static] var Time : Real = 24.0;
     [Static] var Day : Integer = 0;
     [Static] var DayLength : Real = 96.0;
     [Static] var LightAmount : Real = 1.0;
