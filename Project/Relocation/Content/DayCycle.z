@@ -5,8 +5,6 @@ class DayCycle : ZilchComponent {
     
     [Property] var RenderDayNightCycle : Boolean = true;
     
-    var LightMultiplier : Real = 1.0;
-    
     var DayMultiplier : Real = 4.0;
     
     function Initialize(init : CogInitializer) {
