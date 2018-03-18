@@ -37,8 +37,7 @@ class DayCycle : ZilchComponent {
                     Relocation.LightAmount = (Relocation.DayLength - Relocation.Time) / 24;
                     if(this.RenderDayNightCycle)
                         this.Owner.AmbientLight.Color = Real4(Real3(Relocation.LightAmount), 1.0);
-                } else if(Relocation.Time < Relocation.DayLength * 0.25 || Relocation.Time > Relocation.DayLength * 0.75) {
-                    Relocation.LightAmount = 0.5;
+                } else if(Relocation.Time < Relocation.DayLength * 0.25 || Relocation.Time > Relocation.DayLength * 0.84) {
                     if(this.RenderDayNightCycle)
                         this.Owner.AmbientLight.Color = Real4(Real3(0.5), 1.0);
                 }
