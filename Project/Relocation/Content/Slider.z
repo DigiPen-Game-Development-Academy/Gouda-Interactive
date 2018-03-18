@@ -90,7 +90,7 @@ class Slider : ZilchComponent {
             slider.Transform.Scale = Real3((this.CurrentAmount / this.MaxAmount) * this.MaxScaleAmount.X, this.MaxScaleAmount.YZ);
             this.Owner.SpriteText.Text = "`this.Label`: `this.CurrentAmount`/`this.MaxAmount`";
         } else {
-            slider.Sprite.SpriteSource = SpriteSource.Circle;
+            slider.Sprite.SpriteSource = SpriteSource.Square;
             sliderBG.Transform.Scale = Real3(sliderBG.Transform.Scale.X, 0.25, 1.0);
             slider.Transform.Scale = Real3(0.5);
             slider.Transform.Translation = Real3(

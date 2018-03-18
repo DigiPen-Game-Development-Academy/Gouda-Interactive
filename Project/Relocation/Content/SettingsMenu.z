@@ -48,7 +48,6 @@ class SettingsMenu : ZilchComponent {
         }
         
         if(this.MusicVolumeSlider != null) {
-            Console.WriteLine("START VOL: `GameSetting.MusicVolume * 100`");
             this.MusicVolumeSlider.Slider.CurrentAmount = GameSetting.MusicVolume * 100;
             this.MusicVolumeSlider.Slider.InitializeSlider(SliderType.Grabber);
         }
