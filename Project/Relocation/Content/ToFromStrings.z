@@ -1,3 +1,6 @@
+// AUTHOR: MYLES
+// CONTRIBUTORS: HUDSON GREEN
+
 class ToFromStrings : ZilchComponent {
     
     // Int array to/from strings:
@@ -87,30 +90,30 @@ class ToFromStrings : ZilchComponent {
     }
     
     // Real3 to/from string
-    [Static] function Real3ToString(r3 : Real3) : String
-    {
+    [Static] function Real3ToString(r3 : Real3) : String {
         return "`r3.X`,`r3.Y`,`r3.Z`";
     }
     
-    [Static] function StringToReal3(string : String) : Real3
-    {
+    [Static] function StringToReal3(string : String) : Real3 {
+        
         var r3 = Real3(0.0, 0.0, 0.0);
         var timesRun = 0;
         
-        while (string.Count > 0)
-        {
+        while(string.Count > 0) {
+            
             var currentComma = string.FindFirstOf(",");
             
-            if (currentComma.IsNotEmpty)
-            {
-                if (timesRun == 0) r3.X = Real.Parse(string.SubStringFromRuneIndices(0, currentComma.Begin.ByteIndex));
-                else if (timesRun == 1) r3.Y = Real.Parse(string.SubStringFromRuneIndices(0, currentComma.Begin.ByteIndex));
-                string = string.SubStringFromRuneIndices(currentComma.End.ByteIndex, string.End.ByteIndex);
-            }
-            else
-            {
-                r3.Z = Real.Parse(string.SubStringFromRuneIndices(0, currentComma.Begin.ByteIndex));
+            if(currentComma.IsNotEmpty) {
                 
+                if(timesRun == 0)
+                    r3.X = Real.Parse(string.SubStringFromRuneIndices(0, currentComma.Begin.ByteIndex));
+                else if(timesRun == 1)
+                    r3.Y = Real.Parse(string.SubStringFromRuneIndices(0, currentComma.Begin.ByteIndex));
+                
+                string = string.SubStringFromRuneIndices(currentComma.End.ByteIndex, string.End.ByteIndex);
+                
+            } else {
+                r3.Z = Real.Parse(string.SubStringFromRuneIndices(0, currentComma.Begin.ByteIndex));
                 break;
             }
             
@@ -118,6 +121,7 @@ class ToFromStrings : ZilchComponent {
         }
         
         return r3;
+        
     }
     
     // HashMap[Integer2, Integer] to/from string
@@ -140,8 +144,6 @@ class ToFromStrings : ZilchComponent {
         var hashMap = HashMap[Integer2, Integer]();
         var array = ToFromStrings.StringToShortIntArray(string);
         
-        //Console.WriteLine("array: `array`");
-        
         for(var index = 0; index < array.Count; index += 3)
             hashMap.Add(Integer2(array[index], array[index + 1]), array[index + 2]);
         
@@ -150,12 +152,11 @@ class ToFromStrings : ZilchComponent {
     }
     
     // HashMap[Integer2 Real2] to/from string
-    [Static] function HashMapInt2Real2ToString(hashmap : HashMap[Integer2, Real2]) : String
-    {
+    [Static] function HashMapInt2Real2ToString(hashmap : HashMap[Integer2, Real2]) : String {
+        
         var array = Array[Real]();
         
-        foreach (var val in hashmap)
-        {
+        foreach(var val in hashmap) {
             array.Add(val.Key.X);
             array.Add(val.Key.Y);
             array.Add(val.Value.X);
@@ -163,17 +164,19 @@ class ToFromStrings : ZilchComponent {
         }
         
         return ToFromStrings.RealArrayToString(array);
+        
     }
     
-    [Static] function StringToHashMapInt2Real2(string : String) : HashMap[Integer2, Real2]
-    {
+    [Static] function StringToHashMapInt2Real2(string : String) : HashMap[Integer2, Real2] {
+        
         var hashMap = HashMap[Integer2, Real2]();
         var array = ToFromStrings.StringToRealArray(string);
         
-        for (var index = 0; index < array.Count; index += 4)
+        for(var index = 0; index < array.Count; index += 4)
             hashMap.Add(Integer2(array[index] as Integer, array[index + 1] as Integer), Real2(array[index + 2], array[index + 3]));
         
         return hashMap;
+        
     }
     
     [Static] function StripCommas(str : String) : String {

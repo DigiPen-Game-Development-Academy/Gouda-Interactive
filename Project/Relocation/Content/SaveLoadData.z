@@ -21,7 +21,7 @@ class SaveLoadData : ZilchComponent {
         if(Zero.Keyboard.KeyIsPressed(Keys.Zero))
             this.Save();
         if(Zero.Keyboard.KeyIsPressed(Keys.Nine))
-            this.Load();
+            this.Load(true);
     }
     
     function Save() {
@@ -69,16 +69,18 @@ class SaveLoadData : ZilchComponent {
         
     }
     
-    function Load() {
+    function Load(loadPlayer : Boolean) {
         
         // PLAYER DATA
-        Relocation.Player.PlayerProperties.PlayerName   = this.PlayerData.SavedData.PlayerName;
-        Relocation.Player.PlayerProperties.PlayerSkin   = this.PlayerData.SavedData.PlayerSkin;
-        Relocation.Player.PlayerProperties.Balance      = this.PlayerData.SavedData.PlayerBalance;
-        Relocation.Player.Health.CurrentHealth          = this.PlayerData.SavedData.PlayerHealth;
-        Relocation.Player.Transform.WorldTranslation    = ToFromStrings.StringToReal3(this.PlayerData.SavedData.PlayerPosition);
-        PlayerData.InventoryContents                    = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInv);
-        PlayerData.InventoryContentsCount               = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInvCount);
+        if(loadPlayer) {
+            Relocation.Player.PlayerProperties.PlayerName   = this.PlayerData.SavedData.PlayerName;
+            Relocation.Player.PlayerProperties.PlayerSkin   = this.PlayerData.SavedData.PlayerSkin;
+            Relocation.Player.PlayerProperties.Balance      = this.PlayerData.SavedData.PlayerBalance;
+            Relocation.Player.Health.CurrentHealth          = this.PlayerData.SavedData.PlayerHealth;
+            Relocation.Player.Transform.WorldTranslation    = ToFromStrings.StringToReal3(this.PlayerData.SavedData.PlayerPosition);
+            PlayerData.InventoryContents                    = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInv);
+            PlayerData.InventoryContentsCount               = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInvCount);
+        }
         
         // GLOBAL DATA/SETTINGS
         GameSetting.EnableUIAnimations                  = this.ConfigurationData.SavedData.MenuAnimations;

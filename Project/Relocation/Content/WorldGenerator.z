@@ -86,7 +86,7 @@ class WorldGenerator : ZilchComponent {
                         this.HasGenerated = true;
                     } else {
                         
-                        var chunk = Zero.ObjectStore.Restore("`this.Owner.Name`", Relocation.UISpace);
+                        var chunk = Zero.ObjectStore.Restore("`SaveLoadData.ChunkPath``this.Owner.Name`", Relocation.UISpace);
                         
                         chunk.WorldGenerator.HasGenerated = true;
                         
