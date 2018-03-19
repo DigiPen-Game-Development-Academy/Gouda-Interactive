@@ -1,32 +1,33 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: N/A
+// CONTRIBUTORS: HUDSON GREEN
 
-class SavedData : ZilchComponent
-{
+class SavedData : ZilchComponent {
     
     // All saved variables MUST BE SERIALIZED
     // Example:
     // [Serialized] var Score : Integer;
     
     // Player data:
-    [Serialized] var PlayerName : String;
-    [Serialized] var PlayerPosition : String;
-    [Serialized] var PlayerHealth : Real;
-    [Serialized] var PlayerSkin : Integer;
-    [Serialized] var PlayerBalance : Real;
-    [Serialized] var PlayerInv : String;
-    [Serialized] var PlayerInvCount : String;
+    [Serialized] var PlayerName         : String;
+    [Serialized] var PlayerPosition     : String;
+    [Serialized] var PlayerHealth       : Real;
+    [Serialized] var PlayerSkin         : Integer;
+    [Serialized] var PlayerBalance      : Real;
+    [Serialized] var PlayerInv          : String;
+    [Serialized] var PlayerInvCount     : String;
     
     // TO DO: World data:
-    [Serialized] var CurrentWorld : String;
+    [Serialized] var CurrentWorld       : String;
+    [Serialized] var CurrentTime        : Real;
+    [Serialized] var CurrentDay         : Integer;
     
     // Settings data:
-    [Serialized] var MenuAnimations : Boolean;
-    [Serialized] var Vignette : Boolean;
-    [Serialized] var PlayerTooltips : Boolean;
-    [Serialized] var EnemyTooltips : Boolean;
-    [Serialized] var MasterVolume : Real;
-    [Serialized] var MusicVolume : Real;
+    [Serialized] var MenuAnimations     : Boolean;
+    [Serialized] var Vignette           : Boolean;
+    [Serialized] var PlayerTooltips     : Boolean;
+    [Serialized] var EnemyTooltips      : Boolean;
+    [Serialized] var MasterVolume       : Real;
+    [Serialized] var MusicVolume        : Real;
     [Serialized] var SoundEffectsVolume : Real;
     
 }

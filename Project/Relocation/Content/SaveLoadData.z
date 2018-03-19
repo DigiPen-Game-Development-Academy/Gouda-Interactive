@@ -52,22 +52,18 @@ class SaveLoadData : ZilchComponent {
         Zero.ObjectStore.Store("PlayerData", this.PlayerData);
         Zero.ObjectStore.Store("ConfigurationData", this.ConfigurationData);
         
-        Console.WriteLine("`this.LevelSettings.PlaceChunks.ChunkMap`");
-        
-        var chunkNumToSave = 0;
-        
-        foreach(var chunk in this.LevelSettings.PlaceChunks.ChunkMap) {
-            if(chunk.WorldGenerator.WorldMap != null && chunk.WorldGenerator.WorldMapData != null) {
-                
-                chunk.WorldGenerator.WorldMapString = ToFromStrings.HashMapInt2IntToString(chunk.WorldGenerator.WorldMap);
-                chunk.WorldGenerator.WorldMapDataString = ToFromStrings.HashMapInt2Real2ToString(chunk.WorldGenerator.WorldMapData);
-                chunk.WorldGenerator.ChunkPositionString = ToFromStrings.Real3ToString(chunk.Transform.WorldTranslation);
-                
-                if(chunk.WorldGenerator.WorldMapString.Count >= chunk.WorldGenerator.Width * chunk.WorldGenerator.Width)
-                    Zero.ObjectStore.Store("`SaveLoadData.ChunkPath``chunk.Name`", chunk);
-                
-                ++chunkNumToSave;
-                
+        timeout(10) {
+            foreach(var chunk in this.LevelSettings.PlaceChunks.ChunkMap) {
+                if(chunk.WorldGenerator.WorldMap != null && chunk.WorldGenerator.WorldMapData != null) {
+                    
+                    chunk.WorldGenerator.WorldMapString = ToFromStrings.HashMapInt2IntToString(chunk.WorldGenerator.WorldMap);
+                    chunk.WorldGenerator.WorldMapDataString = ToFromStrings.HashMapInt2Real2ToString(chunk.WorldGenerator.WorldMapData);
+                    chunk.WorldGenerator.ChunkPositionString = ToFromStrings.Real3ToString(chunk.Transform.WorldTranslation);
+                    
+                    if(chunk.WorldGenerator.WorldMapString.Count >= chunk.WorldGenerator.Width * chunk.WorldGenerator.Width)
+                        Zero.ObjectStore.Store("`SaveLoadData.ChunkPath``chunk.Name`", chunk);
+                    
+                }
             }
         }
         
@@ -75,6 +71,7 @@ class SaveLoadData : ZilchComponent {
     
     function Load() {
         
+        // PLAYER DATA
         Relocation.Player.PlayerProperties.PlayerName   = this.PlayerData.SavedData.PlayerName;
         Relocation.Player.PlayerProperties.PlayerSkin   = this.PlayerData.SavedData.PlayerSkin;
         Relocation.Player.PlayerProperties.Balance      = this.PlayerData.SavedData.PlayerBalance;
@@ -83,13 +80,16 @@ class SaveLoadData : ZilchComponent {
         PlayerData.InventoryContents                    = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInv);
         PlayerData.InventoryContentsCount               = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInvCount);
         
-        GameSetting.EnableUIAnimations  = this.ConfigurationData.SavedData.MenuAnimations;
-        GameSetting.EnableVignette      = this.ConfigurationData.SavedData.Vignette;
-        GameSetting.PlayerTooltip       = this.ConfigurationData.SavedData.PlayerTooltips;
-        GameSetting.EnemyTooltip        = this.ConfigurationData.SavedData.EnemyTooltips;
-        GameSetting.MasterVolume        = this.ConfigurationData.SavedData.MasterVolume;
-        GameSetting.MusicVolume         = this.ConfigurationData.SavedData.MusicVolume;
-        GameSetting.SoundEffectsVolume  = this.ConfigurationData.SavedData.SoundEffectsVolume;
+        // GLOBAL DATA/SETTINGS
+        GameSetting.EnableUIAnimations                  = this.ConfigurationData.SavedData.MenuAnimations;
+        GameSetting.EnableVignette                      = this.ConfigurationData.SavedData.Vignette;
+        GameSetting.PlayerTooltip                       = this.ConfigurationData.SavedData.PlayerTooltips;
+        GameSetting.EnemyTooltip                        = this.ConfigurationData.SavedData.EnemyTooltips;
+        GameSetting.MasterVolume                        = this.ConfigurationData.SavedData.MasterVolume;
+        GameSetting.MusicVolume                         = this.ConfigurationData.SavedData.MusicVolume;
+        GameSetting.SoundEffectsVolume                  = this.ConfigurationData.SavedData.SoundEffectsVolume;
+        
+        Relocation.TeleportTriggered = true;
         
     }
     

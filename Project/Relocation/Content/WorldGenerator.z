@@ -70,7 +70,7 @@ class WorldGenerator : ZilchComponent {
             
         } else if(!this.HasGenerated) {
             
-            if(this.Space.FindObjectByName(Relocation.EntityPlayer) != null && !Zero.ObjectStore.IsStored("`SaveLoadData.ChunkPath``this.Owner.Name`")) {
+            if(this.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
                 
                 var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation.XY;
                 var chunkPos = this.Owner.Transform.WorldTranslation;
@@ -80,32 +80,27 @@ class WorldGenerator : ZilchComponent {
                     Math.Pow(chunkPos.Y - playerPos.Y, 2)
                 ) <= this.Width) {
                     
-                    this.CreateMap();
-                    this.GenerateMap(true);
-                    this.HasGenerated = true;
-                    
-                }
-                
-            } else if(this.Space.FindObjectByName(Relocation.EntityPlayer) != null) {
-                
-                var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation.XY;
-                var chunkPos = this.Owner.Transform.WorldTranslation;
-                
-                if(Math.Sqrt(
-                    Math.Pow(chunkPos.X - playerPos.X, 2) + 
-                    Math.Pow(chunkPos.Y - playerPos.Y, 2)
-                ) <= this.Width) {
-                    
-                    var chunk = Zero.ObjectStore.Restore("`this.Owner.Name`", Relocation.UISpace);
-                    chunk.WorldGenerator.HasGenerated = true;
-                    if(chunk.WorldGenerator.WorldMapString.Count > 0) {
-                        this.WorldMap = ToFromStrings.StringToHashMapInt2Int(chunk.WorldGenerator.WorldMapString);
-                        this.WorldMapData = ToFromStrings.StringToHashMapInt2Real2(chunk.WorldGenerator.WorldMapDataString);
+                    if(!Zero.ObjectStore.IsStored("`SaveLoadData.ChunkPath``this.Owner.Name`")) {
+                        this.CreateMap();
+                        this.GenerateMap(true);
                         this.HasGenerated = true;
                     } else {
-                        Zero.ObjectStore.Erase("`SaveLoadData.ChunkPath``this.Owner.Name`");
+                        
+                        var chunk = Zero.ObjectStore.Restore("`this.Owner.Name`", Relocation.UISpace);
+                        
+                        chunk.WorldGenerator.HasGenerated = true;
+                        
+                        if(chunk.WorldGenerator.WorldMapString.Count > 0) {
+                            this.WorldMap = ToFromStrings.StringToHashMapInt2Int(chunk.WorldGenerator.WorldMapString);
+                            this.WorldMapData = ToFromStrings.StringToHashMapInt2Real2(chunk.WorldGenerator.WorldMapDataString);
+                            this.HasGenerated = true;
+                        } else {
+                            Zero.ObjectStore.Erase("`SaveLoadData.ChunkPath``this.Owner.Name`");
+                        }
+                        
+                        chunk.Destroy();
+                        
                     }
-                    chunk.Destroy();
                     
                 }
                 
