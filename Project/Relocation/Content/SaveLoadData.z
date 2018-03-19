@@ -5,158 +5,92 @@ class SaveLoadData : ZilchComponent {
     
     [Static] var ChunkPath : String = "";
     
-    var Data : Cog = null;
+    var PlayerData : Cog = null;
+    var ConfigurationData : Cog = null;
     
-    function Initialize(init : CogInitializer)
-    {
-        this.Data = Zero.ObjectStore.RestoreOrArchetype("Data", Archetype.SavedData, this.Space);
+    function Initialize(init : CogInitializer) {
         
-        Console.WriteLine("Data: `this.Data`");
+        this.PlayerData = Zero.ObjectStore.RestoreOrArchetype("PlayerData", Archetype.SavedData, this.Space);
+        this.ConfigurationData = Zero.ObjectStore.RestoreOrArchetype("ConfigurationData", Archetype.SavedData, this.Space);
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
     }
     
-    function OnLogicUpdate(event : UpdateEvent)
-    {
-        if (Zero.Keyboard.KeyIsPressed(Keys.Zero))
+    function OnLogicUpdate(event : UpdateEvent) {
+        if(Zero.Keyboard.KeyIsPressed(Keys.Zero))
             this.Save();
-        if (Zero.Keyboard.KeyIsPressed(Keys.Nine))
+        if(Zero.Keyboard.KeyIsPressed(Keys.Nine))
             this.Load();
     }
     
-    function Save()
-    {
+    function Save() {
+        
         var player = this.Space.FindObjectByName("EntityPlayer");
         
         // Player Data
-        this.Data.SavedData.PlayerName = player.PlayerProperties.PlayerName;
-        this.Data.SavedData.PlayerPosition = ToFromStrings.Real3ToString(player.Transform.Translation);
-        this.Data.SavedData.PlayerHealth = player.Health.CurrentHealth;
-        this.Data.SavedData.PlayerSkin = player.PlayerProperties.PlayerSkin;
-        this.Data.SavedData.PlayerBalance = player.PlayerProperties.Balance;
-        this.Data.SavedData.PlayerInv = ToFromStrings.IntArrayToString(PlayerData.InventoryContents);
-        this.Data.SavedData.PlayerInvCount = ToFromStrings.IntArrayToString(PlayerData.InventoryContentsCount);
+        this.PlayerData.SavedData.PlayerName = player.PlayerProperties.PlayerName;
+        this.PlayerData.SavedData.PlayerPosition = ToFromStrings.Real3ToString(player.Transform.Translation);
+        this.PlayerData.SavedData.PlayerHealth = player.Health.CurrentHealth;
+        this.PlayerData.SavedData.PlayerSkin = player.PlayerProperties.PlayerSkin;
+        this.PlayerData.SavedData.PlayerBalance = player.PlayerProperties.Balance;
+        this.PlayerData.SavedData.PlayerInv = ToFromStrings.IntArrayToString(PlayerData.InventoryContents);
+        this.PlayerData.SavedData.PlayerInvCount = ToFromStrings.IntArrayToString(PlayerData.InventoryContentsCount);
         
         // World Data:
-        this.Data.SavedData.CurrentWorld = this.Space.CurrentLevel.Name;
+        this.PlayerData.SavedData.CurrentWorld = this.Space.CurrentLevel.Name;
         
         // Settings Data:
-        this.Data.SavedData.MenuAnimations = GameSetting.EnableUIAnimations;
-        this.Data.SavedData.Vignette = GameSetting.EnableVignette;
-        this.Data.SavedData.PlayerTooltips = GameSetting.PlayerTooltip;
-        this.Data.SavedData.EnemyTooltips = GameSetting.EnemyTooltip;
-        this.Data.SavedData.MasterVolume = GameSetting.MasterVolume;
-        this.Data.SavedData.MusicVolume = GameSetting.MusicVolume;
-        this.Data.SavedData.SFXVolume = GameSetting.SoundEffectsVolume;
+        this.ConfigurationData.SavedData.MenuAnimations = GameSetting.EnableUIAnimations;
+        this.ConfigurationData.SavedData.Vignette = GameSetting.EnableVignette;
+        this.ConfigurationData.SavedData.PlayerTooltips = GameSetting.PlayerTooltip;
+        this.ConfigurationData.SavedData.EnemyTooltips = GameSetting.EnemyTooltip;
+        this.ConfigurationData.SavedData.MasterVolume = GameSetting.MasterVolume;
+        this.ConfigurationData.SavedData.MusicVolume = GameSetting.MusicVolume;
+        this.ConfigurationData.SavedData.SoundEffectsVolume = GameSetting.SoundEffectsVolume;
         
-        Zero.ObjectStore.Store("Data", this.Data);
+        Zero.ObjectStore.Store("PlayerData", this.PlayerData);
+        Zero.ObjectStore.Store("ConfigurationData", this.ConfigurationData);
         
         Console.WriteLine("`this.LevelSettings.PlaceChunks.ChunkMap`");
         
         var chunkNumToSave = 0;
         
-        foreach (var chunk in this.LevelSettings.PlaceChunks.ChunkMap)
-        {
-            if (chunk.WorldGenerator.WorldMap != null && chunk.WorldGenerator.WorldMapData != null)
-            {
+        foreach(var chunk in this.LevelSettings.PlaceChunks.ChunkMap) {
+            if(chunk.WorldGenerator.WorldMap != null && chunk.WorldGenerator.WorldMapData != null) {
+                
                 chunk.WorldGenerator.WorldMapString = ToFromStrings.HashMapInt2IntToString(chunk.WorldGenerator.WorldMap);
                 chunk.WorldGenerator.WorldMapDataString = ToFromStrings.HashMapInt2Real2ToString(chunk.WorldGenerator.WorldMapData);
                 chunk.WorldGenerator.ChunkPositionString = ToFromStrings.Real3ToString(chunk.Transform.WorldTranslation);
+                
                 if(chunk.WorldGenerator.WorldMapString.Count >= chunk.WorldGenerator.Width * chunk.WorldGenerator.Width)
                     Zero.ObjectStore.Store("`SaveLoadData.ChunkPath``chunk.Name`", chunk);
+                
                 ++chunkNumToSave;
                 
-                Console.WriteLine("Chunk \"`chunk.WorldGenerator.WorldMapString.Count`\" WorldMap: `chunk.WorldGenerator.WorldMapString`");
-                Console.WriteLine("Chunk WorldMapData: `chunk.WorldGenerator.WorldMapDataString`");
-            } else {
-                continue;
             }
         }
         
-        /*var hashMap1 = HashMap[Integer2, Integer]();
-        
-        hashMap1.Add(Integer2(0, 0), 1);
-        hashMap1.Add(Integer2(1, 0), 2);
-        hashMap1.Add(Integer2(0, 1), 3);
-        
-        var string1 = "0,0,1,0,1,2,1,0,3";
-        
-        Console.WriteLine("Hashmap 1 as string 1: `ToFromStrings.HashMapInt2IntToString(hashMap1)`");
-        Console.WriteLine("String 1 As HashMap 1: `ToFromStrings.StringToHashMapInt2Int(string1)`");
-        
-        var hashMap2 = HashMap[Integer2, Real2]();
-        
-        hashMap2.Add(Integer2(0, 0), Real2(1.0, 2.0));
-        hashMap2.Add(Integer2(1, 0), Real2(3.0, 4.0));
-        hashMap2.Add(Integer2(0, 1), Real2(5.0, 6.0));
-        
-        var string2 = "0,0,1,2,1,0,3,4,0,1,5,6";
-        
-        Console.WriteLine("Hashmap 2 as string: `ToFromStrings.HashMapInt2Real2ToString(hashMap2)`");
-        Console.WriteLine("String as Hashmap 2: `ToFromStrings.StringToHashMapInt2Real2(string2)`");*/
-        
-        Console.WriteLine("Saved");
     }
     
-    function Load()
-    {
-        LoadDataIntoLevel.Space = this.Space;
+    function Load() {
         
-        // Load Player Data:
-        LoadDataIntoLevel.PlayerName = this.Data.SavedData.PlayerName;
-        LoadDataIntoLevel.PlayerPosition = this.Data.SavedData.PlayerPosition;
-        LoadDataIntoLevel.PlayerHealth = this.Data.SavedData.PlayerHealth;
-        LoadDataIntoLevel.PlayerSkin = this.Data.SavedData.PlayerSkin;
-        LoadDataIntoLevel.PlayerBalance = this.Data.SavedData.PlayerBalance;
-        LoadDataIntoLevel.PlayerInv = this.Data.SavedData.PlayerInv;
-        LoadDataIntoLevel.PlayerInvCount = this.Data.SavedData.PlayerInvCount;
+        Relocation.Player.PlayerProperties.PlayerName   = this.PlayerData.SavedData.PlayerName;
+        Relocation.Player.PlayerProperties.PlayerSkin   = this.PlayerData.SavedData.PlayerSkin;
+        Relocation.Player.PlayerProperties.Balance      = this.PlayerData.SavedData.PlayerBalance;
+        Relocation.Player.Health.CurrentHealth          = this.PlayerData.SavedData.PlayerHealth;
+        Relocation.Player.Transform.WorldTranslation    = ToFromStrings.StringToReal3(this.PlayerData.SavedData.PlayerPosition);
+        PlayerData.InventoryContents                    = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInv);
+        PlayerData.InventoryContentsCount               = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInvCount);
         
-        // Load World Data:
-        LoadDataIntoLevel.CurrentWorld = this.Space.CurrentLevel.Name;
+        GameSetting.EnableUIAnimations  = this.ConfigurationData.SavedData.MenuAnimations;
+        GameSetting.EnableVignette      = this.ConfigurationData.SavedData.Vignette;
+        GameSetting.PlayerTooltip       = this.ConfigurationData.SavedData.PlayerTooltips;
+        GameSetting.EnemyTooltip        = this.ConfigurationData.SavedData.EnemyTooltips;
+        GameSetting.MasterVolume        = this.ConfigurationData.SavedData.MasterVolume;
+        GameSetting.MusicVolume         = this.ConfigurationData.SavedData.MusicVolume;
+        GameSetting.SoundEffectsVolume  = this.ConfigurationData.SavedData.SoundEffectsVolume;
         
-        // Load Settings Data:
-        LoadDataIntoLevel.MenuAnimations = this.Data.SavedData.MenuAnimations;
-        LoadDataIntoLevel.Vignette = this.Data.SavedData.Vignette;
-        LoadDataIntoLevel.PlayerTooltips = this.Data.SavedData.PlayerTooltips;
-        LoadDataIntoLevel.EnemyTooltips = this.Data.SavedData.EnemyTooltips;
-        LoadDataIntoLevel.MasterVolume = this.Data.SavedData.MasterVolume;
-        LoadDataIntoLevel.MusicVolume = this.Data.SavedData.MusicVolume;
-        LoadDataIntoLevel.SFXVolume = this.Data.SavedData.SFXVolume;
-        
-        LoadDataIntoLevel.LoadData();
-        
-        /*if (this.LevelSettings.PlaceChunks.ChunkMap.Count > 0)
-            for (var index = 0; index < this.LevelSettings.PlaceChunks.ChunkMap.Count; ++index)
-                this.LevelSettings.PlaceChunks.ChunkMap[index].Destroy();
-        this.LevelSettings.PlaceChunks.ChunkMap.Clear();
-        
-        var chunkNumToLoad = 0;
-        
-        while (Zero.ObjectStore.IsStored("Chunk`chunkNumToLoad`") == true)
-        {
-            this.LevelSettings.PlaceChunks.ChunkMap.Add(Zero.ObjectStore.Restore("Chunk`chunkNumToLoad`", this.Space));
-            var chunk = this.LevelSettings.PlaceChunks.ChunkMap[this.LevelSettings.PlaceChunks.ChunkMap.Count - 1];
-            
-            Console.WriteLine("worldmap: `chunk.WorldGenerator.WorldMap`");
-            
-            //chunk.WorldGenerator.HasGenerated = true;
-            //chunk.Transform.Translation = ToFromStrings.StringToReal3(chunk.WorldGenerator.ChunkPositionString);
-            chunk.WorldGenerator.WorldMap = ToFromStrings.StringToHashMapInt2Int(chunk.WorldGenerator.WorldMapString);
-            chunk.WorldGenerator.WorldMapData = ToFromStrings.StringToHashMapInt2Real2(chunk.WorldGenerator.WorldMapDataString);
-            
-            Console.WriteLine("Chunk generated: `chunk.WorldGenerator.HasGenerated`");
-            
-            this.LevelSettings.PlaceChunks.ChunkMap.Add(chunk);
-            
-            ++chunkNumToLoad;
-            
-            Console.WriteLine("Chunk Translation: `chunk.Transform.Translation`");
-        }*/
-        
-        Console.WriteLine("Loaded");
     }
     
-    function Delete()
-    {
-    }
 }

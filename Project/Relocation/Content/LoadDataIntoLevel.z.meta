@@ -1,8 +1,0 @@
-TextContent = 
-{
-	ZilchScriptBuilder = 
-	{
-		string Name = "LoadDataIntoLevel",
-		uint64 ResourceId = 5acd8c3947353c52,
-	},
-},

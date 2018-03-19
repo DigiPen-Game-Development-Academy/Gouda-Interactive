@@ -156,8 +156,6 @@ class WorldGenerator : ZilchComponent {
                 
                 var arch : Archetype = null;
                 
-                Console.WriteLine("Name: `this.Owner.Name`");
-                
                 if(this.WorldMap.Get(Integer2(x, y)) == 1) {
                     arch = Archetype.BlockRock;
                 } else if(this.WorldMap.Get(Integer2(x, y)) == 2) {

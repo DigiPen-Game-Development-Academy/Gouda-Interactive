@@ -134,8 +134,6 @@ class ToFromStrings : ZilchComponent {
         var hashMap = HashMap[Integer2, Real2]();
         var array = ToFromStrings.StringToRealArray(string);
         
-        Console.WriteLine("array: `array`");
-        
         for (var index = 0; index < array.Count; index += 4)
             hashMap.Add(Integer2(array[index] as Integer, array[index + 1] as Integer), Real2(array[index + 2], array[index + 3]));
         

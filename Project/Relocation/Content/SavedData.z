@@ -1,9 +1,9 @@
 // AUTHOR: MYLES BUSIG
 // CONTRIBUTORS: N/A
 
-
 class SavedData : ZilchComponent
 {
+    
     // All saved variables MUST BE SERIALIZED
     // Example:
     // [Serialized] var Score : Integer;
@@ -27,5 +27,6 @@ class SavedData : ZilchComponent
     [Serialized] var EnemyTooltips : Boolean;
     [Serialized] var MasterVolume : Real;
     [Serialized] var MusicVolume : Real;
-    [Serialized] var SFXVolume : Real;
+    [Serialized] var SoundEffectsVolume : Real;
+    
 }
