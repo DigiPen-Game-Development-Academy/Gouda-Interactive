@@ -1,7 +1,7 @@
 class ToFromStrings : ZilchComponent {
     
     // Int array to/from strings:
-    [Static] function IntArrayToString(array : Array[Integer]) : String {
+    [Static] function ShortIntArrayToString(array : Array[Integer]) : String {
         
         var str = "";
         
@@ -12,7 +12,21 @@ class ToFromStrings : ZilchComponent {
         
     }
     
-    [Static] function StringToIntArray(string : String) : Array[Integer] {
+    [Static] function IntArrayToString(array : Array[Integer]) : String {
+        
+        var stringBuilder = new StringBuilder();
+        
+        for(var slot = 0; slot < array.Count; ++slot) {
+            stringBuilder.Write("`array[slot]`");
+            if(slot < array.Count - 1)
+                stringBuilder.Write(",");
+        }
+        
+        return stringBuilder.ToString();
+        
+    }
+    
+    [Static] function StringToShortIntArray(string : String) : Array[Integer] {
         
         string = ToFromStrings.StripCommas(string);
         
@@ -20,6 +34,28 @@ class ToFromStrings : ZilchComponent {
         
         for(var i = 0; i < string.Count; ++i)
             array.Add(string[i]);
+        
+        return array;
+        
+    }
+    
+    [Static] function StringToIntArray(string : String) : Array[Integer] {
+        
+        var array = Array[Integer]();
+        
+        while(string.Count > 0) {
+            
+            var currentComma = string.FindFirstOf(",");
+            
+            if(currentComma.IsNotEmpty) {
+                array.Add(Integer.Parse(string.SubStringFromRuneIndices(0, currentComma.Begin.ByteIndex)));
+                string = string.SubStringFromRuneIndices(currentComma.End.ByteIndex, string.End.ByteIndex);
+            } else {
+                array.Add(Integer.Parse(string));
+                break;
+            }
+            
+        }
         
         return array;
         
@@ -95,14 +131,14 @@ class ToFromStrings : ZilchComponent {
             array.Add(val.Value);
         }
         
-        return ToFromStrings.IntArrayToString(array);
+        return ToFromStrings.ShortIntArrayToString(array);
         
     }
     
     [Static] function StringToHashMapInt2Int(string : String) : HashMap[Integer2, Integer] {
         
         var hashMap = HashMap[Integer2, Integer]();
-        var array = ToFromStrings.StringToIntArray(string);
+        var array = ToFromStrings.StringToShortIntArray(string);
         
         //Console.WriteLine("array: `array`");
         

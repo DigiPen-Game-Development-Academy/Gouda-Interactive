@@ -34,8 +34,8 @@ class Inventory : ZilchComponent {
         
         if(PlayerData.InventoryContents == null || PlayerData.InventoryContentsCount == null) {
             
-            PlayerData.InventoryContents = new Array[Integer]();
-            PlayerData.InventoryContentsCount = new Array[Integer]();
+            PlayerData.InventoryContents = Array[Integer]();
+            PlayerData.InventoryContentsCount = Array[Integer]();
             
             // ZERO OUT INVENTORY
             for(var i = 0; i < this.MaxInventorySlots; ++i) {

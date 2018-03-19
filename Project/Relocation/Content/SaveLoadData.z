@@ -29,24 +29,24 @@ class SaveLoadData : ZilchComponent {
         var player = this.Space.FindObjectByName("EntityPlayer");
         
         // Player Data
-        this.PlayerData.SavedData.PlayerName = player.PlayerProperties.PlayerName;
-        this.PlayerData.SavedData.PlayerPosition = ToFromStrings.Real3ToString(player.Transform.Translation);
-        this.PlayerData.SavedData.PlayerHealth = player.Health.CurrentHealth;
-        this.PlayerData.SavedData.PlayerSkin = player.PlayerProperties.PlayerSkin;
-        this.PlayerData.SavedData.PlayerBalance = player.PlayerProperties.Balance;
-        this.PlayerData.SavedData.PlayerInv = ToFromStrings.IntArrayToString(PlayerData.InventoryContents);
-        this.PlayerData.SavedData.PlayerInvCount = ToFromStrings.IntArrayToString(PlayerData.InventoryContentsCount);
+        this.PlayerData.SavedData.PlayerName                = player.PlayerProperties.PlayerName;
+        this.PlayerData.SavedData.PlayerPosition            = ToFromStrings.Real3ToString(player.Transform.Translation);
+        this.PlayerData.SavedData.PlayerHealth              = player.Health.CurrentHealth;
+        this.PlayerData.SavedData.PlayerSkin                = player.PlayerProperties.PlayerSkin;
+        this.PlayerData.SavedData.PlayerBalance             = player.PlayerProperties.Balance;
+        this.PlayerData.SavedData.PlayerInv                 = ToFromStrings.IntArrayToString(PlayerData.InventoryContents);
+        this.PlayerData.SavedData.PlayerInvCount            = ToFromStrings.IntArrayToString(PlayerData.InventoryContentsCount);
         
         // World Data:
-        this.PlayerData.SavedData.CurrentWorld = this.Space.CurrentLevel.Name;
+        this.PlayerData.SavedData.CurrentWorld              = this.Space.CurrentLevel.Name;
         
         // Settings Data:
-        this.ConfigurationData.SavedData.MenuAnimations = GameSetting.EnableUIAnimations;
-        this.ConfigurationData.SavedData.Vignette = GameSetting.EnableVignette;
-        this.ConfigurationData.SavedData.PlayerTooltips = GameSetting.PlayerTooltip;
-        this.ConfigurationData.SavedData.EnemyTooltips = GameSetting.EnemyTooltip;
-        this.ConfigurationData.SavedData.MasterVolume = GameSetting.MasterVolume;
-        this.ConfigurationData.SavedData.MusicVolume = GameSetting.MusicVolume;
+        this.ConfigurationData.SavedData.MenuAnimations     = GameSetting.EnableUIAnimations;
+        this.ConfigurationData.SavedData.Vignette           = GameSetting.EnableVignette;
+        this.ConfigurationData.SavedData.PlayerTooltips     = GameSetting.PlayerTooltip;
+        this.ConfigurationData.SavedData.EnemyTooltips      = GameSetting.EnemyTooltip;
+        this.ConfigurationData.SavedData.MasterVolume       = GameSetting.MasterVolume;
+        this.ConfigurationData.SavedData.MusicVolume        = GameSetting.MusicVolume;
         this.ConfigurationData.SavedData.SoundEffectsVolume = GameSetting.SoundEffectsVolume;
         
         Zero.ObjectStore.Store("PlayerData", this.PlayerData);
