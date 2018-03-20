@@ -29,7 +29,7 @@ class PlaceChunks : ZilchComponent {
             
             var playerPos = this.Player.Transform.WorldTranslation;
             
-            if(Math.Round(playerPos.X) % this.ChunkWidth == 0 || Math.Round(playerPos.Y) % this.ChunkWidth == 0 || Relocation.TeleportTriggered) {
+            if(Math.Round(playerPos.X) % this.ChunkWidth == 0 || Math.Round(playerPos.Y) % this.ChunkWidth == 0 || Relocation.TeleportTriggered || event.Dt > 0.25) {
                 this.LoadChunks(playerPos.XY);
                 Relocation.TeleportTriggered = false;
             }
