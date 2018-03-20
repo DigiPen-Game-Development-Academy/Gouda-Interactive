@@ -1,0 +1,48 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class DebugMenu : ZilchComponent {
+    
+    [Property] var DebugKey : Keys = Keys.F3;
+    
+    var Enabled : Boolean = false;
+    
+    function Initialize(init : CogInitializer) {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        if(Zero.Keyboard.KeyIsPressed(this.DebugKey)) {
+            this.Enabled = !this.Enabled;
+            this.Owner.SpriteText.Visible = this.Enabled;
+        }
+        
+        this.UpdateDebugInfo(this.Enabled, event.Dt);
+        
+    }
+    
+    function UpdateDebugInfo(update : Boolean, dt : Real) {
+        
+        if(update) {
+            
+            var fps = "`Math.Round(1 / dt)` FPS (`dt * 1000`ms/frame)";
+            var screenRes = "`this.LevelSettings.CameraViewport.ViewportResolution.X`x`this.LevelSettings.CameraViewport.ViewportResolution.Y`";
+            var currLevel = "Undefined Level";
+            var camCoords = "(0, 0, 0)";
+            var plrCoords = "(0, 0, 0)";
+            
+            if(Relocation.Space != null)
+                currLevel = "`Relocation.Space.CurrentLevel.Name`";
+            if(Relocation.Space != null && Relocation.Space.FindObjectByName("Camera") != null)
+                camCoords = "`Relocation.Player.FindChildByName("Camera").Transform.WorldTranslation`";
+            if(Relocation.Player != null)
+                plrCoords = "`Relocation.Player.Transform.WorldTranslation`";
+            
+            this.Owner.SpriteText.Text = "`fps`\nDisplay Resolution: `screenRes`\n\nCamera Position: `camCoords`\nPlayer Position: `plrCoords`\nLevel: `currLevel`";
+            
+        }
+        
+    }
+    
+}
