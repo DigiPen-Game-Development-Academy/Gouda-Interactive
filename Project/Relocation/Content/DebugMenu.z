@@ -7,6 +7,9 @@ class DebugMenu : ZilchComponent {
     
     var Enabled : Boolean = false;
     
+    var Framerate : Real = 60.0;
+    var Timer : Real = 0.0;
+    
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
@@ -24,9 +27,14 @@ class DebugMenu : ZilchComponent {
     
     function UpdateDebugInfo(update : Boolean, dt : Real) {
         
+        if(this.Timer >= 0.25) {
+            this.Framerate = Math.Round(1 / dt);
+            this.Timer = 0.0;
+        } else this.Timer += dt;
+        
         if(update) {
             
-            var fps = "`Math.Round(1 / dt)` FPS (`dt * 1000`ms/frame)";
+            var fps = "`this.Framerate` FPS (`Math.Round(dt * 100000) / 100`ms/frame)";
             var screenRes = "`this.LevelSettings.CameraViewport.ViewportResolution.X`x`this.LevelSettings.CameraViewport.ViewportResolution.Y`";
             var currLevel = "Undefined Level";
             var camCoords = "(0, 0, 0)";
