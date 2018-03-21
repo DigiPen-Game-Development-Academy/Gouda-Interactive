@@ -34,22 +34,75 @@ class DebugMenu : ZilchComponent {
         
         if(update) {
             
-            var fps = "`this.Framerate` FPS (`Math.Round(dt * 100000) / 100`ms/frame)";
-            var screenRes = "`this.LevelSettings.CameraViewport.ViewportResolution.X`x`this.LevelSettings.CameraViewport.ViewportResolution.Y`";
+            var camPos = Real3(0, 0, 0);
+            var plrPos = Real3(0, 0, 0);
+            var scrRes = this.LevelSettings.CameraViewport.ViewportResolution;
+            
+            if(Relocation.Space != null && Relocation.Space.FindObjectByName("Camera") != null)
+                camPos = Relocation.Space.FindObjectByName("Camera").Transform.WorldTranslation;
+            if(Relocation.Player != null)
+                plrPos = Relocation.Player.Transform.WorldTranslation;
+            
+            var fps = "`this.Framerate` fps (`Math.Round(dt * 100000) / 100`ms/frame)";
+            var screenRes = "`scrRes.X`x`scrRes.Y`";
             var currLevel = "Undefined Level";
-            var camCoords = "(0, 0, 0)";
-            var plrCoords = "(0, 0, 0)";
+            var camCoords = "`Math.Round(camPos.X * 1000) / 1000` / `Math.Round(camPos.Y * 1000) / 1000`";
+            var plrCoords = "`Math.Round(plrPos.X * 1000) / 1000` / `Math.Round(plrPos.Y * 1000) / 1000`";
             
             if(Relocation.Space != null)
                 currLevel = "`Relocation.Space.CurrentLevel.Name`";
-            if(Relocation.Space != null && Relocation.Space.FindObjectByName("Camera") != null)
-                camCoords = "`Relocation.Player.FindChildByName("Camera").Transform.WorldTranslation`";
-            if(Relocation.Player != null)
-                plrCoords = "`Relocation.Player.Transform.WorldTranslation`";
+            if(this.CalcScreenStandard(scrRes) != null)
+                screenRes = "`screenRes` (`this.CalcScreenStandard(scrRes)`)";
             
-            this.Owner.SpriteText.Text = "`fps`\nDisplay Resolution: `screenRes`\n\nCamera Position: `camCoords`\nPlayer Position: `plrCoords`\nLevel: `currLevel`";
+            this.Owner.SpriteText.Text =
+                "`fps`\nDisplay Resolution: `screenRes`\n\nRegion: `currLevel`\nCamera XY: `camCoords`\nPlayer XY: `plrCoords`";
             
         }
+        
+    }
+    
+    function CalcScreenStandard(resolution : Real2) : String {
+        
+        var debText = DebugText();
+        
+        debText.DisplayText("!");
+        debText.BackShade(true);
+        debText.Border(true);
+        debText.Duration(0);
+        debText.Filled(false);
+        debText.Float4Color(Real4(1,0,0,1));
+        debText.OnTop(true);
+        debText.Position(Real3(0,0,0));
+        debText.Size(10.0);
+        debText.Width(5.0);
+        
+        debText.Draw();
+        
+        var standardLabel = "Really High Res Panel That Didn't Exist When This Game Was Made";
+        
+        if(resolution.Y >= 720 && resolution.Y < 1440) {
+            if(resolution.Y >= 1080) {
+                standardLabel = "Full HD";
+            } else {
+                standardLabel = "HD";
+            }
+        } else if(resolution.Y >= 1440 && resolution.Y < 2160) {
+            standardLabel = "Quad HD";
+        } else if(resolution.Y >= 2160 && resolution.Y < 2880) {
+            standardLabel = "UHD";
+        } else if(resolution.Y >= 2880 && resolution.Y < 4320) {
+            standardLabel = "5K";
+        } else if(resolution.Y >= 4320 && resolution.Y < 8640) {
+            standardLabel = "8K";
+        } else if(resolution.Y >= 8640 && resolution.Y < 17280) {
+            standardLabel = "16K";
+        } else if(resolution.Y >= 17280) {
+            standardLabel = "Panel That Doesn't Exist";
+        }
+        
+        if(standardLabel != "")
+            return standardLabel;
+        else return null;
         
     }
     

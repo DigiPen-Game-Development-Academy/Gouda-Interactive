@@ -254,7 +254,7 @@ class WorldGenerator : ZilchComponent {
     function GiveUniqueName() {
         var pos = this.Owner.Transform.WorldTranslation;
         
-        this.Owner.Name = "r_`pos.X`.`pos.Y`.chunk";
+        this.Owner.Name = "c_`pos.X`.`pos.Y`.cave";
     }
     
     function GenerateID() : Integer {
