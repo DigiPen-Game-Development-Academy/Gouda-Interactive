@@ -71,22 +71,7 @@
     
     function CalcScreenStandard(resolution : Real2) : String {
         
-        var debText = DebugText();
-        
-        debText.DisplayText("!");
-        debText.BackShade(true);
-        debText.Border(true);
-        debText.Duration(0);
-        debText.Filled(false);
-        debText.Float4Color(Real4(1,0,0,1));
-        debText.OnTop(true);
-        debText.Position(Real3(0,0,0));
-        debText.Size(10.0);
-        debText.Width(5.0);
-        
-        debText.Draw();
-        
-        var standardLabel = "Really High Res Panel That Didn't Exist When This Game Was Made";
+        var standardLabel = "";
         
         if(resolution.Y >= 720 && resolution.Y < 1440) {
             if(resolution.Y >= 1080) {
