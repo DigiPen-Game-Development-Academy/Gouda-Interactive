@@ -1,0 +1,32 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+/**
+EDITOR BUTTON EXAMPLE:
+
+[Editable] var Foo : EditorButton {
+    get {
+        return EditorButton.Run;
+    } set {
+        this.Foo();
+    }
+}
+
+**/
+
+enum EditorButtonRun {
+    Run
+}
+
+enum EditorButtonReset {
+    Reset
+}
+
+enum EditorButtonExecute {
+    Execute
+}
+
+class Utility {
+    
+    
+}

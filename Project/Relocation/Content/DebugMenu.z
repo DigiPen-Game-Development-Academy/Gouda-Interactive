@@ -1,9 +1,17 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
-class DebugMenu : ZilchComponent {
+[RunInEditor] class DebugMenu : ZilchComponent {
     
     [Property] var DebugKey : Keys = Keys.F3;
+    
+    [Editable] var Memory : EditorButtonExecute {
+        get {
+            return EditorButtonExecute();
+        } set {
+            Zero.Editor.ExecuteCommand("Memory");
+        }
+    }
     
     var Enabled : Boolean = false;
     
