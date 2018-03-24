@@ -43,3 +43,11 @@ class Utility {
     [Static] var ShortcutAlt_Redo : Array[Keys] = Array[Keys]() { Keys.Control, Keys.Shift, Keys.Z };
     
 }
+
+class TextHelper {
+    
+    [Static] function IsRenderable(code : Integer) : Boolean {
+        return code >= " "[0] && code <= "~"[0];
+    }
+    
+}

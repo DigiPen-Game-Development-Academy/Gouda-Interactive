@@ -167,7 +167,7 @@ class TextEntry : ZilchComponent {
             this.CatchInvalidCursorPos();
             
             // CHECK IF TEXT IS RENDERABLE (IS A LETTER/NUMBER/SYMBOL)
-            if(this.IsRenderable(event.Character) && this.CommandString.Count < this.MaxCharLimit) {
+            if(TextHelper.IsRenderable(event.Character) && this.CommandString.Count < this.MaxCharLimit) {
                 
                 this.CurrTypingIndicatorBlinkTime = 0.0;
                 this.CycleThroughCmdsAll = false;
@@ -452,7 +452,7 @@ class TextEntry : ZilchComponent {
         
         // STRIP INVALID CHARACTERS
         for(var i = 0; i < Zero.Shell.ClipboardText.Count; ++i)
-            if(this.IsRenderable(Zero.Shell.ClipboardText[i]))
+            if(TextHelper.IsRenderable(Zero.Shell.ClipboardText[i]))
                 tmpClipboard = "`tmpClipboard``String.FromChar(Zero.Shell.ClipboardText[i])`";
         
         this.CommandString = this.ReplaceInRange(this.SelectText(this.SelectedTextIndex, true, true), "`tmpClipboard`", true);
@@ -563,10 +563,6 @@ class TextEntry : ZilchComponent {
             return startIndex;
         } else return -1;
         
-    }
-    
-    function IsRenderable(code : Integer) : Boolean {
-        return code >= " "[0] && code <= "~"[0];
     }
     
     function InsertAt(char : String) : String {
