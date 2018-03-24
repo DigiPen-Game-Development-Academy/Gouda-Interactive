@@ -28,5 +28,18 @@ enum EditorButtonExecute {
 
 class Utility {
     
+    // KEYBOARD SHORTCUTS
+    [Static] var Shortcut_SelectAll : Array[Keys] = Array[Keys]() { Keys.Control, Keys.A };
+    [Static] var Shortcut_Cut : Array[Keys] = Array[Keys]() { Keys.Control, Keys.X };
+    [Static] var Shortcut_Copy : Array[Keys] = Array[Keys]() { Keys.Control, Keys.C };
+    [Static] var Shortcut_Paste : Array[Keys] = Array[Keys]() { Keys.Control, Keys.V };
+    
+    [Static] var Shortcut_Undo : Array[Keys] = Array[Keys]() { Keys.Control, Keys.Z };
+    [Static] var Shortcut_Redo : Array[Keys] = Array[Keys]() { Keys.Control, Keys.Y };
+    
+    // ALT KEYOBARD SHORTCUTS
+    [Static] var ShortcutAlt_Cut : Array[Keys] = Array[Keys]() { Keys.Shift, Keys.Delete };
+    
+    [Static] var ShortcutAlt_Redo : Array[Keys] = Array[Keys]() { Keys.Control, Keys.Shift, Keys.Z };
     
 }
