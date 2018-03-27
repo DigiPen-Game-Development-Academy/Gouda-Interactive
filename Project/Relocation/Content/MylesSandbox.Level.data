@@ -130,7 +130,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 8.20851612,
+			float Size = 20.1896782,
 		},
 		EditorCameraController = 
 		{
@@ -380,6 +380,24 @@ Level =
 					OrientationBases DefaultBases = ForwardYUpZ,
 				},
 			},
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5adb4022dda303b8:Chunk",
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-5.76194525, 4.71324062, 0.375],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Chunk",
 		},
 	},
 },
