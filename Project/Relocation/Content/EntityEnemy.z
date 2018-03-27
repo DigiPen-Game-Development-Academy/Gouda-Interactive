@@ -52,11 +52,6 @@ class EntityEnemy : ZilchComponent
             this.Shoot();
     }
     
-    function Move()
-    {
-        //this.Owner.RigidBody.Velocity += this.Owner.Orientation.WorldForward * 3 * 0.0166667;
-    }
-    
     function Shoot()
     {
         if (this.Owner.Follower.LostSight != true)
