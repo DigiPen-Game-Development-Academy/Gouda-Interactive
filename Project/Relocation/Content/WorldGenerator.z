@@ -178,7 +178,8 @@ class WorldGenerator : ZilchComponent {
                 if(arch != null) {
                     var obj = this.Space.CreateAtPosition(arch, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + this.Owner.Transform.WorldTranslation);
                     obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
-                    obj.Transform.Scale = this.GetBlockScale(obj, Integer2(x, y));
+                    //obj.Transform.Scale = this.GetBlockScale(obj, Integer2(x, y));
+                    this.SetBlockDamage(obj, Integer2(x, y));
                 }
                 
             }
@@ -354,6 +355,23 @@ class WorldGenerator : ZilchComponent {
         
     }
     
+    function SetBlockDamage(block : Cog, coords : Integer2) {
+        
+        var chunkCoords = Integer2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
+        var blockData = this.WorldMapData.Get(coords);
+        
+        var blockDamage = Math.Round((blockData.X / blockData.Y) * 4) as Integer;
+        
+        if(blockDamage > 0 && block.FindChildByName("BlockRock") == null) {
+            var dmgOverlay = this.Space.CreateAtPosition(Archetype.BlockDamage, Real3(block.Transform.WorldTranslation.XY, 1.0));
+            dmgOverlay.Sprite.CurrentFrame = blockDamage;
+            dmgOverlay.AttachToRelative(block);
+        } else if(block.FindChildByName("BlockRock") != null) {
+            block.FindChildByName("BlockRock").Sprite.CurrentFrame = blockDamage;
+        }
+        
+    }
+    
     function RemoveBlock(coords : Integer2, dropItem : Boolean) {
         
         var chunkCoords = Integer2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
@@ -420,7 +438,8 @@ class WorldGenerator : ZilchComponent {
             this.RemoveBlock(coords, dropItem);
             block.Destroy();
         } else {
-            block.Transform.Scale = this.GetBlockScale(block, chunkCoords);
+            //block.Transform.Scale = this.GetBlockScale(block, chunkCoords);
+            this.SetBlockDamage(block, chunkCoords);
         }
         
     }
