@@ -71,7 +71,9 @@ class EntityBullet : ZilchComponent {
         
         if(!this.DrillBullet)
             this.SpawnedBy.SoundObject.PlayCue(SoundCue.Find("BulletSpawn"));
-            
+        else
+            this.SpawnedBy.SoundObject.PlayCue(SoundCue.Find("Drill"));
+        
     }
     
     function Knockback(otherObject : Cog) {
