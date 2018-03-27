@@ -163,6 +163,8 @@ class Weapon {
             bullet.EntityBullet.BlockDamageAmount = 5.0;
             bullet.EntityBullet.DrillBullet = true;
             bullet.EntityBullet.Lifetime = 0.1;
+            bullet.EntityBullet.SpawnedBy = Relocation.Player;
+            bullet.EntityBullet.PostInitialize(Relocation.Player);
             
         } else {
             
