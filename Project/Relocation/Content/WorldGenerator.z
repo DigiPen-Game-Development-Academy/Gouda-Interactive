@@ -436,6 +436,7 @@ class WorldGenerator : ZilchComponent {
         
         if(blockData.X >= blockData.Y) {
             this.RemoveBlock(coords, dropItem);
+            this.Space.CreateAtPosition(Archetype.ParticleBlockBreak, Real3(block.Transform.WorldTranslation.XY, 2.0));
             block.Destroy();
         } else {
             //block.Transform.Scale = this.GetBlockScale(block, chunkCoords);
