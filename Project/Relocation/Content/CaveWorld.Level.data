@@ -117,6 +117,10 @@ Level =
 		SaveLoadData = 
 		{
 		},
+		Spawner = 
+		{
+			float Radius = 14,
+		},
 	},
 	Cog = 
 	{
@@ -142,7 +146,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 11.0803213,
+			float Size = 36.7879448,
 		},
 		EditorCameraController = 
 		{

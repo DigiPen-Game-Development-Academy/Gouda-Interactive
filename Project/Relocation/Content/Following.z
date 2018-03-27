@@ -165,7 +165,7 @@ class Follower : ZilchComponent
   }
   function TargetClosest()
   {
-      Console.WriteLine("`this.Target`");
+      //Console.WriteLine("`this.Target`");
       
     // Reset the search timer to the frequency plus a random range from -variance to +variance
     // Use a static function in FollowTarget to find a target in the desired method
