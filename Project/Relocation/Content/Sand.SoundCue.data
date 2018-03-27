@@ -1,9 +1,9 @@
 SoundCue = 
 {
 	SoundPlayMode PlayMode = Single,
-	float Volume = 0.149999991,
+	float Volume = 0.25,
 	float VolumeVariation = 0,
-	float VolumeDB = -16.4781742,
+	float VolumeDB = -12.0412006,
 	bool UseVolumeDB = false,
 	float VolumeDBVariation = 0,
 	float Pitch = 0,
@@ -19,7 +19,7 @@ SoundCue =
 	[
 		{
 			string SoundName = "5ac11db27bd9cc73:Sand",
-			string GeneratedSoundName = "",
+			string GeneratedSoundName = "55017c595ef88bf0:DefaultGeneratedSound",
 			WhichSoundType WhichToUse = FromFile,
 			float Weight = 1,
 			float LoopEndTime = 0,
