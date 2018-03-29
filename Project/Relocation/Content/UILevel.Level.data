@@ -3633,6 +3633,7 @@ Level =
 		FillScreen = 
 		{
 			Vec2 Offset = [0, 0],
+			Vec2 Margin = [-5, -5],
 		},
 		Area = 
 		{
