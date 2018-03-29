@@ -37,6 +37,8 @@ class EntityBullet : ZilchComponent {
             if(event.OtherObject.Parent != null)
                 event.OtherObject.Parent.Parent.WorldGenerator.DamageBlock(event.OtherObject, this.BlockDamageAmount, true);
             
+            this.Space.CreateAtPosition(Archetype.ParticleBlockBreak, this.Owner.Transform.Translation);
+            
             this.Owner.Destroy();
             
         } else if(event.OtherObject.Name != Relocation.EntityPlayer && this.FromPlayer && !this.DrillBullet && event.OtherObject.Name != "TileWater") {
