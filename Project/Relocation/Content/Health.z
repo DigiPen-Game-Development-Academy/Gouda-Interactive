@@ -12,6 +12,7 @@ class Health : ZilchComponent
     var CurrDamageSoundCooldown : Real = 0.0;
     
     var IsTakingDamage : Boolean = false;
+    var IsDead : Boolean = false;
     
     function Initialize(init : CogInitializer)
     {
@@ -34,16 +35,11 @@ class Health : ZilchComponent
             this.IsTakingDamage = false;
         }
         
-        if(Zero.Keyboard.KeyIsPressed(Keys.LeftBracket) && this.Owner.Name == Relocation.EntityPlayer) {
-            this.DecreaseHealth(1.0);
-        }
-        
-        if(Zero.Keyboard.KeyIsPressed(Keys.RightBracket) && this.Owner.Name == Relocation.EntityPlayer && this.CurrentHealth < this.MaxHealth) {
-            this.CurrentHealth += 1.0;
-        }
-        
         if(this.CurrentHealth <= 0.0 && !this.IsInvincible)
         {
+            
+            this.IsDead = true;
+            
             if(this.Owner.Name != Relocation.EntityPlayer)
             {
                 if(this.Owner.EntityEnemy != null && this.Owner.EntityEnemy.SpawnedFrom != null)
@@ -63,6 +59,9 @@ class Health : ZilchComponent
                 Relocation.UISpace.FindObjectByName("DeathScreenMenu").DeathScreenMenu.ShowMenu = true;
                 
             }
+            
+        } else if(this.CurrentHealth > 0.0 || this.IsInvincible) {
+            this.IsDead = false;
         }
         
         if(Relocation.DebugMode)

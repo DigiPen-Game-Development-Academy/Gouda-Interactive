@@ -18,6 +18,7 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.Commands.Push("give");
         this.Owner.TextEntry.Commands.Push("god");
         this.Owner.TextEntry.Commands.Push("help");
+        this.Owner.TextEntry.Commands.Push("kill");
         this.Owner.TextEntry.Commands.Push("playsound");
         this.Owner.TextEntry.Commands.Push("spawn");
         this.Owner.TextEntry.Commands.Push("time");
@@ -34,6 +35,8 @@ class Commands : ZilchComponent {
             this.CommandGive();
         } else if(this.CheckForCommand("god", false, "", "") != -1) {
             this.CommandGod();
+        } else if(this.CheckForCommand("heal", false, "", "?") != -1) {
+            this.CommandHeal();
         } else if(this.CheckForCommand("help", false, "", "?") != -1) {
             this.CommandHelp();
         } else if(this.CheckForCommand("clear", false, "", "cls") != -1) {
@@ -50,6 +53,8 @@ class Commands : ZilchComponent {
             this.CommandTime();
         } else if(this.CheckForCommand("togglecheat", false, "", "?") != -1) {
             this.CommandCheat();
+        } else if(this.CheckForCommand("kill", false, "", "?") != -1) {
+            this.CommandKill();
         } else if(this.CheckForCommand("tp", false, "", "?") != -1) {
             this.CommandTeleport();
         } else {
@@ -166,6 +171,15 @@ class Commands : ZilchComponent {
         }
     }
     
+    function CommandHeal() {
+        
+        if(Relocation.Player != null && !Relocation.Player.Health.IsDead) {
+            Relocation.Player.Health.CurrentHealth = Relocation.Player.Health.MaxHealth;
+            this.TextEntry.PrintToUIConsole("Healed player.");
+        }
+        
+    }
+    
     function CommandHelp() {
         
         var width = 25;
@@ -177,7 +191,9 @@ class Commands : ZilchComponent {
         this.TextEntry.PrintToUIConsole("echo <string>", " - Prints to console screen", width);
         this.TextEntry.PrintToUIConsole("give <itemID> [quantity]", " - Gives player item", width);
         this.TextEntry.PrintToUIConsole("god [true|false]", " - Makes player invincible", width);
+        this.TextEntry.PrintToUIConsole("heal", " - Heals player", width);
         this.TextEntry.PrintToUIConsole("help - (Alias: ?)", " - Shows this help screen", width);
+        this.TextEntry.PrintToUIConsole("kill", " - Kills player", width);
         this.TextEntry.PrintToUIConsole("playsound <SoundCue>", " - Plays sound cue", width);
         this.TextEntry.PrintToUIConsole("spawn <entity>", " - Spawns entity", width);
         this.TextEntry.PrintToUIConsole("time [set|add] <time>", " - Sets or adds to time", width);
@@ -229,6 +245,16 @@ class Commands : ZilchComponent {
     function CommandEcho() {
         if(this.CheckForCommand("echo", true, "echo <string>", "") != 0)
             this.TextEntry.PrintToUIConsole("`this.GetArgument(1, this.TextEntry.SubmittedText, true)`");
+    }
+    
+    function CommandKill() {
+        
+        if(Relocation.Player != null && !Relocation.Player.Health.IsDead) {
+            Relocation.Player.Health.IsInvincible = false;
+            Relocation.Player.Health.CurrentHealth = 0.0;
+            this.TextEntry.PrintToUIConsole("Killed player.");
+        }
+        
     }
     
     function CommandPlaySound() {
