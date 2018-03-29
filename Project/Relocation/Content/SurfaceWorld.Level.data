@@ -83,7 +83,7 @@ Level =
 		},
 		GridDraw = 
 		{
-			bool Active = true,
+			bool Active = false,
 			bool HalfCellOffset = false,
 			float CellSize = 1,
 			GridAxis Axis = ZAxis,
@@ -122,7 +122,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-19.9005108, 6.58279037, 136.266266],
+			Vec3 Translation = [-4.03084183, -21.6645927, 136.266266],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -134,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 7.42737293,
+			float Size = 60.6530991,
 		},
 		EditorCameraController = 
 		{
@@ -142,7 +142,7 @@ Level =
 			float LookDistance = 136.266266,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-19.9005108, 6.58279037, -8.69878875e-07],
+			Vec3 LookTarget = [-4.03084183, -21.6645927, -1.76192302e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
