@@ -2,8 +2,8 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "CaveFloorV1",
-		uint64 ResourceId = 5ad15e5d21f44fd7,
+		string Name = "CaveFloor001",
+		uint64 ResourceId = 5a5cebb01cc63f44,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 32,
 		uint FrameSizeY = 32,

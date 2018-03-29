@@ -2,14 +2,14 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "CaveFloor_Map",
-		uint64 ResourceId = 5ad15e7f2cdf7ddd,
+		string Name = "CaveFloor",
+		uint64 ResourceId = 5a5ceb780473bbca,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 0,
 		uint FrameSizeY = 0,
 		uint FrameCount = 1,
 		float FrameDelay = 0.0833333358,
-		float OriginX = 16,
+		float OriginX = 32,
 		float OriginY = 32,
 		float PixelsPerUnit = 64,
 		bool Smoothing = true,
