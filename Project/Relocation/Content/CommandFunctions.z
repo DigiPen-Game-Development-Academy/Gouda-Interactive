@@ -22,6 +22,7 @@ class Commands : ZilchComponent {
         this.Owner.TextEntry.Commands.Push("spawn");
         this.Owner.TextEntry.Commands.Push("time");
         this.Owner.TextEntry.Commands.Push("togglecheat");
+        this.Owner.TextEntry.Commands.Push("tp");
         
     }
     
@@ -49,6 +50,8 @@ class Commands : ZilchComponent {
             this.CommandTime();
         } else if(this.CheckForCommand("togglecheat", false, "", "?") != -1) {
             this.CommandCheat();
+        } else if(this.CheckForCommand("tp", false, "", "?") != -1) {
+            this.CommandTeleport();
         } else {
             var baseCommand = this.GetArgument(0, this.TextEntry.SubmittedText, false);
             this.TextEntry.PrintToUIConsole("Error: The command \"`baseCommand`\" does not exist. Type help for a list of commands.");
@@ -179,6 +182,7 @@ class Commands : ZilchComponent {
         this.TextEntry.PrintToUIConsole("spawn <entity>", " - Spawns entity", width);
         this.TextEntry.PrintToUIConsole("time [set|add] <time>", " - Sets or adds to time", width);
         this.TextEntry.PrintToUIConsole("togglecheat <cheat>", " - Enables specified cheat", width);
+        this.TextEntry.PrintToUIConsole("tp [relative] <x> <y>", " - Teleports to specified position", width);
         
     }
     
@@ -250,6 +254,42 @@ class Commands : ZilchComponent {
                 Relocation.Space.CreateAtPosition(Archetype.Find("`entity`"), mousePos);
             
         }
+    }
+    
+    function CommandTeleport() {
+        
+        var usage = "tp [relative] <x> <y>";
+        
+        if(this.CheckForCommand("tp", true, usage, "") != 0 && Relocation.Player != null) {
+            
+            var relative = false;
+            var x = Real.Parse(this.GetArgument(1, this.TextEntry.SubmittedText, false));
+            var y = Real.Parse(this.GetArgument(2, this.TextEntry.SubmittedText, false));
+            
+            if(this.GetArgument(3, this.TextEntry.SubmittedText, false) != "") {
+                if(this.GetArgument(1, this.TextEntry.SubmittedText, false).ToLower() == "relative") {
+                    relative = true;
+                    x = Real.Parse(this.GetArgument(2, this.TextEntry.SubmittedText, false));
+                    y = Real.Parse(this.GetArgument(3, this.TextEntry.SubmittedText, false));
+                } else {
+                    this.PrintInvalidArgumentError("`usage`", 1);
+                    return;
+                }
+            }
+            
+            var playerTransformation = Relocation.Player.Transform;
+            
+            if(!relative)
+                playerTransformation.WorldTranslation = Real3(x, y, playerTransformation.WorldTranslation.Z);
+            else
+                playerTransformation.Translation += Real3(x, y, 0);
+            
+            var pos = playerTransformation.WorldTranslation.XY;
+            
+            this.TextEntry.PrintToUIConsole("Teleported to `pos.X`, `pos.Y`.");
+            
+        }
+        
     }
     
     function CommandTime() {
