@@ -13,6 +13,8 @@ class SaveLoadData : ZilchComponent {
         this.PlayerData = Zero.ObjectStore.RestoreOrArchetype("PlayerData", Archetype.SavedData, this.Space);
         this.ConfigurationData = Zero.ObjectStore.RestoreOrArchetype("ConfigurationData", Archetype.SavedData, this.Space);
         
+        this.Load(false);
+        
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
     }
@@ -80,6 +82,7 @@ class SaveLoadData : ZilchComponent {
             Relocation.Player.Transform.WorldTranslation    = ToFromStrings.StringToReal3(this.PlayerData.SavedData.PlayerPosition);
             PlayerData.InventoryContents                    = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInv);
             PlayerData.InventoryContentsCount               = ToFromStrings.StringToIntArray(this.PlayerData.SavedData.PlayerInvCount);
+            Relocation.TeleportTriggered = true;
         }
         
         // GLOBAL DATA/SETTINGS
@@ -90,8 +93,6 @@ class SaveLoadData : ZilchComponent {
         GameSetting.MasterVolume                        = this.ConfigurationData.SavedData.MasterVolume;
         GameSetting.MusicVolume                         = this.ConfigurationData.SavedData.MusicVolume;
         GameSetting.SoundEffectsVolume                  = this.ConfigurationData.SavedData.SoundEffectsVolume;
-        
-        Relocation.TeleportTriggered = true;
         
     }
     

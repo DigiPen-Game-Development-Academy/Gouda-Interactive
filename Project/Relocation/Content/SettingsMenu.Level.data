@@ -888,11 +888,11 @@ Level =
 						},
 						Slider = 
 						{
+							Enum SliderType = Grabber,
 							string Label = "Music",
 							float CurrentAmount = 50,
 							float MaxAmount = 100,
 							Vec4 SliderColor = [1, 0.811764836, 0, 1],
-							Enum SliderType = Grabber,
 						},
 						Hierarchy = 
 						{
@@ -1055,11 +1055,11 @@ Level =
 						},
 						Slider = 
 						{
+							Enum SliderType = Grabber,
 							string Label = "Sound",
 							float CurrentAmount = 50,
 							float MaxAmount = 100,
 							Vec4 SliderColor = [1, 0.811764836, 0, 1],
-							Enum SliderType = Grabber,
 						},
 						Hierarchy = 
 						{
