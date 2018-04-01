@@ -15,7 +15,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items = new Array[Item]();
         this.Spacers = new Array[Integer]();
         
-        Relocation.Items.Push(new Item("Circle",                        true));
+        Relocation.Items.Push(new Item("ItemAir",                       SpriteSource.Circle));
         Relocation.Items.Push(new ItemWeapon("ItemPistol",              true));
         Relocation.Items.Push(new ItemWeapon("ItemRevolver",            true));
         Relocation.Items.Push(new ItemWeapon("ItemRock",                true));

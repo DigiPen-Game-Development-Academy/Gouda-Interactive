@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-20.5, 4.5, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -91,6 +91,7 @@ Cog =
 	{
 		float MaxHealth = 25,
 		bool IsInvincible = false,
+		bool NaturalRegen = true,
 	},
 	Inventory = 
 	{
@@ -403,6 +404,7 @@ Cog =
 			},
 			FootstepScript = 
 			{
+				float FootstepCooldown = 0.300000012,
 			},
 		},
 	},

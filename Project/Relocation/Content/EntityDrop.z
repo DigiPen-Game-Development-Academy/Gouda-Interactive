@@ -1,0 +1,15 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class EntityDrop : ZilchComponent {
+    
+    [Dependency] var Health : Health = null;
+    
+    [Property] var ItemName : String = "ItemAir";
+    [Property] var Amount : Integer = 1;
+    
+    function DropItem() {
+        Relocation.ItemManager.DropItems(Relocation.ItemManager.GetIDByName(this.ItemName), this.Amount, this.Owner.Transform.WorldTranslation);
+    }
+    
+}

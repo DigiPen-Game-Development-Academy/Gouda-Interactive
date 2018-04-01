@@ -1,11 +1,11 @@
 // AUTHOR: MYLES BUSIG
 // CONTRIBUTORS: HUDSON GREEN
 
-class Health : ZilchComponent
-{
+class Health : ZilchComponent {
     
     [Property] var MaxHealth : Real = 10.0;
     [Property] var IsInvincible : Boolean = false;
+    [Property] var NaturalRegen : Boolean = false;
     
     var CurrentHealth : Real = 10.0;
     var DamageSoundCooldown : Real = 1.0;
@@ -14,20 +14,21 @@ class Health : ZilchComponent
     var IsTakingDamage : Boolean = false;
     var IsDead : Boolean = false;
     
-    function Initialize(init : CogInitializer)
-    {
+    function Initialize(init : CogInitializer) {
+        
         this.CurrentHealth = this.MaxHealth;
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
     }
     
-    function OnLogicUpdate(event : UpdateEvent)
-    {
+    function OnLogicUpdate(event : UpdateEvent) {
         
         if(this.IsTakingDamage) {
             this.CurrDamageSoundCooldown += event.Dt;
         } else {
             this.CurrDamageSoundCooldown = 0.0;
+            if(this.NaturalRegen) this.NaturalRegeneration(event.Dt);
         }
         
         if(this.CurrDamageSoundCooldown > this.DamageSoundCooldown) {
@@ -35,20 +36,20 @@ class Health : ZilchComponent
             this.IsTakingDamage = false;
         }
         
-        if(this.CurrentHealth <= 0.0 && !this.IsInvincible)
-        {
+        if(this.CurrentHealth <= 0.0 && !this.IsInvincible) {
             
             this.IsDead = true;
             
-            if(this.Owner.Name != Relocation.EntityPlayer)
-            {
+            if(this.Owner.Name != Relocation.EntityPlayer) {
+                
                 if(this.Owner.EntityEnemy != null && this.Owner.EntityEnemy.SpawnedFrom != null)
                     this.Owner.EntityEnemy.SpawnedFrom.Spawner.EnemiesSpawned -= 1;
+                if(this.Owner.EntityDrop != null)
+                    this.Owner.EntityDrop.DropItem();
                 
                 this.Owner.Destroy();
-            }
-            else if(this.Owner.Name == Relocation.EntityPlayer)
-            {
+                
+            } else if(this.Owner.Name == Relocation.EntityPlayer) {
                 
                 this.Owner.RemoveComponentByName("Movement");
                 this.Owner.RemoveComponentByName("WeaponManager");
@@ -67,8 +68,7 @@ class Health : ZilchComponent
         if(Relocation.DebugMode)
             this.Owner.Collider.DebugDraw();
         
-        if(this.Owner.Name == Relocation.EntityPlayer)
-        {
+        if(this.Owner.Name == Relocation.EntityPlayer) {
             this.IsInvincible = PlayerData.GodMode;
             if(!this.IsInvincible)
                 Relocation.UISpace.FindObjectByName("Health").SpriteText.Text = "HP: `this.CurrentHealth`";
@@ -78,18 +78,45 @@ class Health : ZilchComponent
         
     }
     
-    function DecreaseHealth(amount : Real)
-    {
+    function DecreaseHealth(amount : Real) {
+        
         if(!this.IsInvincible) {
+            
             if(this.CurrDamageSoundCooldown == 0.0 && this.CurrentHealth > 0) {
                 // PLAY DAMAGE SOUND
                 this.Space.SoundSpace.PlayCueAt(SoundCue.Damage, this.Owner.Transform.WorldTranslation);
             }
+            
             this.IsTakingDamage = true;
             this.CurrDamageSoundCooldown -= 0.00066;
             this.CurrentHealth -= amount;
+            
             if(this.Owner.PassiveAI != null)
                 this.Owner.PassiveAI.Hurt();
+                
         }
+        
     }
+    
+    var RegenTimer : Real = 3.0;
+    var CurrRegenTimer : Real = 0.0;
+    
+    function NaturalRegeneration(dt : Real) {
+        
+        if(this.CurrentHealth < this.MaxHealth && !this.IsDead) {
+            if(this.CurrRegenTimer > this.RegenTimer) {
+                
+                this.CurrentHealth += 1.0;
+                this.CurrRegenTimer = 0.0;
+                
+                if(this.CurrentHealth > this.MaxHealth)
+                    this.CurrentHealth = this.MaxHealth;
+                
+            } else {
+                this.CurrRegenTimer += dt;
+            }
+        }
+        
+    }
+    
 }

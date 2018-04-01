@@ -3,12 +3,11 @@
 
 class FootstepScript : ZilchComponent {
     
-    [Property]
-    var FootstepCooldown: Real = 0.3;
+    [Property] var FootstepCooldown : Real = 0.3;
     
-    var TimeTilPlaySound: Real;
+    var TimeTilPlaySound : Real = 0.0;
     
-    var IsMoving: Boolean = false;
+    var IsMoving : Boolean = false;
     
     function Initialize(init : CogInitializer) {
         this.TimeTilPlaySound = this.FootstepCooldown;
@@ -16,17 +15,23 @@ class FootstepScript : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
+        
         var currentFootstepCooldown = this.FootstepCooldown;
+        
         if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
             currentFootstepCooldown /= 1.5;
         }
+        
         this.TimeTilPlaySound -= event.Dt;
+        
         if(Relocation.Player.RigidBody.Velocity != Real3(0.0)) {
             this.IsMoving = true;
         } else {
             this.IsMoving = false;
         }
+        
         if(this.IsMoving == true) {
+            
             this.Owner.SphericalParticleEmitter.Active = true;
             
             if (this.Owner.Parent.Transform.Translation.Z == 2.0) {
@@ -41,9 +46,11 @@ class FootstepScript : ZilchComponent {
                 Relocation.Player.SoundObject.PlayCue(SoundCue.Find("Sand"));
                 this.TimeTilPlaySound = currentFootstepCooldown;
             }
+            
         } else {
             this.Owner.SphericalParticleEmitter.Active = false;
         }
+        
     }
     
 }
