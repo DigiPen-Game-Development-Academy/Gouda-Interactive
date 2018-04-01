@@ -35,7 +35,7 @@ class Commands : ZilchComponent {
             this.CommandGive();
         } else if(this.CheckForCommand("god", false, "", "") != -1) {
             this.CommandGod();
-        } else if(this.CheckForCommand("heal", false, "", "?") != -1) {
+        } else if(this.CheckForCommand("heal", false, "", "") != -1) {
             this.CommandHeal();
         } else if(this.CheckForCommand("help", false, "", "?") != -1) {
             this.CommandHelp();
@@ -51,11 +51,11 @@ class Commands : ZilchComponent {
             this.CommandSpawn();
         } else if(this.CheckForCommand("time", false, "", "") != -1) {
             this.CommandTime();
-        } else if(this.CheckForCommand("togglecheat", false, "", "?") != -1) {
+        } else if(this.CheckForCommand("togglecheat", false, "", "") != -1) {
             this.CommandCheat();
-        } else if(this.CheckForCommand("kill", false, "", "?") != -1) {
+        } else if(this.CheckForCommand("kill", false, "", "") != -1) {
             this.CommandKill();
-        } else if(this.CheckForCommand("tp", false, "", "?") != -1) {
+        } else if(this.CheckForCommand("tp", false, "", "") != -1) {
             this.CommandTeleport();
         } else {
             var baseCommand = this.GetArgument(0, this.TextEntry.SubmittedText, false);
