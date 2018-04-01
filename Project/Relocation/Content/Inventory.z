@@ -174,7 +174,7 @@ class Inventory : ZilchComponent {
                 }
             } else {
                 slotObj.FindChildByName("SlotIcon").Sprite.Visible = true;
-                slotObj.FindChildByName("ItemCount").SpriteText.Visible = true;
+                slotObj.FindChildByName("ItemCount").SpriteText.Visible = (Integer.Parse(slotObj.FindChildByName("ItemCount").SpriteText.Text) > 1);
             }
             
             if(i == this.SLOT_HAND - 1 || i == this.SLOT_OFFHAND - 1) {
