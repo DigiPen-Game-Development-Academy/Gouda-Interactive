@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.625639796, 0.357508481, 13.6266108],
+			Vec3 Translation = [-18.5179596, -6.36543703, 13.6266098],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.0463543,
+			float Size = 7.33859539,
 		},
 		EditorCameraController = 
 		{
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.625639796, 0.357508481, -2.73475891e-08],
+			Vec3 LookTarget = [-18.5179596, -6.36543703, -8.09445453e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -3244,46 +3244,11 @@ Level =
 				},
 				Named = 
 				{
-					string Name = "HealthBarIcon",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0.25, 1.25, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 0.75],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5acecfa26974cf6b:ItemHealthPack",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 101,
-				},
-				Named = 
-				{
 					string Name = "HealthBar",
 				},
 				Transform = 
 				{
-					Vec3 Translation = [1, 1.5, 0],
+					Vec3 Translation = [1, 2.5, 0],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -3324,7 +3289,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 102,
+							uint Id = 101,
 						},
 						Named = 
 						{
@@ -3363,6 +3328,41 @@ Level =
 						{
 						},
 					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 102,
+						},
+						Named = 
+						{
+							string Name = "HealthBarIcon",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [-0.75, -0.25, 0],
+							Vec3 Scale = [1, 1, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Sprite = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 0.75],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string SpriteSource = "5acecfa26974cf6b:ItemHealthPack",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
+						},
+					},
 				},
 			},
 			Cog = 
@@ -3373,46 +3373,11 @@ Level =
 				},
 				Named = 
 				{
-					string Name = "AmmoBarIcon",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0.25, 0.25, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 0.75],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5a3a2b2166d22ab7:ItemAmmoShotgun",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 104,
-				},
-				Named = 
-				{
 					string Name = "AmmoBar",
 				},
 				Transform = 
 				{
-					Vec3 Translation = [1, 0.5, 0],
+					Vec3 Translation = [1, 1.5, 0],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -3436,7 +3401,7 @@ Level =
 				},
 				Area = 
 				{
-					Vec2 Size = [5, 0.25],
+					Vec2 Size = [5, 0.5],
 					Location Origin = TopLeft,
 				},
 				AmmoBar = 
@@ -3450,13 +3415,91 @@ Level =
 				},
 				Hierarchy = 
 				{
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 104,
+						},
+						Named = 
+						{
+							string Name = "AmmoBarBG",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [-0.100000381, 0.100000001, 0],
+							Vec3 Scale = [1, 1, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Sprite = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 0.994950056, 0.495000005, 0.75],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string SpriteSource = "5ae0d2ace0c2a671:BarBackground",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
+						},
+						Area = 
+						{
+							Vec2 Size = [5.19999981, 0.699999988],
+							Location Origin = TopLeft,
+						},
+						Hierarchy = 
+						{
+						},
+					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 105,
+						},
+						Named = 
+						{
+							string Name = "AmmoBarIcon",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [-0.75, -0.25, 0],
+							Vec3 Scale = [1, 1, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Sprite = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 0.75],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string SpriteSource = "5a3a2b2166d22ab7:ItemAmmoShotgun",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
+						},
+					},
 				},
 			},
 			Cog = 
 			{
 				LinkId = 
 				{
-					uint Id = 105,
+					uint Id = 106,
 				},
 				Named = 
 				{
@@ -3464,7 +3507,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [1, 0.25, 0.25],
+					Vec3 Translation = [1, 0.5, 0.25],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -3488,60 +3531,98 @@ Level =
 				},
 				Area = 
 				{
-					Vec2 Size = [5, 0.219999999],
+					Vec2 Size = [5, 0.5],
 					Location Origin = TopLeft,
 				},
 				AmmoBar = 
 				{
-					bool CooldownBar = false,
+					bool CooldownBar = true,
 				},
 				Reactive = 
 				{
 					bool Active = true,
 					bool CaptureMouse = true,
 				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 106,
-				},
-				Named = 
-				{
-					string Name = "AmmoCooldownBarBG",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0.899999619, 0.600000381, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.472549915, 1, 0.314999998, 0.75],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5ae0d2ace0c2a671:BarBackground",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Area = 
-				{
-					Vec2 Size = [5.19999981, 0.699999988],
-					Location Origin = TopLeft,
-				},
 				Hierarchy = 
 				{
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 107,
+						},
+						Named = 
+						{
+							string Name = "CooldownBarBG",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [-0.100000381, 0.100000381, -0.25],
+							Vec3 Scale = [1, 1, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Sprite = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [0.314999998, 1, 0.938350081, 0.75],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string SpriteSource = "5ae0d2ace0c2a671:BarBackground",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
+						},
+						Area = 
+						{
+							Vec2 Size = [5.19999981, 0.699999988],
+							Location Origin = TopLeft,
+						},
+						Hierarchy = 
+						{
+						},
+					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 108,
+						},
+						Named = 
+						{
+							string Name = "CooldownBarIcon",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [-0.75, -0.25, -0.25],
+							Vec3 Scale = [1, 1, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Sprite = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 0.75],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string SpriteSource = "5a3849374ee23b35:MissingTexture",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
+						},
+					},
 				},
 			},
 		},
@@ -3550,7 +3631,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 107,
+			uint Id = 109,
 		},
 		Named = 
 		{
@@ -3595,7 +3676,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 108,
+			uint Id = 110,
 		},
 		Named = 
 		{
@@ -3646,7 +3727,7 @@ Level =
 		string Name = "5acad920c7159677:Watermark",
 		LinkId = 
 		{
-			uint Id = 109,
+			uint Id = 111,
 		},
 		Transform = 
 		{
@@ -3663,7 +3744,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 110,
+			uint Id = 112,
 		},
 		Named = 
 		{
@@ -3709,7 +3790,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 111,
+			uint Id = 113,
 		},
 		Named = 
 		{
@@ -3751,7 +3832,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 112,
+			uint Id = 114,
 		},
 		Named = 
 		{
@@ -3777,7 +3858,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 113,
+					uint Id = 115,
 				},
 				Named = 
 				{
@@ -3795,7 +3876,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 114,
+							uint Id = 116,
 						},
 						Named = 
 						{
@@ -3829,7 +3910,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 115,
+							uint Id = 117,
 						},
 						Named = 
 						{
@@ -3880,7 +3961,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 116,
+							uint Id = 118,
 						},
 						Named = 
 						{
@@ -3931,7 +4012,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 117,
+							uint Id = 119,
 						},
 						Named = 
 						{
@@ -3982,7 +4063,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 118,
+							uint Id = 120,
 						},
 						Named = 
 						{
@@ -4035,7 +4116,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 119,
+					uint Id = 121,
 				},
 				Named = 
 				{
@@ -4061,7 +4142,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 120,
+							uint Id = 122,
 						},
 						Named = 
 						{
@@ -4096,7 +4177,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 121,
+									uint Id = 123,
 								},
 								Named = 
 								{
@@ -4131,7 +4212,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 122,
+											uint Id = 124,
 										},
 										Named = 
 										{
@@ -4176,7 +4257,7 @@ Level =
 											{
 												LinkId = 
 												{
-													uint Id = 123,
+													uint Id = 125,
 												},
 												Named = 
 												{
@@ -4215,7 +4296,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 124,
+									uint Id = 126,
 								},
 								Named = 
 								{
@@ -4250,7 +4331,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 125,
+											uint Id = 127,
 										},
 										Named = 
 										{
@@ -4295,7 +4376,7 @@ Level =
 											{
 												LinkId = 
 												{
-													uint Id = 126,
+													uint Id = 128,
 												},
 												Named = 
 												{
@@ -4336,7 +4417,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 127,
+							uint Id = 129,
 						},
 						Named = 
 						{
@@ -4371,7 +4452,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 128,
+									uint Id = 130,
 								},
 								Named = 
 								{
@@ -4406,7 +4487,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 129,
+											uint Id = 131,
 										},
 										Named = 
 										{
@@ -4451,7 +4532,7 @@ Level =
 											{
 												LinkId = 
 												{
-													uint Id = 130,
+													uint Id = 132,
 												},
 												Named = 
 												{
@@ -4490,7 +4571,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 131,
+									uint Id = 133,
 								},
 								Named = 
 								{
@@ -4525,7 +4606,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 132,
+											uint Id = 134,
 										},
 										Named = 
 										{
@@ -4570,7 +4651,7 @@ Level =
 											{
 												LinkId = 
 												{
-													uint Id = 133,
+													uint Id = 135,
 												},
 												Named = 
 												{
@@ -4611,7 +4692,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 134,
+							uint Id = 136,
 						},
 						Named = 
 						{
@@ -4646,7 +4727,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 135,
+									uint Id = 137,
 								},
 								Named = 
 								{
@@ -4689,7 +4770,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 136,
+											uint Id = 138,
 										},
 										Named = 
 										{
@@ -4732,7 +4813,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 137,
+											uint Id = 139,
 										},
 										Named = 
 										{
@@ -4767,7 +4848,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 138,
+											uint Id = 140,
 										},
 										Named = 
 										{
@@ -4803,7 +4884,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 139,
+									uint Id = 141,
 								},
 								Named = 
 								{
@@ -4846,7 +4927,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 140,
+											uint Id = 142,
 										},
 										Named = 
 										{
@@ -4889,7 +4970,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 141,
+											uint Id = 143,
 										},
 										Named = 
 										{
@@ -4924,7 +5005,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 142,
+											uint Id = 144,
 										},
 										Named = 
 										{
@@ -4966,7 +5047,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 143,
+			uint Id = 145,
 		},
 		Named = 
 		{
@@ -4992,7 +5073,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 144,
+					uint Id = 146,
 				},
 				Named = 
 				{
@@ -5010,7 +5091,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 145,
+							uint Id = 147,
 						},
 						Named = 
 						{
@@ -5044,7 +5125,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 146,
+							uint Id = 148,
 						},
 						Named = 
 						{
@@ -5095,7 +5176,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 147,
+							uint Id = 149,
 						},
 						Named = 
 						{
@@ -5146,7 +5227,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 148,
+							uint Id = 150,
 						},
 						Named = 
 						{
@@ -5202,7 +5283,7 @@ Level =
 		string Name = "5ad090a34f764fee:Notification",
 		LinkId = 
 		{
-			uint Id = 149,
+			uint Id = 151,
 		},
 		Transform = 
 		{

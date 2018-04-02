@@ -28,27 +28,39 @@ class AmmoBar : ZilchComponent {
     function OnMouseUpdate(event : ViewportMouseEvent) {
         
         this.Space.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
-        if(this.MaxAmmo != -1) {
-            this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                "Ammo: `this.CurrentAmmo` / `this.MaxAmmo`",
-                "Cooldown: `this.CurrCooldownStr.SubStringFromRuneIndices(0, 4)` / `this.MaxCooldown`",
-                Real4(1.0, 0.75, 0.0, 1.0),
-                Real4(0.0, 0.0, 1.0, 1.0)
-            );
-        } else if(this.CurrCooldownStr != "`0`00 ") {
-            this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                "Ammo: N/A",
-                "Cooldown: `this.CurrCooldownStr.SubStringFromRuneIndices(0, 4)` / `this.MaxCooldown`",
-                Real4(1.0, 0.75, 0.0, 1.0),
-                Real4(0.0, 0.0, 1.0, 1.0)
-            );
+        
+        if(!this.CooldownBar) {
+            if(this.MaxAmmo != -1) {
+                this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                    "Ammo: `this.CurrentAmmo` / `this.MaxAmmo`",
+                    "",
+                    Real4(1.0, 0.75, 0.0, 1.0),
+                    Real4(0.0, 0.0, 1.0, 1.0)
+                );
+            } else {
+                this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                    "Ammo: N/A",
+                    "",
+                    Real4(1.0, 0.75, 0.0, 1.0),
+                    Real4(0.0, 0.0, 1.0, 1.0)
+                );
+            }
         } else {
-            this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                "Ammo: N/A",
-                "Cooldown: N/A",
-                Real4(1.0, 0.75, 0.0, 1.0),
-                Real4(0.0, 0.0, 1.0, 1.0)
-            );
+            if(this.CurrCooldownStr != "`0`00 ") {
+                this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                    "Cooldown: `this.CurrCooldownStr.SubStringFromRuneIndices(0, 4)` / `this.MaxCooldown`",
+                    "",
+                    Real4(0.0, 0.0, 1.0, 1.0),
+                    Real4(1.0, 0.75, 0.0, 1.0)
+                );
+            } else {
+                this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
+                    "Cooldown: N/A",
+                    "",
+                    Real4(0.0, 0.0, 1.0, 1.0),
+                    Real4(1.0, 0.75, 0.0, 1.0)
+                );
+            }
         }
         
     }
@@ -58,7 +70,7 @@ class AmmoBar : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
-        if(Relocation.Space != null && !this.CooldownBar) {
+        if(Relocation.Space != null) {
             if(
                 Relocation.Space.FindObjectByName(Relocation.EntityPlayer) != null &&
                 Relocation.Space.FindObjectByName(Relocation.EntityPlayer).WeaponManager != null
@@ -90,8 +102,8 @@ class AmmoBar : ZilchComponent {
                     cooldownBar = this.MaxScaleCooldown;
                 }
                 
-                this.Owner.Area.Size = Math.Lerp(Real2(this.Owner.Area.Size.X, 0.25), Real2(ammo * this.MaxScaleAmmo, 0.25), event.Dt * 10);
-                this.Owner.Parent.FindChildByName("CooldownBar").Area.Size = Real2(cooldownBar, 0.25);
+                this.Owner.Area.Size = Math.Lerp(Real2(this.Owner.Area.Size.X, 0.5), Real2(ammo * this.MaxScaleAmmo, 0.5), event.Dt * 10);
+                this.Owner.Parent.FindChildByName("CooldownBar").Area.Size = Real2(cooldownBar, 0.5);
                 
             }
         }
