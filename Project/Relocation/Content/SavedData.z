@@ -15,8 +15,9 @@ class SavedData : ZilchComponent {
     [Serialized] var PlayerBalance      : Real;
     [Serialized] var PlayerInv          : String;
     [Serialized] var PlayerInvCount     : String;
+    [Serialized] var PlayerWeaponData   : String;
     
-    // TO DO: World data:
+    // TODO: World data:
     [Serialized] var CurrentWorld       : String;
     [Serialized] var CurrentTime        : Real;
     [Serialized] var CurrentDay         : Integer;
