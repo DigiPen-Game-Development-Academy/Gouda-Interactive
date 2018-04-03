@@ -23,7 +23,7 @@ class EntityFrozen : ZilchComponent {
                 Math.Pow(entityPos.X - playerPos.X, 2) + 
                 Math.Pow(entityPos.Y - playerPos.Y, 2)
             ) <= this.UnfreezeRange) {
-                var entity = this.Space.CreateAtPosition(this.EntityArchetype, entityPos);
+                var entity = Relocation.Space.CreateAtPosition(this.EntityArchetype, entityPos);
                 entity.Health.CurrentHealth = this.Health;
                 this.Owner.Destroy();
             }

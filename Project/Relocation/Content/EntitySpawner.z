@@ -17,7 +17,7 @@ class EntitySpawner : ZilchComponent {
         
         for(var i = 0; i < this.SpawnAmount; ++i) {
             var position = Real3(Random().Range(-width, width), Random().Range(-width, width), 0.0);
-            var entity = this.Space.CreateAtPosition(Archetype.EntityEnemy, position + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
+            var entity = Relocation.Space.CreateAtPosition(Archetype.EntityEnemy, position + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
         }
         
     }
