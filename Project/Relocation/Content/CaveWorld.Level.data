@@ -117,6 +117,9 @@ Level =
 			int ChunkWidth = 32,
 			float ZIndex = -0.5,
 		},
+		StatManager = 
+		{
+		},
 	},
 	Cog = 
 	{

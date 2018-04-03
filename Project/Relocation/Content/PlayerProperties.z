@@ -180,7 +180,7 @@ class PlayerProperties : ZilchComponent {
         }
         
         // TRIGGER STORM
-        if(Zero.Keyboard.KeyIsPressed(Keys.Four)) {
+        /*if(Zero.Keyboard.KeyIsPressed(Keys.Four)) {
             this.StormSoundsActive = !this.StormSoundsActive;
         }
         
@@ -194,7 +194,7 @@ class PlayerProperties : ZilchComponent {
                 this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Stop();
                 this.StormSoundsPlayed = false;
             }
-        }
+        }*/
         
         if(this.CurrUnauthKillTime > this.UnauthorizedKillTime) {
             this.Owner.Health.CurrentHealth = 0.0;

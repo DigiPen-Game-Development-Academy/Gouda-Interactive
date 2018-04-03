@@ -444,6 +444,7 @@ class WorldGenerator : ZilchComponent {
             this.RemoveBlock(coords, dropItem);
             this.Space.CreateAtPosition(Archetype.ParticleBlockBreak, Real3(block.Transform.WorldTranslation.XY, 2.0));
             this.Space.SoundSpace.PlayCueAt(SoundCue.Find("Damage"), block.Transform.WorldTranslation);
+            ++PlayerStats.BlocksDestroyed;
             
             block.Destroy();
             
