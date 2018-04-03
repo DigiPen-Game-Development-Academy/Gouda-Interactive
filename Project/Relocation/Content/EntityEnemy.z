@@ -59,6 +59,8 @@ class EntityEnemy : ZilchComponent
             var bullet : Cog = null;
             if (this.Owner.ArchetypeName == "EntityArmadilo")
                 bullet = this.Space.CreateAtPosition(Archetype.Find("EntityNeedle"), Real3(this.Owner.Transform.Translation.XY, 0.0));
+            if (this.Owner.ArchetypeName == "EntityFrogg")
+                bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBubble"), Real3(this.Owner.Transform.Translation.XY, 0.0));
             else
                 bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.XY, 0.0));
             
@@ -74,7 +76,7 @@ class EntityEnemy : ZilchComponent
             bullet.RigidBody.Velocity = velocity;
             bullet.EntityBullet.FromPlayer = false;
             bullet.EntityBullet.Damage = 3;
-            if (bullet.FindChildByName("ParticleLaser") != null)
+            if (bullet.ArchetypeName != "EntityBubble" && bullet.ArchetypeName != "EntityNeedle")
                 bullet.FindChildByName("ParticleLaser").SpriteParticleSystem.Tint = Real4(1.0, 0.25, 0.25, 1.0);
         }
         
