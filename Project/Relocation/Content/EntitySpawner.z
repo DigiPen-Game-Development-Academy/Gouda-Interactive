@@ -8,7 +8,7 @@ class EntitySpawner : ZilchComponent {
     [Property] var SpawnAmount : Integer = 5;
     
     function Initialize(init : CogInitializer) {
-        this.SpawnEntities();
+        if(!this.Generator.IsSpawnChunk) this.SpawnEntities();
     }
     
     function SpawnEntities() {
