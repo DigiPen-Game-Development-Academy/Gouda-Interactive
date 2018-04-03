@@ -8,15 +8,7 @@ class EntitySpawner : ZilchComponent {
     [Property] var SpawnAmount : Integer = 5;
     
     function Initialize(init : CogInitializer) {
-        
         this.SpawnEntities();
-        
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        
-    }
-    
-    function OnLogicUpdate(event : UpdateEvent) {
-        
     }
     
     function SpawnEntities() {
