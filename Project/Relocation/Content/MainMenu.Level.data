@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 40.1709862,
+			float Size = 22.0463123,
 		},
 		EditorCameraController = 
 		{
@@ -382,7 +382,7 @@ Level =
 				},
 				ButtonLevelSwitcher = 
 				{
-					string Level = "5a3bc4c73a7e1106:SurfaceWorld",
+					string Level = "5ad9da479b989e9e:TutorialLevel",
 					float Delay = 2,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 1, 0.5],
