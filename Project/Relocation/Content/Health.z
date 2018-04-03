@@ -38,14 +38,15 @@ class Health : ZilchComponent {
         
         if(this.CurrentHealth <= 0.0 && !this.IsInvincible) {
             
-            this.IsDead = true;
-            
             if(this.Owner.Name != Relocation.EntityPlayer) {
                 
                 if(this.Owner.EntityEnemy != null && this.Owner.EntityEnemy.SpawnedFrom != null)
                     this.Owner.EntityEnemy.SpawnedFrom.Spawner.EnemiesSpawned -= 1;
+                    ++PlayerStats.Kills;
                 if(this.Owner.EntityDrop != null)
                     this.Owner.EntityDrop.DropItem();
+                
+                this.IsDead = true;
                 
                 this.Owner.Destroy();
                 
@@ -57,9 +58,14 @@ class Health : ZilchComponent {
                 this.Owner.Sprite.Visible = false;
                 this.Owner.FindChildByName("EntityHand").Sprite.Visible = false;
                 
+                if(!this.IsDead)
+                    ++PlayerStats.Deaths;
+                
                 Relocation.UISpace.FindObjectByName("DeathScreenMenu").DeathScreenMenu.ShowMenu = true;
                 
             }
+            
+            this.IsDead = true;
             
         } else if(this.CurrentHealth > 0.0 || this.IsInvincible) {
             this.IsDead = false;
