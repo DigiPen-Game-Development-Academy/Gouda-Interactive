@@ -41,6 +41,15 @@ Cog =
 		int Width = 32,
 		int Height = 32,
 		int NumberOfSteps = 2,
+		bool IsSpawnChunk = false,
+		bool HasGenerated = false,
+		string ChunkPositionString = "",
+		string WorldMapString = "",
+		string WorldMapDataString = "",
+	},
+	EntitySpawner = 
+	{
+		int SpawnAmount = 5,
 	},
 	Hierarchy = 
 	{

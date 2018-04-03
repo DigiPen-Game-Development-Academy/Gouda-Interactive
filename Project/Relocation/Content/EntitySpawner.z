@@ -3,16 +3,21 @@
 
 class EntitySpawner : ZilchComponent {
     
-    var HasSpawned : Boolean = false;
+    [Dependency] var Generator : WorldGenerator = null;
+    
+    [Property] var SpawnAmount : Integer = 5;
     
     function Initialize(init : CogInitializer) {
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.SpawnEntities();
     }
     
-    function OnLogicUpdate(event : UpdateEvent) {
+    function SpawnEntities() {
         
-        if(!this.HasSpawned) {
-            
+        var width = this.Generator.Width / 2;
+        
+        for(var i = 0; i < this.SpawnAmount; ++i) {
+            var position = Real3(Random().Range(-width, width), Random().Range(-width, width), 0.0);
+            var entity = Relocation.Space.CreateAtPosition(Archetype.EntityEnemy, position + Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
         }
         
     }

@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = true,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -60,6 +60,19 @@ Cog =
 		float Height = 0.150000006,
 		AxisDirection Direction = X,
 		CapsuleScalingMode ScalingMode = PreserveScale,
+	},
+	SoundEmitter = 
+	{
+		float Volume = 1.99526238,
+		float Pitch = 0,
+		float PitchSemitones = 0,
+		bool UsePitchSemitones = false,
+		bool Positional = true,
+		int Version = 1,
+	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
 	},
 	Area = 
 	{
@@ -79,22 +92,9 @@ Cog =
 		bool IsInvincible = false,
 		bool NaturalRegen = false,
 	},
-	Despawner = 
+	EntityFreezer = 
 	{
-		float DistanceFromPlayer = 75,
-	},
-	SoundEmitter = 
-	{
-		float Volume = 1.99526238,
-		float Pitch = 0,
-		float PitchSemitones = 0,
-		bool UsePitchSemitones = false,
-		bool Positional = true,
-		int Version = 1,
-	},
-	SoundObject = 
-	{
-		Enum SoundCategory = Sound,
+		float FreezeDistance = 16,
 	},
 	EntityEnemy = 
 	{
