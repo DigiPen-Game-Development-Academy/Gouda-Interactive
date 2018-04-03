@@ -89,7 +89,7 @@ Cog =
 	},
 	Health = 
 	{
-		float MaxHealth = 25,
+		float MaxHealth = 50,
 		bool IsInvincible = false,
 		bool NaturalRegen = true,
 	},
