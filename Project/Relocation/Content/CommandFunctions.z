@@ -224,7 +224,7 @@ class Commands : ZilchComponent {
             this.Owner.Parent.SoundObject.CanModPitch = false;
             this.Owner.Parent.SoundObject.PlayCue(SoundCue.CaveAmbiance);
             this.Owner.Parent.SoundEmitter.UsePitchSemitones = true;
-            this.Owner.Parent.SoundEmitter.PitchSemitones = 24.0;
+            this.Owner.Parent.SoundEmitter.PitchSemitones = 21.0;
             
             this.TextEntry.PrintToUIConsole("`newStr`");
             
