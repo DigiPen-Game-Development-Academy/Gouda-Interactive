@@ -43,6 +43,19 @@ Cog =
 		float ZIndex = 25,
 		bool HideUntilPositioned = false,
 	},
+	SoundEmitter = 
+	{
+		float Volume = 1.99526238,
+		float Pitch = 2,
+		float PitchSemitones = 23.9899998,
+		bool UsePitchSemitones = false,
+		bool Positional = false,
+		int Version = 1,
+	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
+	},
 	Hierarchy = 
 	{
 		Cog = 

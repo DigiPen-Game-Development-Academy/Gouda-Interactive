@@ -58,6 +58,8 @@ class Commands : ZilchComponent {
             this.CommandKill();
         } else if(this.CheckForCommand("tp", false, "", "") != -1) {
             this.CommandTeleport();
+        } else if(this.CheckForCommand("`String.FromChar(117)`ss`String.FromChar(114)`", false, "", "") != -1) {
+            this.CommandCatch();
         } else {
             var baseCommand = this.GetArgument(0, this.TextEntry.SubmittedText, false);
             this.TextEntry.PrintToUIConsole("Error: The command \"`baseCommand`\" does not exist. Type help for a list of commands.");
@@ -117,6 +119,7 @@ class Commands : ZilchComponent {
     }
     
     function CommandDebug() {
+        
         if(this.TextEntry.SubmittedText.EndsWith("true")) {
             
             Relocation.DebugMode = true;
@@ -135,6 +138,7 @@ class Commands : ZilchComponent {
         } else {
             this.PrintInvalidArgumentError("debug [true|false]", 1);
         }
+        
     }
     
     function CommandGive() {
@@ -143,9 +147,8 @@ class Commands : ZilchComponent {
                 
                 var quantity = this.GetArgument(2, this.TextEntry.SubmittedText, false);
                 
-                if(quantity == "") {
+                if(quantity == "")
                     quantity = "1";
-                }
                 
                 Relocation.Space.FindObjectByName("EntityPlayer").Inventory.GiveItemWithAmount(
                     Integer.Parse(this.GetArgument(1, this.TextEntry.SubmittedText, false)),
@@ -158,6 +161,7 @@ class Commands : ZilchComponent {
     }
     
     function CommandGod() {
+        
         if(this.TextEntry.SubmittedText.EndsWith("true")) {
             PlayerData.GodMode = true;
             this.TextEntry.PrintToUIConsole("God Mode: `PlayerData.GodMode`");
@@ -170,6 +174,7 @@ class Commands : ZilchComponent {
         } else {
             this.PrintInvalidArgumentError("god [true|false]", 1);
         }
+        
     }
     
     function CommandHeal() {
@@ -200,6 +205,34 @@ class Commands : ZilchComponent {
         this.TextEntry.PrintToUIConsole("time [set|add] <time>", " - Sets or adds to time", width);
         this.TextEntry.PrintToUIConsole("togglecheat <cheat>", " - Enables specified cheat", width);
         this.TextEntry.PrintToUIConsole("tp [relative] <x> <y>", " - Teleports to specified position", width);
+        
+    }
+    
+    function CommandCatch() {
+        
+        var color = this.Owner.Parent.FindChildByName(this.TextEntry.ConsoleTextboxName).SpriteText.Color.XYZ;
+        
+        if(color == Real3(1.0, 0.0, 0.0) && (Relocation.Player == null || (Relocation.Player != null && Relocation.Player.PlayerProperties.PlayerSkin == 2))) {
+            
+            var prntStr = "Uijt jt opu Sfmpdbujpo- uijt jt SfmPVSdbujpo";
+            var newStr = "";
+            
+            for(var i = 0; i < prntStr.Count; ++i)
+                newStr = "`newStr``String.FromChar(prntStr[i] - color.X as Integer)`";
+            
+            // CATCH SOUND STUFF
+            this.Owner.Parent.SoundObject.CanModPitch = false;
+            this.Owner.Parent.SoundObject.PlayCue(SoundCue.CaveAmbiance);
+            this.Owner.Parent.SoundEmitter.UsePitchSemitones = true;
+            this.Owner.Parent.SoundEmitter.PitchSemitones = 24.0;
+            
+            this.TextEntry.PrintToUIConsole("`newStr`");
+            
+        } else {
+            
+            this.TextEntry.PrintToUIConsole("Error: The command \"`String.FromChar(117)`ss`String.FromChar(114)`\" does not exist. Type help for a list of commands.");
+            
+        }
         
     }
     
@@ -320,7 +353,9 @@ class Commands : ZilchComponent {
     }
     
     function CommandTime() {
+        
         var usage = "time [set | add] <amount>";
+        
         if(this.CheckForCommand("time", false, usage, "") != 0 && Relocation.Space != null) {
             
             var cLen = this.GetArgument(0, this.TextEntry.SubmittedText, false).Count;
@@ -343,6 +378,7 @@ class Commands : ZilchComponent {
             }
             
         }
+        
     }
     
 }
