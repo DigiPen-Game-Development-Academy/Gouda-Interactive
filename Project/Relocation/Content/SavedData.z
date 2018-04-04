@@ -23,12 +23,12 @@ class SavedData : ZilchComponent {
     [Serialized] var CurrentDay         : Integer;
     
     // Settings data:
-    [Serialized] var MenuAnimations     : Boolean;
-    [Serialized] var Vignette           : Boolean;
-    [Serialized] var PlayerTooltips     : Boolean;
-    [Serialized] var EnemyTooltips      : Boolean;
-    [Serialized] var MasterVolume       : Real;
-    [Serialized] var MusicVolume        : Real;
-    [Serialized] var SoundEffectsVolume : Real;
+    [Serialized] var MenuAnimations     : Boolean = GameSetting.EnableUIAnimations;
+    [Serialized] var Vignette           : Boolean = GameSetting.EnableVignette;
+    [Serialized] var PlayerTooltips     : Boolean = GameSetting.PlayerTooltip;
+    [Serialized] var EnemyTooltips      : Boolean = GameSetting.EnemyTooltip;
+    [Serialized] var MasterVolume       : Real = GameSetting.MasterVolume;
+    [Serialized] var MusicVolume        : Real = GameSetting.MusicVolume;
+    [Serialized] var SoundEffectsVolume : Real = GameSetting.SoundEffectsVolume;
     
 }

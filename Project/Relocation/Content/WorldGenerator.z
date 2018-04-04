@@ -161,14 +161,14 @@ class WorldGenerator : ZilchComponent {
                     arch = Archetype.BlockRockCopper;
                 } else if(this.WorldMap.Get(Integer2(x, y)) == 4) {
                     arch = Archetype.BlockRockIron;
-                } else if(
-                    this.WorldMap.Get(Integer2(x, y)) == 5 || 
-                    this.WorldMap.Get(Integer2(x, y)) == 6 || 
-                    this.WorldMap.Get(Integer2(x, y)) == 7
-                ) {
-                    arch = Archetype.BlockRockRare;
+                } else if(this.WorldMap.Get(Integer2(x, y)) == 5) {
+                    arch = Archetype.BlockRockGold;
+                } else if(this.WorldMap.Get(Integer2(x, y)) == 6) {
+                    arch = Archetype.BlockRockTitanium;
+                } else if(this.WorldMap.Get(Integer2(x, y)) == 7) {
+                    arch = Archetype.BlockRockPlatinum;
                 } else if(this.WorldMap.Get(Integer2(x, y)) == 8) {
-                    arch = Archetype.BlockRockRare;
+                    arch = Archetype.BlockRockGoudarium;
                 } else if(this.WorldMap.Get(Integer2(x, y)) == 20) {
                     arch = Archetype.BlockMetal;
                 } else if(this.WorldMap.Get(Integer2(x, y)) == 21) {

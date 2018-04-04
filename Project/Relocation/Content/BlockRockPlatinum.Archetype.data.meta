@@ -2,8 +2,8 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "BlockRockRare",
-		uint64 ResourceId = 5ae3e42370ab8979,
+		string Name = "BlockRockPlatinum",
+		uint64 ResourceId = 5a894d0ba95ca6f9,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,

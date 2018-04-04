@@ -77,7 +77,7 @@ class SaveLoadData : ZilchComponent {
     function Load(loadPlayer : Boolean) {
         
         // PLAYER DATA
-        if(loadPlayer) {
+        if(loadPlayer && Zero.ObjectStore.IsStored("PlayerData")) {
             Relocation.Player.PlayerProperties.PlayerName   = this.PlayerData.SavedData.PlayerName;
             Relocation.Player.PlayerProperties.PlayerSkin   = this.PlayerData.SavedData.PlayerSkin;
             Relocation.Player.PlayerProperties.Balance      = this.PlayerData.SavedData.PlayerBalance;
@@ -89,13 +89,15 @@ class SaveLoadData : ZilchComponent {
         }
         
         // GLOBAL DATA/SETTINGS
-        GameSetting.EnableUIAnimations                  = this.ConfigurationData.SavedData.MenuAnimations;
-        GameSetting.EnableVignette                      = this.ConfigurationData.SavedData.Vignette;
-        GameSetting.PlayerTooltip                       = this.ConfigurationData.SavedData.PlayerTooltips;
-        GameSetting.EnemyTooltip                        = this.ConfigurationData.SavedData.EnemyTooltips;
-        GameSetting.MasterVolume                        = this.ConfigurationData.SavedData.MasterVolume;
-        GameSetting.MusicVolume                         = this.ConfigurationData.SavedData.MusicVolume;
-        GameSetting.SoundEffectsVolume                  = this.ConfigurationData.SavedData.SoundEffectsVolume;
+        if(Zero.ObjectStore.IsStored("ConfigurationData")) {
+            GameSetting.EnableUIAnimations                  = this.ConfigurationData.SavedData.MenuAnimations;
+            GameSetting.EnableVignette                      = this.ConfigurationData.SavedData.Vignette;
+            GameSetting.PlayerTooltip                       = this.ConfigurationData.SavedData.PlayerTooltips;
+            GameSetting.EnemyTooltip                        = this.ConfigurationData.SavedData.EnemyTooltips;
+            GameSetting.MasterVolume                        = this.ConfigurationData.SavedData.MasterVolume;
+            GameSetting.MusicVolume                         = this.ConfigurationData.SavedData.MusicVolume;
+            GameSetting.SoundEffectsVolume                  = this.ConfigurationData.SavedData.SoundEffectsVolume;
+        }
         
     }
     
