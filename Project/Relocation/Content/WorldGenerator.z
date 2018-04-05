@@ -15,7 +15,7 @@ class WorldGenerator : ZilchComponent {
     [Serialized] var WorldMapString         : String = "";
     [Serialized] var WorldMapDataString     : String = "";
     
-    var IsLoaded : Boolean = false;
+    var IsLoaded        : Boolean = false;
     
     var MaxPossibleID   : Integer = 8;
     
@@ -179,7 +179,7 @@ class WorldGenerator : ZilchComponent {
                 
                 if(arch != null) {
                     
-                    var obj = this.Space.CreateAtPosition(arch, Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + 
+                    var obj = this.Space.CreateAtPosition(arch, Real3(x - this.Width / 2, y - this.Width / 2, 1.0) + 
                         this.Owner.Transform.WorldTranslation);
                         
                     obj.AttachToRelative(this.Owner.FindChildByName("ChunkWrapper"));
@@ -191,11 +191,16 @@ class WorldGenerator : ZilchComponent {
             }
         }
         
+        this.Owner.Sprite.Visible = true;
+        this.Owner.Area.Size = Real2(this.Width);
+        
     }
     
     function UnloadMap() {
         if(this.Owner.FindChildByName("ChunkWrapper") != null)
             this.Owner.FindChildByName("ChunkWrapper").Destroy();
+        this.Owner.Sprite.Visible = false;
+        this.Owner.Area.Size = Real2(1.0);
     }
     
     function DoSimulationStep() {

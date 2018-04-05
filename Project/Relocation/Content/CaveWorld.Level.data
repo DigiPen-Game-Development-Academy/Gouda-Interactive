@@ -115,7 +115,7 @@ Level =
 		PlaceChunks = 
 		{
 			int ChunkWidth = 32,
-			float ZIndex = -0.5,
+			float ZIndex = -1.5,
 		},
 		StatManager = 
 		{
