@@ -79,7 +79,7 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Assault Rifle)",           "Ammo");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Sniper Rifle)",            "Ammo");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Health Pack",                          "Health Pack\n\nFully heals player when you use it.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Unprocessed)",                 "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Unprocessed)",                 "Resource\nMust be processed in order\nto be used.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Processed)",                   "Resource\n\nCan be used to make electronics\nand other cool stuff.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Unprocessed)",                   "Resource");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Processed)",                     "Resource");
