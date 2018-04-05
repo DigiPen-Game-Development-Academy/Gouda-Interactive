@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [-3.13478804, 1.28504086, 0.375],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -124,6 +124,11 @@ Cog =
 		float Straightness = 1,
 		float Speed = 3,
 		float Acceleration = 2,
+	},
+	EntityDrop = 
+	{
+		string ItemName = "ItemGreenBean",
+		int Amount = 2,
 	},
 	Hierarchy = 
 	{
