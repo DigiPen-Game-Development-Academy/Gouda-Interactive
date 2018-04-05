@@ -7,8 +7,30 @@ class EntitySpawner : ZilchComponent {
     
     [Property] var SpawnAmount : Integer = 5;
     
+    var HasSpawned : Boolean = false;
+    
     function Initialize(init : CogInitializer) {
-        if(!this.Generator.IsSpawnChunk) this.SpawnEntities();
+        Zero.Connect(Relocation.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        var chunkPos = this.Owner.Transform.WorldTranslation;
+        var playerPos = Relocation.Player.Transform.WorldTranslation;
+        
+        if(
+            !this.Generator.IsSpawnChunk &&
+            !this.HasSpawned &&
+            Relocation.Player != null &&
+            Math.Sqrt(
+                Math.Pow(chunkPos.X - playerPos.X, 2) + 
+                Math.Pow(chunkPos.Y - playerPos.Y, 2)
+            ) < 16
+        ) {
+            this.SpawnEntities();
+            this.HasSpawned = true;
+        }
+        
     }
     
     function SpawnEntities() {

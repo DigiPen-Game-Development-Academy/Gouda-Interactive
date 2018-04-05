@@ -2,8 +2,8 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "CaveFloor000",
-		uint64 ResourceId = 5a5cebb01cce03ac,
+		string Name = "SimulationTiles004",
+		uint64 ResourceId = 5a27f4a419455772,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 32,
 		uint FrameSizeY = 32,
@@ -15,6 +15,6 @@ ImageContent =
 		bool Smoothing = false,
 		bool Looping = true,
 		Vec4 Slices = [0, 0, 0, 0],
-		SpriteFill Fill = Tiled,
+		SpriteFill Fill = Stretch,
 	},
 },
