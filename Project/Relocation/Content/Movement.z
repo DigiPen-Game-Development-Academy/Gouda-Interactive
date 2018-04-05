@@ -46,9 +46,9 @@ class Movement : ZilchComponent {
             
             // CHECK IF SPRINTING
             if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-                r3Speed = Real3(this.RunSpeed * event.Dt, this.RunSpeed * event.Dt, this.RunSpeed * event.Dt);
+                r3Speed = Real3(this.RunSpeed, this.RunSpeed, this.RunSpeed) * 0.01666;
             } else {
-                r3Speed = Real3(this.Speed * event.Dt, this.Speed * event.Dt, this.Speed * event.Dt);
+                r3Speed = Real3(this.Speed, this.Speed, this.Speed) * 0.01666;
             }
             
             // MOUSE SHOOTING DIRECTION
