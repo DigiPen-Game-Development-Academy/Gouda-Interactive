@@ -394,6 +394,8 @@ class Inventory : ZilchComponent {
                     return;
                 }
                 
+            } else {
+                Console.WriteLine("Error: Item with the ID `itemID` was not added to the inventory. Invalid slot.");
             }
         } else {
             this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
@@ -433,6 +435,8 @@ class Inventory : ZilchComponent {
                     return;
                 }
                 
+            } else {
+                Console.WriteLine("Error: Item with the ID `itemID` was not added to the inventory. Invalid slot.");
             }
         } else {
             this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
