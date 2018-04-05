@@ -153,6 +153,7 @@ class WorldGenerator : ZilchComponent {
                 
                 var arch : Archetype = null;
                 
+                // BLOCKS
                 if(this.WorldMap.Get(Integer2(x, y)) == 1) {
                     arch = Archetype.BlockRock;
                 } else if(this.WorldMap.Get(Integer2(x, y)) == 2) {
@@ -175,6 +176,12 @@ class WorldGenerator : ZilchComponent {
                     arch = Archetype.BlockFloor;
                 } else if(this.WorldMap.Get(Integer2(x, y)) != 0) {
                     arch = Archetype.BlockRockIron;
+                }
+                
+                // ENTITIES
+                if(this.WorldMap.Get(Integer2(x, y)) == 0 && Random().Probability(0.025) && !this.IsSpawnChunk) {
+                    this.Owner.EntitySpawner.SpawnEntity(Real3(x - this.Width / 2, y - this.Width / 2, 1.0) + 
+                        this.Owner.Transform.WorldTranslation);
                 }
                 
                 if(arch != null) {

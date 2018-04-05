@@ -10,7 +10,7 @@ class EntitySpawner : ZilchComponent {
     var HasSpawned : Boolean = false;
     
     function Initialize(init : CogInitializer) {
-        Zero.Connect(Relocation.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        //Zero.Connect(Relocation.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
@@ -25,12 +25,16 @@ class EntitySpawner : ZilchComponent {
             Math.Sqrt(
                 Math.Pow(chunkPos.X - playerPos.X, 2) + 
                 Math.Pow(chunkPos.Y - playerPos.Y, 2)
-            ) < 16
+            ) < 16.0
         ) {
             this.SpawnEntities();
             this.HasSpawned = true;
         }
         
+    }
+    
+    function SpawnEntity(pos : Real3) {
+        Relocation.Space.CreateAtPosition(Archetype.EntityEnemy, pos);
     }
     
     function SpawnEntities() {

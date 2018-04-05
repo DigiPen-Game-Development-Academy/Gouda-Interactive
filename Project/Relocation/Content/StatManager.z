@@ -19,7 +19,7 @@ class StatManager : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
-        Console.WriteLine("Kills: `PlayerStats.Kills`\nDeaths: `PlayerStats.Deaths`\nBlocks Destroyed: `PlayerStats.BlocksDestroyed`");
+        //Console.WriteLine("Kills: `PlayerStats.Kills`\nDeaths: `PlayerStats.Deaths`\nBlocks Destroyed: `PlayerStats.BlocksDestroyed`");
     }
     
 }
