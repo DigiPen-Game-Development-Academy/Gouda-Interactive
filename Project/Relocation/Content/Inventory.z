@@ -381,7 +381,7 @@ class Inventory : ZilchComponent {
         itemID = Math.Abs(itemID);
         
         if(itemID < Relocation.Items.Count) {
-            if(slot < this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
+            if(slot <= this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
                 
                 if(PlayerData.InventoryContents[slot - 1] == 0) {
                     PlayerData.InventoryContents[slot - 1] = itemID;
