@@ -164,7 +164,7 @@ class Weapon {
             bullet.RigidBody.Velocity = velocity;
             bullet.EntityBullet.FromPlayer = true;
             bullet.EntityBullet.Damage = 0.0;
-            bullet.EntityBullet.BlockDamageAmount = 5.0;
+            bullet.EntityBullet.BlockDamageAmount = 0.75;
             bullet.EntityBullet.DrillBullet = true;
             bullet.EntityBullet.Lifetime = 0.1;
             bullet.EntityBullet.SpawnedBy = Relocation.Player;

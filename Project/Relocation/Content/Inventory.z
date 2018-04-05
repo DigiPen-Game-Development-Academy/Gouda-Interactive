@@ -381,7 +381,7 @@ class Inventory : ZilchComponent {
         itemID = Math.Abs(itemID);
         
         if(itemID < Relocation.Items.Count) {
-            if(slot < this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
+            if(slot <= this.MaxInventorySlots && slot > this.SLOT_MOUSE) {
                 
                 if(PlayerData.InventoryContents[slot - 1] == 0) {
                     PlayerData.InventoryContents[slot - 1] = itemID;
@@ -394,6 +394,8 @@ class Inventory : ZilchComponent {
                     return;
                 }
                 
+            } else {
+                Console.WriteLine("Error: Item with the ID `itemID` was not added to the inventory. Invalid slot.");
             }
         } else {
             this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
@@ -433,6 +435,8 @@ class Inventory : ZilchComponent {
                     return;
                 }
                 
+            } else {
+                Console.WriteLine("Error: Item with the ID `itemID` was not added to the inventory. Invalid slot.");
             }
         } else {
             this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.PrintToUIConsole("Error: An item with the ID \"`itemID`\" does not exist.");
