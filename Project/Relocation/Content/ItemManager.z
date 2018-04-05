@@ -41,8 +41,8 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemTitanium",                  true));
         Relocation.Items.Push(new Item("ItemPlatinumOre",               true));
         Relocation.Items.Push(new Item("ItemPlatinum",                  true));
-        Relocation.Items.Push(new Item("ItemGoudariumOre",              false));
-        Relocation.Items.Push(new Item("ItemGoudarium",                 false));
+        Relocation.Items.Push(new Item("ItemGoudariumOre",              true));
+        Relocation.Items.Push(new Item("ItemGoudarium",                 true));
         this.AddSpacerItems(4);
         Relocation.Items.Push(new Item("ItemGunTrigger",                true));
         Relocation.Items.Push(new Item("ItemGunHandle",                 true));
