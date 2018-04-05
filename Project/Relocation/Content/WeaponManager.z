@@ -51,10 +51,10 @@ class WeaponManager : ZilchComponent {
         this.WeaponGouda = new Weapon(this.Space, "Gouda", 8, true, 1.25, 15.0);
         
         // TOOLS
-        this.ToolDrillCopper = new Weapon(this.Space, "Hand", 9, false, 1.0, 0.0);
-        this.ToolDrillIron = new Weapon(this.Space, "Hand", 10, false, 0.75, 0.0);
-        this.ToolDrillTitanium = new Weapon(this.Space, "Hand", 11, false, 0.5, 0.0);
-        this.ToolDrillPlatinum = new Weapon(this.Space, "Hand", 12, false, 0.25, 0.0);
+        this.ToolDrillCopper = new Weapon(this.Space, "Hand", 9, false, 0.1, 0.0);
+        this.ToolDrillIron = new Weapon(this.Space, "Hand", 10, false, 0.075, 0.0);
+        this.ToolDrillTitanium = new Weapon(this.Space, "Hand", 11, false, 0.05, 0.0);
+        this.ToolDrillPlatinum = new Weapon(this.Space, "Hand", 12, false, 0.025, 0.0);
         
         // SET AS DRILL
         this.ToolDrillCopper.IsDrill = true;
