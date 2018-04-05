@@ -32,6 +32,8 @@ class EntityDrop : ZilchComponent {
                 
             }
             
+        } else {
+            this.ItemNames.Push(this.ItemName);
         }
         
         for(var i = 0; i < this.ItemNames.Count; ++i)

@@ -3654,6 +3654,16 @@ Level =
 			float ZIndex = 0,
 			bool HideUntilPositioned = true,
 		},
+		Reactive = 
+		{
+			bool Active = true,
+			bool CaptureMouse = false,
+		},
+		Area = 
+		{
+			Vec2 Size = [1, 1],
+			Location Origin = Center,
+		},
 	},
 	Cog = 
 	{

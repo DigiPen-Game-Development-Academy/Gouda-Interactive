@@ -340,27 +340,4 @@ Level =
 			Vec3 SpawnPosition = [21.5, -4, 0],
 		},
 	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a380a0164d081c9:EntityEnemy",
-		LinkId = 
-		{
-			uint Id = 9,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [3, 0.5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Area = 
-		{
-			Vec2 Size = [1, 1],
-			Location Origin = Center,
-		},
-		Named = 
-		{
-			string Name = "EntityEnemy",
-		},
-	},
 },
