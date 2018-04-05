@@ -3,7 +3,7 @@ ImageContent =
 	SpriteSourceBuilder = 
 	{
 		string Name = "CaveTiles003",
-		uint64 ResourceId = 5ae3e48e6241c56f,
+		uint64 ResourceId = 5a27c0bf923b13ab,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 32,
 		uint FrameSizeY = 32,

@@ -8,6 +8,10 @@ Cog =
 	{
 		string Name = "BlockRock",
 	},
+	Archetyped = 
+	{
+		string Name = "5a894e28e74a2df8:BlockRockGoudarium",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
@@ -24,7 +28,7 @@ Cog =
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5ae3e48e6241c56f:CaveTiles003",
+		string SpriteSource = "5a27c0bf9225997b:CaveTiles006",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
