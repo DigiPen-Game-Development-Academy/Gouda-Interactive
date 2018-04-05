@@ -118,7 +118,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.984315574, 1.55994141, 50.375],
+			Vec3 Translation = [-1.68879843, 1.66537786, 50.375],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -130,7 +130,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 13.533555,
+			float Size = 12.2456598,
 		},
 		EditorCameraController = 
 		{
@@ -138,7 +138,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.984315574, 1.55994141, 0.375000089],
+			Vec3 LookTarget = [-1.68879843, 1.66537786, 0.37500003],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -166,29 +166,6 @@ Level =
 		Named = 
 		{
 			string Name = "EntityPlayer",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5af2ca606a8a3ea0:EntityFrogg",
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-3.1685276, 4.23667288, 0.375],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Area = 
-		{
-			Vec2 Size = [1, 1],
-			Location Origin = Center,
-		},
-		Named = 
-		{
-			string Name = "EntityEnemy",
 		},
 	},
 },
