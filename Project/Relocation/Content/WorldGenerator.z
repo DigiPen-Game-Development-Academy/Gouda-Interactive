@@ -413,7 +413,13 @@ class WorldGenerator : ZilchComponent {
                     itemName = "ItemGoudariumOre";
                 
                 if(itemName != "") {
-                    player.Inventory.GiveItemWithAmount(Relocation.ItemManager.GetIDByName(itemName), false, 1);
+                    
+                    var positionVariance = Real3(new Random().Range(-0.35, 0.35), new Random().Range(-0.35, 0.35), 0.0);
+                    
+                    Relocation.ItemManager.DropItems(
+                        Relocation.ItemManager.GetIDByName(itemName), 1, Real3(coords.XY, -0.25) + positionVariance
+                    );
+                    
                     Relocation.NotificationManager.GiveNotification(
                         "Picked up `Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemRecognizableName`", 
                         2.5,
@@ -422,6 +428,7 @@ class WorldGenerator : ZilchComponent {
                         Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemColor,
                         Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemLoreColor
                     );
+                    
                 }
                 
             }
