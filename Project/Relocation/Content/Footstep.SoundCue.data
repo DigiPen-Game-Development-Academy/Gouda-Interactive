@@ -1,9 +1,9 @@
 SoundCue = 
 {
 	SoundPlayMode PlayMode = Single,
-	float Volume = 0.149999991,
+	float Volume = 1.5,
 	float VolumeVariation = 0,
-	float VolumeDB = -16.4781742,
+	float VolumeDB = 3.52182508,
 	bool UseVolumeDB = false,
 	float VolumeDBVariation = 0,
 	float Pitch = 0,
@@ -18,8 +18,8 @@ SoundCue =
 	Array Sounds = 
 	[
 		{
-			string SoundName = "5ac11db17a2492c2:Water_Footstep",
-			string GeneratedSoundName = "",
+			string SoundName = "5a950055b05c7776:WalkSound",
+			string GeneratedSoundName = "55017c595ef88bf0:DefaultGeneratedSound",
 			WhichSoundType WhichToUse = FromFile,
 			float Weight = 1,
 			float LoopEndTime = 0,

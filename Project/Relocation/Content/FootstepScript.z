@@ -43,7 +43,7 @@ class FootstepScript : ZilchComponent {
             }
             
             if(this.TimeTilPlaySound <= 0) {
-                Relocation.Player.SoundObject.PlayCue(SoundCue.Find("Sand"));
+                Relocation.Player.SoundObject.PlayCue(SoundCue.Find("Footstep"));
                 this.TimeTilPlaySound = currentFootstepCooldown;
             }
             

@@ -2,7 +2,7 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "WaterFootstep",
+		string Name = "Footstep",
 		uint64 ResourceId = 5ac11d161265fe7f,
 		string LoaderType = "SoundCue",
 		uint Version = 0,
