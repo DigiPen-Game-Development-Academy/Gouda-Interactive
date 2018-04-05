@@ -82,6 +82,7 @@ Cog =
 	{
 		float MaxHealth = 10,
 		bool IsInvincible = false,
+		bool NaturalRegen = false,
 	},
 	Despawner = 
 	{
@@ -123,6 +124,11 @@ Cog =
 		float Height = 0.150000006,
 		AxisDirection Direction = Y,
 		CapsuleScalingMode ScalingMode = PreserveScale,
+	},
+	EntityDrop = 
+	{
+		string ItemName = "ItemBoulder, ItemRock",
+		int Amount = 1,
 	},
 	Hierarchy = 
 	{

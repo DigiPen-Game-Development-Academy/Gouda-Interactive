@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = true,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -124,6 +124,11 @@ Cog =
 		float Straightness = 1,
 		float Speed = 3,
 		float Acceleration = 2,
+	},
+	EntityDrop = 
+	{
+		string ItemName = "ItemHealthPack",
+		int Amount = 1,
 	},
 	Hierarchy = 
 	{
