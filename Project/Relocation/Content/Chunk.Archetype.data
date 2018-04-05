@@ -20,7 +20,7 @@ Cog =
 	},
 	Sprite = 
 	{
-		bool Visible = false,
+		bool Visible = true,
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
@@ -28,7 +28,7 @@ Cog =
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5275aa4d802dd6dc:Square",
+		string SpriteSource = "5a5cebb01cce03ac:CaveFloor000",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
@@ -50,6 +50,11 @@ Cog =
 	EntitySpawner = 
 	{
 		int SpawnAmount = 5,
+	},
+	Area = 
+	{
+		Vec2 Size = [1, 1],
+		Location Origin = Center,
 	},
 	Hierarchy = 
 	{
