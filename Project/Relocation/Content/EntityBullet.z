@@ -64,8 +64,6 @@ class EntityBullet : ZilchComponent {
         
         this.CurrLifetime += event.Dt;
         
-        Console.WriteLine("Velocity: `this.Owner.RigidBody.Velocity`");
-        
         if (this.Owner.ArchetypeName == "EntityNeedle")
             this.Owner.Orientation.LookAtDirection(this.Owner.RigidBody.Velocity);
     }

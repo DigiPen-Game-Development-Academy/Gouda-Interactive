@@ -10,10 +10,13 @@ Level =
 		{
 			string Name = "LevelSettings",
 		},
-		EditorFlags = 
+		GravityEffect = 
 		{
-			bool Locked = true,
-			bool Hidden = false,
+			bool Active = true,
+			bool WakeUpOnChange = false,
+			bool LocalSpaceDirection = true,
+			float Strength = 10,
+			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
 		{
@@ -47,7 +50,7 @@ Level =
 			},
 			CogPath Camera = 
 			{
-				string Path = ":/EntityPlayer/Camera",
+				string Path = ":/Camera",
 				bool ErrorOnResolveToNull = false,
 				bool ErrorOnPathCantCompute = false,
 				bool ErrorOnDirectLinkFail = false,
@@ -88,18 +91,6 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
-		UICreator = 
-		{
-			string UILevel = "5a0b73429c761ee6:UILevel",
-			string UIArchetype = "554cea0f94af6dc4:Space",
-			bool ReloadIfSameLevel = true,
-		},
-		ItemManager = 
-		{
-		},
-		SaveLoadData = 
-		{
-		},
 	},
 	Cog = 
 	{
@@ -111,14 +102,9 @@ Level =
 		{
 			string Name = "EditorCamera",
 		},
-		EditorFlags = 
-		{
-			bool Locked = true,
-			bool Hidden = false,
-		},
 		Transform = 
 		{
-			Vec3 Translation = [-1.68879843, 1.66537786, 50.375],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -130,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 12.2456598,
+			float Size = 20,
 		},
 		EditorCameraController = 
 		{
@@ -138,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-1.68879843, 1.66537786, 0.37500003],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
