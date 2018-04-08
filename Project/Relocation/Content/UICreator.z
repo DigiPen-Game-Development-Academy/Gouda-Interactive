@@ -19,6 +19,5 @@ class UICreator : ZilchComponent {
         Relocation.UISpace = this.UISpace;
         
     }
-
     
 }
