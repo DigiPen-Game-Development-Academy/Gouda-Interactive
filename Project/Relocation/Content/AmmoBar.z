@@ -50,14 +50,14 @@ class AmmoBar : ZilchComponent {
                 this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
                     "Cooldown: `this.CurrCooldownStr.SubStringFromRuneIndices(0, 4)` / `this.MaxCooldown`",
                     "",
-                    Real4(0.0, 0.0, 1.0, 1.0),
+                    Real4(0.0, 1.0, 1.0, 1.0),
                     Real4(1.0, 0.75, 0.0, 1.0)
                 );
             } else {
                 this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
                     "Cooldown: N/A",
                     "",
-                    Real4(0.0, 0.0, 1.0, 1.0),
+                    Real4(0.0, 1.0, 1.0, 1.0),
                     Real4(1.0, 0.75, 0.0, 1.0)
                 );
             }
