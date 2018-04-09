@@ -1,0 +1,46 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+class TextShadow : ZilchComponent {
+    
+    [Property] var Offset : Real2 = Real2(0.05, -0.05);
+    
+    function Initialize(init : CogInitializer) {
+        
+        var txtShadow = this.Space.CreateAtPosition(Archetype.TextShadow, this.Owner.Transform.WorldTranslation);
+        txtShadow.AttachToRelative(this.Owner);
+        
+        this.UpdateTextProperties();
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent) {
+        
+        this.UpdateTextProperties();
+        
+    }
+    
+    function UpdateTextProperties() {
+        
+        var txtShadow = this.Owner.FindChildByName("TextShadow");
+        
+        var txtColor = Real4(0.15, 0.15, 0.15, 1.0);
+        
+        txtShadow.SpriteText.Text = this.Owner.SpriteText.Text;
+        txtShadow.SpriteText.Visible = this.Owner.SpriteText.Visible;
+        txtShadow.SpriteText.Align = this.Owner.SpriteText.Align;
+        txtShadow.SpriteText.Font = this.Owner.SpriteText.Font;
+        txtShadow.SpriteText.FontSize = this.Owner.SpriteText.FontSize;
+        txtShadow.SpriteText.Color = txtColor;
+        txtShadow.SpriteText.PixelsPerUnit = this.Owner.SpriteText.PixelsPerUnit;
+        txtShadow.SpriteText.Smoothing = this.Owner.SpriteText.Smoothing;
+        txtShadow.SpriteText.BlendMode = this.Owner.SpriteText.BlendMode;
+        
+        txtShadow.Transform.WorldTranslation = this.Owner.Transform.WorldTranslation + Real3(this.Offset, -0.0001);
+        txtShadow.Transform.Scale = this.Owner.Transform.Scale;
+        
+    }
+    
+}

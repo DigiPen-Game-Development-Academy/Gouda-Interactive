@@ -43,6 +43,9 @@ Cog =
 	},
 	InventorySlot = 
 	{
+		bool EnableHoverSprite = true,
+		string InventorySlot = "5a3802b8a850eeb2:InventorySlot",
+		string InventorySlotHover = "5aef777feb626ca2:InventorySlotHover",
 	},
 	Hierarchy = 
 	{
