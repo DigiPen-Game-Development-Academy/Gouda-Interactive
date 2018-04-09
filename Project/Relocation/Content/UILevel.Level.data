@@ -3620,10 +3620,6 @@ Level =
 			float ZIndex = 0,
 			bool HideUntilPositioned = true,
 		},
-		TextShadow = 
-		{
-			Vec2 Offset = [0.0500000007, -0.0500000007],
-		},
 	},
 	Cog = 
 	{
