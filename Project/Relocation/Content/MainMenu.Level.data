@@ -338,6 +338,10 @@ Level =
 					bool Active = true,
 					bool CaptureMouse = false,
 				},
+				TextShadow = 
+				{
+					Vec2 Offset = [0.075000003, -0.075000003],
+				},
 			},
 			Cog = 
 			{
@@ -396,6 +400,10 @@ Level =
 				{
 					bool Active = true,
 					bool CaptureMouse = false,
+				},
+				TextShadow = 
+				{
+					Vec2 Offset = [0.075000003, -0.075000003],
 				},
 			},
 			Cog = 
@@ -456,6 +464,10 @@ Level =
 					bool Active = true,
 					bool CaptureMouse = false,
 				},
+				TextShadow = 
+				{
+					Vec2 Offset = [0.075000003, -0.075000003],
+				},
 			},
 			Cog = 
 			{
@@ -514,6 +526,10 @@ Level =
 				{
 					bool Active = true,
 					bool CaptureMouse = false,
+				},
+				TextShadow = 
+				{
+					Vec2 Offset = [0.075000003, -0.075000003],
 				},
 			},
 		},

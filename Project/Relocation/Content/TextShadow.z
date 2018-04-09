@@ -25,8 +25,7 @@ class TextShadow : ZilchComponent {
     function UpdateTextProperties() {
         
         var txtShadow = this.Owner.FindChildByName("TextShadow");
-        
-        var txtColor = Real4(0.15, 0.15, 0.15, 1.0);
+        var txtColor = Real4(0.15, 0.15, 0.15, this.Owner.SpriteText.Color.W);
         
         txtShadow.SpriteText.Text = this.Owner.SpriteText.Text;
         txtShadow.SpriteText.Visible = this.Owner.SpriteText.Visible;
@@ -38,8 +37,9 @@ class TextShadow : ZilchComponent {
         txtShadow.SpriteText.Smoothing = this.Owner.SpriteText.Smoothing;
         txtShadow.SpriteText.BlendMode = this.Owner.SpriteText.BlendMode;
         
-        txtShadow.Transform.WorldTranslation = this.Owner.Transform.WorldTranslation + Real3(this.Offset, -0.0001);
-        txtShadow.Transform.Scale = this.Owner.Transform.Scale;
+        txtShadow.Transform.WorldTranslation = this.Owner.Transform.WorldTranslation + Real3(this.Offset, -0.005);
+        txtShadow.Transform.WorldScale = this.Owner.Transform.WorldScale;
+        txtShadow.Transform.Rotation = this.Owner.Transform.Rotation;
         
     }
     
