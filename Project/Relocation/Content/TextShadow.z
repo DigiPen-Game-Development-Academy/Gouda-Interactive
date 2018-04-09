@@ -3,6 +3,7 @@
 
 class TextShadow : ZilchComponent {
     
+    [Property] var Color : Real4 = Real4(0.15, 0.15, 0.15, 1.0);
     [Property] var Offset : Real2 = Real2(0.05, -0.05);
     
     function Initialize(init : CogInitializer) {
@@ -25,7 +26,7 @@ class TextShadow : ZilchComponent {
     function UpdateTextProperties() {
         
         var txtShadow = this.Owner.FindChildByName("TextShadow");
-        var txtColor = Real4(0.15, 0.15, 0.15, this.Owner.SpriteText.Color.W);
+        var txtColor = Real4(this.Color.XYZ, this.Owner.SpriteText.Color.W);
         
         txtShadow.SpriteText.Text = this.Owner.SpriteText.Text;
         txtShadow.SpriteText.Visible = this.Owner.SpriteText.Visible;
