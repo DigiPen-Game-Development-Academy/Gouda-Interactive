@@ -115,7 +115,7 @@ class Follower : ZilchComponent
   // All of our memories of the target we are following
   var Memories : Array[Real3] = new Array[Real3]();
   // Whether we have lost sight of the target we last saw
-  var LostSight : Boolean = false;
+  var LostSight : Boolean = true;
   // How long until we forget that we saw a target
   [Property] var PredictionTime : Real = 0.2;
   // The internal counter for prediction
