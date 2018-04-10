@@ -128,7 +128,7 @@ Cog =
 	},
 	EntityDrop = 
 	{
-		string ItemName = "ItemBoulder, ItemPistol",
+		string ItemName = "ItemBoulder",
 		int Amount = 1,
 	},
 	Hierarchy = 
