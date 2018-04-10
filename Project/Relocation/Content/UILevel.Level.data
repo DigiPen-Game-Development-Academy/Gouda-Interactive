@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-1.07966149, 0.179943606, 13.6266108],
+			Vec3 Translation = [-0.154095352, -0.0616381466, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -114,7 +114,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.3130112,
+			float Size = 22.3130074,
 		},
 		EditorCameraController = 
 		{
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-1.07966149, 0.179943606, -4.71935024e-08],
+			Vec3 LookTarget = [-0.154095352, -0.0616381466, -6.73572131e-09],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -3973,6 +3973,7 @@ Level =
 							bool UIAnimateEnabled = false,
 							bool ResumeButton = true,
 							bool RespawnButton = false,
+							bool LoadSaveButton = false,
 							bool ForceAnimation = false,
 							bool QuitButton = false,
 						},
@@ -4029,6 +4030,7 @@ Level =
 							bool UIAnimateEnabled = false,
 							bool ResumeButton = false,
 							bool RespawnButton = false,
+							bool LoadSaveButton = false,
 							bool ForceAnimation = true,
 							bool QuitButton = false,
 						},
@@ -4085,6 +4087,7 @@ Level =
 							bool UIAnimateEnabled = false,
 							bool ResumeButton = false,
 							bool RespawnButton = false,
+							bool LoadSaveButton = false,
 							bool ForceAnimation = false,
 							bool QuitButton = false,
 						},
@@ -4141,6 +4144,7 @@ Level =
 							bool UIAnimateEnabled = false,
 							bool ResumeButton = false,
 							bool RespawnButton = false,
+							bool LoadSaveButton = false,
 							bool ForceAnimation = false,
 							bool QuitButton = true,
 						},
@@ -5243,6 +5247,7 @@ Level =
 							bool UIAnimateEnabled = false,
 							bool ResumeButton = false,
 							bool RespawnButton = true,
+							bool LoadSaveButton = false,
 							bool ForceAnimation = false,
 							bool QuitButton = false,
 						},
@@ -5294,6 +5299,7 @@ Level =
 							bool UIAnimateEnabled = false,
 							bool ResumeButton = false,
 							bool RespawnButton = false,
+							bool LoadSaveButton = false,
 							bool ForceAnimation = false,
 							bool QuitButton = false,
 						},
@@ -5345,6 +5351,7 @@ Level =
 							bool UIAnimateEnabled = false,
 							bool ResumeButton = false,
 							bool RespawnButton = false,
+							bool LoadSaveButton = false,
 							bool ForceAnimation = false,
 							bool QuitButton = true,
 						},
@@ -5374,6 +5381,52 @@ Level =
 		Named = 
 		{
 			string Name = "Notification",
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 151,
+		},
+		Named = 
+		{
+			string Name = "ControlNotification",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 9.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = false,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 0, 0, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		ScreenAlignment = 
+		{
+			Enum PositionX = Center,
+			Enum PositionY = Top,
+			Vec2 PositionOffset = [0, -1],
+			float ZIndex = 0,
+			bool HideUntilPositioned = false,
+		},
+		Hierarchy = 
+		{
 		},
 	},
 },

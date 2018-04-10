@@ -8,12 +8,14 @@ class Notification : ZilchComponent {
     var NotificationCount : Integer = 0;
     
     var NotificationCog : Array[Cog] = null;
+    var NotificationKeyCog : Array[Cog] = null;
     
     function Initialize(init : CogInitializer) {
         
         Relocation.NotificationManager = this;
         
         this.NotificationCog = new Array[Cog]();
+        this.NotificationKeyCog = new Array[Cog]();
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -87,6 +89,36 @@ class Notification : ZilchComponent {
     
     function GiveNotification(text : String, displayTimeout : Real) {
         this.GiveNotification(text, displayTimeout, "", "", Real4(1.0), Real4(1.0));
+    }
+    
+    function DisplayKey(key : String, killExistingIcons : Boolean) {
+        
+        var controlNotification = this.Space.FindObjectByName("ControlNotification");
+        
+        foreach(var ico in this.NotificationKeyCog) {
+            if(ico != null) {
+                if(killExistingIcons) {
+                    ico.Destroy();
+                    ico = null;
+                } else {
+                    ico.Transform.WorldTranslation = Real3(ico.Transform.WorldTranslation.X - 1.0, ico.Transform.WorldTranslation.YZ);
+                }
+            }
+        }
+        
+        if(killExistingIcons) {
+            this.NotificationKeyCog.Clear();
+        }
+        
+        var icon = this.Space.CreateAtPosition(Archetype.NotificationIcon, controlNotification.Transform.WorldTranslation);
+        
+        icon.Transform.WorldTranslation += Real3(this.NotificationKeyCog.Count, 0.0, 0.0);
+        
+        icon.AttachToRelative(controlNotification);
+        icon.Children.Current.SpriteText.Text = "`key`";
+        
+        this.NotificationKeyCog.Push(icon);
+        
     }
     
     function RemoveNotification() {
