@@ -10,21 +10,6 @@ Level =
 		{
 			string Name = "LevelSettings",
 		},
-		GravityEffect = 
-		{
-			bool Active = true,
-			bool WakeUpOnChange = false,
-			bool LocalSpaceDirection = true,
-			float Strength = 10,
-			Vec3 Direction = [0, -1, 0],
-		},
-		DragEffect = 
-		{
-			bool Active = true,
-			bool WakeUpOnChange = false,
-			float Drag = 0.699999988,
-			float AngularDrag = 0.100000001,
-		},
 		CameraViewport = 
 		{
 			bool Background = true,
@@ -50,7 +35,7 @@ Level =
 			},
 			CogPath Camera = 
 			{
-				string Path = ":/Camera",
+				string Path = ":/EntityPlayer/Camera",
 				bool ErrorOnResolveToNull = false,
 				bool ErrorOnPathCantCompute = false,
 				bool ErrorOnDirectLinkFail = false,
@@ -58,7 +43,7 @@ Level =
 				bool UpdatePathOnCogChange = true,
 				bool UpdateCogOnInitialize = true,
 				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 4294967293,
+				uint ResolvedCog = 2,
 				CogPathPreference PathPreference0 = CogRelative,
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
@@ -91,12 +76,24 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		ItemManager = 
+		{
+		},
+		SaveLoadData = 
+		{
+		},
+		UICreator = 
+		{
+			string UILevel = "5a0b73429c761ee6:UILevel",
+			string UIArchetype = "554cea0f94af6dc4:Space",
+			bool ReloadIfSameLevel = true,
+		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 2,
+			uint Id = 3,
 		},
 		Named = 
 		{
@@ -104,7 +101,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [16.5021667, 10.5307941, 50],
+			Vec3 Translation = [23.0227852, 3.91661024, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +113,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 20,
+			float Size = 16.3746223,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +121,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [16.5021667, 10.5307941, 0],
+			Vec3 LookTarget = [23.0227852, 3.91661024, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -141,7 +138,7 @@ Level =
 		string Name = "5a1a8ffcc9bbe2f5:EntityPlayer",
 		LinkId = 
 		{
-			uint Id = 3,
+			uint Id = 4,
 		},
 		Transform = 
 		{
@@ -158,7 +155,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 4,
+			uint Id = 5,
 		},
 		Named = 
 		{
@@ -184,7 +181,7 @@ Level =
 		TileMap = 
 		{
 			string SourceName = "5a2723461cf8046a:Tutorial_TileMap00",
-			string PaletteName = "",
+			string PaletteName = "5ab768a14394894f:Tutorial",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
 		},
