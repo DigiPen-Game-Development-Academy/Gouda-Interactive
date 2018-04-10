@@ -180,7 +180,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 7, 1],
+			Vec3 Translation = [5, 7, 1],
 			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -204,9 +204,9 @@ Level =
 		},
 		ScreenAlignment = 
 		{
-			Enum PositionX = Center,
+			Enum PositionX = Right,
 			Enum PositionY = Top,
-			Vec2 PositionOffset = [0, -4],
+			Vec2 PositionOffset = [-14, -4],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,
 		},
@@ -215,7 +215,7 @@ Level =
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeIn",
 			float AnimationSpeed = 0.5,
-			float AnimationDelay = 0.75,
+			float AnimationDelay = 0.5,
 			float MultiAnimationDelay = 0.5,
 		},
 	},
@@ -258,7 +258,7 @@ Level =
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeIn",
 			float AnimationSpeed = 0.5,
-			float AnimationDelay = 0.25,
+			float AnimationDelay = 0,
 			float MultiAnimationDelay = 0.5,
 		},
 	},
@@ -274,15 +274,15 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [10, 1, 1],
+			Vec3 Translation = [16, 4, 1],
 			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		ScreenAlignment = 
 		{
 			Enum PositionX = Right,
-			Enum PositionY = Center,
-			Vec2 PositionOffset = [-2, 0],
+			Enum PositionY = Top,
+			Vec2 PositionOffset = [-3, -7],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,
 		},
@@ -315,7 +315,7 @@ Level =
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
-					uint FontSize = 120,
+					uint FontSize = 128,
 					string Text = "Load Save",
 					TextAlign Align = Right,
 					float PixelsPerUnit = 128,
@@ -326,7 +326,7 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 1.25,
+					float AnimationDelay = 1,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
@@ -365,7 +365,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -0.75, 0],
+					Vec3 Translation = [0, -1, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -380,7 +380,7 @@ Level =
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
-					uint FontSize = 120,
+					uint FontSize = 128,
 					string Text = "New Game",
 					TextAlign Align = Right,
 					float PixelsPerUnit = 128,
@@ -391,7 +391,7 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 1.5,
+					float AnimationDelay = 1.25,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
@@ -430,7 +430,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -1.5, 0],
+					Vec3 Translation = [0, -2, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -445,7 +445,7 @@ Level =
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
-					uint FontSize = 120,
+					uint FontSize = 128,
 					string Text = "Options",
 					TextAlign Align = Right,
 					float PixelsPerUnit = 128,
@@ -456,7 +456,7 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 1.75,
+					float AnimationDelay = 1.5,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
@@ -495,7 +495,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -2.25, 0],
+					Vec3 Translation = [0, -3, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -510,7 +510,7 @@ Level =
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
-					uint FontSize = 120,
+					uint FontSize = 128,
 					string Text = "Quit",
 					TextAlign Align = Right,
 					float PixelsPerUnit = 128,
@@ -521,7 +521,7 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 2,
+					float AnimationDelay = 1.75,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
