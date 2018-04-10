@@ -425,7 +425,7 @@ class Crafting : ZilchComponent {
         this.CraftableItems.Push(0);
         
         this.ShowItemsInCraftingMenu(this.CraftableItems, this.ScrollPosition);
-        this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, 6);
+        this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, -1);
         
         Zero.Connect(Relocation.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -446,11 +446,6 @@ class Crafting : ZilchComponent {
             this.SlotHover = -1;
         }
         
-        if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
-            Console.WriteLine("Inv: `PlayerData.InventoryContents`");
-            Console.WriteLine("Cnt: `PlayerData.InventoryContentsCount`");
-        }
-        
         this.CRSlotHover = -1;
         
     }
@@ -463,11 +458,6 @@ class Crafting : ZilchComponent {
         
         if(this.SlotHover != -1) {
             this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, this.SlotHover + (this.MaxCraftingSlots * this.ScrollPosition));
-        }
-        
-        if(Zero.Keyboard.KeyIsPressed(Keys.Two)) {
-            Console.WriteLine("Inv: `PlayerData.InventoryContents`");
-            Console.WriteLine("Cnt: `PlayerData.InventoryContentsCount`");
         }
         
     }
@@ -570,7 +560,7 @@ class Crafting : ZilchComponent {
             var craftingRIcon = Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("SlotIcon");
             var craftingRCt = Relocation.UISpace.FindObjectByName("CraftingItemRequirements`i + 1`").FindChildByName("ItemCount");
             
-            if(Relocation.Items[recipe[craftingID - 1].Recipe[i]].Sprite != SpriteSource.Circle) {
+            if(craftingID >= 0 && Relocation.Items[recipe[craftingID - 1].Recipe[i]].Sprite != SpriteSource.Circle) {
                 craftingRIcon.Sprite.Visible = true;
                 craftingRCt.SpriteText.Visible = true;
                 craftingRIcon.Sprite.SpriteSource = Relocation.Items[recipe[craftingID - 1].Recipe[i]].Sprite;
@@ -643,7 +633,7 @@ class Crafting : ZilchComponent {
     function SetScrollPosition(pos : Integer) {
         this.ScrollPosition = pos;
         this.ShowItemsInCraftingMenu(this.CraftableItems, this.ScrollPosition);
-        this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, 6);
+        this.ShowCraftingRequirements(this.CraftingRecipes, this.ScrollPosition, -1);
     }
     
 }
