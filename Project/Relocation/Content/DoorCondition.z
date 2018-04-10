@@ -1,0 +1,36 @@
+enum Condition { HasItem, EntityDeath, None }
+
+class DoorCondition : ZilchComponent
+{
+    [Property] var Condition : Condition = Condition.None;
+    [Property] var Item : String = "ItemAir";
+    [Property] var ItemAmount : Integer = 0;
+    [Property] var EntityName : String = "null";
+    var Entity : Cog = null;
+    
+    var Player : Cog = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        if (this.EntityName != "null")
+            this.Entity = this.Space.FindObjectByName(this.EntityName);
+        
+        this.Player = this.Space.FindObjectByName("EntityPlayer");
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (this.Condition == Condition.HasItem)
+        {
+            if (this.Player.Inventory.CheckForItems(Relocation.ItemManager.GetIDByName(this.Item), this.ItemAmount))
+                this.Owner.Door.UnlockDoor();
+        }
+        else if (this.Condition == Condition.EntityDeath)
+        {
+            if (this.Entity == null)
+                this.Owner.Door.UnlockDoor();
+        }
+    }
+}

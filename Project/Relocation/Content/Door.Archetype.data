@@ -6,17 +6,21 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Door",
+		string Name = "DoorOne",
+	},
+	Archetyped = 
+	{
+		string Name = "5ab68facaf05b4c6:Door",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 4, 0.5],
+		Vec3 Translation = [2.60610008, 1.54648769, 0.375],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Door = 
 	{
-		Enum DoorState = Unlocked,
+		Enum DoorState = Locked,
 		Enum DoorDir = North,
 		Enum DoorPerms = PlayerOnly,
 		bool OneWayDoor = false,
