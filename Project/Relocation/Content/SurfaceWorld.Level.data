@@ -122,7 +122,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [1.54524112, 3.21606541, 136.266266],
+			Vec3 Translation = [70.6311646, -25.0555878, 136.266266],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -134,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 30.1194572,
+			float Size = 13.5335417,
 		},
 		EditorCameraController = 
 		{
@@ -142,7 +142,7 @@ Level =
 			float LookDistance = 136.266266,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [1.54524112, 3.21606541, 0],
+			Vec3 LookTarget = [70.6311646, -25.0555878, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -856,7 +856,7 @@ Level =
 		TileMap = 
 		{
 			string SourceName = "5a3bc6a381df375a:SurfaceWorld_TileMap00",
-			string PaletteName = "5a3bc6f6b51b95f3:TileTerrain",
+			string PaletteName = "5a39edc69c28e80d:Ground",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
 		},
@@ -891,7 +891,7 @@ Level =
 		TileMap = 
 		{
 			string SourceName = "5a3bcdae49730c8a:SurfaceWorld_TileMap01",
-			string PaletteName = "5a39edc69c28e80d:Ground",
+			string PaletteName = "5a3bc6f6b51b95f3:TileTerrain",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
 		},
@@ -961,7 +961,7 @@ Level =
 		TileMap = 
 		{
 			string SourceName = "5a3bf07d320ea2b4:SurfaceWorld_TileMap02",
-			string PaletteName = "5a3bc6f6b51b95f3:TileTerrain",
+			string PaletteName = "5a39edc69c28e80d:Ground",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
 		},
