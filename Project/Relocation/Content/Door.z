@@ -1,0 +1,50 @@
+// AUTHOR: HUDSON GREEN
+// CONTRIBUTORS: N/A
+
+enum DoorState { Locked, Unlocked }
+enum DoorPermissions { Any, None, PlayerOnly, EnemyOnly }
+enum DoorDirection { North, South, East, West }
+
+class Door : ZilchComponent {
+    
+    [Property] var DoorState : DoorState = DoorState.Unlocked;
+    [Property] var DoorDir : DoorDirection = DoorDirection.North;
+    [Property] var DoorPerms : DoorPermissions = DoorPermissions.Any;
+    [Property] var OneWayDoor : Boolean = false;
+    [Property] var DebugMode : Boolean = false;
+    
+    function Initialize(init : CogInitializer) {
+        
+        this.Owner.FindChildByName("Door").BoxCollider.Ghost = this.DoorState == DoorState.Unlocked;
+        
+        Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
+        
+    }
+    
+    function OnCollisionPersisted(event : CollisionEvent) {
+        this.DoorPassthroughLogic(event);
+    }
+    
+    function DoorPassthroughLogic(event : CollisionEvent) {
+        
+        if(this.DoorState == DoorState.Unlocked) {
+            
+            var entityPerm = DoorPermissions.Any;
+            
+            if(event.OtherObject.Name == "EntityPlayer")
+                entityPerm = DoorPermissions.PlayerOnly;
+            else if(event.OtherObject.Name == "EntityEnemy")
+                entityPerm = DoorPermissions.EnemyOnly;
+            else
+                entityPerm = DoorPermissions.Any;
+            
+            if((this.DoorPerms != DoorPermissions.None && this.DoorPerms == entityPerm) || this.DoorPerms == DoorPermissions.Any)
+                this.Owner.FindChildByName("Door").BoxCollider.Ghost = true;
+            else
+                this.Owner.FindChildByName("Door").BoxCollider.Ghost = false;
+            
+        }
+        
+    }
+    
+}
