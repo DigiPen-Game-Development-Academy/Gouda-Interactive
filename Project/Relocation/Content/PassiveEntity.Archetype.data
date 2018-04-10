@@ -84,7 +84,7 @@ Cog =
 	},
 	EntityDrop = 
 	{
-		string ItemName = "ItemMinigun",
+		string ItemName = "ItemIronOre",
 		int Amount = 1,
 	},
 },
