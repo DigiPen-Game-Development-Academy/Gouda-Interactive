@@ -10,7 +10,7 @@ Cog =
 	},
 	Archetyped = 
 	{
-		string Name = "5a95393fb1342da5:EntitySimpleEnemy",
+		string Name = "5a95393fb1342da5:EntityEnemy",
 	},
 	Transform = 
 	{
@@ -94,6 +94,7 @@ Cog =
 	},
 	EntityFreezer = 
 	{
+		string EntityArchetype = "5a95393fb1342da5:EntityEnemy",
 		float FreezeDistance = 16,
 	},
 	EntityEnemy = 
@@ -107,11 +108,11 @@ Cog =
 		float HitboxLifetime = 3,
 		bool CanMove = true,
 		float SightRadius = 5,
-		string LookUp = "",
-		string LookUpRight = "",
-		string LookRight = "",
-		string LookDownRight = "",
-		string LookDown = "",
+		string LookUp = "5af4a7b332df1a45:SimpleEnemyTop",
+		string LookUpRight = "5af4a7f33b085de3:SimpleEnemyTopRight",
+		string LookRight = "5af4a405398ac924:SimpleEnemyRight",
+		string LookDownRight = "5af4a7ee3ae1c1be:SimpleEnemyDownRight",
+		string LookDown = "5af4a7a8340cd486:SimpleEnemyBottom",
 		float BulletSpeed = 10,
 	},
 	Follower = 
@@ -127,7 +128,7 @@ Cog =
 	},
 	EntityDrop = 
 	{
-		string ItemName = "ItemRock, ItemPistol",
+		string ItemName = "ItemBoulder, ItemPistol",
 		int Amount = 1,
 	},
 	Hierarchy = 
