@@ -130,6 +130,11 @@ Cog =
 		string ItemName = "ItemGreenBean",
 		int Amount = 3,
 	},
+	EntityFreezer = 
+	{
+		string EntityArchetype = "5a953bd172ce0b55:EntityOnionBoy",
+		float FreezeDistance = 16,
+	},
 	Hierarchy = 
 	{
 		Cog = 

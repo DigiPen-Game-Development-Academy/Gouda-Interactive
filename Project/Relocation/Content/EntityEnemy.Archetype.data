@@ -94,6 +94,7 @@ Cog =
 	},
 	EntityFreezer = 
 	{
+		string EntityArchetype = "5a380a0164d081c9:EntityEnemy",
 		float FreezeDistance = 16,
 	},
 	EntityEnemy = 

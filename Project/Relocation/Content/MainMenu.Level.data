@@ -302,13 +302,13 @@ Level =
 					bool VisibilityCulling = true,
 					bool VisibilityEvents = true,
 					bool CastShadows = false,
-					Vec4 Color = [0.564999998, 0.564999998, 0.564999998, 1],
+					Vec4 Color = [1, 1, 1, 1],
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 120,
-					string Text = "Load Save (Unavailable)",
+					string Text = "Load Save",
 					TextAlign Align = Center,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
@@ -323,7 +323,7 @@ Level =
 				},
 				ButtonLevelSwitcher = 
 				{
-					string Level = "5acef7f30877b413:MainMenu",
+					string Level = "5a3bc4c73a7e1106:SurfaceWorld",
 					float Delay = 2,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 1, 0.5],
@@ -340,6 +340,7 @@ Level =
 				},
 				TextShadow = 
 				{
+					Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
 					Vec2 Offset = [0.075000003, -0.075000003],
 				},
 			},
@@ -403,6 +404,7 @@ Level =
 				},
 				TextShadow = 
 				{
+					Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
 					Vec2 Offset = [0.075000003, -0.075000003],
 				},
 			},
@@ -466,6 +468,7 @@ Level =
 				},
 				TextShadow = 
 				{
+					Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
 					Vec2 Offset = [0.075000003, -0.075000003],
 				},
 			},
@@ -529,6 +532,7 @@ Level =
 				},
 				TextShadow = 
 				{
+					Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
 					Vec2 Offset = [0.075000003, -0.075000003],
 				},
 			},

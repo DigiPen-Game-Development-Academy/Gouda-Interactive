@@ -10,6 +10,7 @@ class ButtonLevelSwitcher : ZilchComponent {
     [Property] var UIAnimateEnabled : Boolean = true;
     [Property] var ResumeButton : Boolean = false;
     [Property] var RespawnButton : Boolean = false;
+    [Property] var LoadSaveButton : Boolean = false;
     [Property] var ForceAnimation : Boolean = false;
     [Property] var QuitButton : Boolean = false;
     
