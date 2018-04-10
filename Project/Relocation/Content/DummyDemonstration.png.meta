@@ -2,11 +2,11 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "Dummy",
-		uint64 ResourceId = 5af756a374755853,
+		string Name = "DummyDemonstration",
+		uint64 ResourceId = 5ab690589d534e88,
 		uint64 AtlasId = 5274cf95e4a661fd,
-		uint FrameSizeX = 96,
-		uint FrameSizeY = 96,
+		uint FrameSizeX = 0,
+		uint FrameSizeY = 0,
 		uint FrameCount = 1,
 		float FrameDelay = 0.0833333358,
 		float OriginX = 48,

@@ -101,7 +101,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [11.4884796, 3.4476552, 50],
+			Vec3 Translation = [3.14222026, 9.61249161, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -113,7 +113,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 26.9971828,
+			float Size = 18.0967598,
 		},
 		EditorCameraController = 
 		{
@@ -121,7 +121,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [11.4884796, 3.4476552, 0],
+			Vec3 LookTarget = [3.14222026, 9.61249161, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -198,7 +198,7 @@ Level =
 		},
 		Archetyped = 
 		{
-			string Name = "5a380a0164d081c9:EntityEnemy",
+			string Name = "5a95393fb1342da5:EntityEnemy",
 		},
 		Transform = 
 		{
@@ -264,6 +264,7 @@ Level =
 		},
 		EntityFreezer = 
 		{
+			string EntityArchetype = "5a95393fb1342da5:EntityEnemy",
 			float FreezeDistance = 16,
 		},
 		EntityEnemy = 
@@ -339,6 +340,76 @@ Level =
 					OrientationBases DefaultBases = ForwardYUpZ,
 				},
 			},
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Named = 
+		{
+			string Name = "DummyBad",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 17, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5ab69ea76092838e:Dummy000",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Named = 
+		{
+			string Name = "DummyDemonstration000",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-3.5, 10.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5ab690419101fc56:DummyDemonstration000",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
 		},
 	},
 },
