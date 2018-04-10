@@ -14,13 +14,13 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-1.55000007, 1.25, 0],
+		Vec3 Translation = [-1.32500005, 1.25, 0],
 		Vec3 Scale = [0.75, 0.75, 0.75],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	SpriteText = 
 	{
-		bool Visible = true,
+		bool Visible = false,
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
