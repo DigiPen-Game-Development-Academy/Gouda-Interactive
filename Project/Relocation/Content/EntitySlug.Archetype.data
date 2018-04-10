@@ -97,10 +97,6 @@ Cog =
 		bool IsInvincible = false,
 		bool NaturalRegen = false,
 	},
-	Despawner = 
-	{
-		float DistanceFromPlayer = 75,
-	},
 	SoundEmitter = 
 	{
 		float Volume = 1.99526238,

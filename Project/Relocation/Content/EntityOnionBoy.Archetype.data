@@ -97,10 +97,6 @@ Cog =
 		bool IsInvincible = false,
 		bool NaturalRegen = false,
 	},
-	Despawner = 
-	{
-		float DistanceFromPlayer = 75,
-	},
 	SoundEmitter = 
 	{
 		float Volume = 1.99526238,
@@ -128,7 +124,7 @@ Cog =
 	EntityDrop = 
 	{
 		string ItemName = "ItemGreenBean",
-		int Amount = 3,
+		int Amount = 1,
 	},
 	EntityFreezer = 
 	{
