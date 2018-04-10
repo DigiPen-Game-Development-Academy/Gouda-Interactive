@@ -10,7 +10,7 @@ Cog =
 	},
 	Archetyped = 
 	{
-		string Name = "5a380a0164d081c9:EntityEnemy",
+		string Name = "5a95393fb1342da5:EntitySimpleEnemy",
 	},
 	Transform = 
 	{
@@ -94,7 +94,6 @@ Cog =
 	},
 	EntityFreezer = 
 	{
-		string EntityArchetype = "5a380a0164d081c9:EntityEnemy",
 		float FreezeDistance = 16,
 	},
 	EntityEnemy = 
@@ -126,6 +125,11 @@ Cog =
 		float Speed = 3,
 		float Acceleration = 2,
 	},
+	EntityDrop = 
+	{
+		string ItemName = "ItemRock, ItemPistol",
+		int Amount = 1,
+	},
 	Hierarchy = 
 	{
 		Cog = 
@@ -150,7 +154,7 @@ Cog =
 				bool VisibilityCulling = true,
 				bool VisibilityEvents = true,
 				bool CastShadows = false,
-				Vec4 Color = [0.410000026, 0.410000026, 0.410000026, 1],
+				Vec4 Color = [1, 1, 1, 1],
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",

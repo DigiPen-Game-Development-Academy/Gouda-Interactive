@@ -274,9 +274,17 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 1],
+			Vec3 Translation = [10, 1, 1],
 			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
+		},
+		ScreenAlignment = 
+		{
+			Enum PositionX = Right,
+			Enum PositionY = Center,
+			Vec2 PositionOffset = [-2, 0],
+			float ZIndex = 0,
+			bool HideUntilPositioned = false,
 		},
 		Hierarchy = 
 		{
@@ -292,7 +300,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, 0.75, 0],
+					Vec3 Translation = [0, 0, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -309,7 +317,7 @@ Level =
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 120,
 					string Text = "Load Save",
-					TextAlign Align = Center,
+					TextAlign Align = Right,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
@@ -357,7 +365,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, 0, 0],
+					Vec3 Translation = [0, -0.75, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -374,7 +382,7 @@ Level =
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 120,
 					string Text = "New Game",
-					TextAlign Align = Center,
+					TextAlign Align = Right,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
@@ -422,7 +430,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -0.75, 0],
+					Vec3 Translation = [0, -1.5, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -439,7 +447,7 @@ Level =
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 120,
 					string Text = "Options",
-					TextAlign Align = Center,
+					TextAlign Align = Right,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
@@ -487,7 +495,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -1.5, 0],
+					Vec3 Translation = [0, -2.25, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -504,7 +512,7 @@ Level =
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 120,
 					string Text = "Quit",
-					TextAlign Align = Center,
+					TextAlign Align = Right,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
