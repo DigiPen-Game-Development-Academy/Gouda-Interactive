@@ -34,7 +34,17 @@ class EntitySpawner : ZilchComponent {
     }
     
     function SpawnEntity(pos : Real3) {
-        Relocation.Space.CreateAtPosition(Archetype.EntityEnemy, pos);
+        
+        var rand = Random();
+        var spawnChance = rand.Range(0, 100);
+        
+        if(spawnChance >= 0 && spawnChance < 50)
+            Relocation.Space.CreateAtPosition(Archetype.EntityEnemy, pos);
+        else if(spawnChance >= 50 && spawnChance < 75)
+            Relocation.Space.CreateAtPosition(Archetype.EntityFrogg, pos);
+        else if(spawnChance >= 75 && spawnChance < 100)
+            Relocation.Space.CreateAtPosition(Archetype.EntityOnionBoy, pos);
+        
     }
     
     function SpawnEntities() {
