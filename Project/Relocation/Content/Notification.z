@@ -106,9 +106,8 @@ class Notification : ZilchComponent {
             }
         }
         
-        if(killExistingIcons) {
+        if(killExistingIcons)
             this.NotificationKeyCog.Clear();
-        }
         
         var icon = this.Space.CreateAtPosition(Archetype.NotificationIcon, controlNotification.Transform.WorldTranslation);
         

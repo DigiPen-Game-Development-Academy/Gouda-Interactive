@@ -1,0 +1,11 @@
+AudioContent = 
+{
+	SoundBuilder = 
+	{
+		string Name = "OverworldRelocation",
+		uint64 ResourceId = 5ab6b0e2558cb54d,
+		bool Compressed = false,
+		bool Streamed = false,
+		SoundLoadType LoadType = Decompress,
+	},
+},

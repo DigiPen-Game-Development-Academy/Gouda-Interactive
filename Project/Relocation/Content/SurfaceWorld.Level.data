@@ -122,7 +122,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [70.6311646, -25.0555878, 136.266266],
+			Vec3 Translation = [29.613884, 21.6927586, 136.266266],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -134,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 13.5335417,
+			float Size = 100,
 		},
 		EditorCameraController = 
 		{
@@ -142,7 +142,7 @@ Level =
 			float LookDistance = 136.266266,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [70.6311646, -25.0555878, 0],
+			Vec3 LookTarget = [29.613884, 21.6927586, -1.79292215e-06],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -181,7 +181,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [17.9995804, 0.240896463, 0],
+			Vec3 Translation = [18, 0.25, 0],
 			Vec3 Scale = [2, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -206,7 +206,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [26.5, 8, 0],
+			Vec3 Translation = [27.75, 8, 0],
 			Vec3 Scale = [2, 2, 1],
 			Quat Rotation = [0, 0, 0.707106829, 0.707106829],
 		},
@@ -308,7 +308,7 @@ Level =
 					bool Mode2D = true,
 					bool AllowSleep = true,
 					bool Inherit2DMode = true,
-					Vec3 Velocity = [1656.25, -125.000053, 249.999985],
+					Vec3 Velocity = [78.1249924, 0, 0],
 					Vec3 AngularVelocity = [0, 0, 0],
 				},
 				MeshCollider = 
@@ -447,7 +447,7 @@ Level =
 					bool Mode2D = true,
 					bool AllowSleep = true,
 					bool Inherit2DMode = true,
-					Vec3 Velocity = [1812.5, -93.7500534, 124.999992],
+					Vec3 Velocity = [78.1249924, 0, 0],
 					Vec3 AngularVelocity = [0, 0, 0],
 				},
 				MeshCollider = 
@@ -586,7 +586,7 @@ Level =
 					bool Mode2D = true,
 					bool AllowSleep = true,
 					bool Inherit2DMode = true,
-					Vec3 Velocity = [1499.99988, -93.7500534, 124.999992],
+					Vec3 Velocity = [78.1249924, 0, 0],
 					Vec3 AngularVelocity = [0, 0, 0],
 				},
 				MeshCollider = 
@@ -904,6 +904,41 @@ Level =
 		},
 		Named = 
 		{
+			string Name = "BiomeRoad",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		MultiSprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		},
+		TileMap = 
+		{
+			string SourceName = "5ab6ac0090e53b9c:SurfaceWorld_TileMap06",
+			string PaletteName = "5ade647506204ce3:RoadTile",
+			float UnitsPerTile = 1,
+			float MeshThickness = 1.20000005,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 20,
+		},
+		Named = 
+		{
 			string Name = "BiomeGrass",
 		},
 		Transform = 
@@ -935,7 +970,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 20,
+			uint Id = 21,
 		},
 		Named = 
 		{
@@ -961,7 +996,7 @@ Level =
 		TileMap = 
 		{
 			string SourceName = "5a3bf07d320ea2b4:SurfaceWorld_TileMap02",
-			string PaletteName = "5a39edc69c28e80d:Ground",
+			string PaletteName = "5a3bc6f6b51b95f3:TileTerrain",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
 		},
@@ -983,7 +1018,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 21,
+			uint Id = 22,
 		},
 		Named = 
 		{
@@ -1038,7 +1073,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 22,
+					uint Id = 23,
 				},
 				Named = 
 				{
@@ -1073,7 +1108,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 23,
+					uint Id = 24,
 				},
 				Named = 
 				{
@@ -1111,11 +1146,11 @@ Level =
 		string Name = "5ac2f985abfc1c64:BuildingShop",
 		LinkId = 
 		{
-			uint Id = 24,
+			uint Id = 25,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [5, 6, 1],
+			Vec3 Translation = [5.75, 6.5, 1],
 			Vec3 Scale = [1.5, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1128,7 +1163,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 25,
+			uint Id = 26,
 		},
 		Named = 
 		{
@@ -1147,29 +1182,11 @@ Level =
 				string Name = "5a3bcb07ddecc85a:BuildingHut",
 				LinkId = 
 				{
-					uint Id = 26,
-				},
-				Transform = 
-				{
-					Vec3 Translation = [-0.25, -1.3987546, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Named = 
-				{
-					string Name = "BuildingHut",
-				},
-			},
-			ArchetypeInstance = 
-			{
-				string Name = "5a3bcb07ddecc85a:BuildingHut",
-				LinkId = 
-				{
 					uint Id = 27,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-0.236288071, -8.33018875, 0],
+					Vec3 Translation = [-0.25, -0.5, 0],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -1187,7 +1204,25 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-0.25, -15.2341957, 0],
+					Vec3 Translation = [-0.25, -7.5, 0],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Named = 
+				{
+					string Name = "BuildingHut",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a3bcb07ddecc85a:BuildingHut",
+				LinkId = 
+				{
+					uint Id = 29,
+				},
+				Transform = 
+				{
+					Vec3 Translation = [-0.25, -14.5, 0],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -1201,11 +1236,11 @@ Level =
 				string Name = "5adf4de3a07acbd6:BuildingHutPlayer",
 				LinkId = 
 				{
-					uint Id = 29,
+					uint Id = 30,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [8.81669235, -1.30964518, 0],
+					Vec3 Translation = [8.75, -0.5, 0],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -1220,7 +1255,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 30,
+			uint Id = 31,
 		},
 		Named = 
 		{
@@ -1232,7 +1267,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [6.49532318, -3.91973877, 0],
+			Vec3 Translation = [6.75, -4, 0],
 			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1287,7 +1322,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 31,
+			uint Id = 32,
 		},
 		Transform = 
 		{
@@ -1310,7 +1345,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 32,
+			uint Id = 33,
 		},
 		Transform = 
 		{
@@ -1333,7 +1368,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 33,
+			uint Id = 34,
 		},
 		Transform = 
 		{
@@ -1356,7 +1391,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 34,
+			uint Id = 35,
 		},
 		Transform = 
 		{
@@ -1379,7 +1414,7 @@ Level =
 		string Name = "5ac2e17cbc76d5e3:WorldBorder",
 		LinkId = 
 		{
-			uint Id = 35,
+			uint Id = 36,
 		},
 		Transform = 
 		{
