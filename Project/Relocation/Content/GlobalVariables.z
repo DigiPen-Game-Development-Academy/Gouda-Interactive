@@ -27,6 +27,7 @@ class Relocation {
     [Static] var InventoryOpen : Boolean = false;
     [Static] var TeleportTriggered : Boolean = false;
     [Static] var FillAmmoOnLoad : Boolean = true;
+    [Static] var ShouldLoadLevel : Boolean = false;
     
     [Static] var CursorType : String = "Default";
     

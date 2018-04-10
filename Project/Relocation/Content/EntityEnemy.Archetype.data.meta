@@ -3,7 +3,7 @@ DataContent =
 	DataBuilder = 
 	{
 		string Name = "EntityEnemy",
-		uint64 ResourceId = 5a380a0164d081c9,
+		uint64 ResourceId = 5a95393fb1342da5,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,

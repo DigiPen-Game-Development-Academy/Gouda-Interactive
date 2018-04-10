@@ -3,6 +3,7 @@
 
 class EntityFreezer : ZilchComponent {
     
+    [Property] var EntityArchetype : Archetype = Archetype.EntityEnemy;
     [Property] var FreezeDistance : Real = 16.0;
     
     function Initialize(init : CogInitializer) {
@@ -22,6 +23,7 @@ class EntityFreezer : ZilchComponent {
             ) > this.FreezeDistance) {
                 var entity = this.Space.CreateAtPosition(Archetype.EntityFrozen, entityPos);
                 entity.EntityFrozen.Health = this.Owner.Health.CurrentHealth;
+                entity.EntityFrozen.EntityArchetype = this.EntityArchetype;
                 this.Owner.Destroy();
             }
             

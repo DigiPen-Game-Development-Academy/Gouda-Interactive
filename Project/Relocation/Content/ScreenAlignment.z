@@ -9,6 +9,7 @@ enum AlignmentPositionX {
 
 enum AlignmentPositionY {
     Top,
+    Center,
     Bottom
 }
 
@@ -55,6 +56,8 @@ class ScreenAlignment : ZilchComponent {
             this.Pos = Real2(this.Pos.X, 0);
         } else if(this.PositionY == AlignmentPositionY.Bottom) {
             this.Pos = Real2(this.Pos.X, screenRes.Y);
+        } else if(this.PositionY == AlignmentPositionY.Center) {
+            this.Pos = Real2(this.Pos.X, screenRes.Y / 2);
         }
         
         this.Pos = screen.CameraViewport.ViewportToScreen(this.Pos);
