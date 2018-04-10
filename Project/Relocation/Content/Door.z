@@ -47,4 +47,8 @@ class Door : ZilchComponent {
         
     }
     
+    function UnlockDoor() {
+        this.DoorState = DoorState.Unlocked;
+    }
+    
 }
