@@ -57,7 +57,7 @@ class PlayerProperties : ZilchComponent {
             
             Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
             
-            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            if(Zero.Keyboard.KeyIsDown(Keys.Control)) {
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
                     "`this.PlayerName`",
                     "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
@@ -66,7 +66,7 @@ class PlayerProperties : ZilchComponent {
                 );
             } else {
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                    "`this.PlayerName` (Shift)",
+                    "`this.PlayerName` (Ctrl)",
                     "",
                     Real4(0.0, 1.0, 0.0, 1.0),
                     Real4(1.0)

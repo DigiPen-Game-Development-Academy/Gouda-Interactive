@@ -35,7 +35,7 @@ class EntityRocket : ZilchComponent {
                 
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
                 
-                if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                if(Zero.Keyboard.KeyIsDown(Keys.Control)) {
                     Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
                         "Big \"Rover\"",
                         "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
@@ -44,7 +44,7 @@ class EntityRocket : ZilchComponent {
                     );
                 } else {
                     Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                        "Big \"Rover\" (Shift)",
+                        "Big \"Rover\" (Ctrl)",
                         "R to Enter",
                         Real4(0.0, 1.0, 0.0, 1.0),
                         Real4(1.0)
