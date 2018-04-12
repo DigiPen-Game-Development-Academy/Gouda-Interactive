@@ -34,7 +34,7 @@ class EntityRover : ZilchComponent {
             
             Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
             
-            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            if(Zero.Keyboard.KeyIsDown(Keys.Control)) {
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
                     "Rover",
                     "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
@@ -43,7 +43,7 @@ class EntityRover : ZilchComponent {
                 );
             } else {
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                    "Rover (Shift)",
+                    "Rover (Ctrl)",
                     "R to Enter",
                     Real4(0.0, 1.0, 0.0, 1.0),
                     Real4(1.0)
