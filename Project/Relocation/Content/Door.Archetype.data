@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [22, 8, 0],
+		Vec3 Translation = [5.5, 14, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -25,6 +25,7 @@ Cog =
 		Enum DoorPerms = PlayerOnly,
 		bool OneWayDoor = false,
 		bool DebugMode = false,
+		int EndOfAnimationFrame = 6,
 	},
 	BoxCollider = 
 	{
@@ -38,11 +39,11 @@ Cog =
 	},
 	DoorCondition = 
 	{
-		Enum Condition = HasItem,
+		Enum Condition = EntityDeath,
 		string Item = "ItemCopper",
 		int ItemAmount = 1,
 		Enum FindMode = FindByName,
-		string EntityName = "null",
+		string EntityName = "Target",
 		CogPath EntityPath = 
 		{
 			string Path = "",
@@ -87,11 +88,11 @@ Cog =
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "5275aa4d802dd6dc:Square",
+				string SpriteSource = "5a9cc3790421529b:DoorVertical",
 				bool RenderMask = false,
 				bool FlipX = false,
 				bool FlipY = false,
-				bool AnimationActive = true,
+				bool AnimationActive = false,
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
 			},
