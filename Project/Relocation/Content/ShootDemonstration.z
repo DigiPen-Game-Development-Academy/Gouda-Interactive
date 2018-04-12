@@ -6,6 +6,9 @@ class ShootDemonstration : ZilchComponent
     [Property]
     var SpawnTime : Real = 2.0;
     
+    [Property]
+    var BulletSpeed : Real = 10;
+    
     var TimeSinceLastSpawn : Real = 0.0;
     
     function Initialize(init : CogInitializer)
@@ -21,7 +24,8 @@ class ShootDemonstration : ZilchComponent
         {
             var spawnPosition = this.Owner.Transform.Translation;
         
-            this.Space.CreateAtPosition(this.WhatToSpawn, spawnPosition);
+            var bullet = this.Space.CreateAtPosition(this.WhatToSpawn, spawnPosition);
+            bullet.RigidBody.Velocity = Real3(0, this.BulletSpeed, 0);
             
             this.TimeSinceLastSpawn = 0.0;
         }
