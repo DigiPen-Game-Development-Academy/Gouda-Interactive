@@ -8,6 +8,10 @@ Cog =
 	{
 		string Name = "TextShadow",
 	},
+	Archetyped = 
+	{
+		string Name = "5a87e8255de344dd:TextShadow",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],

@@ -13,7 +13,7 @@ class Inventory : ZilchComponent {
     
     var InventoryOpen : Boolean = false;
     var InventoryOpenFirst : Boolean = false;
-    var CraftingOpen : Boolean = true;
+    var CraftingOpen : Boolean = false;
     var RightButtonDown : Boolean = false;
     
     var MaxInventorySlots : Integer = 21;
@@ -43,9 +43,9 @@ class Inventory : ZilchComponent {
                 PlayerData.InventoryContentsCount.Push(0);
             }
             
-        } else {
-            this.RefreshInventoryIcons();
         }
+        
+        this.RefreshInventoryIcons();
         
         Zero.Connect(this.UISpace, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(Zero.Keyboard, Events.KeyUp, this.OpenCloseInventory);
