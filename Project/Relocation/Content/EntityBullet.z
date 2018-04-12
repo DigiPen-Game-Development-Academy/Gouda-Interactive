@@ -32,6 +32,17 @@ class EntityBullet : ZilchComponent {
             
         } else if(event.OtherObject.Name == this.Owner.Name && !this.DrillBullet) {
             
+        } else if(event.OtherObject.TutorialBlock != null) {
+            
+            if (!this.DrillBullet) event.OtherObject.TutorialBlock.BlockHealth -= this.Damage;
+            else event.OtherObject.TutorialBlock.BlockHealth -= 0.5;
+            
+            event.OtherObject.TutorialBlock.UpdateDamageSprite();
+            
+            this.Space.CreateAtPosition(Archetype.ParticleBlockBreak, this.Owner.Transform.Translation);
+            
+            this.Owner.Destroy();
+            
         } else if(this.FromPlayer && event.OtherObject.Name == "BlockRock") {
             
             if(event.OtherObject.Parent != null)

@@ -94,6 +94,8 @@ class Notification : ZilchComponent {
     function DisplayKey(key : String, killExistingIcons : Boolean) {
         
         var controlNotification = this.Space.FindObjectByName("ControlNotification");
+        var spacing = 0.75;
+        var i = 0.0;
         
         foreach(var ico in this.NotificationKeyCog) {
             if(ico != null) {
@@ -101,22 +103,38 @@ class Notification : ZilchComponent {
                     ico.Destroy();
                     ico = null;
                 } else {
-                    ico.Transform.WorldTranslation = Real3(ico.Transform.WorldTranslation.X - 1.0, ico.Transform.WorldTranslation.YZ);
+                    ico.Transform.WorldTranslation = Real3(ico.Transform.WorldTranslation.X - spacing, ico.Transform.WorldTranslation.YZ);
                 }
+                i += spacing;
             }
         }
         
-        if(killExistingIcons)
+        if(killExistingIcons) {
             this.NotificationKeyCog.Clear();
+            i = 0;
+        }
         
         var icon = this.Space.CreateAtPosition(Archetype.NotificationIcon, controlNotification.Transform.WorldTranslation);
         
-        icon.Transform.WorldTranslation += Real3(this.NotificationKeyCog.Count, 0.0, 0.0);
+        icon.Transform.WorldTranslation += Real3(i, 0.0, 0.0);
         
         icon.AttachToRelative(controlNotification);
         icon.Children.Current.SpriteText.Text = "`key`";
         
         this.NotificationKeyCog.Push(icon);
+        
+    }
+    
+    function DisplayKeySuffix(str : String) {
+        
+        var controlNotification = this.Space.FindObjectByName("ControlNotification");
+        
+        if(controlNotification.FindChildByName("ControlSuffix") != null) {
+            controlNotification.FindChildByName("ControlSuffix").SpriteText.Text = str;
+        } else {
+            var txt = this.Space.CreateAtPosition(Archetype.ControlSuffix, this.Owner.Transform.WorldTranslation);
+            txt.AttachToRelative(controlNotification);
+        }
         
     }
     

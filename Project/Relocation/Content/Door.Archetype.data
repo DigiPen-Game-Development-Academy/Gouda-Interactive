@@ -6,7 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "DoorOne",
+		string Name = "Door",
 	},
 	Archetyped = 
 	{
@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [2.60610008, 1.54648769, 0.375],
+		Vec3 Translation = [22, 8, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -35,6 +35,29 @@ Cog =
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [1, 1, 1],
+	},
+	DoorCondition = 
+	{
+		Enum Condition = HasItem,
+		string Item = "ItemCopper",
+		int ItemAmount = 1,
+		Enum FindMode = FindByName,
+		string EntityName = "null",
+		CogPath EntityPath = 
+		{
+			string Path = "",
+			bool ErrorOnResolveToNull = false,
+			bool ErrorOnPathCantCompute = false,
+			bool ErrorOnDirectLinkFail = false,
+			bool UpdateCogOnPathChange = true,
+			bool UpdatePathOnCogChange = true,
+			bool UpdateCogOnInitialize = true,
+			bool ResolvedNullErrorOccurred = false,
+			uint ResolvedCog = 4294967293,
+			CogPathPreference PathPreference0 = CogRelative,
+			CogPathPreference PathPreference1 = SpaceRelative,
+			CogPathPreference PathPreference2 = Absolute,
+		},
 	},
 	Hierarchy = 
 	{

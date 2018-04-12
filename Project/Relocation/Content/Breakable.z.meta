@@ -1,8 +1,0 @@
-TextContent = 
-{
-	ZilchScriptBuilder = 
-	{
-		string Name = "Breakable",
-		uint64 ResourceId = 5a2b94d1dfdbbddc,
-	},
-},
