@@ -96,6 +96,7 @@ Cog =
 		float MaxHealth = 10,
 		bool IsInvincible = false,
 		bool NaturalRegen = false,
+		Vec4 DamagedColor = [1, 0.498039275, 0.498039246, 1],
 	},
 	SoundEmitter = 
 	{

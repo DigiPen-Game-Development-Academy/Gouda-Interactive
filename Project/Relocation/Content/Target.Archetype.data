@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [1.17576432, 14.6195679, -5.37518304e-07],
+		Vec3 Translation = [0, 17, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -38,9 +38,10 @@ Cog =
 	},
 	Health = 
 	{
-		float MaxHealth = 10,
+		float MaxHealth = 5,
 		bool IsInvincible = false,
 		bool NaturalRegen = false,
+		Vec4 DamagedColor = [1, 0.498039275, 0.498039246, 1],
 	},
 	SphereCollider = 
 	{
