@@ -34,8 +34,10 @@ class EntityBullet : ZilchComponent {
             
         } else if(event.OtherObject.TutorialBlock != null) {
             
-            if (!this.DrillBullet) event.OtherObject.TutorialBlock.BlockHealth -= this.Damage;
-            else event.OtherObject.TutorialBlock.BlockHealth -= 0.5;
+            if(!this.DrillBullet)
+                event.OtherObject.TutorialBlock.BlockHealth -= this.Damage;
+            else
+                event.OtherObject.TutorialBlock.BlockHealth -= 0.5;
             
             event.OtherObject.TutorialBlock.UpdateDamageSprite();
             
