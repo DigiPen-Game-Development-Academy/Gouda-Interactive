@@ -1,19 +1,32 @@
+// AUTHOR: MYLES BUSIG
+// CONTRIBUTORS: N/A
+
 enum Condition { HasItem, EntityDeath, None }
+enum FindMode { FindByName, FindByCogPath }
 
 class DoorCondition : ZilchComponent
 {
+    var WriteEntity : Boolean = false;
+    
     [Property] var Condition : Condition = Condition.None;
     [Property] var Item : String = "ItemAir";
     [Property] var ItemAmount : Integer = 0;
+    [Property] var FindMode : FindMode = FindMode.FindByName;
     [Property] var EntityName : String = "null";
+    [Property] var EntityPath : CogPath = null;
     var Entity : Cog = null;
     
     var Player : Cog = null;
     
     function Initialize(init : CogInitializer)
     {
-        if (this.EntityName != "null")
-            this.Entity = this.Space.FindObjectByName(this.EntityName);
+        if (this.Condition == Condition.EntityDeath)
+        {
+            if (this.FindMode == FindMode.FindByName)
+                this.Entity = this.Space.FindObjectByName(this.EntityName);
+            else if (this.FindMode == FindMode.FindByCogPath)
+                this.Entity = this.EntityPath.Cog;
+        }
         
         this.Player = this.Space.FindObjectByName("EntityPlayer");
         
@@ -22,6 +35,9 @@ class DoorCondition : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if (this.WriteEntity == true)
+            Console.WriteLine("Entity: `this.Entity`");
+        
         if (this.Condition == Condition.HasItem)
         {
             if (this.Player.Inventory.CheckForItems(Relocation.ItemManager.GetIDByName(this.Item), this.ItemAmount))
