@@ -109,6 +109,9 @@ Level =
 		{
 			bool RenderDayNightCycle = true,
 		},
+		Tutorial = 
+		{
+		},
 	},
 	Cog = 
 	{
