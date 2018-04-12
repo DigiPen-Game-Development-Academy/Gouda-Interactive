@@ -308,7 +308,7 @@ Level =
 					bool Mode2D = true,
 					bool AllowSleep = true,
 					bool Inherit2DMode = true,
-					Vec3 Velocity = [78.1249924, 0, 0],
+					Vec3 Velocity = [1734.375, -125.000053, 249.999985],
 					Vec3 AngularVelocity = [0, 0, 0],
 				},
 				MeshCollider = 
@@ -447,7 +447,7 @@ Level =
 					bool Mode2D = true,
 					bool AllowSleep = true,
 					bool Inherit2DMode = true,
-					Vec3 Velocity = [78.1249924, 0, 0],
+					Vec3 Velocity = [1890.625, -93.7500534, 124.999992],
 					Vec3 AngularVelocity = [0, 0, 0],
 				},
 				MeshCollider = 
@@ -586,7 +586,7 @@ Level =
 					bool Mode2D = true,
 					bool AllowSleep = true,
 					bool Inherit2DMode = true,
-					Vec3 Velocity = [78.1249924, 0, 0],
+					Vec3 Velocity = [1578.12488, -93.7500534, 124.999992],
 					Vec3 AngularVelocity = [0, 0, 0],
 				},
 				MeshCollider = 
@@ -908,7 +908,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 0],
+			Vec3 Translation = [0, 0, -0.5],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
