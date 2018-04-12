@@ -130,7 +130,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 12.2456598,
+			float Size = 13.5335455,
 		},
 		EditorCameraController = 
 		{
@@ -166,24 +166,6 @@ Level =
 		Named = 
 		{
 			string Name = "EntityPlayer",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "5a9dc0631237b6dc:BlockRockGoldTutorial",
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-4.24493027, 1.54648769, 0.375],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "BlockRockTutorial",
 		},
 	},
 },
