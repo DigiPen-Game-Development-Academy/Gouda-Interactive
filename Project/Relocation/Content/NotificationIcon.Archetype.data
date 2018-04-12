@@ -36,6 +36,11 @@ Cog =
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
+	Area = 
+	{
+		Vec2 Size = [1, 1],
+		Location Origin = Center,
+	},
 	Hierarchy = 
 	{
 		Cog = 

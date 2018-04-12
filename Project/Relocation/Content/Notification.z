@@ -91,7 +91,35 @@ class Notification : ZilchComponent {
         this.GiveNotification(text, displayTimeout, "", "", Real4(1.0), Real4(1.0));
     }
     
-    function DisplayKey(key : String, killExistingIcons : Boolean) {
+    function DisplayMouseButton(btn : MouseButtons, showBtnPress : Boolean, killExistingIcons : Boolean) {
+        
+        var icon = this.DisplayControl_("`btn`", killExistingIcons);
+        
+        if(Zero.Mouse.IsButtonDown(btn) && showBtnPress) {
+            icon.Sprite.Color = Real4(1.0);
+            icon.Children.Current.SpriteText.Color = Real4(Real3(0.5), 1.0);
+        } else {
+            icon.Sprite.Color = Real4(Real3(0.5), 1.0);
+            icon.Children.Current.SpriteText.Color = Real4(1.0);
+        }
+        
+    }
+    
+    function DisplayKey(key : Keys, showKeyPress : Boolean, killExistingIcons : Boolean) {
+        
+        var icon = this.DisplayControl_("`key`", killExistingIcons);
+        
+        if(Zero.Keyboard.KeyIsDown(key) && showKeyPress) {
+            icon.Sprite.Color = Real4(1.0);
+            icon.Children.Current.SpriteText.Color = Real4(Real3(0.5), 1.0);
+        } else {
+            icon.Sprite.Color = Real4(Real3(0.5), 1.0);
+            icon.Children.Current.SpriteText.Color = Real4(1.0);
+        }
+        
+    }
+    
+    function DisplayControl_(ctrl : String, killExistingIcons : Boolean) : Cog {
         
         var controlNotification = this.Space.FindObjectByName("ControlNotification");
         var spacing = 0.75;
@@ -111,17 +139,20 @@ class Notification : ZilchComponent {
         
         if(killExistingIcons) {
             this.NotificationKeyCog.Clear();
-            i = 0;
+            i = 0.0;
         }
         
         var icon = this.Space.CreateAtPosition(Archetype.NotificationIcon, controlNotification.Transform.WorldTranslation);
         
-        icon.Transform.WorldTranslation += Real3(i, 0.0, 0.0);
+        icon.Children.Current.SpriteText.Text = "`ctrl`";
         
+        icon.Transform.WorldTranslation += Real3(i, 0.0, 0.0);
+        icon.Area.Size = Real2(icon.Children.Current.SpriteText.Text.Count, 1.0);
         icon.AttachToRelative(controlNotification);
-        icon.Children.Current.SpriteText.Text = "`key`";
         
         this.NotificationKeyCog.Push(icon);
+        
+        return icon;
         
     }
     
@@ -140,6 +171,24 @@ class Notification : ZilchComponent {
     
     function RemoveNotification() {
         --this.NotificationCount;
+    }
+    
+    function RemoveControlTip(removeSuffix : Boolean) {
+        
+        var controlNotification = this.Space.FindObjectByName("ControlNotification");
+        
+        foreach(var ico in this.NotificationKeyCog) {
+            if(ico != null) {
+                ico.Destroy();
+                ico = null;
+            }
+        }
+        
+        if(controlNotification.FindChildByName("ControlSuffix") != null && removeSuffix)
+            controlNotification.FindChildByName("ControlSuffix").Destroy();
+        
+        this.NotificationCog.Clear();
+        
     }
     
 }

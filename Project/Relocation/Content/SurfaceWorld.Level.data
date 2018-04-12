@@ -122,7 +122,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [29.613884, 21.6927586, 136.266266],
+			Vec3 Translation = [13.4750032, 3.77256203, 136.266266],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -134,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 100,
+			float Size = 22.3130283,
 		},
 		EditorCameraController = 
 		{
@@ -142,7 +142,7 @@ Level =
 			float LookDistance = 136.266266,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [29.613884, 21.6927586, -1.79292215e-06],
+			Vec3 LookTarget = [13.4750032, 3.77256203, -2.49837512e-06],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -163,7 +163,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [20.9401398, 1.78377199, 0],
+			Vec3 Translation = [21, 2, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -237,6 +237,7 @@ Level =
 			float MaxHealth = 250,
 			bool IsInvincible = true,
 			bool NaturalRegen = false,
+			Vec4 DamagedColor = [1, 0, 0, 1],
 		},
 		EntityRocket = 
 		{
