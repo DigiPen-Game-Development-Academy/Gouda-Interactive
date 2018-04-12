@@ -98,17 +98,6 @@ class Health : ZilchComponent {
                 this.Space.SoundSpace.PlayCueAt(SoundCue.Damage, this.Owner.Transform.WorldTranslation);
             }
             
-            // CHANGE COLOR
-            if(this.Owner.Name != "EntityEnemy")
-                this.Owner.Sprite.Color = this.DamagedColor;
-            else
-                this.Owner.FindChildByName("EnemySprite").Sprite.Color = this.DamagedColor;
-            
-            if(this.Owner.Name != "EntityEnemy")
-                Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.Sprite.Color, this.NormalColor, 0.5, Ease.QuadInOut);
-            else
-                Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.FindChildByName("EnemySprite").Sprite.Color, this.NormalColor, 0.5, Ease.QuadInOut);
-            
             this.IsTakingDamage = true;
             this.CurrDamageSoundCooldown -= 0.00066;
             this.CurrentHealth -= amount;
@@ -118,6 +107,16 @@ class Health : ZilchComponent {
                 
         }
         
+        // CHANGE COLOR
+        if(this.Owner.Name != "EntityEnemy")
+            this.Owner.Sprite.Color = this.DamagedColor;
+        else
+            this.Owner.FindChildByName("EnemySprite").Sprite.Color = this.DamagedColor;
+        
+        if(this.Owner.Name != "EntityEnemy")
+            Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.Sprite.Color, this.NormalColor, 0.5, Ease.QuadInOut);
+        else
+            Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.FindChildByName("EnemySprite").Sprite.Color, this.NormalColor, 0.5, Ease.QuadInOut);
     }
     
     var RegenTimer : Real = 3.0;

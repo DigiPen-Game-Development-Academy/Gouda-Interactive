@@ -18,6 +18,8 @@ class DoorCondition : ZilchComponent
     
     var Player : Cog = null;
     
+    var Unlocked : Boolean = false;
+    
     function Initialize(init : CogInitializer)
     {
         if (this.Condition == Condition.EntityDeath)
@@ -40,13 +42,19 @@ class DoorCondition : ZilchComponent
         
         if (this.Condition == Condition.HasItem)
         {
-            if (this.Player.Inventory.CheckForItems(Relocation.ItemManager.GetIDByName(this.Item), this.ItemAmount))
+            if (this.Player.Inventory.CheckForItems(Relocation.ItemManager.GetIDByName(this.Item), this.ItemAmount) && this.Unlocked == false)
+            {
                 this.Owner.Door.UnlockDoor();
+                this.Unlocked = true;
+            }
         }
         else if (this.Condition == Condition.EntityDeath)
         {
-            if (this.Entity == null)
+            if (this.Entity == null && this.Unlocked == false)
+            {
                 this.Owner.Door.UnlockDoor();
+                this.Unlocked = true;
+            }
         }
     }
 }
