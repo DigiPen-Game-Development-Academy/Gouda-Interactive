@@ -156,12 +156,15 @@ class Notification : ZilchComponent {
         
     }
     
-    function DisplayKeySuffix(str : String) {
+    function DisplayKeySuffix(str : String, playSound : Boolean) {
         
         var controlNotification = this.Space.FindObjectByName("ControlNotification");
         
         if(controlNotification.FindChildByName("ControlSuffix") != null) {
-            controlNotification.FindChildByName("ControlSuffix").SpriteText.Text = str;
+            var txt = controlNotification.FindChildByName("ControlSuffix");
+            if(txt.SpriteText.Text != str && playSound)
+                this.Space.FindObjectByName("DebugCommand").SoundObject.PlayCue(SoundCue.DefaultCue);
+            txt.SpriteText.Text = str;
         } else {
             var txt = this.Space.CreateAtPosition(Archetype.ControlSuffix, this.Owner.Transform.WorldTranslation);
             txt.AttachToRelative(controlNotification);

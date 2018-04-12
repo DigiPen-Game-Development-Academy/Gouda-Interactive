@@ -11,7 +11,7 @@ class Tutorial : ZilchComponent {
     var HasOpenedCraftingMenu : Boolean = false;
     var HasTalkedAboutCrafting : Boolean = false;
     
-    var MinMoveAmount : Real = 5.0;
+    var MinMoveAmount : Real = 3.5;
     var CurrMinMoveAmount : Real = 0.0;
     
     function Initialize(init : CogInitializer) {
@@ -26,7 +26,7 @@ class Tutorial : ZilchComponent {
             Relocation.NotificationManager.DisplayKey(Relocation.Player.Movement.Left, this.IsMoving(), false);
             Relocation.NotificationManager.DisplayKey(Relocation.Player.Movement.Down, this.IsMoving(), false);
             Relocation.NotificationManager.DisplayKey(Relocation.Player.Movement.Right, this.IsMoving(), false);
-            Relocation.NotificationManager.DisplayKeySuffix("to move");
+            Relocation.NotificationManager.DisplayKeySuffix("to move", true);
             
             if(this.IsMoving())
                 this.CurrMinMoveAmount += event.Dt;
@@ -41,7 +41,7 @@ class Tutorial : ZilchComponent {
         if(!this.HasSprinted && this.HasMoved && Relocation.Player != null) {
             
             Relocation.NotificationManager.DisplayKey(Relocation.Player.Movement.Sprint, this.IsSprinting(), true);
-            Relocation.NotificationManager.DisplayKeySuffix("while moving to sprint");
+            Relocation.NotificationManager.DisplayKeySuffix("while moving to sprint", true);
             
             if(this.IsSprinting())
                 this.CurrMinMoveAmount += event.Dt;
@@ -56,7 +56,7 @@ class Tutorial : ZilchComponent {
         if(!this.HasOpenedInventory && this.HasMoved && this.HasSprinted && Relocation.Player != null) {
             
             Relocation.NotificationManager.DisplayKey(Relocation.Player.Inventory.InventoryButton, true, true);
-            Relocation.NotificationManager.DisplayKeySuffix("will open your inventory");
+            Relocation.NotificationManager.DisplayKeySuffix("will open your inventory", true);
             
             if(Relocation.Player.Inventory.InventoryOpen || Zero.Keyboard.KeyIsPressed(this.SkipKey)) {
                 this.HasOpenedInventory = this.RunTaskCompleted();
@@ -68,7 +68,7 @@ class Tutorial : ZilchComponent {
         if(!this.HasOpenedCraftingMenu && this.HasOpenedInventory && this.HasMoved && this.HasSprinted && Relocation.Player != null) {
             
             Relocation.NotificationManager.DisplayKey(Relocation.Player.Inventory.CraftingButton, true, true);
-            Relocation.NotificationManager.DisplayKeySuffix("toggles the crafting menu");
+            Relocation.NotificationManager.DisplayKeySuffix("toggles the crafting menu", true);
             
             if(Zero.Keyboard.KeyIsPressed(Relocation.Player.Inventory.CraftingButton) || Zero.Keyboard.KeyIsPressed(this.SkipKey)) {
                 this.HasOpenedCraftingMenu = this.RunTaskCompleted();
@@ -86,11 +86,11 @@ class Tutorial : ZilchComponent {
             Relocation.Player != null
         ) {
             
-            Relocation.NotificationManager.DisplayKeySuffix("Crafting is essential for progression\nWe will cover it later");
+            Relocation.NotificationManager.DisplayKeySuffix("Crafting is essential for progression\nWe will cover it later", true);
             
             this.CurrMinMoveAmount += event.Dt;
             
-            if(this.CurrMinMoveAmount >= this.MinMoveAmount / 0.95 || Zero.Keyboard.KeyIsPressed(this.SkipKey)) {
+            if(this.CurrMinMoveAmount >= this.MinMoveAmount || Zero.Keyboard.KeyIsPressed(this.SkipKey)) {
                 this.HasTalkedAboutCrafting = this.RunTaskCompleted();
                 return;
             }

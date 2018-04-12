@@ -43,8 +43,6 @@ class Inventory : ZilchComponent {
                 PlayerData.InventoryContentsCount.Push(0);
             }
             
-            this.GiveItemInSlot(1, this.SLOT_HAND);
-            
         } else {
             this.RefreshInventoryIcons();
         }
