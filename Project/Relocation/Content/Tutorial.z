@@ -11,6 +11,8 @@ class Tutorial : ZilchComponent {
     var HasOpenedCraftingMenu : Boolean = false;
     var HasTalkedAboutCrafting : Boolean = false;
     
+    var TutorialComplete : Boolean = false;
+    
     var MinMoveAmount : Real = 3.5;
     var CurrMinMoveAmount : Real = 0.0;
     
@@ -96,6 +98,8 @@ class Tutorial : ZilchComponent {
             }
             
         }
+        
+        this.TutorialComplete = true;
         
     }
     
