@@ -1,11 +1,29 @@
 class ShootDemonstration : ZilchComponent
 {
+    [Property]
+    var WhatToSpawn : Archetype;
+    
+    [Property]
+    var SpawnTime : Real = 2.0;
+    
+    var TimeSinceLastSpawn : Real = 0.0;
+    
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.TimeSinceLastSpawn += event.Dt;
+        
+        if (this.TimeSinceLastSpawn > this.SpawnTime)
+        {
+            var spawnPosition = this.Owner.Transform.Translation;
+        
+            this.Space.CreateAtPosition(this.WhatToSpawn, spawnPosition);
+            
+            this.TimeSinceLastSpawn = 0.0;
+        }
     }
 }
