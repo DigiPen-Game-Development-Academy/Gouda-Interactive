@@ -1,0 +1,20 @@
+ImageContent = 
+{
+	SpriteSourceBuilder = 
+	{
+		string Name = "BearRabbitClaw_Spin",
+		uint64 ResourceId = 5aecf3377c998a8a,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 9,
+		uint FrameSizeY = 9,
+		uint FrameCount = 8,
+		float FrameDelay = 0.0500000007,
+		float OriginX = 4.5,
+		float OriginY = 4.5,
+		float PixelsPerUnit = 64,
+		bool Smoothing = false,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+		SpriteFill Fill = Stretch,
+	},
+},
