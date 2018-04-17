@@ -18,14 +18,21 @@ class Door : ZilchComponent {
         
         this.Owner.FindChildByName("Door").BoxCollider.Ghost = this.DoorState == DoorState.Unlocked;
         
+        /*if(this.DoorDir == DoorDirection.East || this.DoorDir == DoorDirection.West)
+            this.Owner.FindChildByName("Door").Sprite.SpriteSource = SpriteSource.DoorVertical;
+        else
+            this.Owner.FindChildByName("Door").Sprite.SpriteSource = SpriteSource.DoorHorizontal;*/
+        
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
+        
         if(this.Owner.FindChildByName("Door").Sprite.CurrentFrame == this.EndOfAnimationFrame)
             this.Owner.FindChildByName("Door").Sprite.AnimationActive = false;
+        
     }
     
     function OnCollisionPersisted(event : CollisionEvent) {
@@ -34,27 +41,25 @@ class Door : ZilchComponent {
     
     function OnCollisionEnded(event : CollisionEvent) {
         
-        
+        if(this.GetEntityPerm(event.OtherObject.Name) == this.DoorPerms) {
+            this.LockDoor();
+        }
         
     }
     
     function DoorPassthroughLogic(event : CollisionEvent) {
         
-        if(this.DoorState == DoorState.Unlocked) {
+        if(
+            this.DoorState == DoorState.Unlocked &&
+            event.OtherObject.Name.Contains("Entity")
+        ) {
             
-            var entityPerm = DoorPermissions.Any;
-            
-            if(event.OtherObject.Name == "EntityPlayer")
-                entityPerm = DoorPermissions.PlayerOnly;
-            else if(event.OtherObject.Name == "EntityEnemy")
-                entityPerm = DoorPermissions.EnemyOnly;
-            else
-                entityPerm = DoorPermissions.Any;
+            var entityPerm = this.GetEntityPerm(event.OtherObject.Name);
             
             if((this.DoorPerms != DoorPermissions.None && this.DoorPerms == entityPerm) || this.DoorPerms == DoorPermissions.Any)
-                this.Owner.FindChildByName("Door").BoxCollider.Ghost = true;
+                this.UnlockDoor();
             else
-                this.Owner.FindChildByName("Door").BoxCollider.Ghost = false;
+                this.LockDoor();
             
         }
         
@@ -63,7 +68,30 @@ class Door : ZilchComponent {
     function UnlockDoor() {
         this.DoorState = DoorState.Unlocked;
         
+        this.Owner.FindChildByName("Door").Sprite.AnimationSpeed = 1.0;
         this.Owner.FindChildByName("Door").Sprite.AnimationActive = true;
+        
+        this.Owner.FindChildByName("Door").BoxCollider.Ghost = false;
+    }
+    
+    function LockDoor() {
+        this.DoorState = DoorState.Locked;
+        
+        this.Owner.FindChildByName("Door").Sprite.AnimationSpeed = -1.0;
+        this.Owner.FindChildByName("Door").Sprite.AnimationActive = true;
+        
+        this.Owner.FindChildByName("Door").BoxCollider.Ghost = true;
+    }
+    
+    function GetEntityPerm(objName : String) : DoorPermissions {
+        
+        if(objName == "EntityPlayer")
+            return DoorPermissions.PlayerOnly;
+        else if(objName == "EntityEnemy")
+            return DoorPermissions.EnemyOnly;
+        else
+            return DoorPermissions.Any;
+        
     }
     
 }
