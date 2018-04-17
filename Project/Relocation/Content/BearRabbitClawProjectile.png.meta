@@ -2,8 +2,8 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "BearRabbitClaw_Spin",
-		uint64 ResourceId = 5aecf3377c998a8a,
+		string Name = "BearRabbitClawProjectile",
+		uint64 ResourceId = 5aea0370bedb3594,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 9,
 		uint FrameSizeY = 9,
