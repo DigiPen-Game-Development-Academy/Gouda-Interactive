@@ -18,18 +18,24 @@ class Door : ZilchComponent {
         
         this.Owner.FindChildByName("Door").BoxCollider.Ghost = this.DoorState == DoorState.Unlocked;
         
-        Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
     }
     
-    function OnLogicUpdate(event : UpdateEvent)
-    {
+    function OnLogicUpdate(event : UpdateEvent) {
         if(this.Owner.FindChildByName("Door").Sprite.CurrentFrame == this.EndOfAnimationFrame)
             this.Owner.FindChildByName("Door").Sprite.AnimationActive = false;
     }
     
     function OnCollisionPersisted(event : CollisionEvent) {
         this.DoorPassthroughLogic(event);
+    }
+    
+    function OnCollisionEnded(event : CollisionEvent) {
+        
+        
+        
     }
     
     function DoorPassthroughLogic(event : CollisionEvent) {

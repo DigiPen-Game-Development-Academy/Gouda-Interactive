@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [5.5, 14, 0],
+		Vec3 Translation = [4, 0, 0.5],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -39,26 +39,12 @@ Cog =
 	},
 	DoorCondition = 
 	{
-		Enum Condition = EntityDeath,
+		Enum Condition = None,
 		string Item = "ItemCopper",
 		int ItemAmount = 1,
-		Enum FindMode = FindByName,
 		string EntityName = "Target",
-		CogPath EntityPath = 
-		{
-			string Path = "",
-			bool ErrorOnResolveToNull = false,
-			bool ErrorOnPathCantCompute = false,
-			bool ErrorOnDirectLinkFail = false,
-			bool UpdateCogOnPathChange = true,
-			bool UpdatePathOnCogChange = true,
-			bool UpdateCogOnInitialize = true,
-			bool ResolvedNullErrorOccurred = false,
-			uint ResolvedCog = 4294967293,
-			CogPathPreference PathPreference0 = CogRelative,
-			CogPathPreference PathPreference1 = SpaceRelative,
-			CogPathPreference PathPreference2 = Absolute,
-		},
+		Enum Message = TutorialComplete,
+		bool Debug = false,
 	},
 	Hierarchy = 
 	{
@@ -74,7 +60,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [0, 0, 0],
+				Vec3 Translation = [0, 0, -0.550000012],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
@@ -103,7 +89,7 @@ Cog =
 				bool Seamless = true,
 				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 				string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-				Vec3 Offset = [0, 0, 0],
+				Vec3 Offset = [0, 0, 0.200000003],
 				Vec3 Size = [0.5, 0.5, 0.5],
 			},
 		},

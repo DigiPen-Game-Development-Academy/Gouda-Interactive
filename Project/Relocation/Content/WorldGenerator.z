@@ -430,6 +430,7 @@ class WorldGenerator : ZilchComponent {
                     Relocation.NotificationManager.GiveNotification(
                         "Picked up `Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemRecognizableName`", 
                         2.5,
+                        Real4(0.0),
                         "`Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemRecognizableName`",
                         "`Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemLore`",
                         Relocation.Items[Relocation.ItemManager.GetIDByName(itemName)].ItemColor,

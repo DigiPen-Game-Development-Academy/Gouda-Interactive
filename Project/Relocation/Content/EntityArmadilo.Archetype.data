@@ -100,7 +100,7 @@ Cog =
 	},
 	Follower = 
 	{
-		float SearchRange = 15,
+		float SearchRange = 30,
 		float SearchFrequency = 0.100000001,
 		float SearchFrequencyVariance = 0.100000001,
 		float MemoryFrequency = 0.100000001,
