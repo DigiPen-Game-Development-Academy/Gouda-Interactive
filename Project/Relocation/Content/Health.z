@@ -108,10 +108,13 @@ class Health : ZilchComponent {
         }
         
         // CHANGE COLOR
-        if(this.Owner.Name != "EntityEnemy")
-            this.Owner.Sprite.Color = this.DamagedColor;
-        else
-            this.Owner.FindChildByName("EnemySprite").Sprite.Color = this.DamagedColor;
+        if (this.Owner.Name != "EntityRover")
+        {
+            if(this.Owner.Name != "EntityEnemy")
+                this.Owner.Sprite.Color = this.DamagedColor;
+            else
+                this.Owner.FindChildByName("EnemySprite").Sprite.Color = this.DamagedColor;
+        }
         
         if(this.Owner.Name != "EntityEnemy")
             Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.Sprite.Color, this.NormalColor, 0.5, Ease.QuadInOut);

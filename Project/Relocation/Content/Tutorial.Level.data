@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [1.25175321, 3.89960933, 42.9553108],
+			Vec3 Translation = [2.1831429, 7.37732792, 42.9553108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 12.2456684,
+			float Size = 12.2456474,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [1.25175321, 3.89960933, -7.04469013],
+			Vec3 LookTarget = [2.1831429, 7.37732792, -7.04468918],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -667,7 +667,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.5, 7, 0],
+			Vec3 Translation = [0.5, 9.5, 0],
 			Vec3 Scale = [0.5, 0.5, 0.5],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1018,23 +1018,9 @@ Level =
 			Enum Condition = HasItem,
 			string Item = "ItemPistol",
 			int ItemAmount = 1,
-			Enum FindMode = FindByName,
 			string EntityName = "Target",
-			CogPath EntityPath = 
-			{
-				string Path = "",
-				bool ErrorOnResolveToNull = false,
-				bool ErrorOnPathCantCompute = false,
-				bool ErrorOnDirectLinkFail = false,
-				bool UpdateCogOnPathChange = true,
-				bool UpdatePathOnCogChange = true,
-				bool UpdateCogOnInitialize = true,
-				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 4294967293,
-				CogPathPreference PathPreference0 = CogRelative,
-				CogPathPreference PathPreference1 = SpaceRelative,
-				CogPathPreference PathPreference2 = Absolute,
-			},
+			Enum Message = TutorialComplete,
+			bool Debug = false,
 		},
 		Hierarchy = 
 		{
@@ -1129,23 +1115,9 @@ Level =
 			Enum Condition = EntityDeath,
 			string Item = "ItemPistol",
 			int ItemAmount = 1,
-			Enum FindMode = FindByName,
 			string EntityName = "EntityEnemy",
-			CogPath EntityPath = 
-			{
-				string Path = "",
-				bool ErrorOnResolveToNull = false,
-				bool ErrorOnPathCantCompute = false,
-				bool ErrorOnDirectLinkFail = false,
-				bool UpdateCogOnPathChange = true,
-				bool UpdatePathOnCogChange = true,
-				bool UpdateCogOnInitialize = true,
-				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 4294967293,
-				CogPathPreference PathPreference0 = CogRelative,
-				CogPathPreference PathPreference1 = SpaceRelative,
-				CogPathPreference PathPreference2 = Absolute,
-			},
+			Enum Message = TutorialComplete,
+			bool Debug = false,
 		},
 		Hierarchy = 
 		{
@@ -1240,23 +1212,9 @@ Level =
 			Enum Condition = EntityDeath,
 			string Item = "ItemCopper",
 			int ItemAmount = 1,
-			Enum FindMode = FindByName,
 			string EntityName = "Target",
-			CogPath EntityPath = 
-			{
-				string Path = "",
-				bool ErrorOnResolveToNull = false,
-				bool ErrorOnPathCantCompute = false,
-				bool ErrorOnDirectLinkFail = false,
-				bool UpdateCogOnPathChange = true,
-				bool UpdatePathOnCogChange = true,
-				bool UpdateCogOnInitialize = true,
-				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 4294967293,
-				CogPathPreference PathPreference0 = CogRelative,
-				CogPathPreference PathPreference1 = SpaceRelative,
-				CogPathPreference PathPreference2 = Absolute,
-			},
+			Enum Message = TutorialComplete,
+			bool Debug = false,
 		},
 		Hierarchy = 
 		{
@@ -1315,6 +1273,103 @@ Level =
 		},
 		Named = 
 		{
+			string Name = "Door",
+		},
+		Archetyped = 
+		{
+			string Name = "5ab68facaf05b4c6:Door",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0.5, 8, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Door = 
+		{
+			Enum DoorState = Locked,
+			Enum DoorDir = North,
+			Enum DoorPerms = Any,
+			bool OneWayDoor = false,
+			bool DebugMode = false,
+			int EndOfAnimationFrame = 5,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = true,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1, 1, 1],
+		},
+		DoorCondition = 
+		{
+			Enum Condition = HasSeenMessage,
+			string Item = "ItemCopper",
+			int ItemAmount = 1,
+			string EntityName = "Target",
+			Enum Message = TutorialComplete,
+			bool Debug = true,
+		},
+		Hierarchy = 
+		{
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 26,
+				},
+				Named = 
+				{
+					string Name = "Door",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, 0, 0],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Sprite = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string SpriteSource = "5a9cc319087790c8:DoorHorizontal",
+					bool RenderMask = false,
+					bool FlipX = false,
+					bool FlipY = false,
+					bool AnimationActive = false,
+					float AnimationSpeed = 1,
+					uint StartFrame = 0,
+				},
+				BoxCollider = 
+				{
+					bool Ghost = false,
+					bool SendsMessages = true,
+					bool Seamless = true,
+					string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+					string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+					Vec3 Offset = [0, 0, 0],
+					Vec3 Size = [0.5, 0.5, 0.5],
+				},
+			},
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 27,
+		},
+		Named = 
+		{
 			string Name = "Rocks",
 		},
 		Transform = 
@@ -1330,7 +1385,7 @@ Level =
 				string Name = "5a9dc0e5024bdc19:BlockRockCopperTutorial",
 				LinkId = 
 				{
-					uint Id = 26,
+					uint Id = 28,
 				},
 				Transform = 
 				{
@@ -1348,7 +1403,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 27,
+					uint Id = 29,
 				},
 				Transform = 
 				{
@@ -1366,7 +1421,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 28,
+					uint Id = 30,
 				},
 				Transform = 
 				{
@@ -1384,7 +1439,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 29,
+					uint Id = 31,
 				},
 				Transform = 
 				{
@@ -1402,7 +1457,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 30,
+					uint Id = 32,
 				},
 				Transform = 
 				{
@@ -1420,7 +1475,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 31,
+					uint Id = 33,
 				},
 				Transform = 
 				{
@@ -1438,7 +1493,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 32,
+					uint Id = 34,
 				},
 				Transform = 
 				{
@@ -1456,7 +1511,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 33,
+					uint Id = 35,
 				},
 				Transform = 
 				{
@@ -1474,7 +1529,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 34,
+					uint Id = 36,
 				},
 				Transform = 
 				{
@@ -1492,7 +1547,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 35,
+					uint Id = 37,
 				},
 				Transform = 
 				{
@@ -1510,7 +1565,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 36,
+					uint Id = 38,
 				},
 				Transform = 
 				{
@@ -1528,7 +1583,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 37,
+					uint Id = 39,
 				},
 				Transform = 
 				{
@@ -1546,7 +1601,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 38,
+					uint Id = 40,
 				},
 				Transform = 
 				{
@@ -1564,7 +1619,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 39,
+					uint Id = 41,
 				},
 				Transform = 
 				{
@@ -1582,7 +1637,7 @@ Level =
 				string Name = "5a9dc0e5024bdc19:BlockRockCopperTutorial",
 				LinkId = 
 				{
-					uint Id = 40,
+					uint Id = 42,
 				},
 				Transform = 
 				{
@@ -1600,7 +1655,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 41,
+					uint Id = 43,
 				},
 				Transform = 
 				{
@@ -1618,7 +1673,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 42,
+					uint Id = 44,
 				},
 				Transform = 
 				{
@@ -1636,7 +1691,7 @@ Level =
 				string Name = "5a9dc0631237b6dc:BlockRockGoldTutorial",
 				LinkId = 
 				{
-					uint Id = 43,
+					uint Id = 45,
 				},
 				Transform = 
 				{
@@ -1654,7 +1709,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 44,
+					uint Id = 46,
 				},
 				Transform = 
 				{
@@ -1672,7 +1727,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 45,
+					uint Id = 47,
 				},
 				Transform = 
 				{
@@ -1690,7 +1745,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 46,
+					uint Id = 48,
 				},
 				Transform = 
 				{
@@ -1708,7 +1763,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 47,
+					uint Id = 49,
 				},
 				Transform = 
 				{
@@ -1726,7 +1781,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 48,
+					uint Id = 50,
 				},
 				Transform = 
 				{
@@ -1744,7 +1799,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 49,
+					uint Id = 51,
 				},
 				Transform = 
 				{
@@ -1762,7 +1817,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 50,
+					uint Id = 52,
 				},
 				Transform = 
 				{
@@ -1780,7 +1835,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 51,
+					uint Id = 53,
 				},
 				Transform = 
 				{
@@ -1798,7 +1853,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 52,
+					uint Id = 54,
 				},
 				Transform = 
 				{
@@ -1816,7 +1871,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 53,
+					uint Id = 55,
 				},
 				Transform = 
 				{
@@ -1834,7 +1889,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 54,
+					uint Id = 56,
 				},
 				Transform = 
 				{
@@ -1852,7 +1907,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 55,
+					uint Id = 57,
 				},
 				Transform = 
 				{
@@ -1870,7 +1925,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 56,
+					uint Id = 58,
 				},
 				Transform = 
 				{
@@ -1888,7 +1943,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 57,
+					uint Id = 59,
 				},
 				Transform = 
 				{
@@ -1906,7 +1961,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 58,
+					uint Id = 60,
 				},
 				Transform = 
 				{
@@ -1924,7 +1979,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 59,
+					uint Id = 61,
 				},
 				Transform = 
 				{
@@ -1942,7 +1997,7 @@ Level =
 				string Name = "5a9dc0e5024bdc19:BlockRockCopperTutorial",
 				LinkId = 
 				{
-					uint Id = 60,
+					uint Id = 62,
 				},
 				Transform = 
 				{
@@ -1960,7 +2015,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 61,
+					uint Id = 63,
 				},
 				Transform = 
 				{
@@ -1978,7 +2033,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 62,
+					uint Id = 64,
 				},
 				Transform = 
 				{
@@ -1996,7 +2051,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 63,
+					uint Id = 65,
 				},
 				Transform = 
 				{
@@ -2014,7 +2069,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 64,
+					uint Id = 66,
 				},
 				Transform = 
 				{
@@ -2032,7 +2087,7 @@ Level =
 				string Name = "5a9dc0631237b6dc:BlockRockGoldTutorial",
 				LinkId = 
 				{
-					uint Id = 65,
+					uint Id = 67,
 				},
 				Transform = 
 				{
@@ -2050,7 +2105,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 66,
+					uint Id = 68,
 				},
 				Transform = 
 				{
@@ -2068,7 +2123,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 67,
+					uint Id = 69,
 				},
 				Transform = 
 				{
@@ -2086,7 +2141,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 68,
+					uint Id = 70,
 				},
 				Transform = 
 				{
@@ -2104,7 +2159,7 @@ Level =
 				string Name = "5a9dc008157b3ecb:BlockRockIronTutorial",
 				LinkId = 
 				{
-					uint Id = 69,
+					uint Id = 71,
 				},
 				Transform = 
 				{
@@ -2121,7 +2176,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 70,
+					uint Id = 72,
 				},
 				Named = 
 				{
@@ -2176,7 +2231,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 71,
+					uint Id = 73,
 				},
 				Transform = 
 				{
@@ -2194,7 +2249,7 @@ Level =
 				string Name = "5a9cdb9b26e6926e:BlockRockTitaniumTutorial",
 				LinkId = 
 				{
-					uint Id = 72,
+					uint Id = 74,
 				},
 				Transform = 
 				{
@@ -2212,7 +2267,7 @@ Level =
 				string Name = "5a9dc0e5024bdc19:BlockRockCopperTutorial",
 				LinkId = 
 				{
-					uint Id = 73,
+					uint Id = 75,
 				},
 				Transform = 
 				{
@@ -2230,7 +2285,7 @@ Level =
 				string Name = "5a9e51f4ab747c72:BlockRockTutorial",
 				LinkId = 
 				{
-					uint Id = 74,
+					uint Id = 76,
 				},
 				Transform = 
 				{
@@ -2249,7 +2304,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 75,
+			uint Id = 77,
 		},
 		Named = 
 		{
@@ -2385,7 +2440,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 76,
+					uint Id = 78,
 				},
 				Named = 
 				{
