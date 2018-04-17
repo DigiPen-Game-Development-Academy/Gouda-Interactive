@@ -1,5 +1,5 @@
 // AUTHOR: HUDSON GREEN
-// CONTRIBUTORS: N/A
+// CONTRIBUTORS: MATTHEW ZEARING
 
 enum DoorState { Locked, Unlocked }
 enum DoorPermissions { Any, None, PlayerOnly, EnemyOnly }
@@ -12,7 +12,7 @@ class Door : ZilchComponent {
     [Property] var DoorPerms : DoorPermissions = DoorPermissions.Any;
     [Property] var OneWayDoor : Boolean = false;
     [Property] var DebugMode : Boolean = false;
-    
+    [Property] var OpenDoorSound : SoundCue;
     var CurrDoorState : DoorState = DoorState.Unlocked;
     
     function Initialize(init : CogInitializer) {
@@ -61,21 +61,31 @@ class Door : ZilchComponent {
     }
     
     function UnlockDoor() {
+        
+        if(this.CurrDoorState == DoorState.Locked)
+            this.Space.SoundSpace.PlayCue(this.OpenDoorSound);
+        
         this.CurrDoorState = DoorState.Unlocked;
         
         this.Owner.FindChildByName("Door").Sprite.CurrentFrame = -1;
         this.Owner.FindChildByName("Door").Sprite.AnimationActive = false;
         
         this.Owner.FindChildByName("Door").BoxCollider.Ghost = true;
+  
     }
     
     function LockDoor() {
+        
+        if(this.CurrDoorState == DoorState.Unlocked)
+            this.Space.SoundSpace.PlayCue(this.OpenDoorSound);
+        
         this.CurrDoorState = DoorState.Locked;
         
         this.Owner.FindChildByName("Door").Sprite.CurrentFrame = 0;
         this.Owner.FindChildByName("Door").Sprite.AnimationActive = false;
         
         this.Owner.FindChildByName("Door").BoxCollider.Ghost = false;
+        
     }
     
     function GetEntityPerm(objName : String) : DoorPermissions {

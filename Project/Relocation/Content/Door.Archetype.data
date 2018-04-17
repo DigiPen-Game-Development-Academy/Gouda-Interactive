@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [4, 0, 0],
+		Vec3 Translation = [16.5, 14.5, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -25,6 +25,7 @@ Cog =
 		Enum DoorPerms = Any,
 		bool OneWayDoor = false,
 		bool DebugMode = false,
+		string OpenDoorSound = "5a6a63169f6c37f7:DoorOpen",
 	},
 	BoxCollider = 
 	{
