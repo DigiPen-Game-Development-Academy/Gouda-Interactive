@@ -97,6 +97,8 @@ Cog =
 		bool IsInvincible = false,
 		bool NaturalRegen = false,
 		Vec4 DamagedColor = [1, 0.498039275, 0.498039246, 1],
+		string DeathAnimation = "5ad13b0a7cf6e428:SlugThingDeath",
+		int EndOfAnimation = 5,
 	},
 	SoundEmitter = 
 	{

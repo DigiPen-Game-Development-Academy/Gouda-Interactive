@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [22, 2, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = true,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -97,6 +97,8 @@ Cog =
 		bool IsInvincible = false,
 		bool NaturalRegen = false,
 		Vec4 DamagedColor = [1, 0.498039275, 0.498039246, 1],
+		string DeathAnimation = "5af2c5273ea9da8d:FroggDeath",
+		int EndOfAnimation = 5,
 	},
 	SoundEmitter = 
 	{
