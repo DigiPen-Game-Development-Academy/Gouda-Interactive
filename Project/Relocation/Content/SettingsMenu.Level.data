@@ -1226,6 +1226,7 @@ Level =
 					bool UIAnimateEnabled = false,
 					bool ResumeButton = false,
 					bool RespawnButton = false,
+					bool LoadSaveButton = false,
 					bool ForceAnimation = false,
 					bool QuitButton = true,
 				},
@@ -1233,6 +1234,11 @@ Level =
 				{
 					bool Active = true,
 					bool CaptureMouse = false,
+				},
+				TextShadow = 
+				{
+					Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
+					Vec2 Offset = [0.075000003, -0.075000003],
 				},
 			},
 			Cog = 
@@ -1277,6 +1283,7 @@ Level =
 					bool UIAnimateEnabled = false,
 					bool ResumeButton = false,
 					bool RespawnButton = false,
+					bool LoadSaveButton = false,
 					bool ForceAnimation = false,
 					bool QuitButton = false,
 				},
@@ -1284,6 +1291,11 @@ Level =
 				{
 					bool Active = true,
 					bool CaptureMouse = false,
+				},
+				TextShadow = 
+				{
+					Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
+					Vec2 Offset = [0.075000003, -0.075000003],
 				},
 			},
 		},
