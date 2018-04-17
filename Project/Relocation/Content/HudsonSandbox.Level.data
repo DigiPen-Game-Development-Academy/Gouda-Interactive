@@ -122,7 +122,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 2.69971776,
+			float Size = 100,
 		},
 		EditorCameraController = 
 		{
@@ -333,28 +333,10 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "5ae3e42370ab8979:BlockRockRare",
-		LinkId = 
-		{
-			uint Id = 11,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-19.25, 10, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "BlockRock",
-		},
-	},
-	ArchetypeInstance = 
-	{
 		string Name = "5a3bcb07ddecc85a:BuildingHut",
 		LinkId = 
 		{
-			uint Id = 12,
+			uint Id = 11,
 		},
 		Transform = 
 		{
@@ -372,7 +354,7 @@ Level =
 		string Name = "5adf4de3a07acbd6:BuildingHutPlayer",
 		LinkId = 
 		{
-			uint Id = 13,
+			uint Id = 12,
 		},
 		Transform = 
 		{
@@ -390,7 +372,7 @@ Level =
 		string Name = "5ac2f985abfc1c64:BuildingShop",
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 13,
 		},
 		Transform = 
 		{
@@ -408,7 +390,7 @@ Level =
 		string Name = "5a240449292b4c0b:CaveEnteranceExit",
 		LinkId = 
 		{
-			uint Id = 15,
+			uint Id = 14,
 		},
 		Transform = 
 		{
@@ -426,7 +408,7 @@ Level =
 		string Name = "5addcf5e48095336:CheckBox",
 		LinkId = 
 		{
-			uint Id = 16,
+			uint Id = 15,
 		},
 		Transform = 
 		{
@@ -444,13 +426,18 @@ Level =
 		string Name = "5adb4022dda303b8:Chunk",
 		LinkId = 
 		{
-			uint Id = 17,
+			uint Id = 16,
 		},
 		Transform = 
 		{
 			Vec3 Translation = [-0.75, 10, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
+		},
+		Area = 
+		{
+			Vec2 Size = [1, 1],
+			Location Origin = Center,
 		},
 		Named = 
 		{
@@ -462,7 +449,7 @@ Level =
 		string Name = "5a3445fc761272c2:CraftingItem",
 		LinkId = 
 		{
-			uint Id = 18,
+			uint Id = 17,
 		},
 		Transform = 
 		{
@@ -480,7 +467,7 @@ Level =
 		string Name = "5a2aaeb9ccb96785:EntityBullet",
 		LinkId = 
 		{
-			uint Id = 19,
+			uint Id = 18,
 		},
 		Transform = 
 		{
@@ -495,10 +482,10 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "5a380a0164d081c9:EntityEnemy",
+		string Name = "5a95393fb1342da5:EntityEnemy",
 		LinkId = 
 		{
-			uint Id = 20,
+			uint Id = 19,
 		},
 		Transform = 
 		{
@@ -521,7 +508,7 @@ Level =
 		string Name = "5adf1c031cc37887:EntityRocket",
 		LinkId = 
 		{
-			uint Id = 21,
+			uint Id = 20,
 		},
 		Transform = 
 		{
@@ -539,7 +526,7 @@ Level =
 		string Name = "5adf488b7fc9b85f:EntityRover",
 		LinkId = 
 		{
-			uint Id = 22,
+			uint Id = 21,
 		},
 		Transform = 
 		{
@@ -557,7 +544,7 @@ Level =
 		string Name = "5af7fde237047217:ItemDrop",
 		LinkId = 
 		{
-			uint Id = 23,
+			uint Id = 22,
 		},
 		Transform = 
 		{
@@ -575,7 +562,7 @@ Level =
 		string Name = "5adc87ce44c6d091:Slider",
 		LinkId = 
 		{
-			uint Id = 24,
+			uint Id = 23,
 		},
 		Transform = 
 		{

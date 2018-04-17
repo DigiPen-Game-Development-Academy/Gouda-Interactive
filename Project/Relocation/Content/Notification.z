@@ -50,6 +50,7 @@ class Notification : ZilchComponent {
     function GiveNotification(
         text                : String,
         displayTimeout      : Real,
+        notificationColor   : Real4,
         tooltipText         : String,
         tooltipLore         : String,
         tooltipColor        : Real4,
@@ -64,6 +65,10 @@ class Notification : ZilchComponent {
             
             notification.AttachToRelative(this.Owner);
             notification.SpriteText.Text = "`text.Replace("\n", " ")`";
+            
+            if(notificationColor != Real4(0.0))
+                notification.SpriteText.Color = notificationColor;
+            
             notification.NotificationText.TooltipText = tooltipText;
             notification.NotificationText.TooltipLore = tooltipLore;
             notification.NotificationText.TooltipColor = tooltipColor;
@@ -80,15 +85,16 @@ class Notification : ZilchComponent {
     function GiveNotification(
         text                : String,
         displayTimeout      : Real,
+        notificationColor   : Real4,
         tooltipText         : String,
         tooltipLore         : String,
         tooltipColor        : Real4
     ) {
-        this.GiveNotification(text, displayTimeout, tooltipText, tooltipLore, tooltipColor, Real4(1.0));
+        this.GiveNotification(text, displayTimeout, notificationColor, tooltipText, tooltipLore, tooltipColor, Real4(1.0));
     }
     
     function GiveNotification(text : String, displayTimeout : Real) {
-        this.GiveNotification(text, displayTimeout, "", "", Real4(1.0), Real4(1.0));
+        this.GiveNotification(text, displayTimeout, Real4(0.0), "", "", Real4(1.0), Real4(1.0));
     }
     
     function DisplayMouseButton(btn : MouseButtons, showBtnPress : Boolean, killExistingIcons : Boolean) {
