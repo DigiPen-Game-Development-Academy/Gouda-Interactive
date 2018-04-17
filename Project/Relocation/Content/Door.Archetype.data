@@ -21,11 +21,10 @@ Cog =
 	Door = 
 	{
 		Enum DoorState = Locked,
-		Enum DoorDir = North,
-		Enum DoorPerms = PlayerOnly,
+		Enum DoorDir = East,
+		Enum DoorPerms = Any,
 		bool OneWayDoor = false,
 		bool DebugMode = false,
-		int EndOfAnimationFrame = 6,
 	},
 	BoxCollider = 
 	{

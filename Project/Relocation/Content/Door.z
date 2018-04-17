@@ -12,27 +12,21 @@ class Door : ZilchComponent {
     [Property] var DoorPerms : DoorPermissions = DoorPermissions.Any;
     [Property] var OneWayDoor : Boolean = false;
     [Property] var DebugMode : Boolean = false;
-    [Property] var EndOfAnimationFrame : Integer = 7;
+    
+    var CurrDoorState : DoorState = DoorState.Unlocked;
     
     function Initialize(init : CogInitializer) {
         
         this.Owner.FindChildByName("Door").BoxCollider.Ghost = this.DoorState == DoorState.Unlocked;
+        this.CurrDoorState = this.DoorState;
         
-        /*if(this.DoorDir == DoorDirection.East || this.DoorDir == DoorDirection.West)
+        if(this.DoorDir == DoorDirection.East || this.DoorDir == DoorDirection.West)
             this.Owner.FindChildByName("Door").Sprite.SpriteSource = SpriteSource.DoorVertical;
         else
-            this.Owner.FindChildByName("Door").Sprite.SpriteSource = SpriteSource.DoorHorizontal;*/
+            this.Owner.FindChildByName("Door").Sprite.SpriteSource = SpriteSource.DoorHorizontal;
         
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
-    }
-    
-    function OnLogicUpdate(event : UpdateEvent) {
-        
-        if(this.Owner.FindChildByName("Door").Sprite.CurrentFrame == this.EndOfAnimationFrame)
-            this.Owner.FindChildByName("Door").Sprite.AnimationActive = false;
-        
     }
     
     function OnCollisionPersisted(event : CollisionEvent) {
@@ -41,7 +35,9 @@ class Door : ZilchComponent {
     
     function OnCollisionEnded(event : CollisionEvent) {
         
-        if(this.GetEntityPerm(event.OtherObject.Name) == this.DoorPerms) {
+        var entityPerm = this.GetEntityPerm(event.OtherObject.Name);
+        
+        if((this.DoorPerms != DoorPermissions.None && this.DoorPerms == entityPerm) || this.DoorPerms == DoorPermissions.Any) {
             this.LockDoor();
         }
         
@@ -56,31 +52,30 @@ class Door : ZilchComponent {
             
             var entityPerm = this.GetEntityPerm(event.OtherObject.Name);
             
-            if((this.DoorPerms != DoorPermissions.None && this.DoorPerms == entityPerm) || this.DoorPerms == DoorPermissions.Any)
+            if((this.DoorPerms != DoorPermissions.None && this.DoorPerms == entityPerm) || this.DoorPerms == DoorPermissions.Any) {
                 this.UnlockDoor();
-            else
-                this.LockDoor();
+            }
             
         }
         
     }
     
     function UnlockDoor() {
-        this.DoorState = DoorState.Unlocked;
+        this.CurrDoorState = DoorState.Unlocked;
         
-        this.Owner.FindChildByName("Door").Sprite.AnimationSpeed = 1.0;
-        this.Owner.FindChildByName("Door").Sprite.AnimationActive = true;
+        this.Owner.FindChildByName("Door").Sprite.CurrentFrame = -1;
+        this.Owner.FindChildByName("Door").Sprite.AnimationActive = false;
         
-        this.Owner.FindChildByName("Door").BoxCollider.Ghost = false;
+        this.Owner.FindChildByName("Door").BoxCollider.Ghost = true;
     }
     
     function LockDoor() {
-        this.DoorState = DoorState.Locked;
+        this.CurrDoorState = DoorState.Locked;
         
-        this.Owner.FindChildByName("Door").Sprite.AnimationSpeed = -1.0;
-        this.Owner.FindChildByName("Door").Sprite.AnimationActive = true;
+        this.Owner.FindChildByName("Door").Sprite.CurrentFrame = 0;
+        this.Owner.FindChildByName("Door").Sprite.AnimationActive = false;
         
-        this.Owner.FindChildByName("Door").BoxCollider.Ghost = true;
+        this.Owner.FindChildByName("Door").BoxCollider.Ghost = false;
     }
     
     function GetEntityPerm(objName : String) : DoorPermissions {
