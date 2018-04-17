@@ -1,5 +1,5 @@
 // AUTHOR: MYLES BUSIG
-// CONTRIBUTORS: HUDSON GREEN
+// CONTRIBUTORS: HUDSON GREEN, MATTHEW ZEARING
 
 class Health : ZilchComponent {
     
@@ -7,6 +7,9 @@ class Health : ZilchComponent {
     [Property] var IsInvincible : Boolean = false;
     [Property] var NaturalRegen : Boolean = false;
     [Property] var DamagedColor : Real4 = Real4(1.0, 0.0, 0.0, 1.0);
+    [Property] var DeathAnimation : SpriteSource;
+    [Property] var EndOfAnimation : Integer = 0;
+    
     var NormalColor : Real4;
     
     var CurrentHealth : Real = 10.0;
@@ -52,7 +55,9 @@ class Health : ZilchComponent {
                     this.Owner.EntityDrop.DropItem();
                 
                 this.IsDead = true;
-                
+                var death = this.Space.CreateAtPosition(Archetype.DeathAnimation, this.Owner.Transform.Translation);
+                death.DestroyOnFrame.Frame = this.EndOfAnimation;
+                death.Sprite.SpriteSource = this.DeathAnimation;
                 this.Owner.Destroy();
                 
             } else if(this.Owner.Name == Relocation.EntityPlayer) {
