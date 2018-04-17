@@ -93,6 +93,10 @@ class Notification : ZilchComponent {
         this.GiveNotification(text, displayTimeout, notificationColor, tooltipText, tooltipLore, tooltipColor, Real4(1.0));
     }
     
+    function GiveNotification(text : String, displayTimeout : Real, notificationColor : Real4) {
+        this.GiveNotification(text, displayTimeout, notificationColor, "", "", Real4(1.0), Real4(1.0));
+    }
+    
     function GiveNotification(text : String, displayTimeout : Real) {
         this.GiveNotification(text, displayTimeout, Real4(0.0), "", "", Real4(1.0), Real4(1.0));
     }
