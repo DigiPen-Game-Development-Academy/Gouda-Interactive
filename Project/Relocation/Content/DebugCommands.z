@@ -45,6 +45,9 @@ class TextEntry : ZilchComponent {
     var HeldKeyRepeatSpeed : Real = 0.005;
     var CurrHeldKeyRepeatSpeed : Real = 0.0;
     
+    var ClickCount : Integer = 0;
+    var CurrClickCtTimer : Real = 0.0;
+    
     var SelectedTextIndex : Integer2 = Integer2(0, 0);
     var StartSelectionArea : Integer = 0;
     
@@ -66,6 +69,29 @@ class TextEntry : ZilchComponent {
     function OnLogicUpdate(event : UpdateEvent) {
             
         if(this.CaptureKeys) {
+            
+            // CLICK COUNT RESET
+            if(this.CurrClickCtTimer < 0.2) {
+                if(this.ClickCount > 0) this.CurrClickCtTimer += event.Dt;
+                else this.CurrClickCtTimer = 0.0;
+            } else {
+                this.CurrClickCtTimer = 0.0;
+                this.ClickCount = 0;
+            }
+            
+            // SELECT ALL TEXT ON TRIPLE CLICK
+            /*if(this.ClickCount == 2) {
+                // TODO: ONLY SELECT THE CLICKED WORD
+                this.SelectedTextIndex = Integer2(0, this.CommandString.Count);
+                this.SelectText(this.SelectedTextIndex, false, true);
+                this.CurrClickCtTimer = 0.0;
+                this.ClickCount = 0;
+            }*/
+            
+            if(this.ClickCount >= 3) {
+                this.SelectedTextIndex = Integer2(0, this.CommandString.Count);
+                this.SelectText(this.SelectedTextIndex, false, true);
+            }
             
             // CURSOR BLINKING
             if(this.CurrTypingIndicatorBlinkTime > this.TypingIndicatorBlinkTime) {
@@ -107,6 +133,7 @@ class TextEntry : ZilchComponent {
             
         } else if(this.Owner.SpriteText.Text.Count > 0) {
             this.Owner.SpriteText.Text = "";
+            this.ClickCount = 0;
         }
         
         // SHOW/HIDE THINGS WHEN TEXT BOX IS TOGGLED
@@ -146,6 +173,8 @@ class TextEntry : ZilchComponent {
             this.CatchInvalidCursorPos();
             this.SelectedTextIndex = Integer2(this.CursorIndex);
             this.CursorMoveClick = true;
+            this.CurrClickCtTimer = 0.0;
+            ++this.ClickCount;
         } else if(!event.Mouse.IsButtonDown(MouseButtons.Left) && this.CursorMoveClick) {
             this.CursorMoveClick = false;
         } else if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
@@ -163,6 +192,8 @@ class TextEntry : ZilchComponent {
     
     function OnTextTyped(event : KeyboardTextEvent) {
         if(this.CaptureKeys) {
+            
+            this.ClickCount = 0;
             
             this.CatchInvalidCursorPos();
             
