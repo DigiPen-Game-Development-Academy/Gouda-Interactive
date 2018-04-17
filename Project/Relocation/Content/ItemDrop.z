@@ -45,6 +45,7 @@ class ItemDrop : ZilchComponent {
                 Relocation.NotificationManager.GiveNotification(
                     "Picked up `Relocation.Items[this.ItemID].ItemRecognizableName` (x`this.ItemAmount`)",
                     2.5,
+                    Real4(0.0),
                     "`Relocation.Items[this.ItemID].ItemRecognizableName` (x`this.ItemAmount`)",
                     "`Relocation.Items[this.ItemID].ItemLore`",
                     Relocation.Items[this.ItemID].ItemColor,
