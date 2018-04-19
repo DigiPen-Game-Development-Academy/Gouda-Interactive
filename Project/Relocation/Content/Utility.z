@@ -63,26 +63,18 @@ class TextHelper {
         
         if(str.Count > 0 && !TextHelper.IsConsideredSpacerChar(String.FromChar(str[index_]))) {
             
-            for(var i = index_; i <= str.Count; ++i) {
-                
+            for(var i = index_; i <= str.Count; ++i)
                 if(i >= str.Count || TextHelper.IsConsideredSpacerChar(String.FromChar(str[i]))) {
                     indeces = Integer2(indeces.X, i);
                     break;
                 }
-                
-            }
             
-            for(var i = index_; i >= 0; --i) {
-                Console.WriteLine("i = `i`, indeces = `indeces`");
+            for(var i = index_; i >= 0; --i)
                 if(i < 1 || TextHelper.IsConsideredSpacerChar(String.FromChar(str[i]))) {
                     indeces = Integer2(i, indeces.Y);
                     break;
                 }
-                
-            }
             
-        } else {
-            // SELECT CHAR
         }
         
         return indeces;
@@ -95,6 +87,10 @@ class TextHelper {
             char == " " ||
             char == "," ||
             char == "." ||
+            char == "*" ||
+            char == "-" ||
+            char == "(" ||
+            char == ")" ||
             char == "[" ||
             char == "]" ||
             char == "{" ||
