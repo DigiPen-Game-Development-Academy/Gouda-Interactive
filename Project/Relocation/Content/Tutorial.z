@@ -133,7 +133,7 @@ class Tutorial : ZilchComponent {
             Relocation.Player != null
         ) {
             
-            Relocation.NotificationManager.DisplayKeySuffix("Proceed to the next room & pick up the drill", true);
+            Relocation.NotificationManager.DisplayKeySuffix("Proceed to the next room, pick up the drill, and\nequip it from your inventory", true);
             
             this.CurrMinMoveAmount += event.Dt;
             
