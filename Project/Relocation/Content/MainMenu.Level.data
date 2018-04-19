@@ -396,7 +396,7 @@ Level =
 				},
 				ButtonLevelSwitcher = 
 				{
-					string Level = "5ad9da479b989e9e:TutorialLevel",
+					string Level = "5a27f4630701bb51:Tutorial",
 					float Delay = 2,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 1, 0.5],

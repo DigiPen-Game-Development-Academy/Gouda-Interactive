@@ -94,7 +94,7 @@ Level =
 		LevelSwitcher = 
 		{
 			string Level = "5acef7f30877b413:MainMenu",
-			float Delay = 7,
+			float Delay = 7.25,
 		},
 	},
 	Cog = 
@@ -213,7 +213,7 @@ Level =
 			string AnimationType = "FadeInOut",
 			float AnimationSpeed = 0.75,
 			float AnimationDelay = 0.25,
-			float MultiAnimationDelay = 0.75,
+			float MultiAnimationDelay = 1.5,
 		},
 	},
 	Cog = 
@@ -255,11 +255,12 @@ Level =
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeInOut",
 			float AnimationSpeed = 0.75,
-			float AnimationDelay = 3,
+			float AnimationDelay = 3.5,
 			float MultiAnimationDelay = 2.25,
 		},
 		SkipToSplash = 
 		{
+			string SkipComponent = "DigiPen",
 		},
 	},
 },
