@@ -1,5 +1,8 @@
 class AppearIfClose : ZilchComponent
 {
+    [Property] var CloseColor : Real4 = Real4(1.0, 1.0, 1.0, 1.0);
+    [Property] var FarColor : Real4 = Real4(1.0, 1.0, 1.0, 0.0);
+    
     [Property] var Radius : Real = 2.0;
     
     function Initialize(init : CogInitializer)
@@ -17,11 +20,19 @@ class AppearIfClose : ZilchComponent
         if (Math.ApproximatelyEqual(playerPosition.X, position.X, this.Radius) && Math.ApproximatelyEqual(playerPosition.Y, position.Y, this.Radius))
             playerIsClose = true;
         
-        Console.WriteLine("Is Player Close: `playerIsClose`");
-        
-        if (playerIsClose)
-            Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.Sprite.Color, Real4(1.0, 1.0, 1.0, 1.0), 0.1, Ease.QuadInOut);
-        else
-            Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.0), 0.1, Ease.QuadInOut);
+        if (this.Owner.Sprite != null)
+        {
+            if (playerIsClose)
+                Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.Sprite.Color, this.CloseColor, 0.1, Ease.QuadInOut);
+            else
+                Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.Sprite.Color, this.FarColor, 0.1, Ease.QuadInOut);
+        }
+        else if (this.Owner.SpriteText != null)
+        {
+            if (playerIsClose)
+                Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.SpriteText.Color, this.CloseColor, 0.1, Ease.QuadInOut);
+            else
+                Action.Property(ActionGroup.Group(this.Owner.Actions), @this.Owner.SpriteText.Color, this.FarColor, 0.1, Ease.QuadInOut);
+        }
     }
 }

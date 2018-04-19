@@ -67,7 +67,7 @@ class Door : ZilchComponent {
         
         this.CurrDoorState = DoorState.Unlocked;
         
-        this.Owner.FindChildByName("Door").Sprite.CurrentFrame = -1;
+        this.Owner.FindChildByName("Door").Sprite.CurrentFrame = 5;
         this.Owner.FindChildByName("Door").Sprite.AnimationActive = false;
         
         this.Owner.FindChildByName("Door").BoxCollider.Ghost = true;
