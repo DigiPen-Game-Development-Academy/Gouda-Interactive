@@ -1,5 +1,5 @@
 // AUTHOR: HUDSON GREEN
-// CONTRIBUTORS: MATTHEW ZEARING
+// CONTRIBUTORS: N/A
 
 /* HANDLES WORLD GENERATION. AUTOMATICALLY LOADS/UNLOADS CHUNKS THAT ARE IN RANGE. */
 class WorldGenerator : ZilchComponent {
@@ -426,8 +426,6 @@ class WorldGenerator : ZilchComponent {
                     Relocation.ItemManager.DropItems(
                         Relocation.ItemManager.GetIDByName(itemName), 1, Real3(coords.XY, -0.25) + positionVariance
                     );
-                    
-                
                     
                 }
                 

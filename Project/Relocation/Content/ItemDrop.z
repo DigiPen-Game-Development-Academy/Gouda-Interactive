@@ -51,6 +51,7 @@ class ItemDrop : ZilchComponent {
                     Relocation.Items[this.ItemID].ItemColor,
                     Relocation.Items[this.ItemID].ItemLoreColor
                 );
+                
                 this.Space.SoundSpace.PlayCue(SoundCue.ItemPickup);
                 this.Owner.Destroy();
                 
