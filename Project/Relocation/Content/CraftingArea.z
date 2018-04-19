@@ -1,0 +1,26 @@
+class CraftingArea : ZilchComponent
+{
+    var PlayerInArea : Boolean = false;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        Console.WriteLine("In Area: ");
+    }
+
+    function OnCollisionEnded(event : CollisionEvent)
+    {
+        this.PlayerInArea = false;
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        this.PlayerInArea = true;
+    }
+}

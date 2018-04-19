@@ -26,7 +26,12 @@ class Tutorial : ZilchComponent {
         //Console.WriteLine("INV Open: `Relocation.Player.Inventory.InventoryOpen`");
         //Console.WriteLine("Crafting Open: `Relocation.Player.Inventory.CraftingOpen`\n");
         
-        if (Relocation.Player.Inventory.CraftingOpen == true && Relocation.Player.Inventory.InventoryOpen == true)
+        if
+        (
+            Relocation.Player.Inventory.CraftingOpen == true &&
+            Relocation.Player.Inventory.InventoryOpen == true &&
+            this.Space.FindObjectByName("CraftingArea").CraftingArea.PlayerInArea == true
+        )
         {
             if (Relocation.Player.Crafting.ScrollPosition == 2)
             {
