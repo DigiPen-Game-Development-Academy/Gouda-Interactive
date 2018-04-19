@@ -40,6 +40,9 @@ class PauseMenu : ZilchComponent {
         
         this.PauseMenuEnabled = !this.PauseMenuEnabled;
         
+        if(this.PauseMenuEnabled && Relocation.Space != null && Relocation.Space.LevelSettings.SaveLoadData != null)
+            Relocation.Space.LevelSettings.SaveLoadData.Save();
+        
         Relocation.Space.TimeSpace.Paused = this.PauseMenuEnabled;
         
     }
