@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [5, 6, 1],
+		Vec3 Translation = [5.75, 6.5, 1],
 		Vec3 Scale = [1.5, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -39,7 +39,7 @@ Cog =
 	BoxCollider = 
 	{
 		bool Ghost = false,
-		bool SendsMessages = true,
+		bool SendsMessages = false,
 		bool Seamless = true,
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
@@ -95,6 +95,7 @@ Cog =
 			CaveEnteranceExit = 
 			{
 				string LevelToLoad = "5ade26be6c6ec8af:Shop",
+				Vec3 SpawnPosition = [0, 0, 0],
 			},
 		},
 	},

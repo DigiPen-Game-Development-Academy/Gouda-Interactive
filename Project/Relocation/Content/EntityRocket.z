@@ -21,6 +21,8 @@ class EntityRocket : ZilchComponent {
     
     var LockVelocity : Boolean = false;
     
+    var HasHiddenRocketFire : Boolean = false;
+    
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
         Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
@@ -180,6 +182,10 @@ class EntityRocket : ZilchComponent {
             
             this.Owner.RigidBody.Velocity = this.HoverVelocity;
             
+        } else if(!this.HasHiddenRocketFire) {
+            foreach(var obj in this.Owner.FindAllChildrenByName("ParticleEngine"))
+                obj.SphericalParticleEmitter.Active = false;
+            this.HasHiddenRocketFire = true;
         }
         
     }
