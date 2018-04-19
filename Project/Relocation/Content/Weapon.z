@@ -159,6 +159,11 @@ class Weapon {
             
             var dif = Real2(mousePos.X - gunPos.X, mousePos.Y - gunPos.Y);
             var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
+            
+            if(magnitude == 0) {
+                magnitude = 0.001;
+            }
+            
             var velocity = Real3(dif.X / magnitude * this.BulletSpeed, dif.Y / magnitude * this.BulletSpeed, 0.0);
             
             bullet.RigidBody.Velocity = velocity;

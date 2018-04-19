@@ -129,6 +129,11 @@ Cog =
 		string ItemName = "ItemHealthPack",
 		int Amount = 1,
 	},
+	EntityFreezer = 
+	{
+		string EntityArchetype = "5a95361bd6622194:EntitySlug",
+		float FreezeDistance = 16,
+	},
 	Hierarchy = 
 	{
 		Cog = 

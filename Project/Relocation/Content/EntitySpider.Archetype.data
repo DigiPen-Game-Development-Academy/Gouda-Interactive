@@ -97,6 +97,8 @@ Cog =
 		bool IsInvincible = false,
 		bool NaturalRegen = false,
 		Vec4 DamagedColor = [1, 0.498039275, 0.498039246, 1],
+		string DeathAnimation = "",
+		int EndOfAnimation = 0,
 	},
 	SoundEmitter = 
 	{
@@ -121,6 +123,11 @@ Cog =
 		float Straightness = 1,
 		float Speed = 3,
 		float Acceleration = 2,
+	},
+	EntityFreezer = 
+	{
+		string EntityArchetype = "5a953a2652cb3d7a:EntitySpider",
+		float FreezeDistance = 16,
 	},
 	Hierarchy = 
 	{
