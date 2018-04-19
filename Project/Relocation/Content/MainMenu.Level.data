@@ -107,7 +107,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [7.64707899, -0.0276244953, 50],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -119,7 +119,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.0463238,
+			float Size = 22.3130493,
 		},
 		EditorCameraController = 
 		{
@@ -127,7 +127,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [7.64707899, -0.0276244953, 3.34264456e-07],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -183,7 +183,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [5, 7, 1],
+			Vec3 Translation = [-5, 7, 1],
 			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -207,9 +207,9 @@ Level =
 		},
 		ScreenAlignment = 
 		{
-			Enum PositionX = Right,
+			Enum PositionX = Left,
 			Enum PositionY = Top,
-			Vec2 PositionOffset = [-14, -4],
+			Vec2 PositionOffset = [14, -4],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,
 		},
@@ -234,7 +234,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-37, -24, -1],
+			Vec3 Translation = [37, -24, -1],
 			Vec3 Scale = [10, 10, 10],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -250,7 +250,7 @@ Level =
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 			string SpriteSource = "5acaf211d67d31b7:Earth",
 			bool RenderMask = false,
-			bool FlipX = false,
+			bool FlipX = true,
 			bool FlipY = false,
 			bool AnimationActive = true,
 			float AnimationSpeed = 1,
@@ -277,15 +277,15 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [16, 4, 1],
+			Vec3 Translation = [-16, 4, 1],
 			Vec3 Scale = [2, 2, 2],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		ScreenAlignment = 
 		{
-			Enum PositionX = Right,
+			Enum PositionX = Left,
 			Enum PositionY = Top,
-			Vec2 PositionOffset = [-3, -7],
+			Vec2 PositionOffset = [3, -7],
 			float ZIndex = 0,
 			bool HideUntilPositioned = false,
 		},
@@ -319,8 +319,8 @@ Level =
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 128,
-					string Text = "Load Save",
-					TextAlign Align = Right,
+					string Text = "L o a d  S a v e",
+					TextAlign Align = Left,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
@@ -368,7 +368,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -1, 0],
+					Vec3 Translation = [0, -0.75, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -384,8 +384,8 @@ Level =
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 128,
-					string Text = "New Game",
-					TextAlign Align = Right,
+					string Text = "N e w  G a m e",
+					TextAlign Align = Left,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
@@ -433,7 +433,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -2, 0],
+					Vec3 Translation = [0, -1.5, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -449,8 +449,8 @@ Level =
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 128,
-					string Text = "Settings",
-					TextAlign Align = Right,
+					string Text = "S e t t i n g s",
+					TextAlign Align = Left,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
@@ -498,7 +498,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -3, 0],
+					Vec3 Translation = [0, -2.25, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -514,8 +514,8 @@ Level =
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 128,
-					string Text = "Credits",
-					TextAlign Align = Right,
+					string Text = "C r e d i t s",
+					TextAlign Align = Left,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
@@ -563,7 +563,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -4, 0],
+					Vec3 Translation = [0, -3, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -579,8 +579,8 @@ Level =
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 128,
-					string Text = "Quit",
-					TextAlign Align = Right,
+					string Text = "Q u i t",
+					TextAlign Align = Left,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
 				},
