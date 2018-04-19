@@ -52,14 +52,37 @@ class TextHelper {
     
     [Static] function GetWordIndices(str : String, index : Integer) : Integer2 {
         
-        var indeces = Integer2(0);
+        var index_ = index;
         
-        for(var i = index; i < str.Count; ++i) {
+        if(index_ >= str.Count)
+            index_ = str.Count - 1;
+        else if(index_ < 0)
+            index_ = 0;
+        
+        var indeces = Integer2(index_);
+        
+        if(str.Count > 0 && !TextHelper.IsConsideredSpacerChar(String.FromChar(str[index_]))) {
             
-            if(TextHelper.IsConsideredSpacerChar(String.FromChar(str[i]))) {
+            for(var i = index_; i <= str.Count; ++i) {
+                
+                if(i >= str.Count || TextHelper.IsConsideredSpacerChar(String.FromChar(str[i]))) {
+                    indeces = Integer2(indeces.X, i);
+                    break;
+                }
                 
             }
             
+            for(var i = index_; i >= 0; --i) {
+                Console.WriteLine("i = `i`, indeces = `indeces`");
+                if(i < 1 || TextHelper.IsConsideredSpacerChar(String.FromChar(str[i]))) {
+                    indeces = Integer2(i, indeces.Y);
+                    break;
+                }
+                
+            }
+            
+        } else {
+            // SELECT CHAR
         }
         
         return indeces;
