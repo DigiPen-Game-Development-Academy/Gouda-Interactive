@@ -91,6 +91,9 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		SaveLoadData = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -104,7 +107,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [7.64707899, -0.0276244953, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +119,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 24.3649406,
+			float Size = 22.0463238,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +127,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [7.64707899, -0.0276244953, 3.34264456e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
