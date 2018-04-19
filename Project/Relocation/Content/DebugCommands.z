@@ -45,7 +45,7 @@ class TextEntry : ZilchComponent {
     var HeldKeyRepeatSpeed : Real = 0.005;
     var CurrHeldKeyRepeatSpeed : Real = 0.0;
     
-    var ClickCount : Integer = 0;
+    var ClickCount : Real = 0;
     var CurrClickCtTimer : Real = 0.0;
     
     var SelectedTextIndex : Integer2 = Integer2(0, 0);
@@ -79,18 +79,21 @@ class TextEntry : ZilchComponent {
                 this.ClickCount = 0;
             }
             
-            // SELECT ALL TEXT ON TRIPLE CLICK
-            /*if(this.ClickCount == 2) {
-                // TODO: ONLY SELECT THE CLICKED WORD
-                this.SelectedTextIndex = Integer2(0, this.CommandString.Count);
+            // SELECT TEXT ON MULTI CLICKS
+            
+            if(this.ClickCount == 2) {
+                this.SelectedTextIndex = TextHelper.GetWordIndices(this.CommandString, this.CursorIndex);
+                this.CatchInvalidCursorPos();
                 this.SelectText(this.SelectedTextIndex, false, true);
-                this.CurrClickCtTimer = 0.0;
-                this.ClickCount = 0;
-            }*/
+                this.ClickCount = 2.1;
+                return;
+            }
             
             if(this.ClickCount >= 3) {
                 this.SelectedTextIndex = Integer2(0, this.CommandString.Count);
                 this.SelectText(this.SelectedTextIndex, false, true);
+                this.ClickCount = 0;
+                return;
             }
             
             // CURSOR BLINKING
@@ -174,10 +177,10 @@ class TextEntry : ZilchComponent {
             this.SelectedTextIndex = Integer2(this.CursorIndex);
             this.CursorMoveClick = true;
             this.CurrClickCtTimer = 0.0;
-            ++this.ClickCount;
         } else if(!event.Mouse.IsButtonDown(MouseButtons.Left) && this.CursorMoveClick) {
             this.CursorMoveClick = false;
-        } else if(event.Mouse.IsButtonDown(MouseButtons.Left)) {
+            ++this.ClickCount;
+        } else if(event.Mouse.IsButtonDown(MouseButtons.Left) && this.ClickCount == 0) {
             this.SelectedTextIndex = Integer2(this.SelectedTextIndex.X, this.CalcTextIndexFromPosition(event.CameraViewport.ScreenToWorldZPlane(event.Position, 0.0).X));
         }
         

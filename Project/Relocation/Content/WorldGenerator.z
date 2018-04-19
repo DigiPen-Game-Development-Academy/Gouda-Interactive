@@ -421,10 +421,10 @@ class WorldGenerator : ZilchComponent {
                 
                 if(itemName != "") {
                     
-                    var positionVariance = Real3(new Random().Range(-0.35, 0.35), new Random().Range(-0.35, 0.35), 0.0);
+                    Console.WriteLine("Coords: `Real3(coords.XY, 0) + this.Owner.Transform.WorldTranslation`");
                     
                     Relocation.ItemManager.DropItems(
-                        Relocation.ItemManager.GetIDByName(itemName), 1, Real3(coords.XY, -0.25) + positionVariance
+                        Relocation.ItemManager.GetIDByName(itemName), 1, Real3(coords.XY + this.Owner.Transform.WorldTranslation.XY, 0)
                     );
                     
                 }
