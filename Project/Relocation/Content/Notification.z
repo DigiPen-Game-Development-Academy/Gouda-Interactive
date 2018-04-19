@@ -36,7 +36,7 @@ class Notification : ZilchComponent {
                 
                 notification.Transform.WorldTranslation = Math.Lerp(
                     notification.Transform.WorldTranslation,
-                    Real3(pos.X, pos.Y + notificationIndex * 0.75, 0),
+                    Real3(pos.X, pos.Y + notificationIndex * 0.75, 3.0),
                     0.06
                 );
                 

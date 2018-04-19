@@ -615,6 +615,7 @@ class Crafting : ZilchComponent {
         } else {
             Relocation.UISpace.SoundSpace.PlayCue(SoundCue.Find("WeaponNoAmmo"));
             Console.WriteLine("You do not have enough resources to craft this item.");
+            Relocation.NotificationManager.GiveNotification("You do not have enough resources to craft this item.", 1.5, Real4(1.0, 0.0, 0.0, 1.0));
             return;
         }
         
