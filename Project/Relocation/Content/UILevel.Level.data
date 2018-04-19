@@ -102,7 +102,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.97442311, 0.152253628, 13.6266108],
+			Vec3 Translation = [-0.57856375, -0.0609014481, 13.6266108],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -122,7 +122,7 @@ Level =
 			float LookDistance = 13.6266108,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.97442311, 0.152253628, -4.25933848e-08],
+			Vec3 LookTarget = [-0.57856375, -0.0609014481, -2.52898271e-08],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -2731,165 +2731,22 @@ Level =
 					string Name = "Slot1",
 				},
 			},
-			Cog = 
+			ArchetypeInstance = 
 			{
+				string Name = "5a384ca33d6b0b28:InventorySlotHBOH",
 				LinkId = 
 				{
 					uint Id = 75,
 				},
-				Named = 
-				{
-					string Name = "Slot2",
-				},
-				Archetyped = 
-				{
-					string Name = "5a384ca33d6b0b28:InventorySlotHBOH",
-				},
 				Transform = 
 				{
-					Vec3 Translation = [-2.04999995, -1.60000002, 0],
+					Vec3 Translation = [-4.3499999, -1.60000002, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
-				Sprite = 
+				Named = 
 				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0.454999983, 1, 0.493150085, 0.75],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5a3802b8a850eeb2:InventorySlot",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Reactive = 
-				{
-					bool Active = true,
-					bool CaptureMouse = false,
-				},
-				InventorySlot = 
-				{
-					bool EnableHoverSprite = true,
-					string InventorySlot = "5a3802b8a850eeb2:InventorySlot",
-					string InventorySlotHover = "5aef777feb626ca2:InventorySlotHover",
-				},
-				Hierarchy = 
-				{
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 76,
-						},
-						Named = 
-						{
-							string Name = "SlotIcon",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, 0, 1],
-							Vec3 Scale = [0.899999976, 0.899999976, 0.899999976],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "4e07948c35993095:DefaultSprite",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = false,
-							float AnimationSpeed = 0.25,
-							uint StartFrame = 0,
-						},
-					},
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 77,
-						},
-						Named = 
-						{
-							string Name = "ItemCount",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [-0.600000024, 0.800000012, 1.5],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						SpriteText = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string FontName = "5ad9e7ff8459f32e:FontDefaultBold",
-							uint FontSize = 128,
-							string Text = "0",
-							TextAlign Align = Left,
-							float PixelsPerUnit = 256,
-							bool Smoothing = false,
-						},
-						TextShadow = 
-						{
-							Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
-							Vec2 Offset = [0.0500000007, -0.0500000007],
-						},
-					},
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 78,
-						},
-						Named = 
-						{
-							string Name = "ItemName",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [0, -0.5, 1],
-							Vec3 Scale = [1, 1, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						SpriteText = 
-						{
-							bool Visible = false,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string FontName = "57343753bb4eaaec:NotoSans-Regular",
-							uint FontSize = 40,
-							string Text = "null",
-							TextAlign Align = Center,
-							float PixelsPerUnit = 128,
-							bool Smoothing = true,
-						},
-					},
+					string Name = "Slot2",
 				},
 			},
 			ArchetypeInstance = 
@@ -2897,11 +2754,11 @@ Level =
 				string Name = "5a38436fcf259e80:InventorySlotHB",
 				LinkId = 
 				{
-					uint Id = 79,
+					uint Id = 76,
 				},
 				Transform = 
 				{
-					Vec3 Translation = [-4.3499999, -1.60000002, 0],
+					Vec3 Translation = [-2.04999995, -1.60000002, 0],
 					Vec3 Scale = [0.75, 0.75, 0.75],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -2915,7 +2772,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 80,
+					uint Id = 77,
 				},
 				Transform = 
 				{
@@ -2933,7 +2790,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 81,
+					uint Id = 78,
 				},
 				Transform = 
 				{
@@ -2951,7 +2808,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 82,
+					uint Id = 79,
 				},
 				Transform = 
 				{
@@ -2969,7 +2826,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 83,
+					uint Id = 80,
 				},
 				Transform = 
 				{
@@ -2987,7 +2844,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 84,
+					uint Id = 81,
 				},
 				Transform = 
 				{
@@ -3005,7 +2862,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 85,
+					uint Id = 82,
 				},
 				Transform = 
 				{
@@ -3023,7 +2880,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 86,
+					uint Id = 83,
 				},
 				Transform = 
 				{
@@ -3041,7 +2898,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 87,
+					uint Id = 84,
 				},
 				Transform = 
 				{
@@ -3059,7 +2916,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 88,
+					uint Id = 85,
 				},
 				Transform = 
 				{
@@ -3077,7 +2934,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 89,
+					uint Id = 86,
 				},
 				Transform = 
 				{
@@ -3095,7 +2952,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 90,
+					uint Id = 87,
 				},
 				Transform = 
 				{
@@ -3113,7 +2970,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 91,
+					uint Id = 88,
 				},
 				Transform = 
 				{
@@ -3131,7 +2988,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 92,
+					uint Id = 89,
 				},
 				Transform = 
 				{
@@ -3149,7 +3006,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 93,
+					uint Id = 90,
 				},
 				Transform = 
 				{
@@ -3167,7 +3024,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 94,
+					uint Id = 91,
 				},
 				Transform = 
 				{
@@ -3185,7 +3042,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 95,
+					uint Id = 92,
 				},
 				Transform = 
 				{
@@ -3203,7 +3060,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 96,
+					uint Id = 93,
 				},
 				Transform = 
 				{
@@ -3221,7 +3078,7 @@ Level =
 				string Name = "5a38401d04a68bc1:InventorySlot",
 				LinkId = 
 				{
-					uint Id = 97,
+					uint Id = 94,
 				},
 				Transform = 
 				{
@@ -3236,12 +3093,19 @@ Level =
 			},
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "5a3b7b75ae7ed0a8:InventoryHUD",
 		LinkId = 
 		{
-			uint Id = 98,
+			uint Id = 95,
+		},
+		Named = 
+		{
+			string Name = "InventoryHUD",
+		},
+		Archetyped = 
+		{
+			string Name = "5a3b7b75ae7ed0a8:InventoryHUD",
 		},
 		Transform = 
 		{
@@ -3249,16 +3113,59 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		ScreenAlignment = 
 		{
-			string Name = "InventoryHUD",
+			Enum PositionX = Right,
+			Enum PositionY = Bottom,
+			Vec2 PositionOffset = [-2.25, 1.25],
+			float ZIndex = 0,
+			bool HideUntilPositioned = false,
+		},
+		Hierarchy = 
+		{
+			ArchetypeInstance = 
+			{
+				string Name = "5a3b64c28d512b65:InventoryHUDSlotHBOH",
+				LinkId = 
+				{
+					uint Id = 96,
+				},
+				Transform = 
+				{
+					Vec3 Translation = [1, 0, 0],
+					Vec3 Scale = [1.5, 1.5, 1.5],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Named = 
+				{
+					string Name = "Slot3H",
+				},
+			},
+			ArchetypeInstance = 
+			{
+				string Name = "5a3b64dbb09a9787:InventoryHUDSlotHB",
+				LinkId = 
+				{
+					uint Id = 97,
+				},
+				Transform = 
+				{
+					Vec3 Translation = [-1, 0, 0],
+					Vec3 Scale = [1.5, 1.5, 1.5],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Named = 
+				{
+					string Name = "Slot2H",
+				},
+			},
 		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 99,
+			uint Id = 98,
 		},
 		Named = 
 		{
@@ -3289,7 +3196,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 100,
+					uint Id = 99,
 				},
 				Named = 
 				{
@@ -3338,7 +3245,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 101,
+							uint Id = 100,
 						},
 						Named = 
 						{
@@ -3381,7 +3288,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 102,
+							uint Id = 101,
 						},
 						Named = 
 						{
@@ -3418,7 +3325,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 103,
+					uint Id = 102,
 				},
 				Named = 
 				{
@@ -3468,7 +3375,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 104,
+							uint Id = 103,
 						},
 						Named = 
 						{
@@ -3511,7 +3418,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 105,
+							uint Id = 104,
 						},
 						Named = 
 						{
@@ -3548,7 +3455,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 106,
+					uint Id = 105,
 				},
 				Named = 
 				{
@@ -3598,7 +3505,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 107,
+							uint Id = 106,
 						},
 						Named = 
 						{
@@ -3641,7 +3548,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 108,
+							uint Id = 107,
 						},
 						Named = 
 						{
@@ -3680,7 +3587,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 109,
+			uint Id = 108,
 		},
 		Named = 
 		{
@@ -3725,7 +3632,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 110,
+			uint Id = 109,
 		},
 		Named = 
 		{
@@ -3776,7 +3683,7 @@ Level =
 		string Name = "5acad920c7159677:Watermark",
 		LinkId = 
 		{
-			uint Id = 111,
+			uint Id = 110,
 		},
 		Transform = 
 		{
@@ -3793,7 +3700,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 112,
+			uint Id = 111,
 		},
 		Named = 
 		{
@@ -3844,7 +3751,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 113,
+			uint Id = 112,
 		},
 		Named = 
 		{
@@ -3886,7 +3793,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 114,
+			uint Id = 113,
 		},
 		Named = 
 		{
@@ -3942,7 +3849,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 115,
+			uint Id = 114,
 		},
 		Named = 
 		{
@@ -3968,7 +3875,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 116,
+					uint Id = 115,
 				},
 				Named = 
 				{
@@ -3986,7 +3893,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 117,
+							uint Id = 116,
 						},
 						Named = 
 						{
@@ -4025,7 +3932,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 118,
+							uint Id = 117,
 						},
 						Named = 
 						{
@@ -4082,7 +3989,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 119,
+							uint Id = 118,
 						},
 						Named = 
 						{
@@ -4139,7 +4046,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 120,
+							uint Id = 119,
 						},
 						Named = 
 						{
@@ -4196,7 +4103,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 121,
+							uint Id = 120,
 						},
 						Named = 
 						{
@@ -4255,7 +4162,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 122,
+					uint Id = 121,
 				},
 				Named = 
 				{
@@ -4281,7 +4188,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 123,
+							uint Id = 122,
 						},
 						Named = 
 						{
@@ -4321,7 +4228,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 124,
+									uint Id = 123,
 								},
 								Named = 
 								{
@@ -4361,7 +4268,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 125,
+											uint Id = 124,
 										},
 										Named = 
 										{
@@ -4406,7 +4313,7 @@ Level =
 											{
 												LinkId = 
 												{
-													uint Id = 126,
+													uint Id = 125,
 												},
 												Named = 
 												{
@@ -4445,7 +4352,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 127,
+									uint Id = 126,
 								},
 								Named = 
 								{
@@ -4485,7 +4392,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 128,
+											uint Id = 127,
 										},
 										Named = 
 										{
@@ -4530,7 +4437,7 @@ Level =
 											{
 												LinkId = 
 												{
-													uint Id = 129,
+													uint Id = 128,
 												},
 												Named = 
 												{
@@ -4571,7 +4478,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 130,
+							uint Id = 129,
 						},
 						Named = 
 						{
@@ -4611,7 +4518,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 131,
+									uint Id = 130,
 								},
 								Named = 
 								{
@@ -4651,7 +4558,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 132,
+											uint Id = 131,
 										},
 										Named = 
 										{
@@ -4696,7 +4603,7 @@ Level =
 											{
 												LinkId = 
 												{
-													uint Id = 133,
+													uint Id = 132,
 												},
 												Named = 
 												{
@@ -4735,7 +4642,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 134,
+									uint Id = 133,
 								},
 								Named = 
 								{
@@ -4775,7 +4682,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 135,
+											uint Id = 134,
 										},
 										Named = 
 										{
@@ -4820,7 +4727,7 @@ Level =
 											{
 												LinkId = 
 												{
-													uint Id = 136,
+													uint Id = 135,
 												},
 												Named = 
 												{
@@ -4861,7 +4768,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 137,
+							uint Id = 136,
 						},
 						Named = 
 						{
@@ -4901,7 +4808,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 138,
+									uint Id = 137,
 								},
 								Named = 
 								{
@@ -4944,7 +4851,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 139,
+											uint Id = 138,
 										},
 										Named = 
 										{
@@ -4987,7 +4894,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 140,
+											uint Id = 139,
 										},
 										Named = 
 										{
@@ -5022,7 +4929,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 141,
+											uint Id = 140,
 										},
 										Named = 
 										{
@@ -5058,7 +4965,7 @@ Level =
 							{
 								LinkId = 
 								{
-									uint Id = 142,
+									uint Id = 141,
 								},
 								Named = 
 								{
@@ -5101,7 +5008,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 143,
+											uint Id = 142,
 										},
 										Named = 
 										{
@@ -5144,7 +5051,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 144,
+											uint Id = 143,
 										},
 										Named = 
 										{
@@ -5179,7 +5086,7 @@ Level =
 									{
 										LinkId = 
 										{
-											uint Id = 145,
+											uint Id = 144,
 										},
 										Named = 
 										{
@@ -5221,7 +5128,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 146,
+			uint Id = 145,
 		},
 		Named = 
 		{
@@ -5247,7 +5154,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 147,
+					uint Id = 146,
 				},
 				Named = 
 				{
@@ -5265,7 +5172,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 148,
+							uint Id = 147,
 						},
 						Named = 
 						{
@@ -5299,7 +5206,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 149,
+							uint Id = 148,
 						},
 						Named = 
 						{
@@ -5351,7 +5258,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 150,
+							uint Id = 149,
 						},
 						Named = 
 						{
@@ -5403,7 +5310,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 151,
+							uint Id = 150,
 						},
 						Named = 
 						{
@@ -5459,7 +5366,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 152,
+			uint Id = 151,
 		},
 		Named = 
 		{
@@ -5493,7 +5400,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 153,
+					uint Id = 152,
 				},
 				Named = 
 				{
@@ -5533,7 +5440,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 154,
+			uint Id = 153,
 		},
 		Named = 
 		{
