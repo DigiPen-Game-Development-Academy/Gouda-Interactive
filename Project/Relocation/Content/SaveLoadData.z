@@ -20,10 +20,15 @@ class SaveLoadData : ZilchComponent {
     }
     
     function OnLogicUpdate(event : UpdateEvent) {
+        
         if(Zero.Keyboard.KeyIsPressed(Keys.Zero))
             this.Save();
-        if(Zero.Keyboard.KeyIsPressed(Keys.Nine))
+        
+        if (Relocation.ShouldLoadLevel == true)
+        {
             this.Load(true);
+            Relocation.ShouldLoadLevel = false;
+        }
     }
     
     function Save() {
