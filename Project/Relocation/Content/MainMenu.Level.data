@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.0463123,
+			float Size = 24.3649406,
 		},
 		EditorCameraController = 
 		{
@@ -214,7 +214,7 @@ Level =
 		{
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeIn",
-			float AnimationSpeed = 0.5,
+			float AnimationSpeed = 0.75,
 			float AnimationDelay = 0.5,
 			float MultiAnimationDelay = 0.5,
 		},
@@ -257,7 +257,7 @@ Level =
 		{
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeIn",
-			float AnimationSpeed = 0.5,
+			float AnimationSpeed = 0.75,
 			float AnimationDelay = 0,
 			float MultiAnimationDelay = 0.5,
 		},
@@ -332,7 +332,7 @@ Level =
 				ButtonLevelSwitcher = 
 				{
 					string Level = "5a3bc4c73a7e1106:SurfaceWorld",
-					float Delay = 2,
+					float Delay = 1,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 0.5, 1],
 					bool UIAnimateEnabled = true,
@@ -391,13 +391,13 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 1.25,
+					float AnimationDelay = 1.10000002,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
 				{
-					string Level = "5ad9da479b989e9e:TutorialLevel",
-					float Delay = 2,
+					string Level = "5a27f4630701bb51:Tutorial",
+					float Delay = 1,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 1, 0.5],
 					bool UIAnimateEnabled = true,
@@ -446,7 +446,7 @@ Level =
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "5addaa7b8f441196:FontBold",
 					uint FontSize = 128,
-					string Text = "Options",
+					string Text = "Settings",
 					TextAlign Align = Right,
 					float PixelsPerUnit = 128,
 					bool Smoothing = false,
@@ -456,13 +456,13 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 1.5,
+					float AnimationDelay = 1.20000005,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
 				{
 					string Level = "5af4a927c61863d7:SettingsMenu",
-					float Delay = 2,
+					float Delay = 1,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [0.5, 0.5, 0.5],
 					bool UIAnimateEnabled = true,
@@ -491,11 +491,76 @@ Level =
 				},
 				Named = 
 				{
-					string Name = "ButtonQuit",
+					string Name = "ButtonCredits",
 				},
 				Transform = 
 				{
 					Vec3 Translation = [0, -3, 0],
+					Vec3 Scale = [0.5, 0.5, 0.5],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "5addaa7b8f441196:FontBold",
+					uint FontSize = 128,
+					string Text = "Credits",
+					TextAlign Align = Right,
+					float PixelsPerUnit = 128,
+					bool Smoothing = false,
+				},
+				UIAnimate = 
+				{
+					bool AnimationEnabled = true,
+					string AnimationType = "FadeIn",
+					float AnimationSpeed = 1.5,
+					float AnimationDelay = 1.29999995,
+					float MultiAnimationDelay = 0.5,
+				},
+				ButtonLevelSwitcher = 
+				{
+					string Level = "5ac7431380639e8a:Credits",
+					float Delay = 1,
+					Vec3 DefaultColor = [1, 1, 1],
+					Vec3 HoverColor = [1, 1, 0.5],
+					bool UIAnimateEnabled = true,
+					bool ResumeButton = false,
+					bool RespawnButton = false,
+					bool LoadSaveButton = false,
+					bool ForceAnimation = false,
+					bool QuitButton = false,
+				},
+				Reactive = 
+				{
+					bool Active = true,
+					bool CaptureMouse = false,
+				},
+				TextShadow = 
+				{
+					Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
+					Vec2 Offset = [0.075000003, -0.075000003],
+				},
+			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 11,
+				},
+				Named = 
+				{
+					string Name = "ButtonQuit",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, -4, 0],
 					Vec3 Scale = [0.5, 0.5, 0.5],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -521,13 +586,13 @@ Level =
 					bool AnimationEnabled = true,
 					string AnimationType = "FadeIn",
 					float AnimationSpeed = 1.5,
-					float AnimationDelay = 1.75,
+					float AnimationDelay = 1.39999998,
 					float MultiAnimationDelay = 0.5,
 				},
 				ButtonLevelSwitcher = 
 				{
 					string Level = "",
-					float Delay = 2,
+					float Delay = 1,
 					Vec3 DefaultColor = [1, 1, 1],
 					Vec3 HoverColor = [1, 0.5, 0.5],
 					bool UIAnimateEnabled = true,
@@ -555,7 +620,7 @@ Level =
 		string Name = "5ad1912746382d45:WatermarkMainMenu",
 		LinkId = 
 		{
-			uint Id = 11,
+			uint Id = 12,
 		},
 		Transform = 
 		{
@@ -573,7 +638,7 @@ Level =
 		string Name = "5acaf72266c512aa:CursorMenu",
 		LinkId = 
 		{
-			uint Id = 12,
+			uint Id = 13,
 		},
 		Transform = 
 		{
@@ -590,7 +655,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 13,
+			uint Id = 14,
 		},
 		Named = 
 		{

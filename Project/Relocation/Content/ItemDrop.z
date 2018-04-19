@@ -1,5 +1,5 @@
 // AUTHOR: HUDSON GREEN
-// CONTRIBUTORS: N/A
+// CONTRIBUTORS: MATTHEW ZEARING
 
 class ItemDrop : ZilchComponent {
     
@@ -52,6 +52,7 @@ class ItemDrop : ZilchComponent {
                     Relocation.Items[this.ItemID].ItemLoreColor
                 );
                 
+                this.Space.SoundSpace.PlayCue(SoundCue.ItemPickup);
                 this.Owner.Destroy();
                 
             }
