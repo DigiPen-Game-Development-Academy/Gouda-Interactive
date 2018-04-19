@@ -22,6 +22,29 @@ class Tutorial : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
+        //Console.WriteLine("INV Open: `Relocation.Player.Inventory.InventoryOpen`");
+        //Console.WriteLine("Crafting Open: `Relocation.Player.Inventory.CraftingOpen`\n");
+        
+        if (Relocation.Player.Inventory.CraftingOpen == true && Relocation.Player.Inventory.InventoryOpen == true)
+        {
+            if (Relocation.Player.Crafting.ScrollPosition == 2)
+                Relocation.UISpace.FindObjectByName("PistolArrow").Blink.On = true;
+            else
+            {
+                Relocation.UISpace.FindObjectByName("PistolArrow").Blink.On = false;
+                Relocation.UISpace.FindObjectByName("PistolArrow").Sprite.Visible = false;
+            }
+            
+            Relocation.UISpace.FindObjectByName("WeaponArrow").Blink.On = true;
+        }
+        else
+        {
+            Relocation.UISpace.FindObjectByName("PistolArrow").Blink.On = false;
+            Relocation.UISpace.FindObjectByName("PistolArrow").Sprite.Visible = false;
+        }
+        
+        //Console.WriteLine("Visible: `this.LevelSettings.UICreator.UISpace.FindObjectByName("WeaponArrow").Sprite.Visible`");
+        
         if(!this.HasMoved && Relocation.Player != null) {
             
             Relocation.NotificationManager.DisplayKey(Relocation.Player.Movement.Up, this.IsMoving(), true);
@@ -88,7 +111,7 @@ class Tutorial : ZilchComponent {
             Relocation.Player != null
         ) {
             
-            Relocation.NotificationManager.DisplayKeySuffix("Crafting is essential for progression\nWe will cover it later", true);
+            Relocation.NotificationManager.DisplayKeySuffix("Crafting is essential for progression", true);
             
             this.CurrMinMoveAmount += event.Dt;
             

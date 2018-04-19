@@ -53,60 +53,39 @@ class DoorCondition : ZilchComponent
         if (this.Condition == Condition.HasItem)
         {
             if (this.Player.Inventory.CheckForItems(Relocation.ItemManager.GetIDByName(this.Item), this.ItemAmount) && this.Unlocked == false)
-            {
-                this.Owner.Door.UnlockDoor();
-                this.Unlocked = true;
-            }
+                this.Owner.Door.DoorState = DoorState.Unlocked;
         }
         else if (this.Condition == Condition.EntityDeath)
         {
             if (this.Entity == null && this.Unlocked == false)
-            {
-                this.Owner.Door.UnlockDoor();
-                this.Unlocked = true;
-            }
+                this.Owner.Door.DoorState = DoorState.Unlocked;
         }
         else if (this.Condition == Condition.HasSeenMessage)
         {
             if (this.Message == Message.HasMoved && this.Unlocked == false)
             {
                 if (this.LevelSettings.Tutorial.HasMoved == true)
-                {
-                    this.Owner.Door.UnlockDoor();
-                    this.Unlocked = true;
-                }
+                    this.Owner.Door.DoorState = DoorState.Unlocked;
             }
             else if (this.Message == Message.HasSprinted && this.Unlocked == false)
             {
                 if (this.LevelSettings.Tutorial.HasSprinted == true)
-                {
-                    this.Owner.Door.UnlockDoor();
-                    this.Unlocked = true;
-                }
+                    this.Owner.Door.DoorState = DoorState.Unlocked;
             }
             else if (this.Message == Message.HasOpenedInventory && this.Unlocked == false)
             {
                 if (this.LevelSettings.Tutorial.HasOpenedInventory == true)
-                {
-                    this.Owner.Door.UnlockDoor();
-                    this.Unlocked = true;
-                }
+                    this.Owner.Door.DoorState = DoorState.Unlocked;
             }
             else if (this.Message == Message.HasOpenedCraftingMenu && this.Unlocked == false)
             {
                 if (this.LevelSettings.Tutorial.HasOpenedCraftingMenu == true)
-                {
-                    this.Owner.Door.UnlockDoor();
-                    this.Unlocked = true;
-                }
+                    this.Owner.Door.DoorState = DoorState.Unlocked;
             }
             else if ((this.Message == Message.HasTalkedAboutCrafting || this.Message == Message.TutorialComplete) && this.Unlocked == false)
             {
                 if (this.LevelSettings.Tutorial.HasTalkedAboutCrafting == true)
-                {
-                    this.Owner.Door.UnlockDoor();
-                    this.Unlocked = true;
-                }
+                    this.Owner.Door.DoorState = DoorState.Unlocked;
             }
         }
     }

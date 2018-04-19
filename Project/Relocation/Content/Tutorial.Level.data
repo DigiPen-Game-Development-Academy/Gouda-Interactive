@@ -91,9 +91,6 @@ Level =
 		Tutorial = 
 		{
 		},
-		CraftingNotification = 
-		{
-		},
 	},
 	Cog = 
 	{
@@ -107,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [14.226449, 15.0425081, 42.955307],
+			Vec3 Translation = [5.81928921, 1.7676934, 42.955307],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -119,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 7.42736959,
+			float Size = 10.0258827,
 		},
 		EditorCameraController = 
 		{
@@ -127,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [14.226449, 15.0425081, -7.04469156],
+			Vec3 LookTarget = [5.81928921, 1.7676934, -7.04469156],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -235,6 +232,8 @@ Level =
 			bool IsInvincible = false,
 			bool NaturalRegen = true,
 			Vec4 DamagedColor = [1, 0.498039246, 0.498039246, 1],
+			string DeathAnimation = "",
+			int EndOfAnimation = 0,
 		},
 		Inventory = 
 		{
@@ -973,6 +972,8 @@ Level =
 			bool IsInvincible = true,
 			bool NaturalRegen = false,
 			Vec4 DamagedColor = [1, 0.498039275, 0.498039246, 1],
+			string DeathAnimation = "",
+			int EndOfAnimation = 0,
 		},
 		SphereCollider = 
 		{
@@ -1012,7 +1013,7 @@ Level =
 			Enum DoorPerms = Any,
 			bool OneWayDoor = false,
 			bool DebugMode = false,
-			int EndOfAnimationFrame = 6,
+			string OpenDoorSound = "5a6a63169f6c37f7:DoorOpen",
 		},
 		BoxCollider = 
 		{
@@ -1105,11 +1106,11 @@ Level =
 		Door = 
 		{
 			Enum DoorState = Locked,
-			Enum DoorDir = North,
+			Enum DoorDir = East,
 			Enum DoorPerms = Any,
 			bool OneWayDoor = false,
 			bool DebugMode = false,
-			int EndOfAnimationFrame = 6,
+			string OpenDoorSound = "5a6a63169f6c37f7:DoorOpen",
 		},
 		BoxCollider = 
 		{
@@ -1203,10 +1204,10 @@ Level =
 		{
 			Enum DoorState = Locked,
 			Enum DoorDir = North,
-			Enum DoorPerms = Any,
+			Enum DoorPerms = PlayerOnly,
 			bool OneWayDoor = false,
 			bool DebugMode = false,
-			int EndOfAnimationFrame = 5,
+			string OpenDoorSound = "5a6a63169f6c37f7:DoorOpen",
 		},
 		BoxCollider = 
 		{
@@ -1303,7 +1304,7 @@ Level =
 			Enum DoorPerms = Any,
 			bool OneWayDoor = false,
 			bool DebugMode = false,
-			int EndOfAnimationFrame = 5,
+			string OpenDoorSound = "5a6a63169f6c37f7:DoorOpen",
 		},
 		BoxCollider = 
 		{
@@ -1338,7 +1339,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, 0, 0],
+					Vec3 Translation = [0, 0, -0.400000006],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -1352,7 +1353,7 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5a9cc319087790c8:DoorHorizontal",
+					string SpriteSource = "5a9cc3790421529b:DoorVertical",
 					bool RenderMask = false,
 					bool FlipX = false,
 					bool FlipY = false,
@@ -1367,7 +1368,7 @@ Level =
 					bool Seamless = true,
 					string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 					string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-					Vec3 Offset = [0, 0, 0],
+					Vec3 Offset = [0, 0, 0.200000003],
 					Vec3 Size = [0.5, 0.5, 0.5],
 				},
 			},
@@ -2410,6 +2411,8 @@ Level =
 			bool IsInvincible = false,
 			bool NaturalRegen = false,
 			Vec4 DamagedColor = [1, 0.498039275, 0.498039246, 1],
+			string DeathAnimation = "",
+			int EndOfAnimation = 0,
 		},
 		SoundEmitter = 
 		{
@@ -2527,6 +2530,8 @@ Level =
 		},
 		AppearIfClose = 
 		{
+			Vec4 CloseColor = [1, 1, 1, 1],
+			Vec4 FarColor = [1, 1, 1, 0],
 			float Radius = 2,
 		},
 	},
@@ -2542,7 +2547,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [14.5, 14.5, -0.100000001],
+			Vec3 Translation = [14, 14.5, -0.100000001],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -2566,6 +2571,8 @@ Level =
 		},
 		AppearIfClose = 
 		{
+			Vec4 CloseColor = [1, 1, 1, 0.349999994],
+			Vec4 FarColor = [1, 1, 1, 0],
 			float Radius = 2,
 		},
 	},
