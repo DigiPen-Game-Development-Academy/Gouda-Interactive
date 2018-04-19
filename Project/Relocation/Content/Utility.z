@@ -50,4 +50,40 @@ class TextHelper {
         return code >= " "[0] && code <= "~"[0];
     }
     
+    [Static] function GetWordIndices(str : String, index : Integer) : Integer2 {
+        
+        var indeces = Integer2(0);
+        
+        for(var i = index; i < str.Count; ++i) {
+            
+            if(TextHelper.IsConsideredSpacerChar(String.FromChar(str[i]))) {
+                
+            }
+            
+        }
+        
+        return indeces;
+        
+    }
+    
+    [Static] function IsConsideredSpacerChar(char : String) : Boolean {
+        
+        if(
+            char == " " ||
+            char == "," ||
+            char == "." ||
+            char == "[" ||
+            char == "]" ||
+            char == "{" ||
+            char == "}" ||
+            char == "/" ||
+            char == "\\"
+        ) {
+            return true;
+        }
+        
+        return false;
+        
+    }
+    
 }

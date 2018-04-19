@@ -88,6 +88,11 @@ class TextEntry : ZilchComponent {
                 this.ClickCount = 0;
             }*/
             
+            if(this.ClickCount == 2) {
+                this.SelectedTextIndex = Integer2(0, this.CommandString.Count);
+                this.SelectText(this.SelectedTextIndex, false, true);
+            }
+            
             if(this.ClickCount >= 3) {
                 this.SelectedTextIndex = Integer2(0, this.CommandString.Count);
                 this.SelectText(this.SelectedTextIndex, false, true);
