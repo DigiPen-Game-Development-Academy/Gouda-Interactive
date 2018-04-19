@@ -1,4 +1,4 @@
-// HUDSON GREEN
+// AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
 class HealthBar : ZilchComponent {
