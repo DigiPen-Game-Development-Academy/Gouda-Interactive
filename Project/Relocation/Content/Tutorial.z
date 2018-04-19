@@ -10,6 +10,7 @@ class Tutorial : ZilchComponent {
     var HasOpenedInventory : Boolean = false;
     var HasOpenedCraftingMenu : Boolean = false;
     var HasTalkedAboutCrafting : Boolean = false;
+    var PromptToProceedToNextRoom : Boolean = false;
     
     var TutorialComplete : Boolean = false;
     
@@ -117,6 +118,27 @@ class Tutorial : ZilchComponent {
             
             if(this.CurrMinMoveAmount >= this.MinMoveAmount || Zero.Keyboard.KeyIsPressed(this.SkipKey)) {
                 this.HasTalkedAboutCrafting = this.RunTaskCompleted();
+                return;
+            }
+            
+        }
+        
+        if(
+            !this.PromptToProceedToNextRoom &&
+            this.HasTalkedAboutCrafting &&
+            this.HasOpenedCraftingMenu &&
+            this.HasOpenedInventory &&
+            this.HasMoved &&
+            this.HasSprinted &&
+            Relocation.Player != null
+        ) {
+            
+            Relocation.NotificationManager.DisplayKeySuffix("Proceed to the next room & pick up the drill", true);
+            
+            this.CurrMinMoveAmount += event.Dt;
+            
+            if(this.CurrMinMoveAmount >= this.MinMoveAmount || Zero.Keyboard.KeyIsPressed(this.SkipKey)) {
+                this.PromptToProceedToNextRoom = this.RunTaskCompleted();
                 return;
             }
             
