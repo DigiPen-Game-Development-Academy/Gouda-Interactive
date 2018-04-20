@@ -27,13 +27,9 @@ class Tutorial : ZilchComponent {
         //Console.WriteLine("Crafting Open: `Relocation.Player.Inventory.CraftingOpen`\n");
         
         if
-        (
-            Relocation.Player.Inventory.CraftingOpen == true &&
-            Relocation.Player.Inventory.InventoryOpen == true &&
-            this.Space.FindObjectByName("CraftingArea").CraftingArea.PlayerInArea == true
-        )
+        (Relocation.Player.Inventory.CraftingOpen == true)
         {
-            if (Relocation.Player.Crafting.ScrollPosition == 2)
+            if (Relocation.Player.Crafting.ScrollPosition == 2 && this.Space.FindObjectByName("CraftingArea").CraftingArea.PlayerInArea == true)
             {
                 Relocation.UISpace.FindObjectByName("PistolArrow").Blink.On = true;
                 Relocation.UISpace.FindObjectByName("WeaponArrow").Blink.On = false;
@@ -45,13 +41,15 @@ class Tutorial : ZilchComponent {
                 Relocation.UISpace.FindObjectByName("PistolArrow").Sprite.Visible = false;
             }
             
-            Relocation.UISpace.FindObjectByName("WeaponArrow").Blink.On = true;
+            if (this.Space.FindObjectByName("CraftingArea").CraftingArea.PlayerInArea == true)
+                Relocation.UISpace.FindObjectByName("WeaponArrow").Blink.On = true;
+            else
+            {
+                Relocation.UISpace.FindObjectByName("WeaponArrow").Blink.On = false;
+                Relocation.UISpace.FindObjectByName("WeaponArrow").Sprite.Visible = false;
+            }
         }
-        else
-        {
-            Relocation.UISpace.FindObjectByName("PistolArrow").Blink.On = false;
-            Relocation.UISpace.FindObjectByName("PistolArrow").Sprite.Visible = false;
-        }
+        
         
         //Console.WriteLine("Visible: `this.LevelSettings.UICreator.UISpace.FindObjectByName("WeaponArrow").Sprite.Visible`");
         
