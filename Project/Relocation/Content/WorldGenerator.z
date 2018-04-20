@@ -375,7 +375,7 @@ class WorldGenerator : ZilchComponent {
         var chunkCoords = Integer2(coords.X + this.Width / 2, coords.Y + this.Width / 2);
         var blockData = this.WorldMapData.Get(coords);
         
-        var blockDamage = Math.Round((blockData.X / blockData.Y) * 4) as Integer;
+        var blockDamage = Math.Round(((blockData.X / blockData.Y) * 4) - 1) as Integer;
         
         if(blockDamage > 0 && block.FindChildByName("BlockRock") == null) {
             
