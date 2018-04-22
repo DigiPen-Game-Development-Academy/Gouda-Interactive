@@ -18,7 +18,7 @@ SoundCue =
 	Array Sounds = 
 	[
 		{
-			string SoundName = "5ab6b0e2558cb54d:OverworldRelocation",
+			string SoundName = "5a77b437c77f0ff8:OverworldRelocation",
 			string GeneratedSoundName = "55017c595ef88bf0:DefaultGeneratedSound",
 			WhichSoundType WhichToUse = FromFile,
 			float Weight = 1,
