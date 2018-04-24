@@ -1,4 +1,4 @@
-// HUDSON GREEN
+// AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
 class HealthBar : ZilchComponent {
@@ -18,7 +18,7 @@ class HealthBar : ZilchComponent {
     function OnMouseUpdate(event : ViewportMouseEvent) {
         
         this.Space.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
-        if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+        if(Zero.Keyboard.KeyIsDown(Keys.Control)) {
             this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
                 "HP: `this.CurrentHealth` / `this.MaxHealth`",
                 "You can regain health by eating/using medkits.",
@@ -27,7 +27,7 @@ class HealthBar : ZilchComponent {
             );
         } else {
             this.Space.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                "HP: `this.CurrentHealth` / `this.MaxHealth` (Shift)",
+                "HP: `this.CurrentHealth` / `this.MaxHealth` (Ctrl)",
                 "",
                 Real4(1.0, 0.0, 0.0, 1.0),
                 Real4(1.0)

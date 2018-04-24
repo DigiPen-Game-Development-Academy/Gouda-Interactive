@@ -9,6 +9,7 @@ class Movement : ZilchComponent {
     [Property] var Left : Keys = Keys.A;
     [Property] var Down : Keys = Keys.S;
     [Property] var Right : Keys = Keys.D;
+    [Property] var Sprint : Keys = Keys.Shift;
     [Property] var OpenMap : Keys = Keys.Tab;
     
     var ItemHand : Cog = null;
@@ -45,10 +46,10 @@ class Movement : ZilchComponent {
             }
             
             // CHECK IF SPRINTING
-            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
-                r3Speed = Real3(this.RunSpeed * event.Dt, this.RunSpeed * event.Dt, this.RunSpeed * event.Dt);
+            if(Zero.Keyboard.KeyIsDown(this.Sprint)) {
+                r3Speed = Real3(this.RunSpeed, this.RunSpeed, this.RunSpeed) * 0.01666;
             } else {
-                r3Speed = Real3(this.Speed * event.Dt, this.Speed * event.Dt, this.Speed * event.Dt);
+                r3Speed = Real3(this.Speed, this.Speed, this.Speed) * 0.01666;
             }
             
             // MOUSE SHOOTING DIRECTION
@@ -214,6 +215,11 @@ class Movement : ZilchComponent {
                 
             }
             
+        } else {
+            
+            this.Owner.RigidBody.Velocity = Real3(0.0);
+            this.Owner.Sprite.AnimationActive = false;
+            
         }
         
     }
@@ -301,7 +307,7 @@ class Movement : ZilchComponent {
         this.StartFrame = 42;
         this.EndFrame = 47;
         
-        this.ItemHand.Transform.Translation = Real3(-0.35, -0.1, 0.05);
+        this.ItemHand.Transform.Translation = Real3(-0.4, -0.1, -0.05);
         this.ItemHand.Sprite.StartFrame = 1;
         this.ItemHand.Sprite.FlipX = true;
         

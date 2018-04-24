@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 10, 0],
+		Vec3 Translation = [0, 10, 5],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -38,11 +38,12 @@ Cog =
 	},
 	CustomCursor = 
 	{
-		string DefaultCursor = "5acaf7b50bbabd5d:CursorDot",
-		string HoverCursor = "5acaf71e6daf6949:CursorDotHover",
+		string DefaultCursor = "5acaf71e6daf6949:CursorDotHover",
+		string HoverCursor = "5acaf7b50bbabd5d:CursorDot",
 		string HoverTooltipCursor = "5acaf7b50bbabd5d:CursorDot",
 		string HoverItemCursor = "5acaf71e6daf6949:CursorDotHover",
 		string ClickCursor = "5acaf71e6daf6949:CursorDotHover",
+		string TextCursor = "5aeba223f7830399:CursorText",
 		bool ShowCustomCursor = true,
 	},
 },

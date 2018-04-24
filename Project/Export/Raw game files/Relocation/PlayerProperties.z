@@ -57,7 +57,7 @@ class PlayerProperties : ZilchComponent {
             
             Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
             
-            if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+            if(Zero.Keyboard.KeyIsDown(Keys.Control)) {
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
                     "`this.PlayerName`",
                     "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
@@ -66,7 +66,7 @@ class PlayerProperties : ZilchComponent {
                 );
             } else {
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                    "`this.PlayerName` (Shift)",
+                    "`this.PlayerName` (Ctrl)",
                     "",
                     Real4(0.0, 1.0, 0.0, 1.0),
                     Real4(1.0)
@@ -87,13 +87,12 @@ class PlayerProperties : ZilchComponent {
             this.IsInWater = true;
             this.QueueBiomeChange = false;
             this.CurrBiomeChangeTime = 0.0;
-            Console.WriteLine("In Water!");
         } else if(event.OtherObject.Name == "WorldBorder") {
             this.IsInUnauthorizedZone = true;
             if(this.Space.MusicPlayer.GameLevelMusicSpace != null && !this.HasPlayedBorderSong) {
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.StopAllSounds();
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.PlayCue(SoundCue.WorldBorder);
-                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch = 1.0;
+                GameSetting.PitchValue = 1.0;
                 this.HasPlayedBorderSong = true;
                 
             }
@@ -106,14 +105,12 @@ class PlayerProperties : ZilchComponent {
         if(event.OtherObject.Parent != null && event.OtherObject.Parent.Name == "BiomeWater") {
             this.IsInWater = false;
             this.QueueBiomeChange = true;
-            Console.WriteLine("Not In Water!");
         } else if(event.OtherObject.Name == "WorldBorder") {
             this.IsInUnauthorizedZone = false;
             if(this.Space.MusicPlayer.GameLevelMusicSpace != null) {
                 this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.StopAllSounds();
-                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch = 0.0;
                 this.Space.SoundSpace.Pitch = 0.0;
-                this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Pitch = 0.0;
+                GameSetting.PitchValue = 0.0;
                 this.HasPlayedBorderSong = false;
                 
             }
@@ -132,7 +129,7 @@ class PlayerProperties : ZilchComponent {
             waterSplash.SpriteParticleSystem.Visible = true;
             waterSplash.SphericalParticleEmitter.Active = true;
             if(!this.StopBiomeSoundCue) {
-                this.Space.FindObjectByName("BiomeWater").SoundEmitter.PlayCue(SoundCue.LakeDay);
+                this.Space.FindObjectByName("BiomeWater").SoundObject.PlayCue(SoundCue.LakeDay);
                 this.StopBiomeSoundCue = true;
             }
             this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Volume = GameSetting.SoundEffectsVolume;
@@ -160,10 +157,8 @@ class PlayerProperties : ZilchComponent {
             
             if(this.CurrUnauthKillTime < this.UnauthorizedKillTime) {
                 this.CurrUnauthKillTime += event.Dt;
-                this.Space.MusicPlayer.GameLevelMusicSpace.SoundSpace.Pitch -= event.Dt / this.UnauthorizedKillTime;
+                GameSetting.PitchValue -= event.Dt / this.UnauthorizedKillTime;
                 this.Space.SoundSpace.Pitch -= event.Dt / (this.UnauthorizedKillTime / 3);
-                if(this.Space.FindObjectByName("BuildingSiren") != null)
-                    this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Pitch = this.Space.SoundSpace.Pitch;
             } else {
                 this.CurrUnauthKillTime = this.UnauthorizedKillTime;
             }
@@ -185,7 +180,7 @@ class PlayerProperties : ZilchComponent {
         }
         
         // TRIGGER STORM
-        if(Zero.Keyboard.KeyIsPressed(Keys.Four)) {
+        /*if(Zero.Keyboard.KeyIsPressed(Keys.Four)) {
             this.StormSoundsActive = !this.StormSoundsActive;
         }
         
@@ -199,7 +194,7 @@ class PlayerProperties : ZilchComponent {
                 this.Space.FindObjectByName("BuildingSiren").SoundEmitter.Stop();
                 this.StormSoundsPlayed = false;
             }
-        }
+        }*/
         
         if(this.CurrUnauthKillTime > this.UnauthorizedKillTime) {
             this.Owner.Health.CurrentHealth = 0.0;

@@ -318,7 +318,7 @@ Tweakables =
 		{
 			Vec4 TitleBarColor = [0.164706007, 0.164706007, 0.164706007, 1],
 			Vec4 BorderColor = [0.117647, 0.117647, 0.117647, 1],
-			Vec2 BorderPadding = [2, 2],
+			Vec2 BorderPadding = [0, 0],
 			Vec4 ButtonColor = [0.164706007, 0.164706007, 0.164706007, 1],
 			Vec4 ButtonHover = [0.234999999, 0.234999999, 0.234999999, 1],
 			Vec4 ButtonClick = [0.0599999987, 0.0599999987, 0.0599999987, 1],
@@ -392,15 +392,15 @@ Tweakables =
 		},
 		PropertyView_ = 
 		{
-			float PropertySize = 18,
+			float PropertySize = 21,
 			float PropertySpacing = 2,
-			float IndentSize = 10,
+			float IndentSize = 12,
 			Component_ = 
 			{
-				Vec4 TitleColor = [0.294117987, 0.294117987, 0.294117987, 1],
+				Vec4 TitleColor = [0.31764701, 0.31764701, 0.31764701, 1],
 				Vec4 TitleHighlight = [0.368627012, 0.368627012, 0.368627012, 1],
 				Vec4 TitleRemove = [0.435294002, 0.184313998, 0.184313998, 1],
-				Vec4 BackgroundColor = [0.31764701, 0.31764701, 0.31764701, 1],
+				Vec4 BackgroundColor = [0.344117987, 0.344117987, 0.344117987, 1],
 				Vec4 BackgroundRemove = [0.31764701, 0.252528995, 0.252528995, 1],
 				Vec4 ErrorPopUpColor = [0.74901998, 0.184313998, 0.184313998, 1],
 				float OpenTime = 0.0599999987,
@@ -415,7 +415,7 @@ Tweakables =
 				Vec4 ResourceEditMouseOver = [0.625, 0.625, 0.625, 1],
 				float CogPathPickerIndent = 8,
 				float CogPathCogLabelMinWidth = 12,
-				float CogPathCogLabelSpace = 20,
+				float CogPathCogLabelSpace = 21,
 			},
 		},
 		ResourceEditors_ = 
@@ -444,7 +444,7 @@ Tweakables =
 			Vec4 HoverColor = [0.245700002, 0.407564998, 0.540000021, 1],
 			Vec4 InvalidTextColor = [1, 1, 1, 0.349999994],
 			Vec4 InvalidTipBorder = [0.985000014, 0.265949994, 0.265949994, 1],
-			float RowSize = 18,
+			float RowSize = 22,
 		},
 		ShaderGraph_ = 
 		{
@@ -483,7 +483,7 @@ Tweakables =
 			Vec4 HeaderColor = [0.258823991, 0.258823991, 0.258823991, 1],
 			Vec4 HeaderHighlight = [0.335000008, 0.335000008, 0.335000008, 1],
 			Vec4 ColumnSeparatorColor = [0.185000002, 0.185000002, 0.185000002, 1],
-			float ItemHeight = 18,
+			float ItemHeight = 21,
 			float ItemSpacing = 2,
 			float IndentSize = 8,
 			float MaxDragScrollSpeed = 15,

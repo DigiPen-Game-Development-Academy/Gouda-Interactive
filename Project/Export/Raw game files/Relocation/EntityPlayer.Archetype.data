@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-20.5, 4.5, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -61,6 +61,19 @@ Cog =
 		AxisDirection Direction = Y,
 		CapsuleScalingMode ScalingMode = PreserveScale,
 	},
+	SoundEmitter = 
+	{
+		float Volume = 1,
+		float Pitch = 0,
+		float PitchSemitones = 0,
+		bool UsePitchSemitones = false,
+		bool Positional = true,
+		int Version = 1,
+	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
+	},
 	Movement = 
 	{
 		float Speed = 150,
@@ -76,8 +89,9 @@ Cog =
 	},
 	Health = 
 	{
-		float MaxHealth = 25,
+		float MaxHealth = 50,
 		bool IsInvincible = false,
+		bool NaturalRegen = true,
 	},
 	Inventory = 
 	{
@@ -102,6 +116,9 @@ Cog =
 	{
 		bool Active = true,
 		bool CaptureMouse = false,
+	},
+	FollowTarget = 
+	{
 	},
 	Hierarchy = 
 	{
@@ -128,113 +145,6 @@ Cog =
 			LinkId = 
 			{
 				uint Id = 3,
-			},
-			Named = 
-			{
-				string Name = "Minimap",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [0, -0.200000003, 0],
-				Vec3 Scale = [0.349999994, 0.349999994, 0.349999994],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			CameraViewport = 
-			{
-				bool Background = false,
-				Vec2 Offset = [0, 0.0250000004],
-				Vec2 Size = [0.949999988, 0.949999988],
-				int Layer = 1,
-				bool Active = false,
-				bool Blocking = true,
-				CogPath Renderer = 
-				{
-					string Path = ".",
-					bool ErrorOnResolveToNull = false,
-					bool ErrorOnPathCantCompute = false,
-					bool ErrorOnDirectLinkFail = false,
-					bool UpdateCogOnPathChange = true,
-					bool UpdatePathOnCogChange = true,
-					bool UpdateCogOnInitialize = true,
-					bool ResolvedNullErrorOccurred = false,
-					uint ResolvedCog = 3,
-					CogPathPreference PathPreference0 = CogRelative,
-					CogPathPreference PathPreference1 = SpaceRelative,
-					CogPathPreference PathPreference2 = Absolute,
-				},
-				CogPath Camera = 
-				{
-					string Path = "MinimapCamera",
-					bool ErrorOnResolveToNull = false,
-					bool ErrorOnPathCantCompute = false,
-					bool ErrorOnDirectLinkFail = false,
-					bool UpdateCogOnPathChange = true,
-					bool UpdatePathOnCogChange = true,
-					bool UpdateCogOnInitialize = true,
-					bool ResolvedNullErrorOccurred = false,
-					uint ResolvedCog = 4,
-					CogPathPreference PathPreference0 = CogRelative,
-					CogPathPreference PathPreference1 = SpaceRelative,
-					CogPathPreference PathPreference2 = Absolute,
-				},
-				ViewportScaling Scaling = Letterbox,
-				Vec2 Resolution = [500, 500],
-				Vec4 MarginColor = [0, 0, 0, 1],
-			},
-			DeferredRenderer = 
-			{
-				Vec4 ClearColor = [0, 0, 0, 1],
-				bool DrawNonVisible = false,
-				bool DrawDebugObjects = true,
-				bool DrawEditorIcons = true,
-				bool EditorIconDepth = true,
-				bool Hdr = false,
-				bool Shadows = false,
-				bool AntiAliasing = false,
-				bool Refraction = false,
-				bool Reflections = false,
-				string ReflectionEnvironmentName = "4fab71e8bcb7a8ce:DefaultTexture",
-				bool GodRays = false,
-				bool RenderMasks = false,
-				bool Glow = false,
-				float GlowThreshold = 1,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 4,
-					},
-					Named = 
-					{
-						string Name = "MinimapCamera",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-3.81469727e-06, 0.571429253, 114.285721],
-						Vec3 Scale = [2.85714293, 2.85714293, 2.85714293],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Camera = 
-					{
-						ProjectionMode ProjectionMode = Orthographic,
-						Facing Facing = NegativeZ,
-						CameraTransparentSort TransparentSort = InheritFromSpace,
-						float FieldOfView = 45,
-						float NearPlane = 0.5,
-						float FarPlane = 200,
-						float Size = 64,
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 5,
 			},
 			Named = 
 			{
@@ -266,7 +176,7 @@ Cog =
 		{
 			LinkId = 
 			{
-				uint Id = 6,
+				uint Id = 4,
 			},
 			Named = 
 			{
@@ -343,7 +253,7 @@ Cog =
 				{
 					LinkId = 
 					{
-						uint Id = 7,
+						uint Id = 5,
 					},
 					Named = 
 					{
@@ -351,7 +261,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [0, -0.150000006, 0],
+						Vec3 Translation = [0, -0.168491751, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -415,6 +325,86 @@ Cog =
 						Vec4 Color4 = [1, 1, 1, 0],
 					},
 				},
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 6,
+			},
+			Named = 
+			{
+				string Name = "FootstepParticle",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, -0.400000006, -0.100000001],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteParticleSystem = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				SystemChildMode ChildMode = Independent,
+				SystemSpace SystemSpace = WorldSpace,
+				uint DrawOrder = 0,
+				Vec4 Tint = [1, 1, 1, 1],
+				float WarmUpTime = 0,
+				ParticleGeometry GeometryMode = Billboarded,
+				ParticleRenderMode RenderMode = Additive,
+				ParticleSortMode SortMode = Youngest,
+				ParticleAnimation ParticleAnimation = Single,
+				string Texture = "5a16e724289bd87b:FootstepAnimated",
+				float VelocityScale = 1,
+				float LengthScale = 1,
+				float MaxParticleSize = 100,
+				Vec3 SystemSize = [1, 1, 4],
+			},
+			SphericalParticleEmitter = 
+			{
+				bool Active = true,
+				uint EmitCount = 0,
+				float EmitRate = 6,
+				float EmitVariance = 0,
+				float Size = 0.300000012,
+				float SizeVariance = 0.0500000007,
+				float Lifetime = 1,
+				float LifetimeVariance = 0.200000003,
+				float Spin = 0,
+				float SpinVariance = 50,
+				bool RandomSpin = false,
+				float Fill = 1,
+				float EmitterVelocityPercent = 0,
+				Vec3 StartVelocity = [0, 0, 0],
+				Vec3 RandomVelocity = [0, 0, 0],
+				Vec3 TangentVelocity = [0, 0, 0],
+				Vec3 EmitterSize = [0.100000001, 0.100000001, 0],
+				bool FastMovingEmitter = false,
+			},
+			LinearParticleAnimator = 
+			{
+				Vec3 Force = [0, 0, 0],
+				Vec3 RandomForce = [0, 0, 0],
+				float Torque = 0,
+				float Growth = 0,
+				float Dampening = 0,
+				Vec3 Twist = [0, 0, 0],
+			},
+			ParticleColorAnimator = 
+			{
+				Vec4 Color0 = [1, 1, 1, 0],
+				Vec4 Color1 = [1, 1, 1, 0.5],
+				Vec4 Color2 = [1, 1, 1, 0.5],
+				Vec4 Color3 = [1, 1, 1, 0.5],
+				Vec4 Color4 = [1, 1, 1, 0],
+			},
+			FootstepScript = 
+			{
+				float FootstepCooldown = 0.300000012,
 			},
 		},
 	},

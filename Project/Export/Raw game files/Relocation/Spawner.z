@@ -2,11 +2,8 @@
 //CONTIBUTORS: Matthew Z, MYLES BUSIG
 class Spawner : ZilchComponent
 {
-    /* [Property] var WhatToSpawn : Archetype; Is not needed
-       Because it should be randomly picking different types of enemies to spawn */
-    
     // Radius from 0, 0 that enemies will spawn in
-    [Property] var Radius : Real = 100.0;
+    [Property] var Radius : Real = 14.0;
     
     // EntityPlayer
     var Player : Cog;
@@ -27,7 +24,7 @@ class Spawner : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        Console.WriteLine("`this.EnemiesSpawned`");
+        //Console.WriteLine("`this.EnemiesSpawned`");
         
         // If there are to little enemies
         if (this.EnemiesSpawned < this.MaxEnemiesSpawned)
@@ -45,9 +42,12 @@ class Spawner : ZilchComponent
             var randomGeneratorX = new Random();
             var randomGeneratorY = new Random();
             
+            // Set playerPosition variable
+            var playerPosition = this.Player.Transform.Translation;
+            
             // Create the spawn position
-            var spawnPosition =  Real3(randomGeneratorX.Range(-this.Radius, this.Radius),
-            randomGeneratorY.Range(-this.Radius, this.Radius), 0);
+            var spawnPosition =  Real3(randomGeneratorX.Range(playerPosition.X - this.Radius, playerPosition.X + this.Radius),
+            randomGeneratorY.Range(playerPosition.Y - this.Radius, playerPosition.Y + this.Radius), 0);
             
             // If the spawn position is visible within the camera return and don't spawn anything
             if ((this.Player.Transform.Translation.X >= spawnPosition.X - camera.Camera.Size && 
@@ -88,7 +88,7 @@ class Spawner : ZilchComponent
         
         Console.WriteLine("`castResults.Empty()`");
         
-        // Retur the results
+        // Return the results
         return castResults.Empty();
     }
 }

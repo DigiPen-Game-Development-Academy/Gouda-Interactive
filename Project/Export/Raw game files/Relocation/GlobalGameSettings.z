@@ -7,6 +7,7 @@ class GameSetting {
     [Static] var MasterVolume : Real = 1.0;
     [Static] var MusicVolume : Real = 1.0;
     [Static] var SoundEffectsVolume : Real = 1.0;
+    [Static] var PitchValue : Real = 0.0;
     
     /* GRAPHICS OPTIONS */
     [Static] var EnableUIAnimations : Boolean = true;
@@ -18,7 +19,6 @@ class GameSetting {
     [Static] var EnemyTooltip : Boolean = true;
     
     /* GAME OPTIONS */
-    [Static] var Difficulty : Integer = 2;
     //[Static] var . . .
     
     /* MISC OPTIONS */

@@ -15,7 +15,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items = new Array[Item]();
         this.Spacers = new Array[Integer]();
         
-        Relocation.Items.Push(new Item("Circle",                        true));
+        Relocation.Items.Push(new Item("ItemAir",                       SpriteSource.Circle));
         Relocation.Items.Push(new ItemWeapon("ItemPistol",              true));
         Relocation.Items.Push(new ItemWeapon("ItemRevolver",            true));
         Relocation.Items.Push(new ItemWeapon("ItemRock",                true));
@@ -30,7 +30,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemAmmoMinigun",               true));
         Relocation.Items.Push(new Item("ItemAmmoAssault",               false));
         Relocation.Items.Push(new Item("ItemAmmoSniper",                true));
-        Relocation.Items.Push(new HPack("ItemHealthPack",               true, 10));
+        Relocation.Items.Push(new HPack("ItemHealthPack",               true, 25));
         Relocation.Items.Push(new Item("ItemCopperOre",                 true));
         Relocation.Items.Push(new Item("ItemCopper",                    true));
         Relocation.Items.Push(new Item("ItemIronOre",                   true));
@@ -41,8 +41,8 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemTitanium",                  true));
         Relocation.Items.Push(new Item("ItemPlatinumOre",               true));
         Relocation.Items.Push(new Item("ItemPlatinum",                  true));
-        Relocation.Items.Push(new Item("ItemGoudariumOre",              false));
-        Relocation.Items.Push(new Item("ItemGoudarium",                 false));
+        Relocation.Items.Push(new Item("ItemGoudariumOre",              true));
+        Relocation.Items.Push(new Item("ItemGoudarium",                 true));
         this.AddSpacerItems(4);
         Relocation.Items.Push(new Item("ItemGunTrigger",                true));
         Relocation.Items.Push(new Item("ItemGunHandle",                 true));
@@ -59,7 +59,7 @@ class ItemManager : ZilchComponent {
         Relocation.Items.Push(new Item("ItemDrillTitanium",             true));
         Relocation.Items.Push(new Item("ItemDrillPlatinum",             true));
         this.AddSpacerItems(12);
-        Relocation.Items.Push(new HPack("ItemGreenBean",                true, 1));
+        Relocation.Items.Push(new HPack("ItemGreenBean",                true, 10));
         
         this.GiveItemsID();
         
@@ -79,18 +79,18 @@ class ItemManager : ZilchComponent {
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Assault Rifle)",           "Ammo");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Ammunition (Sniper Rifle)",            "Ammo");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Health Pack",                          "Health Pack\n\nFully heals player when you use it.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Unprocessed)",                 "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Unprocessed)",                 "Resource\nMust be processed in order\nto be used.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Copper (Processed)",                   "Resource\n\nCan be used to make electronics\nand other cool stuff.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Unprocessed)",                   "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Unprocessed)",                   "Resource\nMust be processed in order\nto be used.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Iron (Processed)",                     "Resource");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gold (Unprocessed)",                   "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gold (Unprocessed)",                   "Resource\nMust be processed in order\nto be used.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gold (Processed)",                     "Resource");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Titanium (Unprocessed)",               "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Titanium (Unprocessed)",               "Resource\nMust be processed in order\nto be used.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Titanium (Processed)",                 "Resource");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Unprocessed)",               "Resource");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Unprocessed)",               "Resource\nMust be processed in order\nto be used.");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Platinum (Processed)",                 "Resource");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Goudarium (Unprocessed)",              "Unknown Resource\nRadioactive\n\nThe composition of this resource is\nunknown. It contain large traces of\nan element that is not on the known\nperiodic table. Emits trace amount\nof radiation. Caution is highly\nadvised.");
-        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Goudarium (Processed)",                "Unknown Resource\nRadioactive");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Goudarium (Unprocessed)",              "Unknown Resource\nRadioactive\n\nMust be processed in order\nto be used.");
+        this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Goudarium (Processed)",                "Unknown Resource\nRadioactive\n\nThe composition of this resource is\nunknown. It contain large traces of\nan element that is not on the known\nperiodic table. Emits trace amount\nof radiation. Caution is highly\nadvised.");
         this.SkipSpacer();
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Trigger",                              "Gun Part");
         this.ID = Relocation.Items[this.ID].SetDisplayName(this.ID, "Gun Handle",                           "Gun Part");

@@ -1,0 +1,19 @@
+[Version:1]
+Cog 
+{
+	var Name = ""
+	ZeroBuildContent 
+	{
+		var ExperimentalBranchName = ""
+		var MajorVersion = 0
+		var MinorVersion = 0
+		var PatchVersion = 0
+		var RevisionId = 16386
+		var ShortChangeSet = ""
+		var Platform = "Win32"
+		var ChangeSetDate = "2017.04.20"
+		var DisplayName = ""
+		var PackageName = ""
+		var Tags = ""
+	}
+}

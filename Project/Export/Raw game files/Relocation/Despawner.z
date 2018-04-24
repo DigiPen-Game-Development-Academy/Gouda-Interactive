@@ -1,5 +1,6 @@
-// AUTHOR: Kevin P
+// AUTHOR: KEVIN P
 // CONTIBUTORS: MYLES BUSIG, HUDSON GREEN
+
 class Despawner : ZilchComponent
 {
     

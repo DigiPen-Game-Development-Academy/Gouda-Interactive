@@ -91,6 +91,9 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		Credits = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -104,7 +107,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.58467865, 0.100701258, 50],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +119,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 18.0500145,
+			float Size = 24.3649769,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +127,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0.58467865, 0.100701258, 1.63179607e-07],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -168,11 +171,199 @@ Level =
 			float Volume = 1,
 		},
 	},
+	ArchetypeInstance = 
+	{
+		string Name = "5acaf72266c512aa:CursorMenu",
+		LinkId = 
+		{
+			uint Id = 4,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 10, 5],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Cursor",
+		},
+	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 4,
+			uint Id = 5,
+		},
+		Named = 
+		{
+			string Name = "RelocationLogo",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 6, 1],
+			Vec3 Scale = [2, 2, 2],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5aca05286c7d3397:LogoRelocation",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		ScreenAlignment = 
+		{
+			Enum PositionX = Center,
+			Enum PositionY = Top,
+			Vec2 PositionOffset = [0, -4],
+			float ZIndex = 0,
+			bool HideUntilPositioned = false,
+		},
+		UIAnimate = 
+		{
+			bool AnimationEnabled = true,
+			string AnimationType = "FadeIn",
+			float AnimationSpeed = 0.75,
+			float AnimationDelay = 0.5,
+			float MultiAnimationDelay = 0.5,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 6,
+		},
+		Named = 
+		{
+			string Name = "Earth",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-37, -24, -1],
+			Vec3 Scale = [10, 10, 10],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0, 1, 0.579999924, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5acaf211d67d31b7:Earth",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		UIAnimate = 
+		{
+			bool AnimationEnabled = true,
+			string AnimationType = "FadeIn",
+			float AnimationSpeed = 0.75,
+			float AnimationDelay = 0,
+			float MultiAnimationDelay = 0.5,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 7,
+		},
+		Named = 
+		{
+			string Name = "Stars",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [5, 0, -2],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		SpriteParticleSystem = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			SystemChildMode ChildMode = Independent,
+			SystemSpace SystemSpace = WorldSpace,
+			uint DrawOrder = 0,
+			Vec4 Tint = [1, 1, 1, 1],
+			float WarmUpTime = 0,
+			ParticleGeometry GeometryMode = Billboarded,
+			ParticleRenderMode RenderMode = Additive,
+			ParticleSortMode SortMode = Youngest,
+			ParticleAnimation ParticleAnimation = Single,
+			string Texture = "5aee3fb80ad6352b:Star",
+			float VelocityScale = 1,
+			float LengthScale = 1,
+			float MaxParticleSize = 100,
+			Vec3 SystemSize = [4, 4, 4],
+		},
+		BoxParticleEmitter = 
+		{
+			bool Active = true,
+			uint EmitCount = 0,
+			float EmitRate = 25,
+			float EmitVariance = 0,
+			float Size = 0.25,
+			float SizeVariance = 0,
+			float Lifetime = 4,
+			float LifetimeVariance = 0.5,
+			float Spin = 0,
+			float SpinVariance = 50,
+			bool RandomSpin = true,
+			float Fill = 0.779999971,
+			float EmitterVelocityPercent = 0,
+			Vec3 StartVelocity = [0, 0, 0],
+			Vec3 RandomVelocity = [0, 0, 0],
+			Vec3 TangentVelocity = [0, 0, 0],
+			Vec3 EmitterSize = [35, 25, 25],
+			bool FastMovingEmitter = false,
+		},
+		LinearParticleAnimator = 
+		{
+			Vec3 Force = [0, 0, 0],
+			Vec3 RandomForce = [0, 0, 0],
+			float Torque = 0,
+			float Growth = 0,
+			float Dampening = 0,
+			Vec3 Twist = [0, 0, 0],
+		},
+		ParticleColorAnimator = 
+		{
+			Vec4 Color0 = [0.954999983, 0.963549972, 1, 0],
+			Vec4 Color1 = [0.715000033, 0.699999988, 1, 1],
+			Vec4 Color2 = [0.891499877, 0.689999998, 1, 1],
+			Vec4 Color3 = [0.689999998, 0.869799972, 1, 1],
+			Vec4 Color4 = [0.875, 0.887500048, 1, 0],
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 8,
 		},
 		Named = 
 		{
@@ -181,8 +372,16 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [0, 0.5, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [1.5, 1.5, 1.5],
 			Quat Rotation = [0, 0, 0, 1],
+		},
+		ScreenAlignment = 
+		{
+			Enum PositionX = Center,
+			Enum PositionY = Top,
+			Vec2 PositionOffset = [0, -8],
+			float ZIndex = 0,
+			bool HideUntilPositioned = false,
 		},
 		Hierarchy = 
 		{
@@ -190,42 +389,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 5,
-				},
-				Named = 
-				{
-					string Name = "CreditTitle",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 1.5, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5aca05286c7d3397:LogoRelocation",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 6,
+					uint Id = 9,
 				},
 				Named = 
 				{
@@ -260,7 +424,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 7,
+							uint Id = 10,
 						},
 						Named = 
 						{
@@ -296,7 +460,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 8,
+					uint Id = 11,
 				},
 				Named = 
 				{
@@ -331,7 +495,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 9,
+							uint Id = 12,
 						},
 						Named = 
 						{
@@ -367,7 +531,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 10,
+					uint Id = 13,
 				},
 				Named = 
 				{
@@ -402,7 +566,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 11,
+							uint Id = 14,
 						},
 						Named = 
 						{
@@ -441,7 +605,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 12,
+					uint Id = 15,
 				},
 				Named = 
 				{
@@ -476,7 +640,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 13,
+							uint Id = 16,
 						},
 						Named = 
 						{
@@ -515,7 +679,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 14,
+					uint Id = 17,
 				},
 				Named = 
 				{
@@ -550,7 +714,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 15,
+							uint Id = 18,
 						},
 						Named = 
 						{
@@ -586,7 +750,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 16,
+					uint Id = 19,
 				},
 				Named = 
 				{
@@ -621,7 +785,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 17,
+							uint Id = 20,
 						},
 						Named = 
 						{
@@ -656,6 +820,66 @@ Level =
 					},
 				},
 			},
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 21,
+				},
+				Named = 
+				{
+					string Name = "CopyrightDigiPen",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, -4.5, 0],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				SpriteText = 
+				{
+					bool Visible = true,
+					bool VisibilityCulling = true,
+					bool VisibilityEvents = true,
+					bool CastShadows = false,
+					Vec4 Color = [1, 1, 1, 1],
+					BlendMode BlendMode = Alpha,
+					SpriteGeometryMode GeometryMode = ZPlane,
+					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+					string FontName = "5ac2973527d023e1:FontDefault",
+					uint FontSize = 150,
+					string Text = "All content © 2018 DigiPen (USA) Corporation, All rights reserved.",
+					TextAlign Align = Center,
+					float PixelsPerUnit = 256,
+					bool Smoothing = false,
+				},
+				Area = 
+				{
+					Vec2 Size = [12.3500004, 2],
+					Location Origin = TopCenter,
+				},
+				Hierarchy = 
+				{
+				},
+			},
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5ad1912746382d45:WatermarkMainMenu",
+		LinkId = 
+		{
+			uint Id = 22,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-19.5, -10, 20],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Watermark",
 		},
 	},
 },

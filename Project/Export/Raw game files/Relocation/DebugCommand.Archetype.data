@@ -29,7 +29,7 @@ Cog =
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 		string FontName = "5ad9e7ff8459f32e:FontDefaultBold",
-		uint FontSize = 128,
+		uint FontSize = 118,
 		string Text = ">",
 		TextAlign Align = Left,
 		float PixelsPerUnit = 256,
@@ -37,11 +37,24 @@ Cog =
 	},
 	ScreenAlignment = 
 	{
-		string PositionX = "Left",
-		string PositionY = "Bottom",
-		Vec2 PositionOffset = [0.25, 0.75],
+		Enum PositionX = Left,
+		Enum PositionY = Bottom,
+		Vec2 PositionOffset = [0.300000012, 0.75],
 		float ZIndex = 25,
 		bool HideUntilPositioned = false,
+	},
+	SoundEmitter = 
+	{
+		float Volume = 1.99526238,
+		float Pitch = 2,
+		float PitchSemitones = 23.9899998,
+		bool UsePitchSemitones = false,
+		bool Positional = false,
+		int Version = 1,
+	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
 	},
 	Hierarchy = 
 	{
@@ -71,12 +84,17 @@ Cog =
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string FontName = "5addaa209e091e3e:FontDefaultMonospace",
+				string FontName = "5ae3ec1413d104a8:FontDefaultBoldMonospace",
 				uint FontSize = 128,
 				string Text = "",
 				TextAlign Align = Left,
 				float PixelsPerUnit = 256,
 				bool Smoothing = true,
+			},
+			TextShadow = 
+			{
+				Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
+				Vec2 Offset = [0.0500000007, -0.0500000007],
 			},
 		},
 		Cog = 
@@ -91,8 +109,8 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [-0.25, 0, 0],
-				Vec3 Scale = [21.75, 0.800000012, 1],
+				Vec3 Translation = [-0.25, 0, -0.0500000007],
+				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -113,21 +131,23 @@ Cog =
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
 			},
+			Area = 
+			{
+				Vec2 Size = [21.75, 0.699999988],
+				Location Origin = TopLeft,
+			},
 			Reactive = 
 			{
 				bool Active = true,
 				bool CaptureMouse = false,
 			},
 		},
-		Cog = 
+		ArchetypeInstance = 
 		{
+			string Name = "5aea5df963fae645:TextBoxSelection",
 			LinkId = 
 			{
 				uint Id = 4,
-			},
-			Named = 
-			{
-				string Name = "TextBoxSelection",
 			},
 			Transform = 
 			{
@@ -135,23 +155,9 @@ Cog =
 				Vec3 Scale = [0.5, 0.5, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
-			Sprite = 
+			Named = 
 			{
-				bool Visible = false,
-				bool VisibilityCulling = true,
-				bool VisibilityEvents = true,
-				bool CastShadows = false,
-				Vec4 Color = [0, 0.429999828, 1, 0.5],
-				BlendMode BlendMode = Alpha,
-				SpriteGeometryMode GeometryMode = ZPlane,
-				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "5a39bac998d784be:TextSelect",
-				bool RenderMask = false,
-				bool FlipX = false,
-				bool FlipY = false,
-				bool AnimationActive = true,
-				float AnimationSpeed = 1,
-				uint StartFrame = 0,
+				string Name = "TextBoxSelection",
 			},
 		},
 		Cog = 
@@ -159,6 +165,45 @@ Cog =
 			LinkId = 
 			{
 				uint Id = 5,
+			},
+			Named = 
+			{
+				string Name = "TextCursor",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0.5, 0, 2],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteText = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [1, 1, 1, 1],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string FontName = "5addaa209e091e3e:FontDefaultMonospace",
+				uint FontSize = 128,
+				string Text = "|",
+				TextAlign Align = Left,
+				float PixelsPerUnit = 256,
+				bool Smoothing = true,
+			},
+			TextShadow = 
+			{
+				Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
+				Vec2 Offset = [0.0500000007, -0.0500000007],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 6,
 			},
 			Named = 
 			{
@@ -189,15 +234,31 @@ Cog =
 			},
 			TextEntry = 
 			{
-				bool IsCommandTextBox = true,
+				Enum TextBoxType = Console,
 				string ConsoleTextboxName = "Console",
 				string TextBoxBackground = "TextBoxBG",
 				Vec2 TextCharDimensions = [0.280999988, 0.5],
+				Vec4 HighlightColor = [0.199999988, 0.599999785, 1, 0.5],
 				int MaxCharsPerLine = 74,
 				int MaxCharLimit = 50000,
 			},
 			Commands = 
 			{
+			},
+			Reactive = 
+			{
+				bool Active = true,
+				bool CaptureMouse = false,
+			},
+			Area = 
+			{
+				Vec2 Size = [21, 0.699999988],
+				Location Origin = TopLeft,
+			},
+			TextShadow = 
+			{
+				Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
+				Vec2 Offset = [0.0299999993, -0.0299999993],
 			},
 		},
 	},

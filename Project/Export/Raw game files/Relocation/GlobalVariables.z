@@ -1,6 +1,14 @@
 // AUTHOR: HUDSON GREEN
 // CONTRIBUTORS: N/A
 
+enum Difficulty {
+    None = 0,
+    Easy = 1,
+    Normal = 2,
+    Hard = 3,
+    Hardcore = 4
+}
+
 class Relocation {
     
     [Static] var EntityPlayer : String = "EntityPlayer";
@@ -17,11 +25,15 @@ class Relocation {
     
     [Static] var DebugMode : Boolean = false;
     [Static] var InventoryOpen : Boolean = false;
+    [Static] var TeleportTriggered : Boolean = false;
+    [Static] var FillAmmoOnLoad : Boolean = true;
+    [Static] var ShouldLoadLevel : Boolean = false;
     
     [Static] var CursorType : String = "Default";
     
-    [Static] var Time : Real = 12.0;
-    [Static] var DayLength : Real = 48.0;
+    [Static] var Time : Real = 24.0;
+    [Static] var Day : Integer = 0;
+    [Static] var DayLength : Real = 96.0;
     [Static] var LightAmount : Real = 1.0;
     
     /* MAIN MENU */
@@ -31,9 +43,21 @@ class Relocation {
 
 class PlayerData {
     
-    [Static] var SpawnPosition : Real3 = Real3(-20.5, 4.5, 0.0);
+    [Static] var SpawnPosition : Real3 = Real3(20.5, -7.5, 0.0);
+    
+    [Static] var Difficulty : Difficulty = Difficulty.Normal;
+    
+    [Static] var GodMode : Boolean = false;
     
     [Static] var InventoryContents : Array[Integer] = null;
     [Static] var InventoryContentsCount : Array[Integer] = null;
+    
+    [Static] var WeaponData : Array[Integer] = null;
+    
+}
+
+class Keybinds {
+    
+    [Static] var Console : Keys = Keys.Tilde;
     
 }

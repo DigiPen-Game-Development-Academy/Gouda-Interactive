@@ -3,7 +3,7 @@
 
 class Weapon {
     
-    var Space : Space;
+    var Space : Space = null;
     
     var ItemName : String = "WeaponUndefined";
     var AmmoTypeID : Integer = 0;
@@ -26,7 +26,7 @@ class Weapon {
     var BulletSpeed : Real = 10.0;
     var Accuracy : Real = 0.0;
     
-    var BulletSpawnLocation : Real3 = Real3(0.2, 0.0, 0.0);
+    var BulletSpawnLocation : Real3 = Real3(0.0, -0.2, 0.0);
     
     constructor(space : Space, itemName : String, itemID : Integer, isRanged : Boolean) {
         this.Space = space;
@@ -63,14 +63,21 @@ class Weapon {
         this.BulletSpawnLocation = Real3(pos.X, pos.Y, -0.05);
     }
     
-    function SetMaxAmmoAmount(amount : Integer) {
+    function SetMaxAmmoAmount(amount : Integer, refill : Boolean) {
         this.MaxAmmo = amount;
-        this.CurrentAmmo = amount;
+        if(refill) {
+            this.CurrentAmmo = amount;
+            PlayerData.WeaponData.Set(this.ItemID, this.CurrentAmmo);
+        } else {
+            this.CurrentAmmo = PlayerData.WeaponData[this.ItemID];
+        }
+        Console.WriteLine("Data: `PlayerData.WeaponData`");
         this.GiveStats();
     }
     
     function SetCurrentAmmoAmount(amount : Integer) {
         this.CurrentAmmo = amount;
+        PlayerData.WeaponData.Set(this.ItemID, this.CurrentAmmo);
     }
     
     function SetAmmoType(type : Integer) {
@@ -95,6 +102,7 @@ class Weapon {
     
     function RefillAmmo() {
         this.CurrentAmmo = this.MaxAmmo;
+        PlayerData.WeaponData.Set(this.ItemID, this.CurrentAmmo);
     }
     
     function UseWeapon() {
@@ -103,9 +111,8 @@ class Weapon {
             
             var spawnAmt = 1;
             
-            if(this.IsShotgun) {
+            if(this.IsShotgun)
                 spawnAmt = 5;
-            }
             
             for(var i = 0; i < spawnAmt; ++i) {
                 
@@ -113,23 +120,33 @@ class Weapon {
                 
                 var accuracy = rand.Range(-this.Accuracy / 2, this.Accuracy / 2);
                 
-                var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, Real3(this.Space.FindObjectByName("EntityHand").Transform.WorldTranslation.XY, 0) + this.BulletSpawnLocation);
+                var bullet = this.Space.CreateAtPosition(Archetype.EntityBullet, Real3(this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation.XY, 0) + this.BulletSpawnLocation);
                 
                 var mousePos = this.Space.FindObjectByName("LevelSettings").CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0.0);
-                var gunPos = this.Space.FindObjectByName("EntityHand").Transform.WorldTranslation;
+                var gunPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
                 
                 var dif = Real2(mousePos.X - gunPos.X, mousePos.Y - gunPos.Y);
                 var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
+                
+                if(magnitude == 0)
+                    magnitude = 0.01;
+                
                 var velocity = Real3(dif.X / magnitude * this.BulletSpeed + accuracy, dif.Y / magnitude * this.BulletSpeed + accuracy, 0.0);
                 
                 bullet.RigidBody.Velocity = velocity;
                 bullet.EntityBullet.FromPlayer = true;
+                bullet.EntityBullet.SpawnedBy = Relocation.Player;
                 bullet.EntityBullet.Damage = this.BulletDamage;
+                bullet.EntityBullet.PostInitialize(Relocation.Player);
+                
+                var cam = this.Space.FindObjectByName("Camera");
+                cam.Transform.Translation = Real3(Math.Lerp(cam.Transform.Translation.XY, -(velocity.XY / 500), 0.066), cam.Transform.Translation.Z);
                 
             }
             
             if(this.MaxAmmo != -1) {
                 --this.CurrentAmmo;
+                PlayerData.WeaponData.Set(this.ItemID, this.CurrentAmmo);
             }
             
         } else if(this.IsDrill) {
@@ -142,14 +159,21 @@ class Weapon {
             
             var dif = Real2(mousePos.X - gunPos.X, mousePos.Y - gunPos.Y);
             var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
+            
+            if(magnitude == 0) {
+                magnitude = 0.001;
+            }
+            
             var velocity = Real3(dif.X / magnitude * this.BulletSpeed, dif.Y / magnitude * this.BulletSpeed, 0.0);
             
             bullet.RigidBody.Velocity = velocity;
             bullet.EntityBullet.FromPlayer = true;
             bullet.EntityBullet.Damage = 0.0;
-            bullet.EntityBullet.BlockDamageAmount = 5.0;
+            bullet.EntityBullet.BlockDamageAmount = 0.75;
             bullet.EntityBullet.DrillBullet = true;
             bullet.EntityBullet.Lifetime = 0.1;
+            bullet.EntityBullet.SpawnedBy = Relocation.Player;
+            bullet.EntityBullet.PostInitialize(Relocation.Player);
             
         } else {
             
@@ -176,7 +200,7 @@ class Weapon {
                 this.CurrCooldown = this.Cooldown;
                 
                 // PLAY OUT OF AMMO SOUND
-                this.Space.SoundSpace.PlayCue(SoundCue.Find("WeaponNoAmmo"));
+                Relocation.Player.SoundObject.PlayCue(SoundCue.Find("WeaponNoAmmo"));
                 
                 if(this.Space.FindObjectByName("EntityPlayer").Inventory != null) {
                     

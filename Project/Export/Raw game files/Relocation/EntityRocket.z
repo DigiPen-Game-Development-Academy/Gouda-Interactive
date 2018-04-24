@@ -21,6 +21,8 @@ class EntityRocket : ZilchComponent {
     
     var LockVelocity : Boolean = false;
     
+    var HasHiddenRocketFire : Boolean = false;
+    
     function Initialize(init : CogInitializer) {
         Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
         Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
@@ -35,7 +37,7 @@ class EntityRocket : ZilchComponent {
                 
                 Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
                 
-                if(Zero.Keyboard.KeyIsDown(Keys.Shift)) {
+                if(Zero.Keyboard.KeyIsDown(Keys.Control)) {
                     Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
                         "Big \"Rover\"",
                         "HP: `this.Owner.Health.CurrentHealth` / `this.Owner.Health.MaxHealth`",
@@ -44,7 +46,7 @@ class EntityRocket : ZilchComponent {
                     );
                 } else {
                     Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.TooltipText(
-                        "Big \"Rover\" (Shift)",
+                        "Big \"Rover\" (Ctrl)",
                         "R to Enter",
                         Real4(0.0, 1.0, 0.0, 1.0),
                         Real4(1.0)
@@ -62,7 +64,7 @@ class EntityRocket : ZilchComponent {
                     rider.Transform.WorldTranslation = Real3(this.Owner.Transform.WorldTranslation.XY, rider.Transform.WorldTranslation.Z);
                     
                     this.IsRidingRover = true;
-                    this.Owner.SoundEmitter.PlayCue(SoundCue.DefaultCue);
+                    this.Owner.SoundObject.PlayCue(SoundCue.DefaultCue);
                     
                     /*if(rider.Movement != null) {
                         this.RiderDefaultSpeed = rider.Movement.Speed;
@@ -180,6 +182,10 @@ class EntityRocket : ZilchComponent {
             
             this.Owner.RigidBody.Velocity = this.HoverVelocity;
             
+        } else if(!this.HasHiddenRocketFire) {
+            foreach(var obj in this.Owner.FindAllChildrenByName("ParticleEngine"))
+                obj.SphericalParticleEmitter.Active = false;
+            this.HasHiddenRocketFire = true;
         }
         
     }
