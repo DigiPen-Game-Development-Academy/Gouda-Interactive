@@ -6,11 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "PassiveEntity",
+		string Name = "EntityPassive",
 	},
 	Archetyped = 
 	{
-		string Name = "5acc54a1ed491026:PassiveEntity",
+		string Name = "5acc54a1ed491026:EntityPassive",
 	},
 	Transform = 
 	{
@@ -64,6 +64,8 @@ Cog =
 		bool IsInvincible = false,
 		bool NaturalRegen = false,
 		Vec4 DamagedColor = [1, 0.498039275, 0.498039246, 1],
+		string DeathAnimation = "",
+		int EndOfAnimation = 0,
 	},
 	PassiveAI = 
 	{
@@ -87,5 +89,10 @@ Cog =
 	{
 		string ItemName = "ItemIronOre",
 		int Amount = 1,
+	},
+	EntityFreezer = 
+	{
+		string EntityArchetype = "5acc54a1ed491026:EntityPassive",
+		float FreezeDistance = 16,
 	},
 },

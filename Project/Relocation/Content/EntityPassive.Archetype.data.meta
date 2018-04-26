@@ -2,7 +2,7 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "PassiveEntity",
+		string Name = "EntityPassive",
 		uint64 ResourceId = 5acc54a1ed491026,
 		string LoaderType = "Cog",
 		uint Version = 0,

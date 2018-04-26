@@ -179,7 +179,7 @@ class WorldGenerator : ZilchComponent {
                 }
                 
                 // ENTITIES
-                if(this.WorldMap.Get(Integer2(x, y)) == 0 && Random().Probability(0.025) && !this.IsSpawnChunk) {
+                if(this.WorldMap.Get(Integer2(x, y)) == 0 && Random().Probability(0.01) && !this.IsSpawnChunk) {
                     this.Owner.EntitySpawner.SpawnEntity(Real3(x - this.Width / 2, y - this.Width / 2, 0.0) + 
                         Real3(this.Owner.Transform.WorldTranslation.XY, 0.0));
                 }
