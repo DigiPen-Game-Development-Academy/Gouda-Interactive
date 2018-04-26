@@ -254,8 +254,8 @@ Level =
 		{
 			bool AnimationEnabled = true,
 			string AnimationType = "FadeInOut",
-			float AnimationSpeed = 1.25,
-			float AnimationDelay = 3.5,
+			float AnimationSpeed = 0.75,
+			float AnimationDelay = 4,
 			float MultiAnimationDelay = 2.25,
 		},
 		SkipToSplash = 
