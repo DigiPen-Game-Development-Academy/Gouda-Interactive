@@ -40,6 +40,15 @@ class Item {
         
     }
     
+    constructor(itemName : String, sprite : SpriteSource) {
+        
+        this.ItemName = itemName;
+        this.ItemRecognizableNameBase = String.Concatenate(String.Concatenate("item.", itemName.SubStringFromRuneIndices(4, itemName.Count)), ".name");
+        this.ItemRecognizableName = this.ItemRecognizableNameBase;
+        this.Sprite = sprite;
+        
+    }
+    
     function SetSpriteSource(sprite : String) {
         this.Sprite = SpriteSource.Find(sprite);
     }

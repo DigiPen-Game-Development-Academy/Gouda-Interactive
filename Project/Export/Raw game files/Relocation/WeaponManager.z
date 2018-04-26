@@ -3,17 +3,16 @@
 
 class WeaponManager : ZilchComponent {
     
-    var IsHoldingWeapon : Boolean = false;
-    var MouseClick : Boolean = false;
+    var WeaponCount         : Integer = 12;
     
-    // UI SPACE
-    var UISpace : Space = null;
+    var IsHoldingWeapon     : Boolean = false;
+    var MouseClick          : Boolean = false;
     
     // ACTIVE WEAPON
-    var ActiveWeapon : Weapon = null;
+    var ActiveWeapon        : Weapon = null;
     
     // HAND
-    var WeaponHand : Weapon = null;
+    var WeaponHand          : Weapon = null;
     
     // WEAPONS (RANGED)
     var WeaponPistol        : Weapon = null;
@@ -33,8 +32,8 @@ class WeaponManager : ZilchComponent {
     
     function Initialize(init : CogInitializer) {
         
-        // LINK UI SPACE
-        this.UISpace = this.LevelSettings.UICreator.UISpace;
+        // WEAPON DATA
+        if(Relocation.FillAmmoOnLoad) PlayerData.WeaponData = new Array[Integer](this.WeaponCount);
         
         // HAND
         this.WeaponHand = new Weapon(this.Space, "Hand", 0, false);
@@ -52,10 +51,10 @@ class WeaponManager : ZilchComponent {
         this.WeaponGouda = new Weapon(this.Space, "Gouda", 8, true, 1.25, 15.0);
         
         // TOOLS
-        this.ToolDrillCopper = new Weapon(this.Space, "Hand", 9, false, 1.0, 0.0);
-        this.ToolDrillIron = new Weapon(this.Space, "Hand", 10, false, 0.75, 0.0);
-        this.ToolDrillTitanium = new Weapon(this.Space, "Hand", 11, false, 0.5, 0.0);
-        this.ToolDrillPlatinum = new Weapon(this.Space, "Hand", 12, false, 0.25, 0.0);
+        this.ToolDrillCopper = new Weapon(this.Space, "Hand", 9, false, 0.1, 0.0);
+        this.ToolDrillIron = new Weapon(this.Space, "Hand", 10, false, 0.075, 0.0);
+        this.ToolDrillTitanium = new Weapon(this.Space, "Hand", 11, false, 0.05, 0.0);
+        this.ToolDrillPlatinum = new Weapon(this.Space, "Hand", 12, false, 0.025, 0.0);
         
         // SET AS DRILL
         this.ToolDrillCopper.IsDrill = true;
@@ -84,16 +83,18 @@ class WeaponManager : ZilchComponent {
         this.WeaponGouda.SetAccuracy(0.25);
         
         // SET AMMO AMOUNT
-        this.WeaponPistol.SetMaxAmmoAmount(-1);
-        this.WeaponRevolver.SetMaxAmmoAmount(6);
-        this.WeaponRock.SetMaxAmmoAmount(1);
+        this.WeaponPistol.SetMaxAmmoAmount(-1, Relocation.FillAmmoOnLoad);
+        this.WeaponRevolver.SetMaxAmmoAmount(6, Relocation.FillAmmoOnLoad);
+        this.WeaponRock.SetMaxAmmoAmount(1, Relocation.FillAmmoOnLoad);
         
-        this.WeaponShotgun.SetMaxAmmoAmount(12);
-        this.WeaponBoulder.SetMaxAmmoAmount(1);
+        this.WeaponShotgun.SetMaxAmmoAmount(12, Relocation.FillAmmoOnLoad);
+        this.WeaponBoulder.SetMaxAmmoAmount(1, Relocation.FillAmmoOnLoad);
         
-        this.WeaponMinigun.SetMaxAmmoAmount(350);
-        this.WeaponSniper.SetMaxAmmoAmount(4);
-        this.WeaponGouda.SetMaxAmmoAmount(1);
+        this.WeaponMinigun.SetMaxAmmoAmount(350, Relocation.FillAmmoOnLoad);
+        this.WeaponSniper.SetMaxAmmoAmount(4, Relocation.FillAmmoOnLoad);
+        this.WeaponGouda.SetMaxAmmoAmount(1, Relocation.FillAmmoOnLoad);
+        
+        Relocation.FillAmmoOnLoad = false;
         
         // SET AMMO TYPE
         this.WeaponPistol.SetAmmoType(Relocation.ItemManager.GetIDByName("ItemAmmoPistol"));
@@ -120,7 +121,7 @@ class WeaponManager : ZilchComponent {
         //this.WeaponShotgun.SetBulletSpawnPosition(0.6);
         //this.WeaponBoulder.SetBulletSpawnPosition(0.75);
         
-        this.WeaponMinigun.SetBulletSpawnPosition(this.Owner.FindChildByName("EntityHand").Transform.Translation.XY + Real2(0.0, 0.1));
+        //this.WeaponMinigun.SetBulletSpawnPosition(Real2(0.0, -0.2));
         //this.WeaponSniper.SetBulletSpawnPosition(0.05);
         //this.WeaponGouda.SetBulletSpawnPosition(0.25);
         
@@ -137,7 +138,7 @@ class WeaponManager : ZilchComponent {
     
     function OnLogicUpdate(event : UpdateEvent) {
         
-        if(!this.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
+        if(!Relocation.UISpace.FindObjectByName("DebugCommand").FindChildByName("TextEntry").TextEntry.CaptureKeys) {
             
             if(this.Owner.Inventory.CheckForItemMainHand(0)) {
                 this.ActiveWeapon = this.WeaponHand;

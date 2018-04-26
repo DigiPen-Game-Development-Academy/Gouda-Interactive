@@ -1,0 +1,8 @@
+FontContent = 
+{
+	FontBuilder = 
+	{
+		string Name = "Arial",
+		uint64 ResourceId = 5af96acd4abd9c9f,
+	},
+},

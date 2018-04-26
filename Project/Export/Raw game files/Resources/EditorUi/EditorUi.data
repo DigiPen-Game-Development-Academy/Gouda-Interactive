@@ -81,8 +81,8 @@ DefinitionSet =
 	
 	TextDefinition BoldText =
 	{
-		string FontName = "VerdanaBold",
-		float FontSize = 11,
+		string FontName = "Arial",
+		float FontSize = 12,
 		float[] FontColor = [.925,.925,.925,1],
 	},
 	
@@ -184,8 +184,8 @@ DefinitionSet =
 	
 	TextDefinition Text =
 	{
-		string FontName = "Verdana",
-		float FontSize = 11,
+		string FontName = "Arial",
+		float FontSize = 12,
 		float[] FontColor = [.925,.925,.925,1],
 	},
 	
@@ -758,7 +758,7 @@ DefinitionSet =
 			float[] Uv1 = [ 8 , 8 ],
 		},
 	},	
-	
+	// DROPDOWN BOX
 	DefinitionSet ComboBox = 
 	{
 		TextDefinition Text =
@@ -896,7 +896,7 @@ DefinitionSet =
 	{
 		string Texture = "ObjectIcons",
 		int ImageMode = 0,
-		float[] Uv0 = [ 16, 48 ],
+		float[] Uv0 = [ 96, 48 ],
 		float[] Uv1 = [ 16 , 16 ],
 	},
 
@@ -904,7 +904,7 @@ DefinitionSet =
 	{
 		string Texture = "ObjectIcons",
 		int ImageMode = 0,
-		float[] Uv0 = [ 32, 48 ],
+		float[] Uv0 = [ 112, 48 ],
 		float[] Uv1 = [ 16 , 16 ],
 	},
 	

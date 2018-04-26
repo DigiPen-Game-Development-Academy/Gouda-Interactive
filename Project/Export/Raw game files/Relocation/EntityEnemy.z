@@ -11,6 +11,7 @@ class EntityEnemy : ZilchComponent
     [Property] var HitboxSize : Real = 1.0;
     [Property] var HitboxLifetime : Real = 3.0;
     [Property] var CanMove : Boolean = true;
+    [Property] var SightRadius : Real = 5.0;
     var TimeTillAttack : Real = 0.0;
     var Player : Cog = null;
     
@@ -43,46 +44,41 @@ class EntityEnemy : ZilchComponent
         // Change "EnemySprite"
         this.ChangeSprite();
         
-        // Move
-        this.Move();
-        
         // Decrease "TimeTillAttack"
         this.TimeTillAttack -= event.Dt;
-        
-        // Look at the player
-        this.LookAtPlayer();
         
         // Attack
         if (this.TimeTillAttack <= 0.0)
             this.Shoot();
     }
     
-    function Move()
-    {
-        this.Owner.RigidBody.Velocity += this.Owner.Orientation.WorldForward * 3 * 0.0166667;
-    }
-    
     function Shoot()
     {
-        /*if (this.Owner.PathFinding.LookAtPlayer().ObjectHit != null)
-            if (this.Owner.PathFinding.LookAtPlayer().ObjectHit.Name != "EntityPlayer")
-                return;*/
-        
-        var bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.XY, 0.0));
-        
-        bullet.EntityBullet.FromPlayer = false;
-        
-        var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
-        var enemyPos = this.Owner.Transform.WorldTranslation;
-        
-        var dif = Real2(playerPos.X - enemyPos.X, playerPos.Y - enemyPos.Y);
-        var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
-        var velocity = Real3(dif.X / magnitude * this.BulletSpeed, dif.Y / magnitude * this.BulletSpeed, 0.0);
-        
-        bullet.RigidBody.Velocity = velocity;
-        bullet.EntityBullet.FromPlayer = false;
-        bullet.EntityBullet.Damage = 3;
-        bullet.FindChildByName("ParticleLaser").SpriteParticleSystem.Tint = Real4(1.0, 0.25, 0.25, 1.0);
+        if (this.Owner.Follower.LostSight != true)
+        {
+            var bullet : Cog = null;
+            if (this.Owner.ArchetypeName == "EntityArmadilo")
+                bullet = this.Space.CreateAtPosition(Archetype.Find("EntityNeedle"), Real3(this.Owner.Transform.Translation.XY, 0.0));
+            if (this.Owner.ArchetypeName == "EntityFrogg")
+                bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBubble"), Real3(this.Owner.Transform.Translation.XY, 0.0));
+            else
+                bullet = this.Space.CreateAtPosition(Archetype.Find("EntityBullet"), Real3(this.Owner.Transform.Translation.XY, 0.0));
+            
+            bullet.EntityBullet.FromPlayer = false;
+            
+            var playerPos = this.Space.FindObjectByName(Relocation.EntityPlayer).Transform.WorldTranslation;
+            var enemyPos = this.Owner.Transform.WorldTranslation;
+            
+            var dif = Real2(playerPos.X - enemyPos.X, playerPos.Y - enemyPos.Y);
+            var magnitude = Math.Sqrt(dif.X * dif.X + dif.Y * dif.Y);
+            var velocity = Real3(dif.X / magnitude * this.BulletSpeed, dif.Y / magnitude * this.BulletSpeed, 0.0);
+            
+            bullet.RigidBody.Velocity = velocity;
+            bullet.EntityBullet.FromPlayer = false;
+            bullet.EntityBullet.Damage = 3;
+            if (bullet.ArchetypeName != "EntityBubble" && bullet.ArchetypeName != "EntityNeedle")
+                bullet.FindChildByName("ParticleLaser").SpriteParticleSystem.Tint = Real4(1.0, 0.25, 0.25, 1.0);
+        }
         
         this.TimeTillAttack = this.AttackCooldown;
         
@@ -92,10 +88,10 @@ class EntityEnemy : ZilchComponent
     function LookAtPlayer()
     {
         // Look at player
-        this.Owner.Orientation.LookAtPoint(this.Player.Transform.Translation);
+        //this.Owner.Orientation.LookAtPoint(this.Player.Transform.Translation);
         
         // Make enemy sprite face up
-        this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
+        //this.Owner.Children.Current.Orientation.LookAtDirection(Real3(0.0, 1.0, 0.0));
     }
     
     function ChangeSprite()
@@ -104,7 +100,7 @@ class EntityEnemy : ZilchComponent
         var sprite = this.Owner.Children.Current;
         
         // Get the enemy's direction
-        var worldForward = this.Owner.Orientation.WorldForward;
+        var worldForward = this.Owner.RigidBody.Velocity;
         // Calculate enemy's direction in radians
         var radians = Math.AngleBetween(worldForward, Real3.YAxis);
         // Convert radians to degrees

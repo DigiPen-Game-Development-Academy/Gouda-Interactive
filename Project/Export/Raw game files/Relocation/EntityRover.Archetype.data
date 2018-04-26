@@ -69,6 +69,10 @@ Cog =
 		bool Positional = true,
 		int Version = 1,
 	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
+	},
 	Hierarchy = 
 	{
 		Cog = 
@@ -159,7 +163,7 @@ Cog =
 			},
 			SpriteParticleSystem = 
 			{
-				bool Visible = true,
+				bool Visible = false,
 				bool VisibilityCulling = true,
 				bool VisibilityEvents = true,
 				bool CastShadows = false,
@@ -235,7 +239,7 @@ Cog =
 			},
 			SpriteParticleSystem = 
 			{
-				bool Visible = true,
+				bool Visible = false,
 				bool VisibilityCulling = true,
 				bool VisibilityEvents = true,
 				bool CastShadows = false,

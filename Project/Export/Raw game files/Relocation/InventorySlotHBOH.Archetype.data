@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-4.5, -1.60000002, 0],
+		Vec3 Translation = [-4.3499999, -1.60000002, 0],
 		Vec3 Scale = [0.75, 0.75, 0.75],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0, 0.968627453, 1, 0.75],
+		Vec4 Color = [0.454999983, 1, 0.493150085, 0.75],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -43,6 +43,9 @@ Cog =
 	},
 	InventorySlot = 
 	{
+		bool EnableHoverSprite = true,
+		string InventorySlot = "5a3802b8a850eeb2:InventorySlot",
+		string InventorySlotHover = "5aef777feb626ca2:InventorySlotHover",
 	},
 	Hierarchy = 
 	{
@@ -113,6 +116,11 @@ Cog =
 				TextAlign Align = Left,
 				float PixelsPerUnit = 256,
 				bool Smoothing = false,
+			},
+			TextShadow = 
+			{
+				Vec4 Color = [0.150000006, 0.150000006, 0.150000006, 1],
+				Vec2 Offset = [0.0500000007, -0.0500000007],
 			},
 		},
 		Cog = 

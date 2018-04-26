@@ -20,9 +20,9 @@ Cog =
 	},
 	ScreenAlignment = 
 	{
-		string PositionX = "Right",
-		string PositionY = "Bottom",
-		Vec2 PositionOffset = [-2, 1],
+		Enum PositionX = Right,
+		Enum PositionY = Bottom,
+		Vec2 PositionOffset = [-2.25, 1.25],
 		float ZIndex = 0,
 		bool HideUntilPositioned = false,
 	},

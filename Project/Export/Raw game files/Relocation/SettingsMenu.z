@@ -49,10 +49,12 @@ class SettingsMenu : ZilchComponent {
         
         if(this.MusicVolumeSlider != null) {
             this.MusicVolumeSlider.Slider.CurrentAmount = GameSetting.MusicVolume * 100;
+            this.MusicVolumeSlider.Slider.InitializeSlider(SliderType.Grabber);
         }
         
         if(this.SoundVolumeSlider != null) {
             this.SoundVolumeSlider.Slider.CurrentAmount = GameSetting.SoundEffectsVolume * 100;
+            this.SoundVolumeSlider.Slider.InitializeSlider(SliderType.Grabber);
         }
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);

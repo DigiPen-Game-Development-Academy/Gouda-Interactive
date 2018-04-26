@@ -50,7 +50,11 @@ Space =
 	{
 		string MainMenuSong = "5aca326c7fbc7342:SongRelocationMain",
 		string InGameSong = "5aefa4eb202aa39a:RelocationCityDay",
+		string CaveSong = "5a396376aa8bda77:caverelocation",
 		string MusicSpace = "5aca222067bdfb93:MusicSpace",
 		string MusicLevel = "554cea0f94af672f:MusicLevel",
+	},
+	HandleQuit = 
+	{
 	},
 },

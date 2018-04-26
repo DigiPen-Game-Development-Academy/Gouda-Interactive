@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-2.20000005, -1.60000002, 0],
+		Vec3 Translation = [-4.3499999, -1.60000002, 0],
 		Vec3 Scale = [0.75, 0.75, 0.75],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -43,6 +43,9 @@ Cog =
 	},
 	InventorySlot = 
 	{
+		bool EnableHoverSprite = true,
+		string InventorySlot = "5a3802b8a850eeb2:InventorySlot",
+		string InventorySlotHover = "5aef777feb626ca2:InventorySlotHover",
 	},
 	Hierarchy = 
 	{
@@ -113,6 +116,10 @@ Cog =
 				TextAlign Align = Left,
 				float PixelsPerUnit = 256,
 				bool Smoothing = false,
+			},
+			TextShadow = 
+			{
+				Vec2 Offset = [0.0500000007, -0.0500000007],
 			},
 		},
 		Cog = 

@@ -66,6 +66,10 @@ Cog =
 		bool Positional = true,
 		int Version = 1,
 	},
+	SoundObject = 
+	{
+		Enum SoundCategory = Sound,
+	},
 	Hierarchy = 
 	{
 		Cog = 
@@ -98,7 +102,7 @@ Cog =
 				bool RenderMask = false,
 				bool FlipX = false,
 				bool FlipY = false,
-				bool AnimationActive = true,
+				bool AnimationActive = false,
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
 			},
@@ -237,7 +241,7 @@ Cog =
 				bool RenderMask = false,
 				bool FlipX = false,
 				bool FlipY = false,
-				bool AnimationActive = true,
+				bool AnimationActive = false,
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
 			},
@@ -376,7 +380,7 @@ Cog =
 				bool RenderMask = false,
 				bool FlipX = false,
 				bool FlipY = false,
-				bool AnimationActive = true,
+				bool AnimationActive = false,
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
 			},

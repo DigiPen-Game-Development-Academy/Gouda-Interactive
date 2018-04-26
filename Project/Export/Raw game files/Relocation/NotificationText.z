@@ -27,7 +27,7 @@ class NotificationText : ZilchComponent {
             
             var lore = "";
             
-            if(Zero.Keyboard.KeyIsDown(Keys.Shift))
+            if(Zero.Keyboard.KeyIsDown(Keys.Control))
                 lore = this.TooltipLore;
             
             Relocation.UISpace.FindObjectByName("Tooltip").Tooltip.ShowTooltip(true);
